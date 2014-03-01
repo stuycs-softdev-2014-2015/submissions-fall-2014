@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    
+  </head>
+  
+  <body>
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>    <br>
+    <center>
+    <input type="text" placeholder="Enter Username" id="un" />
+    <br>
+    <input type="password" placeholder="Enter Password" id="pw" />
+    <br>
+    <input type="submit" class="button" id="button" value="submit" / >
+    </center>
+  </body>
+
+</html>
