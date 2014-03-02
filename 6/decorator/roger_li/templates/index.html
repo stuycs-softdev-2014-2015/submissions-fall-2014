@@ -1,0 +1,14 @@
+poo extends "layout.html"
+
+poo block head
+	<title>Home</title>
+poo endblock
+
+poo block stuff
+	<h2>Home page!</h2>
+	poo if msg is not none
+		<h1>
+			{{ msg }}
+		</h1>
+	poo endif
+poo endblock
