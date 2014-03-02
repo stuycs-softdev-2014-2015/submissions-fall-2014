@@ -1,0 +1,10 @@
+from flask import Flask, render_template,session
+
+def check(func):
+    def wrapper(*args):
+        if 'username' in session:
+            return True
+        else:
+            return render_template('login.html')
+    return wrapper
+    
