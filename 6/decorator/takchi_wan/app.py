@@ -18,10 +18,13 @@ def login():
         password = request.form['password']
         if username == "abc" and password == "123":
             session['username'] = username
-            return index('You've logged in.')
+            return index('You have logged in.')
         else:
             return index('Incorrect credentials. Please try again.')
-            
+
+def logout():
+	session.pop("username")
+	return redirect(url_for("index"))
             
 if __name__ == "__main__":
 	app.run(debug = True)
