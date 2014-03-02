@@ -41,8 +41,5 @@ def logout():
 	session.pop("username")
 	return redirect(url_for('/'))
 	
-
-
-def testpage():
 if __name__ == "__main__":
 	app.run(debug = True)
