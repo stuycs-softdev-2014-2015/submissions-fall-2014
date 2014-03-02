@@ -4,6 +4,7 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = 'blahb'
 
+
 def auth(func):
     @wraps(func)
     def wrapper(*args,**kwargs):
