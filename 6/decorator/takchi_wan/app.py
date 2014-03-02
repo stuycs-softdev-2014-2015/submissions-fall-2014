@@ -27,9 +27,9 @@ def login():
         password = request.form['password']
         if username == "abc" and password == "123":
             session['username'] = username
-            return index('You have logged in.')
+            return redirect(url_for('/'))
         else:
-            return index('Incorrect credentials. Please try again.')
+            return render_template("login.html", message = "Invalid username and password combination.")
             
 @app.route('/test')
 @auth
@@ -39,7 +39,8 @@ def testpage():
 @app.route('/logout')
 def logout():
 	session.pop("username")
-	return redirect(url_for('/'))
+	return redirect(url_for('/login'))
 	
 if __name__ == "__main__":
 	app.run(debug = True)
+	app.run(host='0.0.0.0',port=5000)
