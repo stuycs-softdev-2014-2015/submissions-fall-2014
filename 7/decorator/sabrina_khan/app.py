@@ -1,4 +1,4 @@
-from flask import  Flask,sessiom,redirect,request,url_for,render_template
+from flask import  Flask,session,redirect,request,url_for,render_template
 from functools import wraps
 
 app=Flask(__name__)
@@ -12,7 +12,7 @@ def auth(func):
         return func(*args,**kwargs)
     return wrapper
 
-@app.route("/",methods-["GET","POST"])
+@app.route("/",methods=["GET","POST"])
 @auth
 def Home():
     if request.method == "POST":
@@ -31,9 +31,9 @@ def Login(x):
             return redirect(url_for(x))
         return render_template("Login.html")
 
-@app.rout("/Logout")
+@app.route("/Logout")
 def Logout():
-    session.pop("Username",None)
+    session.pop("username",None)
     return redirect(url_for("Home"))
 
 if __name__ == "__main__":
