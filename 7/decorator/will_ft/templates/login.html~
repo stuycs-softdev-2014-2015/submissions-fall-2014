@@ -1,6 +1,0 @@
-<h1>Login Page</h1>
-<form action="/login" method="POST">
-  <b>Username:</b> <input type="text" name="usern" placeholder="will"/>
-  <b>Password:</b> <input type="text" name="passw" placeholder="123"/>
-  <input type="hidden" name="redirecturl" value={% if url %}"{{url}}"{% else %}"/"{% endif %}/>
-</form> 
