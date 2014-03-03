@@ -1,11 +1,11 @@
 from pymongo import MongoClient
 
-connection = MongoClient()
-db = connection.database
-#connection = MongoClient('db.stuycs.org')
-#db = connection.admin
-#db.authenticate('softdev','softdev')
+#connection = MongoClient()
 #db = connection.database
+connection = MongoClient('db.stuycs.org')
+db = connection.admin
+db.authenticate('softdev','softdev')
+db = connection.database
 
 def register(user, pw):
     if checkuser(user) == False:
