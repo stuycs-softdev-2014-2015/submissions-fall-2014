@@ -4,7 +4,7 @@ app = Flask(__name__)
 app.secret_key = 'My name is Yaseen'
 
 
-def login_stuffs(func):
+def auth(func):
     def wrapper():
         if "user" in session:
             return func()
@@ -34,7 +34,7 @@ def login(redir="home", *args, **kwargs):
         return redirect(url_for(redir))
 
 @app.route('/content')
-@login_stuffs
+@auth
 def content():
     return render_template('content.html')
 
