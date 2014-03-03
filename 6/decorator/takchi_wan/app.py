@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, session, redirect, request
+from flask import render_template, session, redirect, request, url_for
 from functools import wraps
 
 app = Flask (__name__)
@@ -11,12 +11,12 @@ def auth(func, *args, **kwargs):
         if 'username' in session:
             return func()
         else:
-            return index('Please log in first.')
-        return wrapper
+            return redirect(url_for('login'))
+    return wrapper
         
 @app.route('/')
 def index():
-    return render_template('index.html', message=message)
+    return render_template('index.html')
     
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -27,9 +27,9 @@ def login():
         password = request.form['password']
         if username == "abc" and password == "123":
             session['username'] = username
-            return redirect(url_for('/'))
+            return render_template("index.html")
         else:
-            return render_template("login.html", message = "Invalid username and password combination.")
+            return render_template("login.html")
             
 @app.route('/test')
 @auth
@@ -43,4 +43,4 @@ def logout():
 	
 if __name__ == "__main__":
 	app.run(debug = True)
-	app.run(host='0.0.0.0',port=5000)
+	
