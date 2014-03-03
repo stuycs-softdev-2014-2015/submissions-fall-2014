@@ -4,10 +4,11 @@ import auth
 app = Flask(__name__)
 app.secret_key='asdgasdgadsgads'
 
+@app.route("/index")
 @app.route("/")
 @auth.check
 def index():
-    return "Hello"
+    return render_template("home.html")
 
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -22,6 +23,11 @@ def login():
             session['username'] = username
             return redirect('/')
         return False
+
+@app.route("/logout")
+def logout():
+    session.pop('username',None)
+    return redirect('/')
     
 if __name__ == "__main__":
     app.debug = True
