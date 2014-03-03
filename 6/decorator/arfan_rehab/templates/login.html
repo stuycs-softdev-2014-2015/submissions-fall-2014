@@ -1,0 +1,20 @@
+= extends "layout.html"
+
+= block head
+	Login
+= endblock
+
+= block content
+	<h2>Login!</h2>
+	<ul>
+		<li><b>Feel free to use this account!</b></li>
+		<li>Username: <b>arfan</b></li>
+		<li>Password: <b>rehab</b></li>
+	</ul>
+	<br/>
+	<form action="{{ url_for('login')}}" method="post">
+		<input type="text" name="username" placeholder="Username"/><br>
+		<input type="password" name="password" placeholder="Password"/><br>
+		<input type="submit" name="Login">
+	</form>
+= endblock
