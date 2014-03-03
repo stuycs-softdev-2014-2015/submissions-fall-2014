@@ -12,11 +12,11 @@ def home():
 
 
 def auth(func):
-    def wrapper(*args):
+    def wrapper():
         if username != "jkarson" or password != "swagu":
             return redirect(url_for("login"))
         else:
-            return func(*args)
+            return func()
     return wrapper
 
 
