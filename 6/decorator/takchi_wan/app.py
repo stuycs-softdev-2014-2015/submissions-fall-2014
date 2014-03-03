@@ -15,6 +15,7 @@ def auth(func, *args, **kwargs):
     return wrapper
         
 @app.route('/')
+@auth
 def index():
     return render_template('index.html')
     
