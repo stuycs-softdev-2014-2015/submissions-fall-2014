@@ -29,7 +29,7 @@ def login():
         password = request.form["password"]
         if username == "milk" and password == "and cookies":
             session["username"] = "milk"
-            return url_for("content")
+            return redirect(url_for("content"))
         else:
             return index("There is no such user. Please try again.")
 
