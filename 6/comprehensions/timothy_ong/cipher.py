@@ -29,6 +29,11 @@ def dist(a,b):
         sum = sum + pow(a[i]-b[i],2)
     return math.sqrt(sum)
 
+def dist2(a,b):
+    sum = 0
+    [sum + pow(a[i]-b[i], 2) for i in range(len(a))]
+    return math.sqrt(sum)
+
 def calcPercents(s):
     """
     Returns a list of 26 elements L[0] will be the frequency of 
