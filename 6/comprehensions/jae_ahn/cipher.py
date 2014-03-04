@@ -28,7 +28,9 @@ import math
 
 def dist(a,b):
     sum=0
-    [sum + pow(a[i]-b[i],2) for i in range (len(a))]
+    lister = [sum + pow(a[i]-b[i],2) for i in range (len(a))]
+    for x in range (len(lister)):
+        sum = sum + lister[x]
     return math.sqrt(sum)
 
 def calcPercents(s):
