@@ -1,5 +1,4 @@
 
-
 def encode1(s,n):
     """
     Rotate the string by n characters, leaving spaces
@@ -41,7 +40,9 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-    L=[]
+    letters="abcdefghijklmnopqrstuvwxyz"
+    sentence="".join(s)
+    numletters=len(sentence)
     
     pass
 
