@@ -30,8 +30,10 @@ def dist(a,b):
     return math.sqrt(sum)
 
 def dist2(a,b):
+    sumlist = [pow(a[i]-b[i], 2) for i in range(len(a))]
     sum = 0
-    [sum + pow(a[i]-b[i], 2) for i in range(len(a))]
+    for x in range(len(sumlist)):
+        sum = sum + sumlist[x]
     return math.sqrt(sum)
 
 def calcPercents(s):
