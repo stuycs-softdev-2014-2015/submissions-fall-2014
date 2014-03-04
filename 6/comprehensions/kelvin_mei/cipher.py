@@ -1,3 +1,5 @@
+
+
 def encode1(s,n):
     """
     Rotate the string by n characters, leaving spaces
@@ -27,13 +29,6 @@ def dist(a,b):
     sum=0
     for i in range(len(a)):
         sum = sum + pow(a[i]-b[i],2)
-    return math.sqrt(sum)
-
-def dist2(a,b):
-    sumlist = [pow(a[i]-b[i], 2) for i in range(len(a))]
-    sum = 0
-    for x in range(len(sumlist)):
-        sum = sum + sumlist[x]
     return math.sqrt(sum)
 
 def calcPercents(s):
@@ -67,3 +62,4 @@ encmessage = encode2(s,random.randrange(26))
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
+

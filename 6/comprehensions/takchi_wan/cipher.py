@@ -1,3 +1,5 @@
+
+
 def encode1(s,n):
     """
     Rotate the string by n characters, leaving spaces
@@ -30,12 +32,7 @@ def dist(a,b):
     return math.sqrt(sum)
 
 def dist2(a,b):
-    sumlist = [pow(a[i]-b[i], 2) for i in range(len(a))]
-    sum = 0
-    for x in range(len(sumlist)):
-        sum = sum + sumlist[x]
-    return math.sqrt(sum)
-
+    print math.sqrt(sum((a-b)**2 for a, b in zip(a,b)))
 def calcPercents(s):
     """
     Returns a list of 26 elements L[0] will be the frequency of 
@@ -44,6 +41,8 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
+    L=[]
+    
     pass
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,

@@ -1,3 +1,5 @@
+
+
 def encode1(s,n):
     """
     Rotate the string by n characters, leaving spaces
@@ -23,17 +25,10 @@ def encode2(s,n):
 
 
 import math
+
 def dist(a,b):
     sum=0
-    for i in range(len(a)):
-        sum = sum + pow(a[i]-b[i],2)
-    return math.sqrt(sum)
-
-def dist2(a,b):
-    sumlist = [pow(a[i]-b[i], 2) for i in range(len(a))]
-    sum = 0
-    for x in range(len(sumlist)):
-        sum = sum + sumlist[x]
+    [sum + pow(a[i]-b[i],2) for i in range (len(a))]
     return math.sqrt(sum)
 
 def calcPercents(s):
@@ -44,6 +39,10 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
+    r = readlines()
+    sum
+    L = []
+    [L for 'a' in r for i in 25]
     pass
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
@@ -67,3 +66,4 @@ encmessage = encode2(s,random.randrange(26))
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
+
