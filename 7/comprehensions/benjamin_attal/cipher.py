@@ -43,7 +43,7 @@ def calcPercents(s):
 
 def decode(s):
     dists = [(dist(calcPercents(a), englishPercents), a) for i in range(1, 27) for a in [encode2(s, i)]]
-    return sorted(dists, key=lambda tup: tup[0])[0][1]
+    return min(dists, key=lambda val: val[0])[1]
   
 
 import random
