@@ -33,6 +33,17 @@ def dist(a,b):
     return math.sqrt(sum)
 
 def calcPercents(s):
+    letters=[chr(x) for x in range(97,123)]
+    sLen = len(s)
+    count = 0
+    counts = [1 for l in s if l == letter]
+    for x in letters:
+        letter = letters[x]
+        for y in s:
+            if y == letter:
+                count++
+        percent = count / slen
+    percents=[ 
     """
     Returns a list of 26 elements L[0] will be the frequency of 
     the letter a i the list, L[1] the letter b etc. 
@@ -59,7 +70,7 @@ encmessage = encode2(s,random.randrange(26))
 #3. For each of the 26 possible rotations of encmessage (the encoded message) 
 #   see the distance between it and the englishPerents. The closest should
 #   be the amount needed to decode the message
-#n
+#
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
