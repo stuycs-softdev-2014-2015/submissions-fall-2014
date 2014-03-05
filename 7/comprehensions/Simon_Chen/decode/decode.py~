@@ -1,6 +1,0 @@
-def getFreq(path):
-    txt = str(open(path).read())
-    print txt
-    return txt
-
-getFreq("ivanhoe.txt")
