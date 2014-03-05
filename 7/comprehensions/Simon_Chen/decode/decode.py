@@ -22,8 +22,7 @@ tf = getFreq("ivanhoe.txt")
 
 import math                      
 def dist(a,b):
-    s = 0
-    s = math.sqrt(sum([pow(a[i] - b[i],2) for i in range(len(a)-1)]))
+    s = math.sqrt(sum([pow(i - j,2) for i in a for j in b]))
     #print s
     return s
 
