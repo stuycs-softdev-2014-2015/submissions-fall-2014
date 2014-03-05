@@ -30,10 +30,7 @@ def dist(a,b):
     return math.sqrt(sum)
 
 def dist2(a,b):
-    sumlist = [pow(a[i]-b[i], 2) for i in range(len(a))]
-    sum = 0
-    for x in range(len(sumlist)):
-        sum = sum + sumlist[x]
+    sum = sum([pow(a[i]-b[i], 2) for i in range(len(a))])
     return math.sqrt(sum)
 
 def calcPercents(s):
@@ -44,7 +41,7 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-    pass
+    return [float(s.count(chr(x+97)))/len(s.replace(" ","")) * 100 for x in range(26)]
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
@@ -67,3 +64,18 @@ encmessage = encode2(s,random.randrange(26))
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
+
+input = raw_input("Type in some sentences: ")
+rand = random.randrange(26)
+print rand
+encoded = encode2(input, rand)
+lowest = 10000
+index = 0
+for x in range(26):
+    distance = dist(calcPercents(encode2(encoded,x)), englishPercents)
+    if distance < lowest:
+        lowest = distance
+        index = x
+    print distance
+
+print index
