@@ -1,4 +1,3 @@
-
 def encode1(s,n):
     """
     Rotate the string by n characters, leaving spaces
@@ -40,11 +39,8 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-    letters="abcdefghijklmnopqrstuvwxyz"
-    sentence="".join(s)
-    numletters=len(sentence)
-    
-    pass
+     return [100*s.count(x)/float(len("".join(s.split())))
+            for x in s.lower()]
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
@@ -55,7 +51,7 @@ import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
 encmessage = encode2(s,random.randrange(26))
-
+print calcPercents(encmessage)
 # Your tasks
 #1. Rewrite dist so that it uses a list comprehention
 #2. Finish writing calcPercents
