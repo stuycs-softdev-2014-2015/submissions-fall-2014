@@ -1,4 +1,4 @@
-#!/usr/bin/env python                                                           
+
 
 def encode1(s,n):
     """
@@ -26,14 +26,13 @@ def encode2(s,n):
 
 import math
 def dist(a,b):
-    return math.sqrt(sum([pow(x-y,2) for (x,y) in zip (a,b)]))
-    #sum=0
-    #for i in range(len(a)):
-    #    sum = sum + pow(a[i]-b[i],2)
-    #return math.sqrt(sum)
+#    sum=0
+#    for i in range(len(a)):
+#        sum = sum + pow(a[i]-b[i],2)
+#    return math.sqrt(sum)
+    return math.sqrt(sum([pow(a[i]-b[i],2) for i in range(len(a))]))
 
 def calcPercents(s):
-    return [1.000 * s.count (chr(a)) / len (s) for a in range (97, 120)]
     """
     Returns a list of 26 elements L[0] will be the frequency of 
     the letter a i the list, L[1] the letter b etc. 
@@ -41,17 +40,26 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-    pass
-
+    return [float(s.count(chr(i+97))/len(s.replace(" ",""))*100 for i in range(26)]]
+        
+"""
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
                  5.987,6.327,9.056,2.758,0.978,2.360,0.150,1.974,0.074];
-  
+"""  
 
+def decode(s):
+    distance = [dist(calcPercents(encode2(s,x)), englishPercents) for x in range(0,26)]
+    return distance.index(min(distance))
 import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
 encmessage = encode2(s,random.randrange(26))
+
+
+file = open('shakespeare.text')
+text = file.read()
+englishPercents = calcPercents(text)
 
 # Your tasks
 #1. Rewrite dist so that it uses a list comprehention
@@ -65,13 +73,3 @@ encmessage = encode2(s,random.randrange(26))
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
 
-def decode(encmessage): 
-    distance = [dist(calcPercents(encode2(encmessage,x)), englishPercents) for x in range(0,26)]
-    return distance.index(min(distance)) #returns number it has been rotated by
-
-def myPercents(): 
-    file = open('romeo.txt', 'r')
-    text = file.read()
-    return calcPercents(text)
-
-print encode1(encmessage, decode(encmessage))

@@ -1,5 +1,3 @@
-#!/usr/bin/env python                                                           
-
 def encode1(s,n):
     """
     Rotate the string by n characters, leaving spaces
@@ -65,13 +63,4 @@ encmessage = encode2(s,random.randrange(26))
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
 
-def decode(encmessage): 
-    distance = [dist(calcPercents(encode2(encmessage,x)), englishPercents) for x in range(0,26)]
-    return distance.index(min(distance)) #returns number it has been rotated by
-
-def myPercents(): 
-    file = open('romeo.txt', 'r')
-    text = file.read()
-    return calcPercents(text)
-
-print encode1(encmessage, decode(encmessage))
+def myPercents ():
