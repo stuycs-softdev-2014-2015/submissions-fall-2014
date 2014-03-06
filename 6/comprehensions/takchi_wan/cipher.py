@@ -39,18 +39,28 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-     return [100*s.count(x)/float(len("".join(s.split())))
-            for x in s.lower()]
+    letters="abcdefghijklmnopqrstuvwxyz"
+ +  sentence="".join(s)
+ +  numletters=float(len(sentence))
+    return [100*s.count(x)/numletters for x in s.lower()]
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
                  5.987,6.327,9.056,2.758,0.978,2.360,0.150,1.974,0.074];
   
 
+def decode(s):
+    distance = [dist2(calcPercents(encode2(s,x)), englishPercents) for x in range(0,26)]
+    return distance.index(min(distance))
 import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
 encmessage = encode2(s,random.randrange(26))
+
+book = open('shakespeare.txt')
+englishPercents = calcPercents(book.read())
+book.close()
+
 print calcPercents(encmessage)
 # Your tasks
 #1. Rewrite dist so that it uses a list comprehention
