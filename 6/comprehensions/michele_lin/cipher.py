@@ -26,14 +26,9 @@ def encode2(s,n):
 
 import math
 def dist(a,b):
-    dist=0
-    #for i in range(len(a)):
-    #    sum = sum + pow(a[i]-b[i],2)
-    dist=[pow(a[x]-b[x],2) for x in len(a)]
-    return math.sqrt(dist)
+    return math.sqrt(sum([pow(a[i]-b[i],2) for i in range(len(a))]))
 
 def calcPercents(s):
-    return [float(s.count(chr(x)))/len(s.replace(" ",""))*100 for x in range(97, 120)]
     """
     Returns a list of 26 elements L[0] will be the frequency of 
     the letter a i the list, L[1] the letter b etc. 
@@ -41,7 +36,11 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-   
+    return [float(s.count(chr(x+97)))/(len(s)-s.count(" ")) * 100 for x in range(26)]
+
+def decode(s):
+    dis = [dist(calcPercents(encode2(s,x)), englishPercents) for x in range(26)]
+    return encode2(s,dis.index(min(dis)))
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
@@ -52,15 +51,8 @@ import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
 encmessage = encode2(s,random.randrange(26))
-
-def calcJaneEyre():
-    t = open("1260.txt", "r")
-    return calcPercents(t.read())
-
-def decode(s):
-    percents = calcJaneEyre()
-    distance = [dist(calcPercents(encode2(s,x)), percents) for x in range(0,26)]
-    return encode2(s,distance.index(min(distance)))
+print encmessage
+print decode(encmessage)
 
 # Your tasks
 #1. Rewrite dist so that it uses a list comprehention
@@ -69,7 +61,7 @@ def decode(s):
 #3. For each of the 26 possible rotations of encmessage (the encoded message) 
 #   see the distance between it and the englishPerents. The closest should
 #   be the amount needed to decode the message
-#
+#n
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.

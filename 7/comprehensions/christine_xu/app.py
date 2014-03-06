@@ -24,28 +24,9 @@ def encode2(s,n):
 
 import math
 def dist(a,b):
-    sum=0
-    for i in range(len(a)):
-        sum = sum + pow(a[i]-b[i],2)
-    return math.sqrt(sum)
+    return math.sqrt(sum([ (a[i] - b[i]) ** 2 for i in range(len(a)) ]))
 
-#using a comprehension
-def dist2(a,b):
-    sum = 0
-    distances = [pow(a[i]-b[i],2) for i in range(len(a))]
-    for value in distances:
-           sum = sum + value
-    return math.sqrt(sum)
-
-#helper function
-def calcFrequency(letter,s):
-    frequency = 0
-    counter = [1 for a in s if a == letter]
-    return len(counter)
-    #for a in s:
-        #if a == letter:
-           # frequency += 1
-   # return frequency
+    
 
 def calcPercents(s):
     """
@@ -55,35 +36,19 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-    numLetters = len(s)
-    letters = [chr(x) for x in range(97,123)]
-    frequencies = [calcFrequency(letter,s) for letter in letters]
-    return [(frequency / float(numLetters)) * 100 for frequency in frequencies]
-    
+    no_ws = "".join([c for c in s.lower() if 'a' <= c <= 'z'])
+    return [ (float(s.count(c)) / float( len( no_ws ) ) ) * 100.0 for i in range(ord('a'), ord('z') + 1) for c in [chr(i)] ]
 
-englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
-                 6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
-                 5.987,6.327,9.056,2.758,0.978,2.360,0.150,1.974,0.074];
+
+def decode(s):
+    dists = [(dist(calcPercents(a), englishPercents), a) for i in range(1, 27) for a in [encode2(s, i)]]
+    return min(dists, key=lambda val: val[0])[1]
   
 
 import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
-rot = random.randrange(26)
-print rot
-#encmessage = encode2(s,random.randrage(26))
-encmessage = encode2(s,rot)
-
-def decoder(s):
-    possibleStrings = [encode2(s,i) for i in range(26)]
-    percents = [calcPercents(s) for s in possibleStrings]
-    distances = [dist2(calcPercent,englishPercents) for calcPercent in percents]
-    decRot = 1 + distances.index(min(distances))
-    print "rotation needed to decode: " + str(decRot)
-    return encode2(s,decRot)
-    
-print "Encoded message: " + encmessage
-print decoder(encmessage)
+encmessage = encode2(s,random.randrange(26))
 
 # Your tasks
 #1. Rewrite dist so that it uses a list comprehention
@@ -96,3 +61,9 @@ print decoder(encmessage)
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
+
+shake = open('shakespeare.txt')
+englishPercents = calcPercents(shake.read())
+shake.close()
+
+print decode(encmessage)
