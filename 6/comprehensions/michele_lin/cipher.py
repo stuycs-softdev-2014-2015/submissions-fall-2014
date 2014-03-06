@@ -39,8 +39,8 @@ def calcPercents(s):
     return [float(s.count(chr(x+97)))/(len(s)-s.count(" ")) * 100 for x in range(26)]
 
 def decode(s):
-    dist = [dist(calcPercents(encode2(s,x)), englishPercents) for x in range(26)]
-    return encode2(s,dist.index(min(dist)))
+    dis = [dist(calcPercents(encode2(s,x)), englishPercents) for x in range(26)]
+    return encode2(s,dis.index(min(dis)))
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
@@ -51,6 +51,8 @@ import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
 encmessage = encode2(s,random.randrange(26))
+print encmessage
+print decode(encmessage)
 
 # Your tasks
 #1. Rewrite dist so that it uses a list comprehention
