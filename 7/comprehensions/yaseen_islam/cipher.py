@@ -50,6 +50,12 @@ englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  5.987,6.327,9.056,2.758,0.978,2.360,0.150,1.974,0.074];
   
 
+from operator import itemgetter
+def decode(s):
+    l=[dist2(calcPercents(encode2(s,x)),englishPercents) for x in range(26)]
+    pos=min(enumerate(l), key=itemgetter(1))[0]
+    return encode2(s,pos)
+
 import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
