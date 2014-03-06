@@ -43,7 +43,10 @@ def calcPercents(s):
     total = len([x for x in s if x.isalpha()])
     return [(100 * (float(s.lower().count(chr(i+97)))/total)) for i in range(26)]
     
-
+def decode(s):
+    d = [dist(englishPercents,calcPercents(encode2(s,x))) for x in range(26)]
+    return encode2(s, d.index(min(d)))
+    
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
@@ -53,7 +56,7 @@ englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
 import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
 encmessage = encode2(s,random.randrange(26))
-print calcPercents(encmessage)
+print decode(encmessage)
 
 
 # Your tasks
