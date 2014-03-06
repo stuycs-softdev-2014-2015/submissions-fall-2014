@@ -43,7 +43,7 @@ def calcPercents(s):
     You can calculate the frequence by calculating 
     (# times the letter appears)/(total # of letters)
     """
-    return [(float(s.count(chr(i+97)))*100)/float(len(s)) for i in range(26)]
+    return [(float(s.count(chr(i+97)))*100)/float(len(s.replace(" ",""))) for i in range(26)]
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
@@ -61,15 +61,7 @@ s="this is a sample sentence for use in testing the ceasar cipher thing"
 # This is encoded message
 encmessage = encode2(s,random.randrange(26))
 
-# Your tasks
-#1. Rewrite dist so that it uses a list comprehention
-#2. Finish writing calcPercents
-#
-#3. For each of the 26 possible rotations of encmessage (the encoded message) 
-#   see the distance between it and the englishPerents. The closest should
-#   be the amount needed to decode the message
-#n
-#4. Instead of using englishPercents, download a book from project Gutenberg
-#   I'd say the Complete works of Shakespeare. Read it in and use it to 
-#   calculate letter frequencies.
 
+text=open("shakespeare.txt")
+shakeyshakey=calcPercents(text.read())
+text.close()
