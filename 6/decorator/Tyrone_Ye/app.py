@@ -1,24 +1,24 @@
 from flask import Flask
 from flask import session, url_for, redirect
-#from functools import wraps
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'sdafsadfs'
 
-#def auth(link):
- #   def authin(func):
-  #      @wraps(func)
-   #     def authpage(*args, **kwargs):
-    #        if not 'username' in session:
-     #           return login(link)
-      #      else:
-       #         return func(*args,**kwargs);
+def auth(link):
+    def authin(func):
+        @wraps(func)
+        def authpage(*args, **kwargs):
+            if not 'username' in session:
+                return login(link)
+            else:
+                return func(*args,**kwargs);
 
 @app.route("/")
 def home():
     return """<a href="/hi">Say HI</a>"""
 
-#@auth
+@auth
 @app.route("/hi")
 def home():
     return "<h1> Hi </h1>"
