@@ -44,7 +44,7 @@ def calcPercents(s):
     return [(100 * (float(s.lower().count(chr(i+97)))/total)) for i in range(26)]
     
 def decode(s):
-    d = [dist(englishPercents,calcPercents(s)) for x in range(26)]
+    d = [dist(englishPercents,calcPercents(encode2(s,x))) for x in range(26)]
     return encode2(s, d.index(min(d)))
     
 
