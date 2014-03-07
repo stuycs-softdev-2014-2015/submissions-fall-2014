@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			= block title
+			= endblock
+		</title>
+	</head>
+	<body>
+
+		<ul>
+			<li>
+				<a href="/">Homepage</a>
+			</li>
+			<li>
+				= if "username" in session
+					<a href="/logout">Logout</a>
+				= else
+					<a href="/login">Login</a>
+				= endif
+			</li>
+			<li>
+				<a href="/hidden">Hidden Page</a>
+			</li>
+		</ul>
+
+		= block content
+		= endblock
+
+	</body>
+</html>
