@@ -44,7 +44,7 @@ def calcPercents(s):
     # You can calculate the frequence by calculating 
     # (# times the letter appears)/(total # of letters)
     # """
-	return [100 * float(s.count( chr(a + 97) ))/len(s.replace(" ","")) for a in range(26) ]
+	return [float(s.count( chr(a + 97) ))/len(s.replace(" ","")) for a in range(26) ]
 	
 
 
@@ -69,4 +69,21 @@ englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
 #4. Instead of using englishPercents, download a book from project Gutenberg
 #   I'd say the Complete works of Shakespeare. Read it in and use it to 
 #   calculate letter frequencies.
+
+string = "sample sentence to be encoded and then decoded"
+
+import random
+encmessage = encode2(string,random.randrange(26))
+
+shakes = open("shakespeare.txt", "r")
+words = shakes.read()
+englishPercents = calcPercents(words)
+
+def decode(s):
+	distncs = [dist(calcPercents(encode2(s,x)), englishPercents) for x in range(26) ]
+	return encode2(s, distncs.index(min(distncs)))
+
+print encmessage
+print decode(encmessage)
+
 
