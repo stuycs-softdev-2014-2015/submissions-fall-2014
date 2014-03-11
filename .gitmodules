@@ -1,0 +1,3 @@
+[submodule "jsraycasting"]
+	path = 7/canvas/zane/jsraycasting
+	url = http://github.com/Shriken/jsraycasting
