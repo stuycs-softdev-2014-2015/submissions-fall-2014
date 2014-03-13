@@ -61,19 +61,23 @@ ctx.fillRect(0, 450, 600, 100);
        ctx.fillStyle=this.color;
        ctx.fillRect(this.x,this.y,this.w,this.h);
        ctx.stroke();
-     },
-     move:function() {
-       this.x = this.x + this.dx;
-       this.y = this.y + 2*Math.random() - 1;
-       if (this.x<10||this.x>560) {
+     }
+	 }
+	 }
+	 
+	 
+var move= function() {
+       this.x = this.x + 5;
+       if (this.x>550 || this.x<10){
 	 this.dx=this.dx*-1;
        }
-       if (this.y<20 || this.y>580) {
-	 this.y = 100+400*Math.random();
        }
-     }
+	   
+
+
+	 
    };
- }
+ 
 
 </script>
 
