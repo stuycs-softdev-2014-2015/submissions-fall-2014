@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+<div style="top: 50px; text-align:center">
+<h4>Dragging Objects</h4>
+<canvas id="c" width="500" height="300">
+</canvas>
+<p>Drag the circles with the mouse.</p>
+</div>
+</body>
+<head>
+
+<title>Dragging Objects</title>
+
+
+<script type="text/javascript">
+
+
+window.addEventListener("load", windowLoadHandler, false);
+function windowLoadHandler() {
+	canvasApp();
+}
+
+function canvasApp() {
+	
+	var theCanvas = document.getElementById("c");
+	var context = theCanvas.getContext("2d");
+	
+	init();
+	
+	var numShapes;
+	var shapes;
+	var dragIndex;
+	var dragging;
+	var mouseX;
+	var mouseY;
+	var dragHoldX;
+	var dragHoldY;
+	
+	function init() {
+		numShapes = 10;
+		shapes = [];
+		
+		makeShapes();
+		
+		drawScreen();
+		
+		theCanvas.addEventListener("mousedown", mouseDownListener, false);
+	}
+	
+	function makeShapes() {
+		var i;
+		var tempX;
+		var tempY;
+		var tempRad;
+		var tempR;
+		var tempG;
+		var tempB;
+		var tempColor;
+		for (i=0; i < numShapes; i++) {
+			tempRad = 10 + Math.floor(Math.random()*25);
+			tempX = Math.random()*(theCanvas.width - tempRad);
+			tempY = Math.random()*(theCanvas.height - tempRad);
+			tempR = Math.floor(Math.random()*255);
+			tempG = Math.floor(Math.random()*255);
+			tempB = Math.floor(Math.random()*255);
+			tempColor = "rgb(" + tempR + "," + tempG + "," + tempB +")";
+			tempShape = {x:tempX, y:tempY, rad:tempRad, color:tempColor};
+			shapes.push(tempShape);
+		}
+	}
+	
+	function mouseDownListener(evt) {
+		var i;
+		//only the topmost object will be dragged.
+		var highestIndex = -1;
+		
+		//getting mouse position
+		var bRect = theCanvas.getBoundingClientRect();
+		mouseX = (evt.clientX - bRect.left)*(theCanvas.width/bRect.width);
+		mouseY = (evt.clientY - bRect.top)*(theCanvas.height/bRect.height);
+				
+		//find which shape was clicked
+		for (i=0; i < numShapes; i++) {
+			if	(hitTest(shapes[i], mouseX, mouseY)) {
+				dragging = true;
+				if (i > highestIndex) {
+					//We will pay attention to the point on the object where the mouse is "holding" the object:
+					dragHoldX = mouseX - shapes[i].x;
+					dragHoldY = mouseY - shapes[i].y;
+					highestIndex = i;
+					dragIndex = i;
+				}
+			}
+		}
+		
+		if (dragging) {
+			window.addEventListener("mousemove", mouseMoveListener, false);
+		}
+		theCanvas.removeEventListener("mousedown", mouseDownListener, false);
+		window.addEventListener("mouseup", mouseUpListener, false);
+		
+	
+	}
+	
+	function mouseUpListener(evt) {
+		theCanvas.addEventListener("mousedown", mouseDownListener, false);
+		window.removeEventListener("mouseup", mouseUpListener, false);
+		if (dragging) {
+			dragging = false;
+			window.removeEventListener("mousemove", mouseMoveListener, false);
+		}
+	}
+
+	function mouseMoveListener(evt) {
+		var posX;
+		var posY;
+		var shapeRad = shapes[dragIndex].rad;
+		var minX = shapeRad;
+		var maxX = theCanvas.width - shapeRad;
+		var minY = shapeRad;
+		var maxY = theCanvas.height - shapeRad;
+		//getting mouse position correctly 
+		var bRect = theCanvas.getBoundingClientRect();
+		mouseX = (evt.clientX - bRect.left)*(theCanvas.width/bRect.width);
+		mouseY = (evt.clientY - bRect.top)*(theCanvas.height/bRect.height);
+		
+		prevent object from dragging outside of canvas
+		posX = mouseX - dragHoldX;
+		posX = (posX < minX) ? minX : ((posX > maxX) ? maxX : posX);
+		posY = mouseY - dragHoldY;
+		posY = (posY < minY) ? minY : ((posY > maxY) ? maxY : posY);
+		
+		shapes[dragIndex].x = posX;
+		shapes[dragIndex].y = posY;
+		
+		drawScreen();
+	}
+	
+	function hitTest(shape,mx,my) {
+		//whether an object is targeted
+		var dx;
+		var dy;
+		dx = mx - shape.x;
+		dy = my - shape.y;
+	
+		return (dx*dx + dy*dy < shape.rad*shape.rad);
+	}
+	
+	function drawShapes() {
+		var i;
+		for (i=0; i < numShapes; i++) {
+			context.fillStyle = shapes[i].color;
+			context.beginPath();
+			context.arc(shapes[i].x, shapes[i].y, shapes[i].rad, 0, 2*Math.PI, false);
+			context.closePath();
+			context.fill();
+		}
+	}
+	
+	function drawScreen() {
+		//bg
+		context.fillStyle = "#000000";
+		context.fillRect(0,0,theCanvas.width,theCanvas.height);
+		
+		drawShapes();		
+	}
+	
+}
+
+</script>
+
+</head>
+</html>
