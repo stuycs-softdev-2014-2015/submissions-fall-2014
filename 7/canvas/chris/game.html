@@ -11,6 +11,7 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 var balls = [];
+var bullets = [];
 var pause = false;
 
 var ball = function(x, y, r, ctx) {
@@ -74,6 +75,29 @@ var player = function(x,y,l,ctx) {
       }
    };
 }
+
+
+var bullet = function(x,y,ctx) {
+   return {
+      x:x,
+      y:y,
+      color:"#0000ff",
+      ctx:ctx,
+      dy:10,
+      draw:function() {
+         ctx.beginPath();
+         ctx.fillStyle = this.color;
+         ctx.arc(this.x,this.y,3,0,2*Math.PI);
+         ctx.fill();
+         if (this.y < 0) {
+            bullets.shift();
+         }
+      },
+      move:function() {
+         this.y -= this.dy;
+      }
+   };
+}
          
 
 var animloop = function() {
@@ -81,13 +105,19 @@ var animloop = function() {
       ctx.fillStyle="#30d080";
       ctx.fillRect(0,0,c.width,c.height);
 
-      if (Math.random() < 0.01)
+      if (Math.random() < 0.01 && balls.length < 50)
 	 newBall();
 
       for (var i = 0; i < balls.length; i++) {
+	 balls[i].move();
 	 balls[i].draw();
-         balls[i].move();
       }
+
+      for (var i = 0; i < bullets.length; i++) {
+         bullets[i].move();
+	 bullets[i].draw();
+      }
+
       p1.draw();
    }
    window.requestAnimationFrame(animloop);
@@ -114,7 +144,10 @@ var keypress = function(e) {
       p1.moveDown();
    } else if (e.keyCode === 80) {
       pause = !pause;
-   }			  
+   } else if (e.keyCode === 32) {
+      var bullet1 = bullet(p1.x,p1.y - p1.l/2,ctx);
+      bullets.push(bullet1);
+   }
 }
 
 var p1 = player(400,300,10,ctx);
