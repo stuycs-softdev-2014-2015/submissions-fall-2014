@@ -2,11 +2,12 @@ from flask import Flask, request, session, url_for, redirect
 
 app = Flask( __name__ )
 
-def auth(wrapper, *args, **kwargs):
-    if not 'user' in session:
-        return login();
-    else:
-        return wrapper( *args, **args)
+def auth(function, *args, **kwargs):
+    def wrapper(*args, **kwargs):
+        if not 'user' in session:
+            return redirect( url_for( "login" )) 
+        else:
+            return func( *args, **args)
 
 
 @app.route("/login", methods = ['GET', 'POST' ])

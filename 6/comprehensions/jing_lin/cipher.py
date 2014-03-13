@@ -50,21 +50,23 @@ def calcShakespeare():
 
 def decode(s):
     KEY = calcShakespeare()
-    print KEY
-    distance_min = dist_comprehension(calcPercents(s), KEY)
-    for x in range(0, 26):
-        distance_iter = dist_comprehension(calcPercents(encode2(s,x)), KEY)
-        print distance_iter
-        print encode2(s,x)
-        if distance_iter < distance_min:
-            distance_min = distance_iter
-            decrypted_string = encode2(s,x)
-    return decrypted_string
+    # print KEY
+    # distance_min = dist_comprehension(calcPercents(s), KEY)
+    # for x in range(0, 26):
+    #     distance_iter = dist_comprehension(calcPercents(encode2(s,x)), KEY)
+    #     print distance_iter
+    #     print encode2(s,x)
+    #     if distance_iter < distance_min:
+    #         distance_min = distance_iter
+    #         decrypted_string = encode2(s,x)
+    distance = [dist_comprehension(calcPercents(encode2(s,x)), KEY) for x in range(0,26)]
+    return encode2(s,distance.index(min(distance)))
+    # return decrypted_string
 
 englishPercents=[8.167,1.492,2.782,4.253,12.702,2.228,2.015,6.094,
                  6.966,0.153,0.772,4.025,2.406,6.749,7.507,1.929,0.095,
                  5.987,6.327,9.056,2.758,0.978,2.360,0.150,1.974,0.074];
-  
+
 
 import random
 s="this is a sample sentence for use in testing the ceasar cipher thing"
