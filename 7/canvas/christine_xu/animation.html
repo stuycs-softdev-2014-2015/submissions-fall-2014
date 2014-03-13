@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<b>Driving on the road</b>
+<img id="hug" src="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=23226806" alt="The Hug" width="50" height="60">
+
+
+<div>
+<br>
+<br>
+<canvas height="600" width="600" id="c" style="border:1px solid black"> </canvas>
+</div>
+
+<script>
+
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 0, 600, 100);
+
+ctx.fillStyle="black";
+ctx.fillRect(5, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(100, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(200, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(300, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(400, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(500, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(600, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(620, 250, 50, 20);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 200, 600, 22);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 300, 600, 22);
+
+
+ctx.fillStyle="#black";
+ctx.fillRect(0, 450, 600, 100);	
+	
+
+
+ var car = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     ctx:ctx,
+     color:"black",
+     dx:1,
+     draw:function() {
+       ctx.fillStyle=this.color;
+       ctx.fillRect(this.x,this.y,this.w,this.h);
+       ctx.stroke();
+     },
+     move:function() {
+       this.x = this.x + this.dx;
+       this.y = this.y + 2*Math.random() - 1;
+       if (this.x<10||this.x>560) {
+	 this.dx=this.dx*-1;
+       }
+       if (this.y<20 || this.y>580) {
+	 this.y = 100+400*Math.random();
+       }
+     }
+   };
+ }
+
+</script>
+
+
+</body>
+</html>
+
