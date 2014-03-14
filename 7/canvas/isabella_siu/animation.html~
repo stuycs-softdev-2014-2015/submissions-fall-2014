@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Skyscape </title>
+  </head>
+
+  <canvas height="480" width="480" id="s"
+	  style="border:1px solid black">
+  </canvas>
+
+  <script>
+    var c = document.getElementById("basic");
+    var ctx = c.getContext("2d");
+
+    ctx.fillStyle="#2ef3f7";
+    ctx.fillRect(0,0,480,480);
+  </script>
+</html>
