@@ -27,17 +27,6 @@
 		console.log(depth);
 		landSlices[depth].push(land);
 	}
-	
-	var animloop = function(){
-		ctx.fillStyle="#ffffff";
-		ctx.fillRect(0,0,300,800);
-		for (var i = 0; i<landSlices[0].length;i++){
-			console.log("calling");
-			landSlices[0][i].move();
-			landSlices[0][i].draw();
-		}
-		window.requestAnimationFrame(animloop);
-	}
 	var landSlice = function(x, height, depth, color){
 		return{
 			x:x,
@@ -50,18 +39,35 @@
 					ctx.fillStyle=this.color;
 					ctx.fillRect(this.x,height,1,300-height);
 					ctx.stroke();
+					
 				}
 			},
 			move:function(){
 				if (this.x==0){
+					console.log("Generating");
 					console.log(this.depth);
-					generateTerrain(this.height,this.depth,this.color);
+					
 				}
-				x=x+1;
+				this.x=this.x+1;
 			}
 		};	
 	}
-	landSlices[0].push(landSlice(0,100,0,"#00ff00"));
+	var animloop = function(){
+		ctx.fillStyle="#ffffff";
+		ctx.fillRect(0,0,800,300);
+		for (var i = 0; i<landSlices[0].length;i++){
+			console.log("calling");
+			landSlices[0][i].move();	
+			landSlices[0][i].draw();
+		}
+		console.log(landSlices);
+		if (landSlices[0].length > 800){
+			landSlices[0].shift();
+		}
+		window.requestAnimationFrame(animloop);
+	}
+	generateTerrain(100,0,"#00ff00");
+	
 	window.requestAnimationFrame(animloop);
 </script>
 </html>
