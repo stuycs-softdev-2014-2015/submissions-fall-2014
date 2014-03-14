@@ -35,16 +35,30 @@ Leap Frog!
 	ctx.lineTo(400, 600);
 	ctx.stroke();
 
-	//ctx.closePath();
-
 	//da middle
 	ctx.beginPath();
-	ctx.strokeStyle="#686868";
+	ctx.strokeStyle="#006600";
 	ctx.moveTo(300, 0);
 	ctx.lineTo(300, 600);
 	ctx.lineWidth=10;
-	ctx.fill();
 	ctx.stroke();
+
+	var colors = ["#00ffff", "#ff0066", "#6600ff", "#ff6600", "#66ff33"]
+	//cars
+	var cars = function(x, y, w, h, ctx) {
+		return{
+			x:x,
+			y:y,
+			w:w,
+			h:h,
+			ctx:ctx,
+			color: colors[Math.random()*5]
+			draw:function() {
+				ctx.fillStyle=this.color;
+				ctx.fillRect(this.x, this.y, this.w, this.w);
+			}
+		}
+	}
 
 
 </script>
