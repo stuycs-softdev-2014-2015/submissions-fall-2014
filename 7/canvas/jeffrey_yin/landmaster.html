@@ -37,7 +37,7 @@
 				if (this.x <801){
 					
 					ctx.fillStyle=this.color;
-					ctx.fillRect(this.x,height,1,300-height);
+					ctx.fillRect(this.x,height,4,300-height);
 					ctx.stroke();
 					
 				}
@@ -47,11 +47,11 @@
 					console.log("Generating");
 					console.log(this.depth);
 				}
-				this.x=this.x+1;
+				this.x=this.x+4;
 			},
 			spawnNext:function(){
 				generateTerrain(this.height,this.depth,this.color);
-				if (landSlices[this.depth].length > 800){
+				if (landSlices[this.depth].length > 200){
 					console.log("boop");
 					landSlices[this.depth].shift();
 				}
