@@ -46,9 +46,15 @@
 				if (this.x==0){
 					console.log("Generating");
 					console.log(this.depth);
-					
 				}
 				this.x=this.x+1;
+			},
+			spawnNext:function(){
+				generateTerrain(this.height,this.depth,this.color);
+				if (landSlices[this.depth].length > 800){
+					console.log("boop");
+					landSlices[this.depth].shift();
+				}
 			}
 		};	
 	}
@@ -61,9 +67,7 @@
 			landSlices[0][i].draw();
 		}
 		console.log(landSlices);
-		if (landSlices[0].length > 800){
-			landSlices[0].shift();
-		}
+		landSlices[0][landSlices[0].length-1].spawnNext();
 		window.requestAnimationFrame(animloop);
 	}
 	generateTerrain(100,0,"#00ff00");
