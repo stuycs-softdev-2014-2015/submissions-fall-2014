@@ -86,7 +86,7 @@ function canvasApp() {
 			if	(hitTest(shapes[i], mouseX, mouseY)) {
 				dragging = true;
 				if (i > highestIndex) {
-					//We will pay attention to the point on the object where the mouse is "holding" the object:
+					//point on the object where the mouse is "holding" the object:
 					dragHoldX = mouseX - shapes[i].x;
 					dragHoldY = mouseY - shapes[i].y;
 					highestIndex = i;
