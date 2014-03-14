@@ -11,7 +11,7 @@
 	var ctx = c.getContext("2d");
 	var landSlices=[[],[],[]];
 	
-	var generateTerrain=function(height, depth, color){
+	var generateTerrain=function(height, width, depth, color){
 		var x = 0;
 		var height = height + Math.random()*2 - Math.random()*2;
 		if (height<0){
@@ -22,22 +22,24 @@
 		}
 		var depth = depth;
 		var color = color;
-		land = landSlice(x,height,depth,color);
+		var width = width;
+		land = landSlice(x,height,width,depth,color);
 		console.log(landSlices);
 		console.log(depth);
 		landSlices[depth].push(land);
 	}
-	var landSlice = function(x, height, depth, color){
+	var landSlice = function(x, height, width,depth, color){
 		return{
 			x:x,
 			height:height,
 			depth:depth,
 			color:color,
+			width:width,
 			draw:function(){
 				if (this.x <801){
 					
 					ctx.fillStyle=this.color;
-					ctx.fillRect(this.x,height,4,300-height);
+					ctx.fillRect(this.x,300-height,this.width,300);
 					ctx.stroke();
 					
 				}
@@ -47,31 +49,46 @@
 					console.log("Generating");
 					console.log(this.depth);
 				}
-				this.x=this.x+4;
+				this.x=this.x+this.width;
 			},
 			spawnNext:function(){
-				generateTerrain(this.height,this.depth,this.color);
-				if (landSlices[this.depth].length > 200){
+				generateTerrain(this.height,this.width,this.depth,this.color);
+				if (landSlices[this.depth].length > 800/this.width){
+					console.log(this.width);
 					console.log("boop");
 					landSlices[this.depth].shift();
 				}
 			}
 		};	
 	}
+	var skyCounter = 11;
+	var skyTimer = -100;
+	var skyColors = ["#170B3B","#4B088A", "#6A0888","#6A0888","#6A0888","#FF0040","#FA5882","#F5A9BC","#F8E0E6","#E6E0F8", "#D8CEF6","#8181F7","#58ACFA","#2ECCFA",
+					"#2ECCFA","#0040FF","#013ADF","#0101DF","#5F04B4","#4B088A","#4C0B5F", "#2F0B3A","#190718"]
+
 	var animloop = function(){
-		ctx.fillStyle="#ffffff";
-		ctx.fillRect(0,0,800,300);
-		for (var i = 0; i<landSlices[0].length;i++){
-			console.log("calling");
-			landSlices[0][i].move();	
-			landSlices[0][i].draw();
+		ctx.fillStyle=skyColors[skyCounter];
+		skyTimer++;
+		if (skyTimer == 0){
+			skyCounter++;
+			skyTimer = -100;
 		}
-		console.log(landSlices);
-		landSlices[0][landSlices[0].length-1].spawnNext();
+		if (skyCounter == skyColors.length){skyCounter=0;}
+		ctx.fillRect(0,0,800,300);
+		for (var j = 0; j<landSlices.length; j++){
+			for (var i = 0; i<landSlices[j].length;i++){
+				console.log("calling");
+				landSlices[j][i].draw();
+				landSlices[j][i].move();	
+				
+			}
+			landSlices[j][landSlices[j].length-1].spawnNext();
+		}
 		window.requestAnimationFrame(animloop);
 	}
-	generateTerrain(100,0,"#00ff00");
-	
+	generateTerrain(50,4,0,"#3A01DF");
+	generateTerrain(30,8,1,"#0B610E");
+	generateTerrain(10,16,2,"#40FF00");
 	window.requestAnimationFrame(animloop);
 </script>
 </html>
