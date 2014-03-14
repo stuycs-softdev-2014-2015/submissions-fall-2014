@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<!--A side scrolling background.-->
+<canvas height="300" width="800" id="c"
+	style="border:1px solid black">
+</canvas>
+
+<script>
+	var c = document.getElementById("c");
+	var ctx = c.getContext("2d");
+	var landSlices=[[],[],[]];
+	
+	var generateTerrain=function(height, depth, color){
+		var x = 0;
+		var height = height + Math.random()*20 - Math.random()*20;
+		if (height<0){
+			height=0;
+		}
+		if (height>170){
+			height=169;
+		}
+		var depth = depth;
+		var color = color;
+		land = landSlice(x,height,depth,color);
+		console.log(landSlices);
+		console.log(depth);
+		landSlices[depth].push(land);
+	}
+	
+	var animloop = function(){
+		ctx.fillStyle="#ffffff";
+		ctx.fillRect(0,0,300,800);
+		for (var i = 0; i<landSlices[0].length;i++){
+			console.log("calling");
+			landSlices[0][i].move();
+			landSlices[0][i].draw();
+		}
+		window.requestAnimationFrame(animloop);
+	}
+	var landSlice = function(x, height, depth, color){
+		return{
+			x:x,
+			height:height,
+			depth:depth,
+			color:color,
+			draw:function(){
+				if (this.x <801){
+					
+					ctx.fillStyle=this.color;
+					ctx.fillRect(this.x,height,1,300-height);
+					ctx.stroke();
+				}
+			},
+			move:function(){
+				if (this.x==0){
+					console.log(this.depth);
+					generateTerrain(this.height,this.depth,this.color);
+				}
+				x=x+1;
+			}
+		};	
+	}
+	landSlices[0].push(landSlice(0,100,0,"#00ff00"));
+	window.requestAnimationFrame(animloop);
+</script>
+</html>
