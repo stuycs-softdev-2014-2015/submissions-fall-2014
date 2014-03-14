@@ -1,0 +1,89 @@
+<html>
+	<canvas id="c" width="450" height="500">
+	</canvas>
+	
+	<script>
+		var c = document.getElementById("c");
+		var ctx = c.getContext("2d");
+		var grd=ctx.createRadialGradient(450/2,500/2,100,450/2,500/2,300);
+		grd.addColorStop(0,"#6600FF");
+		grd.addColorStop(1,"#000000");
+		var grd2=ctx.createRadialGradient(450/2,500/2.5,10,450/2,500/2.5,250);
+		grd2.addColorStop(0,"#6600FF");
+		grd2.addColorStop(1,"#000000");
+		var grd3=ctx.createRadialGradient(450/2,475,300,450/2,475,600);
+		grd3.addColorStop(0,"#6600FF");
+		grd3.addColorStop(1,"#000000");
+		
+		ctx.fillStyle = grd3;//"#6600FF";
+		ctx.beginPath();
+		ctx.moveTo(450/2,475);
+		ctx.lineTo(450*12/13,175);
+		ctx.lineTo(450,0);
+		ctx.lineTo(450-450/8,500/8);
+		ctx.lineTo(450-450/2.75,500/5);
+		ctx.lineTo(450-450/2.3,500/3);
+		ctx.lineTo(450/2,500/2.5);
+		
+		ctx.moveTo(450/2,475);
+		ctx.lineTo(450/13,175);
+		ctx.lineTo(0,0);
+		ctx.lineTo(450/8,500/8);
+		ctx.lineTo(450/2.75,500/5);
+		ctx.lineTo(450/2.3,500/3);
+		ctx.lineTo(450/2,500/2.5);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.fillStyle = grd2;
+		ctx.beginPath();
+		ctx.moveTo(450/2,500/2.6);
+		ctx.lineTo(450-450/2.25,500/3.1);
+		ctx.lineTo(450-450/3.5,0);
+		ctx.lineTo(450-450/2.3,500/6);
+		
+		ctx.moveTo(450/2,500/2.6);
+		ctx.lineTo(450/2.25,500/3.1);
+		ctx.lineTo(450/3.5,0);
+		ctx.lineTo(450/2.3,500/6);
+		
+		ctx.lineTo(450-450/2.3,500/6);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.fillStyle = grd;
+		ctx.beginPath();
+		ctx.moveTo(450-450/2.19,460);
+		ctx.lineTo(450-450/11,200);
+		ctx.lineTo(450-450/4.5,400);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.moveTo(450/2.19,460);
+		ctx.lineTo(450/11,200);
+		ctx.lineTo(450/4.5,400);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.fillStyle = "#FFFFFF";
+		ctx.beginPath();
+		ctx.moveTo(450/2.25,500/2);
+		ctx.lineTo(450/3,500/1.75);
+		ctx.lineTo(450/5,500/2.5);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.beginPath();
+		ctx.moveTo(450-450/2.25,500/2);
+		ctx.lineTo(450-450/3,500/1.75);
+		ctx.lineTo(450-450/5,500/2.5);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.fillStyle = grd;
+		ctx.textAlign="center"; 
+		ctx.font="20px Georgia";
+		ctx.fillText("Decepticons Rollout",450/2,490);
+	</script>
+</html>
