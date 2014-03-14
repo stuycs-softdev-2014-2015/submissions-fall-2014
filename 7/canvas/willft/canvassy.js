@@ -60,7 +60,7 @@ var update = function() {
 }
 
 var fire = function(e) {
-    balls.push(ball(e.offsetX, e.offsetY, (Math.random() * 20) - 10, (Math.random() * 20) - 10, ctx))
+    balls.push(ball(e.offsetX, e.offsetY, (Math.random() * 20) - 10, (Math.random() * -10), ctx))
 }
 canvas.addEventListener('click', fire)
 
@@ -68,8 +68,8 @@ var shake = function(e) {
     //shake constant
     var sk = 100
     for (var i=0; i < balls.length; i++) {
-	balls[i].dx = (Math.random() * sk) - (sk/2)
-	balls[i].dy = (Math.random() * sk) - (sk/2)
+	balls[i].dx = ((Math.random() * sk) - (sk/2)) * tscale.value
+	balls[i].dy = ((Math.random() * sk) - (sk/2)) * tscale.value
     }
 }
 document.getElementById('shake').addEventListener('click', shake)
