@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 
 <style>
 	canvas {
@@ -19,6 +19,7 @@
 </div>
 
 <script>
+
 	var c = document.getElementById("c");
 	var ctx = c.getContext("2d");
 	var jumps = []
@@ -27,11 +28,18 @@
 	var counter = 0;
 	var score = 0;
 
+	var reset = function(){
+		jumps = []
+		frame = 0;
+		end = false;
+		counter = 0;
+		score = 0;
+	}
+
 	var block = function(x,y,w,h,color,ctx) {
 		return {
 			x:x,
 			y:y,
-			vy:0,
 			w:w,
 			h:h,
 			dx:-1,
@@ -59,9 +67,15 @@
 	}
 
 	var clicked = function(e) {
-		if (player.vy == 0){
-			player.vy = -5
-			counter = 30
+		if (!end){
+			if (counter == 0){
+				player.y = player.y - 40
+				counter = 30
+			}
+		}
+		else{
+			reset();
+			window.requestAnimationFrame(play);
 		}
 	}
 
@@ -74,11 +88,11 @@
 		ctx.fillStyle="#ffffff";
 		ctx.fillRect(0,0,600,600);
 		baseline()
-		player.y += player.vy
-		player.vy += .3
-		if(player.y > 261){ 
-			player.y = 262
-			player.vy = 0
+		if (counter == 1){
+			player.y = player.y + 40
+		}
+		if (counter > 0){
+			counter--;
 		}
 		player.draw()
 		for (i = 0; i < jumps.length; i++){
@@ -86,7 +100,6 @@
 			jumps[i].draw();
 			if (jumps[i].x <= player.x && jumps[i].x + 10 >= player.x && player.y > 232){
 				end = true
-				console.log(score)
 			}
 			if (jumps[i].x == player.x - 10)
 				score++;
@@ -106,11 +119,12 @@
 		else{
 			ctx.font="20px Georgia";
 			ctx.fillText("Game Over! Your score was " + score,30,50);
+			ctx.fillText("Click to restart",30,90);
 		}
 	}
 
 	var player = block(150, 262, 10, 10,"#FF0000", ctx)
-	c.addEventListener("mousedown",clicked);
+	c.addEventListener("click",clicked);
 	window.requestAnimationFrame(play)
 
 </script>
