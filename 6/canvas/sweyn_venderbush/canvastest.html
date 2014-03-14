@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 
 <style>
 	canvas {
@@ -31,6 +31,7 @@
 		return {
 			x:x,
 			y:y,
+			vy:0,
 			w:w,
 			h:h,
 			dx:-1,
@@ -58,8 +59,8 @@
 	}
 
 	var clicked = function(e) {
-		if (counter == 0){
-			player.y = player.y - 40
+		if (player.vy == 0){
+			player.vy = -5
 			counter = 30
 		}
 	}
@@ -73,11 +74,11 @@
 		ctx.fillStyle="#ffffff";
 		ctx.fillRect(0,0,600,600);
 		baseline()
-		if (counter == 1){
-			player.y = player.y + 40
-		}
-		if (counter > 0){
-			counter--;
+		player.y += player.vy
+		player.vy += .3
+		if(player.y > 261){ 
+			player.y = 262
+			player.vy = 0
 		}
 		player.draw()
 		for (i = 0; i < jumps.length; i++){
@@ -109,7 +110,7 @@
 	}
 
 	var player = block(150, 262, 10, 10,"#FF0000", ctx)
-	c.addEventListener("click",clicked);
+	c.addEventListener("mousedown",clicked);
 	window.requestAnimationFrame(play)
 
 </script>
