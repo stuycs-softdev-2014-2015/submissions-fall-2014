@@ -1,17 +1,69 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<style>
-			#c {
-				border: 1px solid black;
+
+<head>
+	<style>
+	#c {
+		border: 1px solid black;
+	}
+	</style>
+</head>
+
+<body>
+	<canvas height="500" width="500" id="c"></canvas>
+	<script>
+	var canvasHeight = 500,
+		canvasWidth = 500;
+	var c = document.getElementById("c"),
+		ctx = c.getContext("2d");
+
+	var paddle = function(w, h, ctx) {
+		return {
+			x: (canvasWidth - w) / 2,
+			y: canvasHeight - h - 10,
+			w: w,
+			h: h,
+			dx: 1,
+			dy: 0,
+			color: '#000000',
+			ctx: ctx,
+			draw: function() {
+				this.ctx.fillStyle = this.color;
+				this.ctx.fillRect(this.x, this.y, this.w, this.h);
+			},
+			move: function() {
+				this.x = this.x + this.dx;
 			}
-		</style>
-	</head>
-	<body>
-		<canvas height="500" width="500" id="c"></canvas>
-		<script>
-			var c = document.getElementById("c"),
-				ctx = c.getContext("2d");
-		</script>
-	</body>
+		};
+	};
+
+	var ball = function(x, y, r, dx, dy, ctx) {
+		return {
+			x: x,
+			y: y,
+			r: r,
+			speed: speed,
+			ctx: ctx,
+			draw: function() {
+				this.ctx.beingPath();
+				this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+			},
+			move: function() {
+				this.x = this.x + this.dx;
+				this.y = this.y + this.dy;
+			}
+		};
+	};
+
+	var animloop = function() {
+		paddle.draw();
+		window.requestAnimationFrame(animloop);
+	};
+
+	var paddle = paddle(100, 5, ctx);
+
+	animloop();
+	</script>
+</body>
+
 </html>
