@@ -62,18 +62,39 @@
 		};	
 	}
 	var skyCounter = 11;
-	var skyTimer = -100;
+	var skyTimer = -5;
 	var skyColors = ["#170B3B","#4B088A", "#6A0888","#6A0888","#6A0888","#FF0040","#FA5882","#F5A9BC","#F8E0E6","#E6E0F8", "#D8CEF6","#8181F7","#58ACFA","#2ECCFA",
 					"#2ECCFA","#0040FF","#013ADF","#0101DF","#5F04B4","#4B088A","#4C0B5F", "#2F0B3A","#190718"]
-
+	var skyNow = "#170B3B";
+	/*replace taken from stackoverflow*/
+	function replaceAt(s, n, t) {
+		return s.substring(0, n) + t + s.substring(n + 1);
+	}
+	var skyTransition = function(){
+		hexCode = ["0","1","2","3","4","5","6","7",'8','9','A','B','C','D','E','F'];
+		if (skyNow == skyColors[skyCounter+1]){
+			skyCounter++;
+			if (skyCounter==skyColors.length - 1){ skyCounter = 0;}
+		}
+		for (var i = 1; i < 7; i++){
+			a = hexCode.indexOf(skyNow.charAt(i));
+			b = hexCode.indexOf(skyColors[skyCounter+1].charAt(i));
+			if (b-a > 0){
+				skyNow=replaceAt(skyNow,i,hexCode[a+1]);
+			}else if (b-a < 0){
+				skyNow=replaceAt(skyNow,i,hexCode[a-1]);
+			}
+			alert(""+a+","+b);
+		}
+		
+	}
 	var animloop = function(){
-		ctx.fillStyle=skyColors[skyCounter];
+		ctx.fillStyle=skyNow;
 		skyTimer++;
 		if (skyTimer == 0){
-			skyCounter++;
-			skyTimer = -100;
+			skyTransition();
+			skyTimer = -5;
 		}
-		if (skyCounter == skyColors.length){skyCounter=0;}
 		ctx.fillRect(0,0,800,300);
 		for (var j = 0; j<landSlices.length; j++){
 			for (var i = 0; i<landSlices[j].length;i++){
