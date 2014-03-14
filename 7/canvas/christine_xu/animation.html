@@ -2,6 +2,7 @@
 <html>
 
 <b>Driving on the road</b>
+[This is just an animation of a car on the road, it will probably turn into a driving game of dodging cones later] 
 <img id="hug" src="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=23226806" alt="The Hug" width="50" height="60">
 
 
@@ -46,38 +47,54 @@ ctx.fillRect(0, 300, 600, 22);
 ctx.fillStyle="#black";
 ctx.fillRect(0, 450, 600, 100);	
 	
+</script>
 
+<script>
 
- var car = function(x,y,w,h,ctx) {
+var car = function(x,y,w,h,ctx) {
    return {
      x:x,
      y:y,
      w:w,
      h:h,
      ctx:ctx,
-     color:"black",
+     color:"pink",
      dx:1,
-     draw:function() {
-       ctx.fillStyle=this.color;
-       ctx.fillRect(this.x,this.y,this.w,this.h);
-       ctx.stroke();
-     },
-     move:function() {
-       this.x = this.x + this.dx;
-       this.y = this.y + 2*Math.random() - 1;
-       if (this.x<10||this.x>560) {
+	 
+	  move:function() {
+       this.x = this.x + 20;
+       this.y = this.y;
+       if (this.x<20||this.x>560) {
 	 this.dx=this.dx*-1;
        }
-       if (this.y<20 || this.y>580) {
-	 this.y = 100+400*Math.random();
        }
-     }
-   };
- }
+     };
+	 }
+	 
+	 
 
+var animloop = function(){
+   ctx.fillStyle="pink";
+   ctx.fillRect(5,250,60,100);
+   
+   for (var i=0;i<car.length;i++) {
+     car[i].move();
+   }
+   window.requestAnimationFrame(animloop);
+
+ } 
+ 
+ 
+ var c = car(50,250,40,60,ctx);
+ car.push(c);
+ 
+ var keypress = function(e) {
+   console.log(e);
+   }
+
+;
+    
 </script>
-
-
 </body>
 </html>
 
