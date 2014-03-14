@@ -1,11 +1,5 @@
 <html>
 
-<head>
-  <title>Snake Game</title>
-</head>
-
-<body>
-
 <div>
   <h1>SNAKE</h1>
   <h4>Use the arrow keys to help the snake eat the boxes and grow larger! If the snake eats itself, it dies. Don't kill snakes.</h4>
@@ -15,9 +9,46 @@
   <canvas height="700" width="900" id="c" style="border:5px solid black"></canvas>
 </div>
 
-<script>
+<script type="text/javascript">
+  var c = document.getElementById("c");
+  var ctx = c.getContext("2d");
+  var w = c.width;
+  var h = c.height;
+  
+  var food;
+  var direction;
+  var cellw= 10;
+
+  var snake;
+  function init()
+  {
+  d = "right";
+  createsnake();
+  createfood();
+  if(typeof game_loop != "undefined") 
+  clearInterval(game_loop);
+  game_loop = setInterval(paint, 60);
+  }
+  init();
+  function createsnake()
+  {
+  var length = 1;
+  snake=[]
+  for(var i - length-1li>=0;i--)
+  {snake.push({x,i,y:0});}
+  }
+  }
+  function createfood()
+  {food = {x: Math.round(Math.random()*(w-cellw)/cellw), 
+  y: Math.round(Math.random()*(h-cellw)/cellw),};
+  }
+  function paint()
+  {ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = "black";
+  ctx.strokeRect(0, 0, w, h);
+
   
 </script>
 
-</body>
 </html>
