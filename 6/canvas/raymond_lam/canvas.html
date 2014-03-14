@@ -1,0 +1,105 @@
+<html>
+<div>
+<canvas height="600" width="600" id="c"
+	style="border:1px solid black">
+</canvas>
+</div>
+
+<script>
+ var c = document.getElementById("c");
+ var ctx = c.getContext("2d");
+ 
+ var block = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     dx:1,
+     dy:y,
+     color:'#ff0000',
+     ctx:ctx,
+     draw: function() {
+       ctx.fillStyle=this.color;
+       ctx.fillRect(this.x,this.y,this.w,this.h);
+       ctx.stroke();
+     },
+     move: function() {
+       this.x = this.x + this.dx;
+       this.y = this.y + Math.random()*2-1;
+       if (this.x>550 || this.x<10){
+	 this.dx=this.dx*-1;
+       }
+     }
+   }
+ }
+ 
+ var circle = function(x,y,r,sa,ea,color,ctx) {
+	return {
+		x:x,
+		y:y,
+		r:r,
+		sa:sa,
+		ea:ea,
+		a:ea,
+		da:0.05,
+		dx:1,
+		dy:1,
+		color:color,
+		ctx:ctx,
+		draw:function() {
+			ctx.fillStyle=this.color;
+			ctx.beginPath();
+			ctx.arc(this.x,this.y,this.r,this.sa,this.ea);
+			ctx.closePath();
+			ctx.fill();
+		},
+		move: function() {
+			this.a = this.a + Math.atan2(this.y,this.x)*0.01;
+			this.x = this.x + this.r*Math.sin(this.a);
+			this.y = this.y + this.r*Math.cos(this.a);
+			if (this.x > 800 || this.y > 800) {
+				this.x=Math.random()*600;
+				this.y=Math.random()*600;
+			}
+		}
+	}
+}
+
+ var animloop = function() {
+   ctx.fillStyle="#000000";
+   ctx.fillRect(0,0,600,600);
+   b1.move();
+   b2.move();
+   b1.draw();
+   b2.draw();
+   c1.draw();
+   c1.move();
+   c2.draw();
+   c2.move();
+   c3.draw();
+   c3.move();
+   c4.draw();
+   c4.move();
+   c5.draw();
+   c5.move();
+   c6.draw();
+   c6.move();
+   window.requestAnimationFrame(animloop);
+ }
+ var b1 = block(50,50,20,10,ctx);
+ var b2 = block(150,200,20,10,ctx);
+ var c1 = circle(100,10,10,0,2*Math.PI,'#FF0000',ctx);
+ var c2 = circle(200,20,20,0,2*Math.PI,'#FF6600',ctx);
+ var c3 = circle(300,30,30,0,2*Math.PI,'#FFFF00',ctx);
+ var c4 = circle(400,40,40,0,2*Math.PI,'#00FF00',ctx);
+ var c5 = circle(500,50,50,0,2*Math.PI,'#0000FF',ctx);
+ var c6 = circle(600,60,60,0,2*Math.PI,'#6600FF',ctx);
+ b2.color="#EAEAEA";
+ b1.draw();
+ b2.draw();
+ c1.draw();
+ window.requestAnimationFrame(animloop);
+
+</script>
+</html>

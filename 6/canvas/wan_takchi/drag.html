@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -126,7 +127,7 @@ function canvasApp() {
 		mouseX = (evt.clientX - bRect.left)*(theCanvas.width/bRect.width);
 		mouseY = (evt.clientY - bRect.top)*(theCanvas.height/bRect.height);
 		
-		prevent object from dragging outside of canvas
+		//clamp x and y positions to prevent object from dragging outside of canvas
 		posX = mouseX - dragHoldX;
 		posX = (posX < minX) ? minX : ((posX > maxX) ? maxX : posX);
 		posY = mouseY - dragHoldY;
@@ -139,12 +140,13 @@ function canvasApp() {
 	}
 	
 	function hitTest(shape,mx,my) {
-		//whether an object is targeted
+		
 		var dx;
 		var dy;
 		dx = mx - shape.x;
 		dy = my - shape.y;
-	
+		
+		//a "hit" will be registered if the distance away from the center is less than the radius of the circular object		
 		return (dx*dx + dy*dy < shape.rad*shape.rad);
 	}
 	
