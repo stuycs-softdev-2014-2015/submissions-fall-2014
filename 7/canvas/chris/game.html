@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+Arroy Keys move, Spacebar shoots, P pauses
 <div>
 <canvas height="400" width="800" id="c"
 	style="border:1px dotted lime">
@@ -11,7 +12,15 @@
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 var balls = [];
+var bullets = [];
 var pause = false;
+var movingLeft, movingRight, movingUp, movingDown = false;
+var spawnChance = 0.05;
+
+
+var dist = function(x1, y1, x2, y2) {
+   return Math.sqrt(Math.pow(x1 - x2 , 2) + Math.pow(y1 - y2 , 2));
+}
 
 var ball = function(x, y, r, ctx) {
    return {
@@ -37,6 +46,17 @@ var ball = function(x, y, r, ctx) {
          }
          this.x += this.dx;
          this.y += this.dy;
+      },
+      collideCheck:function() {
+         for (var i = 0; i < bullets.length; i++) {
+	    if (dist(bullets[i].x,bullets[i].y,this.x,this.y) <
+		this.r + bullets[i].r) {
+		var index = balls.indexOf(this);
+		if (index > -1) {
+	           balls.splice(index,1);
+	        }
+            }
+         }
       }
    };
 }
@@ -61,16 +81,57 @@ var player = function(x,y,l,ctx) {
          ctx.fill();
       },
       moveLeft:function() {
-         this.x -= this.dx;
+	 if (this.x > this.l/2) {
+            this.x -= this.dx;
+	 }
       },
       moveRight:function() {
-         this.x += this.dx;
+         if (this.x < c.width - this.l/2) {
+            this.x += this.dx;
+         }
       },
       moveUp:function() {
-         this.y -= this.dy;
+         if (this.y > this.l/2) {
+            this.y -= this.dy;
+         }
       },
       moveDown:function() {
-         this.y += this.dy;
+         if (this.y < c.height - this.l/2) {
+            this.y += this.dy;
+         }
+      },
+      collisionCheck:function() {
+         for (var i = 0; i < balls.length; i++) {
+	    if (dist(this.x,this.y,balls[i].x,balls[i].y) < 
+	        balls[i].r + this.l * 3/4) {
+               return true;
+            }
+         }
+         return false;
+      }
+   };
+}
+
+
+var bullet = function(x,y,ctx) {
+   return {
+      x:x,
+      y:y,
+      r:3,
+      color:"#0000ff",
+      ctx:ctx,
+      dy:10,
+      draw:function() {
+         ctx.beginPath();
+         ctx.fillStyle = this.color;
+         ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
+         ctx.fill();
+         if (this.y < 0) {
+            bullets.shift();
+         }
+      },
+      move:function() {
+         this.y -= this.dy;
       }
    };
 }
@@ -81,40 +142,92 @@ var animloop = function() {
       ctx.fillStyle="#30d080";
       ctx.fillRect(0,0,c.width,c.height);
 
-      if (Math.random() < 0.01)
+      if (Math.random() < spawnChance)
 	 newBall();
 
-      for (var i = 0; i < balls.length; i++) {
-	 balls[i].draw();
-         balls[i].move();
+      for (var i = 0; i < bullets.length; i++) {
+         bullets[i].move();
+	 bullets[i].draw();
       }
+
+
+      for (var i = 0; i < balls.length; i++) {
+	 balls[i].move();
+	 balls[i].draw();
+	 balls[i].collideCheck();
+      }
+
+      
+      if (movingLeft) {
+	 p1.moveLeft();
+      } else if (movingRight) {
+         p1.moveRight();
+      } else if (movingUp) {
+         p1.moveUp();
+      } else if (movingDown) {
+         p1.moveDown();
+      }
+
+
       p1.draw();
+      if (p1.collisionCheck() ) {
+	 ctx.fillStyle = "#000000";
+         ctx.fillRect(0,0,c.width,c.height);
+         ctx.fillStyle = "#ff0000";
+         ctx.font = "bold 100px sans-serif";
+         ctx.fillText("YOU LOSE", 50, 350);
+         return;
+      }
    }
+
+   spawnChance += 0.00001;
+
    window.requestAnimationFrame(animloop);
 }
 
 var newBall = function() {
    var rad = Math.random()*20 + 5;
-   var x = Math.random()*(c.width - 2*rad) + rad;
-   var y = Math.random()*(c.height - 2*rad) + rad;
+   var x = p1.x;
+   var y = p1.y;
+
+   while(dist(x,y,p1.x,p1.y) < rad + p1.l*3/4 + 10) {
+      x = Math.random()*(c.width - 2*rad) + rad;
+      y = Math.random()*(c.height - 2*rad) + rad;
+   }
+
    b1 = ball(x,y,rad,ctx);
    balls.push(b1);
 }
 
 
 var keypress = function(e) {
-   console.log(e);
+   //console.log(e);
    if (e.keyCode === 37) {
-      p1.moveLeft();
+      movingLeft = true;
    } else if (e.keyCode === 39) {
-      p1.moveRight();
+      movingRight = true;
    } else if (e.keyCode === 38) {
-      p1.moveUp();
+      movingUp = true;
    } else if (e.keyCode === 40) {
-      p1.moveDown();
+      movingDown = true;
    } else if (e.keyCode === 80) {
       pause = !pause;
-   }			  
+   } else if (e.keyCode === 32) {
+      var bullet1 = bullet(p1.x,p1.y - p1.l/2,ctx);
+      bullets.push(bullet1);
+   }
+}
+
+var keyup = function(e) {
+   if (e.keyCode === 37) {
+      movingLeft = false;
+   } else if (e.keyCode === 39) {
+      movingRight = false;
+   } else if (e.keyCode === 38) {
+      movingUp = false;
+   } else if (e.keyCode === 40) {
+      movingDown = false;
+   }
 }
 
 var p1 = player(400,300,10,ctx);
@@ -124,6 +237,7 @@ balls.push(b1);
 
 
 window.addEventListener("keydown",keypress);
+window.addEventListener("keyup",keyup);
 window.requestAnimationFrame(animloop);
 </script>
 </html>
