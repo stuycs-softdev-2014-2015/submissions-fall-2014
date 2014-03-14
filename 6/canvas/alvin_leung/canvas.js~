@@ -1,0 +1,9 @@
+var main = function(){
+   var ball = function(x,y,c){
+       return {
+	   
+	   
+       }
+   };
+
+}();
