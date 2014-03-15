@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<h1>Speed</h1>
+before
+<div>
+<canvas height ="600" width="600" id="c"
+	style="border: 5px solid black">
+</canvas>
+</div>
+after
+
+<script>
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+
+var block = function(x,y,w,h,ctx) {
+    return {
+	x:x,
+	y:y,
+	w:w,
+	h:h,
+	ctx:ctx,
+	color: '#' + Math.random().toString(16).substring(2, 8),
+	dx:Math.random()*40,
+	dy:Math.random()*40,
+draw:function() {
+	    ctx.fillStyle=this.color;
+ctx.fillRect(this.x, this.y, this.w, this.h);
+	    ctx.stroke();
+	},
+	move:function() {
+	    this.x = this.x + this.dx;
+	    this.y = this.y + this.dy;
+	    if (this.x<0 || this.x>600-this.w) {
+		this.dx=this.dx *-1;
+ 	    }
+    if (this.y<0 || this.y>600-this.h) {
+      this.dy=this.dy*-1;
+      }
+      },
+      wallX:function() {
+      this.dx = this.dx*-1;
+      },
+	wallY:function() {
+      this.dy = this.dy * -1;
+	}
+    };
+}
+
+var animloop = function() {
+    ctx.fillStyle="#f5f1de";
+    ctx.fillRect(0,0,600,600);
+    for (var i = 0; i < blocks.length; i++) {
+	blocks[i].move();
+	blocks[i].draw();
+	for (var j = 0; j < blocks.length; j++) {
+	    if (j != i) {
+		if (Math.abs(blocks[i].x-blocks[j].x) < Math.min(blocks[i].w,blocks[j].w) &&
+		    Math.abs(blocks[i].y-blocks[j].y) < Math.min(blocks[i].h,blocks[j].h)) {
+		    if (blocks[i].x != blocks[j].x) {
+			blocks[i].wallX();
+			blocks[j].wallX();
+		    }
+		    if (blocks[i].y != blocks[j].y) {
+			blocks[i].wallY();
+			blocks[j].wallY();
+		    }
+		}
+	    }
+	}
+    }
+    window.requestAnimationFrame(animloop);
+}
+
+var blocks=[];
+for (var i = 0; i < 75; i++) {
+    blocks.push(block(Math.random()*650,Math.random()*650,
+		    5+Math.random()*45,5+Math.random()*45,ctx));
+}
+
+window.requestAnimationFrame(animloop);
+</script>
+</html>
+
+			  

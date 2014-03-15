@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<div>
+<canvas height="1000" width="500" id="c"
+	style="border:1px solid black">
+</canvas>
+</div>
+<div id="MyEdit">
+    X
+</div>
+<div id="MyEdit2">
+    Y
+</div>
+<script>
+ var c = document.getElementById("c");
+ var ctx = c.getContext("2d");
+ var edit = document.getElementById("MyEdit");
+ var edit2 = document.getElementById("MyEdit2");
+ var block = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     dx:1,
+     dy:y,
+     color:'#ff0000',
+     ctx:ctx,
+     getX: function(){
+       return this.x;
+     },  
+     getY: function(){
+       return this.y;
+     },  
+     draw: function() {
+       ctx.fillStyle=this.color;
+       ctx.fillRect(this.x,this.y,this.w,this.h);
+       ctx.stroke();
+     },
+     move: function() {
+       this.x = this.x + this.dx;
+       this.y = this.y + (Math.random()-.5)*20;
+       if (this.x>350 || this.x<10){
+	 this.dx=this.dx*-1;
+       }
+     }
+   }
+ }
+ var animloop = function() {
+   ctx.fillStyle="#ffffff";
+   ctx.fillRect(0,0,600,600);
+   b1.move();
+   b1.draw();
+   edit.innerHTML = b1.getX();
+   edit2.innerHTML = b1.getY();
+   window.requestAnimationFrame(animloop);
+ }
+ var b1 = block(50,500,20,10,ctx);
+ b1.draw();
+ window.requestAnimationFrame(animloop);
+
+</script>
+
+</html>

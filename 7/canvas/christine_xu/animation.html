@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<b>Driving on the road</b>
+[This is just an animation of a car on the road, it will probably turn into a driving game of dodging cones later] 
+<img id="hug" src="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=23226806" alt="The Hug" width="50" height="60">
+
+
+<div>
+<br>
+<br>
+<canvas height="600" width="600" id="c" style="border:1px solid black"> </canvas>
+</div>
+
+<script>
+
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 0, 600, 100);
+
+ctx.fillStyle="black";
+ctx.fillRect(5, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(100, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(200, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(300, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(400, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(500, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(600, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(620, 250, 50, 20);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 200, 600, 22);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 300, 600, 22);
+
+
+ctx.fillStyle="#black";
+ctx.fillRect(0, 450, 600, 100);	
+	
+</script>
+
+<script>
+
+var car = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     ctx:ctx,
+     color:"pink",
+     dx:1,
+	 
+	  move:function() {
+       this.x = this.x + 20;
+       this.y = this.y;
+       if (this.x<20||this.x>560) {
+	 this.dx=this.dx*-1;
+       }
+       }
+     };
+	 }
+	 
+	 
+
+var animloop = function(){
+   ctx.fillStyle="pink";
+   ctx.fillRect(5,250,60,100);
+   
+   for (var i=0;i<car.length;i++) {
+     car[i].move();
+   }
+   window.requestAnimationFrame(animloop);
+
+ } 
+ 
+ 
+ var c = car(50,250,40,60,ctx);
+ car.push(c);
+ 
+ var keypress = function(e) {
+   console.log(e);
+   }
+
+;
+    
+</script>
+</body>
+</html>
+
