@@ -135,32 +135,41 @@ var State = function(ax,ay) {
     }
 }
 
-var b = Ball(50,50,0,0,0,0,10);
-var s = State(0,0);
-var e = End(200,300,20);
-var t = Date.now();
-var msg = "Congratzies uve 1";
-var fin = false;
+var b;
+var s;
+var e;
+var t;
+var msg;
+var fin;
+var holes;
 
-var holes = [];
+var initialize = function() {
+    b = Ball(50,50,0,0,0,0,10);
+    s = State(0,0);
+    e = End(200,300,20);
+    t = Date.now();
+    msg = "Congratzies uve 1";
+    fin = false;
+    holes = [];
 
-for(i = 0; i<= 800; i = i + 6) {
-    holes.push(Hole(i,100,30));
+    for(i = 0; i<= 800; i = i + 6) {
+	holes.push(Hole(i,100,30));
+    }
+    for(i = 100; i<= 400; i = i + 6) {
+	holes.push(Hole(800,i,30));
+    }
+    holes.push(Hole(980,300,40));
+    holes.push(Hole(980,50,40));
+    holes.push(Hole(900,550,60));
+    holes.push(Hole(650,550,40));
+    holes.push(Hole(650,350,30));
+    holes.push(Hole(650,270,20));
+    holes.push(Hole(100,330,50));
+
+    for(i = 500; i>= 100; i = i - 6) {
+	holes.push(Hole(i,600-i,30));
+    }
 }
-for(i = 100; i<= 400; i = i + 6) {
-    holes.push(Hole(800,i,30));
-}
-holes.push(Hole(980,300,40));
-holes.push(Hole(980,50,40));
-holes.push(Hole(900,550,60));
-holes.push(Hole(650,550,40));
-holes.push(Hole(650,350,30));
-holes.push(Hole(650,270,20));
-
-for(i = 500; i>= 100; i = i - 6) {
-    holes.push(Hole(i,600-i,30));
-}
-
 
 
 var animloop = function() {
@@ -180,8 +189,12 @@ var animloop = function() {
     b.move(s.ax,s.ay);
     s.outOfBounds(b.x,b.y,b.r);
     
-    if (fin == true) 
+    if (fin == true) {
 	alert(msg);
+	b.draw(ctx);
+	setTimeout(initialize(),200000);
+	setTimeout(window.requestAnimationFrame(animloop),200000);
+    }
     else window.requestAnimationFrame(animloop);
 }
 
@@ -214,5 +227,5 @@ window.addEventListener('keydown', function(e) {
     }
 },true);
 
-
+initialize();
 window.requestAnimationFrame(animloop);
