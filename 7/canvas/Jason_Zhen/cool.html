@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+
+<canvas height="480" width="960" id="c"
+	style="border:1px solid black">
+</canvas>
+
+<script>
+  var c = document.getElementById("c");
+  var ctx = c.getContext("2d");
+  var start = false;
+  
+  var height=480;
+  var width=960;
+var startScreen = function() {
+   ctx.font="30px arial";
+   ctx.strokeStyle="#0000ff";
+   ctx.fillText("A Cool Thing",400,100);
+   ctx.font="20px arial";
+   ctx.fillText("Click Anywhere to Start",380,150);
+   ctx.stroke();
+}
+  
+  var setup = function(e) {
+   e.preventDefault();
+   if (start == false){
+    ctx.fillStyle="#ffffff";
+    ctx.fillRect(0,0,width,height);
+    ctx.stroke();
+    start= true;
+   }
+}
+
+  var player = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     ctx:ctx,
+     color:"#000000",
+     dx:10,
+     dy:10,
+
+     draw:function() {
+       ctx.fillStyle=this.color;
+       ctx.fillRect(this.x,this.y,this.w,this.h);
+       ctx.stroke();
+     },
+
+     move:function(dir) {
+        if (dir=="LEFT"){this.x=this.x-this.dx;}
+        if (dir=="UP"){this.y=this.y-this.dy;}
+        if (dir=="RIGHT"){this.x=this.x+this.dx;}
+        if (dir=="DOWN"){this.y=this.y+this.dy;}
+    }
+
+  };
+  }
+  
+ var bullet = function(x,y,r,ctx){
+  return {
+   x:x,
+   y:y,
+   r:r,
+   ctx:ctx,
+   color:"blue",
+   dx:10,
+   dy:10,
+   
+   draw:function() {
+    ctx.fillStyle=this.color;
+    ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
+    ctx.fill();  
+    ctx.stroke();
+   },
+
+   move:function() {
+     this.x=this.x;
+     this.y=this.y+this.dy;
+    
+   }
+  }
+ }
+  var readKeys = function(e){
+    e = e || window.event;
+    //console.log(e.which);
+    if (e.which==37){p.move("LEFT");}
+    if (e.which==38){p.move("UP");}
+    if (e.which==39){p.move("RIGHT");}
+    if (e.which==40){p.move("DOWN");}
+  
+  }   
+  
+        
+  var animloop = function(){
+   //ctx.fillStyle="#ffffff";
+   //ctx.fillRect(0,0,width,height);
+   ctx.clearRect(0,0,width,height);
+   p.draw();
+ 
+  for (var i = 0; i <bullets.length; i++){
+    bullets[i].move();
+    bullets[i].draw();
+    if (bullets[i].y>height){bullets.shift();}				     
+  }		
+   window.requestAnimationFrame(animloop);
+  }
+				      
+var p = player(width*.5,height*.5,10,10,ctx);
+var bullets=[];
+var b1 = bullet(width*.5,0,5,ctx);
+bullets.push(b1);
+
+
+document.onkeydown=readKeys;
+window.requestAnimationFrame(animloop);
+
+</script>
+
+
+</html>
