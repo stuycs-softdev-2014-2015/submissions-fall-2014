@@ -13,14 +13,15 @@
   
   var height=480;
   var width=960;
-var startScreen = function() {
+
+  var startScreen = function() {
    ctx.font="30px arial";
    ctx.strokeStyle="#0000ff";
    ctx.fillText("A Cool Thing",400,100);
    ctx.font="20px arial";
    ctx.fillText("Click Anywhere to Start",380,150);
    ctx.stroke();
-}
+  }
   
   var setup = function(e) {
    e.preventDefault();
@@ -29,8 +30,8 @@ var startScreen = function() {
     ctx.fillRect(0,0,width,height);
     ctx.stroke();
     start= true;
-   }
-}
+    }
+  } 
 
   var player = function(x,y,w,h,ctx) {
    return {
@@ -70,8 +71,9 @@ var startScreen = function() {
    dy:10,
    
    draw:function() {
-    ctx.fillStyle=this.color;
+    ctx.beginPath();
     ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
+    ctx.fillStyle=this.color;
     ctx.fill();  
     ctx.stroke();
    },
@@ -95,8 +97,6 @@ var startScreen = function() {
   
         
   var animloop = function(){
-   //ctx.fillStyle="#ffffff";
-   //ctx.fillRect(0,0,width,height);
    ctx.clearRect(0,0,width,height);
    p.draw();
  
