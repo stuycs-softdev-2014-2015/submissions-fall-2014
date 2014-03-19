@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+Jeremy Karson - Period 6<br>
+3/14/14<br>
+SOFTDEV
+<div>
+<canvas height="600" width="600" id="c"
+style="border:2px solid green">
+</canvas>
+</div>
+
+<script>
+  var c = document.getElementById("c");
+  var ctx = c.getContext("2d");
+
+  ctx.fillStyle="#ff0000";
+  ctx.font = "50px times new roman";
+  ctx.fillText("I NEED SLEEP",140,300);
+  ctx.fillStyle="blue";
+  ctx.font = "25px verdana";
+  ctx.fillText("This weekend I will make something nice.",30,400);
+  ctx.fillStyle="green";
+  ctx.font = "20px arial";
+  ctx.fillText("PS: click to make pretty quadrilaterals.",150,500);
+
+
+
+  var counter1 = 0;
+  var counter2 = 0;
+
+  var clicked = function(e){
+  e.preventDefault();
+  ctx.arc(e.offsetX,e.offsetY,3,0,2*Math.PI);
+
+  if (counter2 == 0)
+  ctx.fillStyle="blue";
+  else if (counter2 == 1)
+  ctx.fillStyle="green";
+  else
+  ctx.fillStyle="red";
+  
+  ctx.stroke();
+  if (counter1 == 3){
+  console.log("hello");
+  ctx.fill();
+  counter1 = 0;
+  ctx.beginPath();
+  counter2 = counter2 + 1;
+  if (counter2 >= 3)
+  counter2 = 0;
+  }
+  else
+  counter1 = counter1 + 1;
+  }
+
+  c.addEventListener("click",clicked);
+</script>
+</html>

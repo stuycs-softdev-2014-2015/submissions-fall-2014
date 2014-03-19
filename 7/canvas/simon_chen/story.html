@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Story </title>
+    <style>
+     canvas {
+       position: absolute;
+       top: 0px;
+       left: 0px;
+       background: transparent;
+       z-index: 200;
+     }
+    </style>
+  </head>
+  <body onload="init()">
+    <canvas id="background" width="600" height="360">
+      Herp derp. Get a better browser.
+    </canvas>
+  </body>
+
+
+  <script>
+   var imgRepository = new function() {
+     this.background = new Image();
+     this.background.src = "bg.png";
+   }
+
+   function Drawable(){
+     this.init = function(x, y){
+       this.x = x;
+       this.y = y;
+     }
+     this.speed = 0;
+     this.canvasWidth = 0;
+     this.canvasHeight = 0;
+
+     this.draw = function(){};
+   }
+
+   function Background(){
+     this.speed = 1;
+     this.draw = function(){
+       this.y += this.speed;
+       this.context.drawImage(imgRepository.background, this.x, this.y);
+       this.context.drawImage(imgRepository.background,
+			      this.x,
+			      this.y - this.canvasHeight);
+       if(this.y >= this.canvasHeight){
+	 this.y = 0;
+       }
+       displayTxt();
+     };
+   }
+   Background.prototype = new Drawable();
+
+   function Story(){
+     this.init = function(){
+       this.bgCanvas = document.getElementById('background');
+       if(this.bgCanvas.getContext){
+	 this.bgContext = this.bgCanvas.getContext('2d');
+	 Background.prototype.context = this.bgContext;
+	 Background.prototype.canvasWidth = this.bgContext.width;
+	 Background.prototype.canvasHeight = this.bgContext.height;
+	 this.bg = new Background();
+	 this.bg.init(0,0);
+	 return true;
+       } 
+     };
+     
+     this.start = function(){
+       animate();
+     };
+   }
+
+   function animate(){
+     requestAnimFrame ( animate );
+     story.bg.draw();
+     displayTxt();
+     
+   }
+
+   // Made by Paul Irish to find first working Animation API
+  window.requestAnimFrame = (function(){
+     return  window.requestAnimationFrame   ||
+     window.webkitRequestAnimationFrame ||
+     window.mozRequestAnimationFrame    ||
+     window.oRequestAnimationFrame      ||
+     window.msRequestAnimationFrame     ||
+     function(/* function */ callback, /* DOMElement */ element){
+       window.setTimeout(callback, 1000 / 60);
+     };
+   })();
+
+   var story = new Story();
+
+   function init() {
+     if(story.init()){
+       story.start();
+     }
+   }
+
+   function displayTxt(){
+     c = document.getElementById('background');
+     context = c.getContext('2d');
+     context.font = "30px arial";
+     context.fillStyle = "#ffff66"
+     context.fillText("A long time ago in a galaxy far,far away....",20,200);
+   }
+  </script>
+</html>
