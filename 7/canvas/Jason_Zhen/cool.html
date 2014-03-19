@@ -13,7 +13,8 @@
   
   var height=480;
   var width=960;
-
+  var difficulty=1;
+  
   var startScreen = function() {
    ctx.font="30px arial";
    ctx.strokeStyle="#0000ff";
@@ -60,15 +61,15 @@
   };
   }
   
- var bullet = function(x,y,r,ctx){
+ var bullet = function(x,y,ctx){
   return {
    x:x,
    y:y,
-   r:r,
+   r:10,
    ctx:ctx,
    color:"blue",
-   dx:10,
-   dy:10,
+   dx:5,
+   dy:5,
    
    draw:function() {
     ctx.beginPath();
@@ -87,19 +88,25 @@
  }
   var readKeys = function(e){
     e = e || window.event;
-    //console.log(e.which);
+    console.log(e.which);
     if (e.which==37){p.move("LEFT");}
     if (e.which==38){p.move("UP");}
     if (e.which==39){p.move("RIGHT");}
     if (e.which==40){p.move("DOWN");}
+  //if (e.which==32){spawn(width*Math.random(),0,ctx);}
   
   }   
   
-        
+  var spawn = function(x,y,ctx){
+  bullets.push(bullet(x,y,ctx));
+  }
+
   var animloop = function(){
    ctx.clearRect(0,0,width,height);
    p.draw();
- 
+   for (var i = 0; i<difficulty; i++){
+     spawn(width*Math.random(),0,ctx);
+  }
   for (var i = 0; i <bullets.length; i++){
     bullets[i].move();
     bullets[i].draw();
@@ -111,7 +118,7 @@
 var p = player(width*.5,height*.5,10,10,ctx);
 var bullets=[];
 var b1 = bullet(width*.5,0,5,ctx);
-bullets.push(b1);
+    //bullets.push(b1);
 
 
 document.onkeydown=readKeys;
