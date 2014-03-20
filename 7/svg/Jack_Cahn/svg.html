@@ -19,23 +19,31 @@ Press FASTER to make the bubbles come faster. <br> <br>
 <br> 
     <input type="submit" id="go" value="go">
     <input type="submit" id="faster" value="faster">
+    <input type="submit" id="slower" value="slower">
+
+
     <script>
       var speed = .05; 
 
+  var slower = function(e) { 
+      console.log("yo");
+      speed = speed - .01;
+      }
+
       var faster = function(e) { 
       console.log("yo");
-      speed = speed + .05;
+      speed = speed + .01;
       }
-  
+
 
      var cClicked = function(e) {
        e.preventDefault();
        console.log("cClicked");
        var c = this.getAttribute('fill');
        if (c=='blue') {
-       this.setAttribute('fill','green');
+	 this.setAttribute('fill','green');
        } else if (c=='green'){
-       this.remove();
+	 this.remove();
        }
      }
 
@@ -62,16 +70,16 @@ Press FASTER to make the bubbles come faster. <br> <br>
      var move = function() {
        var cs = document.getElementsByTagName("circle");
        for (var i=0;i<cs.length;i++) {
-				      var x = parseFloat(cs[i].getAttribute('cx'));
-				      var y = parseFloat(cs[i].getAttribute('cy'));
-				      var r = parseFloat(cs[i].getAttribute('r'));
-				      x = x + Math.random()*3;
-				      y = y + Math.random()*3;
-				      r = r;
-				      if (r<5) {r=20;}
-					        cs[i].setAttribute('cx',x);
-					        cs[i].setAttribute('cy',y);
-					        cs[i].setAttribute('r',r);
+	 var x = parseFloat(cs[i].getAttribute('cx'));
+	 var y = parseFloat(cs[i].getAttribute('cy'));
+	 var r = parseFloat(cs[i].getAttribute('r'));
+	 x = x + Math.random()*3;
+	 y = y + Math.random()*3;
+	 r = r;
+	 if (r<5) {r=20;}
+	 cs[i].setAttribute('cx',x);
+	 cs[i].setAttribute('cy',y);
+	 cs[i].setAttribute('r',r);
 if (x > 400 || y > 400) {document.write("You Lose. Press refresh to restart.");}
        }
 	if (Math.random() < speed) {addCircle(s, 50+Math.random()*300,50+Math.random()*300,5+30*Math.random(),'blue');} 
@@ -81,10 +89,10 @@ if (x > 400 || y > 400) {document.write("You Lose. Press refresh to restart.");}
      var go = function(e) {
        e.preventDefault();
        if (t==0){
-			     t = setInterval(move,100);
+	 t = setInterval(move,100);
        } else {
-			     clearInterval(t);
-			     t=0;
+	 clearInterval(t);
+	 t=0;
        }
 
      }
@@ -95,6 +103,8 @@ if (x > 400 || y > 400) {document.write("You Lose. Press refresh to restart.");}
      g.addEventListener("click",go);
      var f = document.getElementById("faster");
      f.addEventListener("click",faster);
+     var slow = document.getElementById("slower");
+     slow.addEventListener("click",slower);
 
     </script>
   </body>
