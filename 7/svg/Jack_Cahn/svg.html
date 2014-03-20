@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid; color: black}
+    </style>
+  </head>
+  <body>
+    <b> <center> <u> Welcome to Bubble Madness! <br> <br> 
+
+</b> </u>Your job is to press on the bubbles so they disappear before hitting the EDGE of the screen. <br> <br> 
+Press GO to BEGIN. <br>
+Press FASTER to make the bubbles come faster. <br> <br>
+
+    <svg class="where" id="s" style="fill:#0000FF; stroke=#000000" height=400 width=400>
+      <!-- <circle id="c1" cx=100 cy=100 r=10 fill="blue"></circle> -->
+    </svg>
+<br> 
+<br> 
+    <input type="submit" id="go" value="go">
+    <input type="submit" id="faster" value="faster">
+    <script>
+      var speed = .05; 
+
+      var faster = function(e) { 
+      console.log("yo");
+      speed = speed + .05;
+      }
+  
+
+     var cClicked = function(e) {
+       e.preventDefault();
+       console.log("cClicked");
+       var c = this.getAttribute('fill');
+       if (c=='blue') {
+       this.setAttribute('fill','green');
+       } else if (c=='green'){
+       this.remove();
+       }
+     }
+
+     var addCircle = function(s,x,y,r,c) {
+       var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+       c1.setAttribute('cx',x);
+       c1.setAttribute('cy',y);
+       c1.setAttribute('r',r);
+       c1.setAttribute('fill',c);
+       c1.addEventListener('click',cClicked);
+       s.appendChild(c1);
+       
+       }
+
+       var clicked = function(e) {
+       e.preventDefault();
+       if (e.toElement!=this) {return;}
+       console.log("clicked");
+       s = document.getElementById("s");
+       var r = 5+30*Math.random()
+       addCircle(s,e.offsetX,e.offsetY,r,'blue');
+     }
+     
+     var move = function() {
+       var cs = document.getElementsByTagName("circle");
+       for (var i=0;i<cs.length;i++) {
+				      var x = parseFloat(cs[i].getAttribute('cx'));
+				      var y = parseFloat(cs[i].getAttribute('cy'));
+				      var r = parseFloat(cs[i].getAttribute('r'));
+				      x = x + Math.random()*3;
+				      y = y + Math.random()*3;
+				      r = r;
+				      if (r<5) {r=20;}
+					        cs[i].setAttribute('cx',x);
+					        cs[i].setAttribute('cy',y);
+					        cs[i].setAttribute('r',r);
+if (x > 400 || y > 400) {document.write("You Lose. Press refresh to restart.");}
+       }
+	if (Math.random() < speed) {addCircle(s, 50+Math.random()*300,50+Math.random()*300,5+30*Math.random(),'blue');} 
+     }
+
+     var t =0;
+     var go = function(e) {
+       e.preventDefault();
+       if (t==0){
+			     t = setInterval(move,100);
+       } else {
+			     clearInterval(t);
+			     t=0;
+       }
+
+     }
+
+     var s = document.getElementById("s");
+     s.addEventListener("click",clicked);
+     var g = document.getElementById("go");
+     g.addEventListener("click",go);
+     var f = document.getElementById("faster");
+     f.addEventListener("click",faster);
+
+    </script>
+  </body>
+</html>
