@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <h1><u><i><b>Click The Yellow Dot</b></i></u></h1>
+    <svg id="s" height=400 width=400>
+    </svg>
+    <br>
+    <script>
+     var s = document.getElementById("s");
+     var width = s.getAttribute("width");
+     var height = s.getAttribute("height");
+     var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+     c1.setAttribute('cx',width/2);
+     c1.setAttribute('cy',height/2);
+     c1.setAttribute('r', 10);
+     c1.setAttribute('fill','#ffff00');
+     
+     var c2 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+     c2.setAttribute('cx',width/2);
+     c2.setAttribute('cy',height/2);
+     c2.setAttribute('r', 20);
+     c2.setAttribute('fill','#000000');
+     
+     var background = document.createElementNS("http://www.w3.org/2000/svg","rect");
+     background.setAttribute('cx',0);
+     background.setAttribute('cy',0);
+     background.setAttribute('height',height);
+     background.setAttribute('width',width);
+     
+     s.appendChild(background);
+     s.appendChild(c2);
+     s.appendChild(c1);
+     
+
+     var move = function(e) {
+        x = c2.getAttribute('cx');
+        y = c2.getAttribute('cy');
+        r = c2.getAttribute('r');
+        x = parseInt(x);
+        y = parseInt(y);
+        r = parseInt(r);
+        dx = x - e.offsetX;
+        dy = y - e.offsetY;
+
+        if (dx > 2*r || dy > 2*r || dx < -2*r || dy < -2*r)
+           return;						    
+
+        if (x + r > width) {
+           c1.setAttribute('cx',width/2);
+           c2.setAttribute('cx',width/2);
+        } else if (x - r < 0) {
+	   c1.setAttribute('cx',width/2);
+	   c2.setAttribute('cx',width/2);
+        } else if (y + r > height) {
+           c1.setAttribute('cy',height/2);
+	   c2.setAttribute('cy',height/2);
+        } else if (y - r < 0) {
+           c1.setAttribute('cy',height/2);
+           c2.setAttribute('cy',height/2);
+	} else {
+           c1.setAttribute('cx',x + dx);
+           c1.setAttribute('cy',y + dy);
+	   c2.setAttribute('cx',x + dx);
+           c2.setAttribute('cy',y + dy);
+        }
+	move(e);
+     }
+
+     c2.addEventListener("mouseover",move);
+    </script>
+  </body>
+</html>
