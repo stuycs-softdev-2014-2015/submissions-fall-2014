@@ -20,11 +20,11 @@
      c1.setAttribute('r', 10);
      c1.setAttribute('fill','#ffff00');
      
-     var c2 = document.createElementNS("http://www.w3.org/2000/svg","circle");
-     c2.setAttribute('cx',width/2);
-     c2.setAttribute('cy',height/2);
-     c2.setAttribute('r', 20);
-     c2.setAttribute('fill','#000000');
+     var hitbox = document.createElementNS("http://www.w3.org/2000/svg","circle");
+     hitbox.setAttribute('cx',width/2);
+     hitbox.setAttribute('cy',height/2);
+     hitbox.setAttribute('r', 20);
+     hitbox.setAttribute('fill','#000000');
      
      var background = document.createElementNS("http://www.w3.org/2000/svg","rect");
      background.setAttribute('cx',0);
@@ -33,45 +33,54 @@
      background.setAttribute('width',width);
      
      s.appendChild(background);
-     s.appendChild(c2);
+     s.appendChild(hitbox);
      s.appendChild(c1);
      
+     for (var i = 0; i < 100; i++) {
+	circ = document.createElementNS("http://www.w3.org/2000/svg","circle");
+	circ.setAttribute('cx',Math.random()*width);
+        circ.setAttribute('cy',Math.random()*height);
+        circ.setAttribute('r', 10);
+        circ.setAttribute('fill','#0000ff');
+        s.appendChild(circ);
+     }
 
      var move = function(e) {
-        x = c2.getAttribute('cx');
-        y = c2.getAttribute('cy');
-        r = c2.getAttribute('r');
+        x = hitbox.getAttribute('cx');
+        y = hitbox.getAttribute('cy');
+        r = hitbox.getAttribute('r');
         x = parseInt(x);
         y = parseInt(y);
         r = parseInt(r);
         dx = x - e.offsetX;
         dy = y - e.offsetY;
 
-        if (dx > 2*r || dy > 2*r || dx < -2*r || dy < -2*r)
+        if (dx > r || dy > r || dx < -1*r || dy < -1*r)
            return;						    
 
         if (x + r > width) {
            c1.setAttribute('cx',width/2);
-           c2.setAttribute('cx',width/2);
+           hitbox.setAttribute('cx',width/2);
         } else if (x - r < 0) {
 	   c1.setAttribute('cx',width/2);
-	   c2.setAttribute('cx',width/2);
+	   hitbox.setAttribute('cx',width/2);
         } else if (y + r > height) {
            c1.setAttribute('cy',height/2);
-	   c2.setAttribute('cy',height/2);
+	   hitbox.setAttribute('cy',height/2);
         } else if (y - r < 0) {
            c1.setAttribute('cy',height/2);
-           c2.setAttribute('cy',height/2);
+           hitbox.setAttribute('cy',height/2);
 	} else {
            c1.setAttribute('cx',x + dx);
            c1.setAttribute('cy',y + dy);
-	   c2.setAttribute('cx',x + dx);
-           c2.setAttribute('cy',y + dy);
+	   hitbox.setAttribute('cx',x + dx);
+           hitbox.setAttribute('cy',y + dy);
         }
-	move(e);
+	
      }
 
-     c2.addEventListener("mouseover",move);
+     s.addEventListener("mousemove",move);
+     
     </script>
   </body>
 </html>
