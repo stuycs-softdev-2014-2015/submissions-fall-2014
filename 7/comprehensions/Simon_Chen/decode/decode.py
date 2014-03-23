@@ -7,23 +7,22 @@ def getFreq(path):
     #makes an alphaphet list
     a = [chr(ord('a') + n) for n in range(26)]
     #gets the freq
-    f = [float(t.count(l))/i for l in a]
+    freq= [float(t.count(l))/i for l in a]
     #combines the alphaphet and frequencies
-    lf = zip(a,f)
+    letterfreq = zip(a,freq)
     #print "This is the " +path+ " letter frequency table"
     #print lf
 
     #nested loop slow
     #test = [[x for x in txt if x >= 'a' if x <= 'z'].count(l) for l in a]
-    return f 
-
+    return freq
+    
     
 tf = getFreq("ivanhoe.txt")
 
 import math                      
 def dist(a,b):
-    s = 0
-    s = math.sqrt(sum([pow(a[i] - b[i],2) for i in range(len(a)-1)]))
+    s = math.sqrt(sum([pow(i - j,2) for i in a for j in b]))
     #print s
     return s
 

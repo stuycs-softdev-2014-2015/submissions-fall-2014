@@ -1,8 +1,12 @@
+// I spent way too much time working on this project.. I hope you enjoy it! 
+// Onlick functionality does not work because canvases can not recognise objects. Its 2AM and I have literally spent 5 hours trying to get this to work with onlicks through various hacks but none work, so I'm going to leave it like this.
+
 var c = document.getElementById("c");
 var ctx = c.getContext("2d");
 
 var  myFruit = new Array ();
 myFruit[0] = new Array ("apple.jpeg", 1);
+
 myFruit[1] = new Array ("Bannanas.jpg", 2);
 myFruit[2] = new Array ("Kiwi.jpeg", 3);
 myFruit[3] = new Array ("Orange.jpg", 2);
@@ -18,12 +22,31 @@ myFruit[10] = new Array ("bomb.jpg", 0);
 var score = 0;
 var lives = 3;
 
+var printScores = function () {
+    textDiv = document.getElementById ("textdiv");
+    textDiv.innerHTML = "";
+    var sc  = document.createTextNode("Score: ");
+    textDiv.appendChild(sc);
+
+    var sc  = document.createTextNode(score);
+    textDiv.appendChild(sc);
+    textDiv.appendChild(document.createElement("br"));
+    var lv  = document.createTextNode("Lives: ");
+    textDiv.appendChild(lv);
+
+    var lv  = document.createTextNode(lives);
+    textDiv.appendChild(lv);
+			      }
+
+printScores ();
+
 var addScore = function (val) {
     score = score + myFruit [val][1];
+
     if (myFruit [val][1] == 0) {
 	lives = lives - 1;
 	alert ("You have lost a life");}
-    console.log ("score added");
+    printScores ();
     return score;
 }
 
@@ -54,7 +77,9 @@ var createNewImage = function () {
     num = Math.floor((Math.random()*myFruit.length));
     img1 = new Image();
     img1.src= myFruit [num][0];
-    img1.onclick = addScore (num);
+  //  img1.onclick = addScore (num);
+    img1.addEventListener("click", addScore(num), false);
+    
     xVal = Math.floor((Math.random()*1000));
     y = 50;
     m = addImage (xVal,y,img1,0,10);
