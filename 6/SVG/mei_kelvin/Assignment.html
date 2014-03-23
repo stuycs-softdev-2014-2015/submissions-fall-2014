@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVG Animation
+</title>
+</head>
+
+
+<svg width = "500" height = "500"  id = "foo">
+<!-- rect width = "50" height = "10" style = "fill:rgb(0,0,255); stroke-width:3;stroke:rgb(0,0,0)" x = '100'/>
+<rect width = "50" height = "10" style = "fill:rgb(255,0,0); stroke-width:3;stroke:rgb(0,0,0)" x = '100' y = '300'/-->
+</svg>
+<br>
+<br>
+<button onclick ="create()">Create</button>
+<p>
+<button onclick ="start()">Start</button>
+
+
+<script>
+start = false;
+var rleft = false;
+var rright = false;
+var bleft = false;
+var bright = false;
+bx = 250
+by = 0
+rx = 250
+ry = 490
+
+var a1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+       a1.setAttribute('width',50);
+       a1.setAttribute('height',10);
+       a1.setAttribute('x',bx);
+       a1.setAttribute('y',by);
+       a1.setAttribute('fill','blue');
+var b1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+       b1.setAttribute('width',50);
+       b1.setAttribute('height',10);
+       b1.setAttribute('x',rx);
+       b1.setAttribute('y',ry);
+       b1.setAttribute('fill','red');
+var ball = document.createElementNS("http://www.w3.org/2000/svg","circle");
+       ball.setAttribute('cx',270);
+       ball.setAttribute('cy',250);
+       ball.setAttribute('r',5);
+       ball.setAttribute('fill','black');
+
+function create (){
+wack = document.getElementById("foo");
+wack.appendChild(a1);
+wack.appendChild(b1);
+wack.appendChild(ball);
+}
+
+function keydown (){
+if (e.keyCode == 37){
+rleft = true;
+}
+else if (e.keyCode == 39){
+rright = true;
+}
+else if (e.keyCode == 65){
+bleft = true;
+}
+else if (e.keyCode = 68){
+bright = true;
+}
+}
+
+function keyup (){
+if (e.keyCode == 37){
+rleft = false;
+}
+else if (e.keyCode == 39){
+rright = false;
+}
+else if (e.keyCode == 65){
+bleft = false;
+}
+else if (e.keyCode = 68){
+bright = false;
+}
+}
+
+function rl (){
+if (rleft){
+wack = document.getElementById("foo");
+b1.setAttribute('x',rx - 5);
+wack.appendChild(b1);
+}
+}
+
+function rr (){
+if (rright){
+wack = document.getElementById("foo");
+b1.setAttribute('x',rx + 5);
+wack.appendChild(b1);
+}
+}
+
+function bl (){
+if (bleft){
+wack = document.getElementById("foo");
+a1.setAttribute('x',bx - 5);
+wack.appendChild(a1);
+}
+}
+
+function br (){
+if (bright){
+wack = document.getElementById("foo");
+a1.setAttribute('x',bx + 5);
+wack.appendChild(a1);
+}
+}
+
+function start() {
+if (start){
+start = false;
+}
+else {
+start = true
+}
+}
+
+
+
+function loop (){
+while (start){
+rl();
+rr();
+bl();
+br();
+}
+}
+
+wack = document.getElementById("foo");
+wack.addEventListener("keydown",keydown);
+wack.addEventListener("keyup",keyup);
+
+</script>
+</html>
