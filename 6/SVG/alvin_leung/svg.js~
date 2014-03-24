@@ -1,0 +1,4 @@
+var draw = function(){
+    var s = document.getElementById('svg');
+    console.log(s);
+}();

@@ -1,0 +1,9 @@
+<html>
+  <head>Draw on SVG</head>
+  <body>
+    <svg height=500 width=500 id="svg">
+      Your browser does not support svg.
+    </svg>
+    <script src="svg.js"></script>
+  </body>
+</html>
