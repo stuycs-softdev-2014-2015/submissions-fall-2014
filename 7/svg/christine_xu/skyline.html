@@ -15,7 +15,7 @@
     <br>
 	 <br>
 	 
-    <svg class="where" id="s" height=500 width=1500>
+    <svg class="where" id="s" height=500 width=1200>
 	
 	<polyline fill="none" stroke="blue" stroke-width="10" 
             points="10,375
@@ -50,24 +50,25 @@
 		rect.setAttribute('stroke-width', 3);
 		return rect;
        rect.addEventListener('click',cClicked);
-       s.appendChild(c1);
+       s.appendChild(rect);
        
        }
 
        var clicked = function(e) {
-       e.preventDefault();
        if (e.toElement!=this) {addRect;}
        console.log("clicked");
        s = document.getElementById("s");
-       var x = 5+30*Math.random()
+       var x = 5+30*Math.random();
+	   var y = 5+30*Math.random();
+	   var h = 5;
+	   var w = 6;
        addRect(x,y,h,w,'black');
      }
      
 
      var s = document.getElementById("s");
      s.addEventListener('click',clicked);
-     var g = document.getElementById("go");
-     g.addEventListener("click",go);
+
 
   </script>
   </body>
