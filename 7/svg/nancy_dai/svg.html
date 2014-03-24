@@ -40,9 +40,11 @@
         }
       }
       
-      var letItSnow = function(){
+      var t = 0;
+      var letItSnow = function(e){
+        e.preventDefault();
         if (t == 0){
-            t = setInterval(snowy, 100);
+            t = setInterval(snowy, 2);
         }
         else{
             clearInterval(t);

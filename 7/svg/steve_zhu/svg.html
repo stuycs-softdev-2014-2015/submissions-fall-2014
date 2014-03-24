@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<style>
+	#svg {
+		border: 1px solid black;
+	}
+	</style>
+</head>
+
+<body>
+	<svg id="svg" height="500" width="500"></svg>
+	<script>
+	var svgHeight = 500,
+		svgWidth = 500;
+	var svg = document.getElementById("svg");
+
+	var mouse = {};
+	var paddle = function(w, h) {
+		return {
+			x: (svgWidth - w) / 2,
+			y: svgHeight - h,
+			w: w,
+			h: h,
+			color: '#000000',
+			el: null,
+			create: function() {
+				var c = this.el = document.createElementNS("http://www.w3.org/2000/svg","rect");
+				c.setAttribute('x', this.x);
+				c.setAttribute('y', this.y);
+				c.setAttribute('width', this.w);
+				c.setAttribute('height', this.h);
+				c.setAttribute('fill', this.color);
+				svg.appendChild(c);
+			},
+			move: function() {
+				this.x = mouse.x - (this.w / 2);
+				this.el.setAttribute('x', this.x);
+			}
+		};
+	};
+
+	var ball = function(x, y, r, dx, dy) {
+		return {
+			x: x,
+			y: y,
+			r: r,
+			dx: dx,
+			dy: dy,
+			el: null,
+			create: function() {
+				var c = this.el = document.createElementNS("http://www.w3.org/2000/svg","circle");
+				c.setAttribute('cx', this.x);
+				c.setAttribute('cy', this.y);
+				c.setAttribute('r', this.r);
+				c.setAttribute('fill', 'black');
+				svg.appendChild(c);
+			},
+			move: function() {
+				this.x = this.x + this.dx;
+				this.y = this.y + this.dy;
+				if (this.x - this.r < 0 || this.x + this.r > svgWidth) {
+					this.dx = -this.dx;
+				} else if (this.y - this.r < 0 || this.y + this.r > svgHeight) {
+					this.dy = -this.dy;
+				} else if (this.x - this.r > paddle.x && this.x + this.r < paddle.x + paddle.w && this.y + this.r > paddle.y) {
+					this.dy = -this.dy;
+				} else if (this.y - this.r > paddle.y && this.y + this.r < paddle.y + paddle.h && (this.x - this.r > paddle.x || this.x + this.r < paddle.x + paddle.w)) {
+					this.dx = -this.dx;
+				}
+				this.el.setAttribute('cx', this.x);
+				this.el.setAttribute('cy', this.y);
+			}
+		};
+	};
+
+	var trackPosition = function(e) {
+		mouse.x = e.pageX;
+		mouse.y = e.pageY;
+	};
+
+	var animloop = function() {
+		paddle.move();
+		ball.move();
+		window.requestAnimationFrame(animloop);
+	};
+
+	var paddle = paddle(100, 5);
+	var ball = ball(225, 10, 5, -5, 5);
+	paddle.create();
+	ball.create();
+	svg.addEventListener("mousemove", trackPosition, true);
+
+	window.requestAnimationFrame(animloop);
+	</script>
+</body>
+
+</html>
