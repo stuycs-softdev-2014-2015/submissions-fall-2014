@@ -145,13 +145,7 @@
        return true;
      }
      
-     var Dclicked = function(e){
-       e.preventDefault();
-       updateMoney(25);
-     }
-
-
-     
+          
      var addImage = function(x,y,h,w,src,t){
        var i1 = document.createElementNS("http://www.w3.org/2000/svg","image");
        i1.setAttribute('height',h);
@@ -165,6 +159,12 @@
 	 i1.setAttribute('frames',1);
        }
        s.appendChild(i1);
+     }
+     
+     var Dclicked = function(e){
+       e.preventDefault();
+       d.setAttributeNS('http://www.w3.org/1999/xlink','href', 'UltDonutE.png');
+       updateMoney(25);
      }
      
      var fy = 40;
@@ -343,6 +343,8 @@
 	 }
 	 updateMoney(1337);
        }
+
+       d.setAttributeNS('http://www.w3.org/1999/xlink','href', 'UltDonut.png');
        
      }
 

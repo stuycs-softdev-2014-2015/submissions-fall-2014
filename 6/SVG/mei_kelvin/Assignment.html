@@ -1,143 +1,130 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>SVG Animation
-</title>
-</head>
+  <head>
+    <title>SVG Animation
+    </title>
+  </head>
+<h1> A to grow, S to rotate/change colors, D to shrink </h1>
+
+  <svg width = "500" height = "500"  id = "foo">
+  </svg>
+  <br>
+  <br>
+  <button onclick ="create()">Create</button>
+  <p>
 
 
-<svg width = "500" height = "500"  id = "foo">
-<!-- rect width = "50" height = "10" style = "fill:rgb(0,0,255); stroke-width:3;stroke:rgb(0,0,0)" x = '100'/>
-<rect width = "50" height = "10" style = "fill:rgb(255,0,0); stroke-width:3;stroke:rgb(0,0,0)" x = '100' y = '300'/-->
-</svg>
-<br>
-<br>
-<button onclick ="create()">Create</button>
-<p>
-<button onclick ="start()">Start</button>
+    <script>
+var atr1 = 250;
+var atr2 = 450;
+var atr3 = 250;
+var atr4 = 50;
+var rad = 20;
 
+var colors = new Array("blue","red","green","yellow","orange","black","pink","purple");
 
-<script>
-start = false;
-var rleft = false;
-var rright = false;
-var bleft = false;
-var bright = false;
-bx = 250
-by = 0
-rx = 250
-ry = 490
-
-var a1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
-       a1.setAttribute('width',50);
-       a1.setAttribute('height',10);
-       a1.setAttribute('x',bx);
-       a1.setAttribute('y',by);
-       a1.setAttribute('fill','blue');
-var b1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
-       b1.setAttribute('width',50);
-       b1.setAttribute('height',10);
-       b1.setAttribute('x',rx);
-       b1.setAttribute('y',ry);
-       b1.setAttribute('fill','red');
 var ball = document.createElementNS("http://www.w3.org/2000/svg","circle");
-       ball.setAttribute('cx',270);
-       ball.setAttribute('cy',250);
-       ball.setAttribute('r',5);
-       ball.setAttribute('fill','black');
+ball.setAttribute('cx',250);
+ball.setAttribute('cy',450);
+ball.setAttribute('r',20);
+ball.setAttribute('fill','black');
+var ball2 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+ball2.setAttribute('cx',250);
+ball2.setAttribute('cy',50);
+ball2.setAttribute('r',20);
+ball2.setAttribute('fill','black');
 
-function create (){
+function create(){
 wack = document.getElementById("foo");
-wack.appendChild(a1);
-wack.appendChild(b1);
+wack.appendChild(ball2);
 wack.appendChild(ball);
 }
 
-function keydown (){
-if (e.keyCode == 37){
-rleft = true;
-}
-else if (e.keyCode == 39){
-rright = true;
-}
-else if (e.keyCode == 65){
-bleft = true;
-}
-else if (e.keyCode = 68){
-bright = true;
-}
-}
-
-function keyup (){
-if (e.keyCode == 37){
-rleft = false;
-}
-else if (e.keyCode == 39){
-rright = false;
-}
-else if (e.keyCode == 65){
-bleft = false;
-}
-else if (e.keyCode = 68){
-bright = false;
-}
-}
-
-function rl (){
-if (rleft){
+function move (){
 wack = document.getElementById("foo");
-b1.setAttribute('x',rx - 5);
-wack.appendChild(b1);
+num1 = Math.floor(Math.random() * 8);
+num2 = Math.floor(Math.random() * 8);
+ball.setAttribute('fill',colors[num1]);
+ball2.setAttribute('fill',colors[num2]);
+
+if ((atr1 === 250) && (atr2 === 450)) {
+atr1 = 50;
+atr2 = 250;
+} else if ((atr1 === 50) && (atr2 === 250)) {
+atr1 = 250;
+atr2 = 50;
+} else if ((atr1 === 250) && (atr2 === 50)) {
+atr1 = 450;
+atr2 = 250;
+} else if ((atr1 === 450) && (atr2 === 250)) {
+atr1 = 250;
+atr2 = 450;
 }
+if ((atr3 === 250) && (atr4 === 450)) {
+atr3 = 50;
+atr4 = 250;
+} else if ((atr3 === 50) && (atr4 === 250)) {
+atr3 = 250;
+atr4 = 50;
+} else if ((atr3 === 250) && (atr4 === 50)) {
+atr3 = 450;
+atr4 = 250;
+} else if ((atr3 === 450) && (atr4 === 250)) {
+atr3 = 250;
+atr4 = 450;
+}
+ball.setAttribute('cx',atr1);
+ball.setAttribute('cy',atr2);
+ball2.setAttribute('cx',atr3);
+ball2.setAttribute('cy',atr4);
+wack.appendChild(ball2);
+wack.appendChild(ball);
 }
 
-function rr (){
-if (rright){
+function grow() {
+if (rad <= 60) {
+rad = rad + 5;
+ball.setAttribute('r', rad);
+ball2.setAttribute('r', rad);
 wack = document.getElementById("foo");
-b1.setAttribute('x',rx + 5);
-wack.appendChild(b1);
+wack.appendChild(ball2);
+wack.appendChild(ball);
+} 
+if (rad > 60){
+alert("Too big!");
 }
 }
 
-function bl (){
-if (bleft){
+function shrink() {
+if (10 <= rad) {
+rad = rad - 5;
+ball.setAttribute('r', rad);
+ball2.setAttribute('r', rad);
 wack = document.getElementById("foo");
-a1.setAttribute('x',bx - 5);
-wack.appendChild(a1);
-}
-}
-
-function br (){
-if (bright){
-wack = document.getElementById("foo");
-a1.setAttribute('x',bx + 5);
-wack.appendChild(a1);
-}
-}
-
-function start() {
-if (start){
-start = false;
-}
-else {
-start = true
+wack.appendChild(ball2);
+wack.appendChild(ball);
+} 
+if (10 > rad){
+alert("Too small!");
 }
 }
 
 
 
-function loop (){
-while (start){
-rl();
-rr();
-bl();
-br();
+
+var funcs = function(e) {
+   //console.log(e);
+   if (e.keyCode === 83) {
+move();
+} else if (e.keyCode === 65) {
+grow();
+} else if (e.keyCode === 68) {
+shrink();
 }
 }
 
-wack = document.getElementById("foo");
-wack.addEventListener("keydown",keydown);
-wack.addEventListener("keyup",keyup);
 
-</script>
+window.addEventListener('keydown',funcs);
+
+    </script>
 </html>
