@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<svg width="500" height="500">
+<g transform="translate(100,100)">
+    <text id="TextElement" x="0" y="0" style="font-family:Verdana;font-size:24"> Swirling Rectangles are Fun!
+<animateMotion path="M 200 200 L 0 0" dur="10s" fill="freeze" />
+    </text>
+  </g>
+  <rect id="rec" x="300" y="100" width="100" height="100" style="fill:lime"> 
+ <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="-30" to="60" begin="0s" dur="10s" fill="freeze" /> 
+ <animate attributeName="x" attributeType="XML" begin="0s" dur="10s" fill="freeze" from="300" to="10" /> 
+    <animate attributeName="y" attributeType="XML" begin="0s" dur="10s" fill="freeze" from="100" to="10" /> 
+    <animate attributeName="width" attributeType="XML" begin="0s" dur="10s" fill="freeze" from="100" to="300" /> 
+    <animate attributeName="height" attributeType="XML" begin="0s" dur="10s" fill="freeze" from="100" to="300" /> 
+      <animate attributeType="CSS" attributeName="opacity" from="1" to="0" dur="5s" repeatCount="indefinite" />
+    <animateColor attributeName="fill" attributeType="CSS" from="red" to="lime" begin="2s" dur="4s" fill="freeze" />
+  </rect>
+  Sorry, your browser does not support inline SVG.
+</svg>
+
+</body>
+</html>
