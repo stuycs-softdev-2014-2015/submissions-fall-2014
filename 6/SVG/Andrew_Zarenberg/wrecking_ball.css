@@ -1,0 +1,25 @@
+
+rect.chain {
+    stroke:black;
+    stroke-width:2;
+    fill:none;
+}
+
+line.chain {
+    stroke:black;
+    stroke-width:2;
+}
+
+circle.wrecking-ball {
+    fill:black;
+}
+
+.ball-person {
+    fill:none;
+    stroke:#F6E3CE;
+}
+
+#tear {
+    fill:#aaaaff;
+}
+
