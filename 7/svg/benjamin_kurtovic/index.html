@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fun With SVGs</title>
+        <style>
+            #game {
+                border: 1px solid black;
+                display: block;
+                margin: auto;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <svg id="game" width="600" height="600">
+            <polygon id="ship" points="-10,20 10,20 0,-20" fill="#6DD" stroke="#0AA"/>
+            <text x="20" y="30" font-family="monospace" font-size="16px">Score:</text>
+            <text x="90" y="30" font-family="monospace" font-size="16px" id="score"></text>
+            <text x="20" y="580" font-family="monospace" font-size="16px">Lives:</text>
+            <text x="90" y="580" font-family="monospace" font-size="16px" id="lives"></text>
+            <text x="210" y="300" font-family="monospace" font-size="32px" fill="#500" opacity="0" id="game-over">GAME OVER</text>
+        </svg>
+        <div style="text-align: center;">
+            <p>
+                WASD or Arrow Keys to move.<br/>
+                Spacebar to shoot.
+            </p>
+        </div>
+    </body>
+</html>
