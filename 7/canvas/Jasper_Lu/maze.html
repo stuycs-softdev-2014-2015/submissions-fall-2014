@@ -1,0 +1,160 @@
+<html>
+<head>
+	 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	</head>
+<body>
+	<h1>Starting point to making 2048</h1>
+	<canvas id="window" style="border: 1px solid black" height="410" width="410"/>
+</body>
+</html>
+<script>
+var c = document.getElementById("window");
+var ctx = c.getContext("2d");
+//i wanna make something where you can draw stuff
+var dir = {
+	UP:0,
+	RIGHT:1,
+	DOWN:2,
+	LEFT:3
+}
+
+var block = function(x,y,c,ctx) {
+	return {
+		x:x,
+		y:y,
+		d:null,
+		w:90,
+		h:90,
+		color:c,
+		ctx:ctx,
+		draw: function() {
+			ctx.fillStyle = this.color;
+
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			ctx.fillRect(this.x,this.y,this.w,this.h);
+			console.log(x+ ',' + y);
+			ctx.stroke();
+		},
+		move:function() {
+			switch (this.d) {
+				case dir.LEFT:					
+					if(this.x>10) {
+						this.x-=10;
+					}
+					break;
+				case dir.RIGHT:
+					if(this.x < 310)
+						this.x += 10;
+					break;
+				case dir.UP:
+					if(this.y>10) 
+						this.y -= 10;
+					break;
+				case dir.DOWN:
+					if(this.y< 310)
+						this.y += 10;
+					break;
+			}
+			this.draw();
+		},
+	}
+}
+
+var block_init = function() {
+var blocks = []
+for(var i =0; i!= 4; ++i) {
+	var row = [];
+	for(var j=0; j!=4; ++j) {
+//		row.push(block(10+(j*100), 10+(i*100), 'black', ctx));
+		row.push(null);
+	}
+	blocks.push(row);
+}
+return blocks;
+}
+
+
+var draw = function(blocks) {
+	canvas = document.getElementById("window");
+ctx = canvas.getContext("2d");
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+	for(x in blocks) {
+		for(y in blocks[x]) {
+			if(blocks[x][y])
+			blocks[x][y].draw();
+		}
+	}
+}
+
+var spawn_block=function(blocks) {
+	var open = [];
+	for(x in blocks) {
+		for(y in blocks[x]){
+			if(blocks[x][y] == null)
+				open.push([x,y]);
+		}
+	}
+	console.log(open);
+	var xy = open[Math.floor(Math.random()*open.length)];
+	var x = xy[0];
+	var y = xy[1];
+	blocks[x][y] = block(10+(x*100), 10+(y*100), 'black',ctx);
+
+}
+
+var move = function(x,y,blocks,d) {
+	switch (d) {
+		case dir.LEFT:					
+			if(y > 0 && blocks[x-1][y] ==null) {
+				blocks[x][y].x -= 100;
+				blocks[x-1][y] = blocks[x][y];
+				blocks[x][y] = null;
+			}
+			break;
+	}
+	draw(blocks);
+}
+
+/*
+$(document.body).on('keydown',function(e) {
+	switch (e.which) {
+		case 37:
+
+			break;
+	}
+}
+*/
+blocks = block_init();
+draw(blocks);
+
+d = block(110,110,'black',ctx);
+d.draw();
+
+		var anim = function() {
+			d.move();
+			d.draw();
+			window.requestAnimationFrame(anim);
+		}
+
+
+$(document).on('keydown', function(e) {
+	switch(e.which) {
+		case 37:
+			d.d = dir.LEFT;
+			break;
+		case 38:
+			d.d = dir.UP;
+			break;
+		case 39:
+			d.d = dir.RIGHT;
+			break;
+		case 40: 
+			d.d = dir.DOWN;
+			break;
+	}
+	spawn_block(blocks);
+	window.requestAnimationFrame(anim);
+})
+
+</script>
