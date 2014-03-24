@@ -6,8 +6,14 @@
      svg{border: 1px solid;
 	 background-color:white;}
      instructions{
-       position:fixed;
+       position:absolute;
+       right: 10px;
        top:30px;}
+     input{
+       background: transparent;
+       border: none !important;
+       font-size:2px;
+     }
     </style>
 
     <title>DonutEater</title>
@@ -17,13 +23,26 @@
     <svg  id = "s" width="700" height="500">
       <image href="donut.png" width="100" height="100" />
       <text x="450" y="475" id="money"></text>
+      <text x="500" y="75" id="fcounter"></text>
+      <text x="500" y="155" id="dwcounter"></text>
+      <text x="500" y="235" id="bcounter"></text>
+      <text x="500" y="315" id="brcounter"></text>
+      <text x="500" y="395" id="zcounter"></text>
+      <text x="0" y="490" id="cpower"></text>
+      <text x="150" y="490" id="cCost"></text>
       Sorry, SVG doesn't work.
     </svg>
     
     <instructions>
-      Instructions: DonutEater is a game where you get money for eating donuts.
+      Instructions: DonutEater is a game where you get money for
       <br>
-      You can either click on the donut to get money faster or buy helpers, by clicking the boxes.
+      "eating" donuts.
+      <br>
+      You can either click on the donut to get money faster
+      <br>
+      or buy helpers, by clicking the boxes. 
+      <br>
+      Click the cursor to upgrade your eating power.
       <br>
       The prices of the boxes are:
       <br>
@@ -36,8 +55,10 @@
       DarkGray : 100000
       <br>
       Black : 10000000000
+      <br>
       <input type="submit" id="cheat" value="cheat" >
     </instructions>
+
     
     <script>
      //DONUTTTTTTTTTTTTTTTTTTT============================
@@ -55,21 +76,47 @@
      // c2.setAttribute('r',25);
      // c2.setAttribute('fill','darkgray');
      var d = document.createElementNS("http://www.w3.org/2000/svg","image");
-       d.setAttribute('height',250);
-       d.setAttribute('width',250);
+       d.setAttribute('height',450);
+       d.setAttribute('width',450);
        d.setAttributeNS('http://www.w3.org/1999/xlink','href', 'UltDonut.png');
        d.setAttribute('x',0);
        d.setAttribute('y',0);
        d.setAttribute('visibility','visible');
      //End Donut========================================
+     
      //Money ===============================================
      var money = 0;
      var disM = "Money: " + money;
      var t1 = document.getElementById("money")
      var textContent = document.createTextNode(disM);
      t1.appendChild(textContent);
+
+  
      //End Money =========================================
-     //Buttons =============================================
+
+     var clickPower = 25;
+     var clickCost = 100;
+     // Mouse ============================================
+     var m = document.createElementNS("http://www.w3.org/2000/svg","image");
+       m.setAttribute('height',50);
+       m.setAttribute('width',50);
+       m.setAttributeNS('http://www.w3.org/1999/xlink','href', 'mouse.png');
+       m.setAttribute('x', 450);
+       m.setAttribute('y',400);
+       m.setAttribute('visibility','visible');
+
+     var disCP = "Click Power: " + clickPower;
+     var c1 = document.getElementById("cpower")
+     var CContent = document.createTextNode(disCP);
+     c1.appendChild(CContent);
+
+     var disCC = "Click Cost: " + clickCost;
+     var cc1 = document.getElementById("cCost")
+     var CcContent = document.createTextNode(disCC);
+     cc1.appendChild(CcContent);
+     //===================================================
+     
+     //Buttons & Counters =========================================
 
      //Fluffy
      var b1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -79,6 +126,12 @@
      b1.setAttribute('width',150);
      b1.setAttribute('height',40)
      b1.setAttribute('fill','green');
+     var fo = 0;
+     var disFc = "Fluffys: " + fo;
+     var f1 = document.getElementById("fcounter");
+     var fContent = document.createTextNode(disFc);
+     f1.appendChild(fContent);
+
 
      //DW
      var b2 = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -88,6 +141,11 @@
      b2.setAttribute('width',150);
      b2.setAttribute('height',40)
      b2.setAttribute('fill','blue');
+     var dwo = 0;
+     var disDwc = "DWs: " + fo;
+     var dw1 = document.getElementById("dwcounter");
+     var dwContent = document.createTextNode(disDwc);
+     dw1.appendChild(dwContent);
 
      //Z
      var b3 = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -97,6 +155,11 @@
      b3.setAttribute('width',150);
      b3.setAttribute('height',40)
      b3.setAttribute('fill','yellow');
+     var bo = 0;
+     var disBc = "Brooks: " + fo;
+     var bc1 = document.getElementById("bcounter");
+     var bContent = document.createTextNode(disBc);
+     bc1.appendChild(bContent);
      
      //NSA
      var b4 = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -106,6 +169,11 @@
      b4.setAttribute('width',150);
      b4.setAttribute('height',40)
      b4.setAttribute('fill','darkgray');
+     var bro = 0;
+     var disBrc = "Browns: " + fo;
+     var br1 = document.getElementById("brcounter");
+     var brContent = document.createTextNode(disBrc);
+     br1.appendChild(brContent);
      
      //Snowden
      var b5= document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -115,6 +183,11 @@
      b5.setAttribute('width',150);
      b5.setAttribute('height',40)
      b5.setAttribute('fill','black');
+     var zo = 0;
+     var disZc = "Zs: " + fo;
+     var z1 = document.getElementById("zcounter");
+     var zContent = document.createTextNode(disZc);
+     z1.appendChild(zContent);
      
      //End Buttons =====================================
      //Screen Stuff
@@ -122,6 +195,7 @@
      s.appendChild(t1);
      //s.appendChild(c1);
      //s.appendChild(c2);
+     s.appendChild(m);
      s.appendChild(d);
      s.appendChild(b1);
      s.appendChild(b2);
@@ -144,8 +218,79 @@
        s.appendChild(t1);
        return true;
      }
+
+     function updateMouse(){
+       clickPower += 5;
+       disCP = "Click Power: " + clickPower;
+       CContent = document.createTextNode(disCP);
+       c1.textContent = disCP;
+       s.appendChild(c1);
+
+       clickCost *= 1.5;
+       disCC = "Click Cost: " + clickCost;
+       CcContent = document.createTextNode(disCC);
+       cc1.textContent = disCC;
+       s.appendChild(cc1);
+     }
+
+     var updateCounters = function(t, v){
+       switch(t){
+	 case('f'):
+	      fo+=v;
+	      disFc = "Fluffys: " + fo;
+	      fContent = document.createTextNode(disFc);
+	      f1.textContent = disFc;
+	      s.appendChild(f1);
+	      break;
+	 case('dw'):
+	      dwo+=v;
+	      disDwc = "DWs: " + dwo;
+	      dwContent = document.createTextNode(disDwc);
+	      dw1.textContent = disDwc;
+	      s.appendChild(dw1);	      
+	      break;
+	 case('b'):
+	      bo+=v;
+	      disBc = "Brooks: " + bo;
+	      bContent = document.createTextNode(disBc);
+	      bc1.textContent = disBc;
+	      s.appendChild(bc1);	      
+	      break;
+	 case('br'):
+	      bro+=v;
+	      disBrc = "Browns: " + bro;
+	      brContent = document.createTextNode(disBrc);
+	      br1.textContent = disBrc;
+	      s.appendChild(br1);	      
+	      break;
+	 case('z'):
+	      zo+=v;
+	      disZc = "Zs: " + zo;
+	      ZContent = document.createTextNode(disZc);
+	      z1.textContent = disZc;
+	      s.appendChild(z1);	      
+	      break;
+	 default:
+	    alert("Error");
+       }
+     }
+
+     var Sell = function(e){
+       e.preventDefault();
+       var val = parseFloat(this.getAttribute('value'));
+       console.log(val);
+       updateMoney(val);
+       this.remove();
+     }
+
+     var Invest = function(e){
+       e.preventDefault();
+       var val = parseFloat(this.getAttribute('invest'));
+       console.log(val);
+       updateMoney(val);
+       this.remove();
+     }
      
-          
      var addImage = function(x,y,h,w,src,t){
        var i1 = document.createElementNS("http://www.w3.org/2000/svg","image");
        i1.setAttribute('height',h);
@@ -155,22 +300,53 @@
        i1.setAttribute('y',y);
        i1.setAttribute('visibility','visible');
        i1.setAttribute('class',t);
-       if(t = 'b'){
+       if(t == 'f'){
+	 console.log("Fluffy");
+	 i1.addEventListener('click',Sell);
+	 i1.setAttribute('value',75);
+       }
+       else if (t == 'dw'){
+	 i1.addEventListener('click',Sell);
+	 i1.setAttribute('value',5000);
+       }
+       else if(t == 'b'){
 	 i1.setAttribute('frames',1);
+	 i1.addEventListener('click',Sell);
+	 i1.setAttribute('value',50000);
+       }
+       else if(t == 'br'){
+	 i1.addEventListener('click',Invest);
+	 i1.setAttribute('invest',0);
+       }
+       else if (t == 'z'){
+	 i1.addEventListener('click',Sell);
+	 i1.setAttribute('value',5000000000);
        }
        s.appendChild(i1);
      }
      
      var Dclicked = function(e){
        e.preventDefault();
+       console.log("Dclicked");
        d.setAttributeNS('http://www.w3.org/1999/xlink','href', 'UltDonutE.png');
-       updateMoney(25);
+       updateMoney(clickPower);
      }
+
+
+
+     var Mclicked = function(e){
+       e.preventDefault();
+       console.log("MClick");
+       if(updateMoney(clickCost * -1)){
+	 updateMouse();
+       }
+     }
+
      
-     var fy = 40;
-     var dy = 50;
-     var bry = 35;
-     var zy = 50;
+     var fy = 140;
+     var dy = 150;
+     var bry = 135;
+     var zy = 150;
      var Bclicked = function(e){
        e.preventDefault();
        console.log('Dclicked')
@@ -178,28 +354,33 @@
        switch(c){
 	case 'green':
 	 if(updateMoney(-150)){
-	   addImage(25,fy,50,50,'Fluffy.png','f');
+	   addImage(55,fy,50,50,'Fluffy.png','f');
 	   fy+=20;
-	   if (fy > 140){fy = 40;}
+	   if (fy > 240){fy = 140;}
+	   updateCounters('f',1);
 	 }
+
 	 break;
 	case 'blue':
 	 if (updateMoney(-10000)){
 	   addImage(0,dy,50,50,'dw.png','dw');
 	   dy+=30;
-	   if(dy > 150){dy = 50;}
+	   if(dy > 250){dy = 150;}
+	   updateCounters('dw',1);
 	 }
 	 break;
 	case 'yellow':
-	 if (updateMoney(-100000)){
+	 if (updateMoney(-1000000)){
 	   addImage(225,50,140,140,'Brooks1.png','b');
+	   updateCounters('b',1);
 	 }
 	 break;
 	case 'darkgray':
-	 if (updateMoney(-1000)){
+	 if (updateMoney(-100000)){
 	   addImage(160,bry,100,80,'brown.png','br');
 	   bry+=30;
-	   if(bry > 100){bry=35;}
+	   if(bry > 200){bry=135;}
+	   updateCounters('br',1);
 	 }
 	 break;
 	case 'black':
@@ -207,6 +388,7 @@
 	   addImage(350,zy,150,150,'Z.png','z');
 	   zy-=30;
 	   if(zy < 10){zy = 50;}
+	   updateCounters('z',1);
 	 }
 	 break;
 	default:
@@ -219,7 +401,7 @@
        var fs = document.getElementsByClassName('f');
        for(var i = 0;i<fs.length;i++){
 	 var x = parseFloat(fs[i].getAttribute('x'));
-	 if(x >= 25 && x <= 30){
+	 if(x >= 55 && x <= 60){
 	   x+=2;
 	 }
 	 else{
@@ -306,12 +488,22 @@
        var brs = document.getElementsByClassName('br');
        for(var i = 0;i<brs.length;i++){
 	 var x = parseFloat(brs[i].getAttribute('x'));
+	 var inv = parseFloat(brs[i].getAttribute('invest'));
 	 if(x >= 155 && x <= 160){
 	   x-=2;
 	 }
 	 else{
 	   x+=2;
 	 }
+	 var rand =  Math.random();
+	 if (rand > .9){
+	   inv+=10000;
+	 }
+	 else{
+	   inv+=10;
+	 }
+	 inv * 1.2;
+	 brs[i].setAttribute('invest',inv);
 	 brs[i].setAttribute('x',x);
 	 updateMoney(.9);
        }
@@ -361,11 +553,20 @@
 
      var cheat = function(){
        updateMoney(10000000000);
+       alert("congratz for cheating")
      }
      //End Functions =================================
 
+
+     //Button Image===================================
+
+
+     //================================================
+
+     
      //Add Functions
      d.addEventListener('click',Dclicked);
+     m.addEventListener('click',Mclicked);
      //c2.addEventListener('click',Dclicked);
      b1.addEventListener('click',Bclicked);
      b2.addEventListener('click',Bclicked);
