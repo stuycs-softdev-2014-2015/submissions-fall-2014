@@ -40,21 +40,29 @@
       <br>
       You can either click on the donut to get money faster
       <br>
-      or buy helpers, by clicking the boxes. 
+      or buy helpers, by clicking the boxes.
+      <br>
+      You can click on a helper to sell them for 1/2 the price.
       <br>
       Click the cursor to upgrade your eating power.
       <br>
       The prices of the boxes are:
       <br>
       Green : 150
+      <br>Attacks the donut at the fastest rate, however they do not make that much money.
       <br>
       Blue : 10000
+      <br>Lasers.
       <br>
       Yellow : 1000000
+      <br>Suspenders attacks slowly, however nets a lot of money.
       <br>
       DarkGray : 100000
+      <br>Attacks at a normal speed and nets very little money,
+      <br>however the longer he is in the game the more sell value.
       <br>
       Black : 10000000000
+      <br>Bigger lasers.
       <br>
       <input type="submit" id="cheat" value="cheat" >
     </instructions>
@@ -278,6 +286,8 @@
      var Sell = function(e){
        e.preventDefault();
        var val = parseFloat(this.getAttribute('value'));
+       var t = this.getAttribute('class');
+       updateCounters(t,-1);
        console.log(val);
        updateMoney(val);
        this.remove();
@@ -286,6 +296,7 @@
      var Invest = function(e){
        e.preventDefault();
        var val = parseFloat(this.getAttribute('invest'));
+       updateCounters('br',-1);
        console.log(val);
        updateMoney(val);
        this.remove();
