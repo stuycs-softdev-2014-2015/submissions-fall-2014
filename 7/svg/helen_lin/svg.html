@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <h1><b>Save Helen from Drowning</b></h1>
+    <h4>Click (Would be nice if this worked)</h4>
+    <svg class="where" id="s" height=354 width=530>
+    </svg>
+
+    <input type="submit" id="go" value="go">
+    <script>
+
+     var d = document.createElementNS("http://www.w3.org/2000/svg","image");
+       d.setAttribute('height',352);
+       d.setAttribute('width',528);
+       d.setAttributeNS('http://www.w3.org/1999/xlink','href', 'pool.jpg');
+       d.setAttribute('x',1);
+       d.setAttribute('y',1);
+       d.setAttribute('visibility','visible');
+
+
+     var h = document.createElementNS("http://www.w3.org/2000/svg","image");
+       h.setAttribute('height',62);
+       h.setAttribute('width',46);
+       h.setAttributeNS('http://www.w3.org/1999/xlink','href', 'hlin.png');
+       h.setAttribute('x',150);
+       h.setAttribute('y',180);
+       h.setAttribute('visibility','visible');
+
+     var move = function() {
+       var h = document.getElementsByName("h");
+	var y = parseFloat(hmg[0].getAttribute('y'));
+        if (y>352){ 
+	 y = y + 3;
+	 hmg[0].setAttribute('y',y);
+	}
+	else 
+	alert("Get the lifeguard.");
+     }
+
+     var clicked = function(e){
+       e.preventDefault();
+       console.log('clicked')
+       var y = parseFloat(this.getAttribute('y'));	
+       if ( y >= 190){
+	 y = y - 10;
+	 this.setAttribute('y',y);
+       }
+     }
+
+     var s = document.getElementById("s");
+     s.appendChild(d);
+     s.appendChild(h);
+     h.addEventListener('click',clicked);
+
+     var t =0;
+     var go = function(e) {
+       e.preventDefault();
+       if (t==0){
+	 t = setInterval(move,100);
+       } else {
+	 clearInterval(t);
+	 t=0;
+       }
+     }
+
+     var g = document.getElementById("go");
+     g.addEventListener("click",go);
+
+     
+    </script>
+  </body>
+</html>
