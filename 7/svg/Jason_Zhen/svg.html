@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <style>
+     #s {border: 1px solid;}
+  <style>
+ 
+  <body>
+    <svg class="here" id="s"height=480 width=960>
+  </body>
+  
+  <script>
+    var height=480;
+    var width=960;
+
+  var player = function(x,y,w,h){
+      var p = document.createElementNS("http://www.w3.org/2000/svg",'rect');
+      p.setAttribute('x':x);
+      p.setAttribute('y':y);
+      p.setAttribute('w':w);
+      p.setAttribute('h':h);
+      p.setAttribute('id':"player");
+      p.setAttribute('fill':"#000000");
+      s.append(p);
+    
+    }
+
+   var move = function(e){
+    e.preventDefault();
+    e = e || window.event;
+    if (e.which==37){p.x=p.x-10;}
+    if (e.which==38){p.y=p.y-10;}
+    if (e.which==39){p.x=p.x+10;}
+    if (e.which==40){p.y=p.y+10;}
+    
+  }   
+ 
+
+  
+    var s = document.getElementById("s");
+    document.onkeydown=move;
+
+  </script>
