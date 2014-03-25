@@ -219,7 +219,12 @@ holes.push(h6);
 
 var b = Ball(100,100,-1,-1,.03,.03,10,'white');
 
-var b1 = Ball(200,200,0,0,.03,.03,10,'blue');
+var balls = [];
+balls.push(b)
+for(var i=0;i<5;i++) {
+    balls.push(Ball(Math.random()*500 + 30 ,Math.random()*250+ 30,0,0,0.03,0.03,10,'blue'));
+}
+
 var s = Stick(0,0,1,1,5,"#FF33CC","hidden",150);
 var t = Date.now();
 var t2 = Date.now();
@@ -230,27 +235,31 @@ var mpy = 0;
 var md = false;
 
 var animloop = function() {
-    if (!b.dead) {
-	b.move();
-	b1.move();
-	b.intersect(b1);
-
-	for (i=0;i<6;i=i+1) {
-	    if (holes[i].isIn(b.x,b.y)) {
-		b.dead = true;
-		b.x = holes[i].x;
-		b.y = holes[i].y;
-		b.dx = 0;
-		b.dy = 0;
-		b.move();
+    for (i=0;i<balls.length;i=i+1) {
+	if (!balls[i].dead) {
+	    balls[i].move();
+	    for(j=i+1;j<balls.length;j=j+1) {
+		balls[i].intersect(balls[j]);
+	    }
+	}
+    }
+    for (i=0;i<6;i=i+1) {
+	for (k=0;k<balls.length;k=k+1) {
+	    if (holes[i].isIn(balls[k].x,balls[k].y)) {
+		console.log("roger is a faggit");
+		balls[k].dead = true;
+		balls[k].x = holes[i].x;
+		balls[k].y = holes[i].y;
+		balls[k].dx = 0;
+		balls[k].dy = 0;
+		balls[k].move();
 		break;
 	    }
 	}
     }
-
-    
     window.requestAnimationFrame(animloop);
 }
+
 
 panel.addEventListener('mousedown', function(e) {
     if ((b.dx == 0) && (b.dy == 0)) {
