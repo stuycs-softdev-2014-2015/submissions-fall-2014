@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #background {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <svg class = "background" id="background" height = "300" width = "800">
+		<image id ="hero" x="50" y="150" width="64" height="32" xlink:href="tiltneutral.png">
+	</svg>
+    <script>    
+    var enemies = [];
+	var bullets = [];
+    
+	var mouseX = 0;
+	var mouseY = 0;
+	var c = document.getElementById("background");
+	var distance = function(myx,myy,targetx,targety){
+		return Math.pow(Math.pow(myx - targetx + 0.0,2)+Math.pow(myy - targety + 0.0,2));
+	}
+	
+	
+	var enemy = function(x,y,size,color,health){
+		return{
+			x:x,
+			y:y,
+			size:size,
+			color:color,
+			health:health,
+			die:function(){
+				enemies.remove(this);
+			}
+		}
+	}
+	var hero = function(x,y,size,tilt,health){
+		return{
+			x:x,
+			y:y,
+			size:size,
+			tilt:tilt,
+			health:health,
+			draw:function(){
+				if (this.tilt == 1){ document.getElementById("hero").setAttribute('xlink:href',"tiltup.png");}
+				else if (this.tilt == -1){ document.getElementById("hero").setAttribute('xlink:href',"tiltdown.png");}
+				else{ document.getElementById("hero").setAttribute('xlink:href',"tiltneutral.png");}
+				document.getElementById("hero").x=x;
+				document.getElementById("hero").y=y;
+			},
+			shoot:function(){
+				generateBullet(this.x,this.y);
+			},
+			move:function(){
+				
+					console.log("being called");
+					this.x = this.x + 5 * (this.x - mouseX)/distance(this.x,this.y,mouseX,mouseY);
+					this.y = this.y + 5 * (this.y - mouseY)/distance(this.x,this.y,mouseX,mouseY);
+				
+			}
+		}
+	}
+	var myHero = hero(50,150,1,0,10);		
+	var bullet = function(x,y){
+		return{
+			x:x,
+			y:y,
+			move:function(){
+			}
+		}
+	}
+	
+	var generateBullet = function(x,y){
+		bullet = bullet(x,y);
+		bullets.push(bullet);
+	}
+	
+	var generateEnemy = function(x,y,breed){
+		x = 800;
+		y = Math.random()*300;
+		if (breed == 'trooper'){
+			enemy = enemy(x,y,5,"#8181F7",10)
+		}
+	}
+	
+
+	
+	document.addEventListener('mousemove',function(e){
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+	},true);	
+	var animloop = function(){
+		myHero.move();
+		console.log(myHero.x);
+		myHero.draw();
+		window.requestAnimationFrame(animloop);
+	}
+	console.log("started");
+	window.requestAnimationFrame(animloop);
+</script>
+</html>
