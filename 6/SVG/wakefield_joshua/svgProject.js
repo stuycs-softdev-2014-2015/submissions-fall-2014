@@ -1,5 +1,13 @@
 var panel = document.getElementById("panel")
 
+var cos = function(a) {
+    return Math.cos(a);
+}
+
+var sin = function(a) {
+    return Math.sin(a);
+}
+
 var addCircle = function(x,y,r,c){
     var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
     c1.setAttribute('id','c1');
@@ -102,6 +110,7 @@ var Ball = function(x,y,dx,dy,ddx,ddy,r,color) {
 	color:color,
 	dead:false,
 	c1:c1,
+	time:Date.now(),
 	move: function() {
 	    if ((this.dx * this.ddx) > 0) {
 		this.ddx = this.ddx * -1;
@@ -109,31 +118,37 @@ var Ball = function(x,y,dx,dy,ddx,ddy,r,color) {
 	    if ((this.dy * this.ddy) > 0) {
 		this.ddy = this.ddy * -1;
 	    }
-	    if ((this.x + this.dx) < 15) {
+	    if ((this.x + this.dx) < 25) {
 		this.dx = this.dx * -.9;
 	    }
-	    if ((this.x + this.dx) > 615) {
+	    if ((this.x + this.dx) > 605) {
 		this.dx = this.dx * -.9;
 	    }
-	    if ((this.y + this.dy) < 15) {
+	    if ((this.y + this.dy) < 25) {
 		this.dy = this.dy * -.9;
 	    }
-	    if ((this.y + this.dy) > 315) {
+	    if ((this.y + this.dy) > 305) {
 		this.dy = this.dy * -.9;
 	    }
-	    
+	    if (this.dx > 0)
+		console.log(this.dx);
+	    if (a > 0)
+		console.log(Math.cos(theta));
 	    this.x = this.x + this.dx;
 	    this.y = this.y + this.dy;
 	    this.c1.setAttribute('cx',this.x);
 	    this.c1.setAttribute('cy',this.y);
-	    if (Math.abs(this.dx) > Math.abs(this.ddx)) {
-		this.dx = this.dx + this.ddx;
+	    var velocity = Math.sqrt(this.dx*this.dx + this.dy*this.dy);
+	    var theta = Math.atan2(this.dy,this.dx);
+	    var a = Math.sqrt(this.ddx * this.ddx + this.ddy * this.ddy);
+	    if ((Math.abs(this.dx)) > Math.abs(a * Math.cos(theta))) {
+		this.dx = (velocity - a)*Math.cos(theta);
 	    }
 	    else {
 		this.dx = 0;
 	    }
-	    if (Math.abs(this.dy) > Math.abs(this.ddy)) {
-		this.dy = this.dy + this.ddy;
+	    if (Math.abs(this.dy) > Math.abs(a*Math.sin(theta))) {
+		this.dy = (velocity - a)*Math.sin(theta);
 	    }
 	    else {
 		this.dy = 0;
@@ -146,6 +161,41 @@ var Ball = function(x,y,dx,dy,ddx,ddy,r,color) {
 	    else {
 		return false;
 	    }
+	},
+	intersect: function(ball) {
+	    var dist = Math.sqrt((this.x + this.dx - ball.x - ball.dx) * (this.x + this.dx - ball.dx - ball.x) + (this.y + this.dy - ball.dy - ball.y) * (this.y +this.dy - ball.dy - ball.y));
+	    if (dist < (this.r + ball.r)) {
+		this.hit(ball);
+	    }
+	},
+	intersect2: function(ball) {
+	    var dist = Math.sqrt((this.x + this.dx - ball.x - ball.dx) * (this.x + this.dx - ball.dx - ball.x) + (this.y + this.dy - ball.dy - ball.y) * (this.y +this.dy - ball.dy - ball.y));
+	    if (dist < (this.r + ball.r)) {
+		return true;
+	    }
+	    else
+		return false;
+	},
+	hit: function(ball) {
+	    if ((Date.now() - this.time) > 1) {
+		this.time = Date.now();
+		var pho = Math.atan2(this.dy, this.dx);
+		var phi = Math.atan2(ball.dy, ball.dx);
+		var alpha = Math.atan2(ball.y - this.y, ball.x - this.x);
+		var bVel = Math.sqrt(ball.dx * ball.dx + ball.dy * ball.dy);
+		var thisVel = Math.sqrt(this.dx * this.dx + this.dy * this.dy);
+		var bVelNorm = bVel * cos(phi) * cos(alpha) + bVel * sin(phi) * sin(alpha);
+		var bVelTan = Math.sqrt(bVel * bVel - bVelNorm * bVelNorm);
+		var thisVelNorm = thisVel * cos(pho) * cos(alpha) + thisVel * sin(pho) * sin(alpha);
+		var thisVelTan = Math.sqrt(thisVel * thisVel - thisVelNorm * thisVelNorm);
+		ball.dx = Math.sqrt(bVelTan * bVelTan + thisVelNorm * thisVelNorm) * cos(alpha);
+		ball.dy = Math.sqrt(bVelTan * bVelTan + thisVelNorm * thisVelNorm) * sin(alpha);
+		this.dx = Math.sqrt(thisVelTan * thisVelTan + bVelNorm * bVelNorm) * cos(alpha);
+		this.dy = Math.sqrt(thisVelTan * thisVelTan + bVelNorm * bVelNorm) * sin(alpha);
+	    }
+	},
+	go: function(vel,theta) {
+	    
 	}
     }
 }
@@ -168,6 +218,13 @@ holes.push(h6);
 
 
 var b = Ball(100,100,-1,-1,.03,.03,10,'white');
+
+var balls = [];
+balls.push(b)
+for(var i=0;i<5;i++) {
+    balls.push(Ball(Math.random()*500 + 30 ,Math.random()*250+ 30,0,0,0.03,0.03,10,'blue'));
+}
+
 var s = Stick(0,0,1,1,5,"#FF33CC","hidden",150);
 var t = Date.now();
 var t2 = Date.now();
@@ -178,37 +235,49 @@ var mpy = 0;
 var md = false;
 
 var animloop = function() {
-    if (!b.dead) {
-	b.move();
-
-	for (i=0;i<6;i=i+1) {
-	    if (holes[i].isIn(b.x,b.y)) {
-		b.dead = true;
-		b.x = holes[i].x;
-		b.y = holes[i].y;
-		b.dx = 0;
-		b.dy = 0;
-		b.move();
+    for (i=0;i<balls.length;i=i+1) {
+	if (!balls[i].dead) {
+	    balls[i].move();
+	    for(j=i+1;j<balls.length;j=j+1) {
+		balls[i].intersect(balls[j]);
+	    }
+	}
+    }
+    for (i=0;i<6;i=i+1) {
+	for (k=0;k<balls.length;k=k+1) {
+	    if (holes[i].isIn(balls[k].x,balls[k].y)) {
+		console.log("roger is a faggit");
+		balls[k].dead = true;
+		balls[k].x = holes[i].x;
+		balls[k].y = holes[i].y;
+		balls[k].dx = 0;
+		balls[k].dy = 0;
+		balls[k].move();
 		break;
 	    }
 	}
     }
-
-    
     window.requestAnimationFrame(animloop);
 }
 
+
 panel.addEventListener('mousedown', function(e) {
     if ((b.dx == 0) && (b.dy == 0)) {
-	var mx = e.offsetX;
-	var my = e.offsetY;
-	t2 = Date.now();
-	mpx = mx;
-	mpy = my;
-	var theta = Math.atan2(my - b.y, mx - b.x);
-	if (!b.isIn(mx,my)) {
-	    s.moveTo(mx,my,theta);
-	    md = true;
+	if (!md) {
+	    var mx = e.offsetX;
+	    var my = e.offsetY;
+	    t2 = Date.now();
+	    mpx = mx;
+	    mpy = my;
+	    var theta = Math.atan2(my - b.y, mx - b.x);
+	    if (!b.isIn(mx,my)) {
+		s.moveTo(mx,my,theta);
+		md = true;
+	    }
+	}
+	else {
+	    md = false;
+	    s.hide();
 	}
     }
 },true);
@@ -229,6 +298,7 @@ panel.addEventListener('mousemove', function(e) {
 	    s.hide();
 	    b.dx = -mdx;
 	    b.dy = -mdy;
+	    //console.log("dx new: " + b.dx);
 	}
 	else {
 	    s.moveTo(mx,my,theta);
@@ -237,8 +307,8 @@ panel.addEventListener('mousemove', function(e) {
 },true);
 
 panel.addEventListener('mouseup', function(e) {
-    md = false;
-    s.hide();
+    //md = false;
+    //s.hide();
 },true);
 
 window.requestAnimationFrame(animloop);

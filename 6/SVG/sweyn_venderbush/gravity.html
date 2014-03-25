@@ -16,7 +16,7 @@
 	Click and drag on a ball to move it somewhere else, to show off SVGs object ability!
 	<script>
 
-		var gravity = 1.5;
+		var gravity = 1;
 
 		var mouseOverObject = 0;
 
@@ -97,7 +97,7 @@
 		var t =0;
 		var go = function() {
 			if (t==0){
-				t = setInterval(move,100);
+				t = setInterval(move,30);
 			} else {
 				clearInterval(t);
 				t=0;
