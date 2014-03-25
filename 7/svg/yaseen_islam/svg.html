@@ -6,7 +6,7 @@
   </style>
 </head>
 <body>
-  <svg class="where" id="s" height=400 width=400>
+  <svg class="where" id="s" height=400 width=400 onmousedown="makeBall(event)">
   </svg>
 
 
@@ -14,12 +14,12 @@
 
 
 var svg=document.getElementById("s");
-svg.addEventListener('click',makeBall);
 
-var makeBall=function(n){
 
-  var xcor=n.clientX;
-  var ycor=n.clientY;
+var makeBall=function(event){
+
+  var xcor=event.clientX;
+  var ycor=event.clientY;
 
   var c = document.createElement("circle");
   c.setAttribute('id',"c");
