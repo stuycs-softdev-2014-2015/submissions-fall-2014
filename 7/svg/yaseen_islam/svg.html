@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #s {border: 1px solid;}
+  </style>
+</head>
+<body>
+  <svg class="where" id="s" height=400 width=400>
+  </svg>
+
+
+<script>
+
+
+var svg=document.getElementById("s");
+svg.addEventListener('click',makeBall);
+
+var makeBall=function(n){
+
+  var xcor=n.clientX;
+  var ycor=n.clientY;
+
+  var c = document.createElement("circle");
+  c.setAttribute('id',"c");
+  c.setAttribute('cx',xcor);
+  c.setAttribute('cy',ycor);
+  c.setAttribute('r',10);
+  c.setAttribute('fill','blue');
+  svg.appendChild(c);
+}
+
+</script> 
+
+</body>
+</html>
