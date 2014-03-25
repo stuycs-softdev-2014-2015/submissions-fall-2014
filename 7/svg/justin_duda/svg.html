@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <p>Click GO button to start. Click anywhere in canvas to create a bubble. Click bubbles to pop in two before they drift away.</p>
+    <svg class="where" id="s" height=400 width=400>
+      <!-- <circle id="c1" cx=100 cy=100 r=10 fill="red"></circle> -->
+    </svg>
+    <input type="submit" id="go" value="go">
+    <script>
+
+     var cClicked = function(e) {
+       e.preventDefault();
+       console.log("cClicked");
+       var x = this.getAttribute('cx');
+       var y = this.getAttribute('cy');
+       var r = this.getAttribute('r');
+       var c = this.getAttribute('fill');
+       var s = document.getElementById("s");
+        this.remove();
+        addCircle(s,x+5,y+5,r/2,c)
+        addCircle(s,x-5,y-5,r/2,c)
+     }
+
+     var addCircle = function(s,x,y,r,c) {
+       var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+       c1.setAttribute('cx',x);
+       c1.setAttribute('cy',y);
+       c1.setAttribute('r',r);
+       c1.setAttribute('fill',c);
+       c1.addEventListener('click',cClicked);
+       s.appendChild(c1);
+       
+       }
+
+       var clicked = function(e) {
+       e.preventDefault();
+       if (e.toElement!=this) {return;}
+       console.log("clicked");
+       s = document.getElementById("s");
+       var r = 5+30*Math.random()
+       addCircle(s,e.offsetX,e.offsetY,r,'red');
+     }
+     
+     var move = function() {
+       var cs = document.getElementsByTagName("circle");
+       for (var i=0;i<cs.length;i++) {
+	 var x = parseFloat(cs[i].getAttribute('cx'));
+	 var y = parseFloat(cs[i].getAttribute('cy'));
+	 var r = parseFloat(cs[i].getAttribute('r'));
+	 var c = parseFloat(cs[i].getAttribute('c'));
+        if( Math.random() <= 0.5)
+	        x = x + 2*Math.random()-1;
+        else
+            x = x - 2*Math.random()-1; 
+        if( Math.random() <= 0.5)
+	        y = y + 2*Math.random()-1;
+        else
+            y = y - 2*Math.random()-1; 
+        var new_color = Math.random();
+        if(new_color < 0.3)
+            c = 'red'
+        else if(new_color < 0.6)
+            c = 'blue'
+        else
+            c = 'green'
+	 cs[i].setAttribute('cx',x);
+	 cs[i].setAttribute('cy',y);
+	 cs[i].setAttribute('r',r);
+	 cs[i].setAttribute('fill',c);
+       }
+     }
+
+     var t =0;
+     var go = function(e) {
+       e.preventDefault();
+       if (t==0){
+	 t = setInterval(move,100);
+       } else {
+	 clearInterval(t);
+	 t=0;
+       }
+
+     }
+
+     var s = document.getElementById("s");
+     s.addEventListener('click',clicked);
+     var g = document.getElementById("go");
+     g.addEventListener("click",go);
+
+    </script>
+  </body>
+</html>
