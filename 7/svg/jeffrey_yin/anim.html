@@ -9,6 +9,7 @@
     <svg class = "background" id="background" height = "300" width = "800">
 		<image id ="hero" x="50" y="150" width="64" height="32" xlink:href="tiltneutral.png">
 	</svg>
+	
     <script>    
     var enemies = [];
 	var bullets = [];
@@ -35,26 +36,31 @@
 	}
 	var hero = function(x,y,size,tilt,health){
 		return{
-			x:x,
-			y:y,
+			x:x + 100,
+			y:y + 35,
 			size:size,
 			tilt:tilt,
 			health:health,
+
 			draw:function(){
 				if (this.tilt == 1){ document.getElementById("hero").setAttribute('xlink:href',"tiltup.png");}
 				else if (this.tilt == -1){ document.getElementById("hero").setAttribute('xlink:href',"tiltdown.png");}
 				else{ document.getElementById("hero").setAttribute('xlink:href',"tiltneutral.png");}
-				document.getElementById("hero").x=x;
-				document.getElementById("hero").y=y;
+				document.getElementById("hero").setAttribute("x",this.x);
+				document.getElementById("hero").setAttribute("y",this.y);
 			},
 			shoot:function(){
 				generateBullet(this.x,this.y);
 			},
 			move:function(){
+				if (mouseX - this.x > 7){ this.tilt = 1;}
+				else if (mouseX - this.x < -7){ this.tilt = -1;}
+				else{ this.tilt = 0;}
 				if (distance(this.x,this.y,mouseX,mouseY) > 5){
 					console.log("being called");
-					this.x = this.x + 5 * (this.x - mouseX)/distance(this.x,this.y,mouseX,mouseY);
-					this.y = this.y + 5 * (this.y - mouseY)/distance(this.x,this.y,mouseX,mouseY);
+					console.log(this.x - mouseX);
+					this.x = this.x - .1*(this.x - mouseX);
+					this.y = this.y - .1*(this.y - mouseY);
 				}
 			}
 		}
