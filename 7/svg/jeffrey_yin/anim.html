@@ -17,7 +17,7 @@
 	var mouseY = 0;
 	var c = document.getElementById("background");
 	var distance = function(myx,myy,targetx,targety){
-		return Math.pow(Math.pow(myx - targetx + 0.0,2)+Math.pow(myy - targety + 0.0,2));
+		return Math.pow(Math.pow(myx - targetx + 0.0,2)+Math.pow(myy - targety + 0.0,2),2);
 	}
 	
 	
@@ -51,11 +51,11 @@
 				generateBullet(this.x,this.y);
 			},
 			move:function(){
-				
+				if (distance(this.x,this.y,mouseX,mouseY) > 5){
 					console.log("being called");
 					this.x = this.x + 5 * (this.x - mouseX)/distance(this.x,this.y,mouseX,mouseY);
 					this.y = this.y + 5 * (this.y - mouseY)/distance(this.x,this.y,mouseX,mouseY);
-				
+				}
 			}
 		}
 	}
