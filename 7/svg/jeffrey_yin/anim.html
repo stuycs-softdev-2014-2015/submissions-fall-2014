@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #background {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <svg class = "background" id="background" height = "300" width = "800">
+		<image id ="hero" x="50" y="150" width="64" height="32" xlink:href="tiltneutral.png">
+	</svg>
+	
+    <script>    
+    var enemies = [];
+	var bullets = [];
+    
+	var mouseX = 0;
+	var mouseY = 0;
+	var c = document.getElementById("background");
+	var distance = function(myx,myy,targetx,targety){
+		return Math.pow(Math.pow(myx - targetx + 0.0,2)+Math.pow(myy - targety + 0.0,2),2);
+	}
+	
+	
+	var enemy = function(x,y,size,color,health){
+		return{
+			x:x,
+			y:y,
+			size:size,
+			color:color,
+			health:health,
+			die:function(){
+				enemies.remove(this);
+			}
+		}
+	}
+	var hero = function(x,y,size,tilt,health){
+		return{
+			x:x + 100,
+			y:y + 35,
+			size:size,
+			tilt:tilt,
+			health:health,
+
+			draw:function(){
+				if (this.tilt == 1){ document.getElementById("hero").setAttribute('xlink:href',"tiltup.png");}
+				else if (this.tilt == -1){ document.getElementById("hero").setAttribute('xlink:href',"tiltdown.png");}
+				else{ document.getElementById("hero").setAttribute('xlink:href',"tiltneutral.png");}
+				document.getElementById("hero").setAttribute("x",this.x);
+				document.getElementById("hero").setAttribute("y",this.y);
+			},
+			shoot:function(){
+				generateBullet(this.x,this.y);
+			},
+			move:function(){
+				if (mouseX - this.x > 7){ this.tilt = 1;}
+				else if (mouseX - this.x < -7){ this.tilt = -1;}
+				else{ this.tilt = 0;}
+				if (distance(this.x,this.y,mouseX,mouseY) > 5){
+					console.log("being called");
+					console.log(this.x - mouseX);
+					this.x = this.x - .1*(this.x - mouseX);
+					this.y = this.y - .1*(this.y - mouseY);
+				}
+			}
+		}
+	}
+	var myHero = hero(50,150,1,0,10);		
+	var bullet = function(x,y){
+		return{
+			x:x,
+			y:y,
+			move:function(){
+			}
+		}
+	}
+	
+	var generateBullet = function(x,y){
+		bullet = bullet(x,y);
+		bullets.push(bullet);
+	}
+	
+	var generateEnemy = function(x,y,breed){
+		x = 800;
+		y = Math.random()*300;
+		if (breed == 'trooper'){
+			enemy = enemy(x,y,5,"#8181F7",10)
+		}
+	}
+	
+
+	
+	document.addEventListener('mousemove',function(e){
+		mouseX = e.clientX;
+		mouseY = e.clientY;
+	},true);	
+	var animloop = function(){
+		myHero.move();
+		console.log(myHero.x);
+		myHero.draw();
+		window.requestAnimationFrame(animloop);
+	}
+	console.log("started");
+	window.requestAnimationFrame(animloop);
+</script>
+</html>
