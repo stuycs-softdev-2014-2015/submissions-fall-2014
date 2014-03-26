@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+  <title>
+    Falling Text
+  </title> 
+</head>
+
+<body>
+  <svg width='100%' height='100%'>
+    
+    <text x='620' y='400' font-size='50px' fill='white' stroke='crimson' stroke-width='2' text-rendering='geometricPrecision'>
+      <tspan>H<animate id='t1' attributeName='rotate' begin='0.5s' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>i<animate id='t2' attributeName='rotate' begin='t1.end' dur='1s' from='0' to='20' fill='freeze'/></tspan>
+      <animate attributeType='XML' attributeName='dx' begin='prev.begin' to='22' dur='1s' fill='freeze' />
+      <animate attributeType='XML' attributeName='dy' begin='prev.begin' to='-35' dur='1s' fill='freeze' /></tspan> 
+
+      <tspan x='730'>M<animate id='t3' attributeName='rotate' begin='t2.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>r<animate id='t4' attributeName='rotate' begin='t3.end' dur='1s' from='0' to='20' fill='freeze'/></tspan>
+      <animate attributeType='XML' attributeName='dx' begin='prev.begin' to='22' dur='1s' fill='freeze' />
+      <animate attributeType='XML' attributeName='dy' begin='prev.begin' to='-35' dur='1s' fill='freeze' /></tspan>
+
+      <tspan x='850'>Z<animate id='t5' attributeName='rotate' begin='t4.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>a<animate id='t6' attributeName='rotate' begin='t5.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>m<animate id='t7' attributeName='rotate' begin='t6.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>a<animate id='t8' attributeName='rotate' begin='t7.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>n<animate id='t9' attributeName='rotate' begin='t8.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>s<animate id='t10' attributeName='rotate' begin='t9.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>k<animate id='t11' attributeName='rotate' begin='t10.end' dur='0.4s' from='0' to='20' fill='freeze'/></tspan>
+      <tspan>y<animate id='t12' attributeName='rotate' begin='t11.end' dur='2s' values='0; 10; -15; 200; 150; 185; 175; 180' fill='freeze'/>
+      <animate id='t13' attributeName='y' begin='t12.end + 0.3s' dur='1s' from='500' to='1000' fill='freeze'/></tspan>
+ 
+    </text>
+
+  </svg>
+
+</body>
+
+</html> 
