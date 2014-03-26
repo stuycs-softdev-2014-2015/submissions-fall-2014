@@ -2,7 +2,8 @@
 
 <html>
 
-Arrow Keys to move. Press numbers to summon bullets.
+Arrow Keys to move. Press 1 to summon bullets.
+Click to try again if you lose
 More to come.
 <canvas height="480" width="960" id="c"
 	style="border:1px solid black">
@@ -11,30 +12,30 @@ More to come.
 <script>
   var c = document.getElementById("c");
   var ctx = c.getContext("2d");
-  var start = false;
-  
+  var game = false;
+  var debug = false;
   var height=480;
   var width=960;
-  var difficulty=1;
-  
-  var startScreen = function() {
+    
+  var end = function() {
+   eraseAll();   
+   ctx.clearRect(0,0,width,height);
    ctx.font="30px arial";
    ctx.strokeStyle="#0000ff";
-   ctx.fillText("A Cool Thing",400,100);
-   ctx.font="20px arial";
-   ctx.fillText("Click Anywhere to Start",380,150);
+   ctx.fillText("Click to Try Again",400,100);
    ctx.stroke();
   }
   
 
-  var setup = function(e) {
-   e.preventDefault();
-   if (start == false){
-    ctx.fillStyle="#ffffff";
-    ctx.fillRect(0,0,width,height);
-    ctx.stroke();
-    start= true;
-    }
+  var setup = function() {
+  
+  ctx.clearRect(0,0,width,height);
+  ctx.strokeStyle="#000000";
+  bullets=[];
+  p=player(width*.5,height*.5,10,10,ctx);
+  game=true;
+  ctx.stroke();
+  window.requestAnimationFrame(gameloop);
   } 
 
   var player = function(x,y,w,h,ctx) {
@@ -62,8 +63,9 @@ More to come.
     }
 
   };
-  }
+}
   
+//speed*direction=velocity
  var bullet = function(x,y,ctx){
   return {
    x:x,
@@ -71,16 +73,9 @@ More to come.
    r:10,
    ctx:ctx,
    color:"blue",
-   dx:5,
-   dy:5,
-   //cx1: this.x+.5*this.r,
-   //cx2: this.x+1.5*this.r,
-   //cy1: this.y+.5*this.r,
-   //cy2: this.y+1.5*this.r,
-   //x2:this.x+this.r+this.r,
-   //y2:this.y+2*this.r,
-   px:p.x,
-   py:p.y,
+   speed:5,
+   dx:(p.x-x),
+   dy:(p.y-y),
    draw:function() {
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
@@ -90,19 +85,34 @@ More to come.
    },
 
    move:function() {
-     //if (this.x<this.px){this.x=this.x+this.dx;}
-     //if (this.y<this.py){this.y=this.y+this.dy;}
-     //if (this.x>this.px){this.x=this.x-this.dx;}
-     //if (this.y>this.py){this.y=this.y-this.dy;}
-    this.x=this.x;
-    this.y=this.y+this.dy;
+    var dt=Math.sqrt(this.dx*this.dx+this.dy*this.dy);
+    var int=dt/this.speed;
+    var vx=this.dx/int;
+    var vy=this.dy/int;
+    //console.log(vx);
+    //console.log(vy);
+    //this.x=this.x;
+    //this.y=this.y+5;
+    this.x=this.x+vx;
+    this.y=this.y+vy;
+   },
+
+   erase:function() {
+     ctx.beginPath();
+     ctx.strokeStyle="#ffffff";
+     ctx.lineWidth=5;
+     ctx.beginPath();
+     ctx.arc(this.x,this.y,this.r,0,2*Math.PI);
+     ctx.stroke();
+     ctx.StrokeStyle="#0000ff";
+     ctx.lineWidth=1;
+    }
    }
-  }
  }
   var readKeys = function(e){
     e.preventDefault();
+    e.stopPropagation();  
     e = e || window.event;
-  //console.log(e.which);
     if (e.which==37){p.move("LEFT");}
     if (e.which==38){p.move("UP");}
     if (e.which==39){p.move("RIGHT");}
@@ -115,9 +125,19 @@ More to come.
    bullets.push(bullet(x,y,ctx));
   }
 
-  var clickSpawn = function(e) {
+  var click = function(e) {//for testing purposes
    e.preventDefault();
-   spawn(e.offsetX,e.offsetY,ctx);
+   if (game==true && debug==true){spawn(e.offsetX,e.offsetY,ctx);}
+   else if (game==false){setup();}
+  }
+   
+  var eraseAll = function() {
+   while(bullets.length>1){
+     bullets[bullets.length-1].erase();
+     bullets.pop();  
+   }
+   bullets[0].erase();
+   //bullets.pop();
   }
 
   var pattern1 = function(start,int,end) {
@@ -129,40 +149,71 @@ More to come.
    }
   }
 
-  var animloop = function(){
+  var keyState = {};
+
+  window.addEventListener('keydown',function(e){
+    keyState[e.which] = true;
+   },true);
+
+  window.addEventListener('keyup',function(e){
+    keyState[e.which] = false;
+  },true);
+
+  var gameloop = function(){
    ctx.clearRect(0,0,width,height);
+   if (keyState[37]){p.move("LEFT");}
+   if (keyState[38]){p.move("UP");}
+   if (keyState[39]){p.move("RIGHT");}
+   if (keyState[40]){p.move("DOWN");}
+   if (keyState[49]){pattern1();}
    p.draw();
- //for (var i = 0; i<difficulty; i++){spawn(width*Math.random(),0,ctx);}
    for (var i = 0; i <bullets.length; i++){
      bullets[i].move();
      bullets[i].draw();
-     collisionDetection();
-     if (bullets[i].y>height){bullets.shift();}				     
+     if ( bullets[i].x-.5*bullets[i].r<p.x+p.w &&
+	  bullets[i].y-.5*bullets[i].r<p.y+p.h &&
+          bullets[i].x+.5*bullets[i].r>p.x &&
+          bullets[i].y+.5*bullets[i].r>p.y)
+         {
+         //console.log("hit");
+	 game=false;
+	 end();
+         break;
+     }
+    }
+   for (var i = 0;i < bullets.length;i++){
+	if (bullets[i].y>height ||
+	    bullets[i].x>width  ||
+            bullets[i].x<0      ||
+            bullets[i].y<0){
+        bullets.splice(i,1);
+        i--;
+      }
    }
-
-    window.requestAnimationFrame(animloop);
+    if (game==true)window.requestAnimationFrame(gameloop);
    
 }
 
-   var collisionDetection = function(){
-     for (var i = 0;i<bullets.length;i++){
-	console.log("here");
-     if ( bullets[i].x< p.x+p.w && 
-          bullets[i].x+bullets[i].r>p.x && 
-          bullets[i].y< p.y+p.h && 
-          bullets[i].y+bullets[i].r>p.y )
+   var collisionDetection = function(){//for testing purposes
+     for (var i = 0;i<bullets.length;i++){	
+     if ( bullets[i].x+bullets[i].r< p.x+p.w && 
+          bullets[i].x>p.x && 
+          bullets[i].y+bullets[i].r< p.y+p.h && 
+          bullets[i].y>p.y )
          {console.log("hit");
        }
      }
    }
 				      
-var p = player(width*.5,height*.5,10,10,ctx);
-var bullets=[];
+//var p = player(width*.5,height*.5,10,10,ctx);
+//var bullets=[];
+var p;
+var bullets;
 
-
-document.onkeydown=readKeys;
-window.requestAnimationFrame(animloop);
-c.addEventListener("click",clickSpawn);
+setup();
+//document.onkeydown=readKeys;
+//window.requestAnimationFrame(gameloop);
+c.addEventListener("click",click);
 
 
 </script>
