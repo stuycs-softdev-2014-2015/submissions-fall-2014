@@ -3,18 +3,20 @@
  *  `countries.geo.json` GeoJSON file, with a randomized fill color.
 */
 
-var width = 1500;
-var height = 500;
+width = 1500;
+height = 500;
 
-var path = d3.geo.path().projection(d3.geo.mercator());
+path = d3.geo.path().projection(d3.geo.mercator());
 
-var svg = d3.select("#center").append("svg").attr("width", width).
-	attr("height", height);
+svg = d3.select("#center")
+	.append("svg")
+	.attr("width", width)
+	.attr("height", height);
 
-d3.json("countries.geo.json", function(json) {
+d3.json("countries.geo.json", function(geoJson){
 
 	svg.selectAll("path")
-		.data(json.features)
+		.data(geoJson.features)
 		.enter()
 		.append("path")
 		.attr("d", path)
