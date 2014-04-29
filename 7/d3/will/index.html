@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="d3.min.js"></script>
+    <style>
+    </style>
+  </head>
+  <style>
+    svg {border:dashed black 1px;}
+  </style>
+  <body>
+    <h1>Bustime</h1>
+    <p>Along the top is distance to next stop in meters. Along the y is the bearing of the bus in degrees. The radius indicates the distance of the next stop along the route in meters. Each circle represents an indvidual bus, the identity of which can be seen by hovering. None of this is particularly useful information. Once the fetching has started, it the route can be modified. Just change the text in the box and click again.</p>
+    <br/>
+    <span style="float:right">Updating in <span id="sec">--</span> seconds...</span>
+    <input type="text" placeholder="Line Name" id="lid"/>
+    <input type="submit" value="Start Fetching" id="go"/>
+    <br/>
+    <script src="bus.js"></script>
+  </body>
+</html>
