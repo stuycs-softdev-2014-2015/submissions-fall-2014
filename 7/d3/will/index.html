@@ -11,7 +11,7 @@
   </style>
   <body>
     <h1>Bustime</h1>
-    <p>Along the top is distance to next stop in meters. Along the y is the bearing of the bus in degrees. The radius indicates the distance of the next stop along the route in meters. Each circle represents an indvidual bus, the identity of which can be seen by hovering. None of this is particularly useful information. Once the fetching has started, it the route can be modified. Just change the text in the box and click again.</p>
+    <p>Enter a bus line (i.e. M86) to graph realtime data on active buses. Each circle is a bus. The x is latitude, measured from the minimum latitude to the maximum latitude, with the y being longitude, measured similarly. Radius is distance to next stop. A transparent circle represents a bus that is making "noProgress" according to the bustime API (this may include a bus in a layover).</p>
     <br/>
     <span style="float:right">Updating in <span id="sec">--</span> seconds...</span>
     <input type="text" placeholder="Line Name" id="lid"/>
