@@ -15,66 +15,89 @@ var MakeSVG = function() {
 
     body.append('br');
 
-    var infot = body.append("span")
-	.text('Vehicle Reference: ')
-	.append('span')
+    body.append("em")
+	.text('Vehicle Information: ')
+
+    var infot = body.append('div')
 
     var color = "#000000";
     
     var display = function(d) {
-	var txmax = 0, tymax = 360, tsmax = 0;
-	var tval;
 	var va = d[0].VehicleActivity;
+ 	var txmin = va[0].MonitoredVehicleJourney.VehicleLocation.Latitude;
+	var tymin = va[0].MonitoredVehicleJourney.VehicleLocation.Longitude;
+	var tsmin = va[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall;
+ 	var txmax = va[0].MonitoredVehicleJourney.VehicleLocation.Latitude;
+	var tymax = va[0].MonitoredVehicleJourney.VehicleLocation.Longitude;
+	var tsmax = va[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall;
+	var tval;
 	for (i in va) {
-	    tval = va[i].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall;
+	    tval = va[i].MonitoredVehicleJourney.VehicleLocation.Latitude;
 	    if (tval > txmax)
 		txmax = tval;
-	    tval = va[i].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.CallDistanceAlongRoute;
+	    if (tval < txmin)
+		txmin = tval;
+
+	    tval = va[i].MonitoredVehicleJourney.VehicleLocation.Longitude;
+	    if (tval > tymax)
+		tymax = tval;
+	    if (tval < tymin)
+		tymin = tval;
+
+	    tval = va[i].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall;
 	    if (tval > tsmax)
 		tsmax = tval;
+	    if (tval < tsmin)
+		tsmin = tval;
 	}
 
 	var xScale = d3.scale.linear()
-	    .domain([0, txmax])
-	    .range([0, width - 10]);
+	    .domain([txmin, txmax])
+	    .range([10, width - 10]);
 
 	var yScale = d3.scale.linear()
-	    .domain([0, tymax])
+	    .domain([tymin, tymax])
 	    .range([30, height - 30]);
 
 	var sScale = d3.scale.linear()
-	    .domain([0, tsmax])
-	    .range([10, 50])
-
-	var xAxis = d3.svg.axis()
-	    .scale(xScale)
-	    .orient('bottom');
+	    .domain([tsmin, tsmax])
+	    .range([1, 50])
 
 	svg.selectAll('g').remove();
-
-	svg.append('g')
-	    .attr('class', 'axis')
-	    .call(xAxis);
 
 	var buses = svg.selectAll('.buses')
 	    .data(va, function(dat) {return dat.MonitoredVehicleJourney.VehicleRef;});
 
 	buses.transition()
-	    .duration(5000)
-	    .attr('r', function(dat) {return sScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.CallDistanceAlongRoute);})
-	    .attr('cx', function(dat) {return xScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall);})
-	    .attr('cy', function(dat) {return yScale(dat.MonitoredVehicleJourney.Bearing);})
+	    .duration(7000)
+	    .attr('r', function(dat) {return sScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall);})
+	    .attr('cx', function(dat) {return xScale(dat.MonitoredVehicleJourney.VehicleLocation.Latitude);})
+	    .attr('cy', function(dat) {return yScale(dat.MonitoredVehicleJourney.VehicleLocation.Longitude);})
+	    .attr('fill-opacity', function(dat){
+		if (dat.MonitoredVehicleJourney.ProgressRate == "noProgress")
+		    return .5;
+		return 1;
+	    })
 
 	buses.enter()
 	    .append('circle')
-	    .attr('r', function(dat) {return sScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.CallDistanceAlongRoute);})
-	    .attr('cx', function(dat) {return xScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall);})
-	    .attr('cy', function(dat) {return yScale(dat.MonitoredVehicleJourney.Bearing);})
+	    .attr('r', function(dat) {return sScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall);})
+	    .attr('cx', function(dat) {return xScale(dat.MonitoredVehicleJourney.VehicleLocation.Latitude);})
+	    .attr('cy', function(dat) {return yScale(dat.MonitoredVehicleJourney.VehicleLocation.Longitude);})
 	    .attr('fill', color)
 	    .attr('class', 'buses')
 	    .attr('stroke', 'black')
+	    .attr('stroke-width', 2)
 	    .on("mouseover", function(dat) {
-		infot.text(dat.MonitoredVehicleJourney.VehicleRef);
+		var t = '<br/>Vehicle Ref: ';
+		t += dat.MonitoredVehicleJourney.VehicleRef;
+		t += '<br/>Next Stop: ';
+		t += dat.MonitoredVehicleJourney.MonitoredCall.StopPointName;
+		t += '<br/>Distance From Stop: ';
+		t += dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.PresentableDistance;
+		t += ' (' + dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall + 'm)';
+		t += '<br/>Bearing: ' + dat.MonitoredVehicleJourney.Bearing;
+		infot.html(t);
 	    }).on("mouseout", function(){infot.text('');})
 
 	buses.exit().remove()
