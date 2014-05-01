@@ -28,7 +28,8 @@ var dataSwitchMaker = function(s, scale) {
 		.attr("cx",function(d) {return d.UrbanPop * 4 + 50;})
 		.attr("cy",function(d) {return -1 * scale * d[s] + 450;})
 		.attr("fill",getRandomColor)
-		.attr("r",5);
+		.attr("r",5)
+		.attr("state",function(d) {return d.State;});
         } else {
 	    svg.selectAll("circle")
 		.data(data)
@@ -37,7 +38,8 @@ var dataSwitchMaker = function(s, scale) {
 		.attr("cx",function(d) {return d.UrbanPop * 4 + 50;})
 		.attr("cy",function(d) {return -1 * scale * d[s] + 450;})
 		.attr("fill",getRandomColor)
-		.attr("r",5);
+		.attr("r",5)
+		.attr("state",function(d) {return d.State;});
 	    firstData = false;
 	}
 	svg.selectAll(".yaxis").remove();
@@ -53,6 +55,24 @@ var dataSwitchMaker = function(s, scale) {
 	    .attr("y",-45)
 	    .style("text-anchor", "middle")
 	    .text("Arrests Per 100,000 Residents");
+
+
+	var circles = svg.selectAll("circle")[0];
+
+	for(var i = 0; i < circles.length; i++) {
+	    circles[i].addEventListener("click", function(e) {
+		var circle = e.toElement;
+		svg.selectAll(".tag").remove();
+		svg.selectAll(".yaxis")
+		    .append("text")
+		    .attr("class","tag")
+		    .attr("x",parseInt(circle.getAttribute("cx"))-60)
+		    .attr("y",parseInt(circle.getAttribute("cy"))+20)
+		    .style("text-anchor","middle")
+		    .style("font-family","sans-serif")
+		    .text(circle.getAttribute("state"));
+	    });
+	}
     }
     return f;
 }
@@ -91,4 +111,5 @@ document.getElementById("a").addEventListener("click",assault);
 document.getElementById("m").addEventListener("click",murder);
 document.getElementById("r").addEventListener("click",rape);
 document.getElementById("t").addEventListener("click",total);
+
 
