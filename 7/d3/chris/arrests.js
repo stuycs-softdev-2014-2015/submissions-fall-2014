@@ -36,6 +36,13 @@ var dataSwitchMaker = function(s, scale) {
 	svg.append("g").attr("class","yaxis")
 	.attr("transform","translate(60,0)")
 	    .call(yAxis);
+	svg.selectAll(".yaxis")
+	    .append("text")
+	    .attr("transform","rotate(-90)")
+	    .attr("x",-225)
+	    .attr("y",-45)
+	    .style("text-anchor", "middle")
+	    .text("Arrests Per 100,000 Residents");
     }
     return f;
 }
@@ -45,6 +52,13 @@ var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 svg.append("g").attr("class","xaxis")
     .attr("transform","translate(0,440)")
     .call(xAxis);
+
+svg.selectAll(".xaxis")
+    .append("text")
+    .attr("x",225)
+    .attr("y",40)
+    .style("text-anchor", "middle")
+    .text("Urban Percentage of Population");
 
 var assault = dataSwitchMaker("Assault", 1);
 var murder = dataSwitchMaker("Murder", 20);
