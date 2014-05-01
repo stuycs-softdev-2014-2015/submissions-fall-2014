@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+  <head> 
+    <title>Japan's flag </title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"> </script>
+ </head>
+  
+  <body>
+    <script>
+      var header = d3.select("body")
+                     .append("h1")
+                     .style("align", "center")
+                     .text("Japan's Flag");
+      var canvas = d3.select("body")
+                     .append("svg")
+                     .attr("width",500)
+                     .attr("height",500);
+      var rect = canvas.append("rect")
+                       .attr("width", 300)
+                       .attr("height", 210)
+                       .attr("fill", "white")
+                       .attr("stroke", "black");
+      var circle = canvas.append("circle")
+                         .attr("cx", 150)
+                         .attr("cy", 105)
+                         .attr("r", 63)
+                         .attr("fill", "red");
+    </script>
+  </body>
+</html>
