@@ -1,4 +1,4 @@
-var height = 400, width = 900;
+var height = 350, width = 350;
 
 var bigt;
 
@@ -8,17 +8,20 @@ var MakeSVG = function() {
 
     var body = d3.select('body');
 
-    var svg = body.append("svg")
-	.attr('width', width)
-	.attr('height', height)
-	.attr('id', 'svg');
-
     body.append('br');
 
     body.append("em")
 	.text('Vehicle Information: ')
+	.style("float", "right");
 
     var infot = body.append('div')
+	.style("float", "right")
+	.style("text-align", "right");
+
+    var svg = body.append("svg")
+	.attr('width', width)
+	.attr('height', height)
+	.attr('id', 'svg');
 
     var color = "#000000";
     
@@ -57,7 +60,7 @@ var MakeSVG = function() {
 
 	var yScale = d3.scale.linear()
 	    .domain([tymin, tymax])
-	    .range([30, height - 30]);
+	    .range([height - 30, 30]);
 
 	var sScale = d3.scale.linear()
 	    .domain([tsmin, tsmax])
@@ -69,7 +72,7 @@ var MakeSVG = function() {
 	    .data(va, function(dat) {return dat.MonitoredVehicleJourney.VehicleRef;});
 
 	buses.transition()
-	    .duration(7000)
+	    .duration(30000)
 	    .attr('r', function(dat) {return sScale(dat.MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.DistanceFromCall);})
 	    .attr('cx', function(dat) {return xScale(dat.MonitoredVehicleJourney.VehicleLocation.Latitude);})
 	    .attr('cy', function(dat) {return yScale(dat.MonitoredVehicleJourney.VehicleLocation.Longitude);})
@@ -117,12 +120,12 @@ var MakeSVG = function() {
 	lid = d3.selectAll('#lid')[0][0].value;
 	go();
 	var timer = function() {
-	    var t = 16;
+	    var t = 32;
 	    return function() {
 		d3.selectAll('#sec').text(t);
 		bigt = setTimeout(timer, 1000);
 		if (t <= 0) {
-		    t = 31;
+		    t = 32;
 		    go();
 		}
 		t--;
