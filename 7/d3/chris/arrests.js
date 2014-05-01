@@ -8,6 +8,16 @@ var svg = d3.select("body").append("svg")
 
 var firstData = true;
 
+//This code was uh..."borrowed" from grades.js
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 var dataSwitchMaker = function(s, scale) {
     var f = function() {
 	if (!firstData) {
@@ -17,7 +27,7 @@ var dataSwitchMaker = function(s, scale) {
 		.duration(1000)
 		.attr("cx",function(d) {return d.UrbanPop * 4 + 50;})
 		.attr("cy",function(d) {return -1 * scale * d[s] + 450;})
-		.attr("fill","#ff0000")
+		.attr("fill",getRandomColor)
 		.attr("r",5);
         } else {
 	    svg.selectAll("circle")
@@ -26,7 +36,7 @@ var dataSwitchMaker = function(s, scale) {
 		.append("circle")
 		.attr("cx",function(d) {return d.UrbanPop * 4 + 50;})
 		.attr("cy",function(d) {return -1 * scale * d[s] + 450;})
-		.attr("fill","#ff0000")
+		.attr("fill",getRandomColor)
 		.attr("r",5);
 	    firstData = false;
 	}
