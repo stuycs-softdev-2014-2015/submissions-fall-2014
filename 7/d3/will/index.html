@@ -7,11 +7,13 @@
     </style>
   </head>
   <style>
-    svg {border:dashed black 1px;}
+   svg {border:dashed black 1px;}
+   p {width:500px;}
   </style>
   <body>
     <h1>Bustime</h1>
-    <p>Enter a bus line (i.e. M86) to graph realtime data on active buses. Each circle is a bus. The x is latitude, measured from the minimum latitude to the maximum latitude, with the y being longitude, measured similarly. Radius is distance to next stop. A transparent circle represents a bus that is making "noProgress" according to the bustime API (this may include a bus in a layover).</p>
+    <hr/>
+    <p>Enter a bus line (i.e. M86) to graph realtime data on active buses. Each circle is a bus. The x is latitude, measured from the minimum latitude to the maximum latitude, with the y being longitude, measured similarly. Radius is distance to next stop. A transparent circle represents a bus that is making "noProgress" according to the bustime API (this may include a bus in a layover). Though the demo updates every 31 seconds, the server typically updates its feed from the MTA every minute (so as to respect the MTA's rules).</p>
     <br/>
     <span style="float:right">Updating in <span id="sec">--</span> seconds...</span>
     <input type="text" placeholder="Line Name" id="lid"/>
