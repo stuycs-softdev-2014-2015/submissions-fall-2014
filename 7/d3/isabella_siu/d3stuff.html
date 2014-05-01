@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Snowman</title>
+  <text>I'll make a real one after I finish studying for/failing my AP Psych exam.</text>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"> </script>
+</head>
+<body>
+  <script>
+    var header = d3.select("body")
+                   .append("h1")
+                   .style("align","center")
+                   .text("Snowman");
+    var canvas = d3.select("body")
+                   .append("svg")
+                   .attr("width",500)
+                   .attr("height",500);
+    var rect = canvas.append("rect")
+                     .attr("width",500)
+                     .attr("height",300)
+                     .attr("fill","#2eccfa")
+                     .attr("stroke", "black");
+    var circle1 = canvas.append("circle")
+                        .attr("cx", 250)
+                        .attr("cy", 260)
+                        .attr("r", 50)
+                        .attr("fill","white");
+    var circle2 = canvas.append("circle")
+                        .attr("cx", 250)
+                        .attr("cy", 200)
+                        .attr("r", 40)
+                        .attr("fill","white");
+    var circle3 = canvas.append("circle")
+                        .attr("cx", 250)
+                        .attr("cy", 150)
+                        .attr("r", 30)
+                        .attr("fill","white");
+    var hat1 = canvas.append("rect")
+                        .attr("x", 225)
+                        .attr("y", 65)
+                        .attr("width", 50)
+                        .attr("height", 60)
+                        .attr("fill","black");
+    var hat2 = canvas.append("rect")
+                        .attr("x", 215)
+                        .attr("y", 125)
+                        .attr("width", 70)
+                        .attr("height", 10)
+                        .attr("fill","black");
+  </script>
+</body>
