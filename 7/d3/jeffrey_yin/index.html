@@ -14,17 +14,25 @@
 	}
 	d3.csv("grades.csv",function(d){makeSVG(d)});      
 	var colnames=[];
-	var makeSVG=function(d){
-		console.log(d);
-      
-		for (var i=0;i<d.length;i++){
-			 
-		<!-- //create a tr with class=row -->
-		
-			for (var j=0; j<d[i].length;j++){
-			
-			}
+	var generateList = function(filters){
+		filter = "";
+		row="<tr>";
+		for (var key in d[0]){
+			row=row+ "<td>"+ key +"</td>";
 		}
+		row = row + "</tr>";
+		$("#data").append(row);
+		for (var i=0;i<d.length;i++){
+			row = "<tr>";
+			for (var key in d[i]){
+				row = row + "<td>" + d[i][key] + "</td>";
+			}
+			row.concat("</tr>");
+			$("#data").append(row);
+		}
+	};
+	var makeSVG=function(d){
+		generateList(true);
 		var f = d3.select("#filters");
       
 		f.on("change",function(e){
