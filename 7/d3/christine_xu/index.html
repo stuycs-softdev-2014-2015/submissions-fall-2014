@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+  <head> 
+    <title> Mobile Cellular DATA </title>
+    <script src="http://d3js.org/d3.v3.min.js"> </script>
+	<script src="http://data.worldbank.org/indicator/IT.CEL.SETS.P2/countries"></script>
+	<script src="text/javascript">
+
+	<style type="text/css">
+	.x-axis path {
+    stroke:white;
+    fill:none;
+	}	
+	.x-axis line {
+    fill: none;
+    stroke: none;
+    stroke-opacity:.8;
+    shape-rendering: crispEdges;
+	}	
+	.bars rect {
+    fill:steelblue;
+    fill-opacity:.9;
+	}
+	.title {
+    font-weight: bold;
+	}
+	#precise-value {
+    fill:white;
+	font-size: 12px;
+	}
+</style>
+</head>
+
+<body>
+<script type="text/javascript">
+
+(function(){
+
+    var margin = {top: 50, bottom: 50, left:250, right: 40};
+    var width = 900 - margin.left - margin.right;
+    var height = 450 - margin.top - margin.bottom;
+
+    var xScale = d3.scale.linear().range([0, width]);
+    var yScale = d3.scale.ordinal().rangeRoundBands([0, height], 1.8,0);
+
+    var numTicks = 5;
+    var xAxis = d3.svg.axis().scale(xScale)
+                    .orient("top")
+                    .tickSize((-height))
+                    .ticks(numTicks);
+
+    var svg = d3.select("body").append("svg")
+                .attr("width", width+margin.left+margin.right)
+                .attr("height", height+margin.top+margin.bottom)
+                .attr("class", "base-svg");
+
+    var barSvg = svg.append("g")
+                .attr("transform", "translate("+margin.left+","+margin.top+")")
+                .attr("class", "bar-svg");
+
+    var x = barSvg.append("g")
+            .attr("class", "x-axis");
+
+    var url = "data.json";
+
+    d3.json(url, function(data) {
+
+        var xMax = d3.max(data, function(d) { return d.rate; } );
+        var xMin = 0;
+        xScale.domain([xMin, xMax]);
+        yScale.domain(data.map(function(d) { return d.country; }));
+
+        d3.select(".base-svg").append("text")
+            .attr("x", margin.left)
+            .attr("y", (margin.top)/2)
+            .attr("text-anchor", "start")
+            .text("Narrowly defined unemployment rates: top 20 countries (2010)")
+            .attr("class", "title");
+
+        var groups = barSvg.append("g").attr("class", "labels")
+                    .selectAll("text")
+                    .data(data)
+                    .enter()
+                    .append("g");
+
+        groups.append("text")
+                .attr("x", "0")
+                .attr("y", function(d) { return yScale(d.country); })
+                .text(function(d) { return d.country; })
+                .attr("text-anchor", "end")
+                .attr("dy", ".9em")
+                .attr("dx", "-.32em")
+                .attr("id", function(d,i) { return "label"+i; });
+
+        var bars = groups
+                    .attr("class", "bars")
+                    .append("rect")
+                    .attr("width", function(d) { return xScale(d.rate); })
+                    .attr("height", height/20)
+                    .attr("x", xScale(xMin))
+                    .attr("y", function(d) { return yScale(d.country); })
+                    .attr("id", function(d,i) { return "bar"+i; });
+
+        groups.append("text")
+                .attr("x", function(d) { return xScale(d.rate); })
+                .attr("y", function(d) { return yScale(d.country); })
+                .text(function(d) { return d.rate; })
+                .attr("text-anchor", "end")
+                .attr("dy", "1.2em")
+                .attr("dx", "-.32em")
+                .attr("id", "precise-value");
+
+
+    });
+
+})();
+
+</script>
+</body>
+
+</html>	
+
+//http://bl.ocks.org/leondutoit/6436923

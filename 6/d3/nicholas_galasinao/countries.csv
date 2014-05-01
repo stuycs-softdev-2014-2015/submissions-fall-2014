@@ -1,71 +1,71 @@
 Country,Earnings,Players
-South Korea,18.014.237.74,840
-United States,		12.150.519.37,1756
-Sweden, 6.479.188.06,470 
-China,  5.984.062.15,396  
-Germany,			2.613.952.24,	425  			
-Ukraine,			2.365.502.63,	136  
-Russia,	1.882.035.21,	365  
-France,			1.771.740.48,	360  
-Canada,			1.746.121.14,	274  
-Taiwan,			1.666.671.12,	114  
-United Kingdom,		1.429.262.37,	206  
-Denmark	,		1.389.069.55,	219  
-Poland,			1.342.791.66,	133  
-Netherlands,		971.677.60,	87  
-Malaysia,		734.130.49,		72  
-Finland		,		631.384.48	,	199  
-Norway		,		549.043.29	,	95  
-Estonia		,		526.242.84	,	11  
-Spain		,		519.089.97	,	115  
-Brazil		,		505.521.81	,	141  
-Singapore	,		473.732.40	,	96  
-Hong Kong	,		461.322.63	,	48  
-Italy		,		351.875.28	,	22  
-Australia	,		252.205.64	,	104  
-Japan		,		226.475.51	,	59  
-Belgium		,		181.662.97	,	35  
-Austria		,		175.072.32	,	33  
-Belarus		,		164.500.47	,	38  
-Turkey		,		160.978.38	,	46  
-Philippines	,		158.226.84	,	71  
-Vietnam		,		147.882.75	,	64  
-Mexico		,	114.325.30	,	44  
-Bulgaria	,		101.081.66	,	25  
-Lithuania	,		92.574.06	,	24  
-Romania		,		92.426.46	,	30  
-Kazakhstan	,		86.360.54	,	23  
-Armenia		,		78.834.22	,	1  
-Macao		,		72.686.47	,	2  
-Portugal	,		67.373.32	,	21  
-Thailand	,		59.069.50	,	40  
-Ireland		,		46.111.87	,	8  
-Israel		,		45.587.83	,	4  
-Czech Republic	,		40.300.16	,	34  
-Croatia		,		38.811.49	,	4  
-Chile		,		38.301.25	,	20  
-Peru		,		34.532.01	,	13  
-Bosnia and Herzegovina,		27.018.28	,	3  
-Argentina	,		25.386.31	,	35  
-Slovakia	,		25.300.85	,	16  
-Switzerland	,		24.222.64	,	14  
-Venezuela	,		19.970.10	,	5  
-Serbia		,		19.084.62	,	20  
-5Hungary	,		16.022.05	,	8  
-New Zealand	,		15.245.58	,	13  
-Iran		,		10.000.00	,	1  
-Greece		,		6.969.58	,	9  
-Indonesia	,		5.320.00	,	6  
-Slovenia	,		5.235.88	,	2  
-Puerto Rico	,		5.098.49	,	3  
-Saudi Arabia	,		2.912.00	 , 	1  
-Uruguay		,		2.652.03	,	3  
-South Africa	,		2.220.71	,	7  
-Mongolia	,		2.000.00	,	5  
-Uzbekistan	,		2.000.00	,	5  
-Iceland		,		1.713.82	,	7  
-Colombia	,		1.200.00	,	2  
-Latvia		,		1.119.90	,	5  
+South Korea,18014237.74,840
+United States,		12150519.37,1756
+Sweden, 6479188.06,470 
+China,  5984062.15,396  
+Germany,			2613952.24,	425  			
+Ukraine,			2365502.63,	136  
+Russia,	1882035.21,	365  
+France,			1771740.48,	360  
+Canada,			1746121.14,	274  
+Taiwan,			1666671.12,	114  
+United Kingdom,		1429262.37,	206  
+Denmark	,		1389069.55,	219  
+Poland,			1342791.66,	133  
+Netherlands,		971677.60,	87  
+Malaysia,		734130.49,		72  
+Finland		,		631384.48	,	199  
+Norway		,		549043.29	,	95  
+Estonia		,		526242.84	,	11  
+Spain		,		519089.97	,	115  
+Brazil		,		505521.81	,	141  
+Singapore	,		473732.40	,	96  
+Hong Kong	,		461322.63	,	48  
+Italy		,		351875.28	,	22  
+Australia	,		252205.64	,	104  
+Japan		,		226475.51	,	59  
+Belgium		,		181662.97	,	35  
+Austria		,		175072.32	,	33  
+Belarus		,		164500.47	,	38  
+Turkey		,		160978.38	,	46  
+Philippines	,		158226.84	,	71  
+Vietnam		,		147882.75	,	64  
+Mexico		,	114325.30	,	44  
+Bulgaria	,		101081.66	,	25  
+Lithuania	,		92574.06	,	24  
+Romania		,		92426.46	,	30  
+Kazakhstan	,		86360.54	,	23  
+Armenia		,		78834.22	,	1  
+Macao		,		72686.47	,	2  
+Portugal	,		67373.32	,	21  
+Thailand	,		59069.50	,	40  
+Ireland		,		46111.87	,	8  
+Israel		,		45587.83	,	4  
+Czech Republic	,		40300.16	,	34  
+Croatia		,		38811.49	,	4  
+Chile		,		38301.25	,	20  
+Peru		,		34532.01	,	13  
+Bosnia and Herzegovina,		27018.28	,	3  
+Argentina	,		25386.31	,	35  
+Slovakia	,		25300.85	,	16  
+Switzerland	,		24222.64	,	14  
+Venezuela	,		19970.10	,	5  
+Serbia		,		19084.62	,	20  
+5Hungary	,		16022.05	,	8  
+New Zealand	,		15245.58	,	13  
+Iran		,		10000.00	,	1  
+Greece		,		6969.58	,	9  
+Indonesia	,		5320.00	,	6  
+Slovenia	,		5235.88	,	2  
+Puerto Rico	,		5098.49	,	3  
+Saudi Arabia	,		2912.00	 , 	1  
+Uruguay		,		2652.03	,	3  
+South Africa	,		2220.71	,	7  
+Mongolia	,		2000.00	,	5  
+Uzbekistan	,		2000.00	,	5  
+Iceland		,		1713.82	,	7  
+Colombia	,		1200.00	,	2  
+Latvia		,		1119.90	,	5  
 Malta		,		800.00		,	1  
 Lebanon		,		666.67		,	1  
 United Arab Emirates	,	600.00		,	6  
