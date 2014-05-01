@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+<!-- Applies filters to an arbitrary csv-->
+<!--got sidetracked, not much d3 involved-->
+
 <html>
   <head>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     <script>
     console.log("hello world");
-	$("div").click(
-		function(){console.log("clicked");}
-	);
+	$("div").click(addFilter());
 	var addFilter = function(){
 		newfilter = "<li>";
 		col = "<select class='colname' name='colname'>";
@@ -15,10 +16,17 @@
 			col = col + " <option value="+colnames[i]+">"+colnames[i]+"</option>";
 		}
 		col = col + "</select>";
-		newfilter = col + "<input type ='text' class='operand' name='operand' placeholder='operand'>"
+		newfilter = col + "<select class='operator' name='operator'><option value='<'> &#60 </option><option value='=='> &#61 </option><option value='>'> &#62 </option>"	
 					+"<input type ='text' class='number' name='number' placeholder='#'>"
 					+"</li>";
 		$("#filters").append(newfilter);
+	}
+	var stringToOperator(operand1,str,operand2){
+		switch(str){
+			case "<": return operand1<operand2;
+			case "==": return operand1==operand2;
+			case ">": return operand1>operand2;
+		}
 	}
 	d3.csv("grades.csv",function(d){makeSVG(d)});      
 	var colnames = [];
@@ -31,13 +39,14 @@
 			row = row + "</tr>";
 			$("#data").append(row);
 			for (var i=0;i<d.length;i++){
-				
-				row = "<tr>";
-				for (var key in d[i]){
-					row = row + "<td>" + d[i][key] + "</td>";
+				if (stringToOperator($(".colname").val() + $(".operator").val() + $(".number"))){
+					row = "<tr>";
+					for (var key in d[i]){
+						row = row + "<td>" + d[i][key] + "</td>";
+					}
+					row.concat("</tr>");
+					$("#data").append(row);
 				}
-				row.concat("</tr>");
-				$("#data").append(row);
 			}
 		};
 		for (var key in d[0]){
@@ -47,10 +56,7 @@
 		generateList([true,true,false]);
 		var f = d3.select("#filters");
 		f.on("change",function(e){
-			d3.selectAll(".row")
-			.transition()
-			.duration(2000)
-			.attr("background-color", function(d){return d;})
+			
 		});
 	};
 			   
