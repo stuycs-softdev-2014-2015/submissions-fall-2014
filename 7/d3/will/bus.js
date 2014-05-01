@@ -117,12 +117,12 @@ var MakeSVG = function() {
 	lid = d3.selectAll('#lid')[0][0].value;
 	go();
 	var timer = function() {
-	    var t = 10;
+	    var t = 16;
 	    return function() {
 		d3.selectAll('#sec').text(t);
 		bigt = setTimeout(timer, 1000);
 		if (t <= 0) {
-		    t = 10;
+		    t = 31;
 		    go();
 		}
 		t--;
