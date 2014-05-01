@@ -9,34 +9,44 @@
 		function(){console.log("clicked");}
 	);
 	var addFilter = function(){
-		console.log("clicked");
-		$("#filters").append("<input type=text class=filter>");
+		newfilter = "<li>";
+		col = "<select class='colname' name='colname'>";
+		for (var i=0;i<colnames.length;i++){
+			col = col + " <option value="+colnames[i]+">"+colnames[i]+"</option>";
+		}
+		col = col + "</select>";
+		newfilter = col + "<input type ='text' class='operand' name='operand' placeholder='operand'>"
+					+"<input type ='text' class='number' name='number' placeholder='#'>"
+					+"</li>";
+		$("#filters").append(newfilter);
 	}
 	d3.csv("grades.csv",function(d){makeSVG(d)});      
-	var colnames=[];
-	var generateList = function(filters){
-		filter = "";
-		row="<tr>";
-		for (var key in d[0]){
-			row=row+ "<td>"+ key +"</td>";
-		}
-		row = row + "</tr>";
-		$("#data").append(row);
-		for (var i=0;i<d.length;i++){
-			row = "<tr>";
-			for (var key in d[i]){
-				row = row + "<td>" + d[i][key] + "</td>";
-			}
-			row.concat("</tr>");
-			$("#data").append(row);
-		}
-	};
+	var colnames = [];
 	var makeSVG=function(d){
-		generateList(true);
+		var generateList = function(filter){
+			row="<tr>";
+			for (var key in d[0]){
+			row=row+ "<td>"+ key +"</td>";
+			};
+			row = row + "</tr>";
+			$("#data").append(row);
+			for (var i=0;i<d.length;i++){
+				
+				row = "<tr>";
+				for (var key in d[i]){
+					row = row + "<td>" + d[i][key] + "</td>";
+				}
+				row.concat("</tr>");
+				$("#data").append(row);
+			}
+		};
+		for (var key in d[0]){
+			colnames.push(key);
+		};
+		addFilter();
+		generateList([true,true,false]);
 		var f = d3.select("#filters");
-      
 		f.on("change",function(e){
-		
 			d3.selectAll(".row")
 			.transition()
 			.duration(2000)
@@ -54,8 +64,9 @@
 	</style>
   </head>
   <body>
+	Filter:
     <ul id="filters">
-      <input type="text" class="filter" placeholder="Enter a boolean:">
+      <!-- <input type="text" class="filter" placeholder="Enter a boolean:"> -->
     </ul>
     <button id="newfilter"> Add a new filter </button>
     <table id="data">
