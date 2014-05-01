@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script>
+    console.log("hello world");
+	$("div").click(
+		function(){console.log("clicked");}
+	);
+	var addFilter = function(){
+		console.log("clicked");
+		$("#filters").append("<input type=text class=filter>");
+	}
+	d3.csv("grades.csv",function(d){makeSVG(d)});      
+	var colnames=[];
+	var makeSVG=function(d){
+		console.log(d);
+      
+		for (var i=0;i<d.length;i++){
+			 
+		<!-- //create a tr with class=row -->
+		
+			for (var j=0; j<d[i].length;j++){
+			
+			}
+		}
+		var f = d3.select("#filters");
+      
+		f.on("change",function(e){
+		
+			d3.selectAll(".row")
+			.transition()
+			.duration(2000)
+			.attr("background-color", function(d){return d;})
+		});
+	};
+			   
+    </script>
+	<style>
+		#newfilter{
+			border-style:solid;
+			border-width: 1px;
+			width: 200px;
+		}
+	</style>
+  </head>
+  <body>
+    <ul id="filters">
+      <input type="text" class="filter" placeholder="Enter a boolean:">
+    </ul>
+    <button id="newfilter"> Add a new filter </button>
+    <table id="data">
+
+    </table>
+  </body>
+
+</html>
