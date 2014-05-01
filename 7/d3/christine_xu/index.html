@@ -5,10 +5,8 @@
     <script src="http://d3js.org/d3.v3.min.js"> </script>
 	<script src="http://data.worldbank.org/indicator/IT.CEL.SETS.P2/countries"></script>
 	<script src="text/javascript">
- </head>
-  
-  <body>
-    <script>
+
+	<style type="text/css">
 	.x-axis path {
     stroke:white;
     fill:none;
@@ -30,6 +28,11 @@
     fill:white;
 	font-size: 12px;
 	}
+</style>
+</head>
+
+<body>
+<script type="text/javascript">
 
 (function(){
 
@@ -107,29 +110,6 @@
                 .attr("dx", "-.32em")
                 .attr("id", "precise-value");
 
-        bars
-            .on("mouseover", function() {
-                var currentGroup = d3.select(this.parentNode);
-                currentGroup.select("rect").style("fill", "brown");
-                currentGroup.select("text").style("font-weight", "bold");
-            })
-            .on("mouseout", function() {
-                var currentGroup = d3.select(this.parentNode);
-                currentGroup.select("rect").style("fill", "steelblue");
-                currentGroup.select("text").style("font-weight", "normal");
-            });
-
-        x.call(xAxis);
-        var grid = xScale.ticks(numTicks);
-        barSvg.append("g").attr("class", "grid")
-            .selectAll("line")
-            .data(grid, function(d) { return d; })
-            .enter().append("line")
-                .attr("y1", 0)
-                .attr("y2", height+margin.bottom)
-                .attr("x1", function(d) { return xScale(d); })
-                .attr("x2", function(d) { return xScale(d); })
-                .attr("stroke", "white");
 
     });
 
@@ -139,8 +119,5 @@
 </body>
 
 </html>	
-  </script>
 
-  </body>
-</html>
 //http://bl.ocks.org/leondutoit/6436923
