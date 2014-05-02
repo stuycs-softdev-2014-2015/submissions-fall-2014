@@ -31,12 +31,12 @@ div{
                          .attr("cx", 150)
                          .attr("cy", 105)
                          .attr("r", 63)
-                         .attr("fill", "red");
-d3.selectAll("div")
+                         .attr("fill", "steelblue");
+d3.selectAll("circle")
     .data([200,300,400,500,600])
     .transition()
-    .duration(2000)
-    .style("width", function(d) { return  d + "px"; });
+    .duration(3000)
+    .style("radius", function(d) { return  d + "px"; });
   </script>
 </body>
 </html>
