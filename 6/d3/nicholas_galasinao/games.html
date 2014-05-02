@@ -40,7 +40,7 @@ body {
     data.forEach(function(d) {
     d.Money =  +d.Money;
     });
-    console.log(data);
+
     var g = svg.selectAll(".arc")
     .data(pie(data))
     .enter().append("g")
