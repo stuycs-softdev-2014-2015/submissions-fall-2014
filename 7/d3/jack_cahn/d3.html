@@ -10,24 +10,26 @@
     <style type="text/css">
         .slice text {
             font-size: 16pt;
-        font-family: Arial;
-	
+        font-family: Oswald;
+	font-weight:bold;
         }  
+
+
     </style>
   </head>
   <body>
-    <div id ="pie"> 
+    <div id ="pie" align="center"> 
 
     <script type="text/javascript">
  
-    var w = 300,                        //width
-    h = 500,                            //height
-    r = 150,                            //radius
+    var w = 3000,                        //width
+    h = 1000,                            //height
+    r = 300,                            //radius
     color = d3.scale.category10();     //builtin range of colors
  
-    data = [{"label":"positive", "value":40}, 
-            {"label":"negative", "value":40}, 
-            {"label":"neutral", "value":20}];
+    data = [{"label":"Positive", "value":40}, 
+            {"label":"Negative", "value":40}, 
+            {"label":"Neutral", "value":20}];
     
     var vis = d3.select("body")
         .append("svg:svg")              //create the SVG element inside the <body>
@@ -62,7 +64,7 @@
             })
             .attr("text-anchor", "middle")                          //center the text on it's origin
             .text(function(d, i) { return data[i].label; });        //get the label from our original data array
-		            
+        	      
     </script>
     </div> 
   </body>
