@@ -77,6 +77,17 @@
     svg.selectAll(".bar")
     .data(data)
     .enter().append("rect")
+    .style("fill", function(d) {
+    if (d.Country == "South Korea"){return "whitesmoke";}
+    else if(d.Country == "Ukraine"){return "yellow";}
+    else if(d.Country == "United States"){return "blue";}
+    else if(d.Country == "Estonia"){return "cyan";}
+    else if(d.Country == "Sweden"){return "green";}
+    else if(d.Country == "Netherlands"){return "purple";}
+    else if(d.Country == "China"){return "red";}
+    else if(d.Country == "Russia"){return "steelblue";}
+    else{return "black";}
+    })
     .attr("class", "bar")
     .attr("x", function(d) { return x(d.ID); })
     .attr("width", x.rangeBand())
