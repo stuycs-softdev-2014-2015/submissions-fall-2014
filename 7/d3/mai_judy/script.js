@@ -29,9 +29,29 @@ var draw_data = function(data){
 	.remove();
 };
 
-setTimeout(function(){draw_data([1000,1500,3000]);},3000);
-setTimeout(function(){draw_data([100,500,1000,400]);},4500);
-setTimeout(function(){draw_data([1000,700,600]);},6000);
-setTimeout(function(){draw_data([1200,1000,800]);},7500);
+
+var change_color = function(data){
+    var svg=d3.select("svg");
+    var circle=svg.selectAll("circle").data(data);
+
+    circle.transition()
+	.duration(1000)
+	.attr("fill",function(d){return d;});
+
+    circle.exit()
+	.transition()
+	.duration(750)
+	.attr("r",0)
+	.remove();
+};
 
 
+setTimeout(function(){draw_data([500,300]);},3000);
+setTimeout(function(){draw_data([1000,1500,3000]);},4500);
+setTimeout(function(){draw_data([100,1000,1000,400]);},6000);
+setTimeout(function(){draw_data([1000,400,1500,800,300,]);},7500);
+setTimeout(function(){draw_data([1200,1000,800,600,400,200]);},9000);
+
+setTimeout(function(){change_color([red,orange,yellow,green,blue,purple]);},10000);
+
+setTimeout(function(){draw_data([]);},11000);
