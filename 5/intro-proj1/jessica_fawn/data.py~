@@ -4,16 +4,11 @@ app = Flask (__name__)
 
 @app.route ("/")
 def home ():
-    s = "<table>"
+    s = "test \n"
     data = open ("TSEV.csv", "r")
     data.readline()
-    for line in data:
-        s = s + "<tr>"
-        t = line.split(',')
-        for b in t:
-            s = s + "<td>" + b + "</td>"
-        s = s + "</tr>"
-    s = s + "</table>"
+    #for line in data:
+        #s = s + line
     data.close()
     return s
 
