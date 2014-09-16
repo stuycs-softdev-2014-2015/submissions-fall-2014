@@ -2,15 +2,15 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
+##page: 0=home, 1=countries, 2=players
+def homebase(t1len, t2len, page):
     table1=''    
     f=open('data1.txt','r')
     for x in range(17):
         g=f.readline()
     D={}
     i=1
-    while g and i<15:
+    while g and i<t1len:
         while g=='\n' or g==' \n' or 'Page' in g:
             g=f.readline()
         country=g[:3]
@@ -31,13 +31,14 @@ def home():
                 n+=1
                 del D[x]
     f.close()
-
+    if page==1:
+         return render_template('countries.html',table=table1)
     table2=''
     a=open('data1.txt','r')
     for x in range(15):
         b=a.readline()
     i=1
-    while b and i<71:
+    while b and i<t2len:
         b=b.strip('\n')
         if i%7==1:
             table2+='<tr align="center"><td>'+b+'</td>'
@@ -68,7 +69,21 @@ def home():
         while b=='\n' or b==' \n' or 'Page' in b:
             b=a.readline()
     a.close()
+    if page==2:
+        return render_template('players.html',table=table2)
     return render_template('index.html',table1=table1,table2=table2)
+
+@app.route('/')
+def home():
+    return homebase(15,71,0)
+
+@app.route('/countries')
+def countries():
+    return homebase(9001,0,1)
+
+@app.route('/players')
+def players():
+    return homebase(0,9001,2)
 
 if __name__=='__main__':
     app.debug=True
