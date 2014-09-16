@@ -17,7 +17,7 @@ country2 = form['country2'].value
 
 duplicates = False
 if country1 == country2:
-	duplicates = True
+    duplicates = True
 headers = {'Total fossil fuels':2, 'Solid fuel consumption':3, 'Liquid fuel consumption':4, 'Gas fuel consumption':5, 
 'Cement production':6, 'Gas flaring':7,'Per capita CO2':8, 'Bunker fuels':9} #Call headers[header] to get position in data
 
