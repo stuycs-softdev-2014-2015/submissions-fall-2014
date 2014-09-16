@@ -1,0 +1,69 @@
+body {
+    background-color: #111111;
+    color: white;
+    text-align: center;
+}
+div {
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 50%;
+    font-size: 15px;
+    background-color: rgba(255,255,255,0.05);
+    font-family: f;
+}
+h1:first-letter {
+    font-size: 40px;
+    font-weight: bold;
+    color: #30DDFF;
+}
+h1 {
+    background-color: rgba(255,255,255,0.05);
+    border-bottom: 1px dotted white;
+    width: 90%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+p:first-letter {
+    font-size: 25px;
+    font-weight: bold;
+    color: #F564B9;
+}
+@font-face {
+    font-family: f;
+    src: url(Sansation_Light.ttf);
+}
+table{
+    font-size: 12px;
+    width: 90%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    background-color: rgba(255,255,255,0.05);
+}
+th:nth-child(odd){
+    color: #30DDFF;
+}
+th:nth-child(even) {
+    color: #F564B9;
+}
+th {
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
+td:nth-child(odd):hover {
+    border-radius: 10px;
+    background-color: rgba(245,100,185,0.2);
+}
+td:nth-child(even):hover {
+    border-radius: 10px;
+    background-color: rgba(48,221,255,0.2);
+}
