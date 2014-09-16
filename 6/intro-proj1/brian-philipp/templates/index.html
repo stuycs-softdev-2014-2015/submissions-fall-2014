@@ -1,0 +1,94 @@
+{% autoescape false %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <title>ANALYZED TENNIS STATISTICS</title>
+      <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+      <link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+      <header>
+            <div class="h1-container">
+                <h1>Tennis Analysis</h1>
+                <h2>By Brian Sapozhnikov & Philipp Steinmann </h2>
+            </div>
+            <div class="coverpicture-container">
+                <img src="http://www.tracygallagher.com/wp-content/uploads/2011/09/RafaNadal.jpg" class="coverpicture">
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="intro">
+                <p>Data set: <a href="http://www.atpworldtour.com/Press/Rankings-and-Stats.aspx">Emirates ATP Rankings </a> </p>
+                <p class="expand-intro">Read Brian’s introduction </p>
+                <div class="brians-intro">
+                    <p>
+                    <strong>How My Exploration Evolved</strong><br>
+                    I began this project thinking I would simply use the given data, manipulate it, <br>
+                    and add it what I already knew about a few players.<br>
+                    In fact, I learned more than I thought I would.<br>
+                    I made connections between what I knew and my analyzed data.<br>
+                    I learned something new not just about a few players, but about countries and players in general.<br><br>
+                    <strong>Obstacles</strong> <br>
+                    When I downloaded the original data, it opened in Adobe.<br>
+                    The only usable format I could convert it to was .txt.<br>
+                    However, the txt file had several issues with that made it difficult to use.<br>
+                    For example, Adobe misalligned the headings of the table and the page number of the Adobe version was in the txt file.<br>
+                    I manually fixed the heading errors and used Python to skip the page numbers and empty lines.
+                    </p>
+                </div>
+            </div>
+          <h3>By Country </h3>
+          <table class="countries-table">
+        <tr>
+          <th>Rank #</th>
+          <th>Country</th>
+          <th>Total Points</th>
+        </tr>
+        {{table1}}
+          </table><br>
+
+
+
+          <h3>By Player</h3>
+          <table>
+        <tr>
+          <th>Rank #</th>
+          <th>Player</th>
+          <th>Average Points Per Tournaments</th>
+          <th>% Points from Grand Slams</th>
+          <th>% Points from Masters 1000</th>
+          <th>% Points from Other</th>
+          <th>Majority</th>
+        </tr>
+        {{table2}}
+    </table>
+
+    <div class="end">
+          <h3>Summary</h3>
+          <p>
+        There are several great tennis players from Spain, so I was not surprised to see Spain in first place.<br>
+        However, I was surprised by the overall rankings by country.<br>
+        USA is in fifth, despite having only a few great players (such as John Isner).<br>
+        In the 2012 Olympics Tennis Finals, Murray (GBR) defeated Federer (SUI).<br>
+        However, GBR is only in eighth place and SUI is only in seventh.<br>
+        Also, I was very surprised to see FRA in second, although it made more sense <br>
+        when I remembered that Tsonga plays for FRA.<br>
+        I also noticed that there are exactly 100 countries represented in the ATP Rankings.<br>
+        I'm not sure if this is a coincidence or not.<br>
+        I learned something new from the second analyzed data table as well:<br>
+        Grand Slams do not play as significant a role in a player's total points as I thought.<br>
+        The first fifteen players (the best players) attend more Grand Slam and Masters 1000 tournaments than others<br>
+        Most of the other players get the majority of their points from other tournaments.<br>
+        Even within the best fifteen players, only five of them have Grand Slam as their majority.<br>
+        Four of these five players are the top four players. <br>
+          </p>
+      </div>
+  </div>
+  </body>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js')}}"> </script>
+
+</html>
+{% endautoescape %}
