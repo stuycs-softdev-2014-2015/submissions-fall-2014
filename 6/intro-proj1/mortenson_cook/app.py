@@ -1,4 +1,7 @@
 from flask import Flask,render_template
+import cgi, cgitb, os
+cgitb.enable()
+F=cgi.FieldStorage()
 
 
 # this makes app an instance of the Flask class
@@ -60,14 +63,13 @@ def results():
                 Ba+=[[n]+D2[n]]
                 
         
-        s= 'llll'
- 
-        return s
+        return render_template("results.html", Ba=Ba, Pi=Pi)
 
 
 @app.route("/home")
 @app.route("/") 
 def home():
+   
     return "<h1>This is the home page</h1>"
 
 if __name__=="__main__":

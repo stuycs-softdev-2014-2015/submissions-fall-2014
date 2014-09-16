@@ -1,0 +1,13 @@
+<html> <head> <title> {{ name }} Data </title> </head>
+
+<body>
+<table border="1">
+{% for line in l %}
+	<tr>
+	{% for e in line %}
+		<td>{{ e }}</td>
+	{% endfor %}
+	</tr>
+{% endfor %}
+</table>
+</body>
