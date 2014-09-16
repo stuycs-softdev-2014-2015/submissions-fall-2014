@@ -1,0 +1,18 @@
+from flask import Flask
+
+# app is an instance of the Flask class
+app = Flask(__name__)
+
+@app.route("/home")
+def home():
+    return """<h1>Welcome.</h1><br><a href = "hi">Hi.</a>"""
+
+@app.route("/hi")
+def hi():
+    return "<h1>Hi.</h1>"
+
+if __name__=="__main__":
+    # set the instance variable debug to True
+    app.debug = True
+    # call the run method
+    app.run()

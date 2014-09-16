@@ -1,0 +1,10 @@
+<html>
+
+<h1>The Great (Outdated) Pokedex</h1>
+<body>
+{% for x in codedata %}
+{{x}}
+{% endfor %}
+</body>
+
+</html>
