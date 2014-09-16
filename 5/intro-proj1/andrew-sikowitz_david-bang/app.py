@@ -36,9 +36,11 @@ def data(filename = None):
 
     L = []
     L.append(lines[index2])
-    L = L + sorted(files[index2], key=lambda x: x[index], reverse=(index>=5))
-    
-    print L
+    if (index >= 2):
+        L = L + sorted(files[index2], key=lambda x: x[index], reverse=(index>=5))
+    else:
+        L = L + files[index2]
+
     return render_template("file.html", l=L, filename=filename)
 
 if __name__=="__main__":
