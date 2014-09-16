@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>
+            JR Smith's and Nate Robinson's Season per game records
+        </title>
+        <link rel="stylesheet" href="static/css/data.css" />
+    </head>
+
+    <body>
+        <div id="container">
+            <h2>
+                JR Smith's per game stats
+            </h2>
+
+            <span>
+                Notes: Tm = Team; Lg = League; G = Games; GS = Games Started; MP = Minutes Played; FG = Field Goals; FGA = FG attempts; 3P = Three Point FG; 3PA = 3P FGA; FT = Free Throws; ORB = Offensive Rebounds; DRB = Defensive Rebounds; TRB = Total Rebounds; AST = Assists; STL = Steals; BLK = Blocks; TOV = Turnovers; PF = Personal Fouls; PTS = Points
+            </span>
+
+            <br>
+            <br>
+            <table>
+                {% for header in headers %}
+                <th>
+                    {{ header }}
+                </th>
+                {% endfor %}
+                {% for row in data %}
+                <tr>
+                    {% for item in row %}
+                    <td>
+                        {{item}}
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <a href="{{ url_for("static", filename=csv_file_name) }}">Download the CSV file</a>
+        </div>
+    </body>
+</html>

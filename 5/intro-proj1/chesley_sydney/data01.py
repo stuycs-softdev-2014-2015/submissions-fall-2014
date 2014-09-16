@@ -4,16 +4,6 @@ print "Content-Type:text/html\n"
 
 print ""
 
-##TEAM ROMANLOSTTHEBET
-##MEMBERS: Roman Szul, Chesley Tan
-##MKS22-pd4
-##HW25
-##
-##DATASET: JRSmith.csv, NateRobinson.csv (per game stats)
-##DATA SOURCE: www.basketball-reference.com
-##Chosen because JR Smith recently won the Sixth Man of the Year award
-##for his pivotal contributions off the bench to the NY Knicks this season
-
 title = "JR Smith's and Nate Robinson's Season per game records"
 heading = "JR Smith's per game stats"
 paragraph = "Notes: Tm = Team; Lg = League; G = Games; GS = Games Started; MP = Minutes Played; FG = Field Goals; FGA = FG attempts; 3P = Three Point FG; 3PA = 3P FGA; FT = Free Throws; ORB = Offensive Rebounds; DRB = Defensive Rebounds; TRB = Total Rebounds; AST = Assists; STL = Steals; BLK = Blocks; TOV = Turnovers; PF = Personal Fouls; PTS = Points"
