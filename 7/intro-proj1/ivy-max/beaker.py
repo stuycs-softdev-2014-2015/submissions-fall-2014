@@ -1,13 +1,14 @@
 from flask import Flask
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
+#@app.route('/')
+#def hello_world():
+#    return 'Hello World!'
 if __name__ == '__main__':
+    app.debug == True
     app.run()
-@app.route('/test/')
+    
+@app.route('/')
 def setup():
     print 'Content-type: text/html\n'
     import HTML, cgi, cgitb, re
@@ -29,7 +30,8 @@ def setup():
         if country1 == country2:
             duplicates = True
             headers = {'Total fossil fuels':2, 'Solid fuel consumption':3, 'Liquid fuel consumption':4, 'Gas fuel consumption':5, 'Cement production':6, 'Gas flaring':7,'Per capita CO2':8, 'Bunker fuels':9} #Call headers[header] to get position in data
-    run()
+    setup()
+    return run()
 
 def countries(country):
 	tempdata = []
@@ -43,12 +45,12 @@ def countries(country):
         if not duplicates: data2 = countries(country2)[::-1]
         
         locus = 2
-    try:
-	restriction = form['typeofemission'].value
-	locus = headers[restriction]
-    except: #Sort by year.
-	restriction = 'Total fossil fuels'
-	#locus = 1 #default to Total fossil fuels
+        try:
+            restriction = form['typeofemission'].value
+            locus = headers[restriction]
+        except: #Sort by year.
+            restriction = 'Total fossil fuels'
+            #locus = 1 #default to Total fossil fuels
         
 def restrict(ilist):
 	global restriction
@@ -89,7 +91,7 @@ def restrict(ilist):
             isyears = form['isyears'].value
         except:
             
-	isyears = 'no' #SWITCH BACK TO NO
+            isyears = 'no' #SWITCH BACK TO NO
 def sorter():
 	global finalcdata
 	final = []
