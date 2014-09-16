@@ -68,6 +68,11 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
+tablestring = "Temporary Table String"
+@app.route("/table")
+def makeTablePage():
+    return render_template("table.html",tablestr=tablestring)
+
 if __name__ == "__main__":
     app.debug=True
     app.run()
