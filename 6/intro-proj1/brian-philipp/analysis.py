@@ -9,7 +9,8 @@ def home():
     for x in range(17):
         g=f.readline()
     D={}
-    while g:
+    i=1
+    while g and i<15:
         while g=='\n' or g==' \n' or 'Page' in g:
             g=f.readline()
         country=g[:3]
@@ -21,6 +22,7 @@ def home():
             while g=='\n' or g==' \n' or 'Page' in g:
                 g=f.readline()
             g=f.readline()
+        i+=1
     n=1
     for y in range(len(D)):
         for x in D.keys():
@@ -35,7 +37,7 @@ def home():
     for x in range(15):
         b=a.readline()
     i=1
-    while b and i<701:
+    while b and i<71:
         b=b.strip('\n')
         if i%7==1:
             table2+='<tr align="center"><td>'+b+'</td>'
