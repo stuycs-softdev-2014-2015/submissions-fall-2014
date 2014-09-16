@@ -60,13 +60,17 @@ def order(column, direction):
         least2big.insert(0,head)
     return least2big
 
-
 app = Flask(__name__)
 
 @app.route("/home")
 @app.route("/")
 def home():
     return render_template("home.html")
+
+tablestring = "Temporary Table String"
+@app.route("/table")
+def makeTablePage():
+    return render_template("table.html",tablestr=tablestring)
 
 if __name__ == "__main__":
     app.debug=True
