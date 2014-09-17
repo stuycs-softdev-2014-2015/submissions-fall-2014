@@ -11,6 +11,30 @@ app = Flask(__name__)
 @app.route("/home")
 def home():
 	html = """
+<style>
+button {
+   border: 3px solid #0a3c59;
+   background: #3e779d;
+   background: -moz-linear-gradient(top, #65a9d7, #3e779d);
+   padding: 10px 20px;
+   text-shadow: #7ea4bd 0 1px 0;
+   color: #06426c;
+   font-size: 16px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+button:hover {
+   background: white;
+   }
+button:active {
+   background: gray;
+   }
+</style>
+
+h1{
+text-shadow: 1px 1px blue;
+}
 	<title>Home</title>
 	<h1>Welcome to the homepage of Justin and Lev's first software development project.</h1>
 	<button><a href="/about">Background Information</a></button>
