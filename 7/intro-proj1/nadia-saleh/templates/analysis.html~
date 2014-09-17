@@ -1,0 +1,64 @@
+<style>
+
+  #bground {
+  background-color:black;
+  background-image:url("{{url_for('static', filename = 'background.gif') }}");
+  }
+
+  #firstBlock {
+  width:800px;
+  margin-left:auto;
+  margin-right:auto;
+  font-family:arial;
+  opacity:0.6;
+  background-color:white;
+  padding:8px;
+  border-radius:5px
+  }
+
+  #datastuff {
+  border:1px;
+  margin-left:auto;
+  margin-right:auto;
+  color:#ffffff;
+  background-color:#393b56;
+  opacity:0.6;
+  padding:8px;
+  border-radius:5px;
+  font-family:arial;
+  }
+
+</style>
+
+
+  <title> Doctor Who Audience Figures </title>
+
+  <body id="bground">
+
+  <center><img src="{{url_for('static', filename = 'title.png') }}"></center>
+
+  <div id="firstBlock">
+    I decided to look into this particular dataset because I am kind of a little bit obsessed with Doctor Who. Doctor Who is a British science fiction TV show that was started in 1963, and the effects back then were, well...cute. The show stopped airing in 1989, and one TV movie came out before the show started up again in 2005. In Old Who (prior to 2005), the show came out in multi-episode "serials" (each consisted of about 3 or 4 episodes). Since no one has the patience to type up the viewer counts for all of those episodes (over 700), the titles and viewer counts up until 2005 in this chart are for serials, not episodes. The viwer number is an average of the number of people who saw each invidual episode. The "Doctor Number" on the left refers to the actor who played the Doctor at the time. The Character of the Doctor is an alien (called a Time Lord) from the planet Galifrey. Every time a Time Lord comes close to death, he "regenerates", giving him a new body and a slightly changed personality (basically, they switch the actor). Based on these numbers, I am setting out to compare the different Doctors and actors who portrayed them.
+
+
+  <table id="datastuff">
+
+    <tr>
+      <th>Doctor</th>
+      <th>Episode/Serial</th>
+      <th>Viewers (millions) </th>
+    </tr>
+
+    {% for x in range(listlen)%}
+    <tr>
+      <td>{{docnums[x]}}</td>
+      <td>{{epnames[x]}}</td>
+      <td>{{viewernums[x]}}</td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+
+  </div>
+  </body>
