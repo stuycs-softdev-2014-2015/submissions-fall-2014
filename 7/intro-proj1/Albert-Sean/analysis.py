@@ -18,6 +18,7 @@ def analysis():
 	while (i < len(s)):
 		if (",s" in s[i]):
 			s[i] = ""
+		s[i] = s[i].replace(" ,", ",")
 		i += 1
 	while ("" in s):
 		s.remove("") #don't know why "del s[i]" doesn't work
@@ -38,5 +39,8 @@ def analysis():
 	
 	return render_template("analysis.html", s = s)
 
+@app.route("/compare")
+def compare():
+	return render_template("compare.html")
 if __name__ == '__main__':
     app.run(debug = True)
