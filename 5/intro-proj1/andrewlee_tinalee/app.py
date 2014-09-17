@@ -1,11 +1,10 @@
 from flask import Flask
 app = Flask(__name__)
 
-html = ""
-
 @app.route("/home")
 @app.route("/")
 def home():
+    html = ""
     html += "<html><title>" + "Home Page" + "</title>"
     html += "<h1>Starter Pokemon</h1>"
     html += tablefy('Water Starters.csv',"33CCFF")
