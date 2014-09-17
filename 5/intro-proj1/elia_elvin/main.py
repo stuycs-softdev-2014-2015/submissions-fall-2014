@@ -13,12 +13,12 @@ def data():
 	# A short script or function will be needed to place necessary data in the correct data structures as defined above
 	# Here's a fabricated one for the purposes of testing while the data-manipulating engine is being tweaked:
 
-	table_package = {
-		'types' = [
+	table_pkg={
+	'types': [
 			'1', '2', '3',
 		],
 
-		'data' = [
+		'data': [
 			['huh', 'yup', 'yeah'],
 			['yes', 'whoop', 'hooray'],
 			['no', 'nah', 'noop'],
@@ -27,9 +27,10 @@ def data():
 		],
 	}
 
-	description = "Welcome to the analysis."
+	desc = "Welcome to the analysis."
 
-    return render_template("data.html", table_package=table_package, description=description)
+        return render_template("data.html", table_package=table_pkg, 		description=desc)
+
 
 if __name__ == '__main__':
-  app.run(debug=True)
+    app.run(debug=True)
