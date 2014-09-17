@@ -39,10 +39,10 @@ text-shadow: 1px 1px blue;
 
 	<title>Home</title>
 	<h1>Welcome to the homepage of Justin and Lev's first software development project.</h1>
-	<button><a href="/about">Background Information</a></button>
-	<button><a href="/data">Raw Data</a></button>
-	<button><a href="/analysis">Summary of Analysis</a></button>
-	<button><a href="/conclusion">Conclusion</a></button>
+	<a href="/about"> <button> Background Information </button> </a>
+	<a href="/data"> <button> Raw Data </button> </a>
+	<a href="/analysis"> <button> Summary of Analysis </button> </a>
+	<a href="/conclusion"> <button> Conclusion </button> </a>
 	"""
 	return html
 
