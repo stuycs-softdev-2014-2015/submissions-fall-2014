@@ -21,11 +21,11 @@ def home():
     return render_template("home.html")
 
 @app.route("/firewaterspd")
-def firewaterspd:
+def firewaterspd():
 	return render_template("firewaterspd")
 
 @app.route("/grassgroundatk")
-def grassgroundatk:
+def grassgroundatk():
 	return render_template("grassgroundatk")
 
 #1:30 AM right now, too tired to copy paste rest of these pages
