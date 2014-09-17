@@ -11,8 +11,10 @@
 	<h2>The raw data</h2>
 	<table border="1">
 		<tr>{% for x in s[0] %}<th>{{x}}</th>{% endfor %}</tr>
-		{% for school in s[1:] %}<tr>{% for info in school %}<td>{{info}}</td>{% endfor %}</tr>
-		{% endfor %}
-	</table>
+	{% for school in s[1:] %}	<tr>{% for info in school %}<td>{{info}}</td>{% endfor %}</tr>
+	{% endfor %}</table>
+	<hr>
+	Data from <a href="https://nycopendata.socrata.com/">NYC Open Data</a><br>
+	Specifically, <a href="https://nycopendata.socrata.com/Education/SAT-College-Board-2010-School-Level-Results/zt9s-n5aj">https://nycopendata.socrata.com/Education/SAT-College-Board-2010-School-Level-Results/zt9s-n5aj</a>
 </body>
 </html>
