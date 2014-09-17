@@ -1,0 +1,11 @@
+<h1> Test Table </h1>
+<link rel="stylesheet" type="text/css" href="planets.css">
+<table border="1" id="chart">
+  {% for row in grid %}
+  <tr>
+    {% for element in row %}
+    <td>{{ element.strip() }}
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
