@@ -19,6 +19,7 @@ def about():
 def Analysis():
     return render_template("Analysis.html")
 @app.route("/Data")
+@app.route("/Data", methods = ['Post'])
 def data():
     return render_template("Data.html")
 
@@ -30,5 +31,4 @@ def home():
 
 if __name__=="__main__":
     app.debug=True
-    app.run()
-    #app.run(host="0.0.0.0",port=8888)
+    app.run(host="0.0.0.0",port=8888)
