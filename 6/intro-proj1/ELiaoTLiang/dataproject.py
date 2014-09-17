@@ -140,7 +140,7 @@ if form['order']=="Performance Points" and 'analysis' not in form and 'intermit'
     tablestring+= cutTable(int(form['pageNum']),int(form['interval']))
     tablestring+= '<br><br>'
     tablestring+= '<form name="analysis" action="dataproject.py" method="get">'
-    tablestring+= '<input type="submit" name="analysis" value="Continue to Analysis"></form>'
+    tablestring+= '<input type="submit" name="analysis" value="Continue to Analysis (Just kidding this is a broken link)"></form>'
 ##if page state in ANALYSIS, print CUT table
 if 'analysis' in form and 'intermit' not in form and 'analyze' not in form:
     ##selects intervals
@@ -243,6 +243,13 @@ if 'analyze' in form:
 @app.route("/table")
 def makeTablePage():
     return render_template("table.html",tablestr=tablestring)
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 if __name__ == "__main__":
     app.debug=True
     app.run()
+
+
