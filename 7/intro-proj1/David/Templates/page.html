@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<style>
+body { background-color: #A4A4A4;
+}
+h1 { background-color: #8A0829;
+} 
+</style>
+<head>
+<title>NYC 2011/9 Tonnage Collected</title>
+</head>
+<center>
+<body>
+<h1>The Tonnage of Waste Table</h1>
+<hr>
+For each Community District, the tons of Refuse, Paper Recycling and Metal, Glass & Plastic Recycling that were collected by the Department of Sanitation (DSNY) during the calendar month.
+<br>
+<br>
+<table border = "2">
+{% for x in table %}
+   <tr>
+   {%for y in x %}
+      <td>{{y}}</td>
+   {% endfor %}
+   </tr>
+{% endfor %}
+</table>
+</center>
+</body>
+<html>

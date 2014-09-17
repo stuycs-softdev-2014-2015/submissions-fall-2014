@@ -1,0 +1,89 @@
+<html>
+  <style> 
+    h1,p{
+    color: White;
+    text-align: center;
+    }
+    h1{
+    font-size:36;
+    }
+    p{
+    font-size:24;
+    }
+    th { background-color: aqua;}
+    td { background-color: #F3F781;}
+  </style>
+  <head>
+    <title>Crime Rates</title>
+    <h1>Analysis</h1>
+  </head>
+  <body background= "static/index.jpg">
+    <p>
+      Looking at the data, we can compare the crime rates of New York to the crime rates of California. 
+    </p>
+    <table border="3">
+      <tr>
+	<th>State</th>
+	<th>  Violent crime</th>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th>    Property crime</th>
+	<th></th>
+	<th></th>
+	<th></th>
+      </tr>
+      <tr>
+	<th></th>
+	<th>Total</th>
+	<th>Murder</th>
+	<th>Rape</th>
+	<th>Robbery</th>
+	<th>Aggravated assault</th>
+	<th>Total</th><th>Burglary</th>
+	<th>Larceny theft</th>
+	<th>Motor Vehicle theft</th>
+      </tr>
+      <tr>
+	<td>New York</td>
+	<td>445.8</td>
+	<td>4.5</td>
+	<td>18.9</td>
+	<td>182.7</td>
+	<td>239.7</td>
+	<td>2108.5</td>
+	<td>353.3</td>
+	<td>1569.6</td>
+	<td>185.6</td>
+      </tr>
+      <tr>
+	<td>California </td>
+	<td>526.3</td>
+	<td>6.9</td>
+	<td>26</td>
+	<td>176.1</td>
+	<td>317.3</td>
+	<td>3322.6</td>
+	<td>693.3</td>
+	<td>1916.5</td>
+	<td>712.8</td>
+      </tr>
+    </table>
+    <p>
+      Based on the table, we can see that in 2005, New York had a lower crime rate than California in all categories except for Violent Robbery.
+    </p><hr>
+    <h1>The Conclusion</h1>
+    <p>
+      According to the data provided above, New York State was just a little above averge in terms of crime rates across the country. When comparing New York and California, the total rate of violent crimes in California was almost 25% greater than that of New York. The rate of property crimes in California was more than 50% greater than that of New York.
+    </p>
+    <center>
+      <form method="post" action="/Data">
+	<input type="submit" value="back"></input>
+      </form>
+      <form method="post" action="/home">
+	<input type="submit" value="home"></input>
+      </form>
+    </center>
+  </body>
+</html>
