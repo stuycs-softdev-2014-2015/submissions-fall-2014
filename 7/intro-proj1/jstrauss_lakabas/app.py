@@ -30,11 +30,13 @@ button:hover {
 button:active {
    background: gray;
    }
-</style>
-
+   
 h1{
 text-shadow: 1px 1px blue;
 }
+
+</style>
+
 	<title>Home</title>
 	<h1>Welcome to the homepage of Justin and Lev's first software development project.</h1>
 	<button><a href="/about">Background Information</a></button>
