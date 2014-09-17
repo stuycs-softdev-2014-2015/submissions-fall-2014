@@ -13,3 +13,6 @@ def read_data(filename):
         data.append(values)
 
     return data
+
+def sort_data(data, order):
+    pass
