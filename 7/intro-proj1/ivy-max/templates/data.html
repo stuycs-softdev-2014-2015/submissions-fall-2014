@@ -4,12 +4,28 @@
 <meta http-equiv="content-type" content="text/html;
 charset=ISO-8859-1">
 <title>Greenhouse Gases Data</title>
+<style>
+td {
+  text-align: center  
+}
+.first {
+    background-color:LightSkyBlue
+}
+.second {
+    background-color:SpringGreen
+}
+</style>
 </head>
 
 <body>
     <table>
-        {% for row in data %}
         <tr>
+            <th>Country</th>
+            <th>{{ restriction }}</th>
+            <th>Year</th>
+        </tr>
+        {% for row in data %}
+        <tr class="{{ loop.cycle('first', 'second') }}">
             {% for cell in row %}
             <td>{{ cell }}</td>
             {% endfor %}
