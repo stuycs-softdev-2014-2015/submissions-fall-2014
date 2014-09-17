@@ -10,8 +10,9 @@ def home():
 def data():
     str = ''
     setup()
-    rundata()
-    return "UH"
+    data = rundata()
+    print "dataaaaaaa"
+    return render_template("data.html", data=data)
 
 def setup():
     global locus, duplicates
@@ -145,6 +146,7 @@ def rundata():
         print '<center>'
         # table = HTML.table(finalcdata,
         #   header_row=['Country', restriction + unit, 'Year'])
+        '''
         table = HTML.Table(header_row=['Country', restriction + unit, 'Year'])
         for x in finalcdata:
             color = countrycolors[x[0]]
@@ -154,6 +156,8 @@ def rundata():
             table.rows.append([colored_country, colored_result, colored_year])
             print table
             print '</center>'
+        '''
+        return finalcdata
 
 if __name__ == '__main__':
     app.debug == True
