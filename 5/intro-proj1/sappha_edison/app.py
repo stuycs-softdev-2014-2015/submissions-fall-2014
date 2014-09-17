@@ -1,46 +1,38 @@
-from flask import Flask,render_template
+from flask import Flask, render_template
 
+app = Flask (__name__)
 
-# this makes app an instance of the Flask class
-# and it passed the special variable __name__ into
-# the constructor
-
-app = Flask(__name__)
-
-@app.route("/help")
-def help():
-    return render_template("help.html")
+@app.route ("/")
+def home ():
+    s = "<center><table border = '1' width = '91%' style='background-color: rgb(230,230,250)'>"
+    data = open ("pokemon2.csv", "r")
+    categories = data.readline().split(',')
+    for each in categories:
+        s = s + "<th>" + each + "</th>"
+    data.readline()
+    for line in data:
+        s = s + "<tr>"
+        categories = line.split(',')
+        for each in categories:
+            s = s + "<td width = '10%'><center><font color='blue'>" + each + "</font></center></td>"
+        s = s + "</tr>"
+    data.close()
+    s = s + "</table><center>"
+    enterWeb("home.html", s)
+    return render_template("home.html")
 
 @app.route("/about")
 def about():
-    #s = "<h1>this is the about page</h1>"
-    s = """
-    <h1>Awesome Flask Web Site</h1>
-    <ul>
-    <li>item 1</li>
-    <li>item 2</li>
-    <li>item 3</li>
-    </ul>
-"""
-    return s
+    return render_template("about.html")
 
-@app.route("/random")
-def randomnumber():
-    import random
-    num = random.randrange(0,100)
-    
-    return render_template("random.html",
-                           num=num,
-                           name="Mr. T",
-                           l=[1,2,3,4,5],
-                           d={'a':1,'two':2,3:'hello'})
+def enterWeb(filename, fill):
+    with open("templates/" + filename, "wt") as change:
+        with open("templates/data.html", "rt") as fwrite:
+            for line in fwrite:
+                change.write(line.replace("changeHere", fill))
+    return
 
 
-@app.route("/home")
-@app.route("/") 
-def home():
-    return "<h1>This is the home page</h1>"
-
-if __name__=="__main__":
-    app.debug=True
-    app.run() 
+if __name__ == "__main__":
+    app.debug = True
+    app.run()

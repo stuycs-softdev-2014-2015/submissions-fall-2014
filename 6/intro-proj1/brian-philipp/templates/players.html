@@ -1,0 +1,21 @@
+{% autoescape false %}
+{% set pageTitle = 'Tennis Analysis | Players' %}
+{% set pageHeader = 'Tennis Players Analysis' %}
+{% set countriesPlayers = true %}
+{% include 'header.html' %}
+{% include 'countriesPlayersHeader.html' %}
+    <table>
+        <tr>
+            <th>Rank #</th>
+            <th>Player</th>
+            <th>Average Points Per Tournaments</th>
+            <th>% Points from Grand Slams</th>
+            <th>% Points from Masters 1000</th>
+            <th>% Points from Other</th>
+            <th>Majority</th>
+        </tr>
+        {{table}}
+    </table>
+</div>
+{% include 'footer.html' %}
+{% endautoescape %}
