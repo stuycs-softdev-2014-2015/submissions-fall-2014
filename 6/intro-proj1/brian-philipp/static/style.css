@@ -5,6 +5,10 @@ body {
     font-family: "Droid Sans";
 }
 
+body.countriesPlayers {
+    background-color: rgb(40, 40, 50);
+}
+
 .h1-container {
     position: absolute;
     width: 100%;
@@ -13,20 +17,41 @@ body {
 
 h1 {
     margin: 0 auto 30px auto;
-    color: rgba(255, 255, 255, 1.0);
     font: bold 54px "Droid Sans";
     text-align: center;
 }
 
 h2 {
     margin: 0 auto;
-    color: rgb(255, 255, 255);
     font: bold 42px "Droid Sans";
     text-align: center;
 }
 
+header h1, header h2 {
+    color: rgb(255, 255, 255);
+}
+
 header {
     width: 100%;
+}
+
+.countriesPlayers h1, .countriesPlayers h2 {
+    text-align: left;
+}
+
+.countriesPlayers h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.countriesPlayers h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .coverpicture-container {
@@ -44,6 +69,12 @@ header {
     background: white;
     margin-top: 0;
     padding: 40px;
+}
+
+.content.countriesPlayers {
+    width: 40%;
+    width: auto;
+    max-width: 70%;
 }
 
 .intro {
@@ -81,6 +112,10 @@ p {
 table {
     border-collapse: collapse;
 }
+
+.countriesPlayers table {
+    margin: 40px auto 0 auto;
+}   
 
 tr, td, th {
     border: 1px solid rgb(200, 200, 200);
