@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
@@ -13,7 +13,14 @@ for line in file_object:
     weight.append(x[1])
     i += 1
 
-print age
-print weight
+file_object.close()
 
-    
+@app.route("/")
+@app.route("/home") 
+def home():
+    return render_template("home.html", age = age, weight = weight)
+
+
+if __name__ == "__main__":
+    app.debug=True
+    app.run()
