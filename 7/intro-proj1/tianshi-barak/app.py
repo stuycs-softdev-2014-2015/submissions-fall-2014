@@ -19,36 +19,42 @@ def home():
     s = """
     <h1>Welcome to our webpage.</h1>
     <h2> Tianshi Wang, Barak Zhou, pd7 </h2>
+    <a href="../data">Check out our data!</a>
     """
     return s
-
-#@app.route("/kda")
-#def kda():
-    #return render_template("kda.html")
-
-#@app.route("/kills")
-#def kills():
 
 @app.route("/data")
 def data():
     s = """
-<table style="width:100%">
- <tr>
-<th>Champion</th>
-<th>KDA Ratio</th>
-<th>Kills</th>
-<th>Deaths</th>
-<th>Assist</th>
-</tr>
-<tr>
-"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <h1 align="center"><b>LEAGUE OF LEGENDS CHAMPION STATISTICS</b></h1>
+    <style>
+    body {
+    background-color: #b0c4de;
+    }
+    tr:hover{color: #F00;}
+    </style>
+    </head>
+    <body>
+    <table border="2" cellspacing="1" cellpadding="5" align="center">
+    """
+    i = 0;
     for x in data_text:
         s+= "<tr>"
         for y in range(0,len(x)):
-            s += "<td>" + x[y] + "</td>"
+            if i<5:
+                s += """<th bgcolor="#FFFF00"><b>"""+x[y].upper()+"</b></td>"
+            elif i%5==0: #for first row
+                s += """<td bgcolor="#00FFCC"><b>""" + x[y] + "</b></td>"
+            else:
+                s += """<td bgcolor="#FF66FF">""" + x[y] + "</td>"
+            i+=1
         s+= "</tr>"
-    s += "</table>"
+    s += "</table></body></html>"
     return s
+            
 
 if __name__ == "__main__":
     app.debug=True
