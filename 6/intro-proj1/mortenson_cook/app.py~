@@ -1,4 +1,7 @@
 from flask import Flask,render_template
+import cgi, cgitb, os
+cgitb.enable()
+F=cgi.FieldStorage()
 
 
 # this makes app an instance of the Flask class
@@ -49,23 +52,24 @@ def results():
             
 
 
-    convertData(D1) 
-    convertData(D2) 
-    Pi=[]
-    for n in sorted(D1):
-        Pi+=[[n]+D1[n]]
+        convertData(D1) 
+        convertData(D2) 
+        Pi=[]
+        for n in sorted(D1):
+                Pi+=[[n]+D1[n]]
+                
+        Ba=[]
+        for n in sorted(D2):
+                Ba+=[[n]+D2[n]]
+                
         
-    Ba=[]
-    for n in sorted(D2):
-        Ba+=[[n]+D2[n]]
-        
-    s= "caillou niggA"
-    return s
+        return render_template("results.html", Ba=Ba, Pi=Pi)
 
 
 @app.route("/home")
 @app.route("/") 
 def home():
+   
     return "<h1>This is the home page</h1>"
 
 if __name__=="__main__":
