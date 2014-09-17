@@ -29,8 +29,10 @@ def pokedexreader():
             codedata.append(pokemondata)
             pokemondata=[]
     return codedata
+
 #pokedexreader=pokedexreader();
-"""def pokemovesdictionary():
+
+def pokemovesdictionary():
     '''
     Creates a dictionary of viable moves for the pokemon
     '''
@@ -39,9 +41,10 @@ def pokedexreader():
     data=[]
     do=False
     i=0
+    p=pokedexreader()
     for x in datas:
         data.append(x.strip().split())
-    for y in pokedexreader:
+    for y in p:
         while do == False and i<len(data):
             if [y[1].lower()+":", '{']==data[i]:
                 finder = i
@@ -57,13 +60,14 @@ def pokedexreader():
         d[y[1]]=" ".join(d[y[1]]).upper()
         finder = 0
         i=0
-    return d"""
+    return d
 
 
 @app.route("/home")
 def home():
-    return render_template("home.html",codedata = pokedexreader());
-                           #movesdictionary = pokemovesdictionary());
+    return render_template("home.html",
+                           codedata=pokedexreader(),
+                           movesdictionary = pokemovesdictionary())
     
 if __name__=="__main__":
     # set the instance variable debug to True
