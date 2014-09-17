@@ -4,9 +4,16 @@
 
 <h1>The Great (Outdated) Pokedex</h1>
 <body>
-{% for x in codedata %}
-{{x}}<br>
-{% endfor %}
+  <table>
+  {% for x in codedata %}
+  <tr>
+    {% for y in x %}
+    <td>{{y}}</td>
+    {% endfor %}
+    {#<td>{{movesdictionary[codedata[x][1]]}}</td>#}
+  </tr>
+  {% endfor %}
+  </table>
 </body>
 
 </html>
