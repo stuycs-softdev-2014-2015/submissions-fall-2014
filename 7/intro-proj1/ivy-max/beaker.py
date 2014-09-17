@@ -12,7 +12,9 @@ def data():
     setup()
     data = rundata()
     print "dataaaaaaa"
-    return render_template("data.html", data=data)
+    return render_template("data.html", 
+                            data=data, 
+                            restriction=restriction)
 
 def setup():
     global locus, duplicates
@@ -127,15 +129,16 @@ def sorter():
     return final
 
 def rundata():
+    global restriction
     print 'rundata'
     finalcdata = sorter()
     unit = ''
     if restriction == 'Per capita CO2':
-        unit = ', metric tons of carbon'
+        restriction += ', metric tons of carbon'
         print "IF!"
     else:
         print "ELSE!"
-        unit = ', thousand metric tons of carbon'
+        restriction += ', thousand metric tons of carbon'
         
        # countrycolors = {
        #     country1: 'LightSkyBlue',
