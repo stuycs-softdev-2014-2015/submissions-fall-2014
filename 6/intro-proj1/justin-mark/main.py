@@ -12,7 +12,6 @@ def home():
 @app.route("/data")
 def data():
     data = read_attendance_data()
-    data.pop(0)
 
     return render_template("data.html", d={"data": data})
 
@@ -20,7 +19,6 @@ def data():
 @app.route("/facts")
 def facts():
     data = read_attendance_data()
-    data.pop(0)
 
     facts = find_facts(data)
 
@@ -35,7 +33,6 @@ def facts():
 @app.route("/data/<order>")
 def data_order(order="attendance-desc"):
     data = read_attendance_data()
-    data.pop(0)
 
     if order:
         data = sort_data(data, order)

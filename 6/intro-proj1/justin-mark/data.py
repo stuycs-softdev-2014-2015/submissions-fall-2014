@@ -12,6 +12,12 @@ def read_data(filename):
         values = line.strip().split(",")
         data.append(values)
 
+    data.pop(0)
+
+    for entry in data:
+        entry[1] = float(entry[1].split("%")[0])
+        entry[2] = int(entry[2])
+
     return data
 
 
