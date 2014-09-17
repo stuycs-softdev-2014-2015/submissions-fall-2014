@@ -1,13 +1,6 @@
 {% autoescape false %}
-<!DOCTYPE HTML>
-<html>
-  <head>
-      <title>ANALYZED TENNIS STATISTICS</title>
-      <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
-      <link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
-      <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-  </head>
-  <body>
+{% set pageTitle = 'Tennis Analysis' %}
+{% include 'header.html' %}
       <header>
             <div class="h1-container">
                 <h1>Tennis Analysis</h1>
@@ -39,7 +32,8 @@
                     </p>
                 </div>
             </div>
-          <h3>By Country </h3>
+            <h3>By Country </h3> 
+            <a href="/countries" class="see-more">See More </a>
           <table class="countries-table">
         <tr>
           <th>Rank #</th>
@@ -52,6 +46,7 @@
 
 
           <h3>By Player</h3>
+          <a href="/players" class="see-more">See More </a>
           <table>
         <tr>
           <th>Rank #</th>
@@ -86,9 +81,6 @@
           </p>
       </div>
   </div>
-  </body>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="{{ url_for('static', filename='script.js')}}"> </script>
 
-</html>
+{% include 'footer.html' %}
 {% endautoescape %}
