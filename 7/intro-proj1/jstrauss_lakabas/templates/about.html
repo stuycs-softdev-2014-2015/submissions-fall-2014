@@ -1,4 +1,42 @@
 <!doctype html>
+<style>
+button {
+   border: 3px solid #0a3c59;
+   background: #3e779d;
+   background: -moz-linear-gradient(top, #65a9d7, #3e779d);
+   padding: 10px 20px;
+   text-shadow: #7ea4bd 0 1px 0;
+   color: #06426c;
+   font-size: 16px;
+   font-family: helvetica, serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+button:hover {
+   background: white;
+   }
+button:active {
+   background: gray;
+   }
+
+
+h1 {background-color: aqua;
+    width: 300px;
+    padding: 15px;
+    border: 3px dotted purple;
+    margin: 25px;
+
+
+}
+div {
+    background-color: lightgrey;
+    width: 300px;
+    padding: 25px;
+    border: 15px ridge orange;
+    margin: 25px;
+}
+</style>
+
 <title>Background Information</title>
 <button><a href="/home">Home</a></button>
 <button><a href="/data">Raw Data</a></button>
@@ -9,7 +47,7 @@
   <h1>Im glad you'd like to learn more about {{ first }} {{ last }}!</h1>
   <a href="https://www.google.com/#q={{first}}+{{last}}">Click here to launch a Google search.</a>
 {% else %}
-  <h3> Background Information: </h3>We chose to analyze basketball players because we thought it <br> would be interesting to compare the best players to <br>ever play the sport with each other. At first we were comparing the <br>Player Efficiency Rating and the regular stat line of the players, <br>but we realized that there would be no way to compare them. So we <br>just tried to determine who was the greatest player of all time (G.O.A.T). <br>
+  <h3> Background Information: </h3> <div> We chose to analyze basketball players because we thought it <br> would be interesting to compare the best players to <br>ever play the sport with each other. At first we were comparing the <br>Player Efficiency Rating and the regular stat line of the players, <br>but we realized that there would be no way to compare them. So we <br>just tried to determine who was the greatest player of all time (G.O.A.T). <br> </div>
 
   <h4> If you'd like to learn more about a certain basketball player, please type their name in the url using the format: localhost:4242/about/playerfirstname/playerlastname </h4>
 
