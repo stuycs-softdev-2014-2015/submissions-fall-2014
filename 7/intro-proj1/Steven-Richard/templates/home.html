@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  overflow:hidden;
+  position:fixed; top:2%; right:2%}
+}
+ a {
+  display:block;
+  width:60px;
+  background-color:#dddddd;
+}
+
+body {
+background-image: url("http://fc06.deviantart.net/fs71/f/2010/254/3/7/pokedex_wallpaper_v1_by_bugbyte-d2yii0o.png");
+background-repeat: no-repeat;
+background-color: #DF0101;
+}
+
+h1 {
+color: blue;
+text-align: center;
+-webkit-text-stroke: 1px black;
+}
+
+table {
+border: 4px solid blue;
+}
+
+td {
+text-align: center;
+border: 1px solid blue;
+padding: 3px;
+}
+
+tr {
+background-color: lightgray;
+}
+
+#dark {
+background-color: #A4A4A4;
+}
+
+tr:hover {
+background-color: #81F781;
+}
+
+tr:active {
+background-color: #40FF00;
+}
+
+</style></head>
+
+<body>
+<h1>The Great (Outdated) Pokedex</h1>
+
+<ul>
+  <li><a href="#1">Kanto</a></li>
+  <li><a href="#152">Johto</a></li>
+  <li><a href="#252">Hoenn</a></li>
+  <li><a href="#387">Sinnoh</a></li>
+</ul>
+<br><br>
+  <table>
+  <tr id = "dark"><td>#</td><td>NAME</td><td>HP</td><td>ATK</td><td>DEF</td><td>SP. ATK</td><td>SP. DEF</td><td>SPEED</td><td>MOVES</td></tr>
+  {% set n = 1 %}
+  {% set stupiddeoxys = 0 %}
+  {% set b = True %}
+  {% for x in codedata %}
+  <tr id = {{n}}>
+    {% for y in x %}
+    <td>{{y}}</td>
+    {% endfor %}
+    <td>{{movesdictionary[x[1]]}}</td>
+  </tr>
+  {% if n == 386 %}
+     {% set b = False %}
+  {% endif %}
+  {% if b == True %}
+     {% set n = n + 1 %}
+  {% else %}
+     {% set stupiddeoxys = stupiddeoxys + 1 %}
+  {% endif %}
+  {% if stupiddeoxys == 4 %}
+     {% set b = True %}
+     {% set n = n + 1 %}
+  {% endif %}
+  {% endfor %}
+  </table>
+</body>
+
+</html>

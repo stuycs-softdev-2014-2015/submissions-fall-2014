@@ -1,0 +1,12 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+
+<h1>The Great (Outdated) Pokedex</h1>
+<body>
+{% for x in codedata %}
+{{x}}<br>
+{% endfor %}
+</body>
+
+</html>

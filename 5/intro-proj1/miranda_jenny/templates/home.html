@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/theme.css') }}">
+    </head>
+
+    <body>
+		<div id="main_page">
+        <center>
+            <font color= "darkred" face= "copperplatelight"background-color=
+"lightgray"><h1> Effects of Gun Control on Deaths with Firearms</h1></font>
+
+            <table><tr>
+                <td>
+                    <form action="/why">
+                        <button type="submit" value="why">Why Do This?</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/data">
+                        <button type="submit" value="data">The Data</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/analysis">
+                        <button type="submit" value="analysis">The Analysis</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/sources">
+                        <button type="submit" value="sources">Sources</button>
+                    </form>
+                </td>
+            
+            </tr></table>
+        </center>
+	</div>
+    </body>
+</html>
+

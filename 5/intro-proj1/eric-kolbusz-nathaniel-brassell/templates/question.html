@@ -1,0 +1,24 @@
+<h1>Question {{qnum}}</h1>
+<br>
+
+<form>
+<input type="radio" name="a{{qnum}}" value="one">one<br>
+<input type="radio" name="a{{qnum}}" value="two">two<br>
+<input type="radio" name="a{{qnum}}" value="three">three<br>
+<input type="radio" name="a{{qnum}}" value="four">four<br>
+
+<input type="submit" value="Continue">
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <class=flashes>
+    int i = 1
+    {% for message in messages %}
+    	<input type="hidden" name="a{{i}}" value={{message}}>
+	i++
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+</form>
+

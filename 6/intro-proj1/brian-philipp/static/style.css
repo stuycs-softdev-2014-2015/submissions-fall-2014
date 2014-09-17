@@ -1,0 +1,134 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(240, 240, 240);
+    font-family: "Droid Sans";
+}
+
+body.countriesPlayers {
+    background-color: rgb(40, 40, 50);
+}
+
+.h1-container {
+    position: absolute;
+    width: 100%;
+    padding-top: 40px;
+}
+
+h1 {
+    margin: 0 auto 30px auto;
+    font: bold 54px "Droid Sans";
+    text-align: center;
+}
+
+h2 {
+    margin: 0 auto;
+    font: bold 42px "Droid Sans";
+    text-align: center;
+}
+
+header h1, header h2 {
+    color: rgb(255, 255, 255);
+}
+
+header {
+    width: 100%;
+}
+
+.countriesPlayers h1, .countriesPlayers h2 {
+    text-align: left;
+}
+
+.countriesPlayers h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.countriesPlayers h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.coverpicture-container {
+    background: black;
+}
+
+.coverpicture {
+    width: 100%;
+    opacity: 0.3;
+}
+
+.content {
+    width: 75%;
+    margin: 0 auto;
+    background: white;
+    margin-top: 0;
+    padding: 40px;
+}
+
+.content.countriesPlayers {
+    width: 40%;
+    width: auto;
+    max-width: 70%;
+}
+
+.intro {
+    padding-top: 0;
+    margin-bottom: 60px;
+}
+
+.intro p {
+    margin-top: 0;
+}
+
+.brians-intro {
+    display: none;
+    margin: 20px 0 0 0;
+}
+
+a, .expand-intro {
+    color: rgb(0, 95, 107);
+    text-decoration: none;
+    border-bottom: 1px solid rgb(0, 95, 107);
+    padding-bottom: 2px;
+    display: inline;
+    cursor: pointer;
+}
+
+a:hover, .expand-intro:hover {
+    color: rgb(0, 140, 158);
+    border-color: rgb(0, 140, 158);
+}
+
+p {
+    line-height: 1.4;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.countriesPlayers table {
+    margin: 40px auto 0 auto;
+}   
+
+tr, td, th {
+    border: 1px solid rgb(200, 200, 200);
+}
+
+td, th {
+    padding: 5px 10px;
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(243, 243, 253);
+}
+
+.end {
+    margin-top: 40px;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>ExoPlanets</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/planets.css') }}">
+      <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+   </head>
+
+<body>
+
+   <div id="navbar">
+      <div id="logo">
+         <a href="/">Exoplanet Database</a>
+      </div>
+      <ul class="navlist">
+         <li><a href="/hello">
+            Analysis
+         </a></li>
+         <li><a href="#">
+            NavWorks?
+         </a></li>
+      </ul>
+   </div>
+   <table id="chart">
+      <thead>
+	<tr><td><center>More details can be seen on separate planet pages, with 30+ variables.</center></tr> 
+         <tr>
+            {% for tableheader in headerRow %}
+            <th>{{tableheader.strip().replace("_", " ")}}</th>
+            {% endfor %}
+         </tr>
+      </thead>
+     {% for row in grid %}
+     <tr>
+       {% for element in row %}
+       <td> {{ element.strip() }} </td>
+       {% endfor %}
+     </tr>
+     {% endfor %}
+   </table>
+</body>
+
+</html>

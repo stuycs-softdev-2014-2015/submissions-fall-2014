@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ ul {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+
+  overflow:hidden;
+  position:fixed; top:2%; right:2%}
+}
+ a {
+  display:block;
+  width:60px;
+  background-color:#dddddd;
+}
+</style>
+</head>
+<h1>The Great (Outdated) Pokedex</h1>
+<body>
+  <ul>
+  <li><a href="#1">Kanto</a></li>
+  <li><a href="#152">Johto</a></li>
+  <li><a href="#252">Hoenn</a></li>
+  <li><a href="#387">Sinnoh</a></li>
+</ul>
+  <table>
+  {% set n = 1 %}
+  {% set stupiddeoxys = 0 %}
+  {% set b = True %}
+  {% for x in codedata %}
+  <tr id = {{n}}>
+    {% for y in x %}
+    <td>{{y}}</td>
+    {% endfor %}
+    <td>{{movesdictionary[x[1]]}}</td>
+  </tr>
+  {% if n == 386 %}
+     {% set b = False %}
+  {% endif %}
+  {% if b == True %}
+     {% set n = n + 1 %}
+  {% else %}
+     {% set stupiddeoxys = stupiddeoxys + 1 %}
+  {% endif %}
+  {% if stupiddeoxys == 4 %}
+     {% set b = True %}
+     {% set n = n + 1 %}
+  {% endif %}
+  {% endfor %}
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+    <head><title>Age's Effect on Baseball, Part Two</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico"></head>
+
+    <body style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
+    
+    <center>
+    <h1>Age's Effect on Baseball, Part Two</h1>
+  <table bgcolor=white bordercolor="black" > <tr> <td> <a href="../">Home sweet home</a> </td></tr>
+    <tr> <td><a href="../rawdata">Press here to see the raw data used to generate these tables.</a></td></tr></table></br>
+
+    <table bordercolor="black" width=95% bgcolor="white"><tr><td>
+    </br>
+    <p style="text-indent: 5em;">
+    Once I had converted the raw data into a python dictionary, the biggest difficulty in analyzing the data was
+    showing that the data is significant and that there are trends in it.
+    I knew right away that there were trends after graphing the raw data in Microsoft Office Excel and having trendlines drawn.
+    When viewed as just numbers, however, my data looked pretty meaningless. The problem dictated how I analyzed the data.
+    What I ended up doing was creating a list of lists to hold each data set. Each small list had three elements: A given average age, 
+    the average number of runs scored or allowed per game by all teams that shared that average player age, and the number of times that average age occured.
+    From this, I was able to extract meaningful data by displaying the average number of runs scored or allowed by teams with certian average ages.
+    The average ages I did display data from ended up being determined by number of times that average age occured.
+    </p>
+    <p style="text-indent: 5em;">
+    Upon revising the page, I had to change a lot in order to make the raw data sortable. To start with,
+    I added the year and team name to my data and simplified the data by combining the two data sets into one.
+    This way, there was only one form and one table, and there were no issues with one data table being reset every time the other is sorted.
+    Once I had condensed the two data sets into one, the filters were fairly simple,
+    but the sorting function required some thought and a lot of tweaking.
+    </p>
+    <p style="text-indent: 5em;">
+    As a note, the raw data value of average player age is weighted based on how much each person played. For example, a 20-year-old rookie
+    who only played in 30 of 162 games would count less towards a team's average age than a 35-year-old vet who played in all 162 games.
+    This was not done by me, but by the providers of the raw data.
+    </p>
+    <p style="text-indent: 5em;">
+    The processed data seen here displays the overall average number of runs per game scored by all teams with a given average hitter age,
+    as well as the overall average number of runs per game allowed by teams with a given average pitcher age.
+    For the sake of precision, data is only included from average ages that occur 8 or more times in teams in the raw data set,
+    so that teams like the 1998 Florida Marlins, whose young yet terrible pitching staff gave up an average of 5.70 runs per game 
+    while being the only pitching staff in the last 20 years to have an average age of 24.5 years old, don't throw off the data too much.
+    For example, if there are 12 teams in the data set with an average hitter age of 28.3 years old, the average number of runs scored per game
+    by each of those teams is displayed next to the number 28.3. However, if there are only 5 teams in the data set with an average hitter age of 31.4 years old,
+    there will be no data displayed for teams with average hitter ages of 31.4 years old.
+    </p>
+    <center>
+    <table><tr>
+    <td width="5%"></td>
+    <td width="20%"><center>
+    This table shows how the average age of a team's pitchers affects the number of runs scored against them in a game. Looking closely, 
+    one can notice a general trend; the older the pitchers, the fewer runs a team gives up. While teams with an average pitcher age of between 28 and 30 
+    display no obvious trends, the oldest and youngest teams do. While teams whose average pitcher is under the age of 28 give up somewhere between
+    4.7 and 4.9 runs on average, teams whose average pitcher is older than 30 give up between 4.3 and 4.6 runs per game on average, significantly fewer.
+    </center></td>
+    <td width="3%"></td>
+    <td width="20%"><table border=1 style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
+    <tr><td>Average Pitcher Age</td><td>Average Runs Allowed per Game</td>
+    {% for n in Pi %}
+        {% if n[2]>=8 %}
+            <tr><td>{{n[0]}}</td><td>{{n[1] + 0.005  - ((n[1] + 0.005)% 0.01)}}</td></tr>
+	{% endif %}
+    {% endfor %}
+    </table></td>
+    <td width="4%"></td>
+    <td width="20%"><table border=1 style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
+    <td>Average Batter Age</td><td>Average Runs Scored per Game</td>
+    {% for n in Ba %}
+        {% if n[2]>=8 %}
+            <tr><td>{{n[0]}}</td><td>{{n[1] + 0.005  - ((n[1] + 0.005)% 0.01)}}</td></tr>
+	{% endif %}
+    {% endfor %}
+    </table></td>
+    <td width="3%"></td>
+    <td width="20%"><center>
+    With batters, a similar trend can be observed. This time, however, it is much more clear. With a few exceptions, the typical team with an average batter age of
+    younger than 29 score an average of <b>fewer</b> than 4.8 runs per game. Typical teams with an average batter age of older than 29, with suprisingly few exceptions,
+    average 4.8 <b>or more</b> runs per game. This trend is much more apparent than the trend amongst pitchers.
+    </center></td>
+    <td width="5%"></td>
+    </tr></table>
+    </center>
+    <p style="text-indent: 5em;">
+    While these tables show trends with different levels of clarity, the trends are consistent with each other;
+    older teams tend to give up fewer runs and score more runs than younger ones, meaning that while it is frustrating that the Yankees have
+    so few young, exciting players, their age may be a good thing rather than a bad thing. While a gutsy rookie may be more interesting to watch
+    than a knowlegable veteran past his prime, experience is more valuable than youth in baseball. As Yogi Berra famously said,
+    "Baseball is 90% mental, the other half is physical," and though a 25-year-old rookie may be more athletic than his 40-year old self,
+    He will always learn more about the game and grow more mentally prepared as he gets older and continues to play. 
+    </p>
+    </br>
+    </table></center>
+    </body></html>
