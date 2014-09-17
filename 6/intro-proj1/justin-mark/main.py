@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from data import read_attendance_data
 
 app = Flask(__name__)
 
@@ -10,6 +11,7 @@ def home():
 
 @app.route("/data")
 def data():
+<<<<<<< HEAD
     y =  l
     return render_template("data.html", d={"data":y})
     
@@ -54,6 +56,11 @@ def findMinPercent(l):
     new.pop(len(new) -1)
     new.pop(len(new) -1)
     return min(new)
+=======
+    data = read_attendance_data()
+    data.pop(0)
+    return render_template("data.html", d={"data": data})
+>>>>>>> e1ee24d3228d5ee67d6fa03f2bd0a697de8ee84b
 
 @app.route("/facts")    
 def facts():
