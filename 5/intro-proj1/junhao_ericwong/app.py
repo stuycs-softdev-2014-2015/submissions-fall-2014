@@ -2,24 +2,20 @@ from flask import Flask,render_template
 
 app = Flask(__name__)
 
-if __name__=="__main__":
-    app.debug=True
-    app.run()
-
 @app.route("/")
 def main():
     return render_template("main.html")
 
 one = open('2012draft.csv', 'r')
-info1 = open.readlines()
+info1 = one.readlines()
 one.close()
 
 two = open('2012draftexpress.csv', 'r')
-info2 = open.readlines()
+info2 = two.readlines()
 two.close()
 
 three = open('2012NBAdraft.csv', 'r')
-info3 = open.readlines()
+info3 = three.readlines()
 three.close()
 
 def formatdata(info):
@@ -51,4 +47,8 @@ def draft():
 def stat():
     return render_template("stat.html")
 
+if __name__=="__main__":
+    app.debug=True
+    app.run()
+    #app.run(host="0.0.0.0",port=8888)
 
