@@ -14,5 +14,60 @@ def read_data(filename):
 
     return data
 
+
 def sort_data(data, order):
-    pass
+    if order.split("-")[0] == "attendance":
+        sort_column = 1
+    elif order.split("-")[0] == "enrollment":
+        sort_column = 2
+    else:
+        return data
+
+    lookup_dict = {entry[sort_column]: data.index(entry) for entry in data}
+    sorted_keys = sorted(lookup_dict.keys())
+
+    if order.split("-")[1] == "desc":
+        sorted_keys.reverse()
+
+    return [data[lookup_dict[key]] for key in sorted_keys]
+
+
+def find_facts(data):
+    return {'max': findMax(data), 'min': findMin(data),
+            'max_percent': findMaxPercent(data),
+            'min_percent': findMinPercent(data)}
+
+
+def findMax(l):
+    new = []
+    for i in l:
+        new.append(int(i[2]))
+    new.pop(len(new) - 1)
+    return max(new)
+
+
+def findMin(l):
+    new = []
+    for i in l:
+        new.append(int(i[2]))
+    new.pop(len(new) - 1)
+    new.pop(len(new) - 1)
+    return min(new)
+
+
+def findMaxPercent(l):
+    new = []
+    for i in l:
+        new.append(i[1])
+    new.pop(len(new) - 1)
+    new.pop(len(new) - 1)
+    return max(new)
+
+
+def findMinPercent(l):
+    new = []
+    for i in l:
+        new.append(i[1])
+    new.pop(len(new) - 1)
+    new.pop(len(new) - 1)
+    return min(new)
