@@ -4,12 +4,40 @@
 <meta http-equiv="content-type" content="text/html;
 charset=ISO-8859-1">
 <title>Greenhouse Gases Data</title>
+<style>
+h1 {
+    text-align:center;
+    color:#99ff99;
+}
+table {
+    margin-left:auto;
+    margin-right:auto
+}
+th {
+    color:#99ff99;
+}
+td {
+  text-align: center  
+}
+.first {
+    background-color:LightSkyBlue
+}
+.second {
+    background-color:SpringGreen
+}
+</style>
 </head>
 
-<body>
+<body background="http://all-hdwallpapers.com/wallpapers/background-textures-fa_textures.Jpg">
+    <h1>Greenhouse Gases</h1>
     <table>
-        {% for row in data %}
         <tr>
+            <th>Country</th>
+            <th>{{ restriction }}</th>
+            <th>Year</th>
+        </tr>
+        {% for row in data %}
+        <tr class="{{ loop.cycle('first', 'second') }}">
             {% for cell in row %}
             <td>{{ cell }}</td>
             {% endfor %}

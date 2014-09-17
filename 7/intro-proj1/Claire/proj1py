@@ -1,0 +1,19 @@
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def welcome():
+    return "welcome to my website!"
+
+@app.route("/stuff")
+def stuff():
+    import random
+    a = random.randrange(0,25)
+    b = random.randrange(0,6)
+    c = ["Claire", "Leslie", "Zamansky", "Coby", "Aida", "Kyler"]
+    return render_template("stuff.html",
+                           num=num,
+                           name=c[b])
+
+if __name__ == '__main__':
+    app.run()
