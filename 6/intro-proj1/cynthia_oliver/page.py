@@ -13,7 +13,6 @@ def htmlify(s):
     
     return x
 
-
 def getStats(filename):
     x = open(filename)
     y = x.readlines()
@@ -61,22 +60,24 @@ def pythtable(csvfile):
         i += 1
     p += "</table>"
     return p
-
 x = "NBAstats.csv"
 
-
+@app.route("/source")
+def source():
+    return render_template("source.html")
 
 @app.route("/project")
 def help():
     return htmlify(pythtable(x))
-	#return render_template("NBAstats.csv")
 
-
+@app.route("/analysis")
+def analysis():
+    return render_template("analysis.html")
 
 @app.route("/home")
 @app.route("/")
 def home():
-    return "<h1>This is the home page</h1>"
+    return render_template("home.html")
 if __name__=="__main__":
     app.debug=True
     app.run()
