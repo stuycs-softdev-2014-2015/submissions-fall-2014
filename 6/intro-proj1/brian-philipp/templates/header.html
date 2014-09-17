@@ -1,0 +1,9 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <title>{{ pageTitle }}</title>
+      <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+      <link href='http://fonts.googleapis.com/css?family=Droid+Serif:700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="{{'countriesPlayers' if countriesPlayers }}">
