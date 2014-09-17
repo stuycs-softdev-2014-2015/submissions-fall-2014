@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-form = {};
 
 @app.route('/')
 def home():
@@ -10,7 +9,6 @@ def home():
 @app.route("/data/", methods=['POST'])
 def data():
     str = ''
-    form = request.form
     setup()
     rundata()
     return "UH"
@@ -116,7 +114,7 @@ def sorter():
 
     print duplicates
     try:
-        isyears = form['isyears'].value
+        isyears = request.form['isyears']
     except:
         isyears = 'no' #SWITCH BACK TO NO
 

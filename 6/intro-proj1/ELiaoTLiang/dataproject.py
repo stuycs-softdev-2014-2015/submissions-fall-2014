@@ -21,9 +21,9 @@ if 'order' not in form:
 if 'direction' not in form:
     form['direction'] = 'up'
         
-##assigns interval, default=25
+##assigns interval, default=50
 if 'interval' not in form:
-    form['interval'] = 25
+    form['interval'] = 50
 
 ##changes ordering, order will be a string
 def order(column, direction):
@@ -75,9 +75,9 @@ def cutTable(pageNum, interval):
             table+="</tr>"
         table+="</table>"
         if int(form['pageNum']) > 0 and 'analysis' not in form:
-            printedString+= '<a href="analysis.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
+            printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         elif int(form['pageNum']) > 0 and 'analysis' in form:
-            printedString+= '<a href="analysis.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
+            printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         printedString+= '<table border="1">'
         printedString+= "<tr><td bgcolor='white'>Rank</td><td bgcolor='white'>Nation</td><td bgcolor='white'>Player Name</td>"
         printedString+= "<td bgcolor='white'>Accuracy</td><td bgcolor='white'>Play Count</td><td bgcolor='white'>Performance Points</td>"
@@ -87,9 +87,9 @@ def cutTable(pageNum, interval):
         x = blah.pop(0)
         currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
         if int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' not in form:
-            x= '<br><a href="analysis.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
+            x= '<br><a href="dataproject.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
         elif int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' in form:
-            x= '<br><a href="analysis.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
+            x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
         else:
             x=""
         return printedString+"<tr>".join(currentPage)+"</table>"+x
@@ -103,9 +103,9 @@ def cutTable(pageNum, interval):
             table+="</tr>"
         table+="</table>"
         if int(form['pageNum']) > 0 and 'analysis' not in form:
-            printedString+= '<a href="analysis.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
+            printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         elif int(form['pageNum']) > 0 and 'analysis' in form:
-            printedString+= '<a href="analysis.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
+            printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         printedString+= '<table border="1">'
         printedString+= "<tr><td bgcolor='white'>Rank</td><td bgcolor='white'>Nation</td><td bgcolor='white'>Player Name</td>"
         printedString+= "<td bgcolor='white'>Accuracy</td><td bgcolor='white'>Play Count</td><td bgcolor='white'>Performance Points</td>"
@@ -115,9 +115,9 @@ def cutTable(pageNum, interval):
         x = blah.pop(0)
         currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
         if int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' not in form:
-            x= '<br><a href="analysis.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
+            x= '<br><a href="dataproject.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
         elif int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' in form:
-            x= '<br><a href="analysis.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
+            x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
         else:
             x=""
         return printedString +"<tr>".join(currentPage)+"</table>"+x
@@ -139,13 +139,13 @@ if 'pageNum' not in form:
 if form['order']=="Performance Points" and 'analysis' not in form and 'intermit' not in form and 'analyze' not in form:
     tablestring+= cutTable(int(form['pageNum']),int(form['interval']))
     tablestring+= '<br><br>'
-    tablestring+= '<form name="analysis" action="analysis.py" method="get">'
+    tablestring+= '<form name="analysis" action="dataproject.py" method="get">'
     tablestring+= '<input type="submit" name="analysis" value="Continue to Analysis"></form>'
 ##if page state in ANALYSIS, print CUT table
 if 'analysis' in form and 'intermit' not in form and 'analyze' not in form:
     ##selects intervals
     tablestring+= '<center><table border="2"><tr><td height="300" width="705" bgcolor="white"><center>Results per page:'
-    tablestring+= '<form name="analysis" action="analysis.py" method="get">'
+    tablestring+= '<form name="analysis" action="dataproject.py" method="get">'
     tablestring+= '<select name="interval" onchange="this.form.submit()">'
     tablestring+= '<option value="' + str(form['interval']) + '" selected></option>'
     tablestring+= '<option value="5">5</option>'
@@ -170,13 +170,13 @@ if 'analysis' in form and 'intermit' not in form and 'analyze' not in form:
     tablestring+= '<h1><center><u>Analysis</u></h1><br><br>'
     tablestring+= cutTable(int(form['pageNum']),int(form['interval']))
     tablestring+= '<br><br><br>'
-    tablestring+= '<font size="7"><a href="analysis.py">Back to intro</a></font>'
+    tablestring+= '<font size="7"><a href="dataproject.py">Back to intro</a></font>'
     tablestring+= '<br><br><br>'
-    tablestring+= '<form name="analyzing" action="analysis.py" method="get">'
+    tablestring+= '<form name="analyzing" action="dataproject.py" method="get">'
     tablestring+= '<input type="submit" value="View #thestruggle of this project" name="analyze"></form>'
 if 'intermit' in form and 'pageNum' in form and 'direction' in form and 'order' in form:
     tablestring+='<head><script type="text/javascript">'
-    tablestring+='function delayedRedirect(){window.location = "analysis.py?analysis=True&pageNum=0' +'&order=' + str(form['order'])+ '&direction=' + str(form['direction1']) + '&interval=' + str(form['interval']) +'"}</script></head>'
+    tablestring+='function delayedRedirect(){window.location = "dataproject.py?analysis=True&pageNum=0' +'&order=' + str(form['order'])+ '&direction=' + str(form['direction1']) + '&interval=' + str(form['interval']) +'"}</script></head>'
     tablestring+='<body onLoad="setTimeout(\'delayedRedirect()\', 3000)"><br>'
     tablestring+='Refreshing...'
 
