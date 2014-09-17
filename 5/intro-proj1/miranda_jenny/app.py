@@ -115,8 +115,6 @@ for x in basicdata:
     btable+='</tr>'
 btable+='</table>'
 
-f=open("html.txt")
-html=f.readlines()
 
 
 @app.route("/")
