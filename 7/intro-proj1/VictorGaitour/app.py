@@ -24,4 +24,3 @@ if __name__=="__main__":
     app.debug = True
     # call the run method
     app.run()
-    
