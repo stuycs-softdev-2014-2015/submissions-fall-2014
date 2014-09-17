@@ -1,11 +1,14 @@
 <style>
 
-h1 { border-style: dashed;
+h3 { border-style: dashed;
 	border-color:red;}
+tr {background-color:yellow;
+	color:blue;}
+tr:hover {background-color:lime;}
+h2 {color:teal;}
+p {color:green;}
 
 </style>
-
-<p>Kyler Chase and Mark Norwich, Period 1</p>
 
 <center><h1>Crime in the United States: 1990-2009</h1></center>
 <h2>Are We Moving in the Right Direction?</h2>
@@ -13,6 +16,12 @@ h1 { border-style: dashed;
 <hr>
 <p>*note that rates are measured in accounts per 100,000 inhabitants</p>
 <h2>Data from the FBI Database</h2>
+
+{% if name %}
+<h3>These crimes were all comitted by {{name}}</h3>
+{% else %}
+<h3>We don't know the name of the person who commited these crimes because they did not write it in</h3>
+{% endif %}
 
 <table border="2">
 <tr><td>
