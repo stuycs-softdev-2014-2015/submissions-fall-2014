@@ -39,5 +39,8 @@ def analysis():
 	
 	return render_template("analysis.html", s = s)
 
+@app.route("/compare")
+def compare():
+	return render_template("compare.html")
 if __name__ == '__main__':
     app.run(debug = True)
