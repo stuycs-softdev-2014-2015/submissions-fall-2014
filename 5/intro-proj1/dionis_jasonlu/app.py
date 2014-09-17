@@ -23,10 +23,10 @@ def data():
     return render_template("Data.html")
 
 @app.route("/home")
-@app.route("/index")
+@app.route("/Index")
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("Index.html")
 
 if __name__=="__main__":
     app.debug=True
