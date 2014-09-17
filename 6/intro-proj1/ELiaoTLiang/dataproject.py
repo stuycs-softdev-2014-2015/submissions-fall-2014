@@ -132,30 +132,6 @@ def home():
 
 tablestring = ""
 ##all tablecode goes under here
-if 'analysis' not in form and 'intermit' not in form and 'analyze' not in form:
-    tablestring+= """DATASET: Osu Rankings<br>
-    <br>
-    DATA SOURCE: <a href='http://osu.ppy.sh/p/pp' target="_blank">Can be found here. Will not destroy your current window.</a><br>
-    <br>
-    Chosen because...<br>
-    Avid Osu player. Somewhat competitive, I'm 10x better than the avg player<br>
-    while being 10000x worse than the ranked players.<br>
-    <br>
-    About Osu:<br>
-    Osu's a rhythm game based on beats in a song. Basically, hit all the circles,<br>
-    and slide wherever needed. The mouse is used for Osu on the<br>
-    computer, while tapping is used on mobile platforms, e.g. Osu!droid. All games<br>
-    that the Japanese invent are challenging on their hardest levels, hence my<br>
-    somewhat love for these games.<br>
-    <br>
-    Here's a video, to clarify what Osu is.<br>
-    It's just one of the many insane beatmaps. <br>
-    <object width="420" height="315"><param name="movie" value="http://www.youtube.com/v/JkUBPCvt_5s?hl=en_US&amp;version=3"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/JkUBPCvt_5s?hl=en_US&amp;version=3" type="application/x-shockwave-flash" width="420" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
-    <br>
-
-    !!Also, these rankings were used on 4/26/2013. All current rankings may be<br>
-    different as they are updated in realtime.<br>
-    """
 if 'pageNum' not in form:
     form['pageNum'] = 0
 ##basic landing table
@@ -264,11 +240,9 @@ if 'analyze' in form:
     tablestring+='</ul><br><br>'
 
 
-
 @app.route("/table")
 def makeTablePage():
     return render_template("table.html",tablestr=tablestring)
-
 if __name__ == "__main__":
     app.debug=True
     app.run()
