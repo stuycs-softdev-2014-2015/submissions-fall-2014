@@ -109,6 +109,7 @@ def conversion (): #converts the csv file into html code
             ans += y[i].replace ("\n", "</td </tr> <tr> <td>\r") 
         else: 
             ans += y[i].replace ("\n", "</td> </tr> \r</table> </div>  </body> </html> ")
+            ans = ans.replace(",","</td><td>")
             ans = ans.replace (";", " ")  # for some reason, google docs/libre office; one of them added ";" instead of a blank white space...
                                       #so to fix the problem, we added this line to replace the semi-colon with an actual space
         i += 1
