@@ -1,7 +1,17 @@
 <!doctype html>
-<title>About My Project</title>
-{% if name %}
-  <h1>Im glad you'd like to learn more about {{ name }}!</h1>
+<title>Background Information</title>
+<button><a href="/home">Home</a></button>
+<button><a href="/data">Raw Data</a></button>
+<button><a href="/analysis">Summary of Analysis</a></button>
+<button><a href="/conclusion">Conclusion</a></button>
+
+{% if last and first %}
+  <h1>Im glad you'd like to learn more about {{ first }} {{ last }}!</h1>
+  <a href="https://www.google.com/#q={{first}}+{{last}}">Click here to launch a Google search.</a>
 {% else %}
-  <h3> Background: </h3>We chose basketball because the playoffs of the NBA just started. <br>We thought it would be interesting to compare the best players to <br>ever play the sport with each other. At first we were comparing the <br>Player Efficiency Rating and the regular stat line of the players, <br>but we realized that there would be no way to compare them. So we <br>just tried to determine who was the greatest player of all time <br>(G.O.A.T).
+  <h3> Background Information: </h3>We chose to analyze basketball players because we thought it <br> would be interesting to compare the best players to <br>ever play the sport with each other. At first we were comparing the <br>Player Efficiency Rating and the regular stat line of the players, <br>but we realized that there would be no way to compare them. So we <br>just tried to determine who was the greatest player of all time (G.O.A.T). <br>
+
+  <h4> If you'd like to learn more about a certain basketball player, please type their name in the url using the format: localhost:4242/about/playerfirstname/playerlastname </h4>
+
+
 {% endif %}
