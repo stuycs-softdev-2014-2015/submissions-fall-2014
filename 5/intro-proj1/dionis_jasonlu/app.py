@@ -6,16 +6,8 @@ from flask import Flask,render_template
 # the constructor
 
 app = Flask(__name__)
-
-@app.route("/help")
-def help():
-    return render_template("help.html")
-
-@app.route("/Source")
-def about():
-    return render_template("Source.html")
-
 @app.route("/Analysis")
+@app.route("/Analysis", methods = ['Post'])
 def Analysis():
     return render_template("Analysis.html")
 @app.route("/Data")
@@ -24,6 +16,7 @@ def data():
     return render_template("Data.html")
 
 @app.route("/home")
+@app.route("/home", methods = ['Post'])
 @app.route("/Index")
 @app.route("/")
 def home():
