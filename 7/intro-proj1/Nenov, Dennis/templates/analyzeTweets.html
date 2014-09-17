@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TweetFeel V2.0</title>
+    <!-- Include the bootstrap stylesheet-->
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <style>
+      body
+      {
+        background-image:url('static/backgroundimage.gif');
+        
+      }
+    </style>
+  </head>
+ 
+  <body>
+    <div class="container">
+
+      <div class="row-fluid" align="center"> 
+        <div class="span12">
+          <h1> TweetFeel V2.0 </h1>
+        </div>
+      </div>
+
+      <br>
+      <div class="row-fluid">
+      <div class="span12">
+      <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Tweet Text</th>
+          <th>Sentiment</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for tweet in tweets %}
+        <tr>
+        <td> {{ tweet }} </td>
+        <td> {{ sentiment[loop.index-1] }} </td>
+
+      </tr>
+      {% endfor %}
+
+      </tbody>
+      </table>
+      </div>
+      </div>
+      <br>
+
+
+      <!-- The Two Input Forms -->
+      <div class="row-fluid">
+        <div class="span5">
+          <form class="well form-search" action="/analyzeTweet" method="post">
+            <p> 
+            Enter up to 140 characters of text you want to analyze! TweetFeel will analyze the sentiment of that tweet.
+           </p>
+            <input name="tweet" type="text" class="input-medium search-query">
+            <button type="submit" class="btn btn-primary">Analyze!</button>
+          </form>
+        </div>
+
+        <div class="span2" align="center">
+          <h3>OR</h3>
+        </div>
+
+        <div class="span5">
+          <form class="well form-search" action="/analyzeTopic" method="post">
+            <p>
+            Enter a trending topic you want to analyze! TweetFeel will get live tweets and analyze their sentiment.
+            </p>
+            <input name="topic" type="text" class="input-medium search-query">
+            <button type="submit" class="btn btn-primary">Analyze!</button>
+          </form>
+        </div>
+      </div>
+
+        <div class="navbar navbar-fixed-bottom" align="center">
+        <p> Many thanks to my instructor Mr. Griffith. Project made by Dennis Nenov in period 4. </p>
+      </div>
+  </div>
+      
+      
+    <!-- JavaScript placed at the end of the document so the pages load faster -->
+    <!-- Include the jQuery library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+ 
+    <!-- Incorporate the Bootstrap Javascript plugins -->
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
