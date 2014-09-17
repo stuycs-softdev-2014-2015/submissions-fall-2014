@@ -3,7 +3,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 #global variable - holds string content
-htmlStr ="<table border = '1'> <tr> <td> \r"
+htmlStr ="<table border = '1' align='center'> <tr> <td> \r"
 filecsv = open ("data.csv", "r") # the data set with teh debate statistics 
 y = filecsv.readlines () # every line put into the a list of strings
 filecsv.close ()
@@ -82,7 +82,7 @@ SchoolName = SchoolName[:SchoolName.find(",")] # global variable that takes the 
 
 @app.route("/")
 def home ():
-    return render_template("test.html")
+    return render_template("home.html")
 
 
 @app.route("/analysis")
@@ -113,13 +113,10 @@ def conversion (): #converts the csv file into html code
             ans = ans.replace (";", " ")  # for some reason, google docs/libre office; one of them added ";" instead of a blank white space...
                                       #so to fix the problem, we added this line to replace the semi-colon with an actual space
         i += 1
-        
-
-    
-
-    return render_template("table.html",
+    return render_template("table.html", 
                            htmlStr=htmlStr,
                            ans=ans)
+
 
 if __name__=="__main__":
     app.debug=True
