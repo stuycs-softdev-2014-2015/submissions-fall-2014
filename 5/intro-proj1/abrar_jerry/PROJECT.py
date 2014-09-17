@@ -9,8 +9,6 @@ def data (filename):
     s= "".join(s)
     s = s.split("\n")
     datalist = s[:len(s)-1]
-    f.close()
-    return datalist
 
 def makeTable (x):
     print "<center>"
@@ -240,3 +238,5 @@ print "</body>"
 
 print "</html>"
               
+    f.close()
+    return datalist
