@@ -11,7 +11,7 @@ def home():
 def data():
     form = request.form
     #setup()
-    #run()
+    #rundata()
     return "HUUM"
 
 def setup():
@@ -31,7 +31,7 @@ def setup():
     #print countries(country2)
     data1 = countries(country1)[::-1] #defaults to reverse chronological order
     if not duplicates: 
-        data2 = countries(country2)[::-1]    
+        data2 = countries(country2)[::-1] 
     locus = 2
     try:
         restriction = form['typeofemission'].value
@@ -47,7 +47,7 @@ def countries(country):
         if element[0] == country:
             #print element
             tempdata.append(element)
-        return tempdata
+    return tempdata
  
 def restrict(ilist):
     global restriction

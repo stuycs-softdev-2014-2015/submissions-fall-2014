@@ -5,9 +5,15 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return render_template("data.html",
-            headers=getTableHeaders("static/JRSmith.csv"),
-            data=getTableItems("static/JRSmith.csv"),
-            csv_file_name="JRSmith.csv")
+            page_title="JR Smith's and Nate Robinson's Season per game records",
+            p1_section_header="JR Smith's per game stats",
+            p1_headers=getTableHeaders("static/JRSmith.csv"),
+            p1_data=getTableItems("static/JRSmith.csv"),
+            p1_csv_file_name="JRSmith.csv",
+            p2_section_header="Nate Robinson's per game stats",
+            p2_headers=getTableHeaders("static/NateRobinson.csv"),
+            p2_data=getTableItems("static/NateRobinson.csv"),
+            p2_csv_file_name="NateRobinson.csv")
 
 
 def getTableHeaders(fileName):
