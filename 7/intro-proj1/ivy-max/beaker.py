@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
+import re
 
 app = Flask(__name__)
-form = {};
 
 @app.route('/')
 def home():
@@ -10,52 +10,57 @@ def home():
 @app.route("/data/", methods=['POST'])
 def data():
     form = request.form
-    #setup()
-    #run()
-    return "HUUM"
+    print form
+    setup(form)
+    #rundata() #gives an error
+    return "Submitted"
 
-def setup():
+def setup(form):
+    data = []
     f=open('data.csv')
     raw_data = f.read().split('\n')
-    data = []
     for x in raw_data:
         data.append(x.split(',')) 
         
-    country1 = form['country1'].value
-    country2 = form['country2'].value
+    country1 = form.get('country1')
+    country2 = form.get('country2')
+    #print country1
+    #print country2
     
     duplicates = False
     if country1 == country2:
         duplicates = True
         headers = {'Total fossil fuels':2, 'Solid fuel consumption':3, 'Liquid fuel consumption':4, 'Gas fuel consumption':5, 'Cement production':6, 'Gas flaring':7,'Per capita CO2':8, 'Bunker fuels':9} #Call headers[header] to get position in data
     #print countries(country2)
-    data1 = countries(country1)[::-1] #defaults to reverse chronological order
+    data1 = countries(country1, data)[::-1] #defaults to reverse chronological order
+    #print data1
     if not duplicates: 
-        data2 = countries(country2)[::-1]    
+        data2 = countries(country2, data)[::-1]
+        #print data2
     locus = 2
     try:
-        restriction = form['typeofemission'].value
+        restriction = form.get('typeofemission')
         locus = headers[restriction]
     except: #Sort by year.
         restriction = 'Total fossil fuels'
         #locus = 1 #default to Total fossil fuels
+    print "bloop"
 
-
-def countries(country):
+def countries(country, data):
     tempdata = []
     for element in data:
         if element[0] == country:
             #print element
             tempdata.append(element)
-        return tempdata
+    return tempdata
  
-def restrict(ilist):
+def restrict(ilist, form):
     global restriction
     global locus
     new = []
     yearholder = ''
     try:
-        years = form['range'].value
+        years = form.get('range')
         years = re.sub(r'[^0-9\-]', '', years).split('-')
         if len(years) != 2:
             raise Exception("I don't want to deal with people typing this in wrong, just shortcut to the except.")
@@ -76,21 +81,27 @@ def restrict(ilist):
             minilist = [line[0], line[locus], line[1]]
             new.append(minilist)
     return new
-    #print restrict(data1)
-    country1d = restrict(data1)
-    if not duplicates: country2d = restrict(data2)
-    if not duplicates: 
-        finalcdata = country1d + country2d
-    else: finalcdata = country1d
-        
-    try:
-        isyears = form['isyears'].value
-    except:
-        isyears = 'no' #SWITCH BACK TO NO
-
+    
 def sorter():
     global finalcdata
     final = []
+    print "what" 
+    #print restrict(data1)
+    #restrict isn't working properly
+    country1d = restrict(data1, form)
+    print "restricted"
+    if not duplicates: 
+        country2d = restrict(data2, form) 
+        finalcdata = country1d + country2d
+    else: 
+        finalcdata = country1d
+    print "alwkgjw"
+
+    try:
+        isyears = form.get('isyears')
+    except:
+        isyears = 'no' #SWITCH BACK TO NO
+
     if isyears == 'yes':
         final = sorted(finalcdata, key=lambda x: float(x[2]))[::-1] #both countries, year only!
     if isyears == 'no':
