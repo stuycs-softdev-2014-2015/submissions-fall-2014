@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from data import read_attendance_data
+from data import read_attendance_data, sort_data
 
 app = Flask(__name__)
 
@@ -68,6 +68,16 @@ def facts():
     a = findMinPercent(l)
     return render_template("facts.html",x=x, y=y,z=z, a=a)
         
+
+@app.route("/data/<order>")
+def data_order(order="attendance-desc"):
+    data = read_attendance_data()
+    data.pop(0)
+
+    if order:
+        sort_data(data, order)
+
+    return render_template("data.html", d={"data": data})
 
 if __name__ == "__main__":
     app.debug = True
