@@ -18,6 +18,10 @@ def planetpage(stats = None):
     return str(getAverage(grid, 1))
     #return str(allPlanetData)
 
+@app.route('/analysis')
+def analysis():
+    return '<h1>analysis</h1>'
+
 def dictData(grid):
     data = {}
     for row in grid:
