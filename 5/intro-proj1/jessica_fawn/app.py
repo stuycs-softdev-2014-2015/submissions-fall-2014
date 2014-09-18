@@ -3,7 +3,11 @@ from flask import Flask, render_template
 app = Flask (__name__)
 
 @app.route ("/")
-def home ():
+def home () :
+    return render_template ("index.html")
+
+@app.route ("/table")
+def table ():
     s = "<table>"
     data = open ("Lincoln_Square_BID_Business_List.csv", "r")
     t = data.readline().split(',')
@@ -18,8 +22,8 @@ def home ():
         s = s + "</tr>"
     data.close()
     s = s + "</table>"
-    replacer("home.html", s)
-    return render_template("home.html")
+    replacer("table.html", s)
+    return render_template("table.html")
 
 @app.route("/about")
 def about():

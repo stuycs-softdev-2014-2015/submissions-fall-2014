@@ -11,3 +11,5 @@ and inefficient, and especially not in line with what we were trying to acheive 
 
 We would love some help as we feel fairly lost, and are not entirely sure how to proceed. 
 
+Edit 9/17:
+I went back to my code from yesterday and “fixed” it by circumventing the check boxes -Adam

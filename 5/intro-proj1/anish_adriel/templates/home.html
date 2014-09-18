@@ -1,14 +1,51 @@
-<body background="background.png">
-<h1><center>An Intense Examination of Pokemon Statistics Based on Type</center></h1>
-<h2> By Adriel Mendoza and Anish Malhotra</h2>
+<head>
+    <style>
+    body {
+      background-image: url("http://images3.alphacoders.com/273/273289.jpg");
+      background-size: contain;
+    }
+    div.transbox {
+      margin: 200px 400px;
+      background-color: #ffffff;
+      border: 1px solid black;
+      opacity: 0.25;
+      filter: alpha(opacity=60);
+    }
+    div.transbox p {
+      margin: 30px 40px;
+      font-weight: bold;
+      color: #003366;
+    }   
+    div.transbox h1 {
+      margin: 30px 40px;
+      font-weight: bold;
+      color: #003366;
+    }   
+    div.transbox h2 {
+      margin: 30px 40px;
+      font-weight: bold;
+      color: #003366;
+    }   
+    
+  </style>
+</head>
+
+<body>
+<div class = "transbox">
+<center><h1>An Intense Examination of Pokemon Statistics Based on Type</h1>
+<br>
+<br>
+<h2 color=black> By Adriel Mendoza and Anish Malhotra</h2>
 <a href="/about">About</a> 
 <br>
 <br>
-Which statistics would you like to view?
+<p>Which statistics would you like to view?</p>
 <br>
+</center>
 
-<form>
-<select>
+<center>
+<form action="/result" method="POST">
+<select name="option">
   <option value="firewaterspd">Fire vs. Water (Speed)</option>
   <option value="grassgroundatk">Grass vs. Ground (Attack)</option>
   <option value="grassnormalhp">Grass vs. Normal (HP)</option>
@@ -25,3 +62,6 @@ Which statistics would you like to view?
 </select>
 <input type="submit" value="Submit">
 </form>
+</center>
+</div>
+</body>

@@ -65,12 +65,36 @@ def results():
         
         return render_template("results.html", Ba=Ba, Pi=Pi)
 
+@app.route("/rawdata")
+def rawdata():
+    f=open('data1.csv','r')
+    pitchers=f.read()
+    f.close()
+    pitchers=pitchers.split()
 
+    g=open('data2.csv','r')
+    batters=g.read()
+    g.close()
+    batters=batters.split()
+    players=[]
+    for n in range(len(batters)):
+        pitchers[n]=pitchers[n].split(',')
+        batters[n]=batters[n].split(',')
+        players.append([pitchers[n][0],batters[n][3],pitchers[n][1],pitchers[n][2],batters[n][1],batters[n][2]])
+    pi='<table border=1>'
+    i=0
+    for n in range(len(players)):
+        pi+='<tr><td>'+str(players[n][0])+'</td><td>'+str(players[n][1])+'</td><td>'+str(players[n][2])+'</td><td>'+str(players[n][3])+'</td><td>'
+        pi+=str(players[n][4])+'</td><td>'+str(players[n][5])+'</td></tr>'
+        i+=1
+    pi+='</table>'
+    q=[]
+    return render_template("rawdata.html",players=players,q=q)
 @app.route("/home")
 @app.route("/") 
 def home():
    
-    return "<h1>This is the home page</h1>"
+    return render_template("home.html")
 
 if __name__=="__main__":
     app.debug=True

@@ -1,0 +1,29 @@
+body {
+    background: #0e5603;
+    padding: 30px;
+    border: 5px solid #0e4603;
+    margin: 25px;
+    color: #ffffff;
+}
+
+a:link {
+    color: cyan;
+}
+
+a:visited {
+    color: #00CC99;
+}
+
+a:hover {
+    color: #FF00FF;
+}
+
+a:active {
+    color: #0000FF;
+}
+
+<h3> {
+    position: absolute;
+    left: 50px;
+    top: 150px;
+}

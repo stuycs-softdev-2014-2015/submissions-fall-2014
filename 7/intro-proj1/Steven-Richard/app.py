@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # app is an instance of the Flask class
 app = Flask(__name__)
@@ -65,9 +65,23 @@ def pokemovesdictionary():
 
 @app.route("/home")
 def home():
+    button = request.args.get("b",None)
+    name = request.args.get("name",None)
+    type = request.args.get("type",None)
+    isSearch = False
+    cd = pokedexreader()
+    if button == "submit" and name != None:
+        i = 0
+        while (i < len(cd)):
+            if ((type == "name" and cd[i][1] == name) or (type == "num" and int(cd[i][0]) == int(name))):
+                cd.insert(0,cd[i])
+                isSearch = True
+                i+=1
+            i+=1
     return render_template("home.html",
-                           codedata=pokedexreader(),
-                           movesdictionary = pokemovesdictionary())
+                            codedata=cd,
+                            movesdictionary = pokemovesdictionary(),
+                               isSearch = isSearch)
     
 if __name__=="__main__":
     # set the instance variable debug to True

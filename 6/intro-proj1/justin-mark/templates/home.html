@@ -1,3 +1,20 @@
 <h1>Explore Data About School Districts and Their attendance rates</h1>
 <button><a href="/data">Raw Data</a></button>
 <button><a href="/facts">Facts</a></button>
+
+<h3>View ordered data</h3>
+<select id="order-data">
+  <option value="">Pick an order</option>
+  <option value="attendance-desc">Attendance (Highest to Lowest)</option>
+  <option value="enrollment-desc">Enrollment (Highest to Lowest)</option>
+  <option value="attendance-asc">Attendance (Lowest to Highestt)</option>
+  <option value="enrollment-asc">Enrollment (Lowest to Highest) </option>
+</select>
+
+<script>
+document.getElementById("order-data").onchange = function() {
+  if (this.selectedIndex !== 0) {
+    window.location.href = document.location.href + "data/" + this.value;
+  }
+};
+</script>
