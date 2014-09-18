@@ -44,7 +44,7 @@ def threeDice():
 @app.route("/ball")
 def ball():
     answers = [ "Yes!", "No!", "Ask again later.", "If you will it!", "Maybe so!", "No, 'cause you're a bum" ]
-    numb = random.randrange(0,8)
+    numb = random.randrange(0,6)
     result = answers[numb]
     return render_template("8ball.html",
                            result=result
