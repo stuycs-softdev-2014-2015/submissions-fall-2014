@@ -1,7 +1,13 @@
 .center {
   text-align: center;
-  text-color: #FA8072;
+  text-color: red;
+  font-size: 30px;
   font-weight: bold;
+}
+
+.body { 
+  text-align: center;
+  text-color: black;
 }
 
 tr:first-child{
@@ -14,9 +20,9 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-    background-color: gray;
+    background-color: #FA8072;
 }
-.analysis {
+.data {
 	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
 	background-color:#f24537;
@@ -47,13 +53,13 @@ tr:nth-child(odd) {
 	text-align:center;
 
 }
-.analysis:hover {
+.data:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
 	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
 	background-color:#c62d1f;
 }
-.analysis:active {
+.data:active {
 	position:relative;
 	top:1px;
 }
