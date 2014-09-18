@@ -34,7 +34,7 @@ def sumSAT(table):
 
 sumSAT("2010SAT.csv")
 
-def sumSAT2(table):
+def sumSAT2(table,num=0):
     outStream=open(table,'r')
     x = outStream.readlines()
     outStream.close()
