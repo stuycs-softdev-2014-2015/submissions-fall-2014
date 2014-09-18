@@ -51,38 +51,15 @@ for y in teams:
 @Stats.route("/home")
 @Stats.route("/")
 def home():
+    return render_template("Home.html")
 
-    a = """
-    <h1> Welcome to our Baseball Salary Stats! </h1>
-    <button>Click here!!</button>
-
-
-    <table>
-    <thead>
-    <tr>
-    <th>Year</th>
-    <th>Average Salary </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>""" + stats[0][0] + """</td>
-    <td>""" + stats[0][1] + """</td>
-    <td>""" + stats[1][0] + """</td>
-    <td>""" + stats[1][1] + """</td>
-    <td>""" + stats[2][0] + """</td>
-    <td>""" + stats[2][1] + """</td>
-    <td>""" + stats[3][0] + """</td>
-    <td>""" + stats[3][1] + """</td>
-    <td>""" + stats[4][0] + """</td>   
-    <td>""" + stats[4][1] + """</td>
-    <td>""" + stats[5][0] + """</td>
-    <td>""" + stats[5][1] + """</td>
-    </tr>
-    </tbody>
-    </table>"""
-
-    return a
+@Stats.route("/salaries")
+def salaries():
+    year = stats[1][0]
+    salary = stats[1][4]
+    return render_template("Salaries.html"
+                           ,year=year
+                           ,salary=salary)
 
 if __name__=="__main__":
     Stats.debug = True
