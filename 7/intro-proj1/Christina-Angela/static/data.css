@@ -1,7 +1,13 @@
 .center {
   text-align: center;
-  text-color: #FA8072;
+  text-color: red;
   font-weight: bold;
+}
+
+body { 
+  background-image: url("/static/test.jpg");
+  text-align: center;
+  text-color: black;
 }
 
 tr:first-child{
@@ -13,8 +19,9 @@ tr:nth-child(even) {
     background-color: white;
 }
 
+
 tr:nth-child(odd) {
-    background-color: gray;
+    background-color:#FA8072 ;
 }
 .analysis {
 	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );

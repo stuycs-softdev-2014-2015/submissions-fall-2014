@@ -1,7 +1,19 @@
+.animation {
+  text-color: red;
+  animation-duration: 7s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 .center {
   text-align: center;
   text-color: #FA8072;
   font-weight: bold;
+}
+
+body {
+background-image: url("/static/test.jpg");
 }
 
 .analysis {
