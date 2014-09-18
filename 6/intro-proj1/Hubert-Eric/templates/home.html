@@ -11,10 +11,10 @@
 
    <div id="navbar">
       <div id="logo">
-         <a href="/">Exoplanet Database</a>
+         <a href="/">Exoplanets</a>
       </div>
       <ul class="navlist">
-         <li><a href="/hello">
+         <li><a href="/analysis">
             Analysis
          </a></li>
          <li><a href="#">
@@ -24,7 +24,7 @@
    </div>
    <table id="chart">
       <thead>
-	<tr><td><center>More details can be seen on separate planet pages, with 30+ variables.</center></tr> 
+	<tr><td><center>More details can be seen on separate planet pages, with 30+ variables.</center></tr>
          <tr>
             {% for tableheader in headerRow %}
             <th>{{tableheader.strip().replace("_", " ")}}</th>
