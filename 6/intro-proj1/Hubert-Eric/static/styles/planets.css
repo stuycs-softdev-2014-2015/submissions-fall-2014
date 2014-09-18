@@ -103,8 +103,7 @@ table td {
    padding: 15px;
    text-decoration: none;
    text-transform: uppercase;
-   font: 20px "Dosis";
-   font-family: arial, helvetica, sans-serif;
+   font-family: 'Open Sans', sans-serif;
    color: #92959E;
    font-color: #92959E;
 }
@@ -118,11 +117,11 @@ table td {
    width: 120px;
    font-size: 32px;
    text-align: center;
-   font-weight: bold;
+   font-weight: 600;
    padding: 4px;
    text-decoration: none;
-   font: 50px "Dosis";
-   font-family: arial, helvetica, sans-serif;
+   font-family: 'Pacifico', cursive;
+   font-style: italic;
    color: #92959E;
    font-color: #92959E;
    float:left;
