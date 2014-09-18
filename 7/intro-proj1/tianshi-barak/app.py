@@ -1,13 +1,22 @@
 from flask import Flask, render_template, request
 
 data_file = open("data.csv", "r")
-
 data_text = data_file.read();
 
 #THIS IS THE THING WE ARE USING
 data_text = [x.split(",") for x in data_text.split("\n")]
 
-#print data_text
+champList = []
+kdaList = []
+killList=[]
+deathList=[]
+assistList=[]
+for x in data_text:
+    champList.append(x[0])
+    kdaList.append(x[1])
+    killList.append(x[2])
+    deathList.append(x[3])
+    assistList.append(x[4])
 
 data_file.close();
 
@@ -16,15 +25,38 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
 def home():
-    #button = request.args.get("b",None)
-    #search1 = request.args.get("search1",None)
-    #search2 = request.args.get("search2",None)
-    #print button, search1, search2
-    #if button == None or button == "Search":
     return render_template("survey.html");
 
 @app.route("/results")
 def results():
+    button = request.args.get("b",None)
+    search1 = request.args.get("search1",None)
+    search2 = request.args.get("search2",None)
+    if button == "Search":
+        if search1 in champList and search2 in champList:
+            i = champList.index(search1)
+            j = champList.index(search2)
+            kda1 = kdaList[i]
+            kda2 = kdaList[j]
+            kill1 = killList[i]
+            kill2 = killList[j]
+            death1 = deathList[i]
+            death2 = deathList[j]
+            assist1 = assistList[i]
+            assist2 = assistList[i]
+            return render_template("comparison.html",
+                                   search1 = search1, 
+                                   search2 = search2,
+                                   kda1 = kda1,
+                                   kda2 = kda2,
+                                   kill1 = kill1,
+                                   kill2 = kill2,
+                                   death1 = death1,
+                                   death2 = death2,
+                                   assist1 = assist1,
+                                   assist2 = assist2)
+        else:
+            return render_template("/error.html")
     
     
 @app.route("/data")
