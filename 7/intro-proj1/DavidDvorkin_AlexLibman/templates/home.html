@@ -2,5 +2,31 @@
 h1 {border-style:bold;
 border-color:green;
 border-width:5px;}
-
-#a
+#a {background:green}
+tr:hover {background-color:red;}
+</style>
+<body bgcolor="Aqua">
+</body>
+More info on pokemon: 
+<form>
+  <input type="text" name="name">
+  <input type="submit" name="b" value = "Enter">
+</form>
+<table border="1" style="width:60%">
+  <tr>
+    <td><b>Name</b></td>
+    <td><b>HP</b></td>
+    <td><b>Attack</b></td>
+    <td><b>Defense</b></td>
+    <td><b>Total</b></td>
+  </tr>
+  {% for n in dataList.keys() %}
+  <tr>
+    <td>{{n.decode("utf-8")}}</td>
+    <td>{{dataList[n][0]}}</td>
+    <td>{{dataList[n][1]}}</td>
+    <td>{{dataList[n][2]}}</td>
+    <td>{{dataList[n][0] + dataList[n][1] + dataList[n][2]}}</td>
+  </tr>
+  {% endfor %}
+</table>

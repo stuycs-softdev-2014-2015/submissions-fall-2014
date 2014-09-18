@@ -1,5 +1,3 @@
-#had some trouble with my flask (although it was alrady installed). Definitely not fnished webpage! More features and prettiness to come!)Also have to incorporate the css more
-
 from flask import Flask,render_template
 
 Stats = Flask(__name__)
@@ -9,8 +7,8 @@ with open("Salaries.csv", "rb") as f:
     doc = f.read()
     data = doc.split('\r\n')
     for l in data:
-        stats.append(l.split(','))#stats is a list of lists. The inner lists are
-                                  #lists of the elements of each line in the file
+        stats.append(l.split(','))
+
 yra = {}
 
 def yravg(a, y):
@@ -25,8 +23,6 @@ def yravg(a, y):
 
 for y in range(1985, 2014):
     yravg(stats, y)
-
-#print yra
 
 teamavgdic = {}
 
@@ -51,44 +47,32 @@ for y in teams:
 @Stats.route("/home")
 @Stats.route("/")
 def home():
-
-    a = """
-    <h1> Welcome to our Baseball Salary Stats! </h1>
-    <button>Click here!!</button>
+    return render_template("Home.html")
 
 
-    <table>
-    <thead>
-    <tr>
-    <th>Year</th>
-    <th>Average Salary </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-    <td>""" + stats[0][0] + """</td>
-    <td>""" + stats[0][1] + """</td>
-    <td>""" + stats[1][0] + """</td>
-    <td>""" + stats[1][1] + """</td>
-    <td>""" + stats[2][0] + """</td>
-    <td>""" + stats[2][1] + """</td>
-    <td>""" + stats[3][0] + """</td>
-    <td>""" + stats[3][1] + """</td>
-    <td>""" + stats[4][0] + """</td>   
-    <td>""" + stats[4][1] + """</td>
-    <td>""" + stats[5][0] + """</td>
-    <td>""" + stats[5][1] + """</td>
-    </tr>
-    </tbody>
-    </table>"""
+@Stats.route("/year")
+def year():
+    dic = yra
+    tdic = teamavgdic
+    return render_template("Year.html"
+                            ,dic = dic
+                            ,tdic = tdic)
 
-    return a
+@Stats.route("/team")
+def team():
+    dic = yra
+    tdic = teamavgdic
+    return render_template("Team.html"
+                           ,dic = dic
+                           ,tdic = tdic)
+
+
 
 if __name__=="__main__":
     Stats.debug = True
     Stats.run()
 
+    
         
             
-
 

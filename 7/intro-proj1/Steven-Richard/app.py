@@ -67,21 +67,21 @@ def pokemovesdictionary():
 def home():
     button = request.args.get("b",None)
     name = request.args.get("name",None)
+    type = request.args.get("type",None)
+    isSearch = False
+    cd = pokedexreader()
     if button == "submit" and name != None:
-        cd = []
-        cd = pokedexreader()
-        for i in cd:
-            if i[1] == name:
-                a = i
-                cd.remove(i)
-                cd.insert(0,a)
-        return render_template("home.html",
-                           codedata=cd,
-                           movesdictionary = pokemovesdictionary())
-    else:
-        return render_template("home.html",
-                            codedata=pokedexreader(),
-                            movesdictionary = pokemovesdictionary())
+        i = 0
+        while (i < len(cd)):
+            if ((type == "name" and cd[i][1] == name) or (type == "num" and int(cd[i][0]) == int(name))):
+                cd.insert(0,cd[i])
+                isSearch = True
+                i+=1
+            i+=1
+    return render_template("home.html",
+                            codedata=cd,
+                            movesdictionary = pokemovesdictionary(),
+                               isSearch = isSearch)
     
 if __name__=="__main__":
     # set the instance variable debug to True
