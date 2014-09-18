@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<title>{% block title %}{% endblock %}</title>
+<style>
+
+h1, h3 {text-align:center;
+font-family: "Courier New";}
+
+body {font-family: "Courier New";}
+
+td:hover{ background: #FCF; }
+
+
+</style>
+
+<h1> Body Weight and Age!</h1>
+<h3> by Cooper Weaver and Rebecca Yuste-Golob </h3>
 
 <html>
 <body>
 <p> Below is a table showing the average body weight by age of a group of 250 men. The table clearly shows that both age and weight are numbers. <br><br>
 
 
-<table style="width:100%">
+<table style="width:500%">
   <tr>
     <td>Age</td>
     {% for age in avgs %}
