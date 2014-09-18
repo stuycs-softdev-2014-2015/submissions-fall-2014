@@ -1,21 +1,16 @@
 .center {
   text-align: center;
-  text-color: blue;
+  text-color: #FA8072;
   font-weight: bold;
 }
 
-.bold {
-    font-weight:bold;
-}
-
-
 tr:first-child{
-    text-align: center;
     font-weight:bold;
-    font-size:18px;
+    text-align: center;
 }
+
 tr:nth-child(even) {
-    background-color: blue;
+    background-color: white;
 }
 
 tr:nth-child(odd) {

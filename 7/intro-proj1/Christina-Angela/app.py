@@ -7,10 +7,8 @@ readas=stream.read()
 stream.close()
 @app.route("/")
 def home():
-    p= """
-    <html><h1> Welcome to the SAT DATA and WEBSITE </h1> </html>
-    """
-    return p
+    return render_template("home.html")
+
 @app.route("/data")
 def data():
     listlist = []
@@ -19,6 +17,7 @@ def data():
         innerlist=x.split(",")
         listlist.append(innerlist)
     return render_template("data.html", listlist=listlist)
+
 @app.route("/analysis")
 def analysis():
     Northeast=["Maine","New Hampshire", "Vermont","Massachusetts","Rhode Island","Connecticut","New York","Pennsylvania","New Jersey"]
