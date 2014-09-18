@@ -6,7 +6,7 @@
     <script type="text/javascript" src="../static/jquery.min.js"></script>
     <!--Styling-->
     <link rel="stylesheet" type="text/css" href="../static/main.css">
-    <link rel="stylesheet" type="text/css" href="../static/fontawesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans">
   </head>
   <body>
@@ -18,13 +18,17 @@
 	<li>Sadman Fahmid</li>
 	<li>Genji Noguchi</li>
 	<li><i class="fa-copyright"></i></li>
+      </ul>
     </div>
-    <table border=1>      
-      {% for itr in length %}
-      <tr>{{length}}
+    <table border=1>
+
+      {% for itr in range(1, 30) %}
+
+      <tr>
+
 	{% for row in data[num].split(',') %}
 	
-	<td> 
+	<td>
 	  {{row}}
 	</td>
 	

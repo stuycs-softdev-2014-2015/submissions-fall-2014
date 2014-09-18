@@ -11,7 +11,7 @@ def index():
     return render_template("index.html", 
                            data=data,
                            num=0,
-                           length = str(len(data)))
+                           length = len(data))
 
 
 @app.route('/info')
