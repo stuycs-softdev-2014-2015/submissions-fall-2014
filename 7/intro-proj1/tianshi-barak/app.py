@@ -23,10 +23,10 @@ def home():
     #if button == None or button == "Search":
     return render_template("survey.html");
 
-#@app.route("/results")
-#def results():
-    ##returns the results of comparison
-
+@app.route("/results")
+def results():
+    
+    
 @app.route("/data")
 def data():
     s = """
