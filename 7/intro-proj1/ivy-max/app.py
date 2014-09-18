@@ -6,16 +6,22 @@ app = Flask(__name__)
 def home():
     return render_template("carbon.html")
 
-@app.route("/data/", methods=['POST'])
+@app.route("/data", methods=['POST'])
 def data():
     str = ''
     setup()
     data = rundata()
     print "dataaaaaaa"
+    c = getCountries()
+    print c
     return render_template("data.html", 
                             data=data, 
-                            restriction=restriction)
-
+                            restriction=restriction,
+                            countries=c)
+def getCountries():
+    c = {'first':request.form['country1'],'second':request.form['country2']}
+    return c
+    
 def setup():
     global locus, duplicates
     global data, restriction, data1, data2
