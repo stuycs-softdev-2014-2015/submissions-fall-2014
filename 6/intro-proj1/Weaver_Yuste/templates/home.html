@@ -1,11 +1,22 @@
 <style>
 
-h1, h3 {text-align:center;
-font-family: "Courier New";}
+h1 {text-align:center;
+font-family: "Courier New";
+border-style:solid;
+text-shadow: 2px 2px #FF6666;}
 
 body {font-family: "Courier New";}
 
-td:hover{ background: #FCF; }
+table {
+}
+
+td:hover{ background: #FF6666; }
+
+td{ background: #FFCCCC;}
+
+h1:hover{  background: #FF6666;}
+h3:hover{ background: #FF6666;}
+p:hover{ background: #FF6666;}
 
 
 </style>
@@ -15,7 +26,7 @@ td:hover{ background: #FCF; }
 
 <html>
 <body>
-<p> Below is a table showing the average body weight by age of a group of 250 men. The table clearly shows that both age and weight are numbers. <br><br>
+<p> Below is a table showing the average body weight by age of a group of 250 men. The table clearly shows that both age and weight are numbers. </p>
 
 
 <table style="width:500%">
@@ -32,6 +43,12 @@ td:hover{ background: #FCF; }
     {% endfor %}
   </tr>
 </table>
-         
+
+<p> From this chart, we can see that the weight of men fluctuates, and has little to do with their age. </p>
+
+
+<br>
+
+
 </body>
 </html>
