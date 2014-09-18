@@ -67,13 +67,13 @@ def pokemovesdictionary():
 def home():
     button = request.args.get("b",None)
     name = request.args.get("name",None)
+    type = request.args.get("type",None)
     isSearch = False
     cd = pokedexreader()
     if button == "submit" and name != None:
         i = 0
         while (i < len(cd)):
-            if cd[i][1] == name:
-                
+            if ((type == "name" and cd[i][1] == name) or (type == "num" and int(cd[i][0]) == int(name))):
                 cd.insert(0,cd[i])
                 isSearch = True
                 i+=1

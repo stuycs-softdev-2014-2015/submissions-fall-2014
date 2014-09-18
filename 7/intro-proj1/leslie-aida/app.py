@@ -12,7 +12,7 @@ def home():
         button=request.form["search"]
         print 
         if button=="Search":
-            return render_template("results.html", lines=utils.results())
+            return render_template("results.html", lines=utils.results(), building_type= building_type)
 
 
 if __name__ == "__main__":
