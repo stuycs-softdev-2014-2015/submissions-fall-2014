@@ -23,7 +23,7 @@ def search(pokemonid):
     sdef = source[6]
     spd = source[7]
     ttl = source[8]
-    return render_template("id.html", pid=pid, name=name, atk=atk, defs=defs , satk=satk , sdef=sdef , spd=spd , ttl=ttl)
+    return render_template("id.html", pid=pid, name=name, hp = hp, atk=atk, defs=defs , satk=satk , sdef=sdef , spd=spd , ttl=ttl)
 
 if __name__ == "__main__":
     app.run(debug=True)

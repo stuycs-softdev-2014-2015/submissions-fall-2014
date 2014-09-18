@@ -73,3 +73,7 @@ td:nth-child(even):hover {
     border-radius: 10px;
     background-color: rgba(48,221,255,0.2);
 }
+a a:link  {color:#FFFFFF; background-color:transparent}
+a:visited {color:#FF00FF; background-color:transparent}
+a:hover   {color:#00CCFF; background-color:transparent}
+a:active  {color:#ff0000; background-color:transparent}

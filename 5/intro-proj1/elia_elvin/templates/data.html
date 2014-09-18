@@ -2,7 +2,7 @@
 	<body>
 		<h1>Data Page</h1>
 
-		<p> {% description %} </p>
+		<p> {{ description }} </p>
 
 		<table>
 		{% for type in table_package['types'] %}
@@ -12,7 +12,7 @@
 		{% for row in table_package['data'] %}
 		<tr> 
 		{% for data in row %} 
-		<td> {% data %} </td>
+		<td> {{ data }} </td>
 		{% endfor %}
 		</tr>
 		{% endfor %}
