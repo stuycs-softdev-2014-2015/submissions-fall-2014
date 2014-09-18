@@ -66,8 +66,9 @@ background-color: #40FF00;
 <body>
 <h1>The Great (Outdated) Pokedex</h1>
 
-<form>
+<form method="GET">
 <input type="text" name="name"><br>
+<input type="radio" name="type" value="name" checked>Name<input type="radio" name="type" value="num">Number<br>
 <input type="submit" value="submit" name="b">
 </form>
 
@@ -81,7 +82,7 @@ background-color: #40FF00;
 <br><br>
 
   <table>
-  <tr id = "darkm"><td width = 28px>#</td><td width = 200px>NAME</td><td width = 30px>HP</td><td>ATK</td><td>DEF</td><td width = 45px>SP. ATK</td><td width = 47px>SP. DEF</td><td>SPEED</td><td width = 923px>MOVES</td></tr>
+  <tr id = "darkm"><td width = 2.35%>#</td><td width = 11.2%>NAME</td><td width = 1.85%>HP</td><td width = 1.85%>ATK</td><td width = 1.85%>DEF</td><td width = 1.85%>SP. ATK</td><td width = 1.85%>SP. DEF</td><td>SPEED</td><td width = 69%>MOVES</td></tr>
   <tr id = "dark"><td>#</td><td>NAME</td><td>HP</td><td>ATK</td><td>DEF</td><td>SP. ATK</td><td>SP. DEF</td><td>SPEED</td><td>MOVES</td></tr>
   {% set n = 1 - isSearch %}
   {% set stupiddeoxys = 0 %}

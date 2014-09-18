@@ -4,6 +4,7 @@
 <style>
 
 ul {
+  background-color:#FFFFFF;
   list-style-type:none;
   margin:0;
   padding:0;
@@ -65,7 +66,7 @@ background-color: #40FF00;
 <body>
 <h1>The Great (Outdated) Pokedex</h1>
 
-<form>
+<form method="GET">
 <input type="text" name="name"><br>
 <input type="submit" value="submit" name="b">
 </form>
@@ -75,13 +76,14 @@ background-color: #40FF00;
   <li><a href="#152">Johto</a></li>
   <li><a href="#252">Hoenn</a></li>
   <li><a href="#387">Sinnoh</a></li>
+  <li><a href="#619">Unova</a></li> {# Victini is 494. Cheesed this so hard #}
 </ul>
 <br><br>
 
   <table>
   <tr id = "darkm"><td width = 28px>#</td><td width = 200px>NAME</td><td width = 30px>HP</td><td>ATK</td><td>DEF</td><td width = 45px>SP. ATK</td><td width = 47px>SP. DEF</td><td>SPEED</td><td width = 923px>MOVES</td></tr>
   <tr id = "dark"><td>#</td><td>NAME</td><td>HP</td><td>ATK</td><td>DEF</td><td>SP. ATK</td><td>SP. DEF</td><td>SPEED</td><td>MOVES</td></tr>
-  {% set n = 1 %}
+  {% set n = 1 - isSearch %}
   {% set stupiddeoxys = 0 %}
   {% set b = True %}
   {% for x in codedata %}

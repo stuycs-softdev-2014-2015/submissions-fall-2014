@@ -11,18 +11,30 @@
 <br> <br>
 <table align="center"> 
 
+
+
 {% for line in lines%}
 	{%if lines.index(line) == 0%}
 		<tr style="font-size:18px; font-weight: bol; background-color:#CCFFFF">
-	{%else%}
-		<tr>
-	{%endif%}
-	{% for cell in line.split(',') %}
-		<td> {{cell}} </td>
-	{% endfor %}
+		{% for cell in line.split(',') %}
+			<td> {{cell}} </td>
+		{% endfor %}
+		</tr>
 
-	</tr>
-{%endfor%}
+	{%else%}
+		{%if line.split(',').pop(1).lower() == building_type%}
+			<tr>
+	
+			{% for cell in line.split(',') %}
+				<td> {{cell}} </td>
+			{% endfor %}
+			</tr>
+		{%endif%}
+
+	{%endif%}
+
+
+	{% endfor %}
 
 </table>
 
