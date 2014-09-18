@@ -14,18 +14,14 @@ def login():
         global name
         name = request.form['name']
         password = request.form['password']
-        if button=="cancel":
-            return render_template("login.html")
-        else:
-            if authenticate.authentic(name):
-                return render_template("data.html", name = name)
-            return render_template("login.html")
+        if button=="Login":
+            if authenticate.authentic(name, password):
+                return render_template("data.html", name = name, dataList = dataHelper())
+            else:
+                return render_template("login.html")
 
 
-
-
-@app.route("/data")
-def data():
+def dataHelper():
     f = open('data/data.csv', 'r')
     dataList = [];
     line = f.readline()
@@ -38,13 +34,16 @@ def data():
         dataList.append(tmpList)
         line = f.readline()
     f.close()
-    return render_template("data.html", dataList = dataList, name = name)
+    return dataList
+
+
+@app.route("/data")
+def data():
+    return render_template("data.html", dataList = dataHelper(), name = name)
 
 
 
-
-@app.route("/analysis")
-def analysis():
+def analysisHelper():
     t = open('data/data2.csv', 'r')
     analysisList = [];
     line = t.readline()
@@ -57,7 +56,11 @@ def analysis():
         analysisList.append(tmpList)
         line = t.readline()
     t.close()
-    return render_template("analysis.html", analysisList = analysisList)
+    return analysisList
+
+@app.route("/analysis")
+def analysis():
+    return render_template("analysis.html", analysisList = analysisHelper())
 
 
 if __name__ == "__main__":
