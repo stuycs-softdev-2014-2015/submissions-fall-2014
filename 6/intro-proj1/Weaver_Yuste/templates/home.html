@@ -1,10 +1,21 @@
 <!DOCTYPE html>
+<title>{% block title %}{% endblock %}</title>
+
 <html>
 <body>
-
-<p>{{age}} </p>
-
-<p> {{weight}}</p>
-
+<table style="width:100%">
+  <tr>
+    <td>Age</td>
+    {% for x in age %}
+    <td>{{x}}</td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td>Avg. Weight</td>
+    {% for y in weight %}
+    <td>{{y}}</td>
+  </tr>
+</table>
+         
 </body>
 </html>

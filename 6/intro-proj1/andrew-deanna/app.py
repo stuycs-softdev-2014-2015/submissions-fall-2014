@@ -40,16 +40,11 @@ def threeDice():
                            sumdice=sumdice
                           )
 
-"""
-def shakeBall():
-    answers = { "Yes!", "No!", "Ask again later.", "If you will it!", "Maybe so!", "No, 'cause you're a bum" }
-    numb = random.randrange(0,8)
-    return answers[numb] 
 
 @app.route("/ball")
 def ball():
-    answers = { "Yes!", "No!", "Ask again later.", "If you will it!", "Maybe so!", "No, 'cause you're a bum" }
-    numb = random.randrange(0,8)
+    answers = [ "Yes!", "No!", "Ask again later.", "If you will it!", "Maybe so!", "No, 'cause you're a bum" ]
+    numb = random.randrange(0,6)
     result = answers[numb]
     return render_template("8ball.html",
                            result=result
@@ -59,11 +54,20 @@ def ball():
 def coin():
     side=""
     a = random.randrange(0,2)
+    if a == 1:
+        side = "heads"
+    else:
+        side = "tails"
     return render_template("coin.html",
                            side=side
                            )
 
-"""
+
+
+def shakeBall():
+    answers = [ "Yes!", "No!", "Ask again later.", "If you will it!", "Maybe so!", "No, 'cause you're a bum" ]
+    numb = random.randrange(0,8)
+    return answers[numb] 
 
 
 if __name__=="__main__":
