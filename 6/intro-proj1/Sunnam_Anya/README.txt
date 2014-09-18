@@ -1,1 +1,1 @@
-Although everything is in it's proper place (including Home.html and Salaries.html within "templates") the webpage will not work because it claims these two files do not exist). They were working just a little while ago before Anya sent me slightly different code for Salaries.html, but Home.html wasn't changed and still isn't being reached. Can't really mess around with css stuff until this is sorted out! :(
+Can't figure out how to link the home page with the other pages (uses the buttons on the home page).

@@ -49,13 +49,24 @@ for y in teams:
 def home():
     return render_template("Home.html")
 
-@Stats.route("/salaries")
-def salaries():
+
+@Stats.route("/year")
+def year():
     dic = yra
     tdic = teamavgdic
-    return render_template("Salaries.html"
+    return render_template("Year.html"
                             ,dic = dic
                             ,tdic = tdic)
+
+@Stats.route("/team")
+def team():
+    dic = yra
+    tdic = teamavgdic
+    return render_template("Team.html"
+                           ,dic = dic
+                           ,tdic = tdic)
+
+
 
 if __name__=="__main__":
     Stats.debug = True
