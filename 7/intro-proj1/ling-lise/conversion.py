@@ -122,5 +122,5 @@ def conversion (): #converts the csv file into html code
 
 if __name__=="__main__":
     app.debug=True
-    app.run(port=5050)
+    app.run(port=5020)
     
