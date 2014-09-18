@@ -50,6 +50,7 @@ def sumSAT2(table,num=0):
         if n[3] == "s":
             y+= 1
         else:
+            
             num += int(n[3]) + int(n[4]) + int(n[5])
             if num >= 1800:
                 m+="<td>"+ n[1]+"</td><td>" + n[2] +"</td><td>"+ str(num)+"</td></tr><tr>"
