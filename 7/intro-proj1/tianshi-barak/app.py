@@ -16,15 +16,15 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
 def home():
-    button = request.args.get("b",None)
-    search1 = request.args.get("search1",None)
-    search2 = request.args.get("search2",None)
-    print button, search1, search2
-    if button == None or button == "Search":
-        return render_template("survey.html");
+    #button = request.args.get("b",None)
+    #search1 = request.args.get("search1",None)
+    #search2 = request.args.get("search2",None)
+    #print button, search1, search2
+    #if button == None or button == "Search":
+    return render_template("survey.html");
 
-@app.route("/results")
-def results():
+#@app.route("/results")
+#def results():
     ##returns the results of comparison
 
 @app.route("/data")
