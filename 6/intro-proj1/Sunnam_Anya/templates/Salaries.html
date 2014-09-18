@@ -6,8 +6,25 @@
 <th>Year</th>
 <th>Average Salary </th>
 </tr>
-<td>{{year}}</td>
-<td>${{salary}}</td>
+{% for key in dic %}
+    <tr>
+    <td>{{ key }}</td>
+    <td>{{ dic[key] }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Average Salary </th>
 </tr>
+{% for key in tdic %}
+    <tr>
+    <td>{{ key }}</td>
+    <td>{{ tdic[key] }}</td>
+    </tr>
+{% endfor %}
 </tbody>
 </table>

@@ -1,5 +1,3 @@
-#had some trouble with my flask (although it was alrady installed). Definitely not fnished webpage! More features and prettiness to come!)Also have to incorporate the css more
-
 from flask import Flask,render_template
 
 Stats = Flask(__name__)
@@ -9,8 +7,8 @@ with open("Salaries.csv", "rb") as f:
     doc = f.read()
     data = doc.split('\r\n')
     for l in data:
-        stats.append(l.split(','))#stats is a list of lists. The inner lists are
-                                  #lists of the elements of each line in the file
+        stats.append(l.split(','))
+
 yra = {}
 
 def yravg(a, y):
@@ -25,8 +23,6 @@ def yravg(a, y):
 
 for y in range(1985, 2014):
     yravg(stats, y)
-
-#print yra
 
 teamavgdic = {}
 
@@ -55,17 +51,17 @@ def home():
 
 @Stats.route("/salaries")
 def salaries():
-    year = stats[1][0]
-    salary = stats[1][4]
+    dic = yra
+    tdic = teamavgdic
     return render_template("Salaries.html"
-                           ,year=year
-                           ,salary=salary)
+                            ,dic = dic
+                            ,tdic = tdic)
 
 if __name__=="__main__":
     Stats.debug = True
     Stats.run()
 
+    
         
             
-
 
