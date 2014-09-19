@@ -14,7 +14,7 @@ def home():
 @app.route("/desu")
 def desu():
     csvtable = []
-    csvf = open("data/out.csv")
+    csvf = open("data/stats.csv")
     csvln = csvf.readlines()
     csvf.close()
     for ln in csvln:
@@ -25,7 +25,7 @@ def desu():
 @app.route("/kun")
 def kun():
     csvtable = []
-    csvf = open("data/out.csv")
+    csvf = open("data/stats.csv")
     csvln = csvf.readlines()
     csvf.close()
     for ln in csvln:
