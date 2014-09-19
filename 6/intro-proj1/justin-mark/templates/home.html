@@ -1,43 +1,39 @@
-<html>
-<head>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-  <link rel="stylesheet" href="/static/main.css">
-</head>
-<body>
-  <h1>Explore Data About School Districts and Their attendance rates</h1>
-  <button><a href="/data">Raw Data</a></button>
-  <button><a href="/facts">Facts</a></button>
+{% extends "layout.html" %}
 
-  <h3>View ordered data</h3>
-  <select id="order-data">
-    <option value="">Pick an order</option>
-    <option value="attendance-desc">Attendance (Highest to Lowest)</option>
-    <option value="enrollment-desc">Enrollment (Highest to Lowest)</option>
-    <option value="attendance-asc">Attendance (Lowest to Highestt)</option>
-    <option value="enrollment-asc">Enrollment (Lowest to Highest) </option>
-  </select>
+{% block body %}
+<h1>Explore Data About School Districts and Their attendance rates</h1>
+<button><a href="/data">Raw Data</a></button>
+<button><a href="/facts">Facts</a></button>
 
-  <p>Because we are required by tyrannical law to have a form in our project, you can enter an order keyword here. This is the exact same thing as the dropdown above. Use one of the following:</p>
-  <ul>
-    <li>attendance-desc</li>
-    <li>attendance-asc</li>
-    <li>enrollment-desc</li>
-    <li>enrollment-asc</li>
-  </ul>
+<h3>View ordered data</h3>
+<select id="order-data">
+  <option value="">Pick an order</option>
+  <option value="attendance-desc">Attendance (Highest to Lowest)</option>
+  <option value="enrollment-desc">Enrollment (Highest to Lowest)</option>
+  <option value="attendance-asc">Attendance (Lowest to Highestt)</option>
+  <option value="enrollment-asc">Enrollment (Lowest to Highest) </option>
+</select>
 
-  <form accept-charset="UTF-8" action="/data" method="post"><input name="utf8" type="hidden" value="&#x2713;">
-    <label for="order_keyword">Order by:</label>
-    <input autofocus="autofocus" id="order_keyword" name="order" type="text" />
-    <input name="commit" type="submit" value="View data" />
-  </form>
+<p>Because we are required by tyrannical law to have a form in our project, you can enter an order keyword here. This is the exact same thing as the dropdown above. Use one of the following:</p>
+<ul>
+  <li>attendance-desc</li>
+  <li>attendance-asc</li>
+  <li>enrollment-desc</li>
+  <li>enrollment-asc</li>
+</ul>
+
+<form action="/data" method="post">
+  <label for="order_keyword">Order by:</label>
+  <input autofocus="autofocus" id="order_keyword" name="order" type="text" />
+  <input name="commit" type="submit" value="View data" />
+</form>
 
 
-  <script>
-  document.getElementById("order-data").onchange = function() {
-    if (this.selectedIndex !== 0) {
-      window.location.href = document.location.href + "data/" + this.value;
-    }
-  };
-  </script>
-</body>
-</html>
+<script>
+document.getElementById("order-data").onchange = function() {
+  if (this.selectedIndex !== 0) {
+    window.location.href = document.location.href + "data/" + this.value;
+  }
+};
+</script>
+{% endblock %}

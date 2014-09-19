@@ -1,20 +1,16 @@
-<html>
-<head>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-  <link rel="stylesheet" href="/static/main.css">
-</head>
-<body>
-  <div class="center">
-    <h1>Facts about the Attendance Data</h1>
+{% extends "layout.html" %}
 
-    <p>These facts are generated on-the-fly from the data.</p>
+{% block body %}
+<div class="center">
+  <h1>Facts about the Attendance Data</h1>
 
-    <ul>
-      <li>The largest school district is District 2.  It has {{x}} students.</li>
-      <li>The smallest school district is District 16.  It has {{y}} students</li>
-      <li>The district with the hightest percent attendance is District 26 with {{z}}.</li>
-      <li>The district with the lowest percent attendance is Special ED District 75 with {{a}}.</li>
-    </ul>
-  </div>
-</body>
-</html>
+  <p>These facts are generated on-the-fly from the data.</p>
+
+  <ul>
+    <li>The largest school district is District 2.  It has {{x}} students.</li>
+    <li>The smallest school district is District 16.  It has {{y}} students</li>
+    <li>The district with the hightest percent attendance is District 26 with {{z}}.</li>
+    <li>The district with the lowest percent attendance is Special ED District 75 with {{a}}.</li>
+  </ul>
+</div>
+{% endblock %}
