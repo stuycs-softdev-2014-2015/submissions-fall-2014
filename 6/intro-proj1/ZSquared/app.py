@@ -10,7 +10,7 @@ def home(var1=None,var2=None,var3=None):
         var3='href=/login'
 	return render_template('home.html',var1=var1, var2=var2, var3=var3)
 
-@app.route('/login')
+@app.route('/login', methods=["GET","POST"])
 def login():
         return render_template('login.html')
 
