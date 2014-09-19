@@ -11,11 +11,10 @@ def home():
 
 @app.route("/data", methods=["GET", "POST"])
 def data():
-    if request.method == "GET":
-        pass
-    elif request.method == "POST":
+    data = read_attendance_data()
+    if request.method == "POST":
         data = read_attendance_data()
-        print request.form
+        data = sort_data(data, request.form['order'])
 
     return render_template("data.html", d={"data": data})
 
@@ -25,7 +24,7 @@ def data_order(order="attendance-desc"):
     data = read_attendance_data()
 
     if order:
-        data = sort_data(data, order)
+        data = sort_data(data, request.form['order'])
 
     return render_template("data.html", d={"data": data})
 
