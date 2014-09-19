@@ -8,9 +8,8 @@ boros = ["BROOKLYN","BRONX","QUEENS","MANHATTAN","STATEN ISLAND"]
 
 @app.route("/Results",methods=['GET', 'POST'])
 def Results():
-    if request.method == "POST":
-        b = request.form['b']
-        if b == "return":
+        button = request.args.get("b",None)
+        if button == "return":
             return render_template("Home.html",l=boros)    
     #boro is a string, col is either 3 (food type) or 6 (grade)
    
