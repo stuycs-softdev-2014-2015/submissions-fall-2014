@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import coder
 
 app = Flask (__name__)
 
@@ -24,6 +25,17 @@ def table ():
     s = s + "</table>"
     replacer("table.html", s)
     return render_template("table.html")
+
+@app.route("/input")
+def input ():
+    input = request.args.get ("input", None)
+    button = request.args.get ("button", None)
+    if button == None:
+        return render_template ("input.html")
+    elif button == "Codify!":
+        return render_template("results.html")%coder.codify(input)
+    elif button == "Decodify!":
+        return render_template("results.html")%coder.decodify(input)
 
 @app.route("/about")
 def about():
