@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1> Comments </h1>
+    
+    <form method="POST">
+      Your Name:<input type="text" name="name"><br>
+      <textarea rows="10" cols="50"> Comment here! </textarea><br>
+      <h2>Check your favorite food out of these!</h2> <br>
+      {% for item in l %}
+      <input type="checkbox" name="food" value={{item}}>{{item}}<br>
+      {% endfor %} 
+      <p>
+	<input type="submit" name="s" value="Submit">
+    </form>
+
+  </body>
+</html>
