@@ -7,9 +7,12 @@ app = Flask(__name__)
 data = open("data.txt", 'r').read().split("\n")
 
 import cgi
-@app.route("/")
+@app.route("/" methods= ["GET", "POST"])
 def mainpage():
-    return render_template("Pokemon.html")
+    search = request.args.get("id",None)
+    if search == None:
+        return render_template("Pokemon.html")
+    return redirect(url_for(search))
 
 @app.route("/<int:pokemonid>")
 def search(pokemonid):

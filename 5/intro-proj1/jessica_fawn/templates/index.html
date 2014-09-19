@@ -1,20 +1,26 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css')}}">
-    <title>Feel the Rainbow</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css')}}">
+  <title>Feel the Rainbow</title>
 </head>
 <body>
-    <div>
-      <h1>Taste the Rainbow</h1>
-      by jessica ng and fawn wong
-      <br><br>
-      <h1>About</h1>
-      <a href = "/about">About</a>
-      <br><bt>
-      <h1>Lincoln Square BID Business List</h1>
-      <a href = "/table">Data</a>
-      <br><br>
-      <h1>The Picketfence Code</h1>
-      <a href = "/input">Input</a>
-      <br><br>
+  <div class = "main">
+    <h1>Taste the Rainbow</h1>
+    by jessica ng and fawn wong
+    <br><br>
+    <div class "pure-g">
+      <div class="pure-u-1-5">
+	<p>About</p>
+	<a href = "/about">About</a>
+      </div>
+      <div class="pure-u-1-2">
+	<p>Lincoln Square BID Business List</p>
+	<a href = "/table">Data</a>
+      </div>
+      <div class="pure-u-1-5">
+	<p>The Picketfence Code</p>
+	<a href = "/input">Input</a>
+      </div>
     </div>
+  </div>
 </body>

@@ -22,9 +22,8 @@ def table ():
             s = s + "<td>" + b + "</td>"
         s = s + "</tr>"
     data.close()
-    s = s + "</table>"
-    replacer("table.html", s)
-    return render_template("table.html")
+    s = s + "</table>" 
+    return render_template("data.html")%s
 
 @app.route("/input")
 def input ():
@@ -39,16 +38,7 @@ def input ():
 
 @app.route("/about")
 def about():
-    #replacer("about.html", "<p>This is really just us messing around with css and tables, honestly.</p>")
     return render_template("about.html")
-
-def replacer(filename, replaceWith):
-    with open("templates/" + filename, "wt") as fout:
-        with open("templates/data.html", "rt") as fin:
-            for line in fin:
-                fout.write(line.replace("---REPLACE---", replaceWith))
-    return
-
 
 if __name__ == "__main__":
     app.debug = True

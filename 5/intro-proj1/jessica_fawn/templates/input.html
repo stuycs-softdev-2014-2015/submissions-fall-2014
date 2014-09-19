@@ -1,24 +1,25 @@
 <html>
   <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css')}}">
   </head>
   <title>The Picketfence Code</title>
   <body>
-    <div>
+    <div class = "main">
       <h1>The Picketfence Code</h1>
       by jessica ng and fawn wong
       <br><br>
-    </div>
-    <form>
-      <br>
-      <br>
-      <p>
-	<input type="text" name="input">
-      </p>
-      <p>
-	<input type = "submit" name = "button" value = "Codify!"></submit>
-<input type="submit" name="button" value="Decodify!"></submit>
+      <form class = "pure-form">
+	<br>
+	<br>
+	<p>
+	  <input type="text" name="input">
+	</p>
+	<p>
+	  <input type = "submit" name = "button" value = "Codify!" class="pure-button pure-button-primary"></submit>
+<input type="submit" name="button" value="Decodify!" class="pure-button pure-button-primary"></submit>
 </p>
 </form>
+</div>
 </body>
 </html>
