@@ -13,12 +13,15 @@
 <body>
 <h1 class="c">Number of Restaurants by {{foodorgrade}} in {{boro}} </h1>
 <table>
-{% for key, value in dictionary.iteritems() %}
+{% for key, value in d.iteritems() %}
    <tr>
         <th> {{ key }} </th>
         <td> {{ value }} </td>
    </tr>
 {% endfor %}
 </table>
+<form>
+<input type="submit" name="b" value="return">
+</form>
 </body> 
 </html>

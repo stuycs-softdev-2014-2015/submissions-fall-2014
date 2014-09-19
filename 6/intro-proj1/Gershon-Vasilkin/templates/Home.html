@@ -17,15 +17,12 @@
  li:active {background:red;}
   </style>
 <body class="pattern">
-<h1 id="l" class="c center rounded">New York City Restuarant Inspection Results</h1>
+<h1 id="l" class="c center rounded">New York City Restaurant Inspection Results</h1>
 <form class="rounded c center" id="m" method="POST">
 	<h2> Pick a Borough: </h2>
-	<input type="radio" name="group1" value="B" checked> Brooklyn <br>
-	<input type="radio" name="group1" value="Bx"> Bronx <br>
-	<input type="radio" name="group1" value="M"> Manhattan <br>
-	<input type="radio" name="group1" value="Q"> Queens <br>
-	<input type="radio" name="group1" value="SI"> Staten Island <br>
-
+	{% for boro in l %}
+	<input type="radio" name="group1" value={{boro}}> {{boro}} <br>	
+	{% endfor %}
 	<h2> Food or Grade? </h2>
 	<input type="radio" name="group2" value="Food" checked >Cuisine type <br>
 	<input type="radio" name="group2" value="Grade"> Inspection Grade <br>

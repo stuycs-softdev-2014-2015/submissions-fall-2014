@@ -1,45 +1,32 @@
-<style>
-
-  body{
-  background-image: url(http://homer.stuy.edu/~sofia.milnikiewicz/analysis/oak.gif);
-  background-color: rgb(51, 51, 51);
-}
-
-  h0{
-  font-family:"courier";
-  font-size:10px;
-  border-style:solid;
-  border-color:blue;
-  border-width:1px;
-  background-color:#ffffff
-}
-
-  h1{
-  font-family:"courier";
-  border-style:solid;
-  border-color:black;
-  border-width:3px;
-  background-color:#ffffff
-}
-
- h2{
-  font-family:"courier";
-  font-size:20px;
-  border-style:solid;
-  border-color:black;
-  border-width:3px;
-  background-color:#eeeeee
-}
-
-</style>
-
 <html>
+
+<head>
+<link rel="stylesheet" href="/static/choose.css" type="text/css" media="screen" />
+</head>
+
 <body>
 <h0>Fish Milnikiewicz, Pd.7</font></h0>
 <center><h1>Which pokemon do you choose?</font></h1>
 <h2>(Click on one)</h2></center>
-<a href="/bulbasaur"><img src="bulbasaur.gif" alt="Bulbasaur"/></a>
-<a href="/charmander"><img src="charmander.gif" alt="Charmander"/></a>
-<a href="/squirtle"><img src="squirtle.gif" alt="Squirtle"/></a>
+<center>
+<table class="reference">
+<tr>
+<form>
+  <td><img src="/static/bulbasaur.gif"></td>
+  <td><img src="/static/charmander.gif"></td>
+  <td><img src="/static/squirtle.gif"></td>
+</tr>
+<tr>
+  <td><input type="radio" name="pokemon" value="bulbasaur"></td>
+  <td><input type="radio" name="pokemon" value="charmander"></td>
+  <td><input type="radio" name="pokemon" value="squirtle"></td>
+</tr>
+</table>
+<br><br>
+  <h2>Input your name:</h2> <input type="text" name="uname">
+<input type="submit" name="b" value="enter">
+</form>
+</center>
 </body>
+
 </html>

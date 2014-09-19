@@ -1,7 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
-    <head><title>Age's Effect on Baseball, Part Two</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico"></head>
-
+    <head><title>Age's Effect on Baseball, Part Two</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico">
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">  
+    </head>
+    
     <body style=
     "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
     
@@ -54,24 +56,32 @@
     4.7 and 4.9 runs on average, teams whose average pitcher is older than 30 give up between 4.3 and 4.6 runs per game on average, significantly fewer.
     </center></td>
     <td width="3%"></td>
-    <td width="20%"><table border=1 style=
+    <td width="20%"><table border=1  bordercolor="black" style=
     "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
-    <tr><td>Average Pitcher Age</td><td>Average Runs Allowed per Game</td>
+	<thead>
+	  <tr bgcolor="#E0E0E0"><th>Average Pitcher Age</th><th>Runs Allowed per Game</th>
+	</thead>
+	<tbody>
     {% for n in Pi %}
         {% if n[2]>=8 %}
             <tr><td>{{n[0]}}</td><td>{{n[1] + 0.005  - ((n[1] + 0.005)% 0.01)}}</td></tr>
 	{% endif %}
     {% endfor %}
+	</tbody>
     </table></td>
     <td width="4%"></td>
-    <td width="20%"><table border=1 style=
+    <td width="20%"><table border=1  bordercolor="black" style=
     "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
-    <td>Average Batter Age</td><td>Average Runs Scored per Game</td>
+	<thead>
+	  <tr bgcolor="#E0E0E0"><th>Average Batter Age</th><th>Runs Scored per Game</th></tr>
+	</thead>
+	<tbody>
     {% for n in Ba %}
         {% if n[2]>=8 %}
             <tr><td>{{n[0]}}</td><td>{{n[1] + 0.005  - ((n[1] + 0.005)% 0.01)}}</td></tr>
 	{% endif %}
     {% endfor %}
+	</tbody>
     </table></td>
     <td width="3%"></td>
     <td width="20%"><center>

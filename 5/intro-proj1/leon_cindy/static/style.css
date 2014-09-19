@@ -6,6 +6,11 @@ body {
     color: #ffffff;
 }
 
+h1 {
+    border: 2px solid;
+    border-radius: 25px;
+}
+
 a:link {
     color: cyan;
 }
