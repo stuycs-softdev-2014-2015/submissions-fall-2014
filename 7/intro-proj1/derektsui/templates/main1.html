@@ -1,11 +1,46 @@
 <html>
 <head>
 <title>Data</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://purecss.io/css/layouts/side-menu.css">
+<script src="http://purecss.io/js/ui.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style='background-color:#FFFFAD'>
+<body>
 
 <div style="font-family:'Century Gothic,Helvetica',Arial">
 
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="#">Company</a>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+
+                <li class="menu-item-divided pure-menu-selected">
+                    <a href="#">Services</a>
+                </li>
+
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div class="header">
+            <h1>Page Title</h1>
+            <h2>A subtitle for your page goes here</h2>
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead">How to use this layout</h2>
 <table width =100%>
 <tr>
 <td width = '75%'>
@@ -27,7 +62,7 @@ DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloadd
 </td>
 </tr>
 </table>
-<hr>
+            <h2 class="content-subhead">Now Let's Speak Some Latin</h2>
 <a id='definitions'></a>
 <p>This analysis focuses on technical analysis of stock data, mainly used to analyze past price trends in predicting future movements.</p>
 
@@ -40,4 +75,37 @@ DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloadd
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The higher the RSI, the stronger its recent performance.  However, RSIs of 30 and 70 are seen as oversold and overbought, respectively, and are typical reversal points.</p>
 <p>The following columns on the data table below were calculated: CHANGE, %CHANGE, MA10, MA15, RSI10</p>
 <br>
-<hr>
+
+            <div class="pure-g">
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake">
+                </div>
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2813/9069585985_80da8db54f.jpg" alt="Train">
+                </div>
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm6.staticflickr.com/5456/9121446012_c1640e42d0.jpg" alt="T-Shirt Store">
+                </div>
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm8.staticflickr.com/7357/9086701425_fda3024927.jpg" alt="Mountain">
+                </div>
+            </div>
+
+            <h2 class="content-subhead">Try Resizing your Browser</h2>
+<a id='settings'></a>
+<h2>Display Settings:</h2>
+<table>
+<tr><td>
+Sort by:
+<a href='/date'><button>Date</button></a>
+<a href='/price'><button>Price</button></a>
+<a href='/pct'><button>% Change</button></a>
+
+<br>
+</td>
+</tr>
+</table>
+
+<a id='data'><h3>Data</h3></a>
+
+

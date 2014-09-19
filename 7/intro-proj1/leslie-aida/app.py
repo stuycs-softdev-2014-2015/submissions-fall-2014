@@ -9,7 +9,12 @@ def home():
         return render_template("home.html")
     else:
         building_type=request.form["building_type"]
+        zip_start=request.form["zip_start"]
+        zip_end=request.form["zip_end"]
+        print("Start: " + zip_start)
+        print("End: " + zip_end)
         button=request.form["search"]
+        
         print 
         if button=="Search":
             return render_template("results.html", lines=utils.results(), building_type= building_type)
