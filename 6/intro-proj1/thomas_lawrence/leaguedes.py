@@ -28,13 +28,8 @@ def desu():
 
 @app.route("/kun")
 def kun():
-    csvtable = []
-    csvf = open("data/stats.csv")
-    csvln = csvf.readlines()
-    csvf.close()
-    for ln in csvln:
-        csvtable.append(ln.split(","))
-        return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+    csvtable = csvtolist("data/stats.csv")
+    return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
 
 
 if __name__ == "__main__":
