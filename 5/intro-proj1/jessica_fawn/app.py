@@ -39,7 +39,7 @@ def input ():
 
 @app.route("/about")
 def about():
-    replacer("about.html", "<p>This is really just us messing around with css and tables, honestly.</p>")
+    #replacer("about.html", "<p>This is really just us messing around with css and tables, honestly.</p>")
     return render_template("about.html")
 
 def replacer(filename, replaceWith):
