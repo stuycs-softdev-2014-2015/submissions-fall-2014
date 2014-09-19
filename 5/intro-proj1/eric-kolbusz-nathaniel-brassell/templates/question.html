@@ -9,16 +9,11 @@
 
 <input type="submit" value="Continue">
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <class=flashes>
-    int i = 1
-    {% for message in messages %}
-    	<input type="hidden" name="a{{i}}" value={{message}}>
-	i++
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+<input type="hidden" name="a1" value={{a1}}>
+<input type="hidden" name="a2" value={{a2}}>
+<input type="hidden" name="a3" value={{a3}}>
+<input type="hidden" name="a4" value={{a4}}>
+<input type="hidden" name="a5" value={{a5}}>
 
 </form>
 
