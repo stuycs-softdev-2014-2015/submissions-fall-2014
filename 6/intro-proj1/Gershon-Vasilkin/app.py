@@ -4,21 +4,23 @@ from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
+boros = ["BROOKLYN","BRONX","QUEENS","MANHATTAN","STATEN ISLAND"]
 
-
-@app.route("/Results")
+@app.route("/Results",methods=['GET', 'POST'])
 def Results():
-    
+    if request.method == "POST":
+        b = request.form['b']
+        if b == "return":
+            return render_template("Home.html",l=boros)    
     #boro is a string, col is either 3 (food type) or 6 (grade)
    
-    return render_template("Results.html",d=d,boro=boro,foodorgrade=foodorgrade)
+    #return render_template("Results.html",d=d,boro=boro,foodorgrade=foodorgrade)
     
 
 @app.route("/",methods=['GET', 'POST'])
 def home():
     if request.method =="GET":
-        l = ["BROOKLYN","BRONX","QUEENS","MANHATTAN","STATEN ISLAND"]
-        return render_template("Home.html",l=l)
+        return render_template("Home.html",l=boros)
     else:
         boro = request.form['group1']
         col = 6
