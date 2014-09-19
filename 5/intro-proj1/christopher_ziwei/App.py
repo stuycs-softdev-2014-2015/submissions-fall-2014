@@ -10,8 +10,9 @@ import cgi
 @app.route("/" methods= ["GET", "POST"])
 def mainpage():
     search = request.args.get("id",None)
-    return render_template("Pokemon.html", search=search)
-    
+    if search == None:
+        return render_template("Pokemon.html")
+    return redirect(url_for(search))
 
 @app.route("/<int:pokemonid>")
 def search(pokemonid):
