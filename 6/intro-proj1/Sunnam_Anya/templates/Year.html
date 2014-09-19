@@ -1,0 +1,27 @@
+<style>
+  h1 { border-style:solid;
+  color:green;}
+  .a {color:purple;
+  text-align:left;}
+  .b {color:blue;
+  text-align:right}
+
+</style>
+
+<h1>Average Salary per Year</h1>
+
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>       Average Salary </th>
+</tr>
+{% for key in dic %}
+    <tr>
+    <td class="a">{{ key }}</td>
+    <td class="b">${{ dic[key] }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+

@@ -1,18 +1,53 @@
-from flask import Flask, render_template
+from flask import Flask,render_template
 
 app = Flask(__name__)
 
+images=["static/img/chick.jpeg",
+        "static/img/cow.jpg",
+        "static/img/milk.gif",
+        "static/img/pig.jpg",
+        "static/img/sheep.jpg",
+        "static/img/turkey.jpg",
+    ]
 
-#!/usr/bin/python
+@app.route("/")
+def home():   
+    import random
+    num = random.randrange(0,4)
+    f = open("templates/home.html",'r') 
+    tableNeeded = True
+    for line in f.readlines():
+        if ("Hawaii" in line):
+            tableNeeded = False
+    if (tableNeeded): 
+        f.close()
+        f = open("templates/home.html",'a')
+        f.write(table())
+        f.close()
+    return render_template("home.html", 
+                           img = images[num])
 
-import random
-images=['<img src="http://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg" width="300" height="150">',
-        '<img src="http://www.metalsucks.net/wp-content/uploads/2013/02/Pigs.jpg" width="300" height="150">',
-        '<img src="http://www.chickencoopguides.com/articles/wp-content/uploads/2013/04/baby-chickens.jpeg" width="300" height="200">',
-        '<img src="http://www.colonyoutfittershunting.com/images/Mturkey7.jpg" width="300" height="150">',
-        '<img src="http://www.newtsgames.com/images/detailed/6/2054-FreshStart-JumboKnob-FarmAnimals.jpg" width="250" height="250">',
-        '<img src="http://school.discoveryeducation.com/clipart/images/milk.gif" width="300" height="350">',
-        '<img src="http://4.bp.blogspot.com/-kXZQufsb-fY/T3M8UTEDREI/AAAAAAAAB_A/eIhUJG41fCM/s1600/Mother-and-Little-Sheep-716566.jpeg" width="300" height="150">']
+
+def table():
+    data=report()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(rank[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+        result="\n".join(result_list)
+        result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+        return result
+
+
+
+def table_template(include):
+    return '<td><center>'+include+'</center></td>'
+
 def open_data(filename):
     L=[]
     for item in open(filename).readlines():
@@ -173,37 +208,9 @@ def report():
         item.append(pw[item[0]])
     return r
 
-def web(s):
-    data=report()
-    img=random.choice(images)
-    s=s.strip()
-    s=s.replace("<image>",img)
-    L=s.split("\n")
-    result_list=[]
-    for item in L:
-        if item=='<data>':
-            rank=range(1,51,1)
-            for info in data:
-                x='<td><center>'+str(rank[0])+'</center></td>'+'\n'+'<td><center>'+ info[0]+ '</center></td>'+'<td><center>'+str(info[1])+ '</center></td>'+"\n"+'<td><center>'+str(info[2])+ '</center></td>'+"\n"+'<td><center>'+ str(info[3])+ '</center></td>'+"\n"+'<td><center>'+ str(info[4])+ '</center></td>'+"\n"+'<td><center>'+ str(info[5])+ '</center></td>'+"\n"+'<td><center>'+ str(info[6])+ '</center></td>'+"\n"+'<td><center>'+ str(info[7])+ '</center></td><tr>'
-                result_list.append(x)
-                rank.remove(rank[0])
-        else:
-            result_list.append(item)
-    result="\n".join(result_list)
-    return result
-
-
-
-print "Content-Type: text/html"
-print 
-
-###print web(s)
-
-
-@app.route("/")
-def home():
-    return render_template("home.html")
+     
 
 if __name__=="__main__":
     app.debug=True
     app.run()
+    ##app.run(host="0.0.0.0",port=8000)

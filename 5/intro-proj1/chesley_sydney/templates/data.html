@@ -3,7 +3,7 @@
         <title>
             {{ page_title }}
         </title>
-        <link rel="stylesheet" href="static/css/data.css" />
+        <link rel="stylesheet" href="{{ url_for("static", filename="css/data.css") }}" />
     </head>
 
     <body>
@@ -13,58 +13,58 @@
             </span>
 
             <div id="p1_div">
-            <h2>
-                {{ p1_section_header }} 
-            </h2>
-            <div class="table_wrapper">
-            <table>
-                {% for header in p1_headers %}
-                <th>
-                    {{ header }}
-                </th>
-                {% endfor %}
-                {% for row in p1_data %}
-                <tr>
-                    {% for item in row %}
-                    <td>
-                        {{item}}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            </div>
-            <br>
-            <a href="{{ url_for("static", filename=p1_csv_file_name) }}">Download the CSV file</a>
+                <h1>
+                    {{ p1_section_header }} 
+                </h1>
+                    <div class="table_wrapper">
+                        <table>
+                            {% for header in p1_headers %}
+                            <th>
+                                {{ header }}
+                            </th>
+                            {% endfor %}
+                            {% for row in p1_data %}
+                            <tr>
+                                {% for item in row %}
+                                <td>
+                                    {{item}}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                <br>
+                <a href="{{ url_for("static", filename=p1_csv_file_name) }}">Download the CSV file</a>
             </div>
 
             <hr class="horizontal_divider"/>
 
             <div id="p2_div">
-            <h2>
-                {{ p2_section_header }} 
-            </h2>
+                <h1>
+                    {{ p2_section_header }} 
+                </h1>
 
-            <div class="table_wrapper">
-            <table>
-                {% for header in p2_headers %}
-                <th>
-                    {{ header }}
-                </th>
-                {% endfor %}
-                {% for row in p2_data %}
-                <tr>
-                    {% for item in row %}
-                    <td>
-                        {{item}}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            </div>
-            <br>
-            <a href="{{ url_for("static", filename=p2_csv_file_name) }}">Download the CSV file</a>
+                <div class="table_wrapper">
+                    <table>
+                        {% for header in p2_headers %}
+                        <th>
+                            {{ header }}
+                        </th>
+                        {% endfor %}
+                        {% for row in p2_data %}
+                        <tr>
+                            {% for item in row %}
+                            <td>
+                                {{item}}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <br>
+                <a href="{{ url_for("static", filename=p2_csv_file_name) }}">Download the CSV file</a>
             </div>
         </div>
     </body>

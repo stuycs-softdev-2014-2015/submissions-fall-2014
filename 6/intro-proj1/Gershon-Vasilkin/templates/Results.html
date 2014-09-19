@@ -1,0 +1,27 @@
+<style>
+ h1 { border-width:2px;}
+ #l { font-size:50px;}
+ #m { font-size:34px;}
+ .c { background-color:F5ADAD;}
+
+ .right  {float:right;}
+ .center {float:center;}
+ li:hover {background:aqua;}
+ li:active {background:red;}
+  </style>
+<html>
+<body>
+<h1 class="c">Number of Restaurants by {{foodorgrade}} in {{boro}} </h1>
+<table>
+{% for key, value in d.iteritems() %}
+   <tr>
+        <th> {{ key }} </th>
+        <td> {{ value }} </td>
+   </tr>
+{% endfor %}
+</table>
+<form>
+<input type="submit" name="b" value="return">
+</form>
+</body> 
+</html>

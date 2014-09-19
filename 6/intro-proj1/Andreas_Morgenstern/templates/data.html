@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
 
 <h1> Mets Team Statistics (Beginning of 2013 Season)</h1>
-
+Welcome {{name}}!
+<br>
 <table> 
   {% for k in info %}
     <tr>
@@ -11,3 +12,6 @@
     </tr>
    {% endfor %}
 </table>
+
+<br>
+<a href="/analysis">Analysis</a>

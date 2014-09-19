@@ -1,0 +1,26 @@
+body{
+    margin: 0 0;
+    font-family: Open Sans;
+}
+
+.header
+{
+    background-color: #FF6666;
+    opacity: 0.5;
+    margin-top: -20px;
+}
+.heading
+{
+    margin-left: 30%;
+}
+ul, li
+{
+    display: block;
+    list-style-type: none;
+    float: right;
+    margin-right: 50px;
+}
+table
+{
+    margin: auto;
+}

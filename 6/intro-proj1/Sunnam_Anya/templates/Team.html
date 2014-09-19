@@ -1,0 +1,25 @@
+<style>
+  h1 { border-style:solid;
+  color:green;}
+  .a {color:purple;
+  text-align:left;}
+  .b {color:blue;
+  text-align:right}
+
+</style>
+
+<h1>Average Salary per Team</h1>
+<table>
+<thead>
+<tr>
+<th>Team</th>
+<th>Average Salary </th>
+</tr>
+{% for key in tdic %}
+    <tr>
+    <td class="a">{{ key }}</td>
+    <td class="b">${{ tdic[key] }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>

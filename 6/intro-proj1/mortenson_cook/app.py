@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 import cgi, cgitb, os
 cgitb.enable()
 F=cgi.FieldStorage()
@@ -90,6 +90,47 @@ def rawdata():
     pi+='</table>'
     q=[]
     return render_template("rawdata.html",players=players,q=q)
+
+@app.route("/filter", methods= ["GET", "POST"])
+def filter():
+    team="Tm"
+    boxes=20
+    year= "Yr"
+    sort=""
+    hilo=""
+    if request.method== "GET":
+        f=open('data1.csv','r')
+        pitchers=f.read()
+        f.close()
+        pitchers=pitchers.split()
+    
+        g=open('data2.csv','r')
+        batters=g.read()
+        g.close()
+        batters=batters.split()
+        players=[]
+        for n in range(len(batters)):
+            pitchers[n]=pitchers[n].split(',')
+            batters[n]=batters[n].split(',')
+            players.append([pitchers[n][0],batters[n][3],pitchers[n][1],pitchers[n][2],batters[n][1],batters[n][2]])
+            pi='<table border=1>'
+        i=0
+        for n in range(len(players)):
+            pi+='<tr><td>'+str(players[n][0])+'</td><td>'+str(players[n][1])+'</td><td>'+str(players[n][2])+'</td><td>'+str(players[n][3])+'</td><td>'
+            pi+=str(players[n][4])+'</td><td>'+str(players[n][5])+'</td></tr>'
+            i+=1
+        pi+='</table>'
+        q=[]
+        return render_template("filter.html",players=players,q=q)
+    else:
+        team=request.form["team"]
+        boxes=request.form["boxes"]
+        year=request.form["year"]
+        sort=request.form["sort"]
+        hilo=request.form["hilo"]
+        print team+boxes+year+sort+hilo
+        return render_template("filter.html")
+    
 @app.route("/home")
 @app.route("/") 
 def home():

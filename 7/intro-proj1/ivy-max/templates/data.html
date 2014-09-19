@@ -37,14 +37,18 @@ td {
             <th>Year</th>
         </tr>
         {% for row in data %}
-        <tr class="{{ loop.cycle('first', 'second') }}">
+	    {% if row[0] == countries.first %}
+	        <tr class="first">
+	    {% else %}
+	        <tr class="second">
+	    {% endif %} 
             {% for cell in row %}
-            <td>{{ cell }}</td>
+                <td>{{ cell }}</td>
             {% endfor %}
-        </tr>
+            </tr>
         {% endfor %} 
     </table>
-
+    
 </body>
 </html>
 

@@ -1,0 +1,52 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+<body>
+<div class="pure-g">
+  <div class="pure-u-1-3" align="center">
+    <img src="/static/lightbulb.gif" alt="lightbulb" align="left" height="100" width="80">  
+  </div> 
+  <div class="pure-u-1-3" align="center">
+    <h1>Electric Consumption by Zip Codes 2010</h1>
+    <h2>By Leslie Bresnahan and Aida Piccato</h2>
+  </div>
+  <div class="pure-u-1-3" align="center">
+    <img src="/static/lightbulb.gif" alt="lightbulb" align="right" height="100" width="80"> 
+  </div>
+</div> 
+   <table class="pure-table pure-table-bordered" align="center" width="75%">
+  
+
+{% for line in lines%}
+	{%if lines.index(line) == 0%}
+          <thead>
+		<tr>
+		{% for cell in line.split(',') %}
+			<td> {{cell}} </td>
+		{% endfor %}
+		</tr>
+	</thead>
+
+	{%else%}
+		{%if line.split(',').pop(1).lower() == building_type%}
+	            {% if (lines.index(line))%2 != 0 %}
+	                <tr class="pure-table-odd">
+             	    {%else%}
+			<tr>
+                    {%endif%}
+			  	
+			{% for cell in line.split(',') %}
+				<td> {{cell}} </td>
+			{% endfor %}
+			</tr>
+		{%endif%}
+	{%endif%}
+
+{% endfor %}
+
+</table>
+</body>
+</html>
+
+	
