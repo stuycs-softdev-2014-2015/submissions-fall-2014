@@ -156,8 +156,13 @@ def main():
 
 @app.route('/<Choice>')
 def renderChoice(Choice = None):
+    
     if Choice == 'Character':
-        return render_template("chooseChar.html")
+        char = request.args.get("name", None)
+        if char == None:
+            return render_template("chooseChar.html")
+        else
+            return createVarChar(char)
     return render_template("choosePage.html") + listPages()
 
 #my attempt at being more efficient than listing each page number
