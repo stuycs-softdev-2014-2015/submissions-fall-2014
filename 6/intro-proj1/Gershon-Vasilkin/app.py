@@ -1,44 +1,49 @@
 
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 
 app = Flask(__name__)
 
 
 
-'''@app.route("/Results")
+@app.route("/Results")
 def Results():
     
-    boro is a string, col is either 3 (food type) or 6 (grade)
+    #boro is a string, col is either 3 (food type) or 6 (grade)
    
-    return render_template("Results.html",dictionary=d,boro=boro)
-    '''
-@app.route("/")
+    return render_template("Results.html",d=d,boro=boro,foodorgrade=foodorgrade)
+    
+
+@app.route("/",methods=['GET', 'POST'])
 def home():
     if request.method =="GET":
-        return render_template("Home.html")
+        l = ["BROOKLYN","BRONX","QUEENS","MANHATTAN","STATEN ISLAND"]
+        return render_template("Home.html",l=l)
     else:
-        boro = request.form["group1"]
+        boro = request.form['group1']
         col = 6
-        foodorgrade = request.form["group2"]
+        foodorgrade = request.form['group2']
         if foodorgrade == "Food":
             col = 3
-        d = {}
-        for list in inspectiondata:
-            if list[1]==boro:
-                if d.has_key(list[col]):
-                    d[list[col]]+=1
-                else:
-                    d[list[col]]=1
-        return render_template("Results.html",dictionary=d,boro=boro,foodorgrade=foodorgrade)
+        d = get_data(boro,col)
+        return render_template("Results.html",d=d,boro=boro, foodorgrade=foodorgrade)
+
 def get_file(filename):
     l=[]
     for line in open(filename).readlines():
         l.append(line.strip().split(','))
     return l
-    
-inspectiondata = get_file('Results_Without_violations.csv')
 
+def get_data(boro,col): 
+    inspectiondata = get_file('Results_Without_violations.csv')
+    d = {}
+    for list in inspectiondata:
+         if list[1]==boro:
+             if d.has_key(list[col]):
+                 d[list[col]]+=1
+             else:
+                 d[list[col]]=1
+    return d
 
 '''
 def print_grades():
