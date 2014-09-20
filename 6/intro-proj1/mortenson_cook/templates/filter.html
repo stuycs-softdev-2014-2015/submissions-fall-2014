@@ -5,7 +5,9 @@
     "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
      <center>
     <h1>Age's Effect on Baseball, Part One</h1>
-    <a href="../results">Press here to see an analisys of this data.</a></br>
+   <table bgcolor=white bordercolor="black" > <tr> <td> <a href="../">Home sweet home</a> </td></tr>
+    <tr> <td> <a href="../results">Press here to see an analysis of this data.</a> </td> </tr>
+    <tr> <td><a href="../rawdata">Press here to see the raw data used to generate these tables.</a></td></tr></table></br>
     <table bordercolor="black" width=95% bgcolor="white"><tr><td>
     </br>
     <p style="text-indent: 5em;">
@@ -187,6 +189,8 @@
 
 	<option value="50">50</option>
 
+	<option value="No Limit">999999</option>
+
 	</select>
 
 	results per page
@@ -200,7 +204,8 @@
 	</td></tr></table>
 <center>
 <table border=1  >
-{% for n in players %}
+{% for n in players[:q[1]] %}
+{% if n[0]=="Tm" or ((q[0]=="Tm" or q[0]==n[0]) and (q[2]=="Yr" or q[2]==n[1])) %}
     <tr><td>{{n[0]}}</td>
       <td>{{n[1]}}</td>
       <td>{{n[2]}}</td>
@@ -208,6 +213,7 @@
       <td>{{n[4]}}</td>
       <td>{{n[5]}}</td>
     </tr>
+{% endif %}
 {% endfor %}
 </table>
 	</td></tr></table>

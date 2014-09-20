@@ -97,30 +97,23 @@ def filter():
     boxes=20
     year= "Yr"
     sort=""
-    hilo=""
-    if request.method== "GET":
-        f=open('data1.csv','r')
-        pitchers=f.read()
-        f.close()
-        pitchers=pitchers.split()
-    
-        g=open('data2.csv','r')
-        batters=g.read()
-        g.close()
-        batters=batters.split()
-        players=[]
-        for n in range(len(batters)):
-            pitchers[n]=pitchers[n].split(',')
-            batters[n]=batters[n].split(',')
-            players.append([pitchers[n][0],batters[n][3],pitchers[n][1],pitchers[n][2],batters[n][1],batters[n][2]])
-            pi='<table border=1>'
+    hilo=""  
+    f=open('data1.csv','r')
+    pitchers=f.read()
+    f.close()
+    pitchers=pitchers.split()    
+    g=open('data2.csv','r')
+    batters=g.read()
+    g.close()
+    batters=batters.split()
+    players=[]
+    for n in range(len(batters)):
+        pitchers[n]=pitchers[n].split(',')
+        batters[n]=batters[n].split(',')
+        players.append([pitchers[n][0],batters[n][3],pitchers[n][1],pitchers[n][2],batters[n][1],batters[n][2]])
         i=0
-        for n in range(len(players)):
-            pi+='<tr><td>'+str(players[n][0])+'</td><td>'+str(players[n][1])+'</td><td>'+str(players[n][2])+'</td><td>'+str(players[n][3])+'</td><td>'
-            pi+=str(players[n][4])+'</td><td>'+str(players[n][5])+'</td></tr>'
-            i+=1
-        pi+='</table>'
-        q=[]
+    if request.method== "GET":
+        q=["Tm",20,"Yr"]
         return render_template("filter.html",players=players,q=q)
     else:
         team=request.form["team"]
@@ -129,7 +122,80 @@ def filter():
         sort=request.form["sort"]
         hilo=request.form["hilo"]
         print team+boxes+year+sort+hilo
-        return render_template("filter.html")
+    #if 'p' in F:
+    #    p=int(F['p'].value)
+    #else:
+        p=1
+        if str(sort)=='runs':
+            first=players[0]
+            players.remove(players[0])
+            for n in range(len(players)):
+                players[n][0],players[n][5]=players[n][5],players[n][0]
+            players.sort()
+            if str(hilo)=='hi':
+                players=players[::-1]
+            for n in range(len(players)):
+                players[n][5],players[n][0]=players[n][0],players[n][5]
+            players.insert(0,first)
+            
+        if str(sort)=='runa':
+            first=players[0]
+            players.remove(players[0])
+            for n in range(len(players)):
+                players[n][0],players[n][3]=players[n][3],players[n][0]
+            players.sort()
+            if str(hilo)=='hi':
+                players=players[::-1]
+            for n in range(len(players)):
+                players[n][3],players[n][0]=players[n][0],players[n][3]
+            players.insert(0,first)
+            
+        if str(sort)=='bage':
+            first=players[0]
+            players.remove(players[0])
+            for n in range(len(players)):
+                players[n][0],players[n][4]=players[n][4],players[n][0]
+            players.sort()
+            if str(hilo)=='hi':
+                players=players[::-1]
+            for n in range(len(players)):
+                players[n][4],players[n][0]=players[n][0],players[n][4]
+            players.insert(0,first)
+            
+        if str(sort)=='page':
+            first=players[0]
+            players.remove(players[0])
+            for n in range(len(players)):
+                players[n][0],players[n][2]=players[n][2],players[n][0]
+            players.sort()
+            if str(hilo)=='hi':
+                players=players[::-1]
+            for n in range(len(players)):
+                players[n][2],players[n][0]=players[n][0],players[n][2]
+            players.insert(0,first)
+
+        if str(sort)=='yr':
+            first=players[0]
+            players.remove(players[0])
+            for n in range(len(players)):
+                players[n][0],players[n][1]=players[n][1],players[n][0]
+            players.sort()
+            if str(hilo)=='hi':
+                players=players[::-1]
+            for n in range(len(players)):
+                players[n][1],players[n][0]=players[n][0],players[n][1]
+            players.insert(0,first)
+
+        if str(sort)=='tm':
+            first=players[0]
+            players.remove(players[0])
+            players.sort()
+            if str(hilo)=='lo':
+                players=players[::-1]
+            players.insert(0,first)
+            
+        q=[team,boxes,year];
+        return render_template("filter.html", players=players, q=q)
     
 @app.route("/home")
 @app.route("/") 
