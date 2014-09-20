@@ -3,28 +3,30 @@
 <html>
    <head>
        <title>Data</title>
-	   <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/theme.css') }}">
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
    </head>
 
     <body>
-        <h1>Data</h1>
-        <center>
-			<div class="text_body">
-            <h4> Scores for Comprehensivness of Gun Control and Number of Deaths by Firearm</h4>
-
-            <table border="1" class="white-table"><tr><th>State</th><th>Score for Gun Control*</th><th>Gun Deaths per 100,000</th></tr>
-                {% for x in sortedranksd%}
-                <tr><td> {{x}} </td><td> {{ranksd[x]}} </td><td>{{crimesdVals[x]}}</td</tr>
+        <center><h1>Data</h1><center>
+            <center>
+                <div class="text_body">
+                    <h4> Scores for Comprehensivness of Gun Control and Number of Deaths by Firearm</h4>
+                </div>
+                <div class="container">
+                <table border="1" class="table table-striped table-bordered"><tr><th>State</th><th>Score for Gun Control*</th><th>Gun Deaths per 100,000</th></tr>
+                    {% for x in sortedranksd%}
+                    <tr><td> {{x}} </td><td> {{ranksd[x]}} </td><td>{{crimesdVals[x]}}</td</tr>
 	
-                {% endfor %}
-            </table>
+                    {% endfor %}
+                </table>
 
-         <p class="white-table">*All scores out of 100. Score from 2007 Brady Campaign score card. For more info, click <a href="http://www.bradycampaign.org/stategunlaws/scorecard-descriptions?s=1">here</a>.</p>
+                <p class="white-table">*All scores out of 100. Score from 2007 Brady Campaign score card. For more info, click <a href="http://www.bradycampaign.org/stategunlaws/scorecard-descriptions?s=1">here</a>.</p>
 
-		</div>
-        </center>
+                </div>
+            </center>
+            
 <form action="/home">
-<button value="Home"name="back">Go Back</button>
+<button class="btn btn-primary btn-sm" value="Home"name="back">Go Back</button>
 </form>
     </body>
 </html>
