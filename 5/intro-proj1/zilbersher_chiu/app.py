@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import string
 
 app = Flask(__name__)
@@ -17,6 +17,16 @@ def count(title):
     word_dict = wordCount(raw_string)
     word = mostCommonWord(word_dict)
     return render_template("count.html", title=title, word=word, word_dict=word_dict)
+
+@app.route("/submit", methods = ["POST", "GET"])
+def submit():
+    #DO STUFF HERE
+    submitted = False
+    if request.method == "POST":
+        f = request.files['file']
+        f.save("./files/"+secure_filename(f.filename));
+        submitted = True
+    return render_template("submit.html", submitted=submitted)
 
 def wordCount(raw_string):
     words = {}
