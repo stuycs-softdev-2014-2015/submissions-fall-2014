@@ -1,5 +1,8 @@
 <html>
-    <head><title>Age's Effect on Baseball, Part One</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico"></head>
+    <head>
+      <title>Age's Effect on Baseball, Part One</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico">
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">  
+    </head>
 
     <body style=
     "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
@@ -26,8 +29,8 @@
     scored by opposing teams per game that year.  This is the raw data I managed to find after it has been run through a script to add the year to the end of each line:
     </p>
 <table width="100%"><tr><td width="50%"><center>
-<table bordercolor="black" bgcolor="grey"><tr><td>
-        <form method="POST">
+<table><tr><td>
+        <form method="POST" class="pure-form">
 	Filters:
 
 	<select name="team">
@@ -189,7 +192,7 @@
 
 	<option value="50">50</option>
 
-	<option value="No Limit">999999</option>
+	<option value="999">unlimited</option>
 
 	</select>
 
@@ -201,11 +204,23 @@
 
 
 
-	</td></tr></table>
+	</td></tr></table></br>
 <center>
-<table border=1  >
-{% for n in players[:q[1]] %}
-{% if n[0]=="Tm" or ((q[0]=="Tm" or q[0]==n[0]) and (q[2]=="Yr" or q[2]==n[1])) %}
+<table border=1 class="pure-table" style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)">
+<thead>
+    <tr><th>{{players[0][0]}}</th>
+      <th>{{players[0][1]}}</th>
+      <th>{{players[0][2]}}</th>
+      <th>{{players[0][3]}}</th>
+      <th>{{players[0][4]}}</th>
+      <th>{{players[0][5]}}</th>
+    </tr>
+</thead>
+<tbody>
+{% set rows = q[1] %}
+{% for n in players[1:] %}
+{% if (rows > 0) and (q[0]=="Tm" or q[0]==n[0]) and (q[2]=="Yr" or q[2]==n[1]) %}
     <tr><td>{{n[0]}}</td>
       <td>{{n[1]}}</td>
       <td>{{n[2]}}</td>
@@ -213,7 +228,9 @@
       <td>{{n[4]}}</td>
       <td>{{n[5]}}</td>
     </tr>
+{% set rows = rows-1 %}
 {% endif %}
 {% endfor %}
+</tbody>
 </table>
 	</td></tr></table>

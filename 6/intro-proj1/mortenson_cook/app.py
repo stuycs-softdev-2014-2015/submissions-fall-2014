@@ -114,7 +114,7 @@ def filter():
         i=0
     if request.method== "GET":
         q=["Tm",20,"Yr"]
-        return render_template("filter.html",players=players,q=q)
+        return render_template("filter.html",players=players[:q[1]+1],q=q)
     else:
         team=request.form["team"]
         boxes=request.form["boxes"]
@@ -194,7 +194,7 @@ def filter():
                 players=players[::-1]
             players.insert(0,first)
             
-        q=[team,boxes,year];
+        q=[team,int(boxes),year];
         return render_template("filter.html", players=players, q=q)
     
 @app.route("/home")
