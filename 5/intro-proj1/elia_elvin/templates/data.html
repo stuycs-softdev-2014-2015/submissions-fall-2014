@@ -1,0 +1,23 @@
+<html>
+	<body>
+		<h1>Data Page</h1>
+
+		<p> {{ description }} </p>
+
+		<h1> {{head}} </h1>
+		<table>
+		{% for type in table_package['types'] %}
+		<th> {{ type }} </th>
+		{% endfor %}
+
+		{% for row in table_package['data'] %}
+		<tr> 
+		{% for data in row %} 
+		<td> {{ data }} </td>
+		{% endfor %}
+		</tr>
+		{% endfor %}
+		</table>
+
+	</body>
+</html>
