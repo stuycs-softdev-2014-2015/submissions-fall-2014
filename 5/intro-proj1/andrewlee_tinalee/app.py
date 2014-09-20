@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/about")
@@ -6,8 +6,8 @@ def about():
     return render_template("about.html")
 
 @app.route("/home")
-@app.route("/")
 def home():
+    #return render_template("home.html")
     html = ""
     html += "<html><title>" + "Home Page" + "</title>"
     html += "<h1>Starter Pokemon</h1>"
@@ -17,6 +17,20 @@ def home():
     html += "</html>"
     return html
 
+@app.route("/")
+def index():
+    uname = request.args.get("uname",None)
+    pword = request.args.get("pass",None)
+    button = request.args.get("b",None)
+    if button == None or button=="Cancel":
+        return render_template("index.html")
+    else:
+        return """
+<h1>%s</h1>
+"""%("uname")
+    #<a href "/home">home page</a>
+
+    
 def tablefy(fileName,color):
     x = open(fileName)
     readFile = x.readlines()
