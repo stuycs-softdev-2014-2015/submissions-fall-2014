@@ -24,7 +24,7 @@ def submit():
     submitted = False
     if request.method == "POST":
         f = request.files['file']
-        f.save("./files/"+secure_filename(f.filename));
+        f.save("./files/"+f.filename);
         submitted = True
     return render_template("submit.html", submitted=submitted)
 
