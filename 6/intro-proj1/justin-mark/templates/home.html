@@ -1,3 +1,6 @@
+{% extends "layout.html" %}
+
+{% block body %}
 <h1>Explore Data About School Districts and Their attendance rates</h1>
 <button><a href="/data">Raw Data</a></button>
 <button><a href="/facts">Facts</a></button>
@@ -11,6 +14,21 @@
   <option value="enrollment-asc">Enrollment (Lowest to Highest) </option>
 </select>
 
+<p>Because we are required by tyrannical law to have a form in our project, you can enter an order keyword here. This is the exact same thing as the dropdown above. Use one of the following:</p>
+<ul>
+  <li>attendance-desc</li>
+  <li>attendance-asc</li>
+  <li>enrollment-desc</li>
+  <li>enrollment-asc</li>
+</ul>
+
+<form action="/data" method="post">
+  <label for="order_keyword">Order by:</label>
+  <input autofocus="autofocus" id="order_keyword" name="order" type="text" />
+  <input name="commit" type="submit" value="View data" />
+</form>
+
+
 <script>
 document.getElementById("order-data").onchange = function() {
   if (this.selectedIndex !== 0) {
@@ -18,3 +36,4 @@ document.getElementById("order-data").onchange = function() {
   }
 };
 </script>
+{% endblock %}
