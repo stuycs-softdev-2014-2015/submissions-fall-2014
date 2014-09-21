@@ -13,8 +13,10 @@ def home():
     else:
         user = request.form['user']
         pwd = request.form['pwd']
-        return render_template("home.html", user=user, pwd=pwd)
-
+        if user==None or pwd==None:
+            return render_template("login.html")
+        else:
+            return render_template("home.html", user=user, pwd=pwd)
 
 @app.route("/login", methods=["GET","POST"]) 
 def login():
@@ -23,16 +25,22 @@ def login():
     else:
         user = request.form['user']
         pwd = request.form['pwd']
-        return render_template("home.html", user=user, pwd=pwd)
+        if user==None or pwd==None:
+            return render_template("login.html")
+        else:
+            return render_template("home.html", user=user, pwd=pwd)
 
 @app.route("/data")
 def data():
     listlist = []
+    searchlist = []
     ret = readas.splitlines()
     for x in ret:
         innerlist=x.split(",")
         listlist.append(innerlist)
-    return render_template("data.html", listlist=listlist)
+    searchlist = listlist[1:]
+    #print searchlist
+    return render_template("data.html", listlist=listlist,searchlist=searchlist)
 
 @app.route("/analysis")
 def analysis():
