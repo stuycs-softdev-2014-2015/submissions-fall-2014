@@ -1,4 +1,6 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
+import utils
+import data
 
 app = Flask(__name__)
 
@@ -14,11 +16,7 @@ def csvtolist(csvname):
 @app.route("/")
 @app.route("/home")
 def home():
-    r = '''<body background="static/leaguebackground.jpg">'''
-    r += "<h1>Welcome to the league of desu</h1>"
-    r += '<a href="/desu">desu</a>'
-    r += '<br><a href="/kun">kun</a></body>'
-    return r
+    return render_template("home.html")
 
 @app.route("/desu")
 def desu():
@@ -30,6 +28,20 @@ def desu():
 def kun():
     csvtable = csvtolist("data/stats.csv")
     return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+
+@app.route("/form",methods=['GET','POST'])
+def form():
+    csvtable = csvtolist("data/stats.csv")
+    if request.method=="GET":
+        return render_template("form.html",csvtable=csvtable)
+    else:
+        champs = request.form["champion"]
+        action = request.form["a"]
+        if action=="go":
+            return render_template("generator.html",champs=champs)
+        else :
+            return render_template("home.html")
+        
 
 
 if __name__ == "__main__":

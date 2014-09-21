@@ -64,3 +64,35 @@ tr:nth-child(odd) {
 	position:relative;
 	top:1px;
 }
+
+
+ul {
+    list-style-type: none;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+li {
+    display: inline;
+    float: left;
+} 
+
+
+#menu {
+    display: block;
+    width: 400px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #FA8072;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#menu:hover, #menu:active {
+    background-color: #7A991A;
+}

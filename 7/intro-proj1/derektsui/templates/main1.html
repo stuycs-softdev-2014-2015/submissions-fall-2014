@@ -19,51 +19,35 @@
 
     <div id="menu">
         <div class="pure-menu pure-menu-open">
-            <a class="pure-menu-heading" href="#">Company</a>
+            <a class="pure-menu-heading" href="#">Data Project</a>
 
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-
-                <li class="menu-item-divided pure-menu-selected">
-                    <a href="#">Services</a>
-                </li>
-
-                <li><a href="#">Contact</a></li>
+                <li><a href="#definitions">About</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#data">Data</a></li>
+                <li><a href="#analysis">Analysis</a></li>
             </ul>
         </div>
     </div>
     <div id="main">
         <div class="header">
-            <h1>Page Title</h1>
-            <h2>A subtitle for your page goes here</h2>
+            <h1>Intro Data Project</h1>
+            <h2>An analysis of stock price data</h2>
         </div>
 
         <div class="content">
-            <h2 class="content-subhead">How to use this layout</h2>
-<table width =100%>
-<tr>
-<td width = '75%'>
+            <h2 class="content-subhead">Project Info</h2>
+
 <p style='font-size:12'>
 Tsui, Derek<br>
-MKS22-20<br>
-Period-7<br>
-
-DATASET: Dow Jones Industrial Average Historical Price Data<br>
-
-DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloaddata'>DJIA Historical Data</a><br>
+DATASET: DJIA Historical Price Data<br>
+DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloaddata'>DJIA Historical Data</a>
 </p>
-</td>
-<td width = 25%>
-<a href='#definitions'>Definitions</a><br>
-<a href='#settings'>Settings</a><br>
-<a href='#data'>Data</a><br>
-<a href='#analysis'>Analysis</a>
-</td>
-</tr>
-</table>
-            <h2 class="content-subhead">Now Let's Speak Some Latin</h2>
 <a id='definitions'></a>
+<br>
+<h2 class="content-subhead">Technical Terms</h2>
+
 <p>This analysis focuses on technical analysis of stock data, mainly used to analyze past price trends in predicting future movements.</p>
 
 <p><b>Change</b> -- The change in price from the previous day.<br>
@@ -76,36 +60,27 @@ DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloadd
 <p>The following columns on the data table below were calculated: CHANGE, %CHANGE, MA10, MA15, RSI10</p>
 <br>
 
-            <div class="pure-g">
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake">
-                </div>
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2813/9069585985_80da8db54f.jpg" alt="Train">
-                </div>
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm6.staticflickr.com/5456/9121446012_c1640e42d0.jpg" alt="T-Shirt Store">
-                </div>
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm8.staticflickr.com/7357/9086701425_fda3024927.jpg" alt="Mountain">
-                </div>
-            </div>
-
-            <h2 class="content-subhead">Try Resizing your Browser</h2>
 <a id='settings'></a>
-<h2>Display Settings:</h2>
-<table>
-<tr><td>
-Sort by:
-<a href='/date'><button>Date</button></a>
-<a href='/price'><button>Price</button></a>
-<a href='/pct'><button>% Change</button></a>
-
 <br>
-</td>
-</tr>
-</table>
+<h2 class="content-subhead">Display Settings:</h2>
+<form method='post'>
+Data Range (Years: 1896 - 2013):<br><br>
 
-<a id='data'><h3>Data</h3></a>
+Start Year: <input type='text' name='start' value = '2000'><br>
+End Year: <input type='text' name= 'end' value = '2013'><br>
+<br>
+Sort by:<br>
+<input type='radio' name='sortby' value='date'>Date<br>
+<input type='radio' name='sortby' value='price'>Price<br>
+<input type='radio' name='sortby' value='pct'>% Change<br>
+<br>
+Sort order:<br>
+<input type='radio' name='sortorder' value='inc'>Increasing<br>
+<input type='radio' name='sortorder' value='dec'>Decreasing<br>
+<br>
+<input type="submit" name="button" value="submit">
+</form>
 
-
+<a id='data'><br></a>
+<h2 class="content-subhead">Data</h2>
+<p>Sorted by <u>{{sortby}}</u> in <u>{{order}}reasing</u> order</p>

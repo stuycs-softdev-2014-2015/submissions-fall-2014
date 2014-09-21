@@ -1,41 +1,44 @@
 <html>
   <head>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+    <link rel="stylesheet" href="/static/maps.css" type="text/css" media="screen" />
   </head>
 
   <body>
 
-	<h1> 311 calls of New York in 2013 </h1>
+
+    <div id="stuff">
+    <center><h1> 311 calls of New York in 2013 </h1></center>
 
 
-	These are a bunch of maps displaying some 311 complaints during 2013 before May. I used the function of the google maps that lets you put info directly in a url to generate an image. The first few maps were some I found interesting, and the ones after that were all too big for one image, so I isolated the data from that April, and then split up the calls by borough. (Sidenote: sometimes there's a weird error image in place of the map, if you're really curious and/or dedicated, the url is usally valid and can be opened in a new page.)
-<br>
+      These are a bunch of maps displaying some 311 complaints during 2013 before May. I used the function of the google maps that lets you put info directly in a url to generate an image. The first few maps were some I found interesting, and the ones after that were all too big for one image, so I isolated the data from that April, and then split up the calls by borough. (Sidenote: sometimes there's a weird error image in place of the map, if you're really curious and/or dedicated, the url is usally valid and can be opened in a new page.)
+      <br>
 
 
-	{% for item in html_list %}
-	{% if loop.index is odd  %}
-	<h4> {{item}} </h4>
+      {% for item in html_list %}
+      {% if loop.index is odd  %}
+      <h4> {{item}} </h4>
 
-	{% else %}
-	<img src='{{item}}'alt=image>
-	{%endif%}
-	{%endfor%}
-
-
-	{% for item in html_list_two %}
-	{% if (loop.index-1) is divisibleby 6 %}
-	<h4> {{item}} </h4>
-	{% else %}
-	<img src='{{item}}'alt=image>
-	{%endif%}
-	{%endfor%}
+      {% else %}
+      <img src='{{item}}'alt=image>
+      {%endif%}
+      {%endfor%}
 
 
-	<br>
-	As you can see, there isn't often that much correlation, except for Decorative Necklace Lighting.
-	I mean, something must have gone down near the Brooklyn Bridge. However, the maps are still pretty interesting.
+      {% for item in html_list_two %}
+      {% if (loop.index-1) is divisibleby 6 %}
+      <h4> {{item}} </h4>
+      {% else %}
+      <img src='{{item}}'alt=image>
+      {%endif%}
+      {%endfor%}
 
 
+      <br>
+      As you can see, there isn't often that much correlation, except for Decorative Necklace Lighting.
+      I mean, something must have gone down near the Brooklyn Bridge. However, the maps are still pretty interesting.
 
+
+    </div>
   </body>
 </html>
