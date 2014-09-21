@@ -24,13 +24,13 @@ def main():
     global name
     global quote 
     global adjective
-
-    if name == None:
-       name = request.form["name"]
-    if quote == None:
-        quote = request.form["quote"]
-    if adjective == None:
-        adjective = request.form["adjective"]
+    if request.method == 'POST':
+        if name == None:
+            name = request.form["name"]
+        if quote == None:
+            quote = request.form["quote"]
+        if adjective == None:
+            adjective = request.form["adjective"]
 
     print name
     print quote
@@ -82,7 +82,7 @@ def main():
     variableName = get_it.read()
     lines= variableName.split('\n')
     lines=lines[:len(lines)-1]
-    if quote!="":
+    if quote!="" and quote!=None:
         lines.append(quote)
         lines.append(quote)
         
@@ -92,7 +92,7 @@ def main():
     Dict=filez.read()
     Dict=Dict.split('\n')
     Dict=Dict[:len(Dict)-1]
-    if name!="":
+    if name!=""and name!=None:
         Dict.append(name+',https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4qlCVQrMo5QqT5-y_pEcycr-HEap5aOoWAHsHtEa3_qJAFxKZA')
         Dict.append(name+',https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4qlCVQrMo5QqT5-y_pEcycr-HEap5aOoWAHsHtEa3_qJAFxKZA')
     
@@ -105,7 +105,7 @@ def main():
     titles=filezd.read()
     titles=titles.split('\n')
     titles=titles[:len(titles)-2]
-    if adjective!="":
+    if adjective!=""and adjective!=None:
         titles.append(adjective)
         titles.append(adjective)
     s+= '<center><section class ="a"><img src='+'"'+image+'"'+'width="400" height="400"></img></center></section>'
