@@ -6,15 +6,38 @@
         
         <title>Welcome!</title>
 
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+        <link rel="stylesheet"
+        href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<style>
+    body {
+        background: #f1f1f1}
+    section {
+    
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px
+    }
+    .c {
+        background: #D3D3D3;
+        color: black;
+        }
+    .a   {
+     background: black;
+        color: white;
+        } 
+    
+</style>
 </head>
 
-<body style="background-color:#E68081">
+
 <form class="pure-form pure-form-aligned" method="POST" action="/results">
 <div id="opener">
  {% block body %}{% endblock body %}
 </div> <!--opener-->
 <center>
+<section class="c">
 <fieldset>
 <div class="pure-control-group">
   <label for="name">What did they name you?</label>
@@ -30,7 +53,7 @@
   <label for="adjective">How did they describe you?</label>
   <input type="text" name = "adjective" input id="adjective" size="20" placeholder="indescribable">
 </div>
-<br>
+</section><br>
 <button type = "submit" class="pure-button pure-button-primary" href="/results"> Wise
   Quotes Ahead!</button>
 
