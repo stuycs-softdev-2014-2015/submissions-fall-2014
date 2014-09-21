@@ -43,9 +43,10 @@ def init():
     stattable = csvtolist("data/stats.csv")
     wrtable = csvtolist("data/winrate.csv")
     killcol(wrtable,0)
+    killcol(stattable,0)
 
     statnames = stattable[0]+wrtable[0][1:]
-    champnames = getcol(stattable[1:],1)
+    champnames = getcol(stattable[1:],0)
     statdict = makestatdict(champnames)
 
     addstatnames(statdict,stattable[0])

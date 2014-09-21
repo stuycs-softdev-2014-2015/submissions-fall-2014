@@ -35,12 +35,18 @@ def kun():
 
 @app.route("/form",methods=['GET','POST'])
 def form():
+    selects=5
     csvtable = csvtolist("data/stats.csv")
     if request.method=="GET":
         return render_template("form.html",
-                               champnames=data.champnames)
+                               champnames=data.champnames,
+                               selects=selects)
     else:
-        champs = request.form["champion"]
+        champs = []
+        for i in range(selects):
+            curchamp = request.form["champ"+str(i)]
+            if curchamp!="":
+                champs.append(curchamp)
         action = request.form["a"]
         if action=="go":
             return render_template("generator.html",

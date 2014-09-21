@@ -6030,3 +6030,18 @@ th.hide-for-touch {
   th.show-for-print {
     display: table-cell !important; } }
     
+img {
+  height: 200px;
+  width: 200px;
+ 
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+img:hover {
+  width: 220px;
+  height: 220px;
+}
