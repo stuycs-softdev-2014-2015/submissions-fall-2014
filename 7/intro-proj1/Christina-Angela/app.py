@@ -1,13 +1,29 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app= Flask(__name__)
 
 stream=open('scores.csv', 'r')
 readas=stream.read()
 stream.close()
-@app.route("/")
+
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("home.html")
+    if request.method=="GET":
+        return render_template("login.html")
+    else:
+        user = request.form['user']
+        pwd = request.form['pwd']
+        return render_template("home.html", user=user, pwd=pwd)
+
+
+@app.route("/login", methods=["GET","POST"]) 
+def login():
+    if request.method=="GET":
+        return render_template("login.html")
+    else:
+        user = request.form['user']
+        pwd = request.form['pwd']
+        return render_template("home.html", user=user, pwd=pwd)
 
 @app.route("/data")
 def data():
@@ -85,4 +101,4 @@ def analysis():
 
 if __name__=="__main__":
     app.debug = True
-    app.run()
+    app.run(host="0.0.0.0", port=5000)#0.0.0.0 means can run on any host
