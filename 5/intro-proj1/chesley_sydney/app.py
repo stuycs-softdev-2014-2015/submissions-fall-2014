@@ -26,27 +26,16 @@ def analysis():
     if request.method=="GET":
         return render_template("analysis.html", headers=headers, p1=p1, p2=p2,
                            diff=diff, page_title=page_title, content_header=content_header)
-    else:
-        comment= request.form["comment"]
-        button=request.form["button"]
-        if button=="go":
-            addComment("comment.html", comment)
-            info = getComments("comment.html")
-            return render_template("comment.html", comment=comment, info=info)
-
-def addComment(fileName, text):
-    f=open(fileName,'a')
-    f.write(text+"\n")
-    f.close()
-def getComments(fileName):
-    f=open(fileName,'r')
-    data=f.readline()
-    f.close()
-    c = data.split("\n");
-    return c;
+    elif request.method=="POST":
+        comment= request.form["comment_field"]
+        print comment
+        button=request.form["submit"]
+        if button=="Go!":
+            return render_template("comment.html", comment=comment)
+        else:
+            return render_template("analysis.html", headers=headers, p1=p1, p2=p2,
+                    diff=diff, page_title=page_title, content_header=content_header)
             
-    
-
 def getTableHeaders(fileName):
     f=open(fileName,'r')
     data=f.readline()

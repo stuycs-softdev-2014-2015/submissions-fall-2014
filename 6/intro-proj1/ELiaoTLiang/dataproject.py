@@ -86,7 +86,7 @@ def cutTable(pageNum, interval):
     printedString="";
     if 'pageNum' not in form:
         form['pageNum'] = 0
-    table = "<table border='1'class='pure-table'>"
+    table = "<table border='1' class='pure-table'>"
     if 'order' in form:
         lines=order(form['order'], form['direction'])
         for x in lines:
