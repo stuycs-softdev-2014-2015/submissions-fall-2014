@@ -17,7 +17,7 @@ def contact():
 
 @app.route("/rates")
 def rates():
-    return render_template("rates.html")
+    return render_template("rates.html", methods=['GET', 'POST'])
 
 @app.route("/cssdemo")
 def cssdemo():
