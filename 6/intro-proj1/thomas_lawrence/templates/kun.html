@@ -13,8 +13,8 @@ Level 18 Stats
   {% for row in csvtable[1:] %}
   <tr>
     {% for colnum in columnstoget %}
-    {% if colnum not in [0,1,18,19] %}
-    <td>{{row[colnum]+17*row[colnum-1]}}</td>
+    {% if colnum not in [0,1,2,13,18,19] %}
+    <td>{{(row[colnum-2]|float())+(17*(row[colnum-1]|float()))}}</td>
     {% else %} 
     <td>{{row[colnum]}}</td>
     {% endif %}

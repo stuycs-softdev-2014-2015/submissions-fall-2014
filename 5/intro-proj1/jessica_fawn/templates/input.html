@@ -1,0 +1,31 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css')}}">
+</head>
+<title>The Picketfence Code</title>
+<body>
+	<div class = "main">
+		<h1>The Picketfence Code</h1>
+		<div id = "navcontainer">
+			<ul id = "navbar"> 
+				{% for k in nav.keys() %} 
+				<li><a href = {{nav[k]}}>{{k}}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<form>
+			<br>
+			<p>
+				<input type="text" name="input" class = "inputtext">
+				<br>
+				<br>
+				<input type = "submit" name = "button" value = "Codify!" class = "inputbutton"></submit>
+				<input type="submit" name="button" value="Decodify!" class = "inputbutton"></submit>
+			</p>
+		</form>
+		<p class = "bottom"> 
+			by jessica ng and fawn wong
+		</p>
+	</div>
+</body>
+</html>

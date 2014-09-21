@@ -65,24 +65,30 @@ def cutTable(pageNum, interval):
     printedString="";
     if 'pageNum' not in form:
         form['pageNum'] = 0
-    table = "<table border='1'>"
+    table = "<table border='1'class='pure-table'>"
     if 'order' in form:
         lines=order(form['order'], form['direction'])
         for x in lines:
             table+="<tr>"
             for atom in x:
-                table+="<td bgcolor='white'>" + str(atom) + "</td>"
+                table+="<td><font color='white'>" + str(atom) + "</font></td>"
             table+="</tr>"
         table+="</table>"
         if int(form['pageNum']) > 0 and 'analysis' not in form:
             printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         elif int(form['pageNum']) > 0 and 'analysis' in form:
             printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        printedString+= '<table border="1">'
-        printedString+= "<tr><td bgcolor='white'>Rank</td><td bgcolor='white'>Nation</td><td bgcolor='white'>Player Name</td>"
-        printedString+= "<td bgcolor='white'>Accuracy</td><td bgcolor='white'>Play Count</td><td bgcolor='white'>Performance Points</td>"
-        printedString+= "<td bgcolor='white'>Score Rank</td><td bgcolor='white'>SS</td><td bgcolor='white'>S</td><td bgcolor='white'>A</td></tr>"
-        blah = table.split('<tr>')
+        ###########the buttons to sort
+        upCaret="<button class='pure-button' type='submit' name='"
+        upCaret2="' value='up'><i class='fa fa-caret-up'></i></button>"
+        downCaret="<button class='pure-button' type='submit' name='"
+        downCaret2="' value='up'><i class='fa fa-caret-down'></i></button>"
+
+        printedString+= '<table border="1" class="pure-table"><thead>'
+        printedString+= "<tr><th bgcolor='white'>Rank<br>" + upCaret+ "R"+upCaret2+ downCaret+"R"+downCaret2 +"</th><th bgcolor='white'>Nation<br>" + upCaret + "N" + upCaret2 + downCaret + "N" + downCaret2 +"</th><th bgcolor='white'>Player Name<br>" + upCaret +"P" + upCaret2 + downCaret + "P" + downCaret2 +" </th>"
+        printedString+= "<th bgcolor='white'>Accuracy<br>"+upCaret + "Acc" + upCaret2 +downCaret+ "Acc" + downCaret2+"</th><th bgcolor='white'>Play Count<br>"+upCaret+"Count" + upCaret2 +downCaret + "Count" + downCaret2+"</th><th bgcolor='white'>Performance Points<br>"+upCaret+ "PP" + upCaret2 + downCaret+"PP"+downCaret2+"</th>"
+        printedString+= "<th bgcolor='white'>Score Rank<br>"+upCaret+"Score"+upCaret2+downCaret+"Score"+downCaret2+"</th><th bgcolor='white'>SS<br>"+upCaret+"SS"+upCaret2+downCaret+"SS"+downCaret2+"</th><th bgcolor='white'>S<br>"+upCaret+"S"+upCaret2+downCaret+"S"+downCaret2+"</th><th bgcolor='white'>A<br>"+upCaret+"A"+upCaret2+downCaret+"A"+downCaret2+"</th></tr></thead><tbody>"
+        blah = table.split("<tr>")
         
         x = blah.pop(0)
         currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
@@ -92,25 +98,25 @@ def cutTable(pageNum, interval):
             x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
         else:
             x=""
-        return printedString+"<tr>".join(currentPage)+"</table>"+x
+        return printedString+"<tr>".join(currentPage)+"</tbody></table>"+x
     else:
         lines= data.split("\n")
         for x in lines:
             table+="<tr>"
             molecule = x.split(",")
             for atom in molecule:
-                table+="<td bgcolor='white'>" + str(atom) + "</td>"
+                table+="<td><font color='white'>" + str(atom) + "</font></td>"
             table+="</tr>"
         table+="</table>"
         if int(form['pageNum']) > 0 and 'analysis' not in form:
             printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         elif int(form['pageNum']) > 0 and 'analysis' in form:
             printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        printedString+= '<table border="1">'
-        printedString+= "<tr><td bgcolor='white'>Rank</td><td bgcolor='white'>Nation</td><td bgcolor='white'>Player Name</td>"
-        printedString+= "<td bgcolor='white'>Accuracy</td><td bgcolor='white'>Play Count</td><td bgcolor='white'>Performance Points</td>"
-        printedString+= "<td bgcolor='white'>Score Rank</td><td bgcolor='white'>SS</td><td bgcolor='white'>S</td><td bgcolor='white'>A</td></tr>"
-        blah = table.split('<tr>')
+            printedString+= '<table border="1" class="pure-table"><thead>'
+            printedString+= "<tr><th bgcolor='white'>Rank<br>" +  upCaret + "R"+upCaret2+ downCaret+"R"+downCaret2 +"</th><th bgcolor='white'>Nation<br>" + upCaret + "N" + upCaret2 + downCaret + "N" + downCaret2 +"</th><th bgcolor='white'>Player Name<br>" + upCaret +"P" + upCaret2 + downCaret + "P" + downCaret2 +" </th>"
+            printedString+= "<th bgcolor='white'>Accuracy<br>"+upCaret + "Acc" + upCaret2 +downCaret+ "Acc" + downCaret2+"</th><th bgcolor='white'>Play Count<br>"+upCaret+"Count" + upCaret2 +downCaret + "Count" + downCaret2+"</th><th bgcolor='white'>Performance Points<br>"+upCaret+ "PP" + upCaret2 + downCaret+"PP"+downCaret2+"</th>"
+            printedString+= "<th bgcolor='white'>Score Rank<br>"+upCaret+"Score"+upCaret2+downCaret+"Score"+downCaret2+"</th><th bgcolor='white'>SS<br>"+upCaret+"SS"+upCaret2+downCaret+"SS"+downCaret2+"</th><th bgcolor='white'>S<br>"+upCaret+"S"+upCaret2+downCaret+"S"+downCaret2+"</th><th bgcolor='white'>A<br>"+upCaret+"A"+upCaret2+downCaret+"A"+downCaret2+"</th></tr></thead><tbody>"
+            blah = table.split("<tr>")
         blah[-1] = '</tr>'
         x = blah.pop(0)
         currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
@@ -120,7 +126,7 @@ def cutTable(pageNum, interval):
             x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
         else:
             x=""
-        return printedString +"<tr>".join(currentPage)+"</table>"+x
+        return printedString +"<tr>".join(currentPage)+"</tbody></table>"+x
 
 ####################################################
 app = Flask(__name__)
@@ -144,7 +150,7 @@ if form['order']=="Performance Points" and 'analysis' not in form and 'intermit'
 ##if page state in ANALYSIS, print CUT table
 if 'analysis' in form and 'intermit' not in form and 'analyze' not in form:
     ##selects intervals
-    tablestring+= '<center><table border="2"><tr><td height="300" width="705" bgcolor="white"><center>Results per page:'
+    tablestring+= '<center><table border="2" class="pure-table"><tr><td height="300" width="705" bgcolor="white"><center>Results per page:'
     tablestring+= '<form name="analysis" action="dataproject.py" method="get">'
     tablestring+= '<select name="interval" onchange="this.form.submit()">'
     tablestring+= '<option value="' + str(form['interval']) + '" selected></option>'

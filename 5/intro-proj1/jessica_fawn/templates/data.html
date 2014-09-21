@@ -1,12 +1,21 @@
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css')}}">
-    <title>Lincoln Square BID Business List</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='test.css')}}">
+	<title>Lincoln Square BID Business List</title>
 </head>
 <body>
-    <div>
-    	<h1>Lincoln Square BID Business List</h1>
-		by jessica ng and fawn wong
-		<br><br>
-        ---REPLACE---
-    </div>
+	<div class = "main">
+		<h1>Lincoln Square BID Business List</h1>
+		<div id = "navcontainer">
+			<ul id = "navbar"> 
+				{% for k in nav.keys() %} 
+				<li><a href = {{nav[k]}}>{{k}}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<br>
+		%s
+		<p class = "bottom"> 
+			by jessica ng and fawn wong
+		</p>
+	</div>
 </body>

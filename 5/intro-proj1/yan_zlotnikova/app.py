@@ -36,13 +36,17 @@ def table():
         #if item=='<data>':
     rank=range(1,51,1)
     for info in data:
-        x='<td><center>'+str(rank[0])+'</center></td>'+'\n'+'<td><center>'+ info[0]+ '</center></td>'+'<td><center>'+str(info[1])+ '</center></td>'+"\n"+'<td><center>'+str(info[2])+ '</center></td>'+"\n"+'<td><center>'+ str(info[3])+ '</center></td>'+"\n"+'<td><center>'+ str(info[4])+ '</center></td>'+"\n"+'<td><center>'+ str(info[5])+ '</center></td>'+"\n"+'<td><center>'+ str(info[6])+ '</center></td>'+"\n"+'<td><center>'+ str(info[7])+ '</center></td><tr>'
+        x="<td><center>"+str(rank[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
         result_list.append(x)
         rank.remove(rank[0])
-    result="\n".join(result_list)
-    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
-    return result
+        result="\n".join(result_list)
+        result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+        return result
 
+
+
+def table_template(include):
+    return '<td><center>'+include+'</center></td>'
 
 def open_data(filename):
     L=[]

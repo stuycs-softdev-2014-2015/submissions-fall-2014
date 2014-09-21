@@ -12,19 +12,21 @@ def data():
 
 	# A short script or function will be needed to place necessary data in the correct data structures as defined above
 	# Here's a fabricated one for the purposes of testing while the data-manipulating engine is being tweaked:
-
+    tits = ['month', 'day', 'year', 'time', 'value']
+    base = '/home/students/2014/elia.portnoy/Documents/Senoir/submissions/5/intro-proj1/elia_elvin/Diabetes-Output/'
+    fname = base+'data-fromated-33.csv'
+    in_file = open(fname,'r')
+    data = []
+    
+    for line in in_file:
+        s = line.split(',');
+        data.append(s)
+        print s
+    
+    
 	table_pkg={
-	'types': [
-			'1', '2', '3',
-		],
-
-		'data': [
-			['huh', 'yup', 'yeah'],
-			['yes', 'whoop', 'hooray'],
-			['no', 'nah', 'noop'],
-			['random', 'words', 'here'],
-			['just', 'testing', 'brah'],
-		],
+	'types': tits,
+	'data': data
 	}
 
 	desc = "Welcome to the analysis."

@@ -1,0 +1,76 @@
+<html>
+<head>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+<center>
+<body background= "static/index.jpg">
+    <style> 
+      h1 { color: Navy;
+      float: center;
+      width: 65%
+      } 
+      th { background-color: aqua;}
+      td { background-color: #F3F781;}
+    </style>
+	<table class="pure-table pure-table-bordered pure-table-striped">
+		<thead>
+		<tr>
+			<th>State</th>
+			<th>  Violent crime</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th>    Property crime</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th>Total</th>
+			<th>Murder</th>
+			<th>Rape</th>
+			<th>Robbery</th>
+			<th>Aggravated assault</th>
+			<th>Total</th><th>Burglary</th>
+			<th>Larceny theft</th>
+			<th>Motor Vehicle theft</th>
+		</tr>
+		<tr>
+	</thead>
+	{% if state1 %}
+	<td>{{state1}}</td>
+	{% else %}
+	<td> New York</td>
+	{%endif%}
+	<td>445.8</td>
+	<td>4.5</td>
+	<td>18.9</td>
+	<td>182.7</td>
+	<td>239.7</td>
+	<td>2108.5</td>
+	<td>353.3</td>
+	<td>1569.6</td>
+	<td>185.6</td>
+      </tr>
+      <tr>
+	{% if state2%}
+	<td>{{state2}}</td>
+	{% else %}
+	<td> Cali</td>
+	{%endif%}
+	<td>526.3</td>
+	<td>6.9</td>
+	<td>26</td>
+	<td>176.1</td>
+	<td>317.3</td>
+	<td>3322.6</td>
+	<td>693.3</td>
+	<td>1916.5</td>
+	<td>712.8</td>
+      </tr>
+    </table>
+</body>
+</center>
+</html>

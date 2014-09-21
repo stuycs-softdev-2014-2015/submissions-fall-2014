@@ -37,7 +37,7 @@ while( i < len(age)):
 @app.route("/")
 @app.route("/home") 
 def home():
-    return render_template("home.html", avgs = avgs)
+    return render_template("home2.html", avgs = avgs)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,27 @@
+<html>
+<style>
+h1 {
+  color:red;
+  text-align:center;
+  font-size:10.5em;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+a{
+  color:blue;
+  text-align:center;
+  font-size:5.2em;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+#a-container {
+  text-align:center;
+}
+</style>
+<h1> Homepage </h1>
+<br>
+<div id = "a-container">
+<a href="/conversion">Data</a>
+<br><br>
+<br><br>
+<a href="/reference">Reference</a>
+</div>
+</html>
