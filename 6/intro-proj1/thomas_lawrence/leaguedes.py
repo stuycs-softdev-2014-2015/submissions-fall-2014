@@ -2,6 +2,8 @@ from flask import Flask,render_template,request
 import utils
 import data
 
+data.statdict
+
 app = Flask(__name__)
 
 def csvtolist(csvname):
@@ -27,18 +29,24 @@ def desu():
 @app.route("/kun")
 def kun():
     csvtable = csvtolist("data/stats.csv")
-    return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+    return render_template("kun.html",
+                           csvtable=csvtable,
+                           columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
 
 @app.route("/form",methods=['GET','POST'])
 def form():
     csvtable = csvtolist("data/stats.csv")
     if request.method=="GET":
-        return render_template("form.html",csvtable=csvtable)
+        return render_template("form.html",
+                               champnames=data.champnames)
     else:
         champs = request.form["champion"]
         action = request.form["a"]
         if action=="go":
-            return render_template("generator.html",champs=champs)
+            return render_template("generator.html",
+                                   champs=champs,
+                                   statnames=data.statnames,
+                                   statdict=data.statdict)
         else :
             return render_template("home.html")
         
