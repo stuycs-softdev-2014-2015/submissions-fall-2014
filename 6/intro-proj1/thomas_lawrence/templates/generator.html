@@ -1,0 +1,20 @@
+<!DOCTYPE html> 
+{{champs}}
+<head>
+  <link rel="stylesheet" type="text/css" href="static/desu.css">
+</head>
+<body>
+  <table>
+    <tr>
+      {% for stat in statnames %}
+      <th>{{stat}}</th>
+      {% endfor %}
+    <tr>
+    <tr>
+      {% for stat in statnames %}
+      <td>{{statdict[champs][stat]}}</td>
+      {% endfor %}
+    </tr>
+  </table>
+</body>
+</html>

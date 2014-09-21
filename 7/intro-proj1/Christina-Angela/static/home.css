@@ -7,8 +7,8 @@
 
 ul {
     list-style-type: none;
-    margin-left: 300px;
-    margin-right: 100px;
+    margin-left: 1px;
+    margin-right: 1px;
     padding: 0;
     overflow: hidden;
 }
@@ -19,10 +19,15 @@ li {
     float: left;
 } 
 
+img {
+    float: right;
+    vertical-align: top;
+}
+
 
 a:link, a:visited {
     display: block;
-    width: 200px;
+    width: 400px;
     font-weight: bold;
     color: #FFFFFF;
     background-color: #FA8072;

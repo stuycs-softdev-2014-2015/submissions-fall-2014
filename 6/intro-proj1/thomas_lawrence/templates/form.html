@@ -1,0 +1,18 @@
+<!DOCTYPE html> 
+<head>
+  <link rel="stylesheet" type="text/css" href="static/desu.css">
+</head>
+<body> 
+  <h1>Select the champions you want to compare</h1>
+  <form method="POST">
+    <select name="champion">
+      {% for name in champnames %}
+      <option value="{{name}}">{{name}}</option>
+      {% endfor %}
+    </select>
+    <p>
+      <input type="submit" name="a" value="go">
+      <input type="submit" name="a" value="no">
+  </form>
+</body>
+</html>
