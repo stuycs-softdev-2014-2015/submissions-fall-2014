@@ -28,19 +28,19 @@ def kun():
     csvtable = csvtolist("data/stats.csv")
     return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
 
-@app.route("/form")
+@app.route("/form",methods=['GET','POST'])
 def form():
     csvtable = csvtolist("data/stats.csv")
     if request.method=="GET":
         return render_template("form.html",csvtable=csvtable)
-    else #post
-    champs = request.form["champion"]
-    action = request.form["a"]
-    if action=="go":
-        return render_template("generator.html",champs=champs)
-    else :
-        return render_template("home.html")
-
+    else:
+        champs = request.form["champion"]
+        action = request.form["a"]
+        if action=="go":
+            return render_template("generator.html",champs=champs)
+        else :
+            return render_template("home.html")
+        
 
 
 if __name__ == "__main__":
