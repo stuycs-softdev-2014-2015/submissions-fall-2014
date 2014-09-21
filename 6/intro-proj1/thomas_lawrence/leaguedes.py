@@ -44,7 +44,9 @@ def form():
         action = request.form["a"]
         if action=="go":
             return render_template("generator.html",
-                                   champs=champs)
+                                   champs=champs,
+                                   statnames=data.statnames,
+                                   statdict=data.statdict)
         else :
             return render_template("home.html")
         
