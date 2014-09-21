@@ -11,25 +11,25 @@
   <br>
   <br>
   <table class="pure-table pure-table-bordered">
-    <form name="input" method="get">
+    <form  method="POST">
     <tbody>
       <tr>
-	<td><input value="stat" name="type" type="radio">Statistics</td>
-	<td><br><input id="pts" type="checkbox">Points Scored
-	<br><input id="trd" type="checkbox">Total Rebounds
-	<br><input id="ast" type="checkbox">Assists
-	<br><input id="fg" type="checkbox">Field Goal Percentage
-	<br><input id="ft" type="checkbox">Free Throw Percentage</td>
+	<td><input type="radio" name="type" value="stat"> Statistics</td>
+	<td>
+	  {% for item in l %}
+	  <input type="checkbox" name="statistic" value={{item}}> {{item}}<br>
+	  {% endfor %}
+	</td>
       </tr>
       <tr>
-	<td><input id="draft" name="type" type="radio">Draft Website</td>
-	<td><input id="express" type="checkbox">draftexpress.com
-	<br><input id="nba" type="checkbox">NBAdraft.com</td>
+	<td><input type="radio" name="type" value="draft"> Draft Website</td>
+	<td><input type="checkbox" name="d" value="draftexpress"> draftexpress.com
+	<br><input type="checkbox" name="d" value="NBAdraft"> NBAdraft.com</td>
       </tr>
     </tbody>
   </table>
   <br>
-  <button type="submit" class="pure-button">
+  <button type="submit" name="b" value="blah" class="pure-button">
     <i class="fa-hand-o-right"></i>
     Submit
   </button>
