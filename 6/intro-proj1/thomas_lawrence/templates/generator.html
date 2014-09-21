@@ -1,20 +1,23 @@
-<!DOCTYPE html> 
-{{champs}}
+<!DOCTYPE html>
 <head>
   <link rel="stylesheet" type="text/css" href="static/desu.css">
 </head>
 <body>
   <table>
     <tr>
-      {% for stat in statnames %}
-      <th>{{stat}}</th>
-      {% endfor %}
-    <tr>
-    <tr>
-      {% for stat in statnames %}
-      <td>{{statdict[champs][stat]}}</td>
+      <th>{{statnames[0]}}</th>
+      {% for name in champs %}
+      <th>{{statdict[name][statnames[0]]}}</th>
       {% endfor %}
     </tr>
+    {% for stat in statnames[1:] %}
+    <tr>
+      <td>{{stat}}</td>
+      {% for name in champs %}
+      <td>{{statdict[name][stat]}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
   </table>
 </body>
 </html>

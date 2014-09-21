@@ -1,15 +1,21 @@
 <!DOCTYPE html> 
-<head
+<head>
    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
 </head>
-<body> 
+<body>
   <h1>Select the champions you want to compare</h1>
   <form method="POST">
-    <select name="champion">
+    {% for i in range(selects) %}
+    <p>
+    <select name="champ{{i}}">
+      {% if i!=0 %}
+      <option value="">---</option>
+      {% endif %}
       {% for name in champnames %}
       <option value="{{name}}">{{name}}</option>
       {% endfor %}
     </select>
+    {% endfor %}
     <p>
       <input type="submit" name="a" value="go">
       <input type="submit" name="a" value="no">
