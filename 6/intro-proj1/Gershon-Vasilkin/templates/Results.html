@@ -11,7 +11,10 @@
   </style>
 <html>
 <body>
-<h1 class="c">Number of Restaurants by {{foodorgrade}} in {{boro}} </h1>
+{% if d==None or boro==None or fg==None: %}
+<h1 class = "c"> You must input stuff </h1>
+{% else: %}
+<h1 class="c">Number of Restaurants by {{fg}} in {{boro}} </h1>
 <table>
 {% for key, value in d.iteritems() %}
    <tr>
@@ -20,8 +23,9 @@
    </tr>
 {% endfor %}
 </table>
-<form>
+<form method="POST">
 <input type="submit" name="b" value="return">
 </form>
+{% endif %}
 </body> 
 </html>
