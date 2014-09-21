@@ -1,0 +1,39 @@
+<style>
+body {background-color:blue}
+h4 {color:red}
+</style>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+<center>
+<h1>Welcome to the Crime Data Analysis Network! </h1>
+<h2>Please enter your Username and Password</h2>
+
+
+
+<img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/70/US-FBI-ShadedSeal.svg/994px-US-FBI-ShadedSeal.svg.png" style="width:150px;height:150px">
+
+
+
+
+<form method="POST">
+	<h3>Username</h3>
+	<input type="text" name="uname">
+	<h3>Password</h3>	
+	<input type="text" name="pword">
+	<h3>Your Name (Optional)</h3>
+	<input type="text" name="name">
+	<br><br>
+	<input type="submit" name="b" value="login">
+	<input type="submit" name="b" value="cancel">
+
+</form>
+
+{% if helper=="yes" %}
+
+<h4 color=red> Hint: The username is not stuycs and the password in not softdev </h4>
+
+{% endif %}
+
+</center>
+
