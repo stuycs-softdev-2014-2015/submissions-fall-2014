@@ -79,13 +79,15 @@ def cutTable(pageNum, interval):
         elif int(form['pageNum']) > 0 and 'analysis' in form:
             printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         ###########the buttons to sort
-        upCaret="<button class='pure-button'><i class='fa fa-caret-up'></i></button>"
-        downCaret="<button class='pure-button'><i class='fa fa-caret-down'></i></button>"
+        upCaret="<button class='pure-button' type='submit' name='"
+        upCaret2="' value='up'><i class='fa fa-caret-up'></i></button>"
+        downCaret="<button class='pure-button' type='submit' name='"
+        downCaret2="' value='up'><i class='fa fa-caret-down'></i></button>"
 
         printedString+= '<table border="1" class="pure-table"><thead>'
-        printedString+= "<tr><th bgcolor='white'>Rank" + upCaret + downCaret +"</th><th bgcolor='white'>Nation " + upCaret + downCaret+"</th><th bgcolor='white'>Player Name " + upCaret + downCaret+" </th>"
-        printedString+= "<th bgcolor='white'>Accuracy"+upCaret +downCaret+"</th><th bgcolor='white'>Play Count"+upCaret+downCaret+"</th><th bgcolor='white'>Performance Points"+upCaret+downCaret+"</th>"
-        printedString+= "<th bgcolor='white'>Score Rank"+upCaret+downCaret+"</th><th bgcolor='white'>SS"+upCaret+downCaret+"</th><th bgcolor='white'>S"+upCaret+downCaret+"</th><th bgcolor='white'>A"+upCaret+downCaret+"</th></tr></thead><tbody>"
+        printedString+= "<tr><th bgcolor='white'>Rank<br>" + upCaret+ "R"+upCaret2+ downCaret+"R"+downCaret2 +"</th><th bgcolor='white'>Nation<br>" + upCaret + "N" + upCaret2 + downCaret + "N" + downCaret2 +"</th><th bgcolor='white'>Player Name<br>" + upCaret +"P" + upCaret2 + downCaret + "P" + downCaret2 +" </th>"
+        printedString+= "<th bgcolor='white'>Accuracy<br>"+upCaret + "Acc" + upCaret2 +downCaret+ "Acc" + downCaret2+"</th><th bgcolor='white'>Play Count<br>"+upCaret+"Count" + upCaret2 +downCaret + "Count" + downCaret2+"</th><th bgcolor='white'>Performance Points<br>"+upCaret+ "PP" + upCaret2 + downCaret+"PP"+downCaret2+"</th>"
+        printedString+= "<th bgcolor='white'>Score Rank<br>"+upCaret+"Score"+upCaret2+downCaret+"Score"+downCaret2+"</th><th bgcolor='white'>SS<br>"+upCaret+"SS"+upCaret2+downCaret+"SS"+downCaret2+"</th><th bgcolor='white'>S<br>"+upCaret+"S"+upCaret2+downCaret+"S"+downCaret2+"</th><th bgcolor='white'>A<br>"+upCaret+"A"+upCaret2+downCaret+"A"+downCaret2+"</th></tr></thead><tbody>"
         blah = table.split("<tr>")
         
         x = blah.pop(0)
@@ -110,11 +112,11 @@ def cutTable(pageNum, interval):
             printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         elif int(form['pageNum']) > 0 and 'analysis' in form:
             printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        printedString+= '<table border="1" class="pure-table"><thead>'
-        printedString+= "<tr><th bgcolor='white'>Rank<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>Nation<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>Player Name<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th>"
-        printedString+= "<th bgcolor='white'>Accuracy<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>Play Count<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>Performance Points<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th>"
-        printedString+= "<th bgcolor='white'>Score Rank<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>SS<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>S<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>A<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th></tr></thead><tbody>"
-        blah = table.split('<tr>')
+            printedString+= '<table border="1" class="pure-table"><thead>'
+            printedString+= "<tr><th bgcolor='white'>Rank<br>" +  upCaret + "R"+upCaret2+ downCaret+"R"+downCaret2 +"</th><th bgcolor='white'>Nation<br>" + upCaret + "N" + upCaret2 + downCaret + "N" + downCaret2 +"</th><th bgcolor='white'>Player Name<br>" + upCaret +"P" + upCaret2 + downCaret + "P" + downCaret2 +" </th>"
+            printedString+= "<th bgcolor='white'>Accuracy<br>"+upCaret + "Acc" + upCaret2 +downCaret+ "Acc" + downCaret2+"</th><th bgcolor='white'>Play Count<br>"+upCaret+"Count" + upCaret2 +downCaret + "Count" + downCaret2+"</th><th bgcolor='white'>Performance Points<br>"+upCaret+ "PP" + upCaret2 + downCaret+"PP"+downCaret2+"</th>"
+            printedString+= "<th bgcolor='white'>Score Rank<br>"+upCaret+"Score"+upCaret2+downCaret+"Score"+downCaret2+"</th><th bgcolor='white'>SS<br>"+upCaret+"SS"+upCaret2+downCaret+"SS"+downCaret2+"</th><th bgcolor='white'>S<br>"+upCaret+"S"+upCaret2+downCaret+"S"+downCaret2+"</th><th bgcolor='white'>A<br>"+upCaret+"A"+upCaret2+downCaret+"A"+downCaret2+"</th></tr></thead><tbody>"
+            blah = table.split("<tr>")
         blah[-1] = '</tr>'
         x = blah.pop(0)
         currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
