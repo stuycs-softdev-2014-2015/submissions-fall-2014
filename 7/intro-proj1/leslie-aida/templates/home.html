@@ -1,47 +1,53 @@
+<html>
 <head>
-<style>
-h1, h2 {
-  font-family:"Lucida Console";
-  text-align: center;
-}
-body {
-  background-color:"AliceBlue";
-  font-family:"Lucida Console"
-}
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-  width: 75%;
-}
-td{
-    text-align: center;
-    height: 50px;
-}
-</style>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 </head>
+<body>
+<div class="pure-g">
+<div class="pure-u-1-3" align="center">
+<img src="/static/lightbulb.gif" alt="lightbulb" align="left" height="100" width="80">
+</div>
+<div class="pure-u-1-3" align="center">
 <h1>Electric Consumption by Zip Codes 2010</h1>
 <h2>By Leslie Bresnahan and Aida Piccato</h2>
-<body> 
-<img src="http://classroomclipart.com/images/gallery/Animations/lightbulb.gif" alt="lightbulb" align="left" height="100" width="80">  
-<img src="http://classroomclipart.com/images/gallery/Animations/lightbulb.gif" alt="lightbulb" align="right" height="100" width="80"> 
+</div>
+<div class="pure-u-1-3" align="center">
+<img src="/static/lightbulb.gif" alt="lightbulb" align="right" height="100" width="80">
+</div>
+</div>
+<div class="pure-g">
+<div class="pure-u-1-3"></div>
+<div class="pure-u-1-3" align="center">
+<table class="pure-table" width="75%">
+<thead>
+<tr>
+<th>Building Type</th>
+<th>Zip Code Range</th>
+</tr>
+</thead>
 
-
-<br> <br>
-<table align="center"> 
-
-{% for line in lines%}
-	{%if lines.index(line) == 0%}
-		<tr style="font-size:18px; font-weight: bol; background-color:#CCFFFF">
-	{%else%}
-		<tr>
-	{%endif%}
-	{% for cell in line.split(',') %}
-		<td> {{cell}} </td>
-	{% endfor %}
-
-	</tr>
-{%endfor%}
-
+<tr>
+  <th>
+    <form method="POST">
+      <select name="building_type">
+	<option value="commercial">Commercial</option>
+	<option value="institutional">Institutional</option>
+	<option value="large residential">Large Residential</option>
+	<option value="small residential">Small Residential</option>
+      </select>
+  </th>
+  <th>
+    <input type="text" name="zip_start" size=5> to <input type="text" name="zip_end"size=5>
+  </th>
+</tr>
 </table>
+<br><input type="submit" name="search" value="Search" />
+</form>
+
+
+</div>
+</body>
+</html>
+	
 
 	

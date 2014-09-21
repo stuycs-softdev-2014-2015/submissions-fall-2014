@@ -20,10 +20,12 @@ def start():
 def main():
 
     if request.method == 'POST':
-        elements = request.form.getlist("Yes")
+        elements = request.form["Submit"]
+
+        #return elements;
 
 
-        return elements
+
 
 
 
@@ -35,7 +37,7 @@ def main():
 
         one=1
         two=2
-        if elements.has_key('iran'):
+        if 'Iran' in elements:
             Dict['one'].append('Iranian constitution')
             a=open('Iran.txt')
             iran=a.read()
@@ -44,7 +46,7 @@ def main():
             Dict['one'].append(iran)
 
             checked+=1
-        if elements.has_key('usa'):
+        if 'USA' in elements:
             b=open('unitedstates.txt')
             usaw=b.read()
             usaw=usaw.lower()
@@ -57,7 +59,7 @@ def main():
                 Dict['two'].append("USA's constitution")
                 Dict['two'].append(usaw)
 
-        if elements.has_key('seventeen'):
+        if '1791' in elements:
             c=open('1791France.txt')
             revolution=c.read()
             revolution=revolution.lower()
@@ -70,7 +72,7 @@ def main():
                 Dict['two'].append("French constitution of 1791")
                 Dict['two'].append(revolution)
 
-        if elements.has_key('Russia'):
+        if 'Russia' in elements:
             d=open('russia.txt')
             rus=d.read()
             rus=rus.lower()
@@ -83,7 +85,7 @@ def main():
                 Dict['two'].append("Russian Federation' constitution")
                 Dict['two'].append(rus)
 
-        if elements.has_key('ussr'):
+        if 'USSR' in elements:
             e=open('USSR.txt')
             ussr=e.read()
             ussr=ussr.lower()
@@ -96,7 +98,7 @@ def main():
                 Dict['two'].append("Union of Soviet Socialist Republic's constitution")
                 Dict['two'].append(ussr)
 
-        if elements.has_key('france'):
+        if 'France' in elements:
             f=open('France.txt')
             france=f.read()
             france=france.lower()
@@ -109,7 +111,7 @@ def main():
                 Dict['two'].append("French constitution")
                 Dict['two'].append(france)
 
-        if elements.has_key('manifesto'):
+        if 'Manifesto' in elements:
             g=open('manifesto.txt')
             manifesto=g.read()
             manifesto=manifesto.lower()
@@ -122,7 +124,7 @@ def main():
                 Dict['two'].append("Communist Manifesto")
                 Dict['two'].append(manifesto)
 
-        if elements.has_key('magna'):
+        if 'Magna' in elements:
             h=open('Magnacarta.txt')
             magna=h.read()
             magna=magna.lower()
@@ -140,14 +142,14 @@ def main():
             return s
         #10
         s+= '<br><center> You have chosen to compare the '+Dict['one'][0]+' with the '+Dict['two'][0]
-        if elements.has_key('yestopwords'):
+        if True: #elements.has_key('yestopwords'):
             checker+=1
-            s+=  '<br><br><b><font size="5">Top ' + 50 +' Words</font><br><br>' #elements['topwords'].value
+            s+=  '<br><br><b><font size="5">Top ' + '50' +' Words</font><br><br>' #elements['topwords'].value
             s+= Dict['one'][0]+':</b><br>'
             s+= top50(Dict['one'][1],50)
             s+= '<br><br><b>'+Dict['two'][0]+':</b><br>'
             s+= top50(Dict['two'][1],50)
-        if elements.has_key('total'):
+        if True: #elements.has_key('total'):
             checker+=1
             s+= '<br> <br><b><font size="5">Total Words</font></b><br><br>'
             s+= Dict['one'][0]+': '+str(len(Dict['one'][1])) +'<br>'
@@ -160,17 +162,17 @@ def main():
         for x in Dict['two'][1]:
             if x not in uniquetwo:
                 uniquetwo.append(x)
-        if elements.has_key('unique'):
+        if True: #elements.has_key('unique'):
             checker+=1
             s+= '<br> <br><b><font size="5">Total Unique Words</font></b><br><br>'
             s+= Dict['one'][0]+': '+str(len(uniqueone)) +'<br>'
             s+= Dict['two'][0]+': '+str(len(uniquetwo))
-        if elements.has_key('percentage'):
+        if True: #elements.has_key('percentage'):
             checker+=1
             s+= '<br> <br><b><font size="5">Percentage of Unique Words</font></b><br><br>'
             s+= Dict['one'][0]+': '+str(float(len(uniqueone))/len(Dict['one'][1])*100) +'%<br>'
             s+= Dict['two'][0]+': '+str(float(len(uniquetwo))/len(Dict['two'][1])*100) +'%'
-        if elements.has_key('common'):
+        if True: #elements.has_key('common'):
             checker+=1
             s+= '<br> <br><b><font size="5">All Common Words</font></b><br><br>'
             new=[]
@@ -188,20 +190,20 @@ def main():
                     s+= '<br>'
 
                     r=0
-        if elements.has_key('letters'):
+        if True: #elements.has_key('letters'):
             checker+=1
             s+= '<br> <br><b><font size="5">Total number of letters</font></b><br><br>'
             s+= Dict['one'][0]+': '
-            s+= letters(Dict['one'])
+            s+= str(letters(Dict['one']))
             s+= "<br>"+ Dict['two'][0]+": "
-            s+= letters(Dict['two'])
-        if elements.has_key('wordlength'):
+            s+= str(letters(Dict['two']))
+        if True: #elements.has_key('wordlength'):
             checker+=1
             s+= '<br> <br><b><font size="5">Average word length</font></b><br><br>'
             s+= Dict['one'][0]+': '
-            s+= letters(Dict['one'])
+            s+= str(letters(Dict['one']))
             s+= "<br>"+ Dict['two'][0]+": "
-            s+= letters(Dict['two'])
+            s+= str(letters(Dict['two']))
         if checker==0:
             s+= '<br><br><br><font size="5"> <b> But you forgot to check off actions to take!</b>'
             s+= '<br>  <a href="constitutionoptions.html">Go back!</a>'
@@ -212,7 +214,7 @@ def main():
         s+= '<br> French constitution of 1791 taken from <a href="http://ic.ucsc.edu/~traugott/hist171/readings/1791-09ConstitutionOf1791"> here</a>'
         s+= '<br> and Magna Carta taken from <a href="http://www.constitution.org/eng/magnacar.htm"> here</a>'
         return s
-
+    #'''
 def top50(filen,number):
 
     s = ""
@@ -251,6 +253,7 @@ def top50(filen,number):
                 y+=1
     return s
 def letters(x):
+    s = 0
     constitution=x[1]
 ##    constitution.split()
     d=[]

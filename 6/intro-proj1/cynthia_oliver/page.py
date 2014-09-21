@@ -1,4 +1,5 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
+
 
 # this makes app an instance of the Flask class
 # and it passed the special variable __name__ into
@@ -65,6 +66,26 @@ x = "NBAstats.csv"
 @app.route("/source")
 def source():
     return render_template("source.html")
+
+@app.route("/comment",methods=["GET","POST"])
+def comment():
+    l = ['cookies', 'donuts', 'ice cream', 'muffins']
+    if request.method=="GET":
+        return render_template("comment.html", l=l)
+    else:
+        name = request.form['name']
+        comment = request.form['comment']
+        f = open("comment.txt","r")
+        oldcomment = f.read()
+        f = open("comment.txt","w")
+        f.write(name+" said: \n"+comment+"\n\n"+oldcomment)
+        f = open("comment.txt","r")
+        return render_template("display.html",f=f)
+
+@app.route("/display")
+def display():
+    f = open("comment.txt","r")
+    return render_template("display.html",f=f)
 
 @app.route("/project")
 def help():

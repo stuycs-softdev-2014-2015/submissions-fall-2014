@@ -1,0 +1,37 @@
+<style>
+ h1 { border-style:solid;
+      border-width:2px;}
+ #l { font-size:50px;}
+ #m { font-size:34px;}
+ .c { background-color:ffcdc4;}
+ .pattern { background-color:white;
+	    background-image: linear-gradient(90deg, rgba(200,0,0,.5) 
+	     50%, transparent 50%),
+	     linear-gradient(rgba(200,0,0,.5) 50%, 
+	     transparent 50%);
+	    background-size:50px 50px;}
+ .center {float:center;}
+ .right  {float:right;}
+ .rounded {border-radius: 25px;)
+ li:hover {background:aqua;}
+ li:active {background:red;}
+  </style>
+<body class="pattern">
+<h1 id="l" class="c center rounded">New York City Restaurant Inspection Results</h1>
+<form class="rounded c center" id="m" method="POST">
+	<h2> Pick a Borough: </h2>
+	{% for boro in l %}
+	<input type="radio" name="group1" value={{boro}}> {{boro}} <br>	
+	{% endfor %}
+	<h2> Food or Grade? </h2>
+	<input type="radio" name="group2" value="Food"> Cuisine type <br>
+	<input type="radio" name="group2" value="Grade"> Inspection Grade <br>
+
+	<input id="m" type="submit" 
+		value="Submit"> 
+</form>
+</body>
+
+
+
+

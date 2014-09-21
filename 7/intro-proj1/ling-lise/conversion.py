@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -8,6 +8,7 @@ filecsv = open ("data.csv", "r") # the data set with teh debate statistics
 y = filecsv.readlines () # every line put into the a list of strings
 filecsv.close ()
 
+#******************************************************************#
 #for analysis page
 holder = [] # just placeholding lists for two globals below
 holder2 = []
@@ -78,11 +79,10 @@ SchoolName = SchoolName[:SchoolName.find(",")] # global variable that takes the 
 
 
 
+#                        START OF SERVER CODE                      #
+#******************************************************************#
 
 
-@app.route("/")
-def home ():
-    return render_template("home.html")
 
 
 @app.route("/analysis")
@@ -98,7 +98,7 @@ def analysis():
     ans = ans.replace (";", " ") 
     return render_template("analysis.html",ans=ans)
 
-
+######### Prints Table ############
 @app.route("/conversion")
 def conversion (): #converts the csv file into html code
     ans = ""
@@ -118,7 +118,42 @@ def conversion (): #converts the csv file into html code
                            ans=ans)
 
 
+
+############ Fiddling form elements #################
+@app.route("/")
+@app.route("/home")
+@app.route("/index")
+def home ():    
+    return render_template("home.html")
+
+
+@app.route("/funky",methods=["GET","POST"])
+@app.route("/about",methods=["GET","POST"])
+def about():
+    if request.method == "GET":
+        return render_template("about.html")
+    else:
+        b = request.form("b",None)
+        bold = request.form("bold",None)
+        big = request.form("big",None)
+        
+        if b == "cancel":
+            return render_template("about.html"   )
+        else if b =="random":
+            return render_template("about.html",bold = bold, big = !big, underline = !underline  )
+        else:
+            return render_template("about.html", bold = bold, big = big, underline = underline)
+            
+    
+    
+    
+    return render_template("about.html")
+
+
+
+###########################
+
 if __name__=="__main__":
     app.debug=True
-    app.run(port=5050)
+    app.run(port=5020)
     

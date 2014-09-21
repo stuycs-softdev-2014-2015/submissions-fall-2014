@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Project v2</title>
+    <!--Scripts-->
+    <script type="text/javascript" src="../static/jquery.min.js"></script>
+    <!--Styling-->
+    <link rel="stylesheet" type="text/css" href="../static/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans">
+  </head>
+  <body>
+    <div class="header">
+      <h1 class="heading">
+	POKEMON STATS
+      </h1>
+      <ul>
+	<li>Sadman Fahmid</li>
+	<li>Genji Noguchi</li>
+	<li><i class="fa-copyright"></i></li>
+      </ul>
+    </div>
+    <table border=1>
+
+      {% for itr in range(1, 670) %}
+
+      <tr>
+
+	{% for row in data[num].split(',') %}
+	
+	<td>
+	  {{row}}
+	</td>
+	
+	{% endfor %}
+      </tr>
+      {% set num = num + 1 %}
+      {% endfor %}
+    </table>
+  </body>
+</html>
