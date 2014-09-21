@@ -1,4 +1,3 @@
-
 from flask import Flask,render_template,request
 
 
@@ -22,12 +21,14 @@ def home():
         return render_template("Home.html",l=boros)
     else:
         boro = request.form['group1']
+        if boro == "STATEN":
+                boro = "STATEN ISLAND"
         col = 6
-        foodorgrade = request.form['group2']
-        if foodorgrade == "Food":
+        fg = request.form['group2']
+        if fg == "Food":
             col = 3
         d = get_data(boro,col)
-        return render_template("Results.html",d=d,boro=boro, foodorgrade=foodorgrade)
+        return render_template("Results.html",d=d,boro=boro, fg=fg)
 
 def get_file(filename):
     l=[]
