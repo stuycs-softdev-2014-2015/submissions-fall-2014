@@ -37,7 +37,14 @@ After taking a look at our data, please visit our analysis page:
   {% endfor %}
   
 </table> </n>
+<br><br>
 
+<form action="">
+<select name="States">
+  {% for element in searchlist %}
+<option value = element[0].str> {{element[0]}} </option>   
+  {% endfor %}  
+</select>
 </body>
 
 </html>
