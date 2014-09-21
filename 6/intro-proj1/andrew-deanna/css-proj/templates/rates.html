@@ -46,7 +46,7 @@
 
     <h3>Advertise With Us <small>Discover your opportunity!</small></h3>
 
-    <img src="static/img/AdSizes.svg">
+    <img src="static/img/{{image}}.svg">
 
   </div>
 
@@ -60,7 +60,7 @@
       <h4> Get a quote instantly: </h4>
 
       <div class="large-6 medium-6 columns">
-        <FORM method="post">
+        <form>
         <label>Size:</label>
         <nobr>
           <input type="radio" name="size" value="full" id="full">
@@ -76,7 +76,7 @@
         <div class="row collapse">
           <label>Input Label</label>
           <div class="small-9 columns">
-            <select>
+            <select name="issues" id=issues>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
@@ -101,8 +101,12 @@
           </div>
         </div>
 
-        <input type="submit" value="Submit">
+	       <input class="small button" type="submit" name="b" value="Submit">
+	       <input class="small secondary button" type="submit" name="b" value="Cancel">
 
+         {% if priced %}
+         <h4><small>$</small>{{price}}
+         {% endif %}
         </FORM>
       </div>
 
