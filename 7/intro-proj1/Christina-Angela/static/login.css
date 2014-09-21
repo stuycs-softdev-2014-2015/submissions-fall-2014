@@ -22,8 +22,13 @@ input[type=submit] {
     border-radius: 5px; 
     width: 200px;
     height: 80px;  
-
 }
+
+input[type=password]{
+    font:small-caption;
+    font-size:20px;
+}
+
 input[type=submit]:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
 	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
