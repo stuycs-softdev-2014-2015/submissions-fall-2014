@@ -1,9 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>main.html</title>
   </head>
@@ -16,164 +18,170 @@
 	Or <br>
 	Choose a page and we will give you all the characters in it <br>
 	Find out on which pages of Act 1 a certain character appears.<br><br>
-    </h1>
-    <br>
-    <br>
-    <form>
-      <select name = "char">
-	<option value = "Itchy">1/Itchy</option>
-	<option value = "Cans">15/Cans</option>
-	<option value = "Doze">2/Doze</option>
-	<option value = "Trace">3/Trace</option>
-	<option value = "Bro">Bro</option>
-	<option value = "Clover">4/Clover</option>
-	<option value = "Clubs">Clubs Deuce</option>
-	<option value = "Colonel">Colonel Sassacre</option>
-	<option value = "Dad">Dad</option>
-	<option value = "Dave">Dave</option>
-	<option value = "Daves">Davesprite</option>
-	<option value = "Diamonds">Diamonds Droog</option>
-	<option value = "Hearts">Hearts Boxcars</option>
-	<option value = "Jade">Jade</option>
-	<option value = "Jasper">Jaspers</option>
-	<option value = "Jaspers">Jaspersprite</option>
-	<option value = "John">John</option>
-	<option value = "Crow">Kernel/Crowsprite</option>
-	<option value = "Kernel">Kernelsprite</option>
-	<option value = "Cal">Lil Cal</option>
-	<option value = "Liv">Liv Tyler</option>
-	<option value = "Maple">Maplehoof</option>
-	<option value = "Mom">Mom</option>
-	<option value = "Nanna">Nanna</option>
-	<option value = "Nannas">Nannasprite</option>
-	<option value = "Peregrine">Peregrine Medicant</option>
-	<option value = "Rose">Rose</option>
-	<option value = "Saw">Sawtooth</option>
-	<option value = "Seren">Serenity</option>
-	<option value = "Spades">Spades Slick</option>
-	<option value = "Square">Squarewave</option>
-	<option value = "Sweet">Sweet Bro and Hella Jeff</option>
-	<option value = "Vagabond">Wayward Vagabond</option>
-      </select>
- <form>
-      <select name = "char2">
-	<option value = "None">None</option>
-	<option value = "Itchy">1/Itchy</option>
-	<option value = "Cans">15/Cans</option>
-	<option value = "Doze">2/Doze</option>
-	<option value = "Trace">3/Trace</option>
-	<option value = "Bro">Bro</option>
-	<option value = "Clover">4/Clover</option>
-	<option value = "Clubs">Clubs Deuce</option>
-	<option value = "Colonel">Colonel Sassacre</option>
-	<option value = "Dad">Dad</option>
-	<option value = "Dave">Dave</option>
-	<option value = "Daves">Davesprite</option>
-	<option value = "Diamonds">Diamonds Droog</option>
-	<option value = "Hearts">Hearts Boxcars</option>
-	<option value = "Jade">Jade</option>
-	<option value = "Jasper">Jaspers</option>
-	<option value = "Jaspers">Jaspersprite</option>
-	<option value = "John">John</option>
-	<option value = "Crow">Kernel/Crowsprite</option>
-	<option value = "Kernel">Kernelsprite</option>
-	<option value = "Cal">Lil Cal</option>
-	<option value = "Liv">Liv Tyler</option>
-	<option value = "Maple">Maplehoof</option>
-	<option value = "Mom">Mom</option>
-	<option value = "Nanna">Nanna</option>
-	<option value = "Nannas">Nannasprite</option>
-	<option value = "Peregrine">Peregrine Medicant</option>
-	<option value = "Rose">Rose</option>
-	<option value = "Saw">Sawtooth</option>
-	<option value = "Seren">Serenity</option>
-	<option value = "Spades">Spades Slick</option>
-	<option value = "Square">Squarewave</option>
-	<option value = "Sweet">Sweet Bro and Hella Jeff</option>
-	<option value = "Vagabond">Wayward Vagabond</option>
-      </select>
- <form>
-      <select name = "char3">
-	<option value = "None">None</option>
-	<option value = "Itchy">1/Itchy</option>
-	<option value = "Cans">15/Cans</option>
-	<option value = "Doze">2/Doze</option>
-	<option value = "Trace">3/Trace</option>
-	<option value = "Bro">Bro</option>
-	<option value = "Clover">4/Clover</option>
-	<option value = "Clubs">Clubs Deuce</option>
-	<option value = "Colonel">Colonel Sassacre</option>
-	<option value = "Dad">Dad</option>
-	<option value = "Dave">Dave</option>
-	<option value = "Daves">Davesprite</option>
-	<option value = "Diamonds">Diamonds Droog</option>
-	<option value = "Hearts">Hearts Boxcars</option>
-	<option value = "Jade">Jade</option>
-	<option value = "Jasper">Jaspers</option>
-	<option value = "Jaspers">Jaspersprite</option>
-	<option value = "John">John</option>
-	<option value = "Crow">Kernel/Crowsprite</option>
-	<option value = "Kernel">Kernelsprite</option>
-	<option value = "Cal">Lil Cal</option>
-	<option value = "Liv">Liv Tyler</option>
-	<option value = "Maple">Maplehoof</option>
-	<option value = "Mom">Mom</option>
-	<option value = "Nanna">Nanna</option>
-	<option value = "Nannas">Nannasprite</option>
-	<option value = "Peregrine">Peregrine Medicant</option>
-	<option value = "Rose">Rose</option>
-	<option value = "Saw">Sawtooth</option>
-	<option value = "Seren">Serenity</option>
-	<option value = "Spades">Spades Slick</option>
-	<option value = "Square">Squarewave</option>
-	<option value = "Sweet">Sweet Bro and Hella Jeff</option>
-	<option value = "Vagabond">Wayward Vagabond</option>
-      </select>
- <form>
-      <select name = "char4">
-	<option value = "None">None</option>
-	<option value = "Itchy">1/Itchy</option>
-	<option value = "Cans">15/Cans</option>
-	<option value = "Doze">2/Doze</option>
-	<option value = "Trace">3/Trace</option>
-	<option value = "Bro">Bro</option>
-	<option value = "Clover">4/Clover</option>
-	<option value = "Clubs">Clubs Deuce</option>
-	<option value = "Colonel">Colonel Sassacre</option>
-	<option value = "Dad">Dad</option>
-	<option value = "Dave">Dave</option>
-	<option value = "Daves">Davesprite</option>
-	<option value = "Diamonds">Diamonds Droog</option>
-	<option value = "Hearts">Hearts Boxcars</option>
-	<option value = "Jade">Jade</option>
-	<option value = "Jasper">Jaspers</option>
-	<option value = "Jaspers">Jaspersprite</option>
-	<option value = "John">John</option>
-	<option value = "Crow">Kernel/Crowsprite</option>
-	<option value = "Kernel">Kernelsprite</option>
-	<option value = "Cal">Lil Cal</option>
-	<option value = "Liv">Liv Tyler</option>
-	<option value = "Maple">Maplehoof</option>
-	<option value = "Mom">Mom</option>
-	<option value = "Nanna">Nanna</option>
-	<option value = "Nannas">Nannasprite</option>
-	<option value = "Peregrine">Peregrine Medicant</option>
-	<option value = "Rose">Rose</option>
-	<option value = "Saw">Sawtooth</option>
-	<option value = "Seren">Serenity</option>
-	<option value = "Spades">Spades Slick</option>
-	<option value = "Square">Squarewave</option>
-	<option value = "Sweet">Sweet Bro and Hella Jeff</option>
-	<option value = "Vagabond">Wayward Vagabond</option>
-      </select>
-      <input type = "submit" name = "submit" value = "Search for Pages">
-	
-<!--    <a href="http://0.0.0.0:1639/Character">For character, click here</a><br> -->
-<br>
-      <a href="http://0.0.0.0:1639/Page">For page,
-      click here</font><font color="#00FFFF"><font color="#00FFFF">
-<br><big><big><big><big><big><big><big><big><big><big><big><big><font face="garamond"><img class = "pure-img" alt="" src="http://media.tumblr.com/tumblr_mdv7j9SFnW1r9mlad.gif" border="0" align="center" height="436" width="176"></font></big></big></big></big></big></big></big></big></big></big></big></big></font></a>
+      </h1>
+      <br>
+      <br>
+      <form>
+	<select name = "char">
+	  <option value = "Itchy">1/Itchy</option>
+	  <option value = "Cans">15/Cans</option>
+	  <option value = "Doze">2/Doze</option>
+	  <option value = "Trace">3/Trace</option>
+	  <option value = "Bro">Bro</option>
+	  <option value = "Clover">4/Clover</option>
+	  <option value = "Clubs">Clubs Deuce</option>
+	  <option value = "Colonel">Colonel Sassacre</option>
+	  <option value = "Dad">Dad</option>
+	  <option value = "Dave">Dave</option>
+	  <option value = "Daves">Davesprite</option>
+	  <option value = "Diamonds">Diamonds Droog</option>
+	  <option value = "Hearts">Hearts Boxcars</option>
+	  <option value = "Jade">Jade</option>
+	  <option value = "Jasper">Jaspers</option>
+	  <option value = "Jaspers">Jaspersprite</option>
+	  <option value = "John">John</option>
+	  <option value = "Crow">Kernel/Crowsprite</option>
+	  <option value = "Kernel">Kernelsprite</option>
+	  <option value = "Cal">Lil Cal</option>
+	  <option value = "Liv">Liv Tyler</option>
+	  <option value = "Maple">Maplehoof</option>
+	  <option value = "Mom">Mom</option>
+	  <option value = "Nanna">Nanna</option>
+	  <option value = "Nannas">Nannasprite</option>
+	  <option value = "Peregrine">Peregrine Medicant</option>
+	  <option value = "Rose">Rose</option>
+	  <option value = "Saw">Sawtooth</option>
+	  <option value = "Seren">Serenity</option>
+	  <option value = "Spades">Spades Slick</option>
+	  <option value = "Square">Squarewave</option>
+	  <option value = "Sweet">Sweet Bro and Hella Jeff</option>
+	  <option value = "Vagabond">Wayward Vagabond</option>
+	</select>
+	<form>
+	  <select name = "char2">
+	    <option value = "None">None</option>
+	    <option value = "Itchy">1/Itchy</option>
+	    <option value = "Cans">15/Cans</option>
+	    <option value = "Doze">2/Doze</option>
+	    <option value = "Trace">3/Trace</option>
+	    <option value = "Bro">Bro</option>
+	    <option value = "Clover">4/Clover</option>
+	    <option value = "Clubs">Clubs Deuce</option>
+	    <option value = "Colonel">Colonel Sassacre</option>
+	    <option value = "Dad">Dad</option>
+	    <option value = "Dave">Dave</option>
+	    <option value = "Daves">Davesprite</option>
+	    <option value = "Diamonds">Diamonds Droog</option>
+	    <option value = "Hearts">Hearts Boxcars</option>
+	    <option value = "Jade">Jade</option>
+	    <option value = "Jasper">Jaspers</option>
+	    <option value = "Jaspers">Jaspersprite</option>
+	    <option value = "John">John</option>
+	    <option value = "Crow">Kernel/Crowsprite</option>
+	    <option value = "Kernel">Kernelsprite</option>
+	    <option value = "Cal">Lil Cal</option>
+	    <option value = "Liv">Liv Tyler</option>
+	    <option value = "Maple">Maplehoof</option>
+	    <option value = "Mom">Mom</option>
+	    <option value = "Nanna">Nanna</option>
+	    <option value = "Nannas">Nannasprite</option>
+	    <option value = "Peregrine">Peregrine Medicant</option>
+	    <option value = "Rose">Rose</option>
+	    <option value = "Saw">Sawtooth</option>
+	    <option value = "Seren">Serenity</option>
+	    <option value = "Spades">Spades Slick</option>
+	    <option value = "Square">Squarewave</option>
+	    <option value = "Sweet">Sweet Bro and Hella Jeff</option>
+	    <option value = "Vagabond">Wayward Vagabond</option>
+	  </select>
+	  <form>
+	    <select name = "char3">
+	      <option value = "None">None</option>
+	      <option value = "Itchy">1/Itchy</option>
+	      <option value = "Cans">15/Cans</option>
+	      <option value = "Doze">2/Doze</option>
+	      <option value = "Trace">3/Trace</option>
+	      <option value = "Bro">Bro</option>
+	      <option value = "Clover">4/Clover</option>
+	      <option value = "Clubs">Clubs Deuce</option>
+	      <option value = "Colonel">Colonel Sassacre</option>
+	      <option value = "Dad">Dad</option>
+	      <option value = "Dave">Dave</option>
+	      <option value = "Daves">Davesprite</option>
+	      <option value = "Diamonds">Diamonds Droog</option>
+	      <option value = "Hearts">Hearts Boxcars</option>
+	      <option value = "Jade">Jade</option>
+	      <option value = "Jasper">Jaspers</option>
+	      <option value = "Jaspers">Jaspersprite</option>
+	      <option value = "John">John</option>
+	      <option value = "Crow">Kernel/Crowsprite</option>
+	      <option value = "Kernel">Kernelsprite</option>
+	      <option value = "Cal">Lil Cal</option>
+	      <option value = "Liv">Liv Tyler</option>
+	      <option value = "Maple">Maplehoof</option>
+	      <option value = "Mom">Mom</option>
+	      <option value = "Nanna">Nanna</option>
+	      <option value = "Nannas">Nannasprite</option>
+	      <option value = "Peregrine">Peregrine Medicant</option>
+	      <option value = "Rose">Rose</option>
+	      <option value = "Saw">Sawtooth</option>
+	      <option value = "Seren">Serenity</option>
+	      <option value = "Spades">Spades Slick</option>
+	      <option value = "Square">Squarewave</option>
+	      <option value = "Sweet">Sweet Bro and Hella Jeff</option>
+	      <option value = "Vagabond">Wayward Vagabond</option>
+	    </select>
+	    <form>
+	      <select name = "char4">
+		<option value = "None">None</option>
+		<option value = "Itchy">1/Itchy</option>
+		<option value = "Cans">15/Cans</option>
+		<option value = "Doze">2/Doze</option>
+		<option value = "Trace">3/Trace</option>
+		<option value = "Bro">Bro</option>
+		<option value = "Clover">4/Clover</option>
+		<option value = "Clubs">Clubs Deuce</option>
+		<option value = "Colonel">Colonel Sassacre</option>
+		<option value = "Dad">Dad</option>
+		<option value = "Dave">Dave</option>
+		<option value = "Daves">Davesprite</option>
+		<option value = "Diamonds">Diamonds Droog</option>
+		<option value = "Hearts">Hearts Boxcars</option>
+		<option value = "Jade">Jade</option>
+		<option value = "Jasper">Jaspers</option>
+		<option value = "Jaspers">Jaspersprite</option>
+		<option value = "John">John</option>
+		<option value = "Crow">Kernel/Crowsprite</option>
+		<option value = "Kernel">Kernelsprite</option>
+		<option value = "Cal">Lil Cal</option>
+		<option value = "Liv">Liv Tyler</option>
+		<option value = "Maple">Maplehoof</option>
+		<option value = "Mom">Mom</option>
+		<option value = "Nanna">Nanna</option>
+		<option value = "Nannas">Nannasprite</option>
+		<option value = "Peregrine">Peregrine Medicant</option>
+		<option value = "Rose">Rose</option>
+		<option value = "Saw">Sawtooth</option>
+		<option value = "Seren">Serenity</option>
+		<option value = "Spades">Spades Slick</option>
+		<option value = "Square">Squarewave</option>
+		<option value = "Sweet">Sweet Bro and Hella Jeff</option>
+		<option value = "Vagabond">Wayward Vagabond</option>
+	      </select>
+	      <input type = "submit" name = "submit" value = "Search for Pages">
+	      
+
+	      <br><br>OR<br><br>
+
+	      <!--Enter text and submit button corresponding to it-->
+	      <input type = "text" name = "page"><input type = "submit" name = "submit" value = "Search for Characters"></font><font color="#00FFFF"><font color="#00FFFF">
+</a>
 </form>
+
+
+    <br><font face="garamond"><img class = "pure-img" alt="" src="http://media.tumblr.com/tumblr_mdv7j9SFnW1r9mlad.gif" border="0" align="center" height="436" width="176"></font></font>
+
+
 </center>
 </body>
 </html>

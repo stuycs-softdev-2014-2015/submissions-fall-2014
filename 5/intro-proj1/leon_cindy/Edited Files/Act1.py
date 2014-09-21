@@ -117,30 +117,22 @@ image["Spades Slick"] = "http://images1.wikia.nocookie.net/__cb20110304130153/ms
 @app.route('/')
 def main():
     #Name selected
-    name1 = request.args.get("char",None)
+    name1 = request.args.get("char", None)
     name2 = request.args.get("char2", None)
     name3 = request.args.get("char3", None)
     name4 = request.args.get("char4", None)
 
+    #Page number entered
+    page = request.args.get("page", None)
+    
     #Has user clicked submit
     sub = request.args.get("submit",None)
     if(sub == "Search for Pages"):
         return createVarChar(name1, name2, name3, name4)
+    elif(sub == "Search for Characters"):
+        return createVarPage(page)
 
     return render_template("main.html")
-
-
-
-#my attempt at being more efficient than listing each page number. Probably wont be needed now
-def listPages():
-    i = 1901
-    HTML = ""
-    while ( i < 2657 ):
-        HTML += '<a href="http://0.0.0.0:1639/Page/' + str(i) + '">Page ' + str(i) + '<br>'
-        i+=1
-    HTML += "</body></html>"
-    return HTML
-
 
 
 def createVarChar(name1, name2, name3, name4):
@@ -202,29 +194,15 @@ def createVarChar(name1, name2, name3, name4):
         if name == "Square":
             namelist[namelist.index(name)] = "Squarewave"
 
-
-     
-
-
-    HTML = '''
-    <html>
-    <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>character.html</title>
-    </head>
-    <body bgcolor="#0e4603" text="#ffffff">
-    <br>
-    '''
     savename = namelist.pop(0)
-    HTML += "<div align='center'><big><big> "+savename
-    print savename
+    HTML = "<div align='center'><big><big> "+savename
+#    print savename
     for name in namelist:
         HTML += ", "+name 
     namelist.insert(0, savename)
     HTML += "</big></big></div> <br>"
-    for name in namelist:
-        HTML += "<img src='"+image[name]+"'><br><br><br>"
-    HTML += "Pages in which your character(s) appear(s): <br>"
+
+    HTML += "<u>Pages in which your character(s) appear(s): <br></u>"
     pagelist1 = dnames[namelist[0]]
     pagelist = []
     if len(namelist) == 2:
@@ -243,21 +221,53 @@ def createVarChar(name1, name2, name3, name4):
         pagelist=pagelist1
     
     if len(pagelist) == 0:
-        HTML += "Sorry, they do not appear anywhere together"
-
+        HTML += "&nbsp&nbsp&nbsp&nbsp&nbspSorry, they do not appear anywhere together<br><br>" 
     for x in pagelist:
-        HTML += "<a href='http://mspaintadventures.com/?s=6&p=00"+x+"'><font color='cyan'>"+x+"</a><br>"
-    HTML += ''' </body>
-    </html>'''
-    return HTML
+        HTML +="<a href='http://mspaintadventures.com/?s=6&p=00"+x+"'><font color='cyan'>"+x+"</a><br>"
+    
+    HTML += "<div class = 'pure-g'>"
+
+    for name in namelist:
+        HTML += "<div class = 'pure-u-1-" +\
+                str(len(namelist))+"'><center><img width = 250 src='"\
+                +image[name]+"'></center></div>"
+
+    HTML += "</div>"
+    HTML += ''' </body></html>'''
+    
+    #I use render_template("chooseChar.html") because for some reason css doesn't work when I put the link for style.css in this file.
+    return render_template("chooseChar.html")+HTML
 
 def createVarPage(num):
-    return ""
+    HTML = ""
+
+    #List characters on a page, unless page is not found(except)
+    try:
+
+        #for purecss grids
+        grids = 1
+        if ( dpages[num] > 4 ):
+            grids = 4
+
+        HTML += "<u>Characters found on page " + str(num) + ":</u><br><br>"
+        HTML += "<div class = 'pure-g'>"
+        for x in dpages[num]:
+            HTML += "<div class = 'pure-u-1-" +\
+                    str(grids)+"'><center>"\
+                    + x + "<br><img width = 250 src='"\
+                    +image[x]+"'></center></div>"
+        HTML += "</div>"
+    except:
+        HTML += "<center>Oops! That page does not exist.</center>"
+
+    HTML += ''' </body></html>'''
+
+    return render_template("choosePage.html")+HTML
     
 if __name__ == "__main__":
     app.debug = True
-    app.run(host = "0.0.0.0", port = 1639)
-    #app.run()
+    #app.run(host = "0.0.0.0", port = 1639)
+    app.run()
 
 
 #css stuff

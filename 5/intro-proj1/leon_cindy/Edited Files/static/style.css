@@ -31,9 +31,3 @@ a:hover {
 a:active {
     color: #0000FF;
 }
-
-<h3> {
-    position: absolute;
-    left: 50px;
-    top: 150px;
-}
