@@ -78,13 +78,14 @@ def cutTable(pageNum, interval):
             printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
         elif int(form['pageNum']) > 0 and 'analysis' in form:
             printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
+        ###########the buttons to sort
         upCaret="<button class='pure-button'><i class='fa fa-caret-up'></i></button>"
         downCaret="<button class='pure-button'><i class='fa fa-caret-down'></i></button>"
 
         printedString+= '<table border="1" class="pure-table"><thead>'
         printedString+= "<tr><th bgcolor='white'>Rank" + upCaret + downCaret +"</th><th bgcolor='white'>Nation " + upCaret + downCaret+"</th><th bgcolor='white'>Player Name " + upCaret + downCaret+" </th>"
-        printedString+= "<th bgcolor='white'>Accuracy<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>Play Count<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>Performance Points<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th>"
-        printedString+= "<th bgcolor='white'>Score Rank<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>SS<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>S<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th><th bgcolor='white'>A<button class='pure-button'><i class='fa fa-arrow-up'></i></button><button class='pure-button'><i class='fa fa-arrow-down'></i></button></th></tr></thead><tbody>"
+        printedString+= "<th bgcolor='white'>Accuracy"+upCaret +downCaret+"</th><th bgcolor='white'>Play Count"+upCaret+downCaret+"</th><th bgcolor='white'>Performance Points"+upCaret+downCaret+"</th>"
+        printedString+= "<th bgcolor='white'>Score Rank"+upCaret+downCaret+"</th><th bgcolor='white'>SS"+upCaret+downCaret+"</th><th bgcolor='white'>S"+upCaret+downCaret+"</th><th bgcolor='white'>A"+upCaret+downCaret+"</th></tr></thead><tbody>"
         blah = table.split("<tr>")
         
         x = blah.pop(0)

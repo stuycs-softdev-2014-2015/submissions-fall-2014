@@ -24,13 +24,13 @@ def main():
     global name
     global quote 
     global adjective
-
-    if name == None:
-       name = request.form["name"]
-    if quote == None:
-        quote = request.form["quote"]
-    if adjective == None:
-        adjective = request.form["adjective"]
+    if request.method == 'POST':
+        if name == None:
+            name = request.form["name"]
+        if quote == None:
+            quote = request.form["quote"]
+        if adjective == None:
+            adjective = request.form["adjective"]
 
     print name
     print quote
@@ -44,23 +44,27 @@ def main():
         <title>Wisdom!</title>
         <style>
     body {
-        background: white }
+        background: #f1f1f1}
     section {
     
-        border-radius: 1em;
-        padding: 1em;
+        border-radius: 10px;
+        padding: 10px;
         margin-left: auto;
         margin-right: auto;
         width: 400px
     }
     .c {
-        background: grey;
+        background: #D3D3D3;
         color: black;
         }
     .a   {
      background: black;
         color: white;
         } 
+    .b {
+    background: #d7d7d7;
+    width: 312px
+    }
     
   </style>
     
@@ -68,7 +72,7 @@ def main():
 </head>
 
 
-        <body style="background-color:white">
+        
         '''
 
     s+= '<h3 class="brand-title"><center><b>Wise words from a figure of great stature </b></h3>'
@@ -78,7 +82,7 @@ def main():
     variableName = get_it.read()
     lines= variableName.split('\n')
     lines=lines[:len(lines)-1]
-    if quote!="":
+    if quote!="" and quote!=None:
         lines.append(quote)
         lines.append(quote)
         
@@ -88,7 +92,7 @@ def main():
     Dict=filez.read()
     Dict=Dict.split('\n')
     Dict=Dict[:len(Dict)-1]
-    if name!="":
+    if name!=""and name!=None:
         Dict.append(name+',https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4qlCVQrMo5QqT5-y_pEcycr-HEap5aOoWAHsHtEa3_qJAFxKZA')
         Dict.append(name+',https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4qlCVQrMo5QqT5-y_pEcycr-HEap5aOoWAHsHtEa3_qJAFxKZA')
     
@@ -101,16 +105,17 @@ def main():
     titles=filezd.read()
     titles=titles.split('\n')
     titles=titles[:len(titles)-2]
-    if adjective!="":
+    if adjective!=""and adjective!=None:
         titles.append(adjective)
         titles.append(adjective)
     s+= '<center><section class ="a"><img src='+'"'+image+'"'+'width="400" height="400"></img></center></section>'
     s+= '<section class ="c"><center>As the '+ titles[random.randint(0, len(titles)-1)]+' <b>'+Name+'</b> once said:<br>'
     s+= '"'+lines[random.randint(0, len(lines)-1)]+'"'
     s+= '''</section><center><br>
-   <a class="pure-button pure-button-primary" href="/results">Next Quote</a>
-   <br> <br>
-   <a class="pure-button" href="/">Return to Home Page</a>
+    <section class = "b">
+   <a class="pure-button pure-button-primary" href="/results">Next Quote</a>  
+   
+   <a class="pure-button" href="/">Return to Home Page</a></section>
    
 '''
 
