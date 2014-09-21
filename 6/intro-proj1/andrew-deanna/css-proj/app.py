@@ -1,5 +1,5 @@
 import random
-#import utils
+import utils
 from flask import Flask,render_template,request
 
 app = Flask(__name__)
@@ -28,7 +28,7 @@ def rates():
         return render_template("rates.html",
                                 priced="TRUE",
                                 price="1000",
-                                image="Full"
+                                image=utils.getImg(size)
                                 )
 
 

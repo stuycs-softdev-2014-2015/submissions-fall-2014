@@ -1,9 +1,9 @@
 import random
 
 def findPrice(size,issues):
+  return null
 
-
-def findImg(size):
+def getImg(size):
   if size == "full":
     return "Full"
   if size == "half":
