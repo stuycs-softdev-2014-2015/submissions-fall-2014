@@ -19,7 +19,7 @@ def login():
         if button=="cancel" or not(valid_user):
             return render_template("login.html")
         else:
-            return render_template("welcome.html")
+            return render_template("create.html")
 
 if __name__ == '__main__':
     app.debug = True
