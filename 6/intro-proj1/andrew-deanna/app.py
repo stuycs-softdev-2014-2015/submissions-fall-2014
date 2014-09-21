@@ -10,6 +10,8 @@ def home():
 
 @app.route("/advertisers")
 def advertisers():
+    import random
+    num = random.randrange(0,15)
     return render_template("advertisers.html")
 
 @app.route("/contact")
