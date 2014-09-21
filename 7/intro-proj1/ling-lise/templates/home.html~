@@ -16,11 +16,12 @@ a{
   text-align:center;
 }
 </style>
-
-<body>
-<h1> Index </h1>
+<h1> Homepage </h1>
+<br>
+<div id = "a-container">
 <a href="/conversion">Data</a>
-<br><br><br>
-<a href="/analysis">Analysis</a>
-</body>
+<br><br>
+<br><br>
+<a href="/reference">Reference</a>
+</div>
 </html>
