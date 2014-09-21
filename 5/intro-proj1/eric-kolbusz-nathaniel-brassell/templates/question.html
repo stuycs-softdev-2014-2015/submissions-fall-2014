@@ -1,11 +1,15 @@
 <h1>Question {{qnum}}</h1>
 <br>
 
+<h2>{{question}}</h2>
+<br>
+
 <form>
-<input type="radio" name="a{{qnum}}" value="one">one<br>
-<input type="radio" name="a{{qnum}}" value="two">two<br>
-<input type="radio" name="a{{qnum}}" value="three">three<br>
-<input type="radio" name="a{{qnum}}" value="four">four<br>
+
+<input type="radio" name="a{{qnum}}" value="{{choice1}}">{{choice1}}<br>
+<input type="radio" name="a{{qnum}}" value="{{choice2}}">{{choice2}}<br>
+<input type="radio" name="a{{qnum}}" value="{{choice3}}">{{choice3}}<br>
+<input type="radio" name="a{{qnum}}" value="{{choice4}}">{{choice4}}<br>
 
 <input type="submit" value="Continue">
 
