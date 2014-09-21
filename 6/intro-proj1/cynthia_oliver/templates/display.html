@@ -1,13 +1,20 @@
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-<h1>SOURCE</h1>
-All stats come from <a href= http://www.basketball-reference.com/teams>here</a>. The predictions come from the analysis of the stats.
+
+<h1>Comments</h1>
+<br>
+{% for line in f %}
+{{line}} <br> <br>
+{% endfor %}
+
+<a href = "/comment" >Make a Comment</a>
+
 <br><br>
 <div class="pure-menu pure-menu-open">
     <ul>
         <li><a href="/home">Home Page</a></li>
         <li><a href="/project">Project</a></li>
         <li><a href="/analysis">Analysis</a></li>
-        <li><a href="/display">Wall</a></li>
+	<li><a href="/source">Source</a></li>
         <li><a href="/comment">Comment</a></li>
     </ul>
 </div>
