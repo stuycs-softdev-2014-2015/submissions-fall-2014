@@ -1,0 +1,29 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/static/stylesheet.css" />
+</head>
+<h1>Electric Consumption by Zip Codes 2010</h1>
+<h2>By Leslie Bresnahan and Aida Piccato</h2>
+<body> 
+<img src="http://classroomclipart.com/images/gallery/Animations/lightbulb.gif" alt="lightbulb" align="left" height="100" width="80">  
+<img src="http://classroomclipart.com/images/gallery/Animations/lightbulb.gif" alt="lightbulb" align="right" height="100" width="80"> 
+
+
+<br> <br>
+<table align="center"> 
+
+{% for line in lines%}
+	{%if lines.index(line) == 0%}
+		<tr style="font-size:18px; font-weight: bol; background-color:#CCFFFF">
+	{%else%}
+		<tr>
+	{%endif%}
+	{% for cell in line.split(',') %}
+		<td> {{cell}} </td>
+	{% endfor %}
+
+	</tr>
+{%endfor%}
+
+</table>
+
+	

@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>
+            {{page_title}}
+        </title>
+        <link rel="stylesheet" type="text/css" href={{ url_for("static",
+                filename="css/style.css") }}/>
+    </head>
+    <body>
+        <div id="container">
+            <h1>{{content_header}}</h1>
+        <div class="table_wrapper">
+        <table class="font_16px">
+            {% for header in headers %}
+            <th>
+                {{ header }}
+            </th>
+            {% endfor %}
+            <tr>
+                {% for item in p1 %}
+                    {% if loop.first %}
+                        <td class="bold">
+                    {% else %}
+                        <td>
+                    {% endif %}
+                    {{item}}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for item in p2 %}
+                    {% if loop.first %}
+                        <td class="bold">
+                    {% else %}
+                        <td>
+                    {% endif %}
+                    {{item}}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for item in diff %}
+                    {% if loop.first %}
+                        <td class="bold">
+                    {% else %}
+                        {% if item | float > 0 %}
+                            <td class="bold positive">
+                        {% elif item | float == 0 %}
+                            <td class="bold neutral">
+                        {% else %}
+                            <td class="bold negative">
+                        {% endif %}
+                    {% endif %}
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+        </div>
+        <a href="{{ url_for("home") }}">See full data</a>
+    </body>
+    </div>
+</html>

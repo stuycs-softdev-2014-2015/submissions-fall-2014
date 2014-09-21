@@ -2,6 +2,15 @@ from flask import Flask,render_template
 
 app = Flask(__name__)
 
+def csvtolist(csvname):
+    csvtable = []
+    csvf = open(csvname)
+    csvln = csvf.readlines()
+    csvf.close()
+    for ln in csvln:
+        csvtable.append(ln.split(","))
+    return csvtable
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -13,24 +22,14 @@ def home():
 
 @app.route("/desu")
 def desu():
-    csvtable = []
-    csvf = open("data/stats.csv")
-    csvln = csvf.readlines()
-    csvf.close()
-    for ln in csvln:
-        csvtable.append(ln.split(","))
     return render_template("desu.html",
-                           csvtable=csvtable)
+                           stattable=csvtolist("data/stats.csv"),
+                           wrtable=csvtolist("data/winrate.csv"))
 
 @app.route("/kun")
 def kun():
-    csvtable = []
-    csvf = open("data/stats.csv")
-    csvln = csvf.readlines()
-    csvf.close()
-    for ln in csvln:
-        csvtable.append(ln.split(","))
-        return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+    csvtable = csvtolist("data/stats.csv")
+    return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
 
 
 if __name__ == "__main__":

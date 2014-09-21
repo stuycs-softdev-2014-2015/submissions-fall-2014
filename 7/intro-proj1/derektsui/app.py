@@ -14,7 +14,7 @@ def main(sortby=None, order=None):
 	print 'Content-Type: text/html'
 	print
 
-	htmlout = render_template("main1.html")
+	htmlout = ""
 	#OPEN FILE
 	dow = open ('DJIA.csv','r')
 	header = dow.readline()
@@ -79,7 +79,6 @@ def main(sortby=None, order=None):
 	    rs = (g / (nu+0.0000000000000000001)) / (l / (nd+0.0000000000000001)+0.0000000000000000001)
 	    rsi10.append(100-(100/(1+rs)))
 	    
-	htmlout += render_template("main2.html")
 	
 	start = -1
 	end=-100
@@ -627,7 +626,7 @@ def main(sortby=None, order=None):
 	'''
 	
 		
-	return htmlout
+	return render_template("main1.html") + htmlout + render_template("main2.html")
 '''
 @app.route("/random")
 def randompage():

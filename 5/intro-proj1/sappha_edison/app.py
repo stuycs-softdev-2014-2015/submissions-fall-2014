@@ -9,7 +9,6 @@ def home ():
     categories = data.readline().split(',')
     for each in categories:
         s = s + "<th>" + each + "</th>"
-    data.readline()
     for line in data:
         s = s + "<tr>"
         categories = line.split(',')

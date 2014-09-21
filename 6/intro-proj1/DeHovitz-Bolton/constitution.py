@@ -20,19 +20,12 @@ def start():
 def main():
 
     if request.method == 'POST':
-<<<<<<< HEAD
         elements = request.form["Submit"]
-        
+
         #return elements;
-        
-       
-        
-=======
-        elements = request.form.getlist("Yes")
 
 
-        return elements
->>>>>>> FETCH_HEAD
+
 
 
 
@@ -41,11 +34,7 @@ def main():
         checked=0
         Dict={'one':[],'two':[]}
         #return "Succcess"
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> FETCH_HEAD
         one=1
         two=2
         if 'Iran' in elements:
@@ -69,13 +58,8 @@ def main():
             else:
                 Dict['two'].append("USA's constitution")
                 Dict['two'].append(usaw)
-<<<<<<< HEAD
-       
-        if '1791' in elements:
-=======
 
-        if elements.has_key('seventeen'):
->>>>>>> FETCH_HEAD
+        if '1791' in elements:
             c=open('1791France.txt')
             revolution=c.read()
             revolution=revolution.lower()
@@ -87,13 +71,8 @@ def main():
             else:
                 Dict['two'].append("French constitution of 1791")
                 Dict['two'].append(revolution)
-<<<<<<< HEAD
-            
-        if 'Russia' in elements:
-=======
 
-        if elements.has_key('Russia'):
->>>>>>> FETCH_HEAD
+        if 'Russia' in elements:
             d=open('russia.txt')
             rus=d.read()
             rus=rus.lower()
@@ -105,13 +84,8 @@ def main():
             else:
                 Dict['two'].append("Russian Federation' constitution")
                 Dict['two'].append(rus)
-<<<<<<< HEAD
-        
-        if 'USSR' in elements:
-=======
 
-        if elements.has_key('ussr'):
->>>>>>> FETCH_HEAD
+        if 'USSR' in elements:
             e=open('USSR.txt')
             ussr=e.read()
             ussr=ussr.lower()
@@ -123,13 +97,8 @@ def main():
             else:
                 Dict['two'].append("Union of Soviet Socialist Republic's constitution")
                 Dict['two'].append(ussr)
-<<<<<<< HEAD
-        
-        if 'France' in elements:
-=======
 
-        if elements.has_key('france'):
->>>>>>> FETCH_HEAD
+        if 'France' in elements:
             f=open('France.txt')
             france=f.read()
             france=france.lower()
@@ -141,13 +110,8 @@ def main():
             else:
                 Dict['two'].append("French constitution")
                 Dict['two'].append(france)
-<<<<<<< HEAD
-            
-        if 'Manifesto' in elements:
-=======
 
-        if elements.has_key('manifesto'):
->>>>>>> FETCH_HEAD
+        if 'Manifesto' in elements:
             g=open('manifesto.txt')
             manifesto=g.read()
             manifesto=manifesto.lower()
@@ -159,13 +123,8 @@ def main():
             else:
                 Dict['two'].append("Communist Manifesto")
                 Dict['two'].append(manifesto)
-<<<<<<< HEAD
-            
-        if 'Magna' in elements:
-=======
 
-        if elements.has_key('magna'):
->>>>>>> FETCH_HEAD
+        if 'Magna' in elements:
             h=open('Magnacarta.txt')
             magna=h.read()
             magna=magna.lower()
@@ -244,11 +203,7 @@ def main():
             s+= Dict['one'][0]+': '
             s+= str(letters(Dict['one']))
             s+= "<br>"+ Dict['two'][0]+": "
-<<<<<<< HEAD
-            s+= str(letters(Dict['two']))   
-=======
-            s+= letters(Dict['two'])
->>>>>>> FETCH_HEAD
+            s+= str(letters(Dict['two']))
         if checker==0:
             s+= '<br><br><br><font size="5"> <b> But you forgot to check off actions to take!</b>'
             s+= '<br>  <a href="constitutionoptions.html">Go back!</a>'
@@ -259,11 +214,7 @@ def main():
         s+= '<br> French constitution of 1791 taken from <a href="http://ic.ucsc.edu/~traugott/hist171/readings/1791-09ConstitutionOf1791"> here</a>'
         s+= '<br> and Magna Carta taken from <a href="http://www.constitution.org/eng/magnacar.htm"> here</a>'
         return s
-<<<<<<< HEAD
     #'''
-=======
-
->>>>>>> FETCH_HEAD
 def top50(filen,number):
 
     s = ""

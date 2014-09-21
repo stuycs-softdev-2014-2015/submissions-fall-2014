@@ -3,38 +3,36 @@
 <html>
     <head>
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/theme.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
+        <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css">
     </head>
 
     <body>
-		<div id="main_page">
-        <center>
-            <font color= "darkred" face= "copperplatelight"background-color=
-"lightgray"><h1> Effects of Gun Control on Deaths with Firearms</h1></font>
+        
+        <div class="container" ><br><br><br><br><br></div>
 
-            <table><tr>
-                <td>
-                    <form action="/why">
-                        <button type="submit" value="why">Why Do This?</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/data">
-                        <button type="submit" value="data">The Data</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/analysis">
-                        <button type="submit" value="analysis">The Analysis</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/sources">
-                        <button type="submit" value="sources">Sources</button>
-                    </form>
-                </td>
-            
-            </tr></table>
+		<div class="container jumbotron" style="border-radius:30px">
+        <center>
+				
+            <h1 > Effects of Gun Control on Deaths with Firearms</h1><br><br> <br>
+    <form action="/" role="form" class="form-inline text-center">
+		<div class= "form-group">
+
+                   
+                        <button class="btn btn-primary btn-lg" type="submit" name="button" value="why">Why Do This?</button>
+               
+                 
+                        <button class="btn btn-success btn-lg" type="submit" name="button"  value="data">The Data</button>
+              
+                        <button class="btn btn-info btn-lg" type="submit" name="button" value="analysis">The Analysis</button>
+               
+                        <button class="btn btn-warning btn-lg" type="submit" name="button" value="sources">Sources</button>
+           
+		               
+      
+		</div>
+		</div>
+			</form>
         </center>
 	</div>
     </body>
