@@ -23,13 +23,15 @@ def home():
         boro = request.form['group1']
         if boro == "STATEN":
                 boro = "STATEN ISLAND"
-        col = 6
         fg = request.form['group2']
-        if fg == "Food":
-            col = 3
-        d = get_data(boro,col)
-        return render_template("Results.html",d=d,boro=boro, fg=fg)
-
+        if fg == "Grade":
+                col = 6
+                d = get_data(boro,col)
+                return render_template("Grade.html",d=d,boro=boro)
+        else :
+                col = 3
+                d = get_data(boro,col)
+                return render_template("Food.html",d=d,boro=boro)
 def get_file(filename):
     l=[]
     for line in open(filename).readlines():

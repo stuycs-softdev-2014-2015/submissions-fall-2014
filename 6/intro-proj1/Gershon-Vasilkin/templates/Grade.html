@@ -11,10 +11,10 @@
   </style>
 <html>
 <body>
-{% if d==None or boro==None or fg==None: %}
+{% if d==None or boro==None: %}
 <h1 class = "c"> You must input stuff </h1>
 {% else: %}
-<h1 class="c">Number of Restaurants by {{fg}} in {{boro}} </h1>
+<h1 class="c">Number of Restaurants by Grade in {{boro}} </h1>
 <table>
 {% for key, value in d.iteritems() %}
    <tr>
