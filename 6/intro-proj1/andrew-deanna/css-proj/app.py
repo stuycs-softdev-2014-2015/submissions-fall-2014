@@ -27,7 +27,7 @@ def rates():
     else:
         return render_template("rates.html",
                                 priced="TRUE",
-                                price="1000",
+                                price=utils.findPrice(size,issues),
                                 image=utils.getImg(size)
                                 )
 
