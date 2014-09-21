@@ -1,0 +1,17 @@
+<html>
+<head> <title> Home Page</title> </head>
+<body>
+<center> <h1> Dada Poetry </h1> </center>
+DESCRIPTION
+<br>
+<a href="localhost:5000/dadapoems"> Famous Dada Poems </a>
+<br>
+<a href="localhost:5000/dadaartwork"> Famous Dada Artwork </a>
+<br>
+<a href="localhost:5000/tryone"> Try one of your own! </a>
+<br>
+<a href="localhost:5000/recentsubmissions"> Recent Submissions</a>
+</body>
+</html>
+
+

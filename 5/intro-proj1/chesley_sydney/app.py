@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 
 app = Flask(__name__)
 
@@ -15,7 +15,7 @@ def home():
             p2_data=getTableItems("static/NateRobinson.csv"),
             p2_csv_file_name="NateRobinson.csv")
 
-@app.route("/analysis")
+@app.route("/analysis", methods=["GET","POST"])
 def analysis():
     headers = getLabeledTableHeaders("static/JRSmith.csv")
     p1 = getLabeledLastRow("static/JRSmith.csv", "JR Smith")
@@ -23,9 +23,29 @@ def analysis():
     diff = analysis("static/JRSmith.csv", "static/NateRobinson.csv")
     page_title = "Per Game Analysis"
     content_header = "JR Smith vs Nate Robinson"
-    return render_template("analysis.html", headers=headers, p1=p1, p2=p2,
-            diff=diff, page_title=page_title, content_header=content_header)
+    if request.method=="GET":
+        return render_template("analysis.html", headers=headers, p1=p1, p2=p2,
+                           diff=diff, page_title=page_title, content_header=content_header)
+    else:
+        comment= request.form["comment"]
+        button=request.form["button"]
+        if button=="go":
+            addComment("comment.html", comment)
+            info = getComments("comment.html")
+            return render_template("comment.html", comment=comment, info=info)
 
+def addComment(fileName, text):
+    f=open(fileName,'a')
+    f.write(text+"\n")
+    f.close()
+def getComments(fileName):
+    f=open(fileName,'r')
+    data=f.readline()
+    f.close()
+    c = data.split("\n");
+    return c;
+            
+    
 
 def getTableHeaders(fileName):
     f=open(fileName,'r')
