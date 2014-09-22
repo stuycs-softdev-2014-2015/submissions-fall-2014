@@ -19,16 +19,11 @@ def home():
 @app.route("/")
 def index():
     uname = request.args.get("uname",None)
-    pword = request.args.get("pass",None)
     button = request.args.get("b",None)
     if button == None or button=="Cancel":
         return render_template("index.html")
     else:
-        home()
-       #return """
-#<h1>%s</h1>
-#"""%("uname")
-    #<a href "/home">home page</a>
+       return "<a href = 'home'>Click this!</a>"
 
     
 def tablefy(fileName,color):
