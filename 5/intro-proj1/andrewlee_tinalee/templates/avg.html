@@ -5,7 +5,25 @@
   <body>
     <h1>Average of Starter Pokemon Statistics</h1>
     <table class="pure-table pure-table-bordered">
+      {% for each in firstLine %}
+      <th>{{each}}</th>
+      {% endfor %}
       <tr>
+      {% for each in water %}
+      <td>{{each}}</td>
+      {% endfor %}
+      </tr>
+      <tr>
+      {% for each in fire %}
+      <td>{{each}}</td>
+      {% endfor %}
+      </tr>
+      <tr>
+      {% for each in grass %}
+      <td>{{each}}</td>
+      {% endfor %}
+      </tr>
+      {#<tr>
         <td>Type</td><td>AvgHP</td><td>AvgAtk</td><td>AvgDef</td><td>AvgSpA</td><td>AvgSpD</td><td>AvgSpd</td>
       </tr>
       <tr>
@@ -17,6 +35,7 @@
       <tr>
         <td>Grass</td><td>62</td><td>69</td><td>71</td><td>70</td><td>75</td><td>69</td>
       </tr>
+#}
     </table>
     <br>
     <a href = "/home">Home Page</a><br>
