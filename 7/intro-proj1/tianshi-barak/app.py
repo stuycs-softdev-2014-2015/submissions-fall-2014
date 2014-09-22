@@ -12,7 +12,7 @@ killList=[]
 deathList=[]
 assistList=[]
 for x in data_text:
-    champList.append(x[0])
+    champList.append(x[0].upper())
     kdaList.append(x[1])
     killList.append(x[2])
     deathList.append(x[3])
@@ -33,9 +33,9 @@ def results():
     search1 = request.args.get("search1",None)
     search2 = request.args.get("search2",None)
     if button == "Search":
-        if search1 in champList and search2 in champList:
-            i = champList.index(search1)
-            j = champList.index(search2)
+        if search1.upper() in champList and search2.upper() in champList:
+            i = champList.index(search1.upper())
+            j = champList.index(search2.upper())
             kda1 = kdaList[i]
             kda2 = kdaList[j]
             kill1 = killList[i]
@@ -44,9 +44,9 @@ def results():
             death2 = deathList[j]
             assist1 = assistList[i]
             assist2 = assistList[i]
-            return render_template("comparison.html",
-                                   search1 = search1, 
-                                   search2 = search2,
+            return render_template("comparison2.html",
+                                   search1 = search1.capitalize(), 
+                                   search2 = search2.capitalize(),
                                    kda1 = kda1,
                                    kda2 = kda2,
                                    kill1 = kill1,
