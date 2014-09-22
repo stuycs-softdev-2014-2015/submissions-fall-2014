@@ -13,8 +13,14 @@ def home():
     html += tablefy('Water Starters.csv',"33CCFF")
     html += tablefy('Fire Starters.csv',"FF9933")
     html += tablefy('Grass Starters.csv',"33CC66")
+    html += "<br>"
+    html += "<a href = '/avg'>Average of Starter Pokemon</a>"
     html += "</html>"
     return html
+
+@app.route("/avg")
+def avg():
+    return render_template("avg.html")
 
 @app.route("/")
 def index():
