@@ -20,7 +20,7 @@ def home():
     if (button ==None or button=="home"):
         return render_template("home.html", img=images[num])
     else: 
-        if (state!=None):
+        if (state!=""):
             found = False
             r = reportAlpha()
             s = []
@@ -30,10 +30,12 @@ def home():
                     s = item
                     break
             if (found==False): 
-                render_template("state.html",statename="State Not Found")
+                return render_template("state.html",statename="State Not Found")
             else: 
-                render_template("state.html",statename=s[0],rank=s[8],one=s[1],two=s[2],three=s[3],four=s[4],five=s[5],six=s[6],seven=s[7])
+                return render_template("state.html",statename=s[0],rank=s[8],one=s[1],two=s[2],three=s[3],four=s[4],five=s[5],six=s[6],seven=s[7])
+        
         if (rankBy == "alphabet"): 
+            return render_template("asdf.html")
             f = open("templates/tableAlpha.html",'r') 
             tableNeeded = True
             for line in f.readlines():
@@ -45,6 +47,7 @@ def home():
                 f.write(tableAlpha())
                 f.close()
             return render_template("tableAlpha.html",img=images[num], rankedBy="Alphabetical Order")
+
         if (rankBy=="hightolow"): 
             f = open("templates/tableHighToLow.html",'r') 
             tableNeeded = True
@@ -57,7 +60,9 @@ def home():
                 f.write(table())
                 f.close()
             return render_template("tableHighToLow.html",img=images[num], rankedBy="High to Low Health Rankings")
+
         if (rankBy=="lowtohigh"): 
+            render_template("asdf.html")
             f = open("templates/tableLowToHigh.html",'r') 
             tableNeeded = True
             for line in f.readlines():
@@ -69,8 +74,6 @@ def home():
                 f.write(tableLowToHigh())
                 f.close()
             return render_template("tableLowToHigh.html",img=images[num], rankedBy="Low to High Health Rankings")
-        
-            
 
     f = open("templates/home.html",'r') 
     tableNeeded = True
