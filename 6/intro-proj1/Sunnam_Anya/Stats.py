@@ -44,9 +44,9 @@ teams = ['ANA', 'ARI', 'ATL', 'BAL', 'BOS', 'CAL', 'CHA', 'CHN', 'CIN', 'CLE',
 for y in teams:
     teamavg(stats, y)
     
-@Stats.route("/", methods=["GET", "POST"])
+@Stats.route("/","/home", methods=["GET", "POST"])
 def home():
-    l = ['Year', 'Team', 'Random']
+    l = ['Year', 'Team']
     if request.method=="GET":
         return render_template("Home.html",l=l)
     else:
@@ -55,8 +55,6 @@ def home():
             return year()
         elif page == "Team":
             return team()
-    
-
 
 @Stats.route("/year")
 def year():
@@ -73,8 +71,6 @@ def team():
     return render_template("Team.html"
                            ,dic = dic
                            ,tdic = tdic)
-
-
 
 if __name__=="__main__":
     Stats.debug = True
