@@ -3,6 +3,9 @@
 	<title>Compare Schools</title>
 </head>
 <body>
+	Select one or more schools to compare. Use Ctrl or Shift + Left Mouse Button to select multiple schools.
+	<br>
+	<br>
 	<form method="GET">
 		<select multiple name="schools" required size="10">
 		{% for school in schools %}	<option{% if school in schools_selected %} selected{% endif %} value="{{school}}">{{school}}</option>
