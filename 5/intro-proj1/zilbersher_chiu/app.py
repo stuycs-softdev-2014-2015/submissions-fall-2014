@@ -1,16 +1,35 @@
 from flask import Flask, render_template, request
 import string
 
+
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
-    return "Hello world!"
+def home():
+    return render_template("main.html")
+
+@app.route('/forms/', methods=['POST'])
+def formulate():
+    info=request.form['document']
+    titleDict={"gettysburg_address":"Gettysburg Address",
+               "articles_of_confederation":"Articles of Confederation",
+               "constitution":"United States Constitution",
+               "declaration_of_independence":"Declaration of Independence",
+               "bill_of_rights":"Bill of Rights",
+               "emancipation_proclamation":"Emancipation Proclamation",
+               "louisiana_purchase":"Louisiana Purchase",
+               "zimmerman_telegram":"Zimmerman Telegram"}
+    title=titleDict[info]
+    f = open("./static/" + info + ".txt", "r")
+    raw_string = f.read()
+    word_dict = wordCount(raw_string)
+    word = mostCommonWord(word_dict)
+    return render_template("count.html", title=title, word=word, word_dict=word_dict)
 
 @app.route("/count/<title>")
 def count(title):
     try:
-        f = open("./files/" + title + ".txt", "r")
+        f = open("./static/" + title + ".txt", "r")
     except IOError:
         return render_template("error.html")
     raw_string = f.read()

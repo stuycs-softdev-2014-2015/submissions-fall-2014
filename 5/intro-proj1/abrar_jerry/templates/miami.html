@@ -1,4 +1,5 @@
 <html>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <title> Miami </title>
 
 <style>
@@ -10,15 +11,41 @@ background: black;
 
 <head>
 <h1> MIAMI HEAT 2014 </h1>
-<img src="miami.jpeg" alt="miami">
+<center><img src="../static/miami.jpeg" alt="miami"></center>
 </head>
 <br>
 
 <body>
-{% if table%}
-{{table}}
-{%endif%}
+<center>
+<table class="pure-table pure-table-bordered"> 
+  <thead> 
+    <tr><td> CATEGORY </td><td> G </td><td> MP </td><td> FG </td><td> FGA </td><td> FG% </td><td> 3P </td><td> 3PA </td><td> 3P% </td><td> FT </td><td> FTA </td><td> FT% </td><td> ORB </td><td> DRB </td><td> TRB </td><td> AST </td><td> STL </td><td> BLK </td><td> TOV </td><td> PF </td><td> PTS </td><td> PTS/G </td></tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td> TEAM </td><td> 66 </td><td> 16040 </td><td> 2446 </td><td> 5212 </td><td> .469 </td><td> 370 </td><td> 1030 </td><td> .359 </td><td> 1238 </td><td> 1598 </td><td> .775 </td><td> 686 </td><td> 2060 </td><td> 2746 </td><td> 1317 </td><td> 585 </td><td> 355 </td><td> 1002 </td><td> 1282 </td><td> 6500 </td><td> 98.5 </td>
+    </tr> 
+    <tr>
+      <td> LG RANK </td><td> </td><td> 6 </td><td> 12 </td><td> 26 </td><td> 4 </td><td> 20 </td><td> 23 </td><td> 10 </td><td> 6 </td><td> 8 </td><td> 7 </td><td> 24 </td><td> 12 </td><td> 21 </td><td> 21 </td><td> 3 </td><td> 10 </td><td> 23 </td><td> 17 </td><td> 7 </td><td> 7 </td>
+    </tr> 
+    <tr>
+      <td> OPPENENT </td><td> 66 </td><td> 16040 </td><td> 2285 </td><td> 5267 </td><td> .434 </td><td> 479 </td><td> 1318 </td><td> .363 </td><td> 1056 </td><td> 1457 </td><td> .725 </td><td> 727 </td><td> 1897 </td><td> 2624 </td><td> 1297 </td><td> 549 </td><td> 280 </td><td> 1107 </td><td> 1356 </td><td> 6105 </td><td> 92.5 </td>
+    </tr> 
+    <tr>
+      <td> LG RANK </td><td> </td><td> 6 </td><td> 7 </td><td> 8 </td><td> 5 </td><td> 29 </td><td> 27 </td><td> 26 </td><td> 8 </td><td> 12 </td><td> 1 </td><td> 10 </td><td> 3 </td><td> 1 </td><td> 8 </td><td> 26 </td><td> 3 </td><td> 3 </td><td> 23 </td><td> 4 </td><td> 4 </td>
+    </tr> 
+  </tbody>
+</table>
+</center>
+
+<br>
+<nav class="nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a class="pure-button" href="/home">Go Back</a>
+    </li>
+  </ul>
+</nav>
+
 </body>
-
-
 </html>

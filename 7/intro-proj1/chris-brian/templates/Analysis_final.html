@@ -1,0 +1,395 @@
+
+<!doctype html>
+<html>
+    <head>
+      <title>
+        League of Legends Statistics
+      </title>
+<meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+<link href = "style.css" rel= "stylesheet" type = "text/css" media = "screen" />> </head>
+<h2>[Brian and the Kimchi]<br>
+<h2>Guo, Brian<br>
+<h2>Kim, Christopher<br>
+<h2>MKS22-20<br>
+<h2>Period-7<br>
+<body bgcolor="#D9CCB9">
+<hr>
+<h2><font color="red">DATASET:</font> <font color="black">Champion Statistics</font><br>
+<h2><font color="#613D2D">DATA SOURCE:</font>
+<font color="chartreuse"><br><a href = 'http://www.lolking.net/champions/'>http://www.lolking.net/champions/</a><br>
+             <a href = 'http://leagueoflegends.wikia.com/wiki/Base_champion_statistics'>http://leagueoflegends.wikia.com/wiki/Base_champion_statistics</a><br></font>
+<a href ='Champion Win Rate.csv'> Champion Win Rate.csv </a><br>
+<a href ='CHAMPION STATS.csv'> CHAMPION STATS.csv </a><br> <hr>
+<center> <iframe width="1000" height="600" src="http://www.youtube.com/embed/tEnsqpThaFg" frameborder="0" allowfullscreen></iframe> </center>
+<hr>
+<font color="black"> <h3> Why League? </h3> </font> <font color="#DF7782" size=4> Watch the video and you'll see why. Obviously, we chose League of Legends because not only is it an awesome game, it also contains an unlimited amount of potential interesting data that may contain patterns. As a duo bot lane (as a team of two), we set out to find these patterns.</font>
+</h2>
+<center><h1><font color="black">Champion IP vs Win Rates</font></h1></center>
+<h2><font color="black">What is LoL?</font></h2>
+<font color="#017890">League of Legends, the best game that has ever confronted the gaming community, is a face-off between two teams of 5 players. These 5 players are called summoners. Summoner are allowed to pick 1 of many different Champions(characters) to control during the game. Each Champion has specific strengths and weaknesses, along with their own special abilities. Picking certain champions wisely is very important to the game, as many champions have great synergy with other champions. The objective of the game is to destroy the opposing team's Nexus, the base of the opponent team. However, in order to reach the Nexus, the Champions have to take down towers, countless waves of minions, and usually the opposing champions. For more information about League of Legends, visit our friend's <a href ="http://bart.stuy.edu/~kevin.liang/Student_Webpage.html"</font> Guide to LoL </a>With some information about League and its greatness, you are now ready to take a look at our analysis.<br>
+<hr>
+<h2><font color="black">Why Champion IP vs Win Rates?</font></h2><font color="#017890">
+1)IP stands for Influence Points, which are obtained in League of Legends after every game, win or loss. Different Champions have different IP costs; the higher the cost, the more IP you'll have to obtain in order to unlock them. Obviously, the skill of the players factor much more than the Champion's "power". However, there has been some speculation within the community that Champions with higher IP costs may have more "power", and therefore, have a higher chance of winning. We intend to compare Win Rates of champions and their IP costs to figure out if there is any truth to this idea.<br><br>
+2)Range and Armor are two important statistics for the game. Champions with low range need to get close to attack; therefore, they are more susceptible to damage. We will attempt to find out whether or not riot accounts for this by increasing melee champions' starting armor.</font>
+<hr><font color="black">
+<center><h1>The Analysis</h1></center>
+  <body>
+<br>
+<table border=1>
+
+
+
+
+<tr>
+ <td>
+Compare 2 Champions
+ </td>
+ <td>
+<form name="input" action='getcompare.py' method='get'>
+           
+<select name=Champ1>
+<option value="Ahri">Ahri</option><br>
+<option value="Akali">Akali</option><br>
+<option value="Alistar">Alistar</option><br>
+<option value="Amumu">Amumu</option><br>
+<option value="Anivia">Anivia</option><br>
+<option value="Annie">Annie</option><br>
+<option value="Ashe">Ashe</option><br>
+<option value="Blitzcrank">Blitzcrank</option><br>
+<option value="Brand">Brand</option><br>
+<option value="Caitlyn">Caitlyn</option><br>
+<option value="Cassiopeia">Cassiopeia</option><br>
+<option value="Cho'Gath">Cho'Gath</option><br>
+<option value="Corki">Corki</option><br>
+<option value="Darius">Darius</option><br>
+<option value="Diana">Diana</option><br>
+<option value="Dr. Mundo">Dr. Mundo</option><br>
+<option value="Draven">Draven</option><br>
+<option value="Elise">Elise</option><br><form name="input" action='getcompare.py' method='get'>
+<option value="Evelynn">Evelynn</option><br>
+<option value="Ezreal">Ezreal</option><br>
+<option value="Fiddlesticks">Fiddlesticks</option><br>
+<option value="Fiora">Fiora</option><br>
+<option value="Fizz">Fizz</option><br>
+<option value="Galio">Galio</option><br>
+<option value="Gangplank">Gangplank</option><br>
+<option value="Garen">Garen</option><br>
+<option value="Gragas">Gragas</option><br>
+<option value="Graves">Graves</option><br>
+<option value="Hecarim">Hecarim</option><br>
+<option value="Heimerdinger">Heimerdinger</option><br>
+<option value="Irelia">Irelia</option><br>
+<option value="Janna">Janna</option><br>
+<option value="Jarvan IV">Jarvan IV</option><br>
+<option value="Jax">Jax</option><br>
+<option value="Jayce">Jayce</option><br>
+<option value="Karma">Karma</option><br>
+<option value="Karthus">Karthus</option><br>
+<option value="Kassadin">Kassadin</option><br>
+<option value="Katarina">Katarina</option><br>
+<option value="Kayle">Kayle</option><br>
+<option value="Kennen">Kennen</option><br>
+<option value="Kha'Zix">Kha'Zix</option><br>
+<option value="Kog'Maw">Kog'Maw</option><br>
+<option value="LeBlanc">LeBlanc</option><br>
+<option value="Lee Sin">Lee Sin</option><br>
+<option value="Leona">Leona</option><br>
+<option value="Lulu">Lulu</option><br>
+<option value="Lux">Lux</option><br>
+<option value="Malphite">Malphite</option><br>
+<option value="Malzahar">Malzahar</option><br>
+<option value="Maokai">Maokai</option><br>
+<option value="Master Yi">Master Yi</option><br>
+<option value="Miss Fortune">Miss Fortune</option><br>
+<option value="Mordekaiser">Mordekaiser</option><br>
+<option value="Morgana">Morgana</option><br>
+<option value="Nami">Nami</option><br>
+<option value="Nasus">Nasus</option><br>
+<option value="Nautilus">Nautilus</option><br>
+<option value="Nidalee">Nidalee</option><br>
+<option value="Nocturne">Nocturne</option><br>
+<option value="Nunu">Nunu</option><br>
+<option value="Olaf">Olaf</option><br>
+<option value="Orianna">Orianna</option><br>
+<option value="Pantheon">Pantheon</option><br>
+<option value="Poppy">Poppy</option><br>
+<option value="Quinn">Quinn</option><br>
+<option value="Rammus">Rammus</option><br>
+<option value="Renekton">Renekton</option><br>
+<option value="Rengar">Rengar</option><br>
+<option value="Riven">Riven</option><br>
+<option value="Rumble">Rumble</option><br>
+<option value="Ryze">Ryze</option><br>
+<option value="Sejuani">Sejuani</option><br>
+<option value="Shaco">Shaco</option><br>
+<option value="Shen">Shen</option><br>
+<option value="Shyvana">Shyvana</option><br>
+<option value="Singed">Singed</option><br>
+<option value="Sion">Sion</option><br>
+<option value="Sivir">Sivir</option><br>
+<option value="Skarner">Skarner</option><br>
+<option value="Sona">Sona</option><br>
+<option value="Soraka">Soraka</option><br>
+<option value="Swain">Swain</option><br>
+<option value="Syndra">Syndra</option><br>
+<option value="Talon">Talon</option><br>
+<option value="Taric">Taric</option><br>
+<option value="Teemo">Teemo</option><br>
+<option value="Thresh">Thresh</option><br>
+<option value="Tristana">Tristana</option><br>
+<option value="Trundle">Trundle</option><br>
+<option value="Tryndamere">Tryndamere</option><br>
+<option value="Twisted Fate">Twisted Fate</option><br>
+<option value="Twitch">Twitch</option><br>
+<option value="Udyr">Udyr</option><br>
+<option value="Urgot">Urgot</option><br>
+<option value="Varus">Varus</option><br>
+<option value="Vayne">Vayne</option><br>
+<option value="Veigar">Veigar</option><br>
+<option value="Vi">Vi</option><br>
+<option value="Viktor">Viktor</option><br>
+<option value="Vladimir">Vladimir</option><br>
+<option value="Volibear">Volibear</option><br>
+<option value="Warwick">Warwick</option><br>
+<option value="Wukong">Wukong</option><br>
+<option value="Xerath">Xerath</option><br>
+<option value="Xin Zhao">Xin Zhao</option><br>
+<option value="Yorick">Yorick</option><br>
+<option value="Zac">Zac</option><br>
+<option value="Zed">Zed</option><br>
+<option value="Ziggs">Ziggs</option><br>
+<option value="Zilean">Zilean</option><br>
+<option value="Zyra">Zyra</option><br>
+</select>
+<form name="input" action='champcompare3.py' method='get'>
+           
+<select name=Champ2>
+<option value="Ahri">Ahri</option><br>
+<option value="Akali">Akali</option><br>
+<option value="Alistar">Alistar</option><br>
+<option value="Amumu">Amumu</option><br>
+<option value="Anivia">Anivia</option><br>
+<option value="Annie">Annie</option><br>
+<option value="Ashe">Ashe</option><br>
+<option value="Blitzcrank">Blitzcrank</option><br>
+<option value="Brand">Brand</option><br>
+<option value="Caitlyn">Caitlyn</option><br>
+<option value="Cassiopeia">Cassiopeia</option><br>
+<option value="Cho'Gath">Cho'Gath</option><br>
+<option value="Corki">Corki</option><br>
+<option value="Darius">Darius</option><br>
+<option value="Diana">Diana</option><br>
+<option value="DrMundo">Dr.Mundo</option><br>
+<option value="Draven">Draven</option><br>
+<option value="Elise">Elise</option><br>
+<option value="Evelynn">Evelynn</option><br>
+<option value="Ezreal">Ezreal</option><br>
+<option value="Fiddlesticks">Fiddlesticks</option><br>
+<option value="Fiora">Fiora</option><br>
+<option value="Fizz">Fizz</option><br>
+<option value="Galio">Galio</option><br>
+<option value="Gangplank">Gangplank</option><br>
+<option value="Garen">Garen</option><br>
+<option value="Gragas">Gragas</option><br>
+<option value="Graves">Graves</option><br>
+<option value="Hecarim">Hecarim</option><br>
+<option value="Heimerdinger">Heimerdinger</option><br>
+<option value="Irelia">Irelia</option><br>
+<option value="Janna">Janna</option><br>
+<option value="JarvanIV">Jarvan IV</option><br>
+<option value="Jax">Jax</option><br>
+<option value="Jayce">Jayce</option><br>
+<option value="Karma">Karma</option><br>
+<option value="Karthus">Karthus</option><br>
+<option value="Kassadin">Kassadin</option><br>
+<option value="Katarina">Katarina</option><br>
+<option value="Kayle">Kayle</option><br>
+<option value="Kennen">Kennen</option><br>
+<option value="Kha'Zix">Kha'Zix</option><br>
+<option value="Kog'Maw">Kog'Maw</option><br>
+<option value="LeBlanc">LeBlanc</option><br>
+<option value="LeeSin">Lee Sin</option><br>
+<option value="Leona">Leona</option><br>
+<option value="Lulu">Lulu</option><br>
+<option value="Lux">Lux</option><br>
+<option value="Malphite">Malphite</option><br>
+<option value="Malzahar">Malzahar</option><br>
+<option value="Maokai">Maokai</option><br>
+<option value="MasterYi">Master Yi</option><br>
+<option value="MissFortune">Miss Fortune</option><br>
+<option value="Mordekaiser">Mordekaiser</option><br>
+<option value="Morgana">Morgana</option><br>
+<option value="Nami">Nami</option><br>
+<option value="Nasus">Nasus</option><br>
+<option value="Nautilus">Nautilus</option><br>
+<option value="Nidalee">Nidalee</option><br>
+<option value="Nocturne">Nocturne</option><br>
+<option value="Nunu">Nunu</option><br>
+<option value="Olaf">Olaf</option><br>
+<option value="Orianna">Orianna</option><br>
+<option value="Pantheon">Pantheon</option><br>
+<option value="Poppy">Poppy</option><br>
+<option value="Quinn">Quinn</option><br>
+<option value="Rammus">Rammus</option><br>
+<option value="Renekton">Renekton</option><br>
+<option value="Rengar">Rengar</option><br>
+<option value="Riven">Riven</option><br>
+<option value="Rumble">Rumble</option><br>
+<option value="Ryze">Ryze</option><br>
+<option value="Sejuani">Sejuani</option><br>
+<option value="Shaco">Shaco</option><br>
+<option value="Shen">Shen</option><br>
+<option value="Shyvana">Shyvana</option><br>
+<option value="Singed">Singed</option><br>
+<option value="Sion">Sion</option><br>
+<option value="Sivir">Sivir</option><br>
+<option value="Skarner">Skarner</option><br>
+<option value="Sona">Sona</option><br>
+<option value="Soraka">Soraka</option><br>
+<option value="Swain">Swain</option><br>
+<option value="Syndra">Syndra</option><br>
+<option value="Talon">Talon</option><br>
+<option value="Taric">Taric</option><br>
+<option value="Teemo">Teemo</option><br>
+<option value="Thresh">Thresh</option><br>
+<option value="Tristana">Tristana</option><br>
+<option value="Trundle">Trundle</option><br>
+<option value="Tryndamere">Tryndamere</option><br>
+<option value="TwistedFate">Twisted Fate</option><br>
+<option value="Twitch">Twitch</option><br>
+<option value="Udyr">Udyr</option><br>
+<option value="Urgot">Urgot</option><br>
+<option value="Varus">Varus</option><br>
+<option value="Vayne">Vayne</option><br>
+<option value="Veigar">Veigar</option><br>
+<option value="Vi">Vi</option><br>
+<option value="Viktor">Viktor</option><br>
+<option value="Vladimir">Vladimir</option><br>
+<option value="Volibear">Volibear</option><br>
+<option value="Warwick">Warwick</option><br>
+<option value="Wukong">Wukong</option><br>
+<option value="Xerath">Xerath</option><br>
+<option value="XinZhao">Xin Zhao</option><br>
+<option value="Yorick">Yorick</option><br>
+<option value="Zac">Zac</option><br>
+<option value="Zed">Zed</option><br>
+<option value="Ziggs">Ziggs</option><br>
+<option value="Zilean">Zilean</option><br>
+<option value="Zyra">Zyra</option><br>
+</select>
+<input type="submit" value="Compare">
+</form>
+ </td>
+</tr>
+<tr>
+ <td>
+Group of Champions
+ </td>
+ <td>
+<form name="input" action='getcompare.py' method='get'>
+<br>
+How many Champs per page?
+<select name=numbershown>
+<option value="10">10</option><br>
+<option value="20">20</option><br>
+<option value="50">50</option><br>
+</select>
+<input type="hidden" name="pagenumber" value=50>
+<br><input type="submit" name="submit">
+</form>
+<form name="blah" action='getcompare.py' method='get'>
+<br>
+Melee or Ranged?
+<select name=MR>
+<option value="melee">melee</option><br>
+<option value="ranged">ranged</option><br>
+</select>
+<br><input type="submit" name="sortMR">
+</form>
+ </td>
+</tr>
+<tr>
+ <td>
+All champs
+ </td>
+ <td>
+Sort by?
+<form name="hi" action='getcompare.py' method='get'>
+<select name=coltitle>
+<option value="HP">HP</option><br>
+<option value="HP+">HP+</option><br>
+<option value="HP5">HP5</option><br>
+<option value="HP5+">HP5+</option><br>
+<option value="MP">MP</option><br>
+<option value="MP+">MP+</option><br>
+<option value="MP5">MP5</option><br>
+<option value="MP5+">MP5+</option><br>
+<option value="Dmg">Dmg</option><br>
+<option value="Dmg+">Dmg+</option><br>
+<option value="AS">AS</option><br>
+<option value="AS+">AS+</option><br>
+<option value="Armor">Armor</option><br>
+<option value="Armor+">Armor+</option><br>
+<option value="MR">MR</option><br>
+<option value="MR+">MR+</option><br>
+<option value="MS">MS</option><br>
+<option value="Range">Range</option><br>
+</select>
+<br><input type="submit" name="sorttitle"></for>
+ </td>
+</tr>
+
+
+
+</table><br>
+<hr>
+<h2>Background</h2>
+<font color="#017890" size=4>Looking at this data and using our knowledge of League of Legends, we soon came up with two ideas
+for trends in the data. First, we wondered if champions were priced based upon their viability and thus have a better win rate.
+If this were true, that means that League of Legends is not a fair game and you can "buy" skill in this game.
+If not, then the game would be fair. After we found that out, we moved on to a concept in League: ranged champions
+can attack at a safer distance that melee champions, therefore taking less damage than them. We now wanted to see
+if Riot gave an advantage to melee champions to counteract this disadvantage. Thus, we looked at base armor and decided
+to calculate the average base armor of melee champs with the average  base armor of ranged ones.
+<br><hr>
+</font> <font color="black"> <h2>Analysis</h2> </font>
+<font color="#DF7782" size=4>1) Looking at this data, we find that there are 5 IP costs(450,1350,3150,4800,6300) Using a code, we can find the average win rate of each tier of IP costs. Thus, we have:<br><br>
+<table align="center" border="1"><tr> <td>IP Cost</td> <td>Win Rate</td>
+<tr> <td>450</td> <td>0.49077</td> </tr>
+<tr> <td>1350</td> <td>0.501472727273</td> </tr>
+<tr> <td>3150</td> <td>0.480554166667</td> </tr>
+<tr> <td>4800</td> <td>0.497158333333</td> </tr>
+<tr> <td>6300</td> <td>0.492684375</td> </tr>
+</table><br> <br>
+<font color="#DF7782" size=4>The win rate of all 5 tiers of IP costs are all very near 50%, thus we can conclude that IP cost does not determine how good a champion is.
+<br><br>
+<font color="#613D2D" size=4>2) We also used a code to find the average starting armor value for ranged champions compared
+to melee champions:<br><br><table align="center" border="1"><tr> <td>Range
+</td> <td>Armor</td> </tr>
+<tr> <td>Ranged</td> <td>11.7540816327</td> </tr>
+<tr> <td>Melee</td> <td>16.4103174603</td> </tr>
+</table><br> <br><font color="#613D2D" size=4>According to the data, we found that Riot has compensated for melee champions by increasing their starting armor!
+This allows them to go up against ranged champions without being at a huge disadvantage by taking
+ too much damage.<br></font><br><hr>
+</font> <font color="black"> <h2>Conclusion</h2> </font>
+<font color="#E95D22" size=4>According to the above data, we can conclude that:
+League of Legends is definitely a fair game. The fact that the champions with the second to least amount of IP Cost has the
+highest winning rate shows that skill cannot be bought in this game. <br>
+Some obstacles we overcame were:<br>
+1) Grouping the same values of IP and Range<br>
+2) Sorting the Data so that viewers can access the data easily and comfortably<br>
+3) Making sure the html tags were printed in the right place.<br>
+4) Splitting the table and photo so that the comparison of two champs would look nicer.<br>
+There is certainly a trend in relation to armor and range for melee champions and ranged champions. While ranged champions
+have an advantage in that they can keep its distance from the enemy while damaging them, melee champions were given better armor
+in order to stand a fair fight against ranged champions. Now, it's time to surrender at 20, and be out. <br><font color="pink" size=2>#Leagueislife</font>
+
+<!--the beginning of the table--><center><table border="0" bgcolor="#D9CCB9" width="85%"><tr><td><center><br><br><br><p style="text-shadow:5px 10px 10px #613D2D;"><font size="5" color="#613D2D">"Oh, what do you want?"<br>-Twitch <br></font></p><br><br><img src="templates/resources/Twitch.jpg" width="90%" img style="border:15px solid #D9CCB9"><br><br><br></center></td></tr><tr><td><center><p style="text-shadow:5px 10px 10px #8FBCDB;"><br></font></p></center></td> </tr><tr><td><br><center></td></tr></table><!--the end of the table--></center>
+</body>
+</html>
+
+<! 5-20: The form used for comparison now works.>
+<! 5-21: Re-vamp. We changed the whole color scheme, fonts, tried to make it look clean and "handsome".>
+<! 5-22: Changed compare function to use the champion stats instead of ip costs and popularity, also added color to the table.>
+<! 5-23: The function used to compare champs now displays a picture and two seperate tables for the champions.>
+

@@ -1,0 +1,27 @@
+body { background-image: url(http://edge2.politicususa.netdna-cdn.com/wp-content/uploads/2013/11/LincolnGivingGettysburgAddress.jpg);
+       background-position: top center;
+       background-size: cover;
+       margin: 0;
+       padding: 0;
+       color: #000000; 
+       font: arial; 
+       font-weight: bold; 
+}
+
+h1 { text-shadow: -1px -1px 1px #FFFFFF, 1px 1px 1px #000000;
+     font-size: 30px;
+     border: 6px solid #000000;
+     padding: 20px;
+} 
+
+p1 { text-shadow: -1px -1px 1px #FFFFFF, 1px 1px 1px #000000; 
+     font-size: 30px;
+     position: relative;
+     left: 195px;
+} 
+    
+p2 { font-size: 20px;
+     position: relative; 
+     left: 10px;
+     top: -10px;
+}

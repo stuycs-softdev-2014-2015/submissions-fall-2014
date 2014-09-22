@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+<html>
+  <title> Gettysburg Info </title>
+  <body link="#0000FF" vlink="#080080" alink="#FF0000">
+    <h1><center> Welcome To The Historical Document Information Page
+    </center></h1>
+    <p1> 
+      <strong><u>Links</strong></u>
+    </p1>
+    <p2>
+      <ul>
+	<form action="/forms/" method="Post" target="_blank">
+	<li>
+	  <!--<a href="/count/gettysburg_address" style="text-decoration:none;">Statistics about Gettysburg Address</a>-->
+	  Statistics about the
+	    <select name="document">
+	      <option value="gettysburg_address">Gettysburg Address</option>
+	      <option value="articles_of_confederation">Articles of Confederation</option>
+	      <option value="constitution">United States Constitution</option>
+	      <option value="declaration_of_independence">Declaration of Independence</option>
+	      <option value="bill_of_rights">Bill of Rights</option>
+	      <option value="emancipation_proclamation">Emancipation Proclamation</option>
+	      <option value="louisiana_purchase">Louisiana Purchase</option>
+	      <option value="zimmerman_telegram">Zimmerman Telegram</option>
+	    </select>
+	    <input type="submit" value="Submit">
+	  </form>
+	</li>
+      </ul>
+    </p2>
+  </body>
+</html>

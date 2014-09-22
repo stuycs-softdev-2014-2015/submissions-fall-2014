@@ -1,8 +1,12 @@
-.center {
+.centered {
   text-align: center;
-  text-color: red;
+  color: #FA8072;
   font-size: 30px;
   font-weight: bold;
+}
+
+.centered:hover {
+    color: black;
 }
 
 body { 
@@ -23,6 +27,17 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #FA8072;
 }
+
+tr:hover{
+    background-color: #ffff99;
+}
+
+tr:first-child:hover {
+    background-color: #FA8072;
+}
+
+
+
 .data {
 	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');
@@ -54,6 +69,7 @@ tr:nth-child(odd) {
 	text-align:center;
 
 }
+
 .data:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
 	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
@@ -64,3 +80,40 @@ tr:nth-child(odd) {
 	position:relative;
 	top:1px;
 }
+
+
+
+
+ul {
+    list-style-type: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+li {
+    display: inline;
+    float: left;
+} 
+
+a:hover {
+    color: white;
+}
+#menu {
+    display: block;
+    width: 400px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #FA8072;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#menu:hover, #menu:active {
+    background-color: #7A991A;
+}
+

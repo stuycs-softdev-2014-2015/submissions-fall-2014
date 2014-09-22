@@ -61,6 +61,24 @@ for x in lines3:
         if y in x:
             dnames[y].append((x[0]))
 
+for x in lines2:
+    lines3.append(x.split(","))
+
+for x in lines3:
+    for y in dnames:
+        if y in x:
+            dnames[y].append((x[0]))
+
+dpages={}
+
+for x in pages:
+    dpages[x]=[]
+
+for x in dnames:
+    for y in dpages:
+        if y in dnames[x]:
+            dpages[y].append(x)
+
 image = {}
 image["Diamonds Droog"] = "http://24.media.tumblr.com/tumblr_ljo6z5uf5T1qipzzwo1_500.jpg"
 image["Kernelsprite"] = "http://images.wikia.com/mspaintadventures/images/1/1c/Kernelsprite.gif"
@@ -96,94 +114,160 @@ image["Nannasprite"] = "http://25.media.tumblr.com/tumblr_maope9TLNE1qexi1uo1_50
 image["Wayward Vagabond"] = "http://fc00.deviantart.net/fs71/f/2012/260/2/a/homestuck_wallpaper__wayward_vagabond_mayor_poster_by_scarelink-d5f1i8t.jpg"
 image["Spades Slick"] = "http://images1.wikia.nocookie.net/__cb20110304130153/mspaintadventures/images/0/0e/03614.gif"
 
-
-
-def createVarChar(name):
-    if name == "Clubs":
-        name = "Clubs Deuce"
-    if name == "Colonel":
-        name = "Colonel Sassacre"
-    if name == "Diamonds":
-        name = "Diamonds Droog"
-    if name == "Hearts":
-        name = "Hearts Boxcars"
-    if name == "Cal":
-        name = "Lil Cal"
-    if name == "Liv":
-        name = "Liv Tyler"
-    if name == "Peregrine":
-        name = "Peregrine Medicant"
-    if name == "Spades":
-        name = "Spades Slick"
-    if name == "Sweet":
-        name = "Sweet Bro and Hella Jeff"
-    if name == "Vagabond":
-        name = "Wayward Vagabond"
-    if name == "Itchy":
-        name = "1/Itchy"
-    if name == "Cans":
-        name = "15/Cans"
-    if name == "Doze":
-        name = "2/Doze"
-    if name == "Trace":
-        name = "3/Trace"
-    if name == "Clover":
-        name = '4/Clover'
-
-    HTML = '''
-    <html>
-    <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>character.html</title>
-    </head>
-    <body bgcolor="#0e4603" text="#ffffff">
-    <br>
-    '''
-    HTML += "<div align='center'><big><big><big> "+name+"</big></big></big></div> <br>"
-    HTML += "<img src='"+image[name]+"'><br><br><br> Pages in which he appears: <br>"
-    for x in dnames[name]:
-        HTML += "<a href='http://mspaintadventures.com/?s=6&p=00"+x+"'><font color='cyan'>"+x+"</a><br>"
-    HTML += ''' </body>
-    </html>'''
-    return HTML
-
-def createVarPage(num):
-    return ""
-
 @app.route('/')
 def main():
+    #Name selected
+    name1 = request.args.get("char", None)
+    name2 = request.args.get("char2", None)
+    name3 = request.args.get("char3", None)
+    name4 = request.args.get("char4", None)
+
+
+    #Page number entered
+    page = request.args.get("page", None)
+    
+    #Has user clicked submit
+    sub = request.args.get("submit",None)
+    if(sub == "csubmit"):
+        return createVarChar(name1, name2, name3, name4)
+    elif(sub == "psubmit"):
+        return createVarPage(page)
+
     return render_template("main.html")
 
-@app.route('/<Choice>')
-def renderChoice(Choice = None):
-    if Choice == 'Character':
-        return render_template("chooseChar.html")
-    return render_template("choosePage.html") + listPages()
+def createVarChar(name1, name2, name3, name4):
+    namelist = [name1]
+    if name2 != "None":
+        namelist.append(name2)
+    if name3 != "None":
+        namelist.append(name3)
+    if name4 != "None":
+        namelist.append(name4)
 
-#my attempt at being more efficient than listing each page number
-def listPages():
-    i = 1901
+    for name in namelist:
+        if name == "Clubs":
+            namelist[namelist.index(name)] = "Clubs Deuce"
+        if name == "Colonel":
+            namelist[namelist.index(name)] = "Colonel Sassacre"
+        if name == "Diamonds":
+            namelist[namelist.index(name)] = "Diamonds Droog"
+        if name == "Hearts":
+            namelist[namelist.index(name)] = "Hearts Boxcars"
+        if name == "Cal":
+            namelist[namelist.index(name)] = "Lil Cal"
+        if name == "Liv":
+            namelist[namelist.index(name)] = "Liv Tyler"
+        if name == "Peregrine":
+            namelist[namelist.index(name)] = "Peregrine Medicant"
+        if name == "Spades":
+            namelist[namelist.index(name)] = "Spades Slick"
+        if name == "Sweet":
+            namelist[namelist.index(name)] = "Sweet Bro and Hella Jeff"
+        if name == "Vagabond":
+            namelist[namelist.index(name)] = "Wayward Vagabond"
+        if name == "Itchy":
+            namelist[namelist.index(name)] = "1/Itchy"
+        if name == "Cans":
+            namelist[namelist.index(name)] = "15/Cans"
+        if name == "Doze":
+            namelist[namelist.index(name)] = "2/Doze"
+        if name == "Trace":
+            namelist[namelist.index(name)] = "3/Trace"
+        if name == "Clover":
+            namelist[namelist.index(name)] = "4/Clover"
+        if name == "Daves":
+            namelist[namelist.index(name)] = "Davesprite"
+        if name == "Jaspers":
+            namelist[namelist.index(name)] = "Jaspersprite"
+        if name == "Crow":
+            namelist[namelist.index(name)] = "Kernel/Crowsprite"
+        if name == "Kernel":
+            namelist[namelist.index(name)] = "Kernelsprite"
+        if name == "Maple":
+            namelist[namelist.index(name)] = "Maplehoof"
+        if name == "Nannas":
+            namelist[namelist.index(name)] = "Nannasprite"
+        if name == "Saw":
+            namelist[namelist.index(name)] = "Sawtooth"
+        if name == "Seren":
+            namelist[namelist.index(name)] = "Serenity"
+        if name == "Square":
+            namelist[namelist.index(name)] = "Squarewave"
+
+    savename = namelist.pop(0)
+    HTML = "<div align='center'><big><big> "+savename
+#    print savename
+    for name in namelist:
+        HTML += ", "+name 
+    namelist.insert(0, savename)
+    HTML += "</big></big></div> <br>"
+
+    HTML += "<u>Pages in which your character(s) appear(s): <br></u>"
+    pagelist1 = dnames[namelist[0]]
+    pagelist = []
+    if len(namelist) == 2:
+        pagelist2 = dnames[namelist[1]]
+        pagelist = set(pagelist1).intersection(set(pagelist2))
+    elif len(namelist) == 3:
+        pagelist2 = dnames[namelist[1]]
+        pagelist3 = dnames[namelist[2]]
+        pagelist = set(pagelist1).intersection(set(pagelist2).intersection(set(pagelist3)))
+    elif len(namelist) == 4:
+        pagelist2 = dnames[namelist[1]]
+        pagelist3 = dnames[namelist[2]]
+        pagelist4 = dnames[namelist[3]]
+        pagelist = set(pagelist1).intersection(set(pagelist2).intersection(set(pagelist3).intersection(set(pagelist4))))
+    else:
+        pagelist=pagelist1
+    
+    if len(pagelist) == 0:
+        HTML += "&nbsp&nbsp&nbsp&nbsp&nbspSorry, they do not appear anywhere together<br><br>" 
+    for x in pagelist:
+        HTML +="<a href='http://mspaintadventures.com/?s=6&p=00"+x+"'><font color='cyan'>"+x+"</a><br>"
+    
+    HTML += "<div class = 'pure-g'>"
+
+    for name in namelist:
+        HTML += "<div class = 'pure-u-1-" +\
+                str(len(namelist))+"'><center><img width = 250 src='"\
+                +image[name]+"'></center></div>"
+
+    HTML += "</div>"
+    HTML += ''' </body></html>'''
+    
+    #I use render_template("chooseChar.html") because for some reason css doesn't work when I put the link for style.css in this file.
+    return render_template("chooseChar.html")+HTML
+
+@app.route("/<num>")
+def createVarPage(num=None):
     HTML = ""
-    while ( i < 2657 ):
-        HTML += '<a href="http://0.0.0.0:1639/Page/' + str(i) + '">Page ' + str(i) + '<br>'
-        i+=1
-    HTML += "</body></html>"
-    return HTML
 
-@app.route("/Character/<CharacterName>")
-def renderCharPage(CharacterName=None):
-    return createVarChar(CharacterName)
-@app.route("/Page/<PageNumber>")
-def renderPage(PageNumber = None):
-    return render_template("page.html",
-                           var = createVarPage(PageNumber))
-                           
+    #List characters on a page, unless page is not found(except)
+    try:
 
+        #for purecss grids
+        grids = 1
+        if ( len(dpages[num]) > 4 ):
+            grids = 4
+
+        HTML += "<div class = 'pure-g'>"
+        for x in dpages[num]:
+            HTML += "<div class = 'pure-u-1-" +\
+                    str(grids)+"'><center>"\
+                    + x + "<br><img width = 250 src='"\
+                    +image[x]+"'></center></div>"
+        HTML += "</div>"
+    except:
+        HTML += "<center>Oops! That page does not exist.</center>"
+
+    HTML += ''' </body></html>'''
+
+    return render_template("choosePage.html",page=num)+HTML
     
 if __name__ == "__main__":
     app.debug = True
-    app.run(host = "0.0.0.0", port = 1639)
-    #app.run()
+    #app.run(host = "0.0.0.0", port = 1639)
+    app.run()
 
 
 #css stuff
@@ -192,3 +276,5 @@ def get_resource_as_string(name, charset='utf-8'):
         return f.read().decode(charset)
 
         app.jinja_env.globals['get_resource_as_string'] = get_resource_as_string
+
+

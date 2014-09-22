@@ -1,4 +1,3 @@
-
 from flask import Flask,render_template,request
 
 
@@ -14,6 +13,10 @@ def Results():
     #boro is a string, col is either 3 (food type) or 6 (grade)
    
     #return render_template("Results.html",d=d,boro=boro,foodorgrade=foodorgrade)
+
+@app.route("/facts")
+def facts():
+        return render_template("Facts.html")
     
 
 @app.route("/",methods=['GET', 'POST'])
@@ -22,12 +25,17 @@ def home():
         return render_template("Home.html",l=boros)
     else:
         boro = request.form['group1']
-        col = 6
-        foodorgrade = request.form['group2']
-        if foodorgrade == "Food":
-            col = 3
-        d = get_data(boro,col)
-        return render_template("Results.html",d=d,boro=boro, foodorgrade=foodorgrade)
+        if boro == "STATEN":
+                boro = "STATEN ISLAND"
+        fg = request.form['group2']
+        if fg == "Grade":
+                col = 6
+                d = get_data(boro,col)
+                return render_template("Grade.html",d=d,boro=boro)
+        else :
+                col = 3
+                d = get_data(boro,col)
+                return render_template("Food.html",d=d,boro=boro)
 
 def get_file(filename):
     l=[]
