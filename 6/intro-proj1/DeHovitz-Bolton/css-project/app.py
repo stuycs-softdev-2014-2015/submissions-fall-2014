@@ -109,7 +109,7 @@ def main():
         titles.append(adjective)
         titles.append(adjective)
     s+= '<center><section class ="a"><img src='+'"'+image+'"'+'width="400" height="400"></img></center></section>'
-    s+= '<section class ="c"><center><font face="Baskerville"> As the '+ titles[random.randint(0, len(titles)-1)]+' <b>'+Name+'</b> once said:<br>'
+    s+= '<section class ="c"><center> As the '+ titles[random.randint(0, len(titles)-1)]+' <b>'+Name+'</b> once said:<br>'
     s+= '"'+lines[random.randint(0, len(lines)-1)]+'"'
     s+= '''</section><center><br>
     <section class = "b">
