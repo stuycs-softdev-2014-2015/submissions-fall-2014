@@ -2,8 +2,6 @@ from flask import Flask,render_template,request
 import utils
 import data
 
-data.statdict
-
 app = Flask(__name__)
 
 def csvtolist(csvname):
@@ -12,8 +10,18 @@ def csvtolist(csvname):
     csvln = csvf.readlines()
     csvf.close()
     for ln in csvln:
-        csvtable.append(ln.split(","))
+        csvtable.append(ln.strip().split(","))
     return csvtable
+
+def csvtodict(csvname):
+    csvdict = {}
+    csvf = open(csvname)
+    csvln = csvf.readlines()
+    csvf.close()
+    for ln in csvln:
+        pair = ln.split(",")
+        csvdict[pair[0]] = pair[1]
+    return csvdict
 
 @app.route("/")
 @app.route("/home")
@@ -35,12 +43,17 @@ def kun():
 
 @app.route("/form",methods=['GET','POST'])
 def form():
-    selects=5
-    csvtable = csvtolist("data/stats.csv")
+    selects=10 #number of dropdowns on form.html
+    
     if request.method=="GET":
+        statcbformat = csvtolist("data/statcheckboxformat.csv")
+        statglossary = csvtodict("data/statglossary.csv")
         return render_template("form.html",
                                champnames=data.champnames,
-                               selects=selects)
+                               statnames=data.statnames,
+                               selects=selects,
+                               statcbformat=statcbformat,
+                               statglossary=statglossary)
     else:
         champs = []
         for i in range(selects):
@@ -48,9 +61,11 @@ def form():
             if curchamp!="":
                 champs.append(curchamp)
         action = request.form["a"]
-        if action=="go":
+        lookupstats = request.form.getlist("lookupstats")
+        if action=="Compare":
             return render_template("generator.html",
                                    champs=champs,
+                                   lookupstats=lookupstats,
                                    statnames=data.statnames,
                                    statdict=data.statdict)
         else :
