@@ -113,9 +113,9 @@ def main():
     s+= '"'+lines[random.randint(0, len(lines)-1)]+'"'
     s+= '''</section><center><br>
     <section class = "b">
-   <a class="pure-button pure-button-primary" href="/results">Next Quote</a>  
+   <a class="pure-button pure-button-primary" href="/results"><font face ="Baskerville">Next Quote</a>  
    
-   <a class="pure-button" href="/">Return to Home Page</a></section>
+   <a class="pure-button" href="/"><font face ="Baskerville">Return to Home Page</a></section></font>
    
 '''
 

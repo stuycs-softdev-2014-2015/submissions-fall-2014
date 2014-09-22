@@ -13,14 +13,15 @@ def home(cols = None, counter = 0):
 
 @app.route('/planet/test')
 def planetpage(stats = None):
-    grid = getGrid('planets.csv')
-    grid = cleanGrid(grid, getDelete(grid))
-    return str(getAverage(grid, 1))
-    #return str(allPlanetData)
+    return str(getPartialGrid(cleanedGrid, 1, 2))
 
 @app.route('/analysis')
 def analysis():
-    return '<h1>analysis</h1>'
+    grid = getGrid('planets.csv')
+    grid = cleanGrid(grid, getDelete(grid))
+    averagemass=str(getAverage(grid, 1))
+    return render_template('analysis.html', averagemass = averagemass)
+
 
 def dictData(grid):
     data = {}
@@ -54,6 +55,22 @@ def getGrid(filename = 'planets.csv'):
     grid = [planets[x].split(',') for x in range(len(planets))]
     return grid
 
+# returns a 2d array with elements of the table between
+# the upperbound and lowerbound of the variable
+#
+# column -> int for column index
+def getPartialGrid(grid, lowerbound, upperbound, column = 1):
+    partialGrid = []
+    for row in grid:
+        try:
+            num = float(row[column])
+            if num > lowerbound and num < upperbound:
+                partialGrid.append(row)
+        except ValueError:
+            print("not a float")
+    return partialGrid
+
+
 def getAverage(grid, column, removeTableHeader = True):
     # Get rid of header row without data
 
@@ -71,9 +88,10 @@ def getAverage(grid, column, removeTableHeader = True):
 
     return totalValue/counter
 
-
 if __name__=='__main__':
     allPlanetData = dictData(getGrid())
+    grid = getGrid('planets.csv')
+    cleanedGrid = cleanGrid(grid, getDelete(grid))
     app.run(debug=True)
 
 

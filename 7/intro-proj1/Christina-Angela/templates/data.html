@@ -21,12 +21,20 @@
 
 After taking a look at our data, please visit our analysis page:
 <a href="/analysis" class="analysis">Analysis</a>
-
-
-
 <br>
 <br>
-
+Choose a specific state: 
+<form method= "POST">
+<select name="States">
+  {% for element in searchlist %}
+<option value = {{element[0]}}> {{element[0]}} </option>   
+  {% endfor %}  
+</select>
+<input type="submit" name="go" value="Go!">
+<form>
+<br>
+<br>
+<br>
 <table border=1>
   {% for element in listlist %}
   <tr>
@@ -36,15 +44,18 @@ After taking a look at our data, please visit our analysis page:
   </tr>
   {% endfor %}
   
-</table> </n>
+</table> 
+
+<table border=1>
+  {% for element in statelist %}
+  <tr>
+    {% for n in element %}
+    <td> {{n}} </td>   
+    {% endfor %}
+  </tr>
+  {% endfor %}
 <br><br>
 
-<form action="">
-<select name="States">
-  {% for element in searchlist %}
-<option value = element[0].str> {{element[0]}} </option>   
-  {% endfor %}  
-</select>
 </body>
 
 </html>

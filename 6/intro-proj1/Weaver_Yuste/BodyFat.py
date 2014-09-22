@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
@@ -34,10 +34,33 @@ while( i < len(age)):
         i = i + 1
 
 
-@app.route("/")
-@app.route("/home") 
+def isFat(years, weight):
+    if avgs.has_key(years):
+        if avgs[years] < weight:
+            return True
+        else:
+            return False
+    else:
+        return True
+
+print isFat(29,0)
+
+
+@app.route("/", methods = ["GET","POST"] )
+@app.route("/home", methods = ["GET","POST"]) 
 def home():
-    return render_template("home2.html", avgs = avgs)
+    if request.method == "GET":
+        return render_template("home2.html", avgs = avgs)
+    else:
+        # post
+        button = request.form["button"]
+        old = int(request.form["age"])
+        fat = int(request.form["weight"])
+        if button == "Cancel":
+            return render_template("home2.html", avgs = avgs)
+        else:
+                return render_template("insult.html", fat = isFat(old,fat))
+           
 
 
 if __name__ == "__main__":
