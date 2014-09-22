@@ -31,3 +31,12 @@ a:hover {
 a:active {
     color: #0000FF;
 }
+
+.button-primary {
+    color: white;
+    background: #3366CC;
+#    border-radius: 5px;
+    text-shadow: .5px 1px 1px rgba(1,1,1,1);
+    font-size: 110%;
+   }
+

@@ -49,7 +49,17 @@ div {
 {% else %}
   <h3> Background Information: </h3> <div> We chose to analyze basketball players because we thought it <br> would be interesting to compare the best players to <br>ever play the sport with each other. At first we were comparing the <br>Player Efficiency Rating and the regular stat line of the players, <br>but we realized that there would be no way to compare them. So we <br>just tried to determine who was the greatest player of all time (G.O.A.T). <br> </div>
 
-  <h4> If you'd like to learn more about a certain basketball player, please type their name in the url using the format: localhost:4242/about/playerfirstname/playerlastname </h4>
+  <h4> If you'd like to learn more about a certain basketball player, please fill out this form: </h4>
+
+  <form method="POST">
+      <input type="text" name="first">
+      <input type="text" name="last">
+      <p>
+      <input type="submit" name="b" value="Search">
+      <input type="submit" name="b" value="Clear">
+      </form>
 
 
 {% endif %}
+
+</html>
