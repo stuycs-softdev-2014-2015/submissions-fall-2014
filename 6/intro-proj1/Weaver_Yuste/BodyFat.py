@@ -36,14 +36,14 @@ while( i < len(age)):
 
 def isFat(years, weight):
     if avgs.has_key(years):
-        if avgs[years] > weight:
+        if avgs[years] < weight:
             return True
         else:
             return False
     else:
         return True
 
-    
+print isFat(29,0)
 
 
 @app.route("/", methods = ["GET","POST"] )
