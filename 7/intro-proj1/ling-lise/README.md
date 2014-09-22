@@ -1,6 +1,7 @@
 This folder includes the mini-project of Ling Dong and Lise Ho.
 
-Instructions:
+Instructions: <br>
+NOTE: These files assume usage of Flask. <br>
 Copy and paste py and csv files and place in virtualenv. <br>
 HTML files should go in templates folder when using flask. <br>
 
