@@ -2,47 +2,47 @@ import random
 
 def findPrice(size,issues):
   if size == "full":
-    if issues == 1:
+    if issues == "1":
       return 500
-    if issues > 1 and issues < 7:
+    elif issues == "2" or issues == "3" or issues == "4" or issues == "5" or issues == "6":
       return 450
-    if issues > 6:
-      return 400
-    if issues == 16:
+    elif issues == "16":
       return 240
+    else:
+      return 400
 
 
   if size == "half":
     if issues == 1:
       return 350
-    if issues > 1 and issues < 7:
+    elif issues == "2" or issues == "3" or issues == "4" or issues == "5" or issues == "6":
       return 300
-    if issues > 6:
-      return 250
-    if issues == 16:
+    elif issues == "16":
       return 130
+    else:
+      return 250
 
 
   if size == "quarter":
-    if issues == 1:
+    if issues == "1":
       return 200
-    if issues > 1 and issues < 7:
+    elif issues == "2" or issues == "3" or issues == "4" or issues == "5" or issues == "6":
       return 160
-    if issues > 6:
-      return 120
-    if issues == 16:
+    elif issues == "16":
       return 70
+    else:
+      return 120
 
 
   if size == "eighth":
     if issues == 1:
       return 120
-    if issues > 1 and issues < 7:
+    elif issues == "2" or issues == "3" or issues == "4" or issues == "5" or issues == "6":
       return 85
-    if issues > 6:
-      return 60
-    if issues == 16:
+    elif issues == "16":
       return 40
+    else:
+      return 60
 
   else:
     return -1

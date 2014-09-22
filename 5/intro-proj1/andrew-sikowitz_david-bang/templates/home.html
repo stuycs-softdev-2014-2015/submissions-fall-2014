@@ -2,6 +2,27 @@
 <html> 
   <head>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<style>
+  body {
+  background-color: black;
+  color: white;
+  }
+  h1{
+  font-size: 550%;
+  font-style: italic
+  background-color: black; 
+  color: white;
+  width:40%;
+  float:center;
+  border-style:solid;
+  border-width:3px;
+  border-color:red;
+  }
+  .stretch {
+  width: 40%;
+  height:80%;
+  }
+</style>
 
 
     <title>Forbes Dataset Reader Homepage </title> </head>
@@ -23,23 +44,15 @@
 		      }
 		      </script>
 
-  <style>
-    body {
-    background-color: black;
-    color: white;
-    }
-    h1{
-    font-size: 550%;
-    font-style: italic
-    background-color: black; 
-    color: white;
-    width:40%;
-    float:center;
-    border-style:solid;
-    border-width:3px;
-    border-color:red;}
-
-  </style>
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li class="pure-menu-selected"><a href="#">Home</a></li>
+        <li><a href="/"> Front Page</a></li>
+        <li><a href="/Forbes2000.csv?sort=name"> Name Sort</a></li>
+        <li><a href="/Forbes2000.csv?sort=rank">Rank Sort</a></li>
+        <li><a href="/Forbes2000.csv?sort=country">Country Sort</a></li>
+    </ul>
+</div>
 
   <body>
     <h1>Forbes Dataset Reader</h1>
@@ -54,7 +67,7 @@
     <div class="reveal">
       Sort by: 
     </div>
-    <form class="pure-form pure-form-aligned" id="form" action="" method="get">
+    <form class="pure-form" id="form" action="" method="get">
       {% for i in range(lines|length) %}
       <div id="{{ i }}" style="display:none">
 	<select name="sort">
@@ -66,4 +79,7 @@
       {% endfor %}
 </input><br>
 <input type="submit" class="reveal" value="Submit">
-</form></body> </html>
+</form>
+<br> <img src="/static/Forbes3.jpg"  class="stretch" alt="" />
+<img src="/static/Forbes4.jpg"  class="stretch" alt="" />
+</body> </html>

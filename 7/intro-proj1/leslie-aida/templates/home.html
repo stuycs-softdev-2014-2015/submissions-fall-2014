@@ -26,13 +26,10 @@
   <div class="pure-u-1-5"></div>
   <div class="pure-u-3-5">
 
-
-
-<<<<<<< HEAD
     <form method="POST" action="/results"  class="pure-form" align="center">
       <fieldset>
 	<legend>Search for energy consumption in the city by zip code range and building type</legend>
-	<label for="building_type"> What building type are you interested in? </label> 
+	<label for="building_type"> Building Type: </label> 
 	<select id="building_type"  name="building_type"> 
 	  <option value="commercial">Commercial</option>
 	  <option value="institutional">Institutional</option>
@@ -40,31 +37,12 @@
 	  <option value="small residential">Small Residential</option>
 	</select>
 	<br><br>
-=======
-<form method="POST" action="/results"  class="pure-form pure-form-aligned">
-  <fieldset>
-    <div class="pure-control-group"> <br>
-      <label for="building_type"> Building Type </label> 
-      <select id="building_type"  name="building_type"> 
-	<option value="commercial">Commercial</option>
-	<option value="institutional">Institutional</option>
-	<option value="large residential">Large Residential</option>
-	<option value="small residential">Small Residential</option>
-      </select>
-    </div>
->>>>>>> eb17095e803b2866f3b91252d42c130d281dfd30
-
+	Unit for Energy Electric Consumption:
+	<input type="radio" name="unit" value="kWh"> Kilowatt-hour (kWh) <input type="radio" name="unit" value="GJ"> Gigajoule (GJ) <br><br>
 	From <input id="zip_start" type="text" name="zip_start" placeholder="Starting Zip Code">
 	
 	to <input id="zip_end" type="text"name="zip_end" placeholder="Ending Zip Code"><br><br>
 
-<<<<<<< HEAD
-=======
-    <div class="pure-control-group"> 
-      <label for="zip_end"> to </label>
-      <input id="zip_end" type="text"name="zip_end" placeholder="End">
-      </div>
->>>>>>> eb17095e803b2866f3b91252d42c130d281dfd30
 
 	<div class="pure-controls" align="center">
 	  <button type="submit" class="pure-button pure-button-primary" href="/results"> Search </button

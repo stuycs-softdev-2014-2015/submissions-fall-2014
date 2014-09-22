@@ -1,7 +1,11 @@
-.center {
+.centered {
   text-align: center;
-  text-color: red;
+  color: #FA8072;
   font-weight: bold;
+}
+
+.centered:hover {
+    color: black;
 }
 
 body { 
@@ -86,6 +90,10 @@ li {
     float: left;
 } 
 
+a:hover {
+   color: red;
+}
+
 #menu {
     display: block;
     width: 400px;
@@ -101,3 +109,4 @@ li {
 #menu:hover, #menu:active {
     background-color: #7A991A;
 }
+
