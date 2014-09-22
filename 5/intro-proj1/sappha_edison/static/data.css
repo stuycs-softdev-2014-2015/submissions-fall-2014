@@ -1,0 +1,33 @@
+.center {
+  text-align: center;
+  text-color: black;
+  font-weight: bold;
+}
+
+body { 
+  background-color: #8D97F3;;
+  text-align: center;
+  text-color: black;
+}
+
+tr:first-child{
+    font-weight:bold;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #0000FF;
+}
+
+
+tr:nth-child(odd) {
+    background-color:#00CCFF ;
+}
+
+tr:hover{
+    background-color: #FF0000;
+}
+
+td{
+    text-align:center;
+}
