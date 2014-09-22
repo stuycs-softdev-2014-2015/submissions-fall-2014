@@ -31,18 +31,20 @@ def login():
                 inStream.close()
                 if not(uname+":"+pword in data):
                     return render_template("login.html")
-            inStream = open("data01.csv",'r')
-            data = inStream.read()
-            inStream.close()
-            rows = data.split("\n")
-            for i in range(0,len(rows)):
-                rows[i] = rows[i].split(",")
-            return render_template("data.html", info = rows, name = uname)
+            return redirect(url_for('data'))
 
 @app.route("/")
 def home():
      return redirect(url_for('login'))
-
+@app.route("/data")
+def data():
+    inStream = open("data01.csv",'r')
+    data = inStream.read()
+    inStream.close()
+    rows = data.split("\n")
+    for i in range(0,len(rows)):
+        rows[i] = rows[i].split(",")
+    return render_template("data.html", info = rows)
 @app.route("/analysis")
 def analysis():
     inStream = open("averages_hw25.csv","r")

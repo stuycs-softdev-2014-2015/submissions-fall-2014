@@ -20,13 +20,13 @@ def csvtolist(csvname):
 def home():
     return render_template("home.html")
 
-@app.route("/desu")
+@app.route("/all")
 def desu():
     return render_template("desu.html",
                            stattable=csvtolist("data/stats.csv"),
                            wrtable=csvtolist("data/winrate.csv"))
 
-@app.route("/kun")
+@app.route("/level")
 def kun():
     csvtable = csvtolist("data/stats.csv")
     return render_template("kun.html",

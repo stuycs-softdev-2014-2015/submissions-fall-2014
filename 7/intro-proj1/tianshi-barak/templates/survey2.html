@@ -8,12 +8,12 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Theme Template for Bootstrap</title>
+    <title>Home</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="bootstrap-3.2.0-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="static/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="theme.css" rel="stylesheet">
@@ -29,6 +29,12 @@
     <![endif]-->
   </head>
 
+  <style>
+body {
+  padding: 65px;
+}
+  </style>
+
   <body role="document">
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -37,12 +43,15 @@
           <a class="navbar-brand" href="../home">Home</a>
         </div>
         <div class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right" role="form">
+
+          <form class="navbar-form navbar-right" role="form" action="/results">
             <div class="form-group">
-              <input type="text" placeholder="Search Here" class="form-control">
+              <input type="text" name="search1" placeholder="Champion 1" class="form-control"></input>
+	      <input type="text" name="search2" placeholder="Champion 2" class="form-control"></input>
             </div>
-            <button type="submit" class="btn btn-success">Search</button>
+            <input type="submit" name="b" class="btn btn-success" value="Search">Search</input>
           </form>
+
         </div><!--/.navbar-collapse -->
       </div>
     </div>
@@ -53,58 +62,20 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Testing Bootstrap</h1>
-        <p>Smaller text should go here. These are all the things that we might need for this project.</p>
+        <h1>Welcome to our webpage.</h1>
+        <p>Tianshi Wang, Barak Zhou, pd7.</p>
+	<p>Check out our League of Legends data!</p>
       </div>
 
-      <div class="page-header">
-        <h1>Tables</h1>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+ 
+      <!-- Button for raw data -->
+      <p>
+	<a href="../data" type="button" class="btn btn-lg btn-success">View Data</a>  <!-- idk why I can't use "button" but it works -->
+	</p>
+      
 
 
-
-      <div class="page-header">
-        <h1>Alerts</h1>
-      </div>
-      <div class="alert alert-danger" role="alert">
-        <strong>Error:</strong> We'll use this to generate the error tag.
-      </div>
-
-
+      
     </div> <!-- /container -->
 
 
