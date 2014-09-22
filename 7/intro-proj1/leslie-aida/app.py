@@ -14,8 +14,6 @@ def start():
 @app.route("/results", methods=["POST", "GET"])
 def main():
     
-    
-    
     if request.method=="POST":
         building_type=request.form["building_type"]
         zip_start=request.form["zip_start"]
