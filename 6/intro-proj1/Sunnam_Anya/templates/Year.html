@@ -1,21 +1,27 @@
-<style>
-  h1 { border-style:solid;
-  color:green;}
-  .a {color:purple;
-  text-align:left;}
-  .b {color:blue;
-  text-align:right}
-
-</style>
+<head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  <style>
+    .image{ text-align:center;}
+    h1 { border-style:solid;
+    color:green;}
+    .a {color:000000;
+    text-align:left;}
+    .b {color:000000;
+    text-align:right}
+  </style>
+</head>
 
 <h1>Average Salary per Year</h1>
+<img id="image" src="/static/mitt.jpg">
 
-<table>
+<table class = "pure-table pure-table-bordered">
 <thead>
 <tr>
 <th>Year</th>
-<th>       Average Salary </th>
+<th>Average Salary</th>
 </tr>
+</thead>
+<tbody>
 {% for key in dic %}
     <tr>
     <td class="a">{{ key }}</td>
@@ -24,4 +30,3 @@
 {% endfor %}
 </tbody>
 </table>
-
