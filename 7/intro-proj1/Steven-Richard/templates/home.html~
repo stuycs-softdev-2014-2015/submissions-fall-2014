@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+
 <style>
 
 ul {
@@ -66,10 +71,15 @@ background-color: #40FF00;
 <body>
 <h1>The Great (Outdated) Pokedex</h1>
 
-<form method="GET">
+<h3>Search</h3>
+<form method="POST">
 <input type="text" name="name"><br>
-<input type="submit" value="submit" name="b">
+<input type="radio" name="type" value="name" checked>Name 	&nbsp; 	&nbsp; 	&nbsp;<input type="radio" name="type" value="num">Number<br>
+<input class="pure-button" type="submit" value="Submit" name="b">
 </form>
+<br>
+<div class="pure-menu pure-menu-open">
+<a class="pure-menu-heading">Regions</a>
 
 <ul>
   <li><a href="#1">Kanto</a></li>
@@ -78,10 +88,11 @@ background-color: #40FF00;
   <li><a href="#387">Sinnoh</a></li>
   <li><a href="#619">Unova</a></li> {# Victini is 494. Cheesed this so hard #}
 </ul>
-<br><br>
+</div>
+<br>
 
   <table>
-  <tr id = "darkm"><td width = 28px>#</td><td width = 200px>NAME</td><td width = 30px>HP</td><td>ATK</td><td>DEF</td><td width = 45px>SP. ATK</td><td width = 47px>SP. DEF</td><td>SPEED</td><td width = 923px>MOVES</td></tr>
+  <tr id = "darkm"><td width = 2.35%>#</td><td width = 11.2%>NAME</td><td width = 1.85%>HP</td><td width = 1.85%>ATK</td><td width = 1.85%>DEF</td><td width = 1.85%>SP. ATK</td><td width = 1.85%>SP. DEF</td><td>SPEED</td><td width = 69%>MOVES</td></tr>
   <tr id = "dark"><td>#</td><td>NAME</td><td>HP</td><td>ATK</td><td>DEF</td><td>SP. ATK</td><td>SP. DEF</td><td>SPEED</td><td>MOVES</td></tr>
   {% set n = 1 - isSearch %}
   {% set stupiddeoxys = 0 %}
