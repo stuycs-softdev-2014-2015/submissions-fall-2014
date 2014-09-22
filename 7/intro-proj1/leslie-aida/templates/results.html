@@ -22,8 +22,20 @@
 	{%if lines.index(line) == 0%}
           <thead>
 		<tr>
-		{% for cell in line.split(',') %}
-			<td> {{cell}} </td>
+		{% set cells = line.split(',')  %}
+		{% for cell in cells %}
+
+		{%if cells.index(cell) != 2 and cells.index(cell) !=3 %} 
+				<td> {{cell}} </td>   
+		{%else%}
+			{%if cells.index(cell) == 2 and unit == "kWh"%}
+				<td> {{cell}} </td>
+			{%endif%}
+			{%if cells.index(cell) == 3 and unit == "GJ"%}
+				<td> {{cell}} </td>
+			{%endif%}
+		{%endif%}
+		
 		{% endfor %}
 		</tr>
 	</thead>
@@ -35,9 +47,18 @@
              	    {%else%}
 			<tr>
                     {%endif%}
-			  	
-			{% for cell in line.split(',') %}
+			{% set cells = line.split(',') %}  	
+			{% for cell in cells %}
+		          {%if cells.index(cell) != 2 and cells.index(cell) !=3 %} 
+				<td> {{cell}} </td>   
+			  {%else%}
+				{%if cells.index(cell) == 2 and unit == "kWh"%}
 				<td> {{cell}} </td>
+				{%endif%}
+				{%if cells.index(cell) == 3 and unit == "GJ"%}
+				<td> {{cell}} </td>
+				{%endif%}
+			{%endif%}
 			{% endfor %}
 			</tr>
 		{%endif%}

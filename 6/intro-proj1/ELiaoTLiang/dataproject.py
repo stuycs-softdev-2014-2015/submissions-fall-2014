@@ -41,10 +41,7 @@ def order(column, directions):
     for x in range(len(lines)):
         least = lines[-1]
         for element in lines:
-            if column== "Score":
-                if int(least[index]) > int(element[index]):
-                    least = element
-            elif column=="SS":
+            if column=="SS":
                 if int(least[index]) > int(element[index]):
                     least = element
             elif column == "Performance Points":
@@ -70,6 +67,9 @@ def order(column, directions):
                     least = element
             elif column=="Player Name":
                 if least[index] > element[index]:
+                    least = element
+            elif column=="Rank":
+                if int(least[index][1:]) > int(element[index][1:]):
                     least = element
         least2big.append(least)
         lines.pop(lines.index(least))
