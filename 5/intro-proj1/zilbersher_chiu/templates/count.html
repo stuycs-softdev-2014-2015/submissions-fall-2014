@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<link rel="stylesheet" href="{{url_for('static', filename='diff.css')}}">
 <html>
   <head>
     <title>
@@ -7,14 +8,14 @@
   </head>
   <body>
     <center>
-    <head>
+    <h1>
       This is a webpage about the {{ title }}.
-    </head>
+    </h1>
     <p1>
-      The most common word in the {{ title }} is "{{ word }}"!
+      <br>The most common word in the {{ title }} is "{{ word }}"!</br>
     </p1>
     <p2>
-      More info about the {{ title }}:
+      <br><u>More info about the {{ title }}:</u></br> </br>
     </p2>
     <p3>
       {{ word_dict }}
