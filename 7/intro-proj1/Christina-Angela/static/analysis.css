@@ -23,6 +23,14 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #FA8072;
 }
+
+tr:hover{
+    background-color: #ffff99;
+}
+
+tr:first-child:hover {
+    background-color: #FA8072;
+}
 .data {
 	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f');

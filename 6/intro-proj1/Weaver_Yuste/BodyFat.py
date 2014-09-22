@@ -34,6 +34,18 @@ while( i < len(age)):
         i = i + 1
 
 
+def isFat(years, weight):
+    if avgs.has_key(years):
+        if avgs[years] < weight:
+            return True
+        else:
+            return False
+    else:
+        return True
+
+print isFat(29,0)
+
+
 @app.route("/", methods = ["GET","POST"] )
 @app.route("/home", methods = ["GET","POST"]) 
 def home():
@@ -42,13 +54,14 @@ def home():
     else:
         # post
         button = request.form["button"]
-        old = request.form["age"]
-        fat = request.form["weight"]
-        
+        old = int(request.form["age"])
+        fat = int(request.form["weight"])
         if button == "Cancel":
             return render_template("home2.html", avgs = avgs)
         else:
-            return render_template("insult.html", avgs = avgs, age = old, weight = fat)
+                return render_template("insult.html", fat = isFat(old,fat))
+           
+
 
 if __name__ == "__main__":
     app.debug=True

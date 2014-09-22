@@ -1,21 +1,25 @@
-<style>
-h1 { border-style:dashed;
-border-color:purple;
-border-width:5px;
-background:yellow;
-align="center"
+<link rel="stylesheet" href="/static/style.css" type="text/css">
 
-}
-</style>
+
 <h1> Hello and welcome to Victor's Project </h1>
 <h1> Data set and analysis provided by Isaac Gluck, his sophomore year
   data project</h1>
 <h1> The stuff might look a bit weird because I have no idea how to
   make stuff look good besides working out </h1>
 <h1> That was a joke. You can laugh </h1>
-<h1> Ill be leaving now </h1>
-<h1> Link to the <a href="/data">data</a>
-<h1> Link to the <a href="/zestats">analysis</a>
+<h1> I'll be leaving now </h1>
+<h1> Login below to obtain access to data and analysis </h1>
+<h2>
+<form method="POST">
+Username Password <br>
+<input type="text" name="uname">
+<input type="text" name="pword">
+<p>
 
 
+<input type="submit" name="b" value="login">
+<input type="submit" name="b" value="cancel">
+</form>
+<p class="error">{{errmess}}</p>
+</h2>
 

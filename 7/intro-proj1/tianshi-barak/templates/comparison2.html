@@ -29,56 +29,44 @@
     <![endif]-->
   </head>
 
+  <style>
+body {
+  padding: 65px;
+}
+  </style>
 
-      <div class="page-header">
-        <h1>Tables</h1>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+  <body role="document">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../home">Home</a>
         </div>
+        <div class="navbar-collapse collapse">
+
+          <form class="navbar-form navbar-right" role="form" action="/results">
+            <div class="form-group">
+              <input type="text" name="search1" placeholder="Champion 1" class="form-control"></input>
+	      <input type="text" name="search2" placeholder="Champion 2" class="form-control"></input>
+            </div>
+            <input type="submit" name="b" class="btn btn-success" value="Search">Search</input>
+          </form>
+
+        </div><!--/.navbar-collapse -->
       </div>
+    </div>
 
-    <!-- Bootstrap core JavaScript
+  <h1 align="center">CHAMPION COMPARISON</h1><br>
+  <h2 align="center"> <b>{{search1}} vs. {{search2}}</b> !! </h2> <br><br>
+  <h3 align="center"><b>KDA:</b> {{search1}} : {{kda1}} vs. {{search2}} : {{kda2}}</h3><br>
+  <h3 align="center"><font color="green">KILLS:</font> {{search1}} : {{kill1}} vs. {{search2}} : {{kill2}}</h3><br>
+  <h3 align="center"><font color="red">DEATHS:</font> {{search1}} : {{death1}} vs. {{search2}} : {{death2}}</h3><br>
+  <h3 align="center"><font color="blue">ASSISTA:</font> {{search1}} : {{assist1}} vs. {{search2}} : {{assist2}}</h3><br>
+  <a href="../data">Check out our data!</a><br>
+  <a href="../home">Go back!</a><br>
 
-	 do I even need these?
+    <div class="container theme-showcase" role="main">
 
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/docs.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  
+    </div>
   </body>
 </html>

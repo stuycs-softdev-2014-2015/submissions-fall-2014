@@ -7,28 +7,29 @@ def about():
 
 @app.route("/home")
 def home():
-    #return render_template("home.html")
     html = ""
     html += "<html><title>" + "Home Page" + "</title>"
     html += "<h1>Starter Pokemon</h1>"
     html += tablefy('Water Starters.csv',"33CCFF")
     html += tablefy('Fire Starters.csv',"FF9933")
     html += tablefy('Grass Starters.csv',"33CC66")
+    html += "<br>"
+    html += "<a href = '/avg'>Average of Starter Pokemon</a>"
     html += "</html>"
     return html
+
+@app.route("/avg")
+def avg():
+    return render_template("avg.html")
 
 @app.route("/")
 def index():
     uname = request.args.get("uname",None)
-    pword = request.args.get("pass",None)
     button = request.args.get("b",None)
     if button == None or button=="Cancel":
         return render_template("index.html")
     else:
-        return """
-<h1>%s</h1>
-"""%("uname")
-    #<a href "/home">home page</a>
+       return "<a href = 'home'>Click this!</a>"
 
     
 def tablefy(fileName,color):
