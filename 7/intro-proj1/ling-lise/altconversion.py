@@ -81,9 +81,50 @@ SchoolName = SchoolName[:SchoolName.find(",")] # global variable that takes the 
 
 #                        START OF SERVER CODE                      #
 #******************************************************************#
+############ Fiddling form elements #################
+@app.route("/")
+@app.route("/home")
+@app.route("/index")
+def home ():    
+    return render_template("althome.html")
 
 
+@app.route("/welcome",methods=["GET","POST"])
+@app.route("/about",methods=["GET","POST"])
+def about():
+    strs = " "
+    estrs = " "
+    if request.method == "GET":
+        return render_template("about.html")
+    else:
+        l = request.form.getlist("style")
+        name2 = request.form["name2"]
+        name = request.form["name"]
+        print name,name2
 
+    if "bold" in l:
+        strs += "<b>"
+        estrs += "</b>"
+    if "big" in l:
+        strs += "<span style='font-size:2.4em'>"
+        estrs += "</span>"      
+    if "color" in l:
+        strs += "<span style='color:green'>"
+        estrs += "</span>"      
+
+    if name == "":
+        name = "Anonymous"
+    if name2 == "":
+        name2 = name
+
+
+    #if bold != None or big != None or color != None:
+    return render_template("about.html", tag = strs, etag = estrs, name = name, name2 = name2)
+    
+            
+    
+    
+    
 
 @app.route("/analysis")
 def analysis():
@@ -100,7 +141,7 @@ def analysis():
 
 ######### Prints Table ############
 @app.route("/conversion")
-def conversion (): #converts the csv file into html code
+def conversion(): #converts the csv file into html code
     ans = ""
     i =0
     lengths = len(y)
@@ -117,37 +158,6 @@ def conversion (): #converts the csv file into html code
                            htmlStr=htmlStr,
                            ans=ans)
 
-
-
-############ Fiddling form elements #################
-@app.route("/")
-@app.route("/home")
-@app.route("/index")
-def home ():    
-    return render_template("althome.html")
-
-
-@app.route("/funky",methods=["GET","POST"])
-@app.route("/about",methods=["GET","POST"])
-def about():
-    if request.method == "GET":
-        return render_template("about.html")
-    else:
-        b = request.form("b",None)
-        bold = request.form("bold",None)
-        big = request.form("big",None)
-        
-        if b == "cancel":
-            return render_template("about.html"   )
-        #else if b =="random": 
-        #    return render_template("about.html",bold = bold, big = !big, underline = !underline  )
-        else:
-            return render_template("about.html", bold = bold, big = big, underline = underline)
-            
-    
-    
-    
-    return render_template("about.html")
 
 
 

@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 
 #app is an instance of the Flask class
-app = Flask(_name)
+app = Flask(__name__)
 
 @app.route("/")
 @app.route("/home")
@@ -13,6 +13,6 @@ def home():
 def analysis():
     return render_template("Analysis_2.html")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     app.debug = True
     app.run()
