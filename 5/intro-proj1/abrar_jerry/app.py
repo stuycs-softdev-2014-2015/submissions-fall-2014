@@ -14,7 +14,13 @@ def help2():
 def help3():
     return render_template("la.html")
 
+@app.route("/home")
+def help4():
+    return render_template("home.html")
+
+
 @app.route("/", methods=["GET","POST"])
+@app.route("/index", methods=["GET","POST"])
 def index(name=None):
     if request.method ==  "GET":
         return render_template("index.html",name=None)
