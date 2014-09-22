@@ -17,7 +17,7 @@ def formulate():
                "declaration_of_independence":"Declaration of Independence",
                "bill_of_rights":"Bill of Rights",
                "emancipation_proclamation":"Emancipation Proclamation",
-               "lousiana_purchase":"Louisiana Purchase",
+               "louisiana_purchase":"Louisiana Purchase",
                "zimmerman_telegram":"Zimmerman Telegram"}
     title=titleDict[info]
     f = open("./static/" + info + ".txt", "r")
