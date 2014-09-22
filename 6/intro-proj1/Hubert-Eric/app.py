@@ -44,7 +44,7 @@ def planetpage(stats = None):
         print("get")
         return render_template('dataset.html',
                 grid=cleanedGrid[1:], headerRow = cleanedGrid[0])
-   
+
 def analysisFile(pg, bounds):
     file = open('boundsAnalysis.txt', 'w')
     avgMass = str(getAverage(pg, 1))
