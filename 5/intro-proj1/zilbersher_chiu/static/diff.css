@@ -1,0 +1,28 @@
+body { background-color: #003900;
+       margin: 0;
+       padding: 0;
+       color: #000000; 
+       font: arial; 
+       font-weight: bold; 
+}
+
+h1 { background-color: #30AC59;
+     text-shadow: -1px -1px 1px #30AC59, 1px 1px 1px #000000;
+     font-size: 30px;
+     border: 6px solid #000000;
+     padding: 20px;
+} 
+
+p1 { font-size: 20px;
+     position: relative;
+     top: -40;
+}
+
+p2 { font-size: 20px;
+     position: relative;
+     top: 20;
+}
+
+p3 { position: relative;
+     top: 20;
+}

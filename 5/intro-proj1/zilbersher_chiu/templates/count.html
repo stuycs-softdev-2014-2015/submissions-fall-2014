@@ -1,22 +1,25 @@
 <!DOCTYPE HTML>
+<link rel="stylesheet" href="{{url_for('static', filename='diff.css')}}">
 <html>
   <head>
     <title>
-      Statistics for "{{ title }}"
+      Statistics for {{ title }}
     </title>
   </head>
   <body>
-    <p>
-      This is a webpage about "{{ title }}".
-    </p>
-    <p>
-      The most common word in "{{ title }}" is "{{ word }}"!
-    </p>
-    <p>
-      More info about "{{ title }}":
-    </p>
-    <p>
+    <center>
+    <h1>
+      This is a webpage about the {{ title }}.
+    </h1>
+    <p1>
+      <br>The most common word in the {{ title }} is "{{ word }}"!</br>
+    </p1>
+    <p2>
+      <br><u>More info about the {{ title }}:</u></br> </br>
+    </p2>
+    <p3>
       {{ word_dict }}
-    </p>
+    </p3>
+    </center>
   </body>
 </html>

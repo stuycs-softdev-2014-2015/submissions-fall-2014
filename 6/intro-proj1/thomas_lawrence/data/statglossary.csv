@@ -1,0 +1,22 @@
+HP,Base Max HP
+HP+,Max HP gained per level 
+HP5,Base HP regenerated per 5s
+HP5+,HP regen gained per level
+MP,Base Max MP
+MP+,Max MP increase per level
+MP5,Base MP regenerated per 5s
+MP5+,MP regen gained per level
+AD,Base Attack Damage
+AD+,Attack Damage gained per level
+AS,Base Attacks per Second
+AS+,Attack Speed gained per level
+AR,Base Armor
+AR+,Armor gained per level
+MR,Base Magic Resistance
+MR+,Magic Resistance gained per level
+MS,Base Movement Speed
+Range,Base Attack range
+Win Rate,% of games won
+Matches,Total matches plated
+Wins,Total wins
+Losses,Total losses
