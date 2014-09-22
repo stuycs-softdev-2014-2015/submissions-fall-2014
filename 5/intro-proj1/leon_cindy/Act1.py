@@ -122,6 +122,7 @@ def main():
     name3 = request.args.get("char3", None)
     name4 = request.args.get("char4", None)
 
+
     #Page number entered
     page = request.args.get("page", None)
     
@@ -133,7 +134,6 @@ def main():
         return createVarPage(page)
 
     return render_template("main.html")
-
 
 def createVarChar(name1, name2, name3, name4):
     namelist = [name1]
@@ -238,7 +238,8 @@ def createVarChar(name1, name2, name3, name4):
     #I use render_template("chooseChar.html") because for some reason css doesn't work when I put the link for style.css in this file.
     return render_template("chooseChar.html")+HTML
 
-def createVarPage(num):
+@app.route("/<num>")
+def createVarPage(num=None):
     HTML = ""
 
     #List characters on a page, unless page is not found(except)
@@ -246,10 +247,9 @@ def createVarPage(num):
 
         #for purecss grids
         grids = 1
-        if ( dpages[num] > 4 ):
+        if ( len(dpages[num]) > 4 ):
             grids = 4
 
-        HTML += "<u>Characters found on page " + str(num) + ":</u><br><br>"
         HTML += "<div class = 'pure-g'>"
         for x in dpages[num]:
             HTML += "<div class = 'pure-u-1-" +\
@@ -262,7 +262,7 @@ def createVarPage(num):
 
     HTML += ''' </body></html>'''
 
-    return render_template("choosePage.html")+HTML
+    return render_template("choosePage.html",page=num)+HTML
     
 if __name__ == "__main__":
     app.debug = True
