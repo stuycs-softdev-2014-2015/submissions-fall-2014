@@ -41,9 +41,9 @@ def home():
         return render_template("home2.html", avgs = avgs)
     else:
         # post
-        button = request.method['button']
-        old = request.method['age']
-        fat = request.method['weight']
+        button = request.form["button"]
+        old = request.form["age"]
+        fat = request.form["weight"]
         
         if button == "Cancel":
             return render_template("home2.html", avgs = avgs)
