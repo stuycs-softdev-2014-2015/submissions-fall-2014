@@ -1,14 +1,19 @@
 <html>
 
 <title>SAT Scores </title>
+
 <head>
     <link rel="stylesheet" href="/static/data.css" type="text/css" media="screen" />
 </head>
-
+ <ul>
+  <li><a id = "menu" href="/data">Data</a></li>
+  <li><a id = "menu" href="/analysis">Analysis</a></li>
+  <li><a id = "menu" href="/login">Logout</a></li>
+</ul> 
 <h1 class="center">SAT Scores in the USA</h1>
 
 <body>
-  Our data compares how different students from different states in the United States do on the SAT and ACT test.The reason why we chose to analyze this data was because there are always debates (although many are not serious) about which states are smarter, which states have brighter students, etc.In addition, it is interesting to read about these SAT scores and ACT scores in an organized matter because the SATs are something that will soon encompass us (in junior year).<br><br>
+  Our data compares how different students from different states in the United States do on the SAT and ACT test.The reason why we chose to analyze this data was because there are always debates (although many are not serious) about which states are smarter, which states have brighter students, etc.In addition, it is interesting to read about these SAT scores and ACT scores in an organized matter because the SATs are something that has encompassed us in junior year.<br><br>
   <br>This data (.csv file) was found on <i><a href=http://thomaslotze.comv/projects/class_sizes/>
     Original Source</a></i> or <i><a href=http://thomaslotze.com/projects/class_sizes/2006-07.csv>Data in CSV (viewed as HTML)</a></i>
 
@@ -16,7 +21,11 @@
 
 After taking a look at our data, please visit our analysis page:
 <a href="/analysis" class="analysis">Analysis</a>
-<br><br>
+
+
+
+<br>
+<br>
 
 <table border=1>
   {% for element in listlist %}
@@ -28,7 +37,14 @@ After taking a look at our data, please visit our analysis page:
   {% endfor %}
   
 </table> </n>
+<br><br>
 
+<form action="">
+<select name="States">
+  {% for element in searchlist %}
+<option value = element[0].str> {{element[0]}} </option>   
+  {% endfor %}  
+</select>
 </body>
 
 </html>

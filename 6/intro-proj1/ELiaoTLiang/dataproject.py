@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
 import cgi, cgitb
 form = cgi.FieldStorage()
 
@@ -41,7 +41,7 @@ def order(column, direction):
     for x in range(len(lines)):
         least = lines[-1]
         for element in lines:
-            if column== "Score Rank":
+            if column== "Score":
                 if int(least[index]) > int(element[index]):
                     least = element
             elif column=="SS":
@@ -49,6 +49,27 @@ def order(column, direction):
                     least = element
             elif column == "Performance Points":
                 if int(least[index][:-2]) > int(element[index][:-2]):
+                    least = element
+            elif column == "Accuracy":
+                if int(least[index][:-1]) > int(element[index][:-1]):
+                    least = element
+            elif column=="Score Rank":
+                if int(least[index][1:]) > int(element[index][1:]):
+                    least = element
+            elif column=="Play Count":
+                if int(least[index][:-8]) > int(element[index][:-8]):
+                    least = element
+            elif column=="S":
+                if int(least[index]) > int(element[index]):
+                    least = element
+            elif column=="A":
+                if int(least[index]) > int(element[index]):
+                    least = element
+            elif column=="Nation":
+                if int(least[index]) > int(element[index]):
+                    least = element
+            elif column=="Player Name":
+                if int(least[index]) > int(element[index]):
                     least = element
         least2big.append(least)
         lines.pop(lines.index(least))
@@ -65,62 +86,38 @@ def cutTable(pageNum, interval):
     printedString="";
     if 'pageNum' not in form:
         form['pageNum'] = 0
-    table = "<table border='1'class='pure-table'>"
-    if 'order' in form:
-        lines=order(form['order'], form['direction'])
-        for x in lines:
-            table+="<tr>"
-            for atom in x:
-                table+="<td><font color='white'>" + str(atom) + "</font></td>"
-            table+="</tr>"
-        table+="</table>"
-        if int(form['pageNum']) > 0 and 'analysis' not in form:
-            printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        elif int(form['pageNum']) > 0 and 'analysis' in form:
-            printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        printedString+= '<table border="1" class="pure-table"><thead>'
-        printedString+= "<tr><th bgcolor='white'>Rank</th><th bgcolor='white'>Nation</th><th bgcolor='white'>Player Name</th>"
-        printedString+= "<th bgcolor='white'>Accuracy</th><th bgcolor='white'>Play Count</th><th bgcolor='white'>Performance Points</th>"
-        printedString+= "<th bgcolor='white'>Score Rank</th><th bgcolor='white'>SS</th><th bgcolor='white'>S</th><th bgcolor='white'>A</th></tr></thead><tbody>"
-        blah = table.split("<tr>")
-        
-        x = blah.pop(0)
-        currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
-        if int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' not in form:
-            x= '<br><a href="dataproject.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
-        elif int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' in form:
-            x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
-        else:
-            x=""
-        return printedString+"<tr>".join(currentPage)+"</tbody></table>"+x
+    table = "<table border='1' class='pure-table'>"
+    lines=order(form['order'], form['direction'])
+    for x in lines:
+        table+="<tr>"
+        for atom in x:
+            table+="<td><font color='white'>" + str(atom) + "</font></td>"
+        table+="</tr>"
+    table+="</table>"
+    
+    ###########the buttons to sort
+    upCaret="<button class='pure-button' type='submit' name='"
+    upCaret2="' value='up'><i class='fa fa-caret-up'></i></button>"
+    downCaret="<button class='pure-button' type='submit' name='"
+    downCaret2="' value='down'><i class='fa fa-caret-down'></i></button>"
+
+    printedString+= '<table border="1" class="pure-table"><thead><form method="GET" action="/table/">'
+    printedString+= "<tr><th bgcolor='white'>Rank<br>" + upCaret+ "Rank"+upCaret2+ downCaret+"Rank"+downCaret2 +"</th><th bgcolor='white'>Nation<br>" + upCaret + "Nation" + upCaret2 + downCaret + "Nation" + downCaret2 +"</th><th bgcolor='white'>Player Name<br>" + upCaret +"Player Name" + upCaret2 + downCaret + "Player Name" + downCaret2 +" </th>"
+    printedString+= "<th bgcolor='white'>Accuracy<br>"+upCaret + "Accuracy" + upCaret2 +downCaret+ "Accuracy" + downCaret2+"</th><th bgcolor='white'>Play Count<br>"+upCaret+"Play Count" + upCaret2 +downCaret + "Play Count" + downCaret2+"</th><th bgcolor='white'>Performance Points<br>"+upCaret+ "Performance Points" + upCaret2 + downCaret+"Performance Points"+downCaret2+"</th>"
+    printedString+= "<th bgcolor='white'>Score Rank<br>"+upCaret+"Score Rank"+upCaret2+downCaret+"Score Rank"+downCaret2+"</th><th bgcolor='white'>SS<br>"+upCaret+"SS"+upCaret2+downCaret+"SS"+downCaret2+"</th><th bgcolor='white'>S<br>"+upCaret+"S"+upCaret2+downCaret+"S"+downCaret2+"</th><th bgcolor='white'>A<br>"+upCaret+"A"+upCaret2+downCaret+"A"+downCaret2+"</th></tr></form></thead><tbody>"
+    blah = table.split("<tr>")
+    
+    x = blah.pop(0)
+    currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
+    swagholder='''
+    if int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' not in form:
+        x= '<br><a href="dataproject.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
+    elif int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' in form:
+        x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
     else:
-        lines= data.split("\n")
-        for x in lines:
-            table+="<tr>"
-            molecule = x.split(",")
-            for atom in molecule:
-                table+="<td><font color='white'>" + str(atom) + "</font></td>"
-            table+="</tr>"
-        table+="</table>"
-        if int(form['pageNum']) > 0 and 'analysis' not in form:
-            printedString+= '<a href="dataproject.py?pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        elif int(form['pageNum']) > 0 and 'analysis' in form:
-            printedString+= '<a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])-1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Back</a>'
-        printedString+= '<table border="1" class="pure-table"><thead>'
-        printedString+= "<tr><th bgcolor='white'>Rank</th><th bgcolor='white'>Nation</th><th bgcolor='white'>Player Name</th>"
-        printedString+= "<th bgcolor='white'>Accuracy</th><th bgcolor='white'>Play Count</th><th bgcolor='white'>Performance Points</th>"
-        printedString+= "<th bgcolor='white'>Score Rank</th><th bgcolor='white'>SS</th><th bgcolor='white'>S</th><th bgcolor='white'>A</th></tr></thead><tbody>"
-        blah = table.split('<tr>')
-        blah[-1] = '</tr>'
-        x = blah.pop(0)
-        currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
-        if int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' not in form:
-            x= '<br><a href="dataproject.py?pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
-        elif int(form['interval']) * (1 + int(form['pageNum'])) < 50 and 'analysis' in form:
-            x= '<br><a href="dataproject.py?analysis=True&pageNum=' + str(int(form['pageNum'])+1)+ '&direction=' + str(form['direction']) +'&order='+str(form['order'])+'&interval=' + str(int(form['interval'])) +'">'+'Next</a>'
-        else:
-            x=""
-        return printedString +"<tr>".join(currentPage)+"</tbody></table>"+x
+        x=""
+'''
+    return printedString+"<tr>".join(currentPage)+"</tbody></table>"+x
 
 ####################################################
 app = Flask(__name__)
@@ -240,8 +237,10 @@ if 'analyze' in form:
     tablestring+='</ul><br><br>'
 
 
-@app.route("/table")
+@app.route("/table/", methods=['GET','POST'])
 def makeTablePage():
+    print request.form
+    ##render all table operations here
     return render_template("table.html",tablestr=tablestring)
 
 @app.route("/about")
