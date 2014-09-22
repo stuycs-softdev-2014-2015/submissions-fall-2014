@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -8,6 +8,7 @@ filecsv = open ("data.csv", "r") # the data set with teh debate statistics
 y = filecsv.readlines () # every line put into the a list of strings
 filecsv.close ()
 
+#******************************************************************#
 #for analysis page
 holder = [] # just placeholding lists for two globals below
 holder2 = []
@@ -78,11 +79,10 @@ SchoolName = SchoolName[:SchoolName.find(",")] # global variable that takes the 
 
 
 
+#                        START OF SERVER CODE                      #
+#******************************************************************#
 
 
-@app.route("/")
-def home ():
-    return render_template("althome.html")
 
 
 @app.route("/analysis")
@@ -96,9 +96,9 @@ def analysis():
     ans += "<a href= 'data01.py' > Link to the Data </a>  <br><br><br> <img src='http://diseaseoftheweek.files.wordpress.com/2010/08/debate-1.jpg' width='300' height='250'> <br> <br>"
    
     ans = ans.replace (";", " ") 
-    return render_template("analysis.html",ans=ans)
+    return render_template("altanalysis.html",ans=ans)
 
-
+######### Prints Table ############
 @app.route("/conversion")
 def conversion (): #converts the csv file into html code
     ans = ""
@@ -113,10 +113,45 @@ def conversion (): #converts the csv file into html code
             ans = ans.replace (";", " ")  # for some reason, google docs/libre office; one of them added ";" instead of a blank white space...
                                       #so to fix the problem, we added this line to replace the semi-colon with an actual space
         i += 1
-    return render_template("table.html", 
+    return render_template("altable.html", 
                            htmlStr=htmlStr,
                            ans=ans)
 
+
+
+############ Fiddling form elements #################
+@app.route("/")
+@app.route("/home")
+@app.route("/index")
+def home ():    
+    return render_template("althome.html")
+
+
+@app.route("/funky",methods=["GET","POST"])
+@app.route("/about",methods=["GET","POST"])
+def about():
+    if request.method == "GET":
+        return render_template("about.html")
+    else:
+        b = request.form("b",None)
+        bold = request.form("bold",None)
+        big = request.form("big",None)
+        
+        if b == "cancel":
+            return render_template("about.html"   )
+        #else if b =="random": 
+        #    return render_template("about.html",bold = bold, big = !big, underline = !underline  )
+        else:
+            return render_template("about.html", bold = bold, big = big, underline = underline)
+            
+    
+    
+    
+    return render_template("about.html")
+
+
+
+###########################
 
 if __name__=="__main__":
     app.debug=True

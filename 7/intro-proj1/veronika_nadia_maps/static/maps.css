@@ -1,0 +1,15 @@
+#stuff{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding: 15px;
+
+    background-color: #CC99FF;
+    border-radius: 25px;
+}
+
+body {
+    font-family: "Verdana";
+    background-color: #310062;
+
+}

@@ -57,7 +57,15 @@
             </tr>
         </table>
         </div>
-        <a href="{{ url_for("home") }}">See full data</a>
-    </body>
+        <form method="POST" action="{{url_for("analysis")}}">
+<textarea id="comment_field" name="comment_field" placeholder="Say something about the data!"
+        cols=50 rows=5>
+</textarea>
+<br/>
+<input type="submit" name="submit" value="Go!">
+</form>
+  </body>
     </div>
+
 </html>
+
