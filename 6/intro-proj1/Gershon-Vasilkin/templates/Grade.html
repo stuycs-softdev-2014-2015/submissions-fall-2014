@@ -1,3 +1,4 @@
+
 <style>
  h1 { border-width:2px;}
  #l { font-size:50px;}
@@ -10,18 +11,30 @@
  li:active {background:red;}
   </style>
 <html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
 <body>
 {% if d==None or boro==None: %}
 <h1 class = "c"> You must input stuff </h1>
 {% else: %}
 <h1 class="c">Number of Restaurants by Grade in {{boro}} </h1>
-<table>
+<table class="pure-table">
+ <thead>
+     <tr>
+     <th> Grade </th>
+     <th> # of Restaurants </th>
+     </tr>
+ </thead>
+
+ <tbody>
 {% for key, value in d.iteritems() %}
-   <tr>
+   <tr class ="pure-table-odd">
         <th> {{ key }} </th>
         <td> {{ value }} </td>
    </tr>
 {% endfor %}
+ </tbody>
 </table>
 <form method="POST">
 <input type="submit" name="b" value="return">
