@@ -2,21 +2,23 @@
 <html>
   <head>
     <title>
-      Statistics for "{{ title }}"
+      Statistics for {{ title }}
     </title>
   </head>
   <body>
-    <p>
-      This is a webpage about "{{ title }}".
-    </p>
-    <p>
-      The most common word in "{{ title }}" is "{{ word }}"!
-    </p>
-    <p>
-      More info about "{{ title }}":
-    </p>
-    <p>
+    <center>
+    <head>
+      This is a webpage about the {{ title }}.
+    </head>
+    <p1>
+      The most common word in the {{ title }} is "{{ word }}"!
+    </p1>
+    <p2>
+      More info about the {{ title }}:
+    </p2>
+    <p3>
       {{ word_dict }}
-    </p>
+    </p3>
+    </center>
   </body>
 </html>
