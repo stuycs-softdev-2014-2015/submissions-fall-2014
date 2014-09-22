@@ -158,7 +158,7 @@ def createVarChar(name1, name2, name3, name4):
         if name == "Liv":
             namelist[namelist.index(name)] = "Liv Tyler"
         if name == "Peregrine":
-            namelist[namelist.index(name)] = "Peregrine Medicant"
+            namelist[namelist.index(name)] = "Peregrine Mendicant"
         if name == "Spades":
             namelist[namelist.index(name)] = "Spades Slick"
         if name == "Sweet":
