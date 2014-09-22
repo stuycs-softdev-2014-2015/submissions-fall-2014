@@ -25,7 +25,7 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("survey.html");
+    return render_template("survey2.html");
 
 @app.route("/results")
 def results():
@@ -56,7 +56,7 @@ def results():
                                    assist1 = assist1,
                                    assist2 = assist2)
         else:
-            return render_template("/error.html")
+            return render_template("/error2.html")
     
     
 @app.route("/data")
