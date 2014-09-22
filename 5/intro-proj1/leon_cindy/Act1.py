@@ -128,9 +128,9 @@ def main():
     
     #Has user clicked submit
     sub = request.args.get("submit",None)
-    if(sub == "Search for Pages"):
+    if(sub == "csubmit"):
         return createVarChar(name1, name2, name3, name4)
-    elif(sub == "Search for Characters"):
+    elif(sub == "psubmit"):
         return createVarPage(page)
 
     return render_template("main.html")
