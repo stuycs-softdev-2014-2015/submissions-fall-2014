@@ -78,17 +78,25 @@ def csvToTable(fiel,pagenumber):
         table+='<tr><td bgcolor=yellow>'+lines.replace(',','</td><td bgcolor=yellow>').strip('\n')+'</td></tr>'
     table+='''<tr><td bgcolor=orange>
     <form name="input" action='getcompare.py' method='get'>
-    <input type="submit" name="pagenumber" value="'''+str(int(form['pagenumber'].value)-10)+'''">
+    <input type="submit" name="pagenumber" 
+value="'''+str(int(form['pagenumber'].value)-10)+'''">
     '''+('</td><td bgcolor=orange>'*18)+\
     '''<form name="input" action='getcompare.py' method='get'>
-    <input type="submit" name="pagenumber" value="'''+str(int(form['pagenumber'].value)+10)+'''">
+    <input type="submit" name="pagenumber" 
+value="'''+str(int(form['pagenumber'].value)+10)+'''">
     '''+'</table>'
     print table
 
-page='<html><body>'
+def main(): 
+	page='<html><body>'
 #page+=str(getcompare('CHAMPION STATS2.csv', 'Ahri', 'Blitzcrank'))+
-if 'Champ1' in form:
-    page+=str(verttable('CHAMPION STATS2.csv', [form['Champ1'].value,form['Champ2'].value]))
-else:
-    page+=str(csvToTable('CHAMPION STATS2.csv',int(form['pagenumber'].value)))
-page+='</body></html>'
+	if 'Champ1' in form:
+    		page+=str(verttable('CHAMPION STATS2.csv', [form['Champ1'].value,form['Champ2'].value]))
+	else:
+    		page+=str(csvToTable('CHAMPION STATS2.csv',int(form['pagenumber'].value)))
+	page+='</body></html>'
+
+	print page
+
+main()
+
