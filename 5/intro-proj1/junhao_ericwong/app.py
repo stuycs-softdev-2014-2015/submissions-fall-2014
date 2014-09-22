@@ -35,31 +35,30 @@ def getanalysisinfo():
 
 @app.route("/",methods=["GET","POST"])
 def main():
-    b = request.args.get("b",None)
-    t = request.args.get("type",None)
+    button = request.args.get("button",None)
+    t  = request.args.get("type",None) #type
     chose1 = request.args.get("statistic",None)
     chose2 = request.args.get("draft",None)
-    print b,t,chose1,chose2
-    l = ['Points','Rebounds','Assists','Field Goal','Free Throw']
+    #print button,t,chose1,chose2
+    l = ['Points','Rebounds','Assists','Field_Goal','Free_Throw']
     if request.method=="GET":
         return render_template("main.html",l=l)
     else:
         chose1 = request.form.getlist("statistic")
-        chose2 = request.form.getlist("d")
+        chose2 = request.form.getlist("draft")
         t = request.form['type']
-        b = request.form['b']
-        if b=="blah":
-            if t=="stat":
-                app.stat()
+        button = request.form['button']
+        if button == "submit":
+            if t == "stat":
+                return render_template("stat.html",info=getanalysisinfo(),
+                                       draftStats=formatdata(info1),
+                                       draft2Stats=formatdata(info2),
+                                       nbadraftStats=formatdata(info3),
+                                       l=chose1)
             else:
-                return render_template("draft.html",info=getanalysisinfo(),l=chose2)
-
-@app.route("/stat")
-def stat():
-    return render_template("stat.html")
+                return render_template("draft.html",info=getanalysisinfo(2),l=chose2)
 
 if __name__=="__main__":
     app.debug=True
     app.run()
     #app.run(host="0.0.0.0",port=8888)
-

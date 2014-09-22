@@ -2,10 +2,28 @@
 <html>
 <head>
 </head>
+<style>
+#display{
+width: 400px;
+height: 600px;
+margin-left: 50%
+margin-top: 50%;
 
+
+
+
+}
+
+</style>
 <body>
-<h1>Average Mass</h1>
-<span class="custom-data">{{averagemass}}</span>
+<div id="display">
+<h1>Analysis of Chosen Bounds</h1>
+<span class="custom-data">
+{% for elem in avgList %}
+{{elem}} <br>
+{% endfor %}
+</span>
+</div>
 </body>
 </html>
 

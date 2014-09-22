@@ -1,12 +1,11 @@
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-
-<head><title>NBA Draft Analysis</title></head>
+<head><title>NBA Statistics Analysis</title></head>
 
 <body>
-  <center><h1>Comparing by Drafts</h1></center>
+  <center><h1>Comparing by Statistics</h1></center>
   <br>
   <br>
-  Here's how well draftexpress.com and NBADraft.com were able to predict the picks of the first round.
+  Here's how well draftexpress.com and NBADraft.net  were able to predict the picks of the first round.
   <br>
   <br>
   <table class="pure-table pure-table-bordered">
@@ -16,19 +15,19 @@
       <th>{{d}}</th>
       {% endfor %}
     </tr>
-  {% for key in range(2,32) %}
+    {% for key in range(2,32) %}
     <tr>
       <td>{{info[key][0]}}</td>
       <td>{{info[key][1]}}</td>
+
       {% if 'draftexpress' in l %}
       <td>{{info[key][2]}}</td>
       {% endif %}
+
       {% if 'NBAdraft' in l %}
       <td>{{info[key][3]}}</td>
       {% endif %}
     </tr>
-  {% endfor %}
+    {% endfor %}
   </table>
-  
-
 </body>

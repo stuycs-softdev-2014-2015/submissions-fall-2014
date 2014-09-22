@@ -29,24 +29,40 @@ def planetpage(stats = None):
             print("Not a Number")
 
         if variable > 0:
-            partialGrid = getPartialGrid(cleanedGrid[1:], lowerbound, upperbound,
-                                                variable)
+            partialGrid = getPartialGrid(cleanedGrid[1:],
+                                         lowerbound,
+                                         upperbound,
+                                         variable)
         else:
             partialGrid = cleanedGrid
-
+        
+        analysisFile(partialGrid)
         return render_template('dataset.html',
-                grid=partialGrid, headerRow = cleanedGrid[0])
+                               grid=partialGrid,
+                               headerRow = cleanedGrid[0])
     else:
         print("get")
         return render_template('dataset.html',
                 grid=cleanedGrid[1:], headerRow = cleanedGrid[0])
+   
+def analysisFile(pg):
+    file = open('boundsAnalysis.txt', 'w')
+    avgMass = str(getAverage(pg, 1))
+    avgRadius = str(getAverage(pg, 2))
+    avgEcc = str(getAverage(pg, 3))
+    avgInc = str(getAverage(pg, 4))
+    avgYear = str(getAverage(pg, 5))
+    avgList = [avgMass, avgRadius, avgEcc, avgInc, avgYear]
+    for e in avgList:
+        file.write(e + "\n")
 
 @app.route('/analysis')
-def analysis():
-    grid = getGrid('planets.csv')
-    grid = cleanGrid(grid, getDelete(grid))
-    averagemass=str(getAverage(grid, 1))
-    return render_template('analysis.html', averagemass = averagemass)
+def analysis(file = 'boundsAnalysis.txt'):
+    data = open(file, 'r')
+    avgList = data.readlines()
+    data.close()
+    return render_template('analysis.html', avgList = avgList)
+
 
 
 def dictData(grid):
@@ -94,6 +110,7 @@ def getPartialGrid(grid, lowerbound, upperbound, column = 1):
                 partialGrid.append(row)
         except ValueError:
             print("not a float")
+    pGridGlobal = partialGrid
     return partialGrid
 
 
