@@ -19,7 +19,7 @@ f.close()
 if 'order' not in form:
     form['order'] = 'Performance Points'
 if 'direction' not in form:
-    form['direction'] = 'up'
+    form['direction'] = 'down'
         
 ##assigns interval, default=50
 if 'interval' not in form:
@@ -96,12 +96,12 @@ def cutTable(pageNum, interval):
     table+="</table>"
     
     ###########the buttons to sort
-    upCaret="<button class='pure-button' type='submit' name='"
-    upCaret2="' value='up'><i class='fa fa-caret-up'></i></button>"
-    downCaret="<button class='pure-button' type='submit' name='"
-    downCaret2="' value='down'><i class='fa fa-caret-down'></i></button>"
+    upCaret='<form method="get" action="."><input type="hidden" name="sort" value="true"><button class="pure-button" type="submit" name="'
+    upCaret2='" value="up"><i class="fa fa-caret-up"></i></button></form>'
+    downCaret='<form method="get" action="."><input type="hidden" name="sort" value="true"><button class="pure-button" type="submit" name="'
+    downCaret2='" value="down"><i class="fa fa-caret-down"></i></button></form>'
 
-    printedString+= '<table border="1" class="pure-table"><thead><form method="get" action=".">'
+    printedString+= '<table border="1" class="pure-table"><thead>'
     printedString+= "<tr><th bgcolor='white'>Rank<br>" + upCaret+ "Rank"+upCaret2+ downCaret+"Rank"+downCaret2 +"</th><th bgcolor='white'>Nation<br>" + upCaret + "Nation" + upCaret2 + downCaret + "Nation" + downCaret2 +"</th><th bgcolor='white'>Player Name<br>" + upCaret +"Player Name" + upCaret2 + downCaret + "Player Name" + downCaret2 +" </th>"
     printedString+= "<th bgcolor='white'>Accuracy<br>"+upCaret + "Accuracy" + upCaret2 +downCaret+ "Accuracy" + downCaret2+"</th><th bgcolor='white'>Play Count<br>"+upCaret+"Play Count" + upCaret2 +downCaret + "Play Count" + downCaret2+"</th><th bgcolor='white'>Performance Points<br>"+upCaret+ "Performance Points" + upCaret2 + downCaret+"Performance Points"+downCaret2+"</th>"
     printedString+= "<th bgcolor='white'>Score Rank<br>"+upCaret+"Score Rank"+upCaret2+downCaret+"Score Rank"+downCaret2+"</th><th bgcolor='white'>SS<br>"+upCaret+"SS"+upCaret2+downCaret+"SS"+downCaret2+"</th><th bgcolor='white'>S<br>"+upCaret+"S"+upCaret2+downCaret+"S"+downCaret2+"</th><th bgcolor='white'>A<br>"+upCaret+"A"+upCaret2+downCaret+"A"+downCaret2+"</th></tr></form></thead><tbody>"

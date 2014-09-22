@@ -3,6 +3,6 @@
         margin: 0 auto;
 }
 
-body {
-        background-color: #008ed4;
+tr.highlight {
+        background-color: #f2f2f2
 }
