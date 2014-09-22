@@ -16,21 +16,60 @@ def home():
     num = random.randrange(0,4)
     rankBy = request.args.get("rankBy",None)
     button = request.args.get("b",None)
+    state = request.args.get("state",None)
     if (button ==None or button=="home"):
         return render_template("home.html", img=images[num])
     else: 
+        if (state!=None):
+            found = False
+            r = reportAlpha()
+            s = []
+            for item in r: 
+                if ((item[0]).lower()==state.lower()):
+                    found = True
+                    s = item
+                    break
+            if (found==False): 
+                render_template("state.html",statename="State Not Found")
+            else: 
+                render_template("state.html",statename=s[0],rank=s[8],one=s[1],two=s[2],three=s[3],four=s[4],five=s[5],six=s[6],seven=s[7])
         if (rankBy == "alphabet"): 
-            f = open("templates/tables.html",'r') 
+            f = open("templates/tableAlpha.html",'r') 
             tableNeeded = True
             for line in f.readlines():
                 if ("Hawaii" in line):
                     tableNeeded = False
             if (tableNeeded): 
                 f.close()
-                f = open("templates/tables.html",'a')
+                f = open("templates/tableAlpha.html",'a')
                 f.write(tableAlpha())
                 f.close()
-            return render_template("tables.html",img=images[num], rankedBy="Alphabetical Order")
+            return render_template("tableAlpha.html",img=images[num], rankedBy="Alphabetical Order")
+        if (rankBy=="hightolow"): 
+            f = open("templates/tableHighToLow.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableHighToLow.html",'a')
+                f.write(table())
+                f.close()
+            return render_template("tableHighToLow.html",img=images[num], rankedBy="High to Low Health Rankings")
+        if (rankBy=="lowtohigh"): 
+            f = open("templates/tableLowToHigh.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableLowToHigh.html",'a')
+                f.write(tableLowToHigh())
+                f.close()
+            return render_template("tableLowToHigh.html",img=images[num], rankedBy="Low to High Health Rankings")
+        
             
 
     f = open("templates/home.html",'r') 
@@ -46,6 +85,20 @@ def home():
     return render_template("home.html", 
                            img = images[num])
 
+def tableLowToHigh(): 
+    data=report()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(rank[len(rank)-1])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
 
 def tableAlpha():
     data=reportAlpha()
@@ -70,7 +123,7 @@ def table():
         #if item=='<data>':
     rank=range(1,51,1)
     for info in data:
-        x="<td><center>"+str(info[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        x="<td><center>"+str(rank[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
         result_list.append(x)
         rank.remove(rank[0])
     result="\n".join(result_list)
