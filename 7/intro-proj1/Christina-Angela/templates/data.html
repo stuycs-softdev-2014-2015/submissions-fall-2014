@@ -25,13 +25,11 @@ After taking a look at our data, please visit our analysis page:
 <br>
 Choose a specific state: 
 <form method= "POST">
-  <div class="dropdown">
-    <select name="States">
-      {% for element in searchlist %}
-      <option value = {{element[0]}}> {{element[0]}} </option>   
-      {% endfor %}  
-    </select>
-</div>
+  <select name="States">
+    {% for element in searchlist %}
+    <option value = {{element[0]}}> {{element[0]}} </option>   
+    {% endfor %}  
+  </select>
   <input type="submit" name="go" value="Go!">
 </form>
 <br>
