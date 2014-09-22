@@ -8,6 +8,11 @@
   font-weight: bold;
 }
 
+
+.centered:hover {
+    color: black;
+}
+
 ul {
     list-style-type: none;
     margin: auto;
