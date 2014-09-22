@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -15,14 +15,20 @@ def tabledata():
     return s
 
 @app.route("/")
-@app.route("/analysis")
 def analysis():
-    return "Sorry. The analysis is not ready yet."
+    return render_template("analysis.html", table = tabledata())
 @app.route("/data")
 def data():
     return render_template("page.html", table = tabledata())
-
-
+@app.route("/compare", methods=["GET","POST"])
+def compare():
+    boroughdistricts = []
+    for district in tabledata()[1:]:
+        boroughdistricts.append(district[1] + district[2])
+    if(request.args.get("table") == None):
+        return render_template("compare.html", table = boroughdistricts)
+    else:
+        return render_template("compare.html", tabledata = tabledata(), table = boroughdistricts, districts_selected = request.args.getlist("table"))
 if __name__ == "__main__":
     app.debug = True
     app.run()
