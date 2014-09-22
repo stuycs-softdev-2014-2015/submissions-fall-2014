@@ -1,25 +1,29 @@
 <link rel="stylesheet" href="/static/style.css" type="text/css">
 
-
-<h1> Hello and welcome to Victor's Project </h1>
-<h1> Data set and analysis provided by Isaac Gluck, his sophomore year
-  data project</h1>
-<h1> The stuff might look a bit weird because I have no idea how to
-  make stuff look good besides working out </h1>
-<h1> That was a joke. You can laugh </h1>
-<h1> I'll be leaving now </h1>
-<h1> Login below to obtain access to data and analysis </h1>
 <h2>
+<div class="login-card">
 <form method="POST">
-Username Password <br>
-<input type="text" name="uname">
-<input type="text" name="pword">
+<h2> Login </h2><br>
+<input type="text" name="uname" placeholder="Username">
+<input type="password" name="pword" placeholder="Password">
 <p>
 
 
-<input type="submit" name="b" value="login">
-<input type="submit" name="b" value="cancel">
+<input type="submit" name="b" class="login login-submit"  value="login">
+<input type="submit" name="b" class="login login-submit"  value="cancel">
+
 </form>
 <p class="error">{{errmess}}</p>
 </h2>
+
+<body>
+<h1> Hello and welcome to Victor's Project.
+  Data set and analysis provided by Isaac Gluck, his sophomore year
+  data project. The stuff might look a bit weird because I have no idea how to
+  make stuff look good besides working out. 
+  That was a joke. You can laugh. 
+  I'll be leaving now. 
+  <p>Login above to obtain access to data and analysis
+  </h1>
+</body>
 

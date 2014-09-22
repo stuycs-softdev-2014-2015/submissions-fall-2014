@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import authenticate
 # app is an instance of the Flask class
 app = Flask(__name__)
-
+//Idea for login-thingy from http://designscrazed.net/css-html-login-form-templates/
 @app.route("/home",methods=["GET","POST"])
 def home():
     errmess=""
@@ -16,7 +16,7 @@ def home():
             if authenticate.authenticate(uname,pword):
                 return render_template("both.html")
             else :
-                errmess= "Invalid Username or Password. Please try again."
+                errmess= "Invalid Username and/or Password. Please try again."
                 return render_template("home.html", errmess=errmess)
         if button=="cancel":
             return render_template("home.html")
