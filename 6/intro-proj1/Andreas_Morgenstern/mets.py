@@ -10,9 +10,27 @@ def login():
         button = request.form["b"]
         uname = request.form["uname"]
         pword = request.form['pword']
-        if button=="cancel" or uname=="":
+        if button=="cancel" or uname=="" or pword=="":
             return render_template("login.html")
         else:
+            if button=="register":
+                inStream = open("userlist.txt","r")
+                data = inStream.read()
+                inStream.close()
+                if uname in data:
+                    return render_template("login.html")
+                elif pword in data:
+                    return render_template("login.html")
+                else:
+                    outStream=open("userlist.txt","a")
+                    outStream.write(uname+':'+pword+"\n")
+                    outStream.close()
+            elif button=="login":
+                inStream = open("userlist.txt","r")
+                data = inStream.read()
+                inStream.close()
+                if not(uname+":"+pword in data):
+                    return render_template("login.html")
             inStream = open("data01.csv",'r')
             data = inStream.read()
             inStream.close()
