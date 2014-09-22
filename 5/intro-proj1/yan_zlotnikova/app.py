@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request 
 
 app = Flask(__name__)
 
@@ -11,9 +11,28 @@ images=["static/img/chick.jpeg",
     ]
 
 @app.route("/")
-def home():   
+def home():
     import random
     num = random.randrange(0,4)
+    rankBy = request.args.get("rankBy",None)
+    button = request.args.get("b",None)
+    if (button ==None or button=="home"):
+        return render_template("home.html", img=images[num])
+    else: 
+        if (rankBy == "alphabet"): 
+            f = open("templates/tables.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tables.html",'a')
+                f.write(tableAlpha())
+                f.close()
+            return render_template("tables.html",img=images[num], rankedBy="Alphabetical Order")
+            
+
     f = open("templates/home.html",'r') 
     tableNeeded = True
     for line in f.readlines():
@@ -28,6 +47,21 @@ def home():
                            img = images[num])
 
 
+def tableAlpha():
+    data=reportAlpha()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(info[8])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
+
 def table():
     data=report()
     result_list=[]
@@ -36,12 +70,12 @@ def table():
         #if item=='<data>':
     rank=range(1,51,1)
     for info in data:
-        x="<td><center>"+str(rank[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        x="<td><center>"+str(info[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
         result_list.append(x)
         rank.remove(rank[0])
-        result="\n".join(result_list)
-        result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
-        return result
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
 
 
 
@@ -189,6 +223,7 @@ def organicvsreg(filename):
         a=a[1:] 
     return d
 
+
 def report():
     healthiest=healthiest_state('state_deathper100,000_health.csv')
     rw=redvswhite('US_certified_organic_livestock_08.csv')
@@ -208,8 +243,28 @@ def report():
         item.append(pw[item[0]])
     return r
 
-     
-
+def reportAlpha(): 
+    data = open_data('cattleps.csv')
+    rw=redvswhite('US_certified_organic_livestock_08.csv')
+    org=organicvsreg('cattleps.csv')
+    pr=percentred('US_certified_organic_livestock_08.csv')
+    pw=percentwhite('US_certified_organic_livestock_08.csv')
+    r=[]
+    for info in data: 
+        x=[info[0],info[12]]
+        r.append(x)
+    for item in r:
+        item.insert(1,rw[item[0]][0])
+        item.insert(2,rw[item[0]][1])
+        item.insert(3,org[item[0]][0])
+        item.insert(4,org[item[0]][1])
+        item.insert(5,org[item[0]][2])
+        item.insert(6,pr[item[0]])
+        item.insert(7,pw[item[0]])
+    return r
+        
+    
+    
 if __name__=="__main__":
     app.debug=True
     app.run()
