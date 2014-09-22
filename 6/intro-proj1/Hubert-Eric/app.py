@@ -22,9 +22,9 @@ def planetpage(stats = None):
         variable = request.form['variable']
 
         try:
+            variable = int(variable)
             lowerbound = float(lowerbound)
             upperbound = float(upperbound)
-            variable = int(variable)
         except ValueError:
             print("Not a Number")
 
