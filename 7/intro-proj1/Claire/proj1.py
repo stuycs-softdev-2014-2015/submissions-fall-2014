@@ -53,12 +53,14 @@ def love1():
             elif n == "Q5":
                 i = t.index(n)
                 t[i] = Q5
-                poem = " ".join(t)
+            else:
+                i = None
+        poem = " ".join(t)
         if button==None:
             return render_template("love1.html")
         else:
             return render_template("poem.html", p=poem)
-
+            
 def writing():
     Q1 = request.form['Q1']
     Q2 = request.form['Q2']
