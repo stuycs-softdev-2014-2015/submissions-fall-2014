@@ -13,6 +13,10 @@ def Results():
     #boro is a string, col is either 3 (food type) or 6 (grade)
    
     #return render_template("Results.html",d=d,boro=boro,foodorgrade=foodorgrade)
+
+@app.route("/facts")
+def facts():
+        return render_template("Facts.html")
     
 
 @app.route("/",methods=['GET', 'POST'])
@@ -32,6 +36,7 @@ def home():
                 col = 3
                 d = get_data(boro,col)
                 return render_template("Food.html",d=d,boro=boro)
+
 def get_file(filename):
     l=[]
     for line in open(filename).readlines():
