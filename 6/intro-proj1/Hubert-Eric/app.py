@@ -36,7 +36,7 @@ def planetpage(stats = None):
         else:
             partialGrid = cleanedGrid
         
-        analysisFile(partialGrid)
+        analysisFile(partialGrid, bounds = [variable, lowerbound, upperbound])
         return render_template('dataset.html',
                                grid=partialGrid,
                                headerRow = cleanedGrid[0])
@@ -45,7 +45,7 @@ def planetpage(stats = None):
         return render_template('dataset.html',
                 grid=cleanedGrid[1:], headerRow = cleanedGrid[0])
    
-def analysisFile(pg):
+def analysisFile(pg, bounds):
     file = open('boundsAnalysis.txt', 'w')
     avgMass = str(getAverage(pg, 1))
     avgRadius = str(getAverage(pg, 2))
@@ -53,18 +53,36 @@ def analysisFile(pg):
     avgInc = str(getAverage(pg, 4))
     avgYear = str(getAverage(pg, 5))
     avgList = [avgMass, avgRadius, avgEcc, avgInc, avgYear]
+    for x in range(3):
+        if x == 0:
+            var = bounds[x]
+            if var == 1:
+                file.write("mass\n")
+            elif var == 2:
+                file.write("radius\n")
+            elif var == 3:
+                file.write("eccentricity\n")
+            elif var == 4:
+                file.write("inclination\n")
+            else:
+                file.write("year of discovery\n")
+        else:
+            file.write(str(bounds[x]) + "\n")
     for e in avgList:
         file.write(e + "\n")
-
+  
 @app.route('/analysis')
 def analysis(file = 'boundsAnalysis.txt'):
     data = open(file, 'r')
-    avgList = data.readlines()
-    data.close()
-    return render_template('analysis.html', avgList = avgList)
-
-
-
+    bounds = []
+    nums = []
+    for x in range(3):
+        bounds.append(data.readline())
+    for y in range(5):
+        nums.append(data.readline())
+    return render_template('analysis.html', avgList = nums,
+                           bounds = bounds)
+ 
 def dictData(grid):
     data = {}
     for row in grid:
