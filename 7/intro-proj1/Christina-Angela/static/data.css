@@ -21,16 +21,10 @@ body {
   text-color: black;
 }
 
-.dropdown select {
-       border: 0;
-      -webkit-appearance: none;  
-      -moz-appearance: none;
-      background: url('dropdown.png') no-repeat;
-      background-position: 82px 7px;  
-      width: 100px;          
-      text-indent: 0.01px;         
-      text-overflow: "";      
+a:hover {
+    color: white;
 }
+
 tr:first-child{
     font-weight:bold;
     text-align: center;

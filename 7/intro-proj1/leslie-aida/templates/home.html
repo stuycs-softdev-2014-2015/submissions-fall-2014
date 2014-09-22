@@ -38,15 +38,25 @@
 	</select>
 	<br><br>
 	Unit for Energy Electric Consumption:
-	<input type="radio" name="unit" value="kWh"> Kilowatt-hour (kWh) <input type="radio" name="unit" value="GJ"> Gigajoule (GJ) <br><br>
+	<input type="radio" name="unit" value="kWh"> Kilowatt-hour (kWh) <input type="radio" name="unit" value="GJ"> Gigajoule (GJ) <br><br><br>
+
+	<legend> Zip codes range from a minimum of 10001 to a maximum of 11693 </legend>
 	From <input id="zip_start" type="text" name="zip_start" placeholder="Starting Zip Code">
 	
 	to <input id="zip_end" type="text"name="zip_end" placeholder="Ending Zip Code"><br><br>
 
 
 	<div class="pure-controls" align="center">
-	  <button type="submit" class="pure-button pure-button-primary" href="/results"> Search </button
+	  
+	  <button type="submit" class="pure-button pure-button-primary" href="/results"> Search </button>
+	  <br><br><br>
 	</div>
+
+	<div class="pure-controls" align="center">
+	  <legend> If you just want to analyze all of the data for electricity consumption of the city, click here </legend>
+	  <button type="submit" class="pure-button pure-button-primary" href="/analysis"> Analyze </button
+	</div>
+	
       </fieldset>
     </form>
    </div>
