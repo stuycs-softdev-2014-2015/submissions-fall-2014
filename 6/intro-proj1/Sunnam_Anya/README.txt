@@ -1,1 +1,1 @@
-Can't figure out how to link the home page with the other pages (using the buttons on the home page).
+Getting the same error over and over again "Template Not Found" for the Home.html page. It appears that it's all in the right place, so I can't figure out why it's being ridiculous. Might update later if Anya ever responds. 
