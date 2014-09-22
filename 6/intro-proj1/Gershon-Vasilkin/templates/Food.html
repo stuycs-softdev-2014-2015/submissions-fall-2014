@@ -10,22 +10,37 @@
  li:active {background:red;}
   </style>
 <html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
 <body>
 {% if d==None or boro==None: %}
 <h1 class = "c"> You must input stuff </h1>
 {% else: %}
 <h1 class="c">Number of Restaurants by Cuisine in {{boro}} </h1>
-<table>
+<table class="pure-table center">
+<thead>
+     <tr>
+     <th> Cuisine Type </th>
+     <th> # of Restaurants </th>
+     </tr>
+ </thead>
+
+ <tbody class ="pure-table-odd center">
 {% for key, value in d.iteritems() %}
    <tr>
         <th> {{ key }} </th>
         <td> {{ value }} </td>
    </tr>
 {% endfor %}
+</tbody>
 </table>
 <form method="POST">
 <input type="submit" name="b" value="return">
 </form>
+{% endif %}
+</body> 
+</html>
 {% endif %}
 </body> 
 </html>
