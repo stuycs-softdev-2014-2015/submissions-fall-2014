@@ -1,0 +1,9 @@
+<center><h1>Image Load Functionality Test</h1></center>
+
+  <center><h3> This is here for debugging to determine if any of the links for the images have gone bad, and must be replaced</h3></center>
+<ul>
+  {% for place in imgs %}
+    <li><font size="18">{{imgs[place[0]]}}</font></li>
+    <li><img src={{imgs[place[1]]}} width="400" height="400"><br><br><br></li>
+  {% endfor %}
+</ul>
