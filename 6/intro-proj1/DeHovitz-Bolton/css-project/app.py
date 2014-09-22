@@ -112,10 +112,10 @@ def main():
     s+= '<section class ="c"><center> As the '+ titles[random.randint(0, len(titles)-1)]+' <b>'+Name+'</b> once said:<br>'
     s+= '"'+lines[random.randint(0, len(lines)-1)]+'"'
     s+= '''</section><center><br>
-    <section class = "b">
+    <section class = "b"><font face ="Baskerville">
    <a class="pure-button pure-button-primary" href="/results">Next Quote</a>  
    
-   <a class="pure-button" href="/">Return to Home Page</a></section>
+   <a class="pure-button" href="/">Return to Home Page</a></section></font>
    
 '''
 
