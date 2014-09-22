@@ -16,6 +16,10 @@ def home():
     html += "</html>"
     return html
 
+@app.route("/avg")
+def avg():
+    return render_template("avg.html")
+
 @app.route("/")
 def index():
     uname = request.args.get("uname",None)
