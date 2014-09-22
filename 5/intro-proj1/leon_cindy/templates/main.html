@@ -9,7 +9,13 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>main.html</title>
   </head>
-  <body><center>
+  <body>
+    <div class="menu-open">
+      <ul>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </div>
+    <center>
       <h1><br>
 	Character Search <br>
 	Its easy! <br>
@@ -21,7 +27,8 @@
       </h1>
       <br>
       <br>
-      <form>
+      <form class = "pure-form">
+	<fieldset>
 	<select name = "char">
 	  <option value = "Itchy">1/Itchy</option>
 	  <option value = "Cans">15/Cans</option>
@@ -168,20 +175,22 @@
 		<option value = "Sweet">Sweet Bro and Hella Jeff</option>
 		<option value = "Vagabond">Wayward Vagabond</option>
 	      </select>
-	      <input type = "submit" name = "submit" value = "Search for Pages">
+	      <button type = "submit" name = "submit" value = "csubmit" class = "pure-button button-primary">Search for Pages</button>
 	      
 
 	      <br><br>OR<br><br>
 
 	      <!--Enter text and submit button corresponding to it-->
-	      <input type = "text" name = "page"><input type = "submit" name = "submit" value = "Search for Characters"></font><font color="#00FFFF"><font color="#00FFFF">
+	      <input type = "text" name = "page"> <button type = "submit" name = "submit" value = "psubmit" class = "pure-button button-primary">Search for Characters</button></font><font color="#00FFFF"><font color="#00FFFF">
 </a>
+</fieldset>
 </form>
 
+(Between 1900 and 2658)
 
     <br><font face="garamond"><img class = "pure-img" alt="" src="http://media.tumblr.com/tumblr_mdv7j9SFnW1r9mlad.gif" border="0" align="center" height="436" width="176"></font></font>
-
-
 </center>
+
+
 </body>
 </html>

@@ -7,9 +7,18 @@
 
 
 <style>
-
-ul {
+.border {
+  border: 3px solid brown;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -khtml-border-radius: 10px;
+ 
   background-color:#FFFFFF;
+}
+ul {
+  
+  background-color:#F6F6F9;
   list-style-type:none;
   margin:0;
   padding:0;
@@ -69,7 +78,9 @@ background-color: #40FF00;
 </style></head>
 
 <body>
+<div class="border">
 <h1>The Great (Outdated) Pokedex</h1>
+</div>
 
 <h3>Search</h3>
 <form method="POST">
@@ -78,17 +89,20 @@ background-color: #40FF00;
 <input class="pure-button" type="submit" value="Submit" name="b">
 </form>
 <br>
-<div class="pure-menu pure-menu-open">
-<a class="pure-menu-heading">Regions</a>
+{# <div class="pure-menu pure-menu-open"> #}
+{# <a class="pure-menu-heading">Regions</a> #}
 
 <ul>
+<div class="border">
+  <li>Regions</li>
   <li><a href="#1">Kanto</a></li>
   <li><a href="#152">Johto</a></li>
   <li><a href="#252">Hoenn</a></li>
   <li><a href="#387">Sinnoh</a></li>
   <li><a href="#619">Unova</a></li> {# Victini is 494. Cheesed this so hard #}
-</ul>
 </div>
+</ul>
+
 <br>
 
   <table>

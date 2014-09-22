@@ -2,7 +2,8 @@
 # Soft Dev Pd 7
 # Project 1: Analysis
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import utils
 
 # app is an instance of the Flask class
 app = Flask(__name__)
@@ -46,10 +47,20 @@ text-shadow: 1px 1px blue;
 	"""
 	return html
 
-@app.route("/about")
+@app.route("/about",methods=["GET","POST"])
 @app.route("/about/<first>/<last>")
 def about(first=None,last=None):
-	return render_template("about.html",first=first,last=last)
+  if request.method=="GET":
+    return render_template("about.html")
+  else:
+    button = request.form['b']
+    first  = request.form['first']
+    last   = request.form['last']
+    valid_name = utils.verify(first,last)
+    if button=="Clear" or not(valid_name):
+      return render_template("about.html")
+    else:
+	    return render_template("about.html",first=first,last=last)
 
 @app.route("/conclusion")
 def conclusion():
