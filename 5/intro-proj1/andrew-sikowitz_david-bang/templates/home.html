@@ -22,8 +22,8 @@
   width: 40%;
   height:80%;
   }
+  .reveal {display: none;}
 </style>
-
 
     <title>Forbes Dataset Reader Homepage </title> </head>
 
@@ -33,7 +33,14 @@
     e = document.getElementById("first");
     var value = e.options[e.selectedIndex].value;
     var text = e.options[e.selectedIndex].text;
-    document.getElementById(value).style.display="inline";
+    document.getElementById("sorts").style.display="inline";
+    s = '<select name="sort">';
+    var lines = String({{ lines|tojson|safe }}).split(',');
+    for (var i=0; i<lines.length; i++) {
+	s += '<option value="' + lines[i] + '">' + lines[i] + '</option>';
+    }
+    s += '</select>'
+    document.getElementById("sorts").innerHTML = s;
     document.getElementById("form").action = "/" + text;
     var reveals = document.getElementsByClassName("reveal");
     for (var i=0; i < reveals.length; i++)
@@ -68,16 +75,8 @@
       Sort by: 
     </div>
     <form class="pure-form" id="form" action="" method="get">
-      {% for i in range(lines|length) %}
-      <div id="{{ i }}" style="display:none">
-	<select name="sort">
-	  {% for e in lines[i] %}
-	  <option value="{{ e }}">{{ e }}</option>
-	  {% endfor %}
-	</select>
-      </div>
-      {% endfor %}
-</input><br>
+      <div id="sorts"> </div>
+<br>
 <input type="submit" class="reveal" value="Submit">
 </form>
 <br> <img src="/static/Forbes3.jpg"  class="stretch" alt="" />
