@@ -1,18 +1,143 @@
-from flask import Flask, render_template
+from flask import Flask,render_template,request 
 
 app = Flask(__name__)
 
+images=["static/img/chick.jpeg",
+        "static/img/cow.jpg",
+        "static/img/milk.gif",
+        "static/img/pig.jpg",
+        "static/img/sheep.jpg",
+        "static/img/turkey.jpg",
+    ]
 
-#!/usr/bin/python
+@app.route("/")
+def home():
+    import random
+    num = random.randrange(0,4)
+    rankBy = request.args.get("rankBy",None)
+    button = request.args.get("b",None)
+    state = request.args.get("state",None)
+    if (button ==None or button=="home"):
+        return render_template("home.html", img=images[num])
+    else: 
+        if (state!=""):
+            found = False
+            r = reportAlpha()
+            s = []
+            for item in r: 
+                if ((item[0]).lower()==state.lower()):
+                    found = True
+                    s = item
+                    break
+            if (found==False): 
+                return render_template("state.html",statename="State Not Found")
+            else: 
+                return render_template("state.html",statename=s[0],rank=s[8],one=s[1],two=s[2],three=s[3],four=s[4],five=s[5],six=s[6],seven=s[7])
+        
+        if (rankBy == "alphabet"): 
+            return render_template("asdf.html")
+            f = open("templates/tableAlpha.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableAlpha.html",'a')
+                f.write(tableAlpha())
+                f.close()
+            return render_template("tableAlpha.html",img=images[num], rankedBy="Alphabetical Order")
 
-import random
-images=['<img src="http://upload.wikimedia.org/wikipedia/commons/0/0c/Cow_female_black_white.jpg" width="300" height="150">',
-        '<img src="http://www.metalsucks.net/wp-content/uploads/2013/02/Pigs.jpg" width="300" height="150">',
-        '<img src="http://www.chickencoopguides.com/articles/wp-content/uploads/2013/04/baby-chickens.jpeg" width="300" height="200">',
-        '<img src="http://www.colonyoutfittershunting.com/images/Mturkey7.jpg" width="300" height="150">',
-        '<img src="http://www.newtsgames.com/images/detailed/6/2054-FreshStart-JumboKnob-FarmAnimals.jpg" width="250" height="250">',
-        '<img src="http://school.discoveryeducation.com/clipart/images/milk.gif" width="300" height="350">',
-        '<img src="http://4.bp.blogspot.com/-kXZQufsb-fY/T3M8UTEDREI/AAAAAAAAB_A/eIhUJG41fCM/s1600/Mother-and-Little-Sheep-716566.jpeg" width="300" height="150">']
+        if (rankBy=="hightolow"): 
+            f = open("templates/tableHighToLow.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableHighToLow.html",'a')
+                f.write(table())
+                f.close()
+            return render_template("tableHighToLow.html",img=images[num], rankedBy="High to Low Health Rankings")
+
+        if (rankBy=="lowtohigh"): 
+            render_template("asdf.html")
+            f = open("templates/tableLowToHigh.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableLowToHigh.html",'a')
+                f.write(tableLowToHigh())
+                f.close()
+            return render_template("tableLowToHigh.html",img=images[num], rankedBy="Low to High Health Rankings")
+
+    f = open("templates/home.html",'r') 
+    tableNeeded = True
+    for line in f.readlines():
+        if ("Hawaii" in line):
+            tableNeeded = False
+    if (tableNeeded): 
+        f.close()
+        f = open("templates/home.html",'a')
+        f.write(table())
+        f.close()
+    return render_template("home.html", 
+                           img = images[num])
+
+def tableLowToHigh(): 
+    data=report()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(rank[len(rank)-1])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
+
+def tableAlpha():
+    data=reportAlpha()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(info[8])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
+
+def table():
+    data=report()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(rank[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
+
+
+
+def table_template(include):
+    return '<td><center>'+include+'</center></td>'
+
 def open_data(filename):
     L=[]
     for item in open(filename).readlines():
@@ -154,6 +279,7 @@ def organicvsreg(filename):
         a=a[1:] 
     return d
 
+
 def report():
     healthiest=healthiest_state('state_deathper100,000_health.csv')
     rw=redvswhite('US_certified_organic_livestock_08.csv')
@@ -173,37 +299,29 @@ def report():
         item.append(pw[item[0]])
     return r
 
-def web(s):
-    data=report()
-    img=random.choice(images)
-    s=s.strip()
-    s=s.replace("<image>",img)
-    L=s.split("\n")
-    result_list=[]
-    for item in L:
-        if item=='<data>':
-            rank=range(1,51,1)
-            for info in data:
-                x='<td><center>'+str(rank[0])+'</center></td>'+'\n'+'<td><center>'+ info[0]+ '</center></td>'+'<td><center>'+str(info[1])+ '</center></td>'+"\n"+'<td><center>'+str(info[2])+ '</center></td>'+"\n"+'<td><center>'+ str(info[3])+ '</center></td>'+"\n"+'<td><center>'+ str(info[4])+ '</center></td>'+"\n"+'<td><center>'+ str(info[5])+ '</center></td>'+"\n"+'<td><center>'+ str(info[6])+ '</center></td>'+"\n"+'<td><center>'+ str(info[7])+ '</center></td><tr>'
-                result_list.append(x)
-                rank.remove(rank[0])
-        else:
-            result_list.append(item)
-    result="\n".join(result_list)
-    return result
-
-
-
-print "Content-Type: text/html"
-print 
-
-###print web(s)
-
-
-@app.route("/")
-def home():
-    return render_template("home.html")
-
+def reportAlpha(): 
+    data = open_data('cattleps.csv')
+    rw=redvswhite('US_certified_organic_livestock_08.csv')
+    org=organicvsreg('cattleps.csv')
+    pr=percentred('US_certified_organic_livestock_08.csv')
+    pw=percentwhite('US_certified_organic_livestock_08.csv')
+    r=[]
+    for info in data: 
+        x=[info[0],info[12]]
+        r.append(x)
+    for item in r:
+        item.insert(1,rw[item[0]][0])
+        item.insert(2,rw[item[0]][1])
+        item.insert(3,org[item[0]][0])
+        item.insert(4,org[item[0]][1])
+        item.insert(5,org[item[0]][2])
+        item.insert(6,pr[item[0]])
+        item.insert(7,pw[item[0]])
+    return r
+        
+    
+    
 if __name__=="__main__":
     app.debug=True
     app.run()
+    ##app.run(host="0.0.0.0",port=8000)

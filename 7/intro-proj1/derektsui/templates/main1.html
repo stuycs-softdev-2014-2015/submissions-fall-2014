@@ -1,34 +1,53 @@
 <html>
 <head>
 <title>Data</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://purecss.io/css/layouts/side-menu.css">
+<script src="http://purecss.io/js/ui.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body style='background-color:#FFFFAD'>
+<body>
 
 <div style="font-family:'Century Gothic,Helvetica',Arial">
 
-<table width =100%>
-<tr>
-<td width = '75%'>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="#">Data Project</a>
+
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#definitions">About</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#data">Data</a></li>
+                <li><a href="#analysis">Analysis</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div class="header">
+            <h1>Intro Data Project</h1>
+            <h2>An analysis of stock price data</h2>
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead">Project Info</h2>
+
 <p style='font-size:12'>
 Tsui, Derek<br>
-MKS22-20<br>
-Period-7<br>
-
-DATASET: Dow Jones Industrial Average Historical Price Data<br>
-
-DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloaddata'>DJIA Historical Data</a><br>
+DATASET: DJIA Historical Price Data<br>
+DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloaddata'>DJIA Historical Data</a>
 </p>
-</td>
-<td width = 25%>
-<a href='#definitions'>Definitions</a><br>
-<a href='#settings'>Settings</a><br>
-<a href='#data'>Data</a><br>
-<a href='#analysis'>Analysis</a>
-</td>
-</tr>
-</table>
-<hr>
 <a id='definitions'></a>
+<br>
+<h2 class="content-subhead">Technical Terms</h2>
+
 <p>This analysis focuses on technical analysis of stock data, mainly used to analyze past price trends in predicting future movements.</p>
 
 <p><b>Change</b> -- The change in price from the previous day.<br>
@@ -40,4 +59,28 @@ DATA SOURCE: <a href='http://research.stlouisfed.org/fred2/series/DJIA/downloadd
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The higher the RSI, the stronger its recent performance.  However, RSIs of 30 and 70 are seen as oversold and overbought, respectively, and are typical reversal points.</p>
 <p>The following columns on the data table below were calculated: CHANGE, %CHANGE, MA10, MA15, RSI10</p>
 <br>
-<hr>
+
+<a id='settings'></a>
+<br>
+<h2 class="content-subhead">Display Settings:</h2>
+<form method='post'>
+Data Range (Years: 1896 - 2013):<br><br>
+
+Start Year: <input type='text' name='start' value = '2000'><br>
+End Year: <input type='text' name= 'end' value = '2013'><br>
+<br>
+Sort by:<br>
+<input type='radio' name='sortby' value='date'>Date<br>
+<input type='radio' name='sortby' value='price'>Price<br>
+<input type='radio' name='sortby' value='pct'>% Change<br>
+<br>
+Sort order:<br>
+<input type='radio' name='sortorder' value='inc'>Increasing<br>
+<input type='radio' name='sortorder' value='dec'>Decreasing<br>
+<br>
+<input type="submit" name="button" value="submit">
+</form>
+
+<a id='data'><br></a>
+<h2 class="content-subhead">Data</h2>
+<p>Sorted by <u>{{sortby}}</u> in <u>{{order}}reasing</u> order</p>

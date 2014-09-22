@@ -1,0 +1,89 @@
+  body{
+  background-image: url("/static/images/pikachu.gif");
+  background-color: rgb(255, 255, 255);
+}
+
+  h0{
+  font-size:10px;
+  border-style:solid;
+  border-color:blue;
+  border-width:1px;
+  background-color:#ffffff
+}
+
+  h1{
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#ffffff
+}
+
+  h2{
+  font-family:"courier";
+  font-size:50px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#eeeeee
+}
+
+  h3{
+  font-family:"courier";
+  font-size:20px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#eeeeee
+}
+
+  h4{
+  font-family:"courier";
+  font-size:20px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#dddddd
+}
+
+  h5{
+  font-family:"courier";
+  font-size:20px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#cccccc
+}
+
+  h6{
+  font-family:"courier";
+  font-size:20px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#bbbbbb
+}
+
+  h7{
+  font-family:"courier";
+  font-size:20px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#aaaaaa
+}
+
+  h8{
+  font-family:"courier";
+  font-size:20px;
+  border-style:solid;
+  border-color:black;
+  border-width:3px;
+  background-color:#999999
+}
+
+ #header {
+  background-image: url("/static/pokeball.gif");
+  display: block;
+  width: 24;
+  height: 24;
+}

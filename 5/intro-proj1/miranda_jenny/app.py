@@ -1,5 +1,6 @@
 #!/usr/bin/python
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
     
@@ -115,50 +116,54 @@ for x in basicdata:
     btable+='</tr>'
 btable+='</table>'
 
-f=open("html.txt")
-html=f.readlines()
+
+
 
 
 @app.route("/")
 @app.route("/home")
 def home():
-        return render_template("home.html")
+    return render_template("home.html")
+    
 
-@app.route("/why")
+@app.route("/why",methods=["POST","GET"])
 def why():
-    return render_template("why.html")
+    if request.method == "POST" and request.form["name"] != "":
+        name=request.form["name"]
+    else:
+        name='Clyde "Thluffy" Sinclaire'
+    return render_template("why.html",name=name)
 
-@app.route("/data")
+
+
+@app.route("/data",methods=["POST","GET"])
 def data():
-    return render_template("data.html",ranksd=ranksd, sortedranksd=sortedranksd, crimesdVals=crimesdVals)
+    if request.method == "POST" and request.form["name"] != "":
+        name=request.form["name"]
+    else:
+        name='Clyde "Thluffy" Sinclaire'
+    return render_template("data.html",ranksd=ranksd, sortedranksd=sortedranksd, crimesdVals=crimesdVals,name=name)
 
 
-@app.route("/analysis")
+
+@app.route("/analysis",methods=["POST","GET"])
 def analysis():
-    return render_template("analysis.html", numDeathsGun=ca, averageScore=ra,basicdataResults=basicdata,);
+    if request.method == "POST" and request.form["name"] != "":
+        name=request.form["name"]
+    else:
+        name='Clyde "Thluffy" Sinclaire'
+    return render_template("analysis.html", numDeathsGun=ca, averageScore=ra,basicdataResults=basicdata,name=name);
 
-'''
-print table
-print'</c
 
 
-
-enter>'
-for x in html[48:53]:
-    print x
-print ca
-print html[53]
-print ra
-print html[54]
-print btable
-for x in html[55:]:
-    print x
-print'</body></html>'
-'''
-
-@app.route("/sources")
+@app.route("/sources",methods=["POST","GET"])
 def sources():
-    return render_template("sources.html");
+    if request.method == "POST" and request.form["name"] != "":
+        name=request.form["name"]
+    else:
+        name='Clyde "Thluffy" Sinclaire'
+    return render_template("sources.html",name=name);
+
 
 
 if __name__=="__main__":

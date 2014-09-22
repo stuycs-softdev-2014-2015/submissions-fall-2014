@@ -12,7 +12,7 @@ def about():
 @app.route("/result", methods=['POST'])
 def result():
 	answer = request.form['option']
-	page = "/"+answer+".html";
+	page = "/"+answer;
 	return redirect(page)
 
 @app.route("/home")
@@ -22,27 +22,55 @@ def home():
 
 @app.route("/firewaterspd")
 def firewaterspd():
-	return render_template("firewaterspd")
+	return render_template("firewaterspd.html")
 
 @app.route("/grassgroundatk")
 def grassgroundatk():
-	return render_template("grassgroundatk")
+	return render_template("grassgroundatk.html")
 
-#1:30 AM right now, too tired to copy paste rest of these pages
-#Now we need to copy paste these, just put the graphs on those pages and put the (already done) CSS on them
-#The background image + CSS + redirecting is all done
+@app.route("/grassnormalhp")
+def grassnormalhp():
+  return render_template("grassnormalhp.html")
 
-  #<option value="grassnormalhp">Grass vs. Normal (HP)</option>
-  #<option value="groundelectricdef">Ground vs. Electric (Defense)</option>
-  #<option value="dragonicehp">Dragon vs. Ice (HP)</option>
-  #<option value="darksteelspatk">Dark vs. Steel (Special Attack)</option>
-  #<option value="ghostpsychicspdef">Ghost vs. Psychic (Special Defense)</option>
-  #<option value="firenormalspd">Fire vs. Normal (Speed)</option>
-  #<option value="watergrounddef">Water vs. Ground (Defense)</option>
-  #<option value="steelelectrichp">Steel vs. Electric (HP)</option>
-  #<option value="rockgroundspatk">Rock vs. Ground (Special Attack)</option>
-  #<option value="flyingghostdef">Flying vs. Ghost (Defense)</option>
-  #<option value="flyingwateratk"
+@app.route("/groundelectricdef")
+def groundelectricdef():
+  return render_template("groundelectricdef.html")
+
+@app.route("/dragonicehp")
+def dragonicehp():
+  return render_template("dragonicehp.html")
+
+@app.route("/darksteelspatk")
+def darksteelspatk():
+  return render_template("darksteelspatk.html")
+
+@app.route("/ghostpsychicspdef")
+def ghostpsychicspdef():
+  return render_template("ghostpsychicspdef.html")
+
+@app.route("/firenormalspd")
+def firenormalspd():
+  return render_template("firenormalspd.html")
+
+@app.route("/watergrounddef")
+def watergrounddef():
+  return render_template("watergrounddef.html")
+
+@app.route("/steelelectrichp")
+def steelelectrichp():
+  return render_template("steelelectrichp.html")
+
+@app.route("/rockgroundspatk")
+def rockgroundspatk():
+  return render_template("rockgroundspatk.html")
+
+@app.route("/flyingghostdef")
+def flyingghostdef():
+  return render_template("flyingghostdef.html")
+
+@app.route("/flyingwateratk")
+def flyingwateratk():
+  return render_template("flyingwateratk.html")
 
 if __name__=="__main__":
     app.debug=True

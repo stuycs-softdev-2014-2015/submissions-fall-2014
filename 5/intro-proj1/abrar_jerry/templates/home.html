@@ -1,5 +1,6 @@
 <html>
-<center><h1> SOFTDEV ZAMANSKY </h1></center>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<title> INTRO PROJ1 </title>
 
 <style>
 a {
@@ -15,36 +16,116 @@ color: blue;
 
 </style>
 
-<title> INTRO PROJ1 </title>
+<!--[if lte IE 8]>
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+  
+<![endif]-->
+<!--[if gt IE 8]><!-->
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+  
+<!--<![endif]-->
 
- <head>
- Period 5
- <br>
- Abrar Ahmed
- <br>
- Jerry Dai
- <br>
- </head>
 
+
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="/combo/1.17.4?/css/layouts/blog-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="/combo/1.17.4?/css/layouts/blog.css">
+    <!--<![endif]-->
+  
+
+
+
+
+    
+<!--[if lt IE 9]>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+<![endif]-->
+
+
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-41480445-1', 'purecss.io');
+ga('send', 'pageview');
+</script>
  <body>
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	{% if name%}
+	<h1 class="brand-title">Welcome {{name}}!</h1>
+	{%endif%}
+            <h2 class="brand-tagline">NBA Championship Team Stat Comparison</h2>
 
- <h1> <center> NBA Championship Team Stat Comparison </center> </h1>
- <h2> <center> Question: What makes up a championship team? </center> </h2>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a class="pure-button" href="/index">Go Back</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            <div class="posts">
+                <h1 class="content-subhead">NBA Championship Team Stat Comparison</h1>
+                <section class="post">
+                    <header class="post-header">
 
- &nbsp&nbsp&nbsp&nbsp&nbspBelow is the data for the past three National Basketball Association (<b>NBA</b>) championship team seasons.
+                        <h2 class="post-title">Question: What makes up a championship team?</h2>
+
+                        <p class="post-meta">
+                            By <a href="#" class="post-author">Abrar Ahmed and Jerry Dai</a> from <a class="post-category post-category-design" href="#">Period 5</a>
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+	                        <p>
+Below is the data for the past three National Basketball Association (<b>NBA</b>) championship team seasons.
  Included are the teams' average statitics for the year as well as their Final opponent average statistics.
  We chose this data in order to answer the question: what makes up a championship team?
  We will compare the season averages of the winning team and the runner-up and see why one team won and why the other lost.
+                        </p>
+                    </div>
+                </section>
+            </div>
 
+            <div class="posts">
+		<h1 class="content-subhead">The Raw Data</h1>
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">Season Stats for Championship Teams and their Opponents</h2>
 
- <h1> <center> The Raw Data </center> </h1>
+                    </header>
 
- <h2> <center> Season Stats for Championship Teams and their Opponents </center> </h2>
-
+                </section>
 <center>
-<button><a href="/miami"> Miami Heat (2012 )</a></button>
-<button><a href="/dallas"> Dallas Mavericks (2011 )</a></button>
-<button><a href="/la"> Los Angeles Lakers (2010) </a></button>
+<a class="pure-button" href="/miami">Miami Heat (2012)</a>
+<a class="pure-button" href="/dallas">Dallas Mavericks(2011)</a>
+<a class="pure-button" href="/la">Los Angeles Lakers(2010)</a>
 </center>
 
 </body>

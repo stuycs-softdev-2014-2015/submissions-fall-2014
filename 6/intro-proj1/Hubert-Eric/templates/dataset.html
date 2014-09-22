@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <title>ExoPlanets</title>
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/planets.css') }}">
+      <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+   </head>
+
+<body>
+
+   <div class="header">
+      <div class="navcontainer pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" >
+         <a class="custom-heading pure-menu-heading">Exoplanets</a>
+         <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/analysis">Analysis</a></li>
+            <li><a href="planet/dataset">Dataset</a></li>
+         </ul>
+      </div>
+   </div>
+   <div class="pure-g">
+      <div class="pure-u-1-6"></div>
+      <div class="pure-u-2-3">
+         <form method="POST" class="pure-form">
+            <fieldset>
+               <legend>{{searchquery}}</legend>
+
+               <input type="text" name="lowerbound" placeholder="Lower Bound">
+               <input type="text" name="upperbound" placeholder="Upper Bound">
+               <select id="variable" name="variable">
+                  <option value="0">no filter</option>
+                  <option value="1">mass</option>
+                  <option value="2">radius</option>
+                  <option value="3">eccentricity</option>
+                  <option value="4">inclination</option>
+                  <option value="5">date discovered</option>
+               </select>
+
+               <button type="submit" class="pure-button pure-button-primary">Filter</button>
+            </fieldset>
+         </form>
+      </div>
+      <div class="pure-u-1-6"></div>
+   </div>
+   <table id="chart">
+      <thead>
+	<tr><td><center>Read me: </center>
+	<td><center>The analysis tab is dynamic, it will analyze data according to the bounds you choose.</center>
+	<td><center>Masses and radii are given relative to one Jupiter mass/radius.</center></tr>
+	
+         <tr>
+            {% for tableheader in headerRow %}
+            <th>{{tableheader.strip().replace("_", " ")}}</th>
+            {% endfor %}
+         </tr>
+      </thead>
+     {% for row in grid %}
+     <tr>
+       {% for element in row %}
+       <td> {{ element.strip() }} </td>
+       {% endfor %}
+     </tr>
+     {% endfor %}
+   </table>
+</body>
+
+</html>

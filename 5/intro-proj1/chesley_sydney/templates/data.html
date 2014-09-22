@@ -3,68 +3,70 @@
         <title>
             {{ page_title }}
         </title>
-        <link rel="stylesheet" href="static/css/data.css" />
+        <link rel="stylesheet" href="{{ url_for("static", filename="css/style.css") }}" />
     </head>
 
     <body>
         <div id="container">
-            <span>
-                Notes: Tm = Team; Lg = League; G = Games; GS = Games Started; MP = Minutes Played; FG = Field Goals; FGA = FG attempts; 3P = Three Point FG; 3PA = 3P FGA; FT = Free Throws; ORB = Offensive Rebounds; DRB = Defensive Rebounds; TRB = Total Rebounds; AST = Assists; STL = Steals; BLK = Blocks; TOV = Turnovers; PF = Personal Fouls; PTS = Points
+            <span class="font_10px">
+                Notes on notation: Tm = Team; Lg = League; G = Games; GS = Games Started; MP = Minutes Played; FG = Field Goals; FGA = FG attempts; 3P = Three Point FG; 3PA = 3P FGA; FT = Free Throws; ORB = Offensive Rebounds; DRB = Defensive Rebounds; TRB = Total Rebounds; AST = Assists; STL = Steals; BLK = Blocks; TOV = Turnovers; PF = Personal Fouls; PTS = Points
             </span>
 
             <div id="p1_div">
-            <h2>
-                {{ p1_section_header }} 
-            </h2>
-            <div class="table_wrapper">
-            <table>
-                {% for header in p1_headers %}
-                <th>
-                    {{ header }}
-                </th>
-                {% endfor %}
-                {% for row in p1_data %}
-                <tr>
-                    {% for item in row %}
-                    <td>
-                        {{item}}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            </div>
-            <br>
-            <a href="{{ url_for("static", filename=p1_csv_file_name) }}">Download the CSV file</a>
+                <h1>
+                    {{ p1_section_header }} 
+                </h1>
+                <div class="table_wrapper">
+                    <table>
+                        {% for header in p1_headers %}
+                        <th>
+                            {{ header }}
+                        </th>
+                        {% endfor %}
+                        {% for row in p1_data %}
+                        <tr>
+                            {% for item in row %}
+                            <td>
+                                {{item}}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <br>
+                <a class="float_left" href="{{ url_for("static", filename=p1_csv_file_name) }}">Download the CSV file</a>
+                <a class="float_right" href="{{ url_for("analysis") }}">See analysis</a>
             </div>
 
             <hr class="horizontal_divider"/>
 
             <div id="p2_div">
-            <h2>
-                {{ p2_section_header }} 
-            </h2>
+                <h1>
+                    {{ p2_section_header }} 
+                </h1>
 
-            <div class="table_wrapper">
-            <table>
-                {% for header in p2_headers %}
-                <th>
-                    {{ header }}
-                </th>
-                {% endfor %}
-                {% for row in p2_data %}
-                <tr>
-                    {% for item in row %}
-                    <td>
-                        {{item}}
-                    </td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            </div>
-            <br>
-            <a href="{{ url_for("static", filename=p2_csv_file_name) }}">Download the CSV file</a>
+                <div class="table_wrapper">
+                    <table>
+                        {% for header in p2_headers %}
+                        <th>
+                            {{ header }}
+                        </th>
+                        {% endfor %}
+                        {% for row in p2_data %}
+                        <tr>
+                            {% for item in row %}
+                            <td>
+                                {{item}}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <br>
+                <a class="float_left" href="{{ url_for("static", filename=p2_csv_file_name) }}">Download the CSV file</a>
+                <a class="float_right" href="{{ url_for("analysis") }}">See analysis</a>
             </div>
         </div>
     </body>

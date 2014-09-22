@@ -1,0 +1,17 @@
+#back{
+width: 100%;
+height: 700px;
+background-color:#E1E3E3;
+background-image: url('background.jpg');
+
+}
+
+#display{
+width: 500px;
+height: 300px;
+background-color: #CDD1D1;
+border: 2px solid;
+border-radius: 10px;
+margin-left: auto;
+margin-right: auto;
+}

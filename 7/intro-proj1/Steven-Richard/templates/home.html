@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+
 <style>
- ul {
+.border {
+  border: 3px solid brown;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -khtml-border-radius: 10px;
+ 
+  background-color:#FFFFFF;
+}
+ul {
+  
+  background-color:#F6F6F9;
   list-style-type:none;
   margin:0;
   padding:0;
   overflow:hidden;
   position:fixed; top:2%; right:2%}
 }
- a {
+
+a {
   display:block;
   width:60px;
   background-color:#dddddd;
@@ -45,6 +62,11 @@ background-color: lightgray;
 background-color: #A4A4A4;
 }
 
+#darkm {
+background-color: #A4A4A4;
+position: fixed;
+}
+
 tr:hover {
 background-color: #81F781;
 }
@@ -56,18 +78,35 @@ background-color: #40FF00;
 </style></head>
 
 <body>
+<div class="border">
 <h1>The Great (Outdated) Pokedex</h1>
+</div>
+
+<h3>Search</h3>
+<form method="POST">
+<input type="text" name="name"><br>
+<input type="radio" name="type" value="name" checked>Name 	&nbsp; 	&nbsp; 	&nbsp;<input type="radio" name="type" value="num">Number<br>
+<input {#class="pure-button"#} type="submit" value="Submit" name="b">
+</form>
+<br>
 
 <ul>
+<div class="border">
+  <li>Regions</li>
   <li><a href="#1">Kanto</a></li>
   <li><a href="#152">Johto</a></li>
   <li><a href="#252">Hoenn</a></li>
   <li><a href="#387">Sinnoh</a></li>
+  <li><a href="#619">Unova</a></li> {# Victini is 494. Cheesed this so hard #}
+</div>
 </ul>
-<br><br>
+
+<br>
+
   <table>
+  {# <tr id = "darkm"><td width = 2.35%>#</td><td width = 11.2%>NAME</td><td width = 1.85%>HP</td><td width = 1.85%>ATK</td><td width = 1.85%>DEF</td><td width = 1.85%>SP. ATK</td><td width = 1.85%>SP. DEF</td><td>SPEED</td><td width = 69%>MOVES</td></tr> #} {#A good try :\#}
   <tr id = "dark"><td>#</td><td>NAME</td><td>HP</td><td>ATK</td><td>DEF</td><td>SP. ATK</td><td>SP. DEF</td><td>SPEED</td><td>MOVES</td></tr>
-  {% set n = 1 %}
+  {% set n = 1 - isSearch %}
   {% set stupiddeoxys = 0 %}
   {% set b = True %}
   {% for x in codedata %}

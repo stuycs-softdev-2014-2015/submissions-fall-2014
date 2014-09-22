@@ -1,36 +1,76 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
+import utils
+import data
 
 app = Flask(__name__)
+
+def csvtolist(csvname):
+    csvtable = []
+    csvf = open(csvname)
+    csvln = csvf.readlines()
+    csvf.close()
+    for ln in csvln:
+        csvtable.append(ln.strip().split(","))
+    return csvtable
+
+def csvtodict(csvname):
+    csvdict = {}
+    csvf = open(csvname)
+    csvln = csvf.readlines()
+    csvf.close()
+    for ln in csvln:
+        pair = ln.split(",")
+        csvdict[pair[0]] = pair[1]
+    return csvdict
 
 @app.route("/")
 @app.route("/home")
 def home():
-    r = '''<body background="static/leaguebackground.jpg">'''
-    r += "<h1>Welcome to the league of desu</h1>"
-    r += '<a href="/desu">desu</a>'
-    r += '<br><a href="/kun">kun</a></body>'
-    return r
+    return render_template("home.html")
 
-@app.route("/desu")
+@app.route("/all")
 def desu():
-    csvtable = []
-    csvf = open("data/out.csv")
-    csvln = csvf.readlines()
-    csvf.close()
-    for ln in csvln:
-        csvtable.append(ln.split(","))
     return render_template("desu.html",
-                           csvtable=csvtable)
+                           stattable=csvtolist("data/stats.csv"),
+                           wrtable=csvtolist("data/winrate.csv"))
 
-@app.route("/kun")
+@app.route("/level")
 def kun():
-    csvtable = []
-    csvf = open("data/out.csv")
-    csvln = csvf.readlines()
-    csvf.close()
-    for ln in csvln:
-        csvtable.append(ln.split(","))
-        return render_template("kun.html",csvtable=csvtable,columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+    csvtable = csvtolist("data/stats.csv")
+    return render_template("kun.html",
+                           csvtable=csvtable,
+                           columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+
+@app.route("/form",methods=['GET','POST'])
+def form():
+    selects=10 #number of dropdowns on form.html
+    
+    if request.method=="GET":
+        statcbformat = csvtolist("data/statcheckboxformat.csv")
+        statglossary = csvtodict("data/statglossary.csv")
+        return render_template("form.html",
+                               champnames=data.champnames,
+                               statnames=data.statnames,
+                               selects=selects,
+                               statcbformat=statcbformat,
+                               statglossary=statglossary)
+    else:
+        champs = []
+        for i in range(selects):
+            curchamp = request.form["champ"+str(i)]
+            if curchamp!="":
+                champs.append(curchamp)
+        action = request.form["a"]
+        lookupstats = request.form.getlist("lookupstats")
+        if action=="Compare":
+            return render_template("generator.html",
+                                   champs=champs,
+                                   lookupstats=lookupstats,
+                                   statnames=data.statnames,
+                                   statdict=data.statdict)
+        else :
+            return render_template("home.html")
+        
 
 
 if __name__ == "__main__":
