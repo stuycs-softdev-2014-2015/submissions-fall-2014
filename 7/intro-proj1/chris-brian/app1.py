@@ -18,6 +18,10 @@ def form():
             return render_template("Analysis1.html")
         else:
             return render_template("login.html")
+@app.route("/next",methods=["GET","POST"])
+def page():
+	if request.method=="GET":
+		return render_template("Analysis2.html")
 
 if __name__ =="__main__":
     app.debug = True
