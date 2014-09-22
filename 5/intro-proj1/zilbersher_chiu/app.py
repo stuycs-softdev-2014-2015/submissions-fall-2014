@@ -4,13 +4,14 @@ import string
 app = Flask(__name__)
 
 @app.route("/")
-def hello():
-    return "Hello world!"
+def home():
+    
+    return render_template("main.html")
 
 @app.route("/count/<title>")
 def count(title):
     try:
-        f = open("./files/" + title + ".txt", "r")
+        f = open("./static/" + title + ".txt", "r")
     except IOError:
         return render_template("error.html")
     raw_string = f.read()
