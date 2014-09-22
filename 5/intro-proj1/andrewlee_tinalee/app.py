@@ -25,9 +25,7 @@ def index():
         return render_template("index.html")
     else:
         home()
-       return """
-#<h1>%s</h1>
-#"""%("uname")
+       return """<h1>%s</h1>"""%("uname")
     <a href = "/home">home page</a>
 
     
