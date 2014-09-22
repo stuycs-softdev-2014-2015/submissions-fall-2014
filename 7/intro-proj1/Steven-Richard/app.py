@@ -63,26 +63,36 @@ def pokemovesdictionary():
     return d
 
 
-@app.route("/home")
+@app.route("/home",methods=["GET","POST"])
 def home():
-    button = request.args.get("b",None)
-    name = request.args.get("name",None)
-    type = request.args.get("type",None)
+    
     isSearch = False
     cd = pokedexreader()
-    if button == "submit" and name != None:
-        i = 0
-        while (i < len(cd)):
-            if ((type == "name" and cd[i][1] == name) or (type == "num" and int(cd[i][0]) == int(name))):
-                cd.insert(0,cd[i])
-                isSearch = True
-                i+=1
-            i+=1
-    return render_template("home.html",
-                            codedata=cd,
-                            movesdictionary = pokemovesdictionary(),
-                               isSearch = isSearch)
-    
+    if request.method=="GET":
+        return render_template("home.html", codedata=cd, movesdictionary = pokemovesdictionary(), isSearch = isSearch)
+    else:
+        button = request.form["b"]
+        name = request.form["name"]
+        type = request.form["type"]        
+        if button == "Submit" and name != None:
+            i = 0
+            while (i < len(cd)):
+                try:
+                    if ((type == "name" and cd[i][1] == name) or (type == "num" and int(cd[i][0]) == int(name))):
+                        cd.insert(0,cd[i])
+                        isSearch = True
+                        i+=1
+                    i+=1
+                except:
+                    return render_template("home.html",
+                                            codedata=cd,
+                                            movesdictionary = pokemovesdictionary(),
+                                            isSearch = isSearch)         
+        return render_template("home.html",
+                                codedata=cd,
+                                movesdictionary = pokemovesdictionary(),
+                                   isSearch = isSearch)
+
 if __name__=="__main__":
     # set the instance variable debug to True
     app.debug = True

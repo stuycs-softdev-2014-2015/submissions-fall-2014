@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Diabetes Data{% endblock %}
+{% block content %}
+<div class="jumbotron">
+	<h1>Diabetes Data Index</h1>
+	<p>Welcome! This site provides easily viewable, rendered data tables for a diabetes data set retrieved from UCI's Machine Learning Repository!
+	<br><br>For more information, check out our <a href="{{ url_for('about') }}">about</a> page. Otherwise, hit the button below!</p>
+	<p>
+		<a class="btn btn-lg btn-primary" href="{{ url_for('data') }}" role="button">Let's get started &raquo;</a>
+	</p>
+</div>
+{% endblock %}

@@ -16,7 +16,6 @@ td {
 border: 1px solid red;
 }
 header{
-background: white;
 height: 110px;
 border: 3px solid red
 width: 500px
@@ -24,14 +23,31 @@ align: center;
 font-size: 100;
 font-style: italic;
 }
+.stretch {
+width: 20%;
+height:40%;
+}
 
 </style>
 
-<head> <title> {{ name }} Data </title> </head>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<title> {{ name }} Data </title> </head>
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+  <ul>
+    <li class="pure-menu-selected"><a href="home">Home</a></li>
+    <li><a href="/"> Front Page</a></li>
+    <li><a href="http://true5050.com/eFCOd"> Billionaire or Ducks- Click if you dare</a></li>
+  </ul>
+</div>
 <header> Forbes2000 Data </header>
+<div>
+ <img src="/static/Forbes5.jpg" class="stretch" alt="" />
+<img src="/static/Forbes6.jpg" class="stretch" alt="" />
+</div>
 
 <body>
-<table border="1">
+<table class="pure-table pure-table-bordered" border="1">
 {% for line in l %}
 	<tr>
 	{% for e in line %}
@@ -41,3 +57,4 @@ font-style: italic;
 {% endfor %}
 </table>
 </body>
+</html>

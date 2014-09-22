@@ -1,0 +1,80 @@
+<!DOCTYPE html> 
+<head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
+  <link rel="stylesheet" href="static/desu.css">
+</head>
+<body>
+  <h1>Champion Stat Comparison</h1>
+  <div id="champform">
+    <form method="POST" class="pure-form">
+      <div id="champselects">
+	<div class="csformhead">Select champions to compare</div>
+	<div class="cscol">
+	  {% for i in range(selects//2+selects%2) %}
+	  <select name="champ{{i}}">
+	    {% if i!=0 %}
+	    <option value="">---</option>
+	    {% endif %}
+	    {% for name in champnames %}
+	    <option value="{{name}}">{{name}}</option>
+	    {% endfor %}
+	  </select><br>
+	  {% endfor %}
+	</div>
+	<div class="cscol">
+	  {% for i in range(selects//2+selects%2,selects) %}
+	  <select name="champ{{i}}">
+	    {% if i!=0 %}
+	    <option value="">---</option>
+	    {% endif %}
+	    {% for name in champnames %}
+	    <option value="{{name}}">{{name}}</option>
+	    {% endfor %}
+	  </select><br>
+	  {% endfor %}
+	</div>
+      </div>
+
+      <div class="csformspacer"></div>
+
+      <div id="statcheckboxes">
+	<div class="csformhead">Select stats to view</div>
+	{% for col in statcbformat %}
+	<div class="statcbcol">
+	  {% for stat in col %}
+	  {% if stat!="" %}
+	  <input type="checkbox" name="lookupstats" value="{{stat}}" checked>{{stat}}<br>
+	  {% else %}
+	  <br>
+	  {% endif %}
+	  {% endfor %}
+	</div>
+	{% endfor %}
+      </div>
+
+      <div class="csformspacer"></div>
+
+      <div id="submits">
+	<input type="submit" name="a" value="Compare"><br><br>
+	<input type="submit" name="a" value="Nope">
+      </div>
+    </form>
+  </div>
+
+
+  <div id="statglossary">
+    <div class="csformhead">Stat Glossary</div>
+    {% for col in statcbformat %}
+    <div class="statcbcol">
+      {% for stat in col %}
+      {% if stat!="" %}
+      {{stat}} - {{statglossary[stat]}}<br>
+      {% else %}
+      <br>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

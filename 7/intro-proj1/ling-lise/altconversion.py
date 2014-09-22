@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -8,6 +8,7 @@ filecsv = open ("data.csv", "r") # the data set with teh debate statistics
 y = filecsv.readlines () # every line put into the a list of strings
 filecsv.close ()
 
+#******************************************************************#
 #for analysis page
 holder = [] # just placeholding lists for two globals below
 holder2 = []
@@ -78,12 +79,52 @@ SchoolName = SchoolName[:SchoolName.find(",")] # global variable that takes the 
 
 
 
-
-
+#                        START OF SERVER CODE                      #
+#******************************************************************#
+############ Fiddling form elements #################
 @app.route("/")
-def home ():
+@app.route("/home")
+@app.route("/index")
+def home ():    
     return render_template("althome.html")
 
+
+@app.route("/welcome",methods=["GET","POST"])
+@app.route("/about",methods=["GET","POST"])
+def about():
+    strs = " "
+    estrs = " "
+    if request.method == "GET":
+        return render_template("about.html")
+    else:
+        l = request.form.getlist("style")
+        name2 = request.form["name2"]
+        name = request.form["name"]
+        print name,name2
+
+    if "bold" in l:
+        strs += "<b>"
+        estrs += "</b>"
+    if "big" in l:
+        strs += "<span style='font-size:2.4em'>"
+        estrs += "</span>"      
+    if "color" in l:
+        strs += "<span style='color:green'>"
+        estrs += "</span>"      
+
+    if name == "":
+        name = "Anonymous"
+    if name2 == "":
+        name2 = name
+
+
+    #if bold != None or big != None or color != None:
+    return render_template("about.html", tag = strs, etag = estrs, name = name, name2 = name2)
+    
+            
+    
+    
+    
 
 @app.route("/analysis")
 def analysis():
@@ -96,11 +137,11 @@ def analysis():
     ans += "<a href= 'data01.py' > Link to the Data </a>  <br><br><br> <img src='http://diseaseoftheweek.files.wordpress.com/2010/08/debate-1.jpg' width='300' height='250'> <br> <br>"
    
     ans = ans.replace (";", " ") 
-    return render_template("analysis.html",ans=ans)
+    return render_template("altanalysis.html",ans=ans)
 
-
+######### Prints Table ############
 @app.route("/conversion")
-def conversion (): #converts the csv file into html code
+def conversion(): #converts the csv file into html code
     ans = ""
     i =0
     lengths = len(y)
@@ -113,10 +154,14 @@ def conversion (): #converts the csv file into html code
             ans = ans.replace (";", " ")  # for some reason, google docs/libre office; one of them added ";" instead of a blank white space...
                                       #so to fix the problem, we added this line to replace the semi-colon with an actual space
         i += 1
-    return render_template("table.html", 
+    return render_template("altable.html", 
                            htmlStr=htmlStr,
                            ans=ans)
 
+
+
+
+###########################
 
 if __name__=="__main__":
     app.debug=True

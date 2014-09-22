@@ -16,6 +16,10 @@
  li:hover {background:aqua;}
  li:active {background:red;}
   </style>
+<html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
 <body class="pattern">
 <h1 id="l" class="c center rounded">New York City Restaurant Inspection Results</h1>
 <form class="rounded c center" id="m" method="POST">
@@ -24,13 +28,18 @@
 	<input type="radio" name="group1" value={{boro}}> {{boro}} <br>	
 	{% endfor %}
 	<h2> Food or Grade? </h2>
-	<input type="radio" name="group2" value="Food" checked >Cuisine type <br>
+	<input type="radio" name="group2" value="Food"> Cuisine type <br>
 	<input type="radio" name="group2" value="Grade"> Inspection Grade <br>
 
 	<input id="m" type="submit" 
-		value="Submit">
+		value="Submit"> 
+
+
+
 </form>
+
 </body>
+</html>
 
 
 

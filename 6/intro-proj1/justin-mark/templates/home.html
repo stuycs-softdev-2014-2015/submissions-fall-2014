@@ -1,20 +1,149 @@
-<h1>Explore Data About School Districts and Their attendance rates</h1>
-<button><a href="/data">Raw Data</a></button>
-<button><a href="/facts">Facts</a></button>
+{% extends "layout.html" %}
 
-<h3>View ordered data</h3>
-<select id="order-data">
-  <option value="">Pick an order</option>
-  <option value="attendance-desc">Attendance (Highest to Lowest)</option>
-  <option value="enrollment-desc">Enrollment (Highest to Lowest)</option>
-  <option value="attendance-asc">Attendance (Lowest to Highestt)</option>
-  <option value="enrollment-asc">Enrollment (Lowest to Highest) </option>
-</select>
+{% block body %}
+<div class="header">
+  <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+    <a class="pure-menu-heading" href="">NYC School Attendance</a>
 
+    <ul>
+      <li class="pure-menu-selected"><a href="/">Home</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="splash-container">
+  <div class="splash">
+    <h1 class="splash-head">NYC School Attendance</h1>
+    <p class="splash-subhead">
+    Find stats and data about attendance and enrollment in NYC schools
+    </p>
+    <p>
+    <a data-scroll data-options='{"easing":"easeInOutQuad"}' href="#content" class="pure-button pure-button-primary">Get Started</a>
+    </p>
+  </div>
+</div>
+
+<div class="content-wrapper" id="content">
+  <div class="content">
+    <h2 class="content-head is-center">Here's a quick view of the 2013-2014 data</h2>
+    <div class="pure-g">
+
+      <div class="pure-u-1">
+        <table class="pure-table center">
+          <thead>
+            <tr>
+              <th>District</th>
+              <th>YTD % Attendance</th>
+              <th>YTD Enrollment</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for district in d['data'][:-1] %}
+            <tr>
+              <td>{{ district[0] }}</td>
+              <td>{{ district[1] }}%</td>
+              <td>{{ district[2] }}</td>
+            </tr>
+            {% endfor %}
+            <tr class="highlight">
+              <td>{{ d['data'][-1][0] }}</td>
+              <td>{{ d['data'][-1][1] }}</td>
+              <td>{{ d['data'][-1][2] }}</td>
+            </tr>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ribbon l-box-lrg pure-g">
+    <div class="pure-u-1">
+
+      <h2 class="content-head content-head-ribbon">Here are some facts</h2>
+
+      <p>
+      These facts are generated on-the-fly from our data when you visit this page.
+      </p>
+    </div>
+
+    <div class="l-box pure-u-1-2 pure-u-md-1-2 pure-u-lg-1-4">
+      <h3 class="content-subhead">
+        <i class="fa fa-arrow-up"></i>
+        Largest School District
+      </h3>
+      <p>
+      District 2 has {{d['facts']['enrollment-high']}} students.
+      </p>
+    </div>
+    <div class="l-box pure-u-1-2 pure-u-md-1-2 pure-u-lg-1-4">
+      <h3 class="content-subhead">
+        <i class="fa fa-arrow-down"></i>
+        Smallest School District
+      </h3>
+      <p>
+      District 16 has {{d['facts']['enrollment-low']}} students.
+      </p>
+    </div>
+    <div class="l-box pure-u-1-2 pure-u-md-1-2 pure-u-lg-1-4">
+      <h3 class="content-subhead">
+        <i class="fa fa-thumbs-up"></i>
+        Best Attendance
+      </h3>
+      <p>
+      District 26 with {{d['facts']['attendance-high']}}% attendance.
+      </p>
+    </div>
+    <div class="l-box pure-u-1-2 pure-u-md-1-2 pure-u-lg-1-4">
+      <h3 class="content-subhead">
+        <i class="fa fa-thumbs-down"></i>
+        Worst Attendance
+      </h3>
+      <p>
+      Special ED District 75 with {{d['facts']['attendance-low']}}% attendance.
+      </p>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2 class="content-head is-center">Explore sorted attendance data</h2>
+
+    <div class="pure-g">
+      <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+
+        <div class="pure-u-1-3"></div>
+        <div class="pure-u-1-3">
+          <p>
+          You can choose an option below to view data sorted by a certain column.
+          </p>
+
+          <select id="order-data">
+            <option value="">Pick an order</option>
+            <option value="attendance-desc">Attendance (Highest to Lowest)</option>
+            <option value="enrollment-desc">Enrollment (Highest to Lowest)</option>
+            <option value="attendance-asc">Attendance (Lowest to Highestt)</option>
+            <option value="enrollment-asc">Enrollment (Lowest to Highest) </option>
+          </select>
+        </div>
+        <div class="pure-u-1-3"></div>
+
+        <form class="pure-form pure-form-stacked" action="/data" method="post">
+          <fieldset>
+            <label for="order-keyword">Order Keyword</label>
+            <input id="order-keyword" name="order" type="text" placeholder="attendance-desc">
+            <button type="submit" class="pure-button">View Ordered Data</button>
+          </fieldset>
+        </form>
+      </div>
+
+  </div>
+</div>
 <script>
 document.getElementById("order-data").onchange = function() {
   if (this.selectedIndex !== 0) {
-    window.location.href = document.location.href + "data/" + this.value;
+    document.getElementById('order-keyword').value = this.value;
   }
 };
+
+smoothScroll.init();
 </script>
+{% endblock %}

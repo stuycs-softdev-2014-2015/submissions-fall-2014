@@ -1,22 +1,63 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app= Flask(__name__)
 
 stream=open('scores.csv', 'r')
 readas=stream.read()
 stream.close()
-@app.route("/")
-def home():
-    return render_template("home.html")
 
-@app.route("/data")
+@app.route("/", methods=["GET", "POST"])
+def home():
+    if request.method=="GET":
+        return render_template("login.html")
+    else:
+        user = request.form['user']
+        pwd = request.form['pwd']
+        if user==None or pwd==None:
+            return render_template("login.html")
+        else:
+            return render_template("home.html", user=user, pwd=pwd)
+
+@app.route("/login", methods=["GET","POST"]) 
+def login():
+    if request.method=="GET":
+        return render_template("login.html")
+    else:
+        user = request.form['user']
+        pwd = request.form['pwd']
+        if user==None or pwd==None:
+            return render_template("login.html")
+        else:
+            return render_template("home.html", user=user, pwd=pwd)
+
+@app.route("/data", methods=["GET","POST"])
 def data():
+    headstr = "State,SAT: Avg. Composite Score,SAT: Avg. Critical Reading Score,SAT: Avg. Mathematics Score,SAT: Avg. Writing Score,Percent taking SAT,Student to Teacher Ratio,Percent taking ACT,ACT: Avg. Composite Score,ACT: Avg. English Score,ACT: Avg. Math Score,ACT: Avg. Reading Score,ACT: Avg. Science Score"
     listlist = []
+    searchlist = []
     ret = readas.splitlines()
     for x in ret:
         innerlist=x.split(",")
         listlist.append(innerlist)
-    return render_template("data.html", listlist=listlist)
+        searchlist = listlist[1:]
+    if request.method=="GET":
+        return render_template("data.html",listlist=listlist, searchlist=searchlist)
+    else:
+        state = request.form['States']
+        statelist = []
+        print state
+        ret = readas.splitlines()
+        for x in ret:
+            #print x
+            #print innerlist[0]
+            innerlist=x.split(",")
+            if x == headstr:
+                statelist.append(innerlist)
+            elif innerlist[0]==state:
+                statelist.append(innerlist)
+        #print statelist
+        #print state
+        return render_template("data.html", statelist=statelist, searchlist=searchlist)
 
 @app.route("/analysis")
 def analysis():
@@ -85,4 +126,4 @@ def analysis():
 
 if __name__=="__main__":
     app.debug = True
-    app.run()
+    app.run(host="0.0.0.0", port=5000)#0.0.0.0 means can run on any host

@@ -41,18 +41,13 @@ def analysis():
 
 @app.route("/compare")
 def compare():
-	if (request.args.get("schools", None) == None):
-		school_list = []
-		numbers = []
-		x = 0
-		for school in school_data()[1:]:
+	school_list = []
+	for school in school_data()[1:]:
 			school_list.append(school[1])
-			numbers.append(x)
-			x += 1
-		return render_template("compare.html", length = numbers, schools = school_list)
+	if (request.args.get("schools") == None):
+		return render_template("compare.html", schools = school_list)
 	else:
-		schools_selected = request.args.get("schools", None)
-		return "fuck you"
+		return render_template("compare.html", school_data = school_data(), schools = school_list, schools_selected = request.args.getlist("schools"))
 	
 if __name__ == '__main__':
     app.run(debug = True)

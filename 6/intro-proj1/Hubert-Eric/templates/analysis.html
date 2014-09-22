@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/analysis.css') }}">
+</head>
+<body>
+<div id="back">
+<div id="display">
+<h3>For planets with {{bounds[0]}} between {{bounds[1]}} and {{bounds[2]}}</h3>
+The average mass is: {{avgList[0]}} Jupiter masses <br>
+Average Radius: {{avgList[1]}} Jupiter radii <br>
+Average Eccentricity: {{avgList[2]}}<br>
+Average Inclination: {{avgList[3]}}&deg;<br>
+Average Year of Discovery: {{avgList[4]}} <br>
+</div>
+</div>
+</body>
+</html>
+

@@ -1,55 +1,70 @@
 <!doctype html>
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+
+</head>
+
 <style>
-button {
-   border: 3px solid #0a3c59;
-   background: #3e779d;
-   background: -moz-linear-gradient(top, #65a9d7, #3e779d);
-   padding: 10px 20px;
-   text-shadow: #7ea4bd 0 1px 0;
-   color: #06426c;
-   font-size: 16px;
-   font-family: helvetica, serif;
-   text-decoration: none;
-   vertical-align: middle;
-   }
-button:hover {
-   background: white;
-   }
-button:active {
-   background: gray;
-   }
 
-
-h1 {background-color: aqua;
-    width: 300px;
-    padding: 15px;
-    border: 3px dotted purple;
-    margin: 25px;
-
-
-}
-div {
-    background-color: lightgrey;
-    width: 300px;
-    padding: 25px;
-    border: 15px ridge orange;
-    margin: 25px;
-}
+div.info {background-color:aqua; padding:10px; margin:10px; border-style:ridge; border-color:yellow; border-width:5px;}
+div.form {background-color:yellow; padding:10px; margin:10px; border-style:solid; border-color:aqua; border-width:5px;}
+div.overall {background-color:#99FF99;}
 </style>
 
 <title>Background Information</title>
-<button><a href="/home">Home</a></button>
-<button><a href="/data">Raw Data</a></button>
-<button><a href="/analysis">Summary of Analysis</a></button>
-<button><a href="/conclusion">Conclusion</a></button>
+<div class="overall">
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/analysis">Analysis</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/conclusion">Conclusion</a></li>
+        <li><a href="/data">Raw Data</a></li>
+    </ul>
+</div>
 
 {% if last and first %}
   <h1>Im glad you'd like to learn more about {{ first }} {{ last }}!</h1>
   <a href="https://www.google.com/#q={{first}}+{{last}}">Click here to launch a Google search.</a>
 {% else %}
-  <h3> Background Information: </h3> <div> We chose to analyze basketball players because we thought it <br> would be interesting to compare the best players to <br>ever play the sport with each other. At first we were comparing the <br>Player Efficiency Rating and the regular stat line of the players, <br>but we realized that there would be no way to compare them. So we <br>just tried to determine who was the greatest player of all time (G.O.A.T). <br> </div>
 
-  <h4> If you'd like to learn more about a certain basketball player, please type their name in the url using the format: localhost:4242/about/playerfirstname/playerlastname </h4>
+<div class="grids-example">
+    <div class="pure-g">
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="info">
+            <h3>Background Information:</h3>
+            <p>  We chose to analyze basketball players because we thought it would be interesting to compare the best players to ever play the sport with each other. At first we were comparing the Player Efficiency Rating and the regular stat line of the players, but we realized that there would be no way to compare them. So we just tried to determine who was the greatest player of all time (G.O.A.T).         <p>
+    </div>
+	</div>
 
+    <div class="pure-u-1 pure-u-md-1-2">
+        <div class="form">
+            <p>
+<legend>If you'd like to learn more about a certain basketball player, please fill out this form:</legend>
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+        <div class="pure-control-group">
+            <input id="name" type="text" placeholder="First Name" name="first">
+        </div>
 
+        <div class="pure-control-group">
+            <input id="lastname" type="text" placeholder="Last Name" name="last">
+        </div>
+	<div class="pure-controls">
+            <button type="submit" name="b" value="Search" class="pure-button pure-button-primary">Search</button>
+	    <button type="submit" name="b" value="Clear" class="pure-button pure-button-secondary">Clear</button>
+        </div>
+
+    </fieldset>
+</form> </p>
+         </div>
+    </div>
+</div>
+</div>
+
+</div>
 {% endif %}
+
+</html>

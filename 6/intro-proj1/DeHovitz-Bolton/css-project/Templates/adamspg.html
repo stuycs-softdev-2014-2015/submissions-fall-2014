@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Welcome!</title>
+
+        <link rel="stylesheet"
+        href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<div id="style">
+{% block style %}{% endblock style %}
+</div> <!--style-->
+
+
+</head>
+
+
+<form class="pure-form pure-form-aligned" method="POST" action="/results">
+<div id="opener" class="title">
+ {% block body %}{% endblock body %}
+</div> <!--opener-->
+
+<center>
+<section class="c">
+<fieldset>
+<div class="pure-control-group"><br>
+  <label for="name">What did they name you?</label>
+  <input id= "name" name = "name"type="text" placeholder="I do not know">
+</div>
+
+
+<div class="pure-control-group">
+  <label for="quote">What did you tell them?</label>
+  <input type="text" name = "quote" input id= "quote" size="20" placeholder="I said nothing">
+</div>
+<div class="pure-control-group">
+  <label for="adjective">How did they describe you?</label>
+  <input type="text" name = "adjective" input id="adjective" size="20" placeholder="indescribable">
+</div>
+</section><br><font face ="Baskerville">
+<button type = "submit" class="pure-button pure-button-primary" href="/results"> Wise
+  Quotes Ahead!</button>
+
+</fieldset>
+</center>
+</form>
+</body>
+</html>

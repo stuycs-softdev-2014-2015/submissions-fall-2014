@@ -1,12 +1,12 @@
 This folder includes the mini-project of Ling Dong and Lise Ho.
 
+Instructions: <br>
+NOTE: These files assume usage of Flask. <br>
+Copy and paste py and csv files and place in virtualenv. <br>
+HTML files should go in templates folder when using flask. <br>
 
-Instructions:
-Copy and paste py and csv files and place in virtualenv
-Copy html files in templates folder and place in corresponding templates folder in a virtualenv
+Python altconversion.py
 
-Python conversion.py
+altconversion.py works on port 5020. <br>
 
-Conversion.py works at port 5020 when run with flask
-
-localhost:5050/
+localhost:5020/

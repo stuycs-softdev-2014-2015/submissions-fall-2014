@@ -67,14 +67,26 @@ x = "NBAstats.csv"
 def source():
     return render_template("source.html")
 
-@app.route("/comment")
+@app.route("/comment",methods=["GET","POST"])
 def comment():
     l = ['cookies', 'donuts', 'ice cream', 'muffins']
     if request.method=="GET":
         return render_template("comment.html", l=l)
-    
-        
- 
+    else:
+        name = request.form['name']
+        comment = request.form['comment']
+        f = open("comment.txt","r")
+        oldcomment = f.read()
+        f = open("comment.txt","w")
+        f.write(name+" said: \n"+comment+"\n\n"+oldcomment)
+        f = open("comment.txt","r")
+        return render_template("display.html",f=f)
+
+@app.route("/display")
+def display():
+    f = open("comment.txt","r")
+    return render_template("display.html",f=f)
+
 @app.route("/project")
 def help():
     return htmlify(pythtable(x))

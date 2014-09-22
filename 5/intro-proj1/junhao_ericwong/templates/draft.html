@@ -1,29 +1,33 @@
-<head><title>NBA Draft Analysis</title></head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<head><title>NBA Statistics Analysis</title></head>
 
 <body>
-  <center><h1>Comparing by Drafts</h1></center>
+  <center><h1>Comparing by Statistics</h1></center>
   <br>
   <br>
-  Here's how well draftexpress.com and NBADraft.com were able to predict the picks of the first round.
+  Here's how well draftexpress.com and NBADraft.net  were able to predict the picks of the first round.
   <br>
   <br>
-  <table border='1'>
+  <table class="pure-table pure-table-bordered">
     <tr>
-      <th></th><th>Actual Draft</th><th>draftexpress</th><th>NBAdraft</th>
+      <th>Pick</th><th>Actual Draft</th>
+      {% for d in l %}
+      <th>{{d}}</th>
+      {% endfor %}
     </tr>
-    <tr>
-      <th>Pick</th><th></th><th></th><th></th>
-    </tr>
-  {% for key in range(2,32) %}
+    {% for key in range(2,32) %}
     <tr>
       <td>{{info[key][0]}}</td>
       <td>{{info[key][1]}}</td>
-      <td>{{info[key][2]}}</td>
-      <td>{{info[key][3]}}</td>
-      <td>{{info[key][4]}}</td>
-    </tr>
-  {% endfor %}
-  </table>
-  
 
+      {% if 'draftexpress' in l %}
+      <td>{{info[key][2]}}</td>
+      {% endif %}
+
+      {% if 'NBAdraft' in l %}
+      <td>{{info[key][3]}}</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
 </body>

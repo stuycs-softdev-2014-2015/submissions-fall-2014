@@ -1,17 +1,34 @@
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
 <html>
   <body>
-    <h1> Comments </h1>
+
+    <h1>Post a Comment</h1>
     
-    <form method="POST">
-      Your Name:<input type="text" name="name"><br>
-      <textarea rows="10" cols="50"> Comment here! </textarea><br>
-      <h2>Check your favorite food out of these!</h2> <br>
-      {% for item in l %}
-      <input type="checkbox" name="food" value={{item}}>{{item}}<br>
-      {% endfor %} 
-      <p>
-	<input type="submit" name="s" value="Submit">
+    <form class="pure-form" method="POST">
+      <fieldset>
+	<input type="text" name="name" placeholder="Name"><br><br>
+	<textarea name="comment" placeholder="Comment here!" rows="10" cols="50"></textarea><br><br>
+	Which one of these is your favorite?<br>
+	{% for item in l %}
+	<input type="checkbox" name="food" value={{item}}>{{item}}<br>
+	{% endfor %} 
+	<br>
+	<input type="submit" class="pure-button pure-button-primary" name="s" value="Post">
+      </fieldset>
     </form>
 
   </body>
+
+<br><br>
+<div class="pure-menu pure-menu-open">
+    <ul>
+        <li><a href="/home">Home Page</a></li>
+        <li><a href="/project">Project</a></li>
+        <li><a href="/analysis">Analysis</a></li>
+	<li><a href="/source">Source</a></li>
+        <li><a href="/display">Wall</a></li>
+    </ul>
+</div>
+
 </html>
