@@ -19,14 +19,14 @@ f.close()
 if 'order' not in form:
     form['order'] = 'Performance Points'
 if 'direction' not in form:
-    form['direction'] = 'down'
+    form['direction'] = 'up'
         
 ##assigns interval, default=50
 if 'interval' not in form:
     form['interval'] = 50
 
 ##changes ordering, order will be a string
-def order(column, direction):
+def order(column, directions):
     least2big = []
     head = data.split("\n")[0]
     head = head.split(', ')
@@ -51,13 +51,13 @@ def order(column, direction):
                 if int(least[index][:-2]) > int(element[index][:-2]):
                     least = element
             elif column == "Accuracy":
-                if int(least[index][:-1]) > int(element[index][:-1]):
+                if least[index][:-2] > element[index][:-2]:
                     least = element
             elif column=="Score Rank":
-                if int(least[index][1:]) > int(element[index][1:]):
+                if int(least[index]) > int(element[index]):
                     least = element
             elif column=="Play Count":
-                if int(least[index][:-8]) > int(element[index][:-8]):
+                if int(least[index][:-9]) > int(element[index][:-9]):
                     least = element
             elif column=="S":
                 if int(least[index]) > int(element[index]):
@@ -66,15 +66,14 @@ def order(column, direction):
                 if int(least[index]) > int(element[index]):
                     least = element
             elif column=="Nation":
-                if int(least[index]) > int(element[index]):
+                if least[index] > element[index]:
                     least = element
             elif column=="Player Name":
-                if int(least[index]) > int(element[index]):
+                if least[index] > element[index]:
                     least = element
         least2big.append(least)
         lines.pop(lines.index(least))
-    if direction == 'up':
-
+    if directions == 'up':
         least2big.insert(0,head)
     else:
         least2big.reverse()
@@ -82,6 +81,8 @@ def order(column, direction):
     return least2big
 #######################################################
 ##cuttable
+form['direction']="up"
+
 def cutTable(pageNum, interval):
     printedString="";
     if 'pageNum' not in form:
@@ -96,9 +97,9 @@ def cutTable(pageNum, interval):
     table+="</table>"
     
     ###########the buttons to sort
-    upCaret='<form method="get" action="."><input type="hidden" name="sort" value="true"><button class="pure-button" type="submit" name="'
+    upCaret='<form method="POST" action="."><button class="pure-button" type="submit" name="'
     upCaret2='" value="up"><i class="fa fa-caret-up"></i></button></form>'
-    downCaret='<form method="get" action="."><input type="hidden" name="sort" value="true"><button class="pure-button" type="submit" name="'
+    downCaret='<form method="POST" action="."><button class="pure-button" type="submit" name="'
     downCaret2='" value="down"><i class="fa fa-caret-down"></i></button></form>'
 
     printedString+= '<table border="1" class="pure-table"><thead>'
@@ -110,14 +111,6 @@ def cutTable(pageNum, interval):
     x = blah.pop(0)
     currentPage = blah[1+(int(form['pageNum']) * int(form['interval'])) : 1 + int(form['interval'])+ (int(form['pageNum'])*int(form['interval']))]
     return printedString+"<tr>".join(currentPage)+"</tbody></table>"+x
-
-####################################################
-app = Flask(__name__)
-
-@app.route("/home")
-@app.route("/")
-def home():
-    return render_template("home.html")
 
 
 
@@ -131,15 +124,31 @@ def prepareTable():
     ans+= cutTable(int(form['pageNum']),int(form['interval']))
     ans+= '<br><br>'
     return ans;
-tablestring = prepareTable()
+
+####################################################
+app = Flask(__name__)
+
+@app.route("/home")
+@app.route("/")
+def home():
+    return render_template("home.html")
+
 
 @app.route("/table/", methods=['GET','POST'])
 def makeTablePage():
     print request.data
     print request.form
-    ##form['Order']=request
-    ##form['direction']=request
-    ##cutTable[again]
+    print request.method
+    if (request.method=="POST"):
+        form['order']=request.form.keys()[0]
+        form['direction']=request.form.values()[0]
+        direction= request.form.values()[0]
+        print direction
+        tablestring=""
+        tablestring=prepareTable()
+    else:
+        print "swag"
+        tablestring = prepareTable()
     ##render all table operations here
     return render_template("table.html",tablestr=tablestring)
 @app.route("/about")

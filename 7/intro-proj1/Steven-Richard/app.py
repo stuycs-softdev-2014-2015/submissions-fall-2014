@@ -65,6 +65,7 @@ def pokemovesdictionary():
 
 @app.route("/home",methods=["GET","POST"])
 def home():
+    
     isSearch = False
     cd = pokedexreader()
     if request.method=="GET":
@@ -73,7 +74,7 @@ def home():
         button = request.form["b"]
         name = request.form["name"]
         type = request.form["type"]        
-        if button == "submit" and name != None:
+        if button == "Submit" and name != None:
             i = 0
             while (i < len(cd)):
                 try:
@@ -86,7 +87,7 @@ def home():
                     return render_template("home.html",
                                             codedata=cd,
                                             movesdictionary = pokemovesdictionary(),
-                                            isSearch = isSearch)                
+                                            isSearch = isSearch)         
         return render_template("home.html",
                                 codedata=cd,
                                 movesdictionary = pokemovesdictionary(),

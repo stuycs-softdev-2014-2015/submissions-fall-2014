@@ -29,7 +29,7 @@
 	</thead>
 
 	{%else%}
-		{%if line.split(',').pop(1).lower() == building_type%}
+		{%if line.split(',').pop(1).lower() == building_type and  line.split(',').pop(0) >= zip_start and  line.split(',').pop(0) <= zip_end %}
 	            {% if (lines.index(line))%2 != 0 %}
 	                <tr class="pure-table-odd">
              	    {%else%}
