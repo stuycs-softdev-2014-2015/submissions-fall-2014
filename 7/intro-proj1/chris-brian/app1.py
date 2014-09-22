@@ -22,6 +22,10 @@ def form():
 def page():
 	if request.method=="GET":
 		return render_template("Analysis2.html")
+@app.route("/home",methods=["GET","POST"]) 
+def home(): 
+	if request.method=="GET":
+		return render_template("Analysis1.html")
 
 if __name__ =="__main__":
     app.debug = True
