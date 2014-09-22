@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Error 404{% endblock %}
+{% block content %}
+<div style="text-align: center" class="jumbotron">
+  <h1><strong>Yikes!</strong> Error 404</h1>
+  <p>The page you requested could not be found.</p>
+  <br>
+  <p>You should probably go <a href="{{ url_for('index') }}">home</a>.</p>
+</div>
+{% endblock %}

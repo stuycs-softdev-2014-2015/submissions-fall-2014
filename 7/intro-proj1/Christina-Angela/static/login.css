@@ -1,14 +1,22 @@
-
 .center {
+    text-align: center;
+}
+
+.centered {
   text-align: center;
-  text-color: #FA8072;
+  color: #FA8072;
   font-weight: bold;
+}
+
+
+.centered:hover {
+    color: black;
 }
 
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: auto;
+    padding: auto;
     overflow: hidden;
 }
 

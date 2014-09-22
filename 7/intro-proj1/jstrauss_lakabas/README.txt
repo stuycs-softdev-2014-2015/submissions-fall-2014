@@ -16,6 +16,8 @@ What comes with the project:
 1. The app itself - the app.py file
 2. Templates for some of the webpages - in the templates folder
 3. The original project - in the original_files folder
+4. Static elements such as photos - in the static folder
+5. Helper method for the form - the utils.py file
 
 Resources:
 

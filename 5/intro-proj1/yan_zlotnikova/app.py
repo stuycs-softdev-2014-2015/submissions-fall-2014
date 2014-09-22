@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request 
 
 app = Flask(__name__)
 
@@ -11,9 +11,67 @@ images=["static/img/chick.jpeg",
     ]
 
 @app.route("/")
-def home():   
+def home():
     import random
     num = random.randrange(0,4)
+    rankBy = request.args.get("rankBy",None)
+    button = request.args.get("b",None)
+    state = request.args.get("state",None)
+    if (button ==None or button=="home"):
+        return render_template("home.html", img=images[num])
+    else: 
+        if (state!=None):
+            found = False
+            r = reportAlpha()
+            s = []
+            for item in r: 
+                if ((item[0]).lower()==state.lower()):
+                    found = True
+                    s = item
+                    break
+            if (found==False): 
+                render_template("state.html",statename="State Not Found")
+            else: 
+                render_template("state.html",statename=s[0],rank=s[8],one=s[1],two=s[2],three=s[3],four=s[4],five=s[5],six=s[6],seven=s[7])
+        if (rankBy == "alphabet"): 
+            f = open("templates/tableAlpha.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableAlpha.html",'a')
+                f.write(tableAlpha())
+                f.close()
+            return render_template("tableAlpha.html",img=images[num], rankedBy="Alphabetical Order")
+        if (rankBy=="hightolow"): 
+            f = open("templates/tableHighToLow.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableHighToLow.html",'a')
+                f.write(table())
+                f.close()
+            return render_template("tableHighToLow.html",img=images[num], rankedBy="High to Low Health Rankings")
+        if (rankBy=="lowtohigh"): 
+            f = open("templates/tableLowToHigh.html",'r') 
+            tableNeeded = True
+            for line in f.readlines():
+                if ("Hawaii" in line):
+                    tableNeeded = False
+            if (tableNeeded): 
+                f.close()
+                f = open("templates/tableLowToHigh.html",'a')
+                f.write(tableLowToHigh())
+                f.close()
+            return render_template("tableLowToHigh.html",img=images[num], rankedBy="Low to High Health Rankings")
+        
+            
+
     f = open("templates/home.html",'r') 
     tableNeeded = True
     for line in f.readlines():
@@ -27,6 +85,35 @@ def home():
     return render_template("home.html", 
                            img = images[num])
 
+def tableLowToHigh(): 
+    data=report()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(rank[len(rank)-1])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
+
+def tableAlpha():
+    data=reportAlpha()
+    result_list=[]
+    #L=s.split("\n")
+    #for item in L:
+        #if item=='<data>':
+    rank=range(1,51,1)
+    for info in data:
+        x="<td><center>"+str(info[8])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
+        result_list.append(x)
+        rank.remove(rank[0])
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
 
 def table():
     data=report()
@@ -39,9 +126,9 @@ def table():
         x="<td><center>"+str(rank[0])+"</center></td>"+"\n"+"<td><center>"+info[0]+"</center></td>"+"<td><center>"+str(info[1])+"</center></td>"+"\n"+"<td><center>"+str(info[2])+"</center></td>"+"\n"+"<td><center>"+str(info[3])+"</center></td>"+"\n"+"<td><center>"+str(info[4])+"</center></td>"+"\n"+"<td><center>"+str(info[5])+"</center></td>"+"\n"+"<td><center>"+str(info[6])+"</center></td>"+"\n"+"<td><center>"+str(info[7])+"</center></td><tr>"
         result_list.append(x)
         rank.remove(rank[0])
-        result="\n".join(result_list)
-        result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
-        return result
+    result="\n".join(result_list)
+    result=result+ "\n" + "<tr>" + "\n" +  "</table>" + "\n" + "</div>" + "\n" + "</body>"
+    return result
 
 
 
@@ -189,6 +276,7 @@ def organicvsreg(filename):
         a=a[1:] 
     return d
 
+
 def report():
     healthiest=healthiest_state('state_deathper100,000_health.csv')
     rw=redvswhite('US_certified_organic_livestock_08.csv')
@@ -208,8 +296,28 @@ def report():
         item.append(pw[item[0]])
     return r
 
-     
-
+def reportAlpha(): 
+    data = open_data('cattleps.csv')
+    rw=redvswhite('US_certified_organic_livestock_08.csv')
+    org=organicvsreg('cattleps.csv')
+    pr=percentred('US_certified_organic_livestock_08.csv')
+    pw=percentwhite('US_certified_organic_livestock_08.csv')
+    r=[]
+    for info in data: 
+        x=[info[0],info[12]]
+        r.append(x)
+    for item in r:
+        item.insert(1,rw[item[0]][0])
+        item.insert(2,rw[item[0]][1])
+        item.insert(3,org[item[0]][0])
+        item.insert(4,org[item[0]][1])
+        item.insert(5,org[item[0]][2])
+        item.insert(6,pr[item[0]])
+        item.insert(7,pw[item[0]])
+    return r
+        
+    
+    
 if __name__=="__main__":
     app.debug=True
     app.run()

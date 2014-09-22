@@ -1,82 +1,62 @@
 <html>
-<head>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-</head>
-<center>
-<body background= "static/index.jpg">
-    <style> 
-      h1 { color: Navy;
-      float: center;
-      width: 65%
-      } 
-      th { background-color: aqua;}
-      td { background-color: #F3F781;}
-    </style>
-	<br><br><br><br><br><br>
-	<table class="pure-table pure-table-bordered pure-table-striped">
-		<thead>
-		<tr>
-			<th>State</th>
-			<th>  Violent crime</th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th>    Property crime</th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-		<tr>
-			<th></th>
-			<th>Total</th>
-			<th>Murder</th>
-			<th>Rape</th>
-			<th>Robbery</th>
-			<th>Aggravated assault</th>
-			<th>Total</th><th>Burglary</th>
-			<th>Larceny theft</th>
-			<th>Motor Vehicle theft</th>
-		</tr>
-		<tr>
+  <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  </head>
+  <center>
+    <body background= "static/index.jpg">
+      <style> 
+	h1 { color: Navy;
+	float: center;
+	width: 65%
+	} 
+	th { background-color: aqua;}
+	td { background-color: #F3F781;}
+      </style>
+      <br><br><br><br><br><br>
+      <table class="pure-table pure-table-bordered pure-table-striped">
+	<thead>
+	  <tr>
+	    <th>State</th>
+	    <th>  Violent crime</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	    <th>    Property crime</th>
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	  <tr>
+	    <th></th>
+	    <th>Total</th>
+	    <th>Murder</th>
+	    <th>Rape</th>
+	    <th>Robbery</th>
+	    <th>Aggravated assault</th>
+	    <th>Total</th><th>Burglary</th>
+	    <th>Larceny theft</th>
+	    <th>Motor Vehicle theft</th>
+	  </tr>
 	</thead>
-	{% if state1 %}
-	<td>{{state1}}</td>
-	{% else %}
-	<td> New York</td>
-	{% endif %}
-	{% for x in s1%}
-		<td> {{x}} </td>
-	{% endfor %}
-     </tr>
-      
-	 <tr>
-	{% if state2%}
-	<td>{{state2}}</td>
-	{% else %}
-	<td> California</td>
-	{%endif%}
-	{% for x in s2%}
-		<td> {{x}} </td>
-	{% endfor %}
-      </tr>
-	  
-	<tr>
-	<td> </td>
-	{% for x in s %}
-		<td>  </td>
-	{% endfor %}
-	 </tr>
-	 
-	 <tr>
-		<td>Greatest </td>
-		{% for x in s %}
-			<td> {{x}} </td>
-		{% endfor %}
-			
-	 </tr>
-	 
-    </table>
-</body>
-</center>
+	<tbody>
+	  <tr>
+	    {% for x in state1%}
+	    <td> {{x}} </td>
+	    {% endfor %}
+	  </tr>
+	  <tr>
+	    {% for x in state2%}
+	    <td> {{x}} </td>
+	    {% endfor %}
+	  </tr>
+	  <tr>
+	    {% for x in greatest%}
+	    <td> {{x}} </td>
+	    {% endfor %}
+	  </tr>
+	</tbody>
+      </table>
+    </body>
+  </center>
 </html>

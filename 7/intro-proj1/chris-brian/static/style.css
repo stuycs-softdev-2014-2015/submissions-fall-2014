@@ -1,0 +1,13 @@
+h2 {
+	color: blue
+}
+
+body {
+	color: white;
+	font-family: Sans-serif;
+	background-image: url('congruent_outline.png');
+    background-repeat: repeat;
+}
+/*h2:hover{
+	color: black;
+	}*/

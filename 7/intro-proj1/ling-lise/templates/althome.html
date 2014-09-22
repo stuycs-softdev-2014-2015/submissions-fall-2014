@@ -42,27 +42,27 @@ h1 {
 
 <table cellpadding="0" cellspacing="0" border="0">
 <td>
-<form method="get" action="/conversion" class="pure-form pure-form-aligned">
+<form method="POST" action="/welcome" class="pure-form pure-form-aligned">
     <fieldset>
         <div class="pure-control-group">
             <label for="name"></label>
-            <input id="name" type="text" placeholder="name">
+            <input name="name" type="text" placeholder="name">
         </div>
 
         <div class="pure-control-group">
             <label for="password"></label>
-            <input id="name2" type="password" placeholder="nickname">
+            <input name="name2" type="password" placeholder="nickname">
         </div>
 
         <div class="pure-controls">
             <label for="cb" class="pure-checkbox">
-                <input id="big" type="checkbox"><font size="122"> BIGGER</font>
+                <input name="style" value="big" type="checkbox"><font size="122"> BIGGER</font>
             </label>
 	    <label for="cb" class="pure-checkbox">
-                <input id="bold" type="checkbox"> <b>BOLDER</b>
+                <input name="style" value="bold" type="checkbox"> <b>BOLDER</b>
             </label>
 	    <label for="cb" class="pure-checkbox">
-                <input id="color" type="checkbox"> BETTER
+                <input name="style" value="color" type="checkbox"> BETTER
             </label>
 </td><br><br><br><br><td>
             <button class="button-large pure-button">onwards!</button><br><br>

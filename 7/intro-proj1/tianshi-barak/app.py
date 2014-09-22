@@ -12,7 +12,7 @@ killList=[]
 deathList=[]
 assistList=[]
 for x in data_text:
-    champList.append(x[0])
+    champList.append(x[0].upper())
     kdaList.append(x[1])
     killList.append(x[2])
     deathList.append(x[3])
@@ -33,9 +33,9 @@ def results():
     search1 = request.args.get("search1",None)
     search2 = request.args.get("search2",None)
     if button == "Search":
-        if search1 in champList and search2 in champList:
-            i = champList.index(search1)
-            j = champList.index(search2)
+        if search1.upper() in champList and search2.upper() in champList:
+            i = champList.index(search1.upper())
+            j = champList.index(search2.upper())
             kda1 = kdaList[i]
             kda2 = kdaList[j]
             kill1 = killList[i]
@@ -44,9 +44,9 @@ def results():
             death2 = deathList[j]
             assist1 = assistList[i]
             assist2 = assistList[i]
-            return render_template("comparison.html",
-                                   search1 = search1, 
-                                   search2 = search2,
+            return render_template("comparison2.html",
+                                   search1 = search1.capitalize(), 
+                                   search2 = search2.capitalize(),
                                    kda1 = kda1,
                                    kda2 = kda2,
                                    kill1 = kill1,
@@ -60,37 +60,38 @@ def results():
     
     
 @app.route("/data")
+#def data():
+#  s = """
+#  <!DOCTYPE html>
+#  <html>
+#  <head>
+#  <h1 align="center"><b>LEAGUE OF LEGENDS CHAMPION STATISTICS</b></h1>
+#  <style>
+#  body {
+#  background-color: #b0c4de;
+#  }
+#  tr:hover{color: #F00;}
+#  </style>
+#  </head>
+#  <body>
+#  <table border="2" cellspacing="1" cellpadding="5" align="center">
+#  """
+#  i = 0;
+#  for x in data_text:
+#      s+= "<tr>"
+#      for y in range(0,len(x)):
+#          if i<5:
+#              s += """<th bgcolor="#FFFF00"><b>"""+x[y].upper()+"</b></td>"
+#          elif i%5==0: #for first row
+#              s += """<td bgcolor="#00FFCC"><b>""" + x[y] + "</b></td>"
+#          else:
+#              s += """<td bgcolor="#FF66FF">""" + x[y] + "</td>"
+#          i+=1
+#      s+= "</tr>"
+#  s += "</table></body></html>"
+#  return s
 def data():
-    s = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <h1 align="center"><b>LEAGUE OF LEGENDS CHAMPION STATISTICS</b></h1>
-    <style>
-    body {
-    background-color: #b0c4de;
-    }
-    tr:hover{color: #F00;}
-    </style>
-    </head>
-    <body>
-    <table border="2" cellspacing="1" cellpadding="5" align="center">
-    """
-    i = 0;
-    for x in data_text:
-        s+= "<tr>"
-        for y in range(0,len(x)):
-            if i<5:
-                s += """<th bgcolor="#FFFF00"><b>"""+x[y].upper()+"</b></td>"
-            elif i%5==0: #for first row
-                s += """<td bgcolor="#00FFCC"><b>""" + x[y] + "</b></td>"
-            else:
-                s += """<td bgcolor="#FF66FF">""" + x[y] + "</td>"
-            i+=1
-        s+= "</tr>"
-    s += "</table></body></html>"
-    return s
-            
+    return render_template("data.html");
 
 if __name__ == "__main__":
     app.debug=True
