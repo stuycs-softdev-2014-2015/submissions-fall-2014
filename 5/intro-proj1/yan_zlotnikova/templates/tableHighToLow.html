@@ -1,3 +1,5 @@
+<!doctype html> 
+
 <!doctype html>
 <title>Healthiest States</title>
 <div class=page>
@@ -13,7 +15,7 @@
     </h2>
 
     <div align="center">
-      <img src={{img}} height="300">
+      <img src=static/img/cow.jpg height="300">
     </div>    
 
     <br>
@@ -24,24 +26,14 @@
     <h3>
       States that produce more organic meat than regular meat have lower death rates.
     </h3>
-    <form>
-      <input type="radio" name="rankBy" value="alphabet">Alphabetical Order<br>
-      <input type="radio" name="rankBy" value="hightolow">Health Rankings: High to Low<br>
-      <input type="radio" name="rankBy" value="lowtohigh">Health Rankings: Low to High<br>
-      State: <input type="text" name="state"><br>
-      <input type="submit" name="b" value="Submit"></submit>
-    </form>
+    <h4>
+      Ranked By: {{rankedBy}}
+    </h4>
 </head>
 
-<body>
-
-<!-- YOOOOO ELISE THIS IS WHERE YOU PUT THE STUFF
-THAT SAYS THIS IS THE TABLE
-DOUBLE CURLY BRACKETS FOR VARIABLES
-YOU CAN CHECK OUT MY IMG RANDOMIZER FOR REFERENCE-->
 <table>
   <tr>
-    <th><center>Healthiestx</center></th>
+    <th><center>Healthiest Rank</center></th>
     <th><center>States</center></th>
     <th><center>Red Meat</center></th>
     <th><center>White Meat</center></th>
@@ -51,7 +43,6 @@ YOU CAN CHECK OUT MY IMG RANDOMIZER FOR REFERENCE-->
     <th><center>Percentage of Red Meat</center></th>
     <th><center>Percentage of White Meat</center></th>
   <tr>
-<!--->
 <td><center>1</center></td>
 <td><center>Minnesota</center></td><td><center>16530.0</center></td>
 <td><center>155883.0</center></td>
