@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -11,9 +11,35 @@ def home(cols = None, counter = 0):
     return render_template('home.html',
             grid = grid[1:], headerRow = header)
 
-@app.route('/planet/test')
+@app.route('/planet/dataset', methods=['GET', 'POST'])
 def planetpage(stats = None):
-    return str(getPartialGrid(cleanedGrid, 1, 2))
+    if request.method=='POST':
+        print("post")
+
+        #receive variables
+        lowerbound = request.form['lowerbound']
+        upperbound = request.form['upperbound']
+        variable = request.form['variable']
+
+        try:
+            lowerbound = float(lowerbound)
+            upperbound = float(upperbound)
+            variable = int(variable)
+        except ValueError:
+            print("Not a Number")
+
+        if variable > 0:
+            partialGrid = getPartialGrid(cleanedGrid[1:], lowerbound, upperbound,
+                                                variable)
+        else:
+            partialGrid = cleanedGrid
+
+        return render_template('dataset.html',
+                grid=partialGrid, headerRow = cleanedGrid[0])
+    else:
+        print("get")
+        return render_template('dataset.html',
+                grid=cleanedGrid[1:], headerRow = cleanedGrid[0])
 
 @app.route('/analysis')
 def analysis():
