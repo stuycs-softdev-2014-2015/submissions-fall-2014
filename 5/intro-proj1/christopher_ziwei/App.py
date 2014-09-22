@@ -14,7 +14,7 @@ def mainpage():
     return render_template("Pokemon.html", data=data)
 
 @app.route('/', methods=['POST'])
-def redirect():
+def redirectto():
     searchid = request.form['text']
     return redirect(url_for('psearch', pokemonid=searchid), code=302)
 

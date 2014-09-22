@@ -4,21 +4,36 @@ def results():
     inStream.close()
     data = removeLineBr(data)
     lines = data.split("\n")
+    lines = getZip(lines)
     return lines
 
+
+def getZip(lines):
+
+    for line in lines:
+        b = lines.index(line)
+        if b != 0:
+            i = line.index(")")
+            lines[b] = line[1:6] + line[i+2:]
+            print lines[b]
+
+    return lines
+    
 def removeLineBr(a):
-     pos = 0
-     data = a[:]
-     amount = data.count('(')
-     while pos <= amount:
-         a = data.find('(')
-         data = data[: (a - 1)] + '-' + data[a:]
-         data = data[: a] + '^' + data[a + 1:]
-         pos += 1
-     data = data.replace('^', '(')
-     data = data[:126239]
-     return data
-     comment = '''
+         pos = 0
+         data = a[:]
+         amount = data.count('(')
+         while pos <= amount:
+             a = data.find('(')
+             data = data[: (a - 1)] + '-' + data[a:]
+             data = data[: a] + '^' + data[a + 1:]
+             pos += 1
+         data = data.replace('^', '(')
+         data = data[:126239]
+         return data
+
+
+comment = '''
     def findzipRange(lines, target, location):          # set up code to run through a column of our data for zip codes, then find the range
         rangelista = []
         for line in lines:                              # every line where the target is there, like range for small or commercial etc

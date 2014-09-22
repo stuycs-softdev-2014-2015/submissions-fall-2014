@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Diabetes Data - ID #{{ id_num }}{% endblock %}
+{% block content %}
+
+<div class="page-header">
+	<h1>View Page Data <span class="label label-default"> ID #{{ id_num }}</span></h1>
+</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<p> {{ description }} </p>
+		<p> Welcome to the rendered data table page for the data associated with <strong>ID #{{ id_num }}.</strong> </p>
+		<p> <strong>Requested data:</strong> {{ head }} </p>
+	</div>
+</div>
+
+<h2> {{head}} </h2>
+<table class="table table-striped">
+{% for type in table_package['types'] %}
+<th> {{ type }} </th>
+{% endfor %}
+
+{% for row in table_package['data'] %}
+<tr> 
+{% for data in row %} 
+<td> {{ data }} </td>
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}
