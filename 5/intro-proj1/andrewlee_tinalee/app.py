@@ -7,7 +7,6 @@ def about():
 
 @app.route("/home")
 def home():
-    #return render_template("home.html")
     html = ""
     html += "<html><title>" + "Home Page" + "</title>"
     html += "<h1>Starter Pokemon</h1>"
@@ -25,9 +24,10 @@ def index():
     if button == None or button=="Cancel":
         return render_template("index.html")
     else:
-        return """
-<h1>%s</h1>
-"""%("uname")
+        home()
+       #return """
+#<h1>%s</h1>
+#"""%("uname")
     #<a href "/home">home page</a>
 
     
