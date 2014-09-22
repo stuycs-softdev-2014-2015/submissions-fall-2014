@@ -18,7 +18,7 @@
   </style>
 <body class="pattern">
 <h1 id="l" class="c center rounded">New York City Restaurant Inspection Results</h1>
-<form class="rounded c center" id="m" method="POST">
+<form class="rounded c center" id="m" method="GET">
 	<h2> Pick a Borough: </h2>
 	{% for boro in l %}
 	<input type="radio" name="group1" value={{boro}}> {{boro}} <br>	
@@ -29,6 +29,7 @@
 
 	<input id="m" type="submit" 
 		value="Submit"> 
+	<button formaction="/results" type="submit" name="b"  value="submit">View Results</button>
 </form>
 </body>
 
