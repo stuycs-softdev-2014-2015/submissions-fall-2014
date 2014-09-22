@@ -1,0 +1,31 @@
+body {
+    margin:20px;
+}
+h1 {
+    text-align:center;
+    color:#99ff99;
+}
+table {
+    margin-left:auto;
+    margin-right:auto
+}
+th {
+    background-color:#919FB5;
+    //color:#99ff99;
+}
+tr:hover {
+    opacity: 0.8;
+}
+td {
+  text-align: center  
+}
+.first {
+    background-color:LightSkyBlue
+}
+.second {
+    background-color:SpringGreen
+}
+
+.button-orange{
+    background: rgb(223, 117, 20);
+}

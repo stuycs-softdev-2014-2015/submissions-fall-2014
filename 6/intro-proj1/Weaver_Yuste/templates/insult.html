@@ -1,0 +1,53 @@
+<style>
+
+h1 {text-align:center;
+font-family: "Courier New";
+border-style:solid;
+text-shadow: 2px 2px #FF6666;}
+
+body {font-family: "Courier New";}
+
+td:hover{ background: #FF6666; }
+
+td{ background: #FFCCCC;}
+
+h1:hover{  background: #FF6666;}
+h2:hover{ background: #FF6666;}
+h3:hover{ background: #FF6666;}
+p:hover{ background: #FF6666;}
+
+
+</style>
+
+<body>
+
+<h1> Results: </h1>
+
+{% if fat is sameas false %}
+
+<h2> Skinny </h2>
+
+You're so skinny you have to stand in the same place twice to cast a shadow<br><br>
+
+You're so skinny you can hula hoop with a cheerio <br><br>
+
+You're so skinny you turned sideways and disappeared <br><br>
+
+Please indulge yourself in a cookie or a donut. 
+
+
+
+{% else %}
+
+<h2> Fat </h2>
+
+You're so fat you don't need the internet, you're worldwide <br> <br>
+
+You're so fat your idea of dieting is deleting the cookies from your internet cache <br><br>
+
+You're so fat you sat on an iPhone and tunred it into an iPad (or you sat on a smart phone and turned it into a tablet for anti-mac people) <br><br>
+
+You are most likely morbidly obese. Obesity is a serious issue facing us today, do not take this lightly. 35% of all US adults are obese, don't become part of that statistic. By moderating your diet and engaging in daily physical excersise you will be well on your way to living a healthier lifestyle. Act now, before the problem gets out of hand! 
+
+{% endif %}
+</body>

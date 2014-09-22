@@ -1,0 +1,42 @@
+body {
+    background: #0e5603;
+    padding: 30px;
+    border: 5px solid #0e4603;
+    margin: 25px;
+    color: #ffffff;
+}
+
+h1 {
+    text-align: center;
+    font-size: 18px;
+    border-radius: 25px;
+    border: 5px solid #4A7023;
+    background: #458B00;
+    width: 800px;
+    align: center;
+}
+
+a:link {
+    color: cyan;
+}
+
+a:visited {
+    color: #00CC99;
+}
+
+a:hover {
+    color: #FF00FF;
+}
+
+a:active {
+    color: #0000FF;
+}
+
+.button-primary {
+    color: white;
+    background: #3366CC;
+#    border-radius: 5px;
+    text-shadow: .5px 1px 1px rgba(1,1,1,1);
+    font-size: 110%;
+   }
+

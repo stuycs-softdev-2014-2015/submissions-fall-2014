@@ -1,24 +1,62 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
+import utils
+import data
+
+data.statdict
 
 app = Flask(__name__)
 
-@app.route("/")
-@app.route("/home")
-def home():
-    r = "<h1>Welcome to the league of desu</h1>"
-    r += '<a href="/desu">desu</a>'
-    return r
-
-@app.route("/desu")
-def desu():
+def csvtolist(csvname):
     csvtable = []
-    csvf = open("data/out.csv")
+    csvf = open(csvname)
     csvln = csvf.readlines()
     csvf.close()
     for ln in csvln:
         csvtable.append(ln.split(","))
+    return csvtable
+
+@app.route("/")
+@app.route("/home")
+def home():
+    return render_template("home.html")
+
+@app.route("/all")
+def desu():
     return render_template("desu.html",
-                           csvtable=csvtable)
+                           stattable=csvtolist("data/stats.csv"),
+                           wrtable=csvtolist("data/winrate.csv"))
+
+@app.route("/level")
+def kun():
+    csvtable = csvtolist("data/stats.csv")
+    return render_template("kun.html",
+                           csvtable=csvtable,
+                           columnstoget = [0,1,2,4,6,8,10,12,14,16,18,19])
+
+@app.route("/form",methods=['GET','POST'])
+def form():
+    selects=5
+    csvtable = csvtolist("data/stats.csv")
+    if request.method=="GET":
+        return render_template("form.html",
+                               champnames=data.champnames,
+                               selects=selects)
+    else:
+        champs = []
+        for i in range(selects):
+            curchamp = request.form["champ"+str(i)]
+            if curchamp!="":
+                champs.append(curchamp)
+        action = request.form["a"]
+        if action=="go":
+            return render_template("generator.html",
+                                   champs=champs,
+                                   statnames=data.statnames,
+                                   statdict=data.statdict)
+        else :
+            return render_template("home.html")
+        
+
 
 if __name__ == "__main__":
     app.debug = True

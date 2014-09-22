@@ -1,47 +1,84 @@
-<html> <head> <title> Dataset Reader Homepage </title> </head>
 
-<script language="Javascript">
-	function showFunc() {
-		//Source: http://stackoverflow.com/questions/1085801/how-to-get-the-selected-value-of-dropdownlist-using-javascript
-		e = document.getElementById("first");
-		var value = e.options[e.selectedIndex].value;
-		var text = e.options[e.selectedIndex].text;
-		document.getElementById(value).style.display="inline";
-		document.getElementById("form").action = "/" + text;
-		var reveals = document.getElementsByClassName("reveal");
-		for (var i=0; i < reveals.length; i++)
-			reveals[i].style.display="inline";
-	}
-	function print(string) {
-		window.alert(string);
-	}
-</script>
-
+<html> 
+  <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <style>
-	.reveal {display: none}
+  body {
+  background-color: black;
+  color: white;
+  }
+  h1{
+  font-size: 550%;
+  font-style: italic
+  background-color: black; 
+  color: white;
+  width:40%;
+  float:center;
+  border-style:solid;
+  border-width:3px;
+  border-color:red;
+  }
+  .stretch {
+  width: 40%;
+  height:80%;
+  }
+  .reveal {display: none;}
 </style>
 
-<body>
-<h1>Dataset Reader Hompeage</h1>
-Dataset: 
-<select id="first" onchange="showFunc();">
-	<option value="blank"> </option>
-	{% for i in range(names|length) %}
-	<option value="{{ i }}">{{ names[i] }}</option>
-	{% endfor %}
-</select> <br>
+    <title>Forbes Dataset Reader Homepage </title> </head>
 
-<div class="reveal">Sort by:</div>
-<form id="form" action="" method="get">
-{% for i in range(lines|length) %}
-	<div id="{{ i }}" style="display:none">
-		<select name="sort">
-			{% for e in lines[i] %}
-				<option value="{{ e }}">{{ e }}</option>
-			{% endfor %}
-		</select>
-	</div>
-{% endfor %}
-</input><br>
+  <script language="Javascript">
+    function showFunc() {
+    //Source: http://stackoverflow.com/questions/1085801/how-to-get-the-selected-value-of-dropdownlist-using-javascript
+    e = document.getElementById("first");
+    var value = e.options[e.selectedIndex].value;
+    var text = e.options[e.selectedIndex].text;
+    document.getElementById("sorts").style.display="inline";
+    s = '<select name="sort">';
+    var lines = String({{ lines|tojson|safe }}).split(',');
+    for (var i=0; i<lines.length; i++) {
+	s += '<option value="' + lines[i] + '">' + lines[i] + '</option>';
+    }
+    s += '</select>'
+    document.getElementById("sorts").innerHTML = s;
+    document.getElementById("form").action = "/" + text;
+    var reveals = document.getElementsByClassName("reveal");
+    for (var i=0; i < reveals.length; i++)
+		      reveals[i].style.display="inline";
+		      }
+		      function print(string) {
+		      window.alert(string);
+		      }
+		      </script>
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li class="pure-menu-selected"><a href="#">Home</a></li>
+        <li><a href="/"> Front Page</a></li>
+        <li><a href="/Forbes2000.csv?sort=name"> Name Sort</a></li>
+        <li><a href="/Forbes2000.csv?sort=rank">Rank Sort</a></li>
+        <li><a href="/Forbes2000.csv?sort=country">Country Sort</a></li>
+    </ul>
+</div>
+
+  <body>
+    <h1>Forbes Dataset Reader</h1>
+    Dataset: 
+    <select id="first" onchange="showFunc();">
+      <option value="blank"> </option>
+      {% for i in range(names|length) %}
+      <option value="{{ i }}">{{ names[i] }}</option>
+      {% endfor %}
+    </select> <br>
+
+    <div class="reveal">
+      Sort by: 
+    </div>
+    <form class="pure-form" id="form" action="" method="get">
+      <div id="sorts"> </div>
+<br>
 <input type="submit" class="reveal" value="Submit">
-</form></body> </html>
+</form>
+<br> <img src="/static/Forbes3.jpg"  class="stretch" alt="" />
+<img src="/static/Forbes4.jpg"  class="stretch" alt="" />
+</body> </html>

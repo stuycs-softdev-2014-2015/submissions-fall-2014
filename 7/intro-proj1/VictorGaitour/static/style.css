@@ -1,0 +1,25 @@
+body {
+    color : green;
+    font-family:Sans-serif;
+    background-image: url("gradient_bg.png");
+    background-repeat: repeat-x;
+}
+
+h1 {
+    text-align :center;
+}
+
+h2 {
+    text-align:center;
+    font-family: "Times New Roman";
+    font-size:20px;
+   }
+
+.error {color:red;}
+h1 { border-style:dashed;
+border-color:purple;
+border-width:5px;
+background:yellow;
+align="center"
+
+}

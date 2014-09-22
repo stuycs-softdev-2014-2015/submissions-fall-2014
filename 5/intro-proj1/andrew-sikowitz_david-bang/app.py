@@ -23,6 +23,10 @@ for name in names:
 app = Flask(__name__)
 
 @app.route("/")
+def intro():
+	return render_template("forbes.html")
+
+@app.route("/home")
 def home():
     return render_template("home.html", lines=lines, names=names)
 
@@ -41,7 +45,7 @@ def data(filename = None):
     else:
         L = L + files[index2]
 
-    return render_template("file.html", l=L, filename=filename)
+    return render_template("file.html", l=L, name= filename)
 
 if __name__=="__main__":
     app.debug=True

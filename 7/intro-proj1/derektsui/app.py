@@ -1,20 +1,23 @@
-from flask import Flask, render_template
+from flask import Flask,render_template,request
 
 # app is an instance of the Flask class
 app = Flask(__name__)
 
-@app.route("/<sortby>")
-def sort(sortby=None):
-	return render_template("order.html",sortby=sortby)
-
 @app.route("/")
-@app.route("/<sortby>/<order>")
+@app.route("/",methods=["GET","POST"])
 def main(sortby=None, order=None):
+	startyear = 2000
+	endyear = 2013
+	if request.method == "POST":
+		startyear = request.form["start"]
+		endyear = request.form["end"]
+		sortby = request.form["sortby"]
+		order = request.form["sortorder"]
 	#!/usr/bin/python
 	print 'Content-Type: text/html'
 	print
 
-	htmlout = render_template("main1.html")
+	htmlout = ""
 	#OPEN FILE
 	dow = open ('DJIA.csv','r')
 	header = dow.readline()
@@ -79,10 +82,9 @@ def main(sortby=None, order=None):
 	    rs = (g / (nu+0.0000000000000000001)) / (l / (nd+0.0000000000000001)+0.0000000000000000001)
 	    rsi10.append(100-(100/(1+rs)))
 	    
-	htmlout += render_template("main2.html")
 	
 	start = -1
-	end=-100
+	end=-(len(dow)-1)
 	num = 0
 
 	newlist = dow[start:end:-1]
@@ -96,20 +98,13 @@ def main(sortby=None, order=None):
 	    if sortby == 'price':
 	        newlist2= sorted(newlist2,key=lambda item: float(item.split(',')[1]))
 	        newlist2.reverse()
-	        htmlout += '<p>Sort by <u>price</u> '
 	    elif sortby == 'pct':
 			newlist2=sorted(newlist2,key=lambda item: float(item.split(',')[3]))
 			newlist2.reverse()
-			htmlout += '<p>Sort by <u>% change</u> '
-	    else:
-	        htmlout += '<p>Sort by <u>date</u> '
 
 	if order:
 	    if order == 'inc':
 	        newlist2.reverse()
-	        htmlout += 'in <u>ascending</u> order</p>'
-	    else:
-	        htmlout += 'in <u>descending</u> order</p>'
         
 	#HTML DATA TABLE
 
@@ -123,53 +118,50 @@ def main(sortby=None, order=None):
 	else:
 	    per=int(form['per'].value)
     
-	diff = start - end
-	extra = 0
-	pages = diff / per + 1
-	if page == pages - 1:
-	    extra = abs(diff - (pages * per))
-	htmlout += '<u>' + str(diff) + '</u> values returned. (default - 9)<br>'
-	htmlout += '<u>' + str(per) + '</u> entries per page. (default - 50)<br><br>'
-	htmlout += 'Pages: &nbsp;'
-	for x in range(pages):
-	    htmlout += '<a href="project.py?page=' + str(x)
-	    if "year" in form:
-	            htmlout += '&year='+form['year'].value
-	    if "per" in form:
-	            htmlout += '&per='+form['per'].value
-	    htmlout += '">' + str(x) + '</a>&nbsp;'
-
-	htmlout += '<br><table border=1><tr><th>' + header.split(',')[0] + '</th><th>' + header.strip('\r\n').split(',')[1] + '</th><th>Change</th><th>% Change</th><th>MA-10</th><th>MA-15</th><th>RSI-10</th></tr>'
-    
-	x=0
-	for item in newlist2:
-	    out = ''
-	    out += '<tr><td>'
-	    out += newlist2[x].split(',')[0]
-	    out += '</td><td>'
-	    out += str(round(float(newlist2[x].split(',')[1]),2))
-	    out += '</td><td>'
-	    if float(newlist2[x].split(',')[2])>0:
-	        out += '<div style="color:green">'
-	    elif float(newlist2[x].split(',')[2])<0:
-	        out += '<div style="color:red">'
-	    out += str(round(float(newlist2[x].split(',')[2]),2))
-	    out += '</td><td>'
-	    out += str(round(float(newlist2[x].split(',')[3]),2))
-	    out += '</td></div><td>'
-	    out += str(round(float(newlist2[x].split(',')[4]),2))
-	    out += '</td><td>'
-	    out += str(round(float(newlist2[x].split(',')[5]),2))
-	    out += '</td><td>'
-	    out += str(round(float(newlist2[x].split(',')[6]),2))
-	    out +='</td></tr>'
-	    x+=1
-	    htmlout += out
-
-	htmlout += '''
-	</table>
-	</div>
-	'''
+	if sortby and order:   
+		diff = start - end
+		extra = 0
+		pages = diff / per + 1
+		if page == pages - 1:
+			extra = abs(diff - (pages * per))
+		htmlout += 'Out of <u>' + str(diff) + '</u> values<br>'
+	
+		htmlout += '<br><table border=1><tr><th>' + header.split(',')[0] + '</th><th>' + header.strip('\r\n').split(',')[1] + '</th><th>Change</th><th>% Change</th><th>MA-10</th><th>MA-15</th><th>RSI-10</th></tr>'
+		
+		x=0
+		for item in newlist2:
+			year = int(newlist2[x].split(',')[0][:4])
+			if int(year) >= int(startyear) and int(year) <= int(endyear):
+				out = ''
+				out += '<tr><td>'
+				out += newlist2[x].split(',')[0]
+				out += '</td><td>'
+				out += str(round(float(newlist2[x].split(',')[1]),2))
+				out += '</td><td>'
+				if float(newlist2[x].split(',')[2])>0:
+					out += '<div style="color:green">'
+				elif float(newlist2[x].split(',')[2])<0:
+					out += '<div style="color:red">'
+				out += str(round(float(newlist2[x].split(',')[2]),2))
+				out += '</td><td>'
+				out += str(round(float(newlist2[x].split(',')[3]),2))
+				out += '</td></div><td>'
+				out += str(round(float(newlist2[x].split(',')[4]),2))
+				out += '</td><td>'
+				out += str(round(float(newlist2[x].split(',')[5]),2))
+				out += '</td><td>'
+				out += str(round(float(newlist2[x].split(',')[6]),2))
+				out +='</td></tr>'
+				htmlout += out
+			x=x+1
+	
+		htmlout += '''
+		</table>
+		'''
+	else:
+		htmlout += '''
+		<p style ="color:red">Please choose display settings first!</p>
+		'''
 	
 	#------ANALYSIS--------
 	
@@ -177,7 +169,7 @@ def main(sortby=None, order=None):
 	<hr>
 	<a id='analysis'>
 	<div style="font-family:'Century Gothic,Helvetica',Arial;">
-	<h3> Analysis</h3>
+	<h2 class="content-subhead"> Analysis</h2>
 	<ul><li>A shorter-term MA > longer-term MA is a BULLISH (positive) sign.</li>
 		<li>An RSI > 50 is a BULLISH (positive) sign.</li>
 	</ul>
@@ -621,13 +613,8 @@ def main(sortby=None, order=None):
 	</div>
 	'''
 	
-	htmlout += '''
-	</body>
-	</html>
-	'''
-	
 		
-	return htmlout
+	return render_template("main1.html", sortby = sortby, order = order) + htmlout + render_template("main2.html")
 '''
 @app.route("/random")
 def randompage():

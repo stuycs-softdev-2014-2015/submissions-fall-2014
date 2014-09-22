@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 # app is an instance of the Flask class
 app = Flask(__name__)
@@ -29,8 +29,10 @@ def pokedexreader():
             codedata.append(pokemondata)
             pokemondata=[]
     return codedata
+
 #pokedexreader=pokedexreader();
-"""def pokemovesdictionary():
+
+def pokemovesdictionary():
     '''
     Creates a dictionary of viable moves for the pokemon
     '''
@@ -39,9 +41,10 @@ def pokedexreader():
     data=[]
     do=False
     i=0
+    p=pokedexreader()
     for x in datas:
         data.append(x.strip().split())
-    for y in pokedexreader:
+    for y in p:
         while do == False and i<len(data):
             if [y[1].lower()+":", '{']==data[i]:
                 finder = i
@@ -57,14 +60,39 @@ def pokedexreader():
         d[y[1]]=" ".join(d[y[1]]).upper()
         finder = 0
         i=0
-    return d"""
+    return d
 
 
-@app.route("/home")
+@app.route("/home",methods=["GET","POST"])
 def home():
-    return render_template("home.html",codedata = pokedexreader());
-                           #movesdictionary = pokemovesdictionary());
     
+    isSearch = False
+    cd = pokedexreader()
+    if request.method=="GET":
+        return render_template("home.html", codedata=cd, movesdictionary = pokemovesdictionary(), isSearch = isSearch)
+    else:
+        button = request.form["b"]
+        name = request.form["name"]
+        type = request.form["type"]        
+        if button == "Submit" and name != None:
+            i = 0
+            while (i < len(cd)):
+                try:
+                    if ((type == "name" and cd[i][1] == name) or (type == "num" and int(cd[i][0]) == int(name))):
+                        cd.insert(0,cd[i])
+                        isSearch = True
+                        i+=1
+                    i+=1
+                except:
+                    return render_template("home.html",
+                                            codedata=cd,
+                                            movesdictionary = pokemovesdictionary(),
+                                            isSearch = isSearch)         
+        return render_template("home.html",
+                                codedata=cd,
+                                movesdictionary = pokemovesdictionary(),
+                                   isSearch = isSearch)
+
 if __name__=="__main__":
     # set the instance variable debug to True
     app.debug = True

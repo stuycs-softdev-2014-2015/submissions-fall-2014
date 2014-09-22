@@ -1,0 +1,31 @@
+<head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  <style>
+    h1 { border-style:solid;
+    color:green;}
+    .a {color:purple;
+    text-align:left;}
+    .b {color:blue;
+    text-align:right}
+  </style>
+</head>
+
+<h1>Average Salary per Team</h1>
+<img id="image" src="/static/mitt.jpg">
+
+<table class = "pure-table pure-table-bordered">
+<thead>
+<tr>
+<th>Team</th>
+<th>Average Salary </th>
+</tr>
+</thead>
+<tbody>
+{% for key in tdic %}
+    <tr>
+    <td class="a">{{ key }}</td>
+    <td class="b">${{ tdic[key] }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>

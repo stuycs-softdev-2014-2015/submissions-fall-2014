@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <head>
-<link rel="stylesheet" type="text/css" href="static/desu.css">
+ <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
 </head>
 <body>
-<table>
+<table class = "pure-table">
   <tr>
-    {% for item in csvtable[0] %}
+    {% for item in stattable[0] %}
     <th>{{item}}</th>
     {% endfor %}
   </tr>
-  {% for row in csvtable[1:] %}
+  {% for row in stattable[1:] %}
+  <tr>
+    {% for item in row %}
+    <td>{{item}}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+<table>
+  <tr>
+    {% for item in wrtable[0] %}
+    <th>{{item}}</th>
+    {% endfor %}
+  </tr>
+  {% for row in wrtable[1:] %}
   <tr>
     {% for item in row %}
     <td>{{item}}</td>
