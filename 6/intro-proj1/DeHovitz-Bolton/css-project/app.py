@@ -13,8 +13,8 @@ def imgReader(name):
   Dict=Dict.split('\n')
   Dict=Dict[:len(Dict)-1]
   if name!=""and name!=None:
-      Dict.append(name+',https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4qlCVQrMo5QqT5-y_pEcycr-HEap5aOoWAHsHtEa3_qJAFxKZA')
-      Dict.append(name+',https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4qlCVQrMo5QqT5-y_pEcycr-HEap5aOoWAHsHtEa3_qJAFxKZA')
+      Dict.append(name+',http://www.tabwallpaper.com/wp-content/uploads/friedrich-wanderer-above-the-sea-of-fog-1024x1024.jpg')
+      Dict.append(name+',http://www.tabwallpaper.com/wp-content/uploads/friedrich-wanderer-above-the-sea-of-fog-1024x1024.jpg')
   filez.close()
   return Dict
 
@@ -183,13 +183,16 @@ def main():
 @app.route("/results", methods = ["POST", "GET"])
 @app.route("/tester")
 def test():
-  global name
+    global name
 
-  imgs = imgReader(name)
-  for i in range(len(imgs)):
-    imgs[i] = imgs[i].split(',')
-
-  return render_template("tester.html", imgs=imgs)
+    imgs = imgReader(name)
+    array = []
+    x = 0;
+    for i in imgs:
+        pic = i.split(',')
+        array.append(pic[1])
+    print array
+    return render_template("tester.html", images = array, name = name)
 
 
 if __name__=="__main__":
