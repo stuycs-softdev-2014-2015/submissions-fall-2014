@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+{% block content %}
+
+<div class="page-header">
+	<h1>About <small>Diabetes data project</small></h1>
+</div>
+
+<div class="row">
+	<div class="col-xs-2 col-md-2">
+		<a href="#" class="thumbnail">
+			<img src="{{ url_for('static', filename='elia.jpg') }}" alt="Elia!">
+		</a>
+	</div>
+	<div class="col-xs-2 col-md-2">
+		<a href="#" class="thumbnail">
+			<img src="{{ url_for('static', filename='elvin.jpg') }}" alt="Elvin!">
+		</a>
+	</div>
+</div>
+
+<div class="jumbotron">
+	<div class="container">
+		<p> This project was created by Elia Portnoy and Elvin Shoyfer as an intro project for Mr. Zamansky's Software Development class, Fall '14.</p>
+
+		<p> What do they look like? Their senior photos are right above this block of text! </p>
+
+		<p> Built with <a href="http://flask.pocoo.org/">Flask</a> and <a href="http://getbootstrap.com/">Bootstrap</a>. </p>
+
+		<p> The data was kindly made available by the University of California, Irvine via their Machine Learning Repository.
+		It is available <a href="https://archive.ics.uci.edu/ml/datasets/Diabetes">here</a>. </p>
+
+		<p>It provides diabetes patient records from an automatic electronic recording device and paper records.</p>
+
+	</div>
+</div>
+
+{% endblock %}

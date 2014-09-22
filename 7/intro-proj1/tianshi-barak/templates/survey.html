@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
+<style>
+body {
+background-image: url("static/LOL.jpg");
+background-color: black;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center; 
+}
+h1{
+    display:inline;
+    background-color:green;
+    color:#fff;
+}
+div.center { text-align: center; }
+</style>
+<body center>
 
-<body>
-
-  <h1>Welcome to our webpage.</h1>
-  <h2> Tianshi Wang, Barak Zhou, pd7 </h2>
-  <a href="../data">Check out our data!</a><br>
+  <div class="center">
+    Welcome to our webpage.
+    <h1> Tianshi Wang, Barak Zhou, pd7 </h1>
+    <a href="../data">Check out our data!</a><br>
   
-  <h3> ...or perform a Champion comparison.</h3>
+    <h3> ...or perform a Champion comparison.</h3>
     
+    <h4>Search for two Champions to compare. (Case sensitive)</h4>
 
-  <h4>Search for two Champions to compare. (Case sensitive)</h4>
-
-  <form action="/results">
-    <input type="text" name="search1">
-    <input type="text" name="search2">
-    <input type="submit" name="b" value="Search">
-  </form>
-
+    <form action="/results">
+      <input type="text" name="search1">
+      <input type="text" name="search2">
+      <input type="submit" name="b" value="Search">
+    </form>
+  </div>
 </body>
 </html>

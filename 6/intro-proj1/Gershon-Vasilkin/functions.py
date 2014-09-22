@@ -32,6 +32,39 @@ def specific_data(col1,data1,col2,data2):
     return i
 
 #print general_data(1,"QUEENS",3)
-print "\n"
-print general_data(1,"QUEENS",6)
-print specific_data(1,"QUEENS",6,"A")
+#print "\n"
+#print general_data(1,"QUEENS",6)
+#print specific_data(1,"QUEENS",6,"A")
+
+'''
+col 0: name (DBA)
+col 1: boro
+col 2: zip
+col 3: cuisine type
+col 4: violation code
+col 5: critical flag
+col 6: grade 
+'''
+def zip_compare(col, data):
+    d = {}
+    for list in inspectiondata:
+        if list[col]==data:
+            if d.has_key(list[2]):
+                d[list[2]]+=1
+            else:
+                d[list[2]]=1
+    i = 0;
+    z = 0;
+    for key in d:
+        if d[key] > i:
+            i = d[key]
+            z = key
+    return z
+
+print "Grade A: "+zip_compare(6, "A")
+print "Grade B: "+zip_compare(6, "B")
+print "Grade C: "+zip_compare(6, "C")
+print "Eastern European: "+zip_compare(3, "Eastern European")
+print "Jewish/Kosher: "+zip_compare(3, "Jewish/Kosher")
+print "Mexican: "+zip_compare(3, "Mexican")
+
