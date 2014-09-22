@@ -19,7 +19,7 @@
 <h1 class = "c"> You must input stuff </h1>
 {% else: %}
 <h1 class="c">Number of Restaurants by Grade in {{boro}} </h1>
-<table class="pure-table center">
+<table class="center pure-table">
  <thead>
      <tr>
      <th> Grade </th>
@@ -27,7 +27,7 @@
      </tr>
  </thead>
 
- <tbody class ="pure-table-odd center">
+ <tbody class ="center pure-table-odd">
 {% for key, value in d.iteritems() %}
    <tr>
         <td> {{ key }} </td>
