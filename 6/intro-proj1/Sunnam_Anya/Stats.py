@@ -44,7 +44,7 @@ teams = ['ANA', 'ARI', 'ATL', 'BAL', 'BOS', 'CAL', 'CHA', 'CHN', 'CIN', 'CLE',
 for y in teams:
     teamavg(stats, y)
     
-@Stats.route("/","/home", methods=["GET", "POST"])
+@Stats.route("/", methods=["GET", "POST"])
 def home():
     l = ['Year', 'Team']
     if request.method=="GET":
@@ -75,4 +75,3 @@ def team():
 if __name__=="__main__":
     Stats.debug = True
     Stats.run()
-
