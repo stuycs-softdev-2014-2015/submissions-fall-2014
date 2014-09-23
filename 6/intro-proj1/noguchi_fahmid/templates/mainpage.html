@@ -25,23 +25,24 @@
       <br><br><br><br><br><br>
       <div class="data-table is-center">
 	<p><i>Too much data all at once? <b><span class="show-search">Try our new search option</span></b></i></p>
-	{{ namequery }}
+
 	<div class="pure-g">
           <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
 	    <form action="/data" method="POST">
 
               <label for="name">Name Query</label>
-              <input id="name_query" type="text" placeholder="Name Query">
+              <input id="query" name="query" type="text" placeholder="Name Query">
 	      
-              <button type="submit" class="pure-button">Enter</button>
+              <button type="submit" class="pure-button" name="search">Enter</button>
 	    </form>
 	  </div>
 	</div>
 
+	<h2>{{ namequery }}</h2>
 
 	<table border=1 style="margin:auto;display:inline-block;">
 
-	  {% for itr in range(1, 670) %}
+	  {% for itr in range(0, length) %}
 
 	  <tr>
 
