@@ -18,6 +18,18 @@ def imgReader(name):
   filez.close()
   return Dict
 
+def titleReader (adjective):
+  filezd = open('./Static/Titles.txt', 'r')
+  titles=filezd.read()
+  titles=titles.split('\n')
+  titles=titles[:len(titles)-2]
+  if adjective!=""and adjective!=None:
+      titles.append(adjective)
+      titles.append(adjective)
+  filezd.close()
+  return titles
+
+
 
 @app.route("/")
 def start():
@@ -93,7 +105,7 @@ def main():
     }
     .d {
     background: rgb(240, 70, 70);
-    width 150px
+    width: 312px
     }
 
   </style>
@@ -127,13 +139,7 @@ def main():
 
     Name=Image[0]
     image=Image[1]
-    filezd = open('./Static/Titles.txt', 'r')
-    titles=filezd.read()
-    titles=titles.split('\n')
-    titles=titles[:len(titles)-2]
-    if adjective!=""and adjective!=None:
-        titles.append(adjective)
-        titles.append(adjective)
+    titles=titleReader(adjective)
     s+= '<div class ="pure-g">'
     s+= '<div class ="pure-u-15-24">'
     s+= '<center><section class ="a"><img src='+'"'+image+'"'+'width="400" height="400"></img></center></section>'
@@ -174,7 +180,6 @@ def main():
 
     s+= '<br><br><br><center> <font size="1.5"> <b>*historical accuracy may<br> not be guaranteed</font></center>'
     get_it.close()
-    filezd.close()
 
 
 
@@ -184,15 +189,21 @@ def main():
 @app.route("/tester")
 def test():
     global name
+    global adjective
 
     imgs = imgReader(name)
+    #nms = titleReader(adjective)
     array = []
+    titles = []
     x = 0;
     for i in imgs:
         pic = i.split(',')
         array.append(pic[1])
+        titles.append(pic[0])
     print array
-    return render_template("tester.html", images = array, name = name)
+    """for item in nms:
+        titles.append(item)"""
+    return render_template("tester.html", images = array, names = titles, namLen = len(titles), imgLen = len(array))
 
 
 if __name__=="__main__":

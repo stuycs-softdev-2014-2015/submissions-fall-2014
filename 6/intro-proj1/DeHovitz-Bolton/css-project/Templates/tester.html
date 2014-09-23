@@ -38,8 +38,8 @@
      background: black;
         color: white;
         }
-    
-    
+
+
 
   </style>
 
@@ -51,10 +51,15 @@
 
   <center><h3> This is here for debugging to determine if any of the links for the images have gone bad, and must be replaced</h3></center>
 <center>
-{% for place in images %}
+{% for place in range(imgLen) %}
 
      <!--<br><br>{{name}}<br><br>-->
 <section class ="a">
-    <img src={{place}} width="400" height="400"></section><br><br><br>
+    {% if place < namLen %}
+      {{names[place]}}<br><br>
+    {% else %}
+      {{names[namLen - 1]}}<br><br>
+    {% endif %}
+    <img src={{images[place]}} width="400" height="400"></section><br><br>
 
-  {% endfor %}
+{% endfor %}
