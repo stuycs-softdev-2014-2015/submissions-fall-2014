@@ -1,10 +1,14 @@
 import unittest
 
 def validate_email(e):
+    at = False;
+    dot = False;
     for c in e:
         if (c == '@'):
-            return True
-    return False
+            at = True;
+        if (c == '.'):
+            dot = True;
+    return (at and dot)
 
 def validate_phone(p):
     return len(str(p))==10
@@ -34,9 +38,13 @@ class validate(unittest.TestCase):
 
 
     
-    def test_email_wrong(self):
-        r = validate_email("blah")
+    def test_email_noat(self):
+        r = validate_email("blah.")
         self.assertEqual(r,False)
+
+    def test_email_nodot(self):
+        r = validate_email("blah@")
+        self.assertEqual(r,False)        
 
     def test_email_right(self):
         r = validate_email("blah@blah.com")
