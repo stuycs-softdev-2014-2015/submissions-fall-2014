@@ -1,6 +1,8 @@
-from flask import flask, render_template,
+#from flask import flask, render_template
 import unittest
 import random
+#import String
+import EmailValidator
 
 ###############################
 ######## Intro-Proj 2 #########
@@ -35,6 +37,11 @@ def validate_password(pword):
 
 def validate_phone(phone):
 # First, lets get all phone numbers in the same format.
-phone = phone.translate(None, string.letters+"/.-")
+    phone = phone.translate(None, string.letters+"/.-")
     
     return True
+
+
+if name=="__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(EmailValidator)
+    unittest.TextTestRunner(verbosity=2).run(suite)
