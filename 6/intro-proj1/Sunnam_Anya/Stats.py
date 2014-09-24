@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 Stats = Flask(__name__)
 
@@ -44,11 +44,17 @@ teams = ['ANA', 'ARI', 'ATL', 'BAL', 'BOS', 'CAL', 'CHA', 'CHN', 'CIN', 'CLE',
 for y in teams:
     teamavg(stats, y)
     
-@Stats.route("/home")
-@Stats.route("/")
+@Stats.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("Home.html")
-
+    l = ['Year', 'Team']
+    if request.method=="GET":
+        return render_template("Home.html",l=l)
+    else:
+        page = request.form["page"]
+        if page == "Year":
+            return year()
+        elif page == "Team":
+            return team()
 
 @Stats.route("/year")
 def year():
@@ -66,13 +72,6 @@ def team():
                            ,dic = dic
                            ,tdic = tdic)
 
-
-
 if __name__=="__main__":
     Stats.debug = True
     Stats.run()
-
-    
-        
-            
-

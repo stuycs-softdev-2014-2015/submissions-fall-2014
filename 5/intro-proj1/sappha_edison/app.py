@@ -1,24 +1,36 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 
 app = Flask (__name__)
 
-@app.route ("/")
+
+
+@app.route ("/",methods=["GET","POST"])
 def home ():
-    s = "<center><table border = '1' width = '91%' style='background-color: rgb(230,230,250)'>"
     data = open ("pokemon2.csv", "r")
-    categories = data.readline().split(',')
+    categories = data.read().splitlines()
+    pokelist=[]
+    results=[]
     for each in categories:
-        s = s + "<th>" + each + "</th>"
-    for line in data:
-        s = s + "<tr>"
-        categories = line.split(',')
+        pokeLine=each.split(",")
+        pokelist.append(pokeLine)
+    if request.method=="GET":
+        return render_template("data.html",pokelist=pokelist)
+    else:
+        search = request.form["fname"]
+        pokesearch=[]
         for each in categories:
-            s = s + "<td width = '10%'><center><font color='blue'>" + each + "</font></center></td>"
-        s = s + "</tr>"
-    data.close()
-    s = s + "</table><center>"
-    enterWeb("home.html", s)
-    return render_template("home.html")
+            pokeLine=each.split(",")
+            if pokeLine[0]==search:
+                pokesearch.append(pokeLine)
+        return render_template("data.html",pokesearch=pokesearch,pokelist=pokelist)
+
+def index(match):
+    if request.method == "POST":
+        searched = request.form["fname"]
+        if match == searched:
+            return True
+        else:
+            return False
 
 @app.route("/about")
 def about():

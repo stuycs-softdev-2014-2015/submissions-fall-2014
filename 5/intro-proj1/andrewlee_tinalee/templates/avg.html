@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <link rel = "stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  </head>
+  <body>
+    <h1>Average of Starter Pokemon Statistics</h1>
+    <table class="pure-table pure-table-bordered">
+      {% for each in firstLine %}
+      <th>{{each}}</th>
+      {% endfor %}
+      <tr>
+      {% for each in water %}
+      <td>{{each}}</td>
+      {% endfor %}
+      </tr>
+      <tr>
+      {% for each in fire %}
+      <td>{{each}}</td>
+      {% endfor %}
+      </tr>
+      <tr>
+      {% for each in grass %}
+      <td>{{each}}</td>
+      {% endfor %}
+      </tr>
+      {#<tr>
+        <td>Type</td><td>AvgHP</td><td>AvgAtk</td><td>AvgDef</td><td>AvgSpA</td><td>AvgSpD</td><td>AvgSpd</td>
+      </tr>
+      <tr>
+        <td>Water</td><td>69</td><td>76</td><td>73</td><td>72</td><td>71</td><td>56</td>
+      </tr>
+      <tr>
+        <td>Fire</td><td>64</td><td>79</td><td>57</td><td>81</td><td>61</td><td>72</td>
+      </tr>
+      <tr>
+        <td>Grass</td><td>62</td><td>69</td><td>71</td><td>70</td><td>75</td><td>69</td>
+      </tr>
+#}
+    </table>
+    <br>
+    <a href = "/home">Home Page</a><br>
+    <a href = "/about">About Page</a>
+  </body>
+</html>
+
+

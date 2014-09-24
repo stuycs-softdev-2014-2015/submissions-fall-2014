@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <style>
+    body { background-color: #848484;
+    }
+    h1 { background-color: #8A0829;
+    } 
+  </style>
+  <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <title>Analysis</title>
+  </head>
+  <center>
+    <body>
+      <h1>My Analysis of the Data</h1>
+      <u>
+	<h2> Biggest Waste Producing Districts </h2>
+      </u>
+      Interestingly, there was not a single district with the most refuse, paper, and metal/glass/plastics tons collected. Community district 12 in Queens was the highest in refuse tons collected, up at 7201.87 tons. Community district 7 in Manhattan was the highest in paper tons collected, up at 1232.56 tons. And finally, District 8 of Manhattan was the highest in metal/glass/plastic tons collected, with 643.79 tons collected. It is not surprising that two of these districts are in Manhattan, as it is a very densely populated and compact island with a high capability in making trash. 
+      <br>
+      <hr>
+      <br>
+      <table class="pure-table pure-table-bordered"> 
+	<thead>
+	  <tr>
+	    {% for y in table[0] %}      
+	    <th>{{y}}</th>   
+	    {% endfor %}   
+	  </tr>
+	</thead>
+	<tr>
+	  {% for y in table[54] %}      
+	  <td>{{y}}</td>   
+	  {% endfor %}   
+	</tr>
+	<tr>
+	  {% for y in table[7] %}
+	  <td>{{y}}</td>
+	  {% endfor %}
+	</tr>
+	<tr>
+	  {% for y in table[8] %}
+	  <td>{{y}}</td>
+	  {% endfor %}
+	</tr>
+      </table>
+      <br>
+      <br>
+  </center>
+</body>
+</html>

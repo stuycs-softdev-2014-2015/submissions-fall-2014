@@ -2,7 +2,8 @@
 # Soft Dev Pd 7
 # Project 1: Analysis
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import utils
 
 # app is an instance of the Flask class
 app = Flask(__name__)
@@ -11,45 +12,58 @@ app = Flask(__name__)
 @app.route("/home")
 def home():
 	html = """
-<style>
-button {
-   border: 3px solid #0a3c59;
-   background: #3e779d;
-   background: -moz-linear-gradient(top, #65a9d7, #3e779d);
-   padding: 10px 20px;
-   text-shadow: #7ea4bd 0 1px 0;
-   color: #06426c;
-   font-size: 16px;
-   font-family: helvetica, serif;
-   text-decoration: none;
-   vertical-align: middle;
-   }
-button:hover {
-   background: white;
-   }
-button:active {
-   background: gray;
-   }
-   
-h1{
-text-shadow: 1px 1px blue;
-}
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
 
+</head>
+
+<style>                                                                                                                                                                            
+
+h1{                                                                                                                                                                                
+text-shadow: 1px 1px blue;                                                                                                                                                        text-align: center;
+border-color: aqua;
+border-style: solid;
+border-width: 5px;
+background-color: yellow; 
+}     
+div.overall {background-color: #99FF99; height:300px;}                                                                                                
 </style>
+                                                                                                                                <title>Home</title>                                                                                                                                                              
 
-	<title>Home</title>
-	<h1>Welcome to the homepage of Justin and Lev's first software development project.</h1>
-	<a href="/about"> <button> Background Information </button> </a>
-	<a href="/data"> <button> Raw Data </button> </a>
-	<a href="/analysis"> <button> Summary of Analysis </button> </a>
-	<a href="/conclusion"> <button> Conclusion </button> </a>
+<div class="overall">
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/analysis">Analysis</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/conclusion">Conclusion</a></li>
+        <li><a href="/data">Raw Data</a></li>
+    </ul>
+</div>
+
+  
+<h1>Welcome to the homepage of Justin and Lev's first software development project.</h1>                                                                                           
+</div>
+
 	"""
 	return html
 
-@app.route("/about")
+@app.route("/about",methods=["GET","POST"])
 @app.route("/about/<first>/<last>")
 def about(first=None,last=None):
-	return render_template("about.html",first=first,last=last)
+  if request.method=="GET":
+    return render_template("about.html")
+  else:
+    button = request.form['b']
+    first  = request.form['first']
+    last   = request.form['last']
+    valid_name = utils.verify(first,last)
+    if button=="Clear" or not(valid_name):
+      return render_template("about.html")
+    else:
+	    return render_template("about.html",first=first,last=last)
 
 @app.route("/conclusion")
 def conclusion():

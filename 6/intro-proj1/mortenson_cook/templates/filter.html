@@ -1,11 +1,24 @@
 <html>
-    <head><title>Age's Effect on Baseball, Part One</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico"></head>
+    <head>
+      <title>Age's Effect on Baseball, Part One</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico">
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">  
+    </head>
 
     <body style=
     "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="grey">
      <center>
     <h1>Age's Effect on Baseball, Part One</h1>
-    <a href="../results">Press here to see an analisys of this data.</a></br>
+  <table bordercolor="black" bgcolor="white"><tr><td> 
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="../home">Home</a></li>
+        
+        <li class="pure-menu-selected"><a href="#">Raw Data Search</a></li>
+<li><a href="../results">Analisys</a></li>
+<li><a href="../rawdata">Raw Data</a></li>        
+    </ul>
+</div>
+</td></tr></table></br>
     <table bordercolor="black" width=95% bgcolor="white"><tr><td>
     </br>
     <p style="text-indent: 5em;">
@@ -24,8 +37,8 @@
     scored by opposing teams per game that year.  This is the raw data I managed to find after it has been run through a script to add the year to the end of each line:
     </p>
 <table width="100%"><tr><td width="50%"><center>
-<table bordercolor="black" bgcolor="grey"><tr><td>
-        <form method="POST">
+<table><tr><td>
+        <form method="POST" class="pure-form">
 	Filters:
 
 	<select name="team">
@@ -187,20 +200,34 @@
 
 	<option value="50">50</option>
 
+	<option value="999">unlimited</option>
+
 	</select>
 
 	results per page
 
-	<input type="submit" value="Go">
+	<input type="submit" class="pure-button pure-button-primary" value="Go">
 
 	</form>
 
 
 
-	</td></tr></table>
-<center>
-<table border=1  >
-{% for n in players %}
+	</td></tr></table></br>
+<table border=1 class="pure-table" style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)">
+<thead>
+    <tr><th>{{players[0][0]}}</th>
+      <th>{{players[0][1]}}</th>
+      <th>{{players[0][2]}}</th>
+      <th>{{players[0][3]}}</th>
+      <th>{{players[0][4]}}</th>
+      <th>{{players[0][5]}}</th>
+    </tr>
+</thead>
+<tbody>
+{% set rows = q[1] %}
+{% for n in players[1:] %}
+{% if (rows > 0) and (q[0]=="Tm" or q[0]==n[0]) and (q[2]=="Yr" or q[2]==n[1]) %}
     <tr><td>{{n[0]}}</td>
       <td>{{n[1]}}</td>
       <td>{{n[2]}}</td>
@@ -208,6 +235,13 @@
       <td>{{n[4]}}</td>
       <td>{{n[5]}}</td>
     </tr>
+{% set rows = rows-1 %}
+{% endif %}
 {% endfor %}
+</tbody>
 </table>
+</center>
+</td></tr></table>
 	</td></tr></table>
+</br>
+</center></body></html>

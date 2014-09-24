@@ -1,0 +1,8 @@
+.center {
+        width: 50%;
+        margin: 0 auto;
+}
+
+tr.highlight {
+        background-color: #f2f2f2
+}

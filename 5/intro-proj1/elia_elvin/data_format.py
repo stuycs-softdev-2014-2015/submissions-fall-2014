@@ -1,11 +1,11 @@
-
+# Script that deals with manipulating the data
 for n in range(1,71):
     if n >= 10:
         in_num = str(n)
     else:
         in_num = '0'+str(n);
     print in_num
-    in_file = open('C:\Users\Elia\Documents\SCHOOL\SoftDev\elia_elvin\Diabetes-Data\data-' + in_num, 'r')
+    in_file = open('/Diabetes-Data/data-' + in_num, 'r')
 
     for line in in_file:
 
@@ -24,7 +24,7 @@ for n in range(1,71):
         val = word_list[3]
         #print str(val)+' '+str(code)
         fnam = 'data-fromated-'+str(code)+'.csv'
-        out_file = open('C:\Users\Elia\Documents\SCHOOL\SoftDev\elia_elvin\Diabetes-Output\\'+fnam, 'a')
+        out_file = open('/Diabetes-Output/'+fnam, 'a')
         s = str(mn)+','+str(dy)+','+str(yr)+','+str(tm)+','+str(val)
         out_file.write(s + '\n')
         out_file.close()    

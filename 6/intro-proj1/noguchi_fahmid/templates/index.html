@@ -1,41 +1,45 @@
 <!DOCTYPE html>
+
 <html>
   <head>
-    <title>Data Project v2</title>
-    <!--Scripts-->
-    <script type="text/javascript" src="../static/jquery.min.js"></script>
-    <!--Styling-->
-    <link rel="stylesheet" type="text/css" href="../static/main.css">
-    <link rel="stylesheet" type="text/css" href="../static/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans">
+    <title>POKEMON | HOME</title>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="../static/marketing.css">
+    <link rel="stylesheet" href="../static/font-awesome.min.css">
   </head>
+
   <body>
     <div class="header">
-      <h1 class="heading">
-	POKEMON STATS
-      </h1>
-      <ul>
-	<li>Sadman Fahmid</li>
-	<li>Genji Noguchi</li>
-	<li><i class="fa-copyright"></i></li>
-      </ul>
+      <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+	<a class="pure-menu-heading" href="">Pokemon Data</a>
+	
+        <ul>
+          <li class="pure-menu-selected"><a href="http://localhost:5000">Home</a></li>
+          <li><a href="http://localhost:5000/data">Data</a></li>
+        </ul>
+      </div>
     </div>
-    <table border=1>
 
-      {% for itr in range(1, 30) %}
+    <div class="splash-container">
+      <div class="splash">
+        <h1 class="splash-head">ALL THE POKEMON STATS</h1>
+        <p class="splash-subhead">
+          that you would ever want.
+        </p>
+        <p>
+          <a href="http://localhost:5000/data" class="pure-button pure-button-primary">Take me there!</a>
+        </p>
+      </div>
+    </div>
 
-      <tr>
-
-	{% for row in data[num].split(',') %}
-	
-	<td>
-	  {{row}}
-	</td>
-	
-	{% endfor %}
-      </tr>
-      {% set num = num + 1 %}
-      {% endfor %}
-    </table>
+    <div class="content-wrapper">
+      <div class="footer l-box is-center">
+	<br><br>
+	 <i class="fa-copyright"><i>2014 Genji Noguchi and Sadman Fahmid
+       </div>
+    </div>
   </body>
+
+
 </html>

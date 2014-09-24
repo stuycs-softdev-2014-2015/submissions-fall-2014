@@ -1,48 +1,99 @@
+//layout using default landing page layout from pure
 <style>
 a:link {color: #FF0000;}
 a:visited {color: #00FF00;}
 a:hover {color: #FF00FF;}
 a:active {color: #0000FF;}
-h1 {
-font-size: 350%;
-background-color: black; 
-color: white;
-width:50%;
-float:right;
-border-style:solid;
-border-width:3px;
-border-color:red;}
-h2 {
-font-size: 150%;
-background-color: black; 
-color: white;
-width:50%;
-float:right;
-border-style:solid;
-border-width:3px;
-border-color: blue;
-}
 #background {
-    width: 100%; 
+    width: 90%; 
     height: 100%; 
-    position: fixed; 
+    position: center; 
     left: 0px; 
     top: 0px; 
     z-index: -1;
 }
 .stretch {
-    width: 50%;
-    height:100%;
+    width: 40%;
+    height:80%;
 }
 
 </style>
 
-<html>
- <head> <title> Forbes2000 </title> </head>
-<div id="background">
-    <img src="/static/Forbes1.jpg" src2="/static/Forbes2.jpg"  class="stretch" alt="" />
-</div>
-    <h1> <a href="home"> Forbes2000 </a> </h1>
-    <h2> By David Bang & Andrew Sikowitz </h2>
+<html lang="en">
+<head>
 
+    <title>Forbe2000</title>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure//pure.css">
+
+
+<!--[if lte IE 8]>
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure//grids-responsive-old-ie.css">
+  
+<![endif]-->
+<!--[if gt IE 8]><!-->
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure//grids-responsive.css">
+  
+<!--<![endif]-->
+
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/marketing.css">
+    <!--<![endif]-->
+  
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+<link rel="stylesheet" type="text/css" href = "{{ url_for('static', filename='marketing.css')}}">
+
+</head>
+<body>
+
+<div class="splash-container">
+    <div class="splash">
+        <h1 class="splash-head">Forbes2000</h1>
+        <p class="splash-subhead">
+            By: David Bang & Andrew Sikowitz <br> <br>
+
+	    Scroll down for thought of the day
+        </p>
+        <p>
+            <a href="home" class="pure-button pure-button-primary">Continue to Site</a>
+        </p>
+    </div>
+</div>
+
+<div class="content-wrapper">
+    <div class="content">
+        <h2 class="content-head is-center">Thought of the Day.</h2>
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-rocket"></i>
+                    Thought of the Day
+                </h3>
+                <p>
+                  <script type="text/javascript" src="http://www.brainyquote.com/link/quotebr.js"></script>
+<small><i><a href="http://www.brainyquote.com/quotes_of_the_day.html" target="_blank">more Quotes</a></i></small>
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-mobile"></i>
+<img src="/static/Forbes1.jpg" class="stretch" alt="" /> 
+<img src="/static/Forbes2.jpg"  class="stretch" alt="" />
+                </h3>
+            </div>
+           
+        </div>
+    </div>
+
+</body>
 </html>

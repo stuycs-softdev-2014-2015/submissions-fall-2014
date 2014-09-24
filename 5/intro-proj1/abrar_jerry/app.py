@@ -1,48 +1,36 @@
-from flask import Flask, render_template
-import os
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-def conv (filename):
-    f = open(filename)
-    s = f.readlines()
-    s= "".join(s)
-    s = s.split("\n")
-    datalist = s[:len(s)-1] 
-    return datalist
-
-def makeTable (x):
-    m = "<center><table> \n<table border='2'>\n"
-    for info in x:
-        m+= "<tr>"
-        splitted = info.split(",")
-        count = 0
-        while count < len(splitted):
-            m+= "<td> " + splitted[count] + " </td>"
-            count += 1
-        m+= "</tr> \n"
-    m+= "</table> \n</center>"
-    return m
-
 @app.route("/miami")
-def help1(table=None):
-    return render_template("miami.html",
-		table=makeTable(conv("heat2011-12")) )
+def help1():
+    return render_template("miami.html")
 
 @app.route("/dallas")
-def help2(table=None):
-    return render_template("dallas.html",
-		table=makeTable(conv("mavs2010-11")) )
+def help2():
+    return render_template("dallas.html")
 
 @app.route("/la")
-def help3(table=None):
-    return render_template("la.html",
-		table=makeTable(conv("lakers2009-10")) )
+def help3():
+    return render_template("la.html")
 
 @app.route("/home")
-@app.route("/")
-def data():
+def help4():
     return render_template("home.html")
+
+
+@app.route("/", methods=["GET","POST"])
+@app.route("/index", methods=["GET","POST"])
+def index(name=None):
+    if request.method ==  "GET":
+        return render_template("index.html",name=None)
+    else:
+        user = request.form["user"]
+        button = request.form["login"]
+        if button==None :
+            return render_template("index.html",name=None)
+        else:
+            return render_template("home.html",name=user)
 
 if __name__ == "__main__":
     app.debug = True

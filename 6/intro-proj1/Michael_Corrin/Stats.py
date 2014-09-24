@@ -50,7 +50,9 @@ def sumSAT2(table,Number):
             num = 0
             y += 1
         else:
-            m+="<td>"+ n[1]+"</td><td>" + n[2] +"</td><td>"+n[3]+"</td><td>"+n[4]+"</td><td>"+n[5]+"</td></tr><tr>"
+            num += int(n[3]) + int(n[4]) + int(n[5])
+            m+="<td>"+ n[1]+"</td><td>" + n[2] +"</td><td>"+n[3]+"</td><td>"+n[4]+"</td><td>"+n[5]+"</td><td>"+str(num)+"</td></tr><tr>"
+            num=0;
             y+=1
     return m
 @Stats.route("/SAT")

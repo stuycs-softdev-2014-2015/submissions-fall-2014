@@ -13,10 +13,20 @@
   </b></center></head></font><br><br>
   <body bgcolor =3399FF>
 
-    <form action="app.py" method="post" name="search">
-      <p align="center"><input type="text" name="id" value="FIND MY POKEMON!"> <input type="submit" name="go" value="FIND MY POKEMON!"></p>
+    <form action="." method="POST">
+      <p align="center"><input type="text" name="text" value="Enter ID"> <input type="submit" name="go" value="find"></p>
     </form><br>
-    <center><img src=http://24.media.tumblr.com/tumblr_m1203znCsk1rr1vyxo1_500.gif>
+    <center>
+      <table>
+      {% for pokemon in data %}
+      <tr>
+	{% for atr in pokemon %}
+	<td> {{ atr }} </td>
+	{% endfor %}
+      </tr>
+      {% endfor %}
+      </table>
+      <img src=http://24.media.tumblr.com/tumblr_m1203znCsk1rr1vyxo1_500.gif>
     </center><br><br><br>
   </body>
 </html>

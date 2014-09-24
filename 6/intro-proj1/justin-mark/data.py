@@ -39,9 +39,9 @@ def sort_data(data, order):
 
 
 def find_facts(data):
-    return {'max': findMax(data), 'min': findMin(data),
-            'max_percent': findMaxPercent(data),
-            'min_percent': findMinPercent(data)}
+    return {'enrollment-high': findMax(data), 'enrollment-low': findMin(data),
+            'attendance-high': findMaxPercent(data),
+            'attendance-low': findMinPercent(data)}
 
 
 def findMax(l):
