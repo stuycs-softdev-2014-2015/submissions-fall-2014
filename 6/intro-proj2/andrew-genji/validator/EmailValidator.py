@@ -1,4 +1,6 @@
-class EmailValidator(unittest.testCase)
+import unittest
+
+class EmailValidator(unittest.TestCase):
 
 #Incorrect Emails
     def test_empty(self):
@@ -38,4 +40,4 @@ class EmailValidator(unittest.testCase)
         r.assertEqual(r, true)
     def test_domain_two_periods(self):
         r = validate_email("genji@bart.stuy.edu")
-        r.assertEqual(r, false
+        r.assertEqual(r, false)
