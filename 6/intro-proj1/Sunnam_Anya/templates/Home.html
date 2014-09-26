@@ -1,19 +1,25 @@
 <head>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <style>
+    body { background-color:33CCCC;
+    text-align:center;}
     h1 {border-style: dotted;
-    color:orange;
-    font-size:60px}
-    .a {background-color:orange;
+    font-size: 60px;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    text-align:center;
+    color:660099;}
+    .a {background-color:660099;
     border-radius:30px;
     color:white;}
-    .b {color:green;}
+    .b {color:660099;
+    font-size: 30px;
+    font-family: Georgia, Times, "Times New Roman", serif;}
   </style>
 </head>
 
 <h1>Welcome to our Baseball Statistics</h1>
 
-<h2 class="b">Select what you would like to view:</h2>
+<h2 class="b">Select which page you would like to view:</h2>
 <form method="POST">
    <p>
       {% for item in l %}

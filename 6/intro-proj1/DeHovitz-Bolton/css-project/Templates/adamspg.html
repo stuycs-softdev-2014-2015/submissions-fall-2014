@@ -3,37 +3,21 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <title>Welcome!</title>
 
         <link rel="stylesheet"
         href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-<style>
-    body {
-        background: #f1f1f1}
-    section {
-    
-        border-radius: 10px;
-        padding: 10px;
-        margin-left: auto;
-        margin-right: auto;
-        width: 500px
-    }
-    .c {
-        background: #D3D3D3;
-        color: black;
-        }
-    .a   {
-     background: black;
-        color: white;
-        } 
-    
-</style>
+<div id="style">
+{% block style %}{% endblock style %}
+</div> <!--style-->
+
+
 </head>
 
 
 <form class="pure-form pure-form-aligned" method="POST" action="/results">
-<div id="opener">
+<div id="opener" class="title">
  {% block body %}{% endblock body %}
 </div> <!--opener-->
 
