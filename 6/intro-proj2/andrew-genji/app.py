@@ -1,13 +1,34 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import unittest
 import random
 import string
-#from validator import EmailValidator
+from validator import EmailValidator
 
 ###############################
 ######## Intro-Proj 2 #########
 ### A. Fischer, G. Noguchi  ###
 ###############################
+
+######### Flask Pages #########
+app = Flask(__name__)
+
+@app.route("/", methods=['GET', 'POST'])
+def index():
+    submit    = request.args.get("submit",None)
+    #Cancel just clears out the form using "reset"
+    uname     = request.args.get("username",None)
+    phone     = request.args.get("phone",None)
+    password  = request.args.get("password",None)
+
+    print "POST Data:"
+    print submit,uname,phone,password
+
+    #We need to add jinja2 substitutions if uname, password, or phone is wrong to show warnings.
+
+    return render_template("index.html")
+
+
+######### Validators ##########
 
 TLDList = open("TLDs.txt").readlines()
 
@@ -43,6 +64,7 @@ def validate_phone(phone):
 
 
 if __name__=="__main__":
-    # suite = unittest.TestLoader().loadTestsFromTestCase(EmailValidator)
-    # unittest.TextTestRunner(verbosity=2).run(suite)
-    print "It's working!"
+    #suite = unittest.TestLoader().loadTestsFromTestCase(EmailValidator)
+    #unittest.TextTestRunner(verbosity=2).run(suite)
+    app.debug=True
+    app.run()
