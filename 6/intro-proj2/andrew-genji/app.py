@@ -54,12 +54,24 @@ def validate_email(email):
 
 
 def validate_password(pword):
+    if pword.find(" ")>=0: #No spaces
+        return False
+    if len(pword)<6 || len(pword)>20: #Length check
+        return False
+    if pword == pword.lower(): #Needs one upper case character
+        return False
+    if pword == pword.upper(): #Needs one lower case character
+        return False
+    if pword == pword.translate(None, ")(*&^%$#@!~[]{}\|:;'?><.,/"):
+        return False
     return True
 
 def validate_phone(phone):
-    # First, lets get all phone numbers in the same format.
-    phone = phone.translate(None, string.letters+"()#+!$%^&*_\|[]{}/.-")
-
+    # First, lets get all phone numbers in the same format. @Andrew--Shouldn't we return false if the number contains these characters?
+    #phone = phone.translate(None, string.letters+"()#+!$%^&*_\|[]{}/.-")
+    phone = phone.translate(None, "-+()");
+    if phone == phone.translate(None, string.letters+"*&^%$#@!~[]{}\|:;'?><.,/=_"):
+        return False
     return True
 
 
