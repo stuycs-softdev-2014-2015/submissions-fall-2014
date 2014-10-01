@@ -10,9 +10,11 @@ names = []
 
 
 def readNames():
-    namematch = re.findall("^[A-Z][a-z]$",berries)
-    print namematch
-    #namematch.group()
+    n = re.compile("[A-Z][a-z]+\040[A-Z][a-z]+")
+    #names = n.match(berries)
+    #print names.group()
+    names = n.findall(berries)
+    print names
 
 if __name__ == "__main__":
     readNames()
