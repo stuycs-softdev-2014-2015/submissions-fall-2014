@@ -8,4 +8,9 @@ class TestRegexFunctions(unittest.TestCase):
 
     def testNameSearch(self):
         names = filterName.getNames(self.testString)
-        assertIn("Eric Chen", names)
+        self.assertIn("Eric Chen", names)
+
+if __name__=='__main__':
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestRegexFunctions)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+
