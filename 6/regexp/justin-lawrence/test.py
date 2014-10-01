@@ -19,5 +19,10 @@ class TestNameRegex(unittest.TestCase):
         names = namere.find_names(corpus)
         assert "Stephen McClellan" in names
 
+    def test_three_name(self):
+        corpus = "Harrison Parker Chiu"
+        names = namere.find_names(corpus)
+        assert "Harrison Parker Chiu" in names
+
 if __name__ == '__main__':
         unittest.main()
