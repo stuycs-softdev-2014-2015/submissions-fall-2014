@@ -95,7 +95,7 @@ def about():
     strs = " "
     estrs = " "
     if request.method == "GET":
-        return render_template("about.html")
+        return render_template("altable.html")
     else:
         l = request.form.getlist("style")
         name2 = request.form["name2"]
@@ -119,7 +119,7 @@ def about():
 
 
     #if bold != None or big != None or color != None:
-    return render_template("about.html", tag = strs, etag = estrs, name = name, name2 = name2)
+    return render_template("altable.html", tag = strs, etag = estrs, name = name, name2 = name2)
     
             
     

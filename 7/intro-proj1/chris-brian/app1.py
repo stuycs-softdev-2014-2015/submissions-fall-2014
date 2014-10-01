@@ -13,7 +13,7 @@ def form():
         uname = request.form['user']
         pword = request.form['password']
         
-        valid = (uname == "stuycs" and pword == "softdev")
+        valid = (uname == "Chris" and pword == "Guo")
         if  (valid):
             return render_template("Analysis1.html")
         else:

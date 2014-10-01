@@ -1,9 +1,65 @@
+<!doctype html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Tester</title>
+        <style>
+    .title{
+            color: #343434;
+            font-weight: normal;
+            font-family: 'Ultra', sans-sarif
+            font-size:34px;
+            line-height: 38px;
+            text-transform: uppercase;
+            text-shadow: 0 2px white, 0 3px #777
+         }
+    .button-test{
+        color: white;
+        border-radius: 4px;
+        background: rgb(250, 85, 85);
+        }
+    body {
+        background: #f1f1f1}
+    section {
+
+        border-radius: 10px;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px
+    }
+    .c {
+        background: #D3D3D3;
+        color: black;
+        }
+    .a   {
+     background: black;
+        color: white;
+        }
+
+
+
+  </style>
+
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+
+
 <center><h1>Image Load Functionality Test</h1></center>
 
   <center><h3> This is here for debugging to determine if any of the links for the images have gone bad, and must be replaced</h3></center>
-<ul>
-  {% for place in imgs %}
-    <li><font size="18">{{imgs[place[0]]}}</font></li>
-    <li><img src={{imgs[place[1]]}} width="400" height="400"><br><br><br></li>
-  {% endfor %}
-</ul>
+<center>
+{% for place in range(imgLen) %}
+
+     <!--<br><br>{{name}}<br><br>-->
+<section class ="a">
+    {% if place < namLen %}
+      {{names[place]}}<br><br>
+    {% else %}
+      {{names[namLen - 1]}}<br><br>
+    {% endif %}
+    <img src={{images[place]}} width="400" height="400"></section><br><br>
+
+{% endfor %}

@@ -1,4 +1,4 @@
-Karl Marx,http://chatafrik.com/media/k2/items/cache/9b61c9add26ae66de11f78f97af7a160_XL.jpg
+Karl Marx,http://spartacus-educational.com/TUmarx3.jpg
 Napoleon Bonaparte,http://static.comicvine.com/uploads/square_small/1/15776/639796-napoleon.jpg
 God,http://www.thereligionnetwork.com/IMAGES/PAINTINGS/SistineChapel-God_Creation_of_.jpg
 Socrates,http://www.quotecollection.com/author-images/protagoras-3.jpg
@@ -47,3 +47,5 @@ Bashar Al Assad,http://static.dnaindia.com/sites/default/files/2014/04/09/226208
 Fidel Castro,http://www.bongocelebrity.com/wp-content/uploads/2011/08/Fidel-Castro.jpg
 Che Guevara,http://images.easyart.com/i/prints/rw/lg/3/3/Anonymous-Che-Guevara--Red--331461.jpg
 Ramses II,http://static.comicvine.com/uploads/square_small/3/30638/728160-ramses_ii4.gif
+George Washington,http://2.bp.blogspot.com/-CFDVWMnc_UY/Ts-ktlwQP2I/AAAAAAAAACY/nf-mE3nbBwU/s400/washington.jpg
+Ronald Reagan,http://static.tvtropes.org/pmwiki/pub/images/RonaldReagan.jpg
