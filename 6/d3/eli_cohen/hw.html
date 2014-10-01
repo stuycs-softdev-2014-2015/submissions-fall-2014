@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    
+  
+  <style>
+
+     svg { border: solid 1px;}
+
+  </style>
+  
+  <body>
+  
+  <div>
+  </div>
+  <input type="button" id="click" value="click">
+  
+  </body>
+
+
+ 
+     <script>
+
+       data1 = [
+       {'label':'Saturday','y':20, 'z':0},
+       {'label':'Sunday','y': 50, 'z':0},
+       {'label':'Monday','y': 15, 'z':0},
+       {'label':'Tuesday','y': 10, 'z':0},
+       {'label':'Wednesday','y': 5, 'z': 100}
+       ];
+
+
+var svg = d3.select("div").append("svg")
+.attr("width",600)
+.attr("height",300)
+.attr("stroke","black")
+.attr("stroke-width",3)
+.attr("id","svg");
+
+svg.selectAll("rect")
+    .data(data1)
+    .enter().append("rect")
+    .attr("width","50")
+    .attr("height",function(d){ return 3*d.y;})
+    .attr("x",function(d,i){return (i+1)*100-25})
+    .attr("y",function(d) {return 300-3*d.y})
+    .attr("id",function(d){return d.label;})
+    .attr("fill","#0000ff");
+
+var text = svg.append("text")
+    .attr("x", 0)
+    .attr("y", 20)
+    .text('Percent Of This Homework I Should Have Done Each Day')
+    .attr("font-family", "ariel")
+    .attr("font-size", "20px");
+
+svg.selectAll("a")
+       .data(data1)
+       .enter().append("text")
+       .attr("x",function(d,i){return (i+1)*100-25})
+       .attr("y",270)
+       .text(function(d){return d.label;});
+
+var did = 0;
+
+
+d3.select("#click").on('click',function(d) {
+     if (did%2 == 0){ 
+       text.text('Percent Of This Homework I Actually Did Each Day')
+    svg.selectAll("rect")
+       .transition()
+       .duration(1000)
+       .attr("width","50")
+       .attr("height",function(d){ return 3*d.z;})
+       .attr("x",function(d,i){return (i+1)*100-25})
+       .attr("y",function(d) {return 300-3*d.z})
+       .attr("id",function(d){return d.label;})
+       .attr("fill","#0000ff");
+       }
+      else{
+         text.text('Percent Of This Homework I Should Have Done Each Day')
+       svg.selectAll("rect")
+       .transition()
+       .duration(1000)
+       .attr("width","50")
+       .attr("height",function(d){ return 3*d.y;})
+       .attr("x",function(d,i){return (i+1)*100-25})
+       .attr("y",function(d) {return 300-3*d.y})
+       .attr("id",function(d){return d.label;})
+       .attr("fill","#0000ff");
+       }
+       did = did + 1;
+});
+
+
+
+     </script>
+
+</html>

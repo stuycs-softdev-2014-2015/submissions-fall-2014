@@ -1,0 +1,123 @@
+<html>
+<head>
+	 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	</head>
+<body>
+	<h1>Stacker</h1>
+	<h2>A remake of the anoying arcade game that is ipossible to win. Hit the button to stack the blocks to the top.</h2>
+
+	<p><i>Stack to the top</i></p>
+	<p><i>Don't ever stop</i></p>
+	<svg id="window" style="border: 1px solid black" height="800" width="700">
+	</svg>
+	<button id="but">HIT ME!</button>
+</body>
+</html>
+<script>
+
+var block = function(x,y,h,w,id) {
+	var ret  =document.createElementNS("http://www.w3.org/2000/svg","rect");
+	ret.setAttribute('id',id);
+	ret.setAttribute('x',x);
+	ret.setAttribute('y',y);
+	ret.setAttribute('height',h);
+	ret.setAttribute('width',w);
+	ret.setAttribute('fill','lightgrey');
+	ret.setAttribute('stroke-width', 3);
+	return ret;
+}
+
+var grid = [];
+
+for(var y = 8; y >= 0; --y) {
+	var row = [];
+	for(var x = 0; x != 7; ++x) { 
+		var temp = block(100*x, 100*y, 100, 100, 'b' + x + y);
+		document.getElementById('window').appendChild(temp);
+		row.push('b'+x+y);
+	}
+	grid.push(row);
+}
+
+
+
+var bar = function(){
+	var x;
+	var y;
+	var d;
+	var l;
+	var move = function() {
+		if(this.d == 1) {
+			//move right
+			if(this.x == 7-this.l) {
+				this.x--;
+				this.d = 0;
+			}else {
+				this.x++;
+			}
+		}else{
+			//move left
+			if(this.x == 0) {
+				this.x++;
+				this.d = 1;
+			}else {
+				this.x--;
+			}
+		}
+	}
+	var color = function() {
+		for(var x = 0; x != 7; ++x) {
+			document.getElementById('b' + x + this.y).setAttribute('fill','lightgrey');
+		}
+		for(var x = 0; x!= this.l; ++x) {
+			document.getElementById('b' + (this.x+x) + this.y).setAttribute('fill','blue');
+		}
+	}
+	return {
+		move: move,
+		color: color,
+		x:0,
+		y:7,
+		l:3,
+		d:1
+	}
+
+}
+
+
+	b = bar();
+	
+	var go = function() {
+		
+			b.move();
+		
+			b.color();
+
+			if(b.l == 0) {
+				alert('you have lost! Refresh the page to replay');
+			}else if(b.y == 0){
+				alert('YOU WIN!');
+			}else{
+				setTimeout(go,30+15*b.y);
+			}
+		//setTimeout(go,1000);
+	}
+	go();
+
+	var but = document.getElementById('but');
+	but.addEventListener('click', function(){
+		if(b.y != 7) {
+			var k = b.l;
+			for(var i = 0; i<k; ++i) {
+				
+		console.log('x: ' + (b.x+i) + 'y: ' + (b.y+1));
+				if(document.getElementById('b'+(b.x+i)+(b.y+1)).getAttribute('fill') != 'blue') {
+					console.log('hi');
+					document.getElementById('b'+(b.x+i)+(b.y)).setAttribute('fill','lightgrey');
+					b.l--;
+				}
+			}
+		}
+		b.y--;
+	});
+</script>

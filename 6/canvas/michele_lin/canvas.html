@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+<div>
+<canvas height="400" width="600" id="c"
+	style="border:1px solid black">
+</canvas>
+</div>
+
+<script>
+  var c = document.getElementById("c");
+  var ctx = c.getContext("2d");
+ 
+  var flake = function(x,y,size,color,dy,ctx) {
+  return{
+  x:x,
+  y:y,
+  size:size,
+  color:color,
+  dy:dy,
+  ctx:ctx,
+  draw: function(){
+  ctx.fillStyle=this.color
+  ctx.fillRect(this.x,this.y,this.size,this.size);
+  ctx.stroke();
+  },
+  move: function(){
+  this.x = this.x + Math.random()*3 - Math.random()*3;
+  this.y = this.y + this.dy;
+  if (this.x>550) {
+  this.x = this.x -60
+  }
+  if (this.x<50) {
+  this.x = this.x +60
+  }	     
+  if(this.y>350) {
+  this.y = 0;
+  }
+  }
+}
+}
+
+var animloop = function() {
+    ctx.fillStyle="#ffffff";
+    ctx.fillRect(0,0,600,400);
+    f1.move();
+    f1.draw();
+    f2.move();
+    f2.draw();
+    f3.move();
+    f3.draw();
+    f4.move();
+    f4.draw();
+    f5.move();
+    f5.draw();
+    f6.move();
+    f6.draw();
+    f7.move();
+    f7.draw();
+    f8.move();
+    f8.draw();
+    window.requestAnimationFrame(animloop);
+}
+var f1 = flake(0,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f2 = flake(100,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f3 = flake(200,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f4 = flake(300,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f5 = flake(400,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f6 = flake(500,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f7 = flake(400,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+var f8 = flake(500,Math.random()*600,Math.random()*10,"#2BC0FF",Math.random()*20+3,ctx);
+
+window.requestAnimationFrame(animloop);
+</script>
+</html>
+  

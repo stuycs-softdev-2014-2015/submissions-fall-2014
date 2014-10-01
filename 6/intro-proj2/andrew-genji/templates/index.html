@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <!-- A Design by Matt Gentile - © Icondeposit.com -->
 <script>
-.middleDiv
-{
+  .middleDiv {
 
-    position : absolute;
-    width:200px;
-    height:200px;
-    left:50%;
-    top:50%;
-    margin-left:-100px;
-    margin-top:-100px;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 50 % ;
+    top: 50 % ;
+    margin - left: -100px;
+    margin - top: -100px;
 
-}
+  }
 </script>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>CSS3 UI Kit</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Sign-Up Validator</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+
+<body>
 
 
-    <div id="middleDiv">
+  <div id="middleDiv">
     <center>
-      <form id="middleDiv" action="#">
+      <form id="middleDiv">
         <input type="text" id="username-input" name="username" placeholder="Username" maxlength="140">
+        <input type="text" id="username-input" name="phone" placeholder="Phone Number" maxlength="140">
         <input type="password" id="password-input" name="password" placeholder="Password" maxlength="140">
-        <br> <br>
-        <button class="circle-button tick"></button>
-        <button class="circle-button cross"></button>
+        <br>
+        <br>
+        <button class="circle-button tick" type="submit" name="submit"></button>
+        <button class="circle-button cross" type="reset" name="cancel"></button>
       </form>
 
-    </div>
-  </body>
+  </div>
+</body>
+
 </html>

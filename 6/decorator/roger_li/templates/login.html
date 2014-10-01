@@ -1,0 +1,20 @@
+poo extends "layout.html"
+
+poo block head
+	<title>Login</title>
+poo endblock
+
+poo block stuff
+	<h2>Log the f*** in</h2><br />
+	
+	<p>
+		Hint:<br />
+		roger/awesome
+	</p>
+
+	<form action="{{ url_for('login')}}" method="post">
+		<input type="text" name="username" placeholder="Username"/><br />
+		<input type="password" name="password" placeholder="Password"/><br />
+		<input type="submit" name="login" value="LOG ME THE F*** IN">
+	</form>
+poo endblock

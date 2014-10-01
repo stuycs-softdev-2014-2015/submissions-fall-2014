@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<body background="http://lh3.ggpht.com/_jFM-Fd8NDFE/TAVwQYVkxyI/AAAAAAAAGFo/XZqRMnFtAGk/s1600/DirtyPaper-2.jpg">
+Rainbow!
+
+<div>
+<canvas height="600" width="1000" id="c"
+	style="border:1px solid black">
+
+</canvas>
+</div>
+<script>
+ var c = document.getElementById("c");
+ var ctx = c.getContext("2d");
+ 
+ var block = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     dx:3,
+     dy:y,
+     color:'#ff0000',
+     ctx:ctx,
+     draw: function() {
+       ctx.fillStyle=this.color;
+       ctx.fillRect(this.x,this.y,this.w,this.h);
+       ctx.stroke();
+     },
+     move: function() {
+       this.x = this.x + this.dx;
+       this.y = this.y + Math.random()*2-1;
+       if (this.x>950 || this.x<10){
+	 this.dx=this.dx*-1;
+       }
+     }
+   }
+ }
+
+ var animloop = function() {
+   ctx.fillStyle="#ffffff";
+
+   b1.move();
+   b2.move();
+   b3.move();
+   b4.move();
+   b5.move();
+   b6.move();
+   b1.draw();
+   b2.draw();
+   b3.draw();
+   b4.draw();
+   b5.draw();    
+   b6.draw();    
+   window.requestAnimationFrame(animloop);
+ }
+
+ var b1 = block(50,50,20,10,ctx);
+ var b2 = block(50,150,20,10,ctx);
+ var b3 = block(50,250,20,10,ctx);
+ var b4 = block(50,350,20,10,ctx);
+ var b5 = block(50,450,20,10,ctx);
+ var b6 = block(50,550,20,10,ctx);
+
+
+
+ b2.color="#FFA500"
+ b3.color="#FFFF00"
+ b4.color="#00FF00"
+ b5.color="#0000ff"
+ b6.color="#FF00FF";
+ b1.draw();
+ b2.draw();
+ window.requestAnimationFrame(animloop);
+
+</script>
+</html>

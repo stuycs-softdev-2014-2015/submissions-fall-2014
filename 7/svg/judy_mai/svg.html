@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+
+    <h3>Judy's SVG Loading Animation</h3>
+    <h5>Inspired by: <a href="http://www.designcourse.com/videos/making-a-svg-loading-animation-with-adobe-illustrator/97">DesignCourse</a></h5>
+    <svg class="where" id="s" height='400' width='400'></svg>
+    <br>
+    <input type="submit" id="go" value="go"></input>
+
+    <script>
+     var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+     c1.setAttribute('id',"c1");
+     c1.setAttribute('cx',200);
+     c1.setAttribute('cy',200);
+     c1.setAttribute('r',100);
+     c1.setAttribute('fill','#87CEEB');
+
+     var c2 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+     c2.setAttribute('id',"c2");
+     c2.setAttribute('cx',200);
+     c2.setAttribute('cy',200);
+     c2.setAttribute('r',115);
+     c2.setAttribute('fill','none');
+     c2.setAttribute('stroke','#87CEEB');
+     c2.setAttribute('stroke-width',3);
+     c2.setAttribute('stroke-dasharray',20);
+     
+
+     var r1 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+     r1.setAttribute('id',"r1");
+     r1.setAttribute('x',150)
+     r1.setAttribute('y',175)
+     r1.setAttribute('rx',6);
+     r1.setAttribute('ry',6);
+     r1.setAttribute('width',10);
+     r1.setAttribute('height',60);
+     r1.setAttribute('fill','white');
+     r1.setAttribute('d',1);
+     
+     var r2 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+     r2.setAttribute('id',"r2");
+     r2.setAttribute('x',180)
+     r2.setAttribute('y',175)
+     r2.setAttribute('rx',6);
+     r2.setAttribute('ry',6);
+     r2.setAttribute('width',10);
+     r2.setAttribute('height',60);
+     r2.setAttribute('fill','white');
+     r2.setAttribute('d',1);
+     
+     var r3 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+     r3.setAttribute('id',"r2");
+     r3.setAttribute('x',210)
+     r3.setAttribute('y',175)
+     r3.setAttribute('rx',6);
+     r3.setAttribute('ry',6);
+     r3.setAttribute('width',10);
+     r3.setAttribute('height',60);
+     r3.setAttribute('fill','white');
+     r3.setAttribute('d',1);
+
+     var r4 = document.createElementNS("http://www.w3.org/2000/svg","rect");
+     r4.setAttribute('id',"r2");
+     r4.setAttribute('x',240)
+     r4.setAttribute('y',175)
+     r4.setAttribute('rx',6);
+     r4.setAttribute('ry',6);
+     r4.setAttribute('width',10);
+     r4.setAttribute('height',60);
+     r4.setAttribute('fill','white');
+     r4.setAttribute('d',1);
+     
+     var clicked = function(e) {
+       console.log("clicked inside svg");
+     }
+          
+     
+     var move = function() {
+       var rs = document.getElementsByTagName("rect");
+       for (var i=0; i<rs.length; i++) {
+	 var cy = parseFloat(rs[i].getAttribute('y'));
+         var dy = parseFloat(rs[i].getAttribute('d'));
+	 if (cy>180 || cy<170) {
+           dy = dy * -1;
+         } 
+         cy = cy + dy;
+         rs[i].setAttribute('y',cy);
+         rs[i].setAttribute('d',dy)
+       }
+     }
+     
+     var t =0;
+     var go = function(e) {
+       e.preventDefault();
+       if (t==0){
+	 t = setInterval(move,60);
+       } 
+       else {
+         clearInterval(t);
+         t=0;
+       }
+     }
+
+     var s = document.getElementById("s");
+     s.appendChild(c1);
+     s.appendChild(c2);
+     s.appendChild(r1);
+     s.appendChild(r2);
+     s.appendChild(r3);
+     s.appendChild(r4);
+     s.addEventListener('click',clicked);
+					       
+     var g = document.getElementById("go");
+     g.addEventListener('click', go)
+     
+    </script>
+  </body>
+</html>
+

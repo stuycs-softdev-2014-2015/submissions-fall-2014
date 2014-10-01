@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+     #s {border: 3px solid;}
+    </style>
+	
+	<center> <b> The Manhattan Skyline </b> </center>
+  </head>
+  
+  <body>
+  <br>
+   <br>
+   Click to add windows!
+    <br>
+	 <br>
+	 
+    <svg class="where" id="s" height=500 width=1200>
+	
+	<polyline fill="none" stroke="blue" stroke-width="10" 
+            points="10,375
+                    50,375 150,325 250,325 250,375
+                    350,375 350,250 450,220 450,375
+                    550,375 550,175 650,175 650,375
+                    750,375 750,100 850,200 850,375
+                    950,375 950,25 1050,10 1050,375
+                    1150,375
+					" />
+	</svg>
+ //example polygon element from W3schools.org
+
+ <script>
+
+     var cClicked = function(e) {
+       e.preventDefault();
+       console.log("cClicked");
+       var c = this.getAttribute('fill');
+       if (c=='black') {
+		this.remove();
+       }
+     }
+
+     var addRect = function(x,y,h,w) {
+       var rect=document.createElementNS("http://www.w3.org/2000/svg","rect");
+		rect.setAttribute('x',x);
+		rect.setAttribute('y',y);
+		rect.setAttribute('height',h);
+		rect.setAttribute('width',w);
+		rect.setAttribute('fill','black');
+		rect.setAttribute('stroke-width', 3);
+		return rect;
+       rect.addEventListener('click',cClicked);
+       s.appendChild(rect);
+       
+       }
+
+       var clicked = function(e) {
+       if (e.toElement!=this) {addRect;}
+       console.log("clicked");
+       s = document.getElementById("s");
+       var x = 5+30*Math.random();
+	   var y = 5+30*Math.random();
+	   var h = 5;
+	   var w = 6;
+       addRect(x,y,h,w,'black');
+     }
+     
+
+     var s = document.getElementById("s");
+     s.addEventListener('click',clicked);
+
+
+  </script>
+  </body>
+</html>

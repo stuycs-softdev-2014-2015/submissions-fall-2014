@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+Leap Frog!
+<div>
+	<canvas height="600" width="600" id="c"
+			style="border:1px solid black">
+	</canvas>
+</div>
+
+<script>
+	var c = document.getElementById("c");
+	var ctx = c.getContext("2d");
+
+	//left side
+	ctx.fillStyle="#006600";
+	ctx.fillRect(0, 0, 100, 600);
+
+	//right side
+	ctx.fillRect(500, 0, 100, 600);
+
+	//highwayy
+	ctx.fillStyle="#686868";
+	ctx.fillRect(100, 0, 400, 600);
+
+	//dotted lines
+	ctx.beginPath();
+	ctx.strokeStyle="#ffff33";
+	ctx.setLineDash([2,1]);
+	ctx.moveTo(200, 0);
+	ctx.lineTo(200, 600);
+	ctx.stroke();
+
+	ctx.beginPath();
+	ctx.moveTo(400, 0);
+	ctx.lineTo(400, 600);
+	ctx.stroke();
+
+	//da middle
+	ctx.beginPath();
+	ctx.strokeStyle="#006600";
+	ctx.moveTo(300, 0);
+	ctx.lineTo(300, 600);
+	ctx.lineWidth=10;
+	ctx.stroke();
+
+	var colors = ["#00ffff", "#ff0066", "#6600ff", "#ff6600", "#66ff33"]
+	//cars
+	var cars = function(x, y, w, h, ctx) {
+		return{
+			x:x,
+			y:y,
+			w:w,
+			h:h,
+			ctx:ctx,
+			color: colors[Math.random()*5]
+			draw:function() {
+				ctx.fillStyle=this.color;
+				ctx.fillRect(this.x, this.y, this.w, this.w);
+			}
+		}
+	}
+
+
+</script>
+

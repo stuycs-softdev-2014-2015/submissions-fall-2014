@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> SVG </title>
+    <style>
+      #snow {border: 1px solid;}
+    </style>
+  </head>
+
+  <body>
+    <svg class="where" id="snow" height=400 width=400> </svg>
+    <input type="submit" id="letItSnow" value="let it snow">
+    <script>
+      var addCirc = function(snow,i){
+        var c1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c1.setAttribute('cx', (i + 3) * Math.random() - 1);
+        c1.setAttribute('cy', (i + 1) * Math.random() - 1);
+        c1.setAttribute('r', 3);
+        c1.setAttribute('fill', 'blue');
+        snow.appendChild(c1);
+      }
+      
+      var makeItSnow = function(e){
+        e.preventDefault();
+        snow = document.getElementById("snow");
+        for (var i = 0; i < 400; i++){
+            addCirc(snow,i);
+        }
+      }
+
+      var snowy = function(){
+        var circs = document.getElementsByTagName("circle");
+        for (var i = 0; i < circs.length; i++){
+            var x = parseFloat(circs[i].getAttribute('cx'));
+            var y = parseFloat(circs[i].getAttribute('cy'));
+            x = x + 5 * Math.random() - 1;
+            y = y + 3 * Math.random() - 1;
+            circs[i].setAttribute('cx', x);
+            circs[i].setAttribute('cy', y);
+        }
+      }
+      
+      var t = 0;
+      var letItSnow = function(e){
+        e.preventDefault();
+        if (t == 0){
+            t = setInterval(snowy, 2);
+        }
+        else{
+            clearInterval(t);
+            t = 0;
+        }
+      }
+
+      var snow = document.getElementById("snow");
+      snow.addEventListener("click", makeItSnow);
+      var button = document.getElementById("letItSnow");
+      button.addEventListener("click", letItSnow);
+      
+    </script>
+  </body>
+
+</html>

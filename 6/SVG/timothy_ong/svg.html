@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #s {border: 5px solid;}
+    </style>
+  </head>
+  <body>
+    <h1>Whack-a-Z</h1>
+    <svg class="where" id="s" height=500 width=500></svg>
+    <input type="submit" id="start" value="start">
+    <script>
+      var addZ = function(){
+      var svgimg = document.createElementNS("http://www.w3.org/2000/svg","image");
+      svgimg.setAttributeNS(null,'height','50');
+      svgimg.setAttributeNS(null,'width','50');
+      svgimg.setAttributeNS('http://www.w3.org/1999/xlink','href', 'z.jpg');
+      
+      svgimg.setAttribute('x',Math.random()*500);
+      svgimg.setAttribute('y',Math.random()*500);
+      svgimg.setAttribute('visibility', 'visible');
+      svgimg.setAttribute('id','c1');
+      svgimg.addEventListener('click',zClick);
+      s.appendChild(svgimg);
+      }
+
+
+      var zClick = function(e) {
+      e.preventDefault();
+      this.remove();
+      }
+
+      var t =0;
+      var go = function(e) {
+      e.preventDefault();
+      if (t==0){
+      t = setInterval(addZ,700);
+      } else {
+      clearInterval(t);
+      t=0;
+      }
+      }
+
+
+      var b = document.getElementById("start");
+      b.addEventListener('click',go);
+
+</script>
+  </body>
+</html>

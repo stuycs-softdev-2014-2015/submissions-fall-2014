@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<b>Driving on the road</b>
+[This is just an animation of a car on the road, it will probably turn into a driving game of dodging cones later] 
+<img id="hug" src="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=23226806" alt="The Hug" width="50" height="60">
+
+
+<div>
+<br>
+<br>
+<canvas height="600" width="600" id="c" style="border:1px solid black"> </canvas>
+</div>
+
+<script>
+
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
+
+var setup = function(){
+
+ctx.fillStyle="#ffffff";
+ctx.fillRect(0,0,600,600);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 0, 600, 100);
+
+ctx.fillStyle="black";
+ctx.fillRect(5, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(100, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(200, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(300, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(400, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(500, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(600, 250, 50, 20);
+ctx.fillStyle="black";
+ctx.fillRect(620, 250, 50, 20);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 200, 600, 22);
+
+ctx.fillStyle="#c3c3c3";
+ctx.fillRect(0, 300, 600, 22);
+
+
+ctx.fillStyle="#black";
+ctx.fillRect(0, 450, 600, 100);	
+}	
+
+var car = function(x,y,w,h,ctx) {
+   return {
+     x:x,
+     y:y,
+     w:w,
+     h:h,
+     ctx:ctx,
+     color:"pink",
+     dx:10,
+
+     draw:function() {
+       ctx.fillStyle=this.color;
+       ctx.fillRect(this.x,this.y,this.w,this.h);
+       ctx.stroke();
+     },
+     
+     move:function() {
+       this.x = this.x + this.dx;
+       this.y = this.y;
+       if (this.x<20||this.x>560) {
+          this.dx=this.dx*-1;
+          }
+       }
+
+     };
+    }
+<<<<<<< HEAD
+
+
+
+var animloop = function(){
+    setup();
+=======
+	 
+	 
+
+var animloop = function(){
+    setup();
+ 
+    for (var i=0;i<cars.length;i++) {
+      cars[i].move();
+      cars[i].draw();			   
+    }
+    window.requestAnimationFrame(animloop);
+} 
+>>>>>>> 5a82b67f2702c6a9ece2bcfcc5363a43b8fa5ac8
+ 
+    for (var i=0;i<cars.length;i++) {
+      cars[i].move();
+      cars[i].draw();			   
+    }
+    window.requestAnimationFrame(animloop);
+} 
+ 
+<<<<<<< HEAD
+ 
+var c = car(50,250,60,30,ctx);
+var cars=[];
+cars.push(c);
+ 
+=======
+var c = car(50,250,60,30,ctx);
+var cars=[];
+cars.push(c);
+ 
+>>>>>>> 5a82b67f2702c6a9ece2bcfcc5363a43b8fa5ac8
+var keypress = function(e) {
+   console.log(e);
+};
+
+window.requestAnimationFrame(animloop);
+    
+</script>
+</body>
+</html>

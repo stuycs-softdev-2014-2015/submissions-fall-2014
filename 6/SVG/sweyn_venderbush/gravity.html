@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		#s {
+			border: 1px solid;
+		}
+	</style>
+</head>
+<body>
+	<svg class="where" id="s" height=400 width=400>
+	</svg>
+	<br>
+	Click to add a ball to the SVG.<br>
+	Balls fall with some gravity.<br>
+	Click and drag on a ball to move it somewhere else, to show off SVGs object ability!
+	<script>
+
+		var gravity = 1;
+
+		var mouseOverObject = 0;
+
+		var addCircle = function(s,x,y,r,c){
+			var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+			c1.setAttribute('id','c1');
+			c1.setAttribute('cx',x);
+			c1.setAttribute('cy',y);
+			c1.setAttribute('r',r);
+			c1.setAttribute('fill',c);
+			c1.setAttribute('v',6)
+			c1.addEventListener('mousedown',mouseDownListener);
+			c1.addEventListener('mouseup',mouseUpListener);
+			s.appendChild(c1);
+		}
+
+		var mouseDownListener = function(e){
+			var s = document.getElementById("s");
+			s.addEventListener('mousemove',mouseMoveListener);
+			mouseOverObject = this;
+		}
+
+		var mouseUpListener = function(e){
+			var s = document.getElementById("s");
+			s.removeEventListener('mousemove',mouseMoveListener);
+			mouseOverObject = 0;
+		}
+
+		var mouseMoveListener = function(e){
+			mouseOverObject.setAttribute('cx',e.offsetX);
+			mouseOverObject.setAttribute('cy',e.offsetY);
+		}
+
+		var move = function() {
+			var cs = document.getElementsByTagName("circle");
+			for (var i=0;i<cs.length;i++) {
+				if (cs[i] != mouseOverObject){
+					var y = parseInt(cs[i].getAttribute('cy'));
+					var v = parseFloat(cs[i].getAttribute('v'));
+
+					y = y + v;
+					v = v + gravity
+
+					if (y >= 395){
+						v = v * -.5;
+						y = 395
+						if (Math.abs(v) < 3){
+							v = 0
+						}
+					}
+					cs[i].setAttribute('cy',y);
+					cs[i].setAttribute('v',v);
+				}
+			}
+		}
+		var cClick = function(e) {
+			e.preventDefault();
+
+			var c = this.getAttribute('fill');
+			if (c=='red') {
+				c='green';
+				this.setAttribute('fill',c);
+			} else if (c=='green') {
+				c = 'blue';
+				this.setAttribute('fill',c);
+			} else {
+				this.remove();
+			}
+		}
+
+		var clicked = function(e) {
+			e.preventDefault();
+			if (e.toElement != this) {return ;}
+			var r = 5
+			addCircle(s,e.offsetX,e.offsetY,r,'red');
+		}
+
+		var t =0;
+		var go = function() {
+			if (t==0){
+				t = setInterval(move,30);
+			} else {
+				clearInterval(t);
+				t=0;
+			}
+		}
+
+		var s = document.getElementById("s");
+		s.addEventListener("click",clicked);
+		go();
+	</script>
+</body>
+</html>

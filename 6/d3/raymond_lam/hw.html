@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>IB</title>
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+    <style>
+	body {
+	text-align: center;
+	}
+	h1 {font-family: Helvetica; color:#330099}
+	h1:hover {background: #666699; color: yellow;}
+	h2 {font-family: Helvetica; color:#330099}
+	h2:hover {background: #666699; color: yellow;}
+	div {font-family: Helvetica; color:#330099}
+	div:hover {background: #666699; color: yellow;}
+	a {font-family: Helvetica; color:#330099}
+	a:hover {background: #666699; color: yellow;}
+	
+    </style>
+  </head>
+  <body>
+	<h1>Analysis of Chair Entertainment Group's <a href="http://en.wikipedia.org/wiki/Infinity_Blade" target="_blank">Infinity Blade</a> Series</h1>
+	<a href="http://thinkgaming.com/app-sales-data/publisher/77/chair-entertainment-group/" target="_blank">Source</a>
+	<h2>From left to right:</h2>
+	<div>Average Revenue Per User</div>
+	<div>Estimated Daily Installs</div>
+	<div>Price</div>
+	<div>Estimated Daily Revenue</div>
+    <script type="text/javascript">
+
+
+var data = [
+  [ 13.7,  42.9, 43.4], //read as a table: each column represents a game in the series
+  [ 47.7, 14.1, 38.2], //left column to right column: IB1, IB2, IB3
+  [ 6.6, 46.7, 46.7], //top row to bottom row: average revenue per user, daily install estimate
+  [ 12.5, 27.6, 59.9] //,price, daily revenue estimate
+];
+
+var m = 10, //margin
+    r = 100, //radius
+    z = d3.scale.category20b(); //color scale
+
+var svg = d3.select("body").selectAll("svg")
+    .data(data)
+  .enter().append("svg:svg")
+    .attr("width", (r + m) * 2)
+    .attr("height", (r + m) * 2)
+  .append("svg:g")
+    .attr("transform", "translate(" + (r + m) + "," + (r + m) + ")");
+
+svg.selectAll("path")
+    .data(d3.layout.pie()) //pass the data from the array to d3.layout.pie to get angles for each arc
+  .enter().append("svg:path") 
+    .attr("d", d3.svg.arc() //pass angles to d3.svg.arc to draw arcs
+    .innerRadius(r / 1.5) //inner circle
+    .outerRadius(r)) //outer circle
+    .style("fill", function(d, i) { return z(i); });
+
+    </script>
+  </body>
+</html>
