@@ -11,7 +11,7 @@ def validate_title(names,num,test):
 
 class names(unittest.TestCase):
     def test_titles(self):
-        self.assertEqual(validate_title(find_title_last("Recent studies by Dr. Mandler and Mrs. John show stupid things"),1,"Mrs. John"),True)
+        self.assertEqual(validate_title(find_title_last("Recent studies by Dr. Tom and Mrs. John show stupid things"),1,"Mrs. John"),True)
 
 
 
