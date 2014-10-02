@@ -47,6 +47,5 @@ def gothrough(filename):
     doc = open(filename, 'r')
     docopen = doc.readline()
     doc.close()
-    possName= re.split("(^[A-Z]\w+)"gm, docopen)
-    possName.append(
-    if
+    nameRegex = re.compile("(\b[MSDLP][rasio][srd'mo]?[tsaedyf]?[e]?[rm]?\.?)?\s?(\b[A-Z]\w+)( ([A-Z]\w+))?")
+    possName = nameRegex.findall(docopen)
