@@ -1,6 +1,7 @@
 import re
 
-file = open("janeausten.txt", "r")
+#file = open("janeausten.txt", "r")
+file = open("lesmis.txt", "r")
 text = file.read()
 file.close()
 
@@ -10,9 +11,21 @@ with open("names_list.txt") as f:
         names.append(line.split()[0].capitalize())
 file.close()
 
+extras = ["Mister", "Mr.", "Mrs.", "Ms.", "Master"]
+for item in extras:
+    names.append(item)
+
 #test prints
 #print(text[:100])
 #print names[:10]
 
-search = "Jane Austen"
-print re.findall(search,  text)
+search = ""
+results = []
+for item in names:
+    #print item
+    search = "(" + item + " ([A-Z]\.)* ([A-Z][a-z]+)*)"
+    L = re.findall(search,  text)
+    if (L != []):
+        results.append(L[0]);
+print results
+    

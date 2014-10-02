@@ -1,6 +1,8 @@
 
 import re
 
-p = re.compile("(([A-Z][a-z]*)[\s-])([A-Z][a-z]*)")
-print p.findall("Mark Norwich hey there Cooper Weaver hi how are you Sam Mortinson")
+reg1 = "(([DMS][ris]{1-3}[\.]? )?(Mr\. )?([A-Z][a-z]*)([\s-][A-Z][a-z]*))"
+FL = "([A-Z][a-z]*)([\s-][A-Z][a-z]*)"
+reg = "(((Mr\. )|(Mrs\. )|(Dr\. )|(Ms\. )|(Sir\. ){0,1})(([A-Z][a-z]*)([\s-][A-Z][a-z]*)))"
+print re.findall(reg,"Mark Norwich hey Dr.  there Mr. Cooper Weaver hi how are Mr. you Sam-Mortenson")
 
