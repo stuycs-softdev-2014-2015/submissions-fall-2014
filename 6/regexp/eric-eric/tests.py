@@ -10,6 +10,11 @@ class TestRegexFunctions(unittest.TestCase):
         self.testStringMultipleNames = "Brian O'Malley said hi to Eric Chen"
         self.testStringSurnames = "Mr. Smith is a test person"
 
+    def testNameSearchSimpleSurnames(self):
+        """should not match to a name such as Mr. Smith"""
+        names = filterName.getNames(self.testStringSurnames)
+        self.assertNotIn("Smith", names)
+
     def testNameSearchSimple(self):
         names = filterName.getNames(self.testString)
         self.assertIn("Eric Chen", names)
@@ -21,6 +26,11 @@ class TestRegexFunctions(unittest.TestCase):
     def testNameSearchHyphen(self):
         names = filterName.getNames(self.testString3)
         self.assertIn("Brian O-Malley", names)
+
+    def testNameSearchSurnamesSimple(self):
+        """should not match normal names such as Eric Chen"""
+        names = filterName.getSurnames(self.testString)
+        self.assertNotIn("Smith", names)
 
     def testNameSearchSurnames(self):
         names = filterName.getSurnames(self.testStringSurnames)
@@ -45,6 +55,15 @@ class TestCleaningFunctions(unittest.TestCase):
                 namecount = False
 
         self.assertEqual(namecount, True)
+
+    def testSplitName(self):
+        names = filterName.splitName(self.exampleNames)
+        self.assertIn("Eric", names)
+        self.assertIn("Chen", names)
+        self.assertIn("Brian", names)
+        self.assertIn("O'Malley", names)
+        self.assertIn("Another", names)
+        self.assertIn("Name", names)
 
 
 if __name__ == '__main__':

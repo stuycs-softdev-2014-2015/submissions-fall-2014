@@ -24,6 +24,16 @@ def deleteDuplicates(names):
     return D
 
 
+def splitName(list):
+    ans = []
+    for element in list:
+        current = element.split(" ")
+
+        for word in current:
+            ans.append(word)
+    return ans
+
+
 def readText(filepath = "isaac.test"):
     """Returns a list of names from the text file"""
     file = open(filepath, "r")
@@ -31,4 +41,8 @@ def readText(filepath = "isaac.test"):
     file.close()
 
     L = getNames(text)
+    L = L + getSurnames(text)
     return L
+
+if __name__ == "__main__":
+    print readText()
