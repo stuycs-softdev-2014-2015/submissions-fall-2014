@@ -1,6 +1,6 @@
 import re
 
-File = open('thePrince.txt', 'r')
+File = open('sample.txt', 'r')
 book = File.readlines()
 file.close
 
