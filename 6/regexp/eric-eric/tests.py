@@ -24,7 +24,7 @@ class TestRegexFunctions(unittest.TestCase):
 
     def testNameSearchSurnames(self):
         names = filterName.getSurnames(self.testStringSurnames)
-        self.assertIn("Mr. Smith", names)
+        self.assertIn("Smith", names)
 
 
 class TestCleaningFunctions(unittest.TestCase):

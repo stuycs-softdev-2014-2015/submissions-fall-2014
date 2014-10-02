@@ -7,7 +7,7 @@ def getNames(s):
 
 
 def getSurnames(s):
-    names = re.findall(r"M[a-z]{1,2}\. [A-Z][a-zA-z'-]+", s)
+    names = re.findall(r"M[a-z]{1,2}\. ([A-Z][a-zA-z'-]+)", s)
     return names
 
 
@@ -24,3 +24,11 @@ def deleteDuplicates(names):
     return D
 
 
+def readText(filepath = "isaac.test"):
+    """Returns a list of names from the text file"""
+    file = open(filepath, "r")
+    text = file.read()
+    file.close()
+
+    L = getNames(text)
+    return L
