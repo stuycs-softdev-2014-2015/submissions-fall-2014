@@ -17,20 +17,14 @@ def readTimes():
     allNames = re.findall("[A-Z][a-z]+\s[A-Z][a-z]+",nytimes)
     firstNames = read2.split() #all first names via our database
     firstDic = dict.fromkeys(firstNames, firstNames)
-    #print firstDic
-        
+    
     #smith = re.findall("[A-Z][a-z]+\sSmith",nytimes)
-    #print allNames
+
     
     for a in first:
         if a in firstDic:
             firstList.append(a)
     print firstList
-    
-    for a in first:
-        if a in firstDic:
-            firstList.append(a)
-    #print firstList
 
             
 if __name__ == "__main__":
