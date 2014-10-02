@@ -11,9 +11,9 @@ def deleteDuplicates(names):
     D = {}
 
     for name in names:
-        if isKey:
-            D[name] = 1
-        else:
+        if name in D:
             D[name] += 1
+        else:
+            D[name] = 1
 
     return D

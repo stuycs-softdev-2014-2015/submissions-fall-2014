@@ -20,8 +20,8 @@ class TestRegexFunctions(unittest.TestCase):
 class TestCleaningFunctions(unittest.TestCase):
     def setUp(self):
         self.exampleNames = ["Eric Chen", "Brian O'Malley", "Another Name"]
-        self.testString = """Eric Chen Eric Chen Eric Chen Eric Chen
-        Brian O'Malley Brian O'Malley
+        self.testString = """Eric Chen Eric Chen Eric Chen
+        Brian O'Malley Brian O'Malley Brian O'Malley
         Another Name Another Name Another Name
         """
 
@@ -32,7 +32,7 @@ class TestCleaningFunctions(unittest.TestCase):
 
         for name in self.exampleNames:
             if D[name] != 3:
-                namecount = false
+                namecount = False
 
         self.assertEqual(namecount, True)
 
