@@ -1,7 +1,8 @@
 import re
 
-doc = "President Obama told Jerry that he should write his essay for Ms. Long."
+f = open("doc.txt",'r');
+doc = f.read();
+f.close();
 
-
-m = re.findall('([A-Z][a-z]* [A-Z][a-z]*)|([A-Z][a-z]*)',doc)
+m = re.findall('(?:[^\.\?] )((?:Mr. )?(?:Ms. )?(?:Mrs. )?[A-Z][a-z]+(?: [A-Z][a-z]+)?)',doc)
 print(m)
