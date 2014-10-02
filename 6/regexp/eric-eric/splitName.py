@@ -6,4 +6,4 @@ def splitName(list):
         for word in current:
             ans.append(word)
     print ans
-    return ans
+    return
