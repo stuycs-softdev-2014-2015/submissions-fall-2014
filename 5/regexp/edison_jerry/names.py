@@ -1,15 +1,13 @@
 #!/usr/bin/python
 import re
 
-txt = "asdfas asdf asdf Jerry Dai asdf a sfdfs"
-txt2 = "Edison Shi"
-txt3 = "Mr. Smith"
-txt4 = "Mrs. Smith"
-txt5 = "New York"
+txt = open("book.txt", "r")
+txt = txt.read()
 
-match = re.search( r'[A-Z][\w]*\s[A-Z][\w]*' , txt) 
+match = re.findall( r'[A-Z][a-z]* [A-Z][a-z]* | Mrs?. [A-Z][a-z]* | Dr. [A-Z][a-z]*' , txt)
+
 
 if match:
-    print match.group()
+    print match
 else:
     print "No matches"
