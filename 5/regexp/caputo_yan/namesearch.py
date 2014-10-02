@@ -30,6 +30,8 @@ any 2 adjacent first letter capital'd words
 things before commas
 '''
 
+import re
+
 firstnames = open("First_Names.csv", 'r')
 lastnames = open("Last_Names.csv", 'r')
 
@@ -43,4 +45,8 @@ last = lastn.split(",")
 
 def gothrough(filename):
     doc = open(filename, 'r')
-    
+    docopen = doc.readline()
+    doc.close()
+    possName= re.split("(^[A-Z]\w+)"gm, docopen)
+    possName.append(
+    if
