@@ -5,7 +5,7 @@ names= textfile.read()
 textfile.close()
 names= names.split()
 
-fname="testfile.txt"
+fname="JackWinters.txt"
 
 def opentestfile(fname):
     f = open (fname, "r")
