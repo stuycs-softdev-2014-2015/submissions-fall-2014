@@ -6,7 +6,9 @@ class TestRegexFunctions(unittest.TestCase):
     def setUp(self):
         self.testString = "Hello this is a test String made by Eric Chen"
         self.testString2 = "Brian O'Malley"
+        self.testString3 = "Brian O-Malley"
         self.testStringMultipleNames = "Brian O'Malley said hi to Eric Chen"
+        self.testStringSurnames = "Mr. Smith is a test person"
 
     def testNameSearchSimple(self):
         names = filterName.getNames(self.testString)
@@ -15,6 +17,14 @@ class TestRegexFunctions(unittest.TestCase):
     def testNameSearchApostrophe(self):
         names = filterName.getNames(self.testString2)
         self.assertIn("Brian O'Malley", names)
+
+    def testNameSearchHyphen(self):
+        names = filterName.getNames(self.testString3)
+        self.assertIn("Brian O-Malley", names)
+
+    def testNameSearchSurnames(self):
+        names = filterName.getSurnames(self.testStringSurnames)
+        self.assertIn("Mr. Smith", names)
 
 
 class TestCleaningFunctions(unittest.TestCase):
@@ -35,6 +45,7 @@ class TestCleaningFunctions(unittest.TestCase):
                 namecount = False
 
         self.assertEqual(namecount, True)
+
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestRegexFunctions)

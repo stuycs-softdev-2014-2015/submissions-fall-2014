@@ -6,6 +6,11 @@ def getNames(s):
     return names
 
 
+def getSurnames(s):
+    names = re.findall(r"M[a-z]{1,2}\. [A-Z][a-zA-z'-]+", s)
+    return names
+
+
 def deleteDuplicates(names):
     """Deletes Duplicates and return a Dictionary of names to frequency"""
     D = {}
@@ -17,3 +22,5 @@ def deleteDuplicates(names):
             D[name] = 1
 
     return D
+
+
