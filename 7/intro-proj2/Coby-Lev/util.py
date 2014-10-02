@@ -15,10 +15,7 @@ def validate_phone(phone):
         return False
 
 def validate_password(password):
-    if (len(password) < 6) or (len(password) > 8) or (upper(password) == False) or (lower(password) == False) or (digit(password) == False):
-        return False
-    else:
-        return True
+    return (len(password) >= 6) and (len(password) <= 8) and (upper(password)) and (lower(password)) and (digit(password))
 
 def upper(password):
     uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

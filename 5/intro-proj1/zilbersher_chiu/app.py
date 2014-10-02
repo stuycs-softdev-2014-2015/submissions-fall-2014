@@ -37,6 +37,16 @@ def count(title):
     word = mostCommonWord(word_dict)
     return render_template("count.html", title=title, word=word, word_dict=word_dict)
 
+@app.route("/submit", methods = ["POST", "GET"])
+def submit():
+    #DO STUFF HERE
+    submitted = False
+    if request.method == "POST":
+        f = request.files['file']
+        f.save("./files/"+f.filename);
+        submitted = True
+    return render_template("submit.html", submitted=submitted)
+
 def wordCount(raw_string):
     words = {}
     for word in string.split(raw_string):
