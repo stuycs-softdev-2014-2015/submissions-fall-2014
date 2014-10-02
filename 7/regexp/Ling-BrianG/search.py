@@ -1,4 +1,5 @@
 import re
+<<<<<<< HEAD
 import unittest
 import string
 
@@ -21,3 +22,16 @@ def findname():
 
 if __name__=="__main__":
     findname()
+=======
+
+File = open('sample.txt', 'r')
+book = File.readlines()
+file.close
+
+def find_names(x):
+    re.search('[A-Z]{1}[a-z]+/s[A-Z]{1}[a-z]+',x)
+
+
+if __name__ == "__main__":
+    find_names(book)
+>>>>>>> 233d12b537931f83f19d3eed30401dc503c19c91
