@@ -43,4 +43,15 @@ last = lastn.split(",")
 
 def gothrough(filename):
     doc = open(filename, 'r')
-    
+    docopen = doc.readline()
+    doc.close()
+    words = docopen.split(" ") #list containing individual words
+    found = []
+    for w in range(len(found)-1):
+        if found[w][0].isupper:
+            if True: #check first is true
+                if True: #check last is true
+                    found.append([w[0],w[1]])
+    return found
+
+def 
