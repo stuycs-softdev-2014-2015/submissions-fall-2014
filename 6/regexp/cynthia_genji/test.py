@@ -31,7 +31,7 @@ def findMatches(text):
         first_last = n.findall(name)
         first = first_last[0]
         last = first_last[1]
-        if first.upper() and last.upper() not in common_words: #all the words in the fileare in capital letters
+        if first.upper() not in common_words and last.upper() not in common_words: #all the words in the fileare in capital letters
             sortedNames.append(name)
             print name
     print sortedNames
