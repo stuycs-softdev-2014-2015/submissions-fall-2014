@@ -24,5 +24,10 @@ class TestNameRegex(unittest.TestCase):
         names = namere.find_names(corpus)
         assert "Harrison Parker Chiu" in names
 
+    def test_three_name_lowercase_middle(self):
+        corpus = "Ludwig van Beethoven"
+        names = namere.find_names(corpus)
+        assert "Ludwig van Beethoven" in names
+
 if __name__ == '__main__':
         unittest.main()

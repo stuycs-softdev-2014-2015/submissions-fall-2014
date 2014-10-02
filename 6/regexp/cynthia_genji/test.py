@@ -5,6 +5,13 @@ import unittest
 #class TestDemo(unittest.TestCase)
 
 berries = open("berry.txt",'r').read().replace("\n","")
+saw = open("saw.txt",'r').read().replace("\n","")
+giver = open("giver.txt",'r').read().replace("\n","")
+twilight = open("twilight.txt",'r').read().replace("\n","")
+moon = open("new_moon.txt",'r').read().replace("\n","")
+breaking = open("breaking_dawn.txt",'r').read().replace("\n","")
+
+
 
 common_words = open("common_words.txt",'r').read().splitlines()
 #A LIST WITH THE 1000 MOST COMMON WORDS: FROM http://www.giwersworld.org/computers/linux/common-words.phtml
@@ -37,5 +44,6 @@ def findMatches(text):
     print sortedNames
                 
 if __name__ == "__main__":
-    findMatches(berries)
+    findMatches(twilight)
+    
     #print common_words
