@@ -1,11 +1,12 @@
 import re
 
-text = open('Text.txt', 'r')
-book1 = text.readlines()
+text = open('Test.txt', 'r')
+book1 = text.read()
 text.close()
 
-def findname()
-    m = re.search('[A-Z][a-z]+ [A-Z][a-z]+', book1)
+def findname():
+    m = re.findall(r'([A-Z][a-z]+ [A-Z][a-z]+)', book1)
+    print m
 
 if __name__=="__main__":
     findname()
