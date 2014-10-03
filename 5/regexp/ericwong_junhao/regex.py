@@ -20,14 +20,16 @@ def findname():
     #filter only those that are not start of sentence (first character is not period)
     for name in word2:
         if not(".".in(name)):
-            namelist.append()
+            namelist.append(name[2,])
     
     #extract first names from name pairs (first last)
     #will not find new first names, only count how many times name is mentioned
-    first = []
-    for name in namelist:
-        first.append(re.search("[A-Z]\w+", name))
-    
+    #first = []
+    #for name in namelist:
+        #first.append(re.search("[A-Z]\w+", name))
+
+    for n in namelist:
+        print n
 
 if __name__=="__main__":
     findname()
