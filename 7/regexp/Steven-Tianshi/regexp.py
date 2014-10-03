@@ -7,7 +7,6 @@ f.close()
 def check(s):
     for e in exempt:
         if (s == e):
-            print(s + e)
             return True
     return False
 
