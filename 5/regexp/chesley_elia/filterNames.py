@@ -1,24 +1,24 @@
-# We will use regexes to find surnames that are patronymic or toponymic 
-# i.e. de Waal, or el-Fattah  
+# -*- coding: utf-8 -*-
 import time
 import re
 inputList = []
-inputFile = "pg47010.txt"
+inputFile = "pg2147.txt"
 nameList = []
 namesListFile = "allNamesUppercase.txt"
 results = set()
 
-#def filterDirectMatches():
-#    prefixes = ["Mr.", "Ms.", "Miss", "Mister", "Dr."]
-#    suffixes = ["Phd", "Jr", "Sr", "MD"]
+LOWER_CASE_ALPHABET_RANGE = "[a-záààâçééèèêëíìîïñóòôúùùûü]"
+UPPER_CASE_ALPHABET_RANGE = "[A-ZÛÚÙÙÜÁÀÀÂÇÉÉÈÈÊËÍÌÎÏÑÓÒÔ]"
 
-    
 def getFilteredInputList():
     global wordList, inputList, results
     f = open(inputFile, 'r')
-    #regex_split_delimiter = "\s+|-{2,}|,|\!|\?|\"|\'s|s\'"
-    #regex_capital_words_chain = "(?!\s)((([A-Z][a-z]+) )+)"
-    regex_capitals_with_surname_epithet = "(?!\s)([A-Z][a-z]+(( [A-Z][a-z]+)*)?(( ([a-z]{2,3}(?=\s))){1,2}( [A-Z][a-z]+)+)?)"
+    regex_capitals_with_surname_epithet = "(?!\s|-)([A-Z][a-z]+((( |-)[A-Z][a-z]+)*)?((( ([a-z]{2,3}(?=\s|-))){1,2})?(( |-)([a-z]\')?[A-Z][a-z]+)+)?)"
+    regex_capitals_with_surname_epithet = regex_capitals_with_surname_epithet\
+        .replace('[A-Z]', UPPER_CASE_ALPHABET_RANGE)\
+        .replace('[a-z]', LOWER_CASE_ALPHABET_RANGE)
+    # regex matches names such as:
+    # Les Demoiselles d'Avignon, Mademoiselle de l'Amour, Abd el-Fattah, Jean-Jacques Rousseau, and James Bond
     regex = re.compile(regex_capitals_with_surname_epithet)
     words = regex.findall(f.read())
     for _tuple in words:
