@@ -5,7 +5,7 @@ names= textfile.read()
 textfile.close()
 names= names.split()
 
-fname="testfile.txt"
+fname="JackWinters.txt"
 
 def opentestfile(fname):
     f = open (fname, "r")
@@ -14,26 +14,20 @@ def opentestfile(fname):
     return x
 
 
-
-
-#x = "Cats are smarter than dogs. This is the opinion of Alex."
-#x = "abcdef"
-#x = "Mr. Stone found little Amy in Mr. Eric Smith 65364562345243523"
 x = opentestfile(fname)
+x = "Mr. Johnny Deep was loved by Emily J. Jenkino but not Jane Terrance."
 def findname():
     '''
     m= re.search(r".[^ab]+",x) #bcdef
     m= re.search(r"[a-f]+",x) #abcdef
+    m = re.findall("[A-Z][a-z]+",x)  #gets all capitalized words
     '''
-    m = re.findall("[A-Z][a-z]+",x)
-    #m = re.findall("[A-Z][a-z\./].+",x)
-    #m = re.findall("[^Mr.][A-Z]?[\w.]+ ",x)
-    #print m
-    #namesfound= []
-    #for name in m:
-    #    namesfound.append(name)
-    
-    #m = re.findall("[^Mr.][A-Z]?[\w.]+ ",x)
+    m = re.findall("[A-Z][a-z|-]+",x) #gets all capitalizes words
+    z = re.findall("[A-Z][a-z|'|.|]+ [A-Z][a-z|'|\.]+",x)
+    m = re.findall("[A-Z][a-z|'|.|]+ [A-Z][a-z|'|\.]+ [A-Z][a-z|'|\.]+",x)
+    print z
+    print m
+    #build dictionary or list with names (dictionary would be more efficient probably
     matches=[y for y in m if y in names]
     numbnames={}
     for name in matches:
@@ -41,7 +35,12 @@ def findname():
             numbnames[name]+=1
         else:
             numbnames[name]=1
-    return numbnames
+    
+    namesfound= []
+    for name in m:
+       namesfound.append(name)
+    print namesfound
+    #return numbnames
     #return matches
     
 
