@@ -66,8 +66,19 @@ class TestCleaningFunctions(unittest.TestCase):
         self.assertIn("Name", names)
 
 
+class TestFalsePositiveCleaner(unittest.TestCase):
+    def testReadFalsePositives(self):
+        falsePositives = filterName.readFalsePositives()
+        self.assertIn("the", falsePositives)
+        self.assertIn("when", falsePositives)
+        self.assertIn("but", falsePositives)
+        self.assertIn("and", falsePositives)
+
+
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestRegexFunctions)
     unittest.TextTestRunner(verbosity=2).run(suite)
     suite = unittest.TestLoader().loadTestsFromTestCase(TestCleaningFunctions)
+    unittest.TextTestRunner(verbosity=2).run(suite)
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestFalsePositiveCleaner)
     unittest.TextTestRunner(verbosity=2).run(suite)
