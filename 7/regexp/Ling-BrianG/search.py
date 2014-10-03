@@ -1,5 +1,4 @@
 import re
-<<<<<<< HEAD
 import unittest
 import string
 
@@ -9,29 +8,18 @@ names = []
 firstnames = []
 
 def findname():
-    fullnames = re.findall("[A-Z][a-z]*\s[A-Z][a-z]*", tales)
+    fullnames = re.findall("[A-Za-z]*\s([A-Z][a-z]*\s[A-Z][a-z]*)", tales)
     for i in fullnames:
-       names.append(i)
+        if i not in names and len(i) > 3:
+            names.append(i)
 
-    fnames = re.findall("[A-Z][a-z]*", tales)
+    fnames = re.findall("[A-Za-z]*\s([A-Z][a-z]*)", tales)
     for i in fnames:
-        firstnames.append(i)
+        if i not in fnames:
+            firstnames.append(i)
 
-    print fnames
+    print names
 
 
 if __name__=="__main__":
     findname()
-=======
-
-File = open('sample.txt', 'r')
-book = File.readlines()
-file.close
-
-def find_names(x):
-    re.search('[A-Z]{1}[a-z]+/s[A-Z]{1}[a-z]+',x)
-
-
-if __name__ == "__main__":
-    find_names(book)
->>>>>>> 233d12b537931f83f19d3eed30401dc503c19c91
