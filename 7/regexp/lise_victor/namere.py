@@ -15,21 +15,19 @@ def opentestfile(fname):
 
 
 x = opentestfile(fname)
-x = "Mr. Johnny Deep was loved by Emily J. Jenkino."
+x = "Mr. Johnny Deep was loved by Emily J. Jenkino but not Jane Terrance."
 def findname():
     '''
     m= re.search(r".[^ab]+",x) #bcdef
     m= re.search(r"[a-f]+",x) #abcdef
     m = re.findall("[A-Z][a-z]+",x)  #gets all capitalized words
-'''
+    '''
     m = re.findall("[A-Z][a-z|-]+",x) #gets all capitalizes words
-    m = re.findall("[A-Z][a-z|'|.|]+[A-Z][a-z|'|.+]+",x)
+    z = re.findall("[A-Z][a-z|'|.|]+ [A-Z][a-z|'|\.]+",x)
+    m = re.findall("[A-Z][a-z|'|.|]+ [A-Z][a-z|'|\.]+ [A-Z][a-z|'|\.]+",x)
+    print z
     print m
-    #namesfound= []
-    #for name in m:
-    #    namesfound.append(name)
-    
-    #m = re.findall("[^Mr.][A-Z]?[\w.]+ ",x)
+    #build dictionary or list with names (dictionary would be more efficient probably
     matches=[y for y in m if y in names]
     numbnames={}
     for name in matches:
@@ -37,6 +35,11 @@ def findname():
             numbnames[name]+=1
         else:
             numbnames[name]=1
+    
+    namesfound= []
+    for name in m:
+       namesfound.append(name)
+    print namesfound
     #return numbnames
     #return matches
     
