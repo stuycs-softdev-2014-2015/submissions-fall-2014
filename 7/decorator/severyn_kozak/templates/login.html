@@ -1,0 +1,20 @@
+= extends "layout.html"
+
+= block title
+	login
+= endblock
+
+= block content
+	<h2>Login page!</h2>
+	<p>
+		Hint:<br>
+		username: <b>sevko</b><br>
+		password: <b>flask</b>
+	</p>
+
+	<form action="{{ url_for('login')}}" method="post">
+		<input type="text" name="username" size="20" placeholder="Username"/><br>
+		<input type="password" name="password" size="20" placeholder="Password"/><br>
+		<input type="submit" name="login">
+	</form>
+= endblock

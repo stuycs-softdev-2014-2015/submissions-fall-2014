@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- Applies filters to an arbitrary csv-->
+<!--got sidetracked, not much d3 involved-->
+
+<html>
+  <head>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script>
+    console.log("hello world");
+	
+	var stringToOperator= function(operand1,str,operand2){
+		console.log(operand1);
+		console.log(str);
+		console.log(operand2);
+		switch(str){
+			case "<": return operand1 < operand2;
+			case "==": return operand1 == operand2;
+			case ">": return operand1 > operand2;
+		}
+	}
+	d3.csv("grades.csv",function(d){makeSVG(d)});      
+	var colnames = [];
+	var makeSVG=function(d){
+		var generateList = function(filter){
+			$("#data tr").remove();
+			row="<tr>";
+			for (var key in d[0]){
+			row=row+ "<td>"+ key +"</td>";
+			};
+			row = row + "</tr>";
+			$("#data").append(row);
+			
+			for (var i=0;i<d.length;i++){
+			console.log(stringToOperator(d[i][$(".colname").val()],$(".operator").val(),$(".number").val()));
+				if (stringToOperator(d[i][$(".colname").val()], $(".operator").val(), $(".number").val())){
+					row = "<tr>";
+					for (var key in d[i]){
+						row = row + "<td>" + d[i][key] + "</td>";
+					}
+					row.concat("</tr>");
+					$("#data").append(row);
+				}
+			}
+		};
+		for (var key in d[0]){
+			colnames.push(key);
+		};
+		addFilter();
+		generateList([true,true,false]);
+		var f = d3.select("#filters");
+		f.on("change",function(e){
+			console.log("changed");
+			generateList($(".filter"));
+		});
+	};
+	var addFilter = function(){
+		newfilter = "<li>";
+		col = "<select class='colname' name='colname'>";
+		for (var i=0;i<colnames.length;i++){
+			col = col + " <option value="+colnames[i]+">"+colnames[i]+"</option>";
+		}
+		col = col + "</select>";
+		newfilter = col + "<select class='operator' name='operator'><option value='<'> &#60 </option><option value='=='> &#61 </option><option value='>'> &#62 </option>"	
+					+"<input type ='text' class='number' name='number' placeholder='#'>"
+					+"</li>";
+		$("#filters").append(newfilter);
+	}
+	$("div").click(addFilter());		   
+    </script>
+	<style>
+		#newfilter{
+			border-style:solid;
+			border-width: 1px;
+			width: 200px;
+		}
+	</style>
+  </head>
+  <body>
+	Filter:
+    <ul id="filters">
+      <!-- <input type="text" class="filter" placeholder="Enter a boolean:"> -->
+    </ul>
+    <button id="newfilter"> Add a new filter </button>
+    <table id="data">
+
+    </table>
+  </body>
+
+</html>

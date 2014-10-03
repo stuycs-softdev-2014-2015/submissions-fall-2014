@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<h1>PARTICLES!</h1><h4>By Eli Cohen</h1>
+<div>
+<canvas height="500" width="500" id="c"
+	style="border:10px solid black">
+</canvas>
+</div>
+<input id = "button" type = "submit" name = "b" onclick = button() value = "Add Particle"></input>
+<input id = "button2" type = "submit" name = "b" onclick = button2() value = "Clear"></input>
+<script>
+ var c = document.getElementById("c");
+ var ctx = c.getContext("2d");
+ 
+ var circle = function(x,y,r,dx,dy,ctx){
+  return{
+   x:x,
+   y:y,
+   r:r,
+   dx:dx,
+   dy:dy,
+   color: 'rgb('+(11*Math.sqrt(dx*dx+dy*dy)|0).toString()+',0,0)',
+   ctx: ctx,
+   draw: function(){
+       var c = document.getElementById("c");
+ var ctx = c.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(this.x, this.y,this.r,0,2*Math.PI);
+      ctx.fillStyle=this.color;   
+      ctx.stroke();
+      ctx.fill();
+   },
+   move: function() {
+    this.x = this.x + this.dx;
+    this.y = this.y + this.dy;
+    if ((this.y>500-this.r || this.y < this.r) && (this.x>500-this.r || this.x < this.r)){
+     k = 1-Math.random()*0.2;
+     j = 1-Math.random()*0.2;
+     this.dx = this.dx*(-1);
+     this.dy = this.dy*(-1);
+     this.move();
+     this.dy = this.dy*k;
+     this.dx = this.dx*j;
+     this.color= 'rgb('+(11*Math.sqrt(this.dx*this.dx+this.dy*this.dy)|0).toString()+',0,0)';
+    }
+    else if (this.y>500-this.r || this.y < this.r){
+     k = 1-Math.random()*0.2;
+     j = 1-Math.random()*0.2;
+     this.dy = this.dy*(-1);
+     this.move();
+     this.dy = this.dy*k;
+     this.dx = this.dx*j;
+     this.color= 'rgb('+(11*Math.sqrt(this.dx*this.dx+this.dy*this.dy)|0).toString()+',0,0)';
+    }
+    else if (this.x>500-this.r || this.x < this.r){
+     k = 1-Math.random()*0.2;
+     j = 1-Math.random()*0.2;
+     this.dx = this.dx*(-1);
+     this.move();
+     this.dx = this.dx*k; 
+     this.dy = this.dy*j;
+     this.color= 'rgb('+(11*Math.sqrt(this.dx*this.dx+this.dy*this.dy)|0).toString()+',0,0)';
+    }
+  }
+ }
+}
+
+
+ var animloop = function() {
+   ctx.fillStyle="#defab4";
+   ctx.fillRect(0,0,500,500);
+   for (var i = 0; i < circles.length; i=i+1){
+   circles[i].move();
+   circles[i].draw();
+   }
+   window.requestAnimationFrame(animloop);
+ }
+
+var button = function(e){
+  newp();	 
+}  
+
+var button2 = function(e){
+  clear();
+}
+
+var newp = function(){
+ c = circle(250,250,5+Math.random()*10,Math.random()*30-15,Math.random()*30-15);
+ circles.push(c);
+}
+
+var clear = function(){
+circles = [];
+}
+ 
+var circles = [];
+window.requestAnimationFrame(animloop);
+
+</script>
+</html>

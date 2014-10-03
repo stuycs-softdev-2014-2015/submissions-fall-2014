@@ -1,0 +1,11 @@
+var draw = function(data){
+    var svg = d3.select("svg");
+    var boxes = svg.selectAll("rect").data(data);
+    
+    boxes.enter().append("rect")
+	.attr("width",function(d,i){return i;})
+	.attr("height",function(d,i){return i;})
+
+}
+
+setTimeout(function(){draw([[300,20],[301,34]])};3000);

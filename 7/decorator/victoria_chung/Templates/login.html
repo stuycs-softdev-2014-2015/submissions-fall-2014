@@ -1,0 +1,15 @@
+<h1> Login page </h1>
+
+
+{% if invalid == 'True' %}
+<font color="red">Either your username and/or password is incorrect. Please try again.</font>
+{% endif %}
+
+
+<form method="POST">
+Username: <input type="text" name="username" value="">
+Password: <input type="password" name="password" value="">
+
+<input type="submit" name="button" value="Login">
+
+</form>
