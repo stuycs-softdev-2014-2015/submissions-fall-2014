@@ -1,3 +1,6 @@
+#Victor and Lise's name search
+#returns dictionary of names based on a file with common first names
+#there are some glitches as some of the listed first names may not be a name of a person in context
 import re
 
 def opentestfile(fname):
