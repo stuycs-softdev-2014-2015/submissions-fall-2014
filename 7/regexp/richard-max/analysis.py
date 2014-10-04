@@ -86,7 +86,7 @@ def name_vector_filter(text):
         if ((vectorize([ abs(data[x]-dd[x]) for x in sl]) > vectorize([abs(data[x] - df[x]) for x in sl])) or (vectorize([ abs(data[x]-dd[x]) for x in sl]) > vectorize([abs(data[x] - dm[x]) for x in sl]))):
             if "the " not in t:
                 result.append(t)
-    return result
+    return list(set(result))
 
 
 def validate_title(names,num,test):
@@ -137,3 +137,9 @@ if __name__=="__main__":
     captures = [x[0] for x in first_last(data)]
     print (name_vector_filter(captures))
     #print captures
+    """#On the spot testing
+    while (True):
+        ans = raw_input(">")
+        print name_vector_filter([ans])
+    """
+    
