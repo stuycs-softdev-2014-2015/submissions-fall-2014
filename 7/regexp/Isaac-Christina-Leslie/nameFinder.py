@@ -1,7 +1,7 @@
 import re
 
 full = open("names.txt", "r").readlines()
-first_names = open("CSV_Database_of_First_Names.csv", "r").readlines()[0].split("\r") # Extract data from firstname database
+first_names = open("all.txt", "r").read().split("\n") # Extract data from firstname database
 first_names = {x:x for x in first_names} # Make a dictionary out of the firstname database 
 
 def get_potential_names(text):
