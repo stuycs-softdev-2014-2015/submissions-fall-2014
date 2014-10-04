@@ -11,38 +11,49 @@ def readText(filename):
 	instream.close()
 	return text
 
-def listPossibleNames(filename):
-	# uses a regular expression to pass the text through the first layer of filtration
-	# any group of 1, 2, or 3 subsequent words beginning with caps will be added
-	text = readText(filename)
-for "." in 
-	names = []
-	for m in re.finditer(r"(([A-Z][a-z-\.]+){1,2}\s?){1,3}", text):
-	     names.append( '%02d-%02d: %s' % (m.start(), m.end(), m.group(0)) )
-	return names # returns a list 
+def makeList(filename):
+	# turns the raw census databases of names into lists
+	instream = open(filename,'r')
+	fulllist = instream.read().replace("\n"," ").split()
+	instream.close()
+	return [fulllist[x] for x in range(len(fulllist)) if x%4==0]
+
+
+
+def processTripleNames(text):
+	# uses a regular expression to find groups of 3 consecutive words all beginning with caps
+	triplenames = []
+	for m in re.finditer(r"(([A-Z][a-z-]+){1,2}\s){2}([A-Z][a-z-]+){1,2}", text):
+	     triplenames.append( '%02d-%02d: %s' % (m.start(), m.end(), m.group(0)) )
+	justthenames = [x[x.find(":")+2:] for x in triplenames]
+	newtext = text
+	for name in justthenames:
+		newtext[newtext.find(name):len(name)] = " "
+	return newtext
+
+def processDoubleNames(text):
+	# uses a regular expression to find groups of 2 consecutive words both beginning with caps
+	doublenames = []
+
+def processSingleNames(text):
+	# uses a regular expression to find words beginning with caps
+	singlenames = []
+
 
 def filterTwo():
-	names = listPossibleNames("test.txt")
+	names = listPossibleNames("stateoftheunion.txt")
 	justthenames = []
 	for name in names:
 		justthenames.append( name[name.find(":")+2:] )
-	return names
+	return justthenames
 
 	#possibleNames = re.match("[A-Z][a-z]+\s(([A-Z][a-z-]+){1,2})",text)
 	#possibleNames.group(0)
 	#return possibleNames
 
-def findNames(filename):
-	listPossibleNames(filename)
-	filterTwo()
-
 if __name__=="__main__":
-	findNames("test.txt")
 	#filename = raw_input("What file do you want to find people's names in?\n")
 	#try:
-	#	findNames(str(filename))
+	print processTripleNames(readText(str("test.txt")))
 	#except:
 	#	print "Filename invalid. Please try again."
-
-timeIndicators = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-				  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
