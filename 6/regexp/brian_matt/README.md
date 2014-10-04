@@ -1,7 +1,7 @@
 <h1> Regex Name Finder </h1>
 by Brian and Matt 
 
-<h2>How to use:</h2> <br> 
+<h2>How to use:</h2> 
 
 Run in your terminal by issuing this command:
 <br>
