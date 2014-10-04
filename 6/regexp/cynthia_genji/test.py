@@ -12,7 +12,7 @@ moon = open("new_moon.txt",'r').read().replace("\n","")
 breaking = open("breaking_dawn.txt",'r').read().replace("\n","")
 hunger = open("hunger_games.txt",'r').read().replace("\n","")
 
-common_words = open("common_words.txt",'r').read().splitlines()
+common_words = open("common_words_10000.txt",'r').read().splitlines()
 #A LIST WITH THE 1000 MOST COMMON WORDS: FROM http://www.giwersworld.org/computers/linux/common-words.phtml
 #I DELETED 'MISS' FROM THE TXT FILE CUZ 'MISS WATSON'
 
@@ -20,6 +20,8 @@ common_words.extend(["PROJECT", "GUTENBERG", "LITERARY", "ARCHIVE", "INTERNAL", 
 #I ADDED ADDITIONAL WORDS THAT ARE APPEAR IN BERRIES. ARE WE ALLOWED TO DO THAT?
 
 common_cities = open("common_cities.txt",'r').read().replace(" ","\n").splitlines()
+
+common_names = open("common_names.txt",'r').read().lower().splitlines()
 
 
 names = []
@@ -40,13 +42,14 @@ def findMatches(text):
         first_last = n.findall(name)
         first = first_last[0]
         last = first_last[1]
-        if first.upper() not in common_words and last.upper() not in common_words and first not in common_cities and last not in common_cities: #all the words in the fileare in capital letters
+        if first.lower() not in common_words and last.lower() not in common_words and first not in common_cities and last not in common_cities:
             sortedNames.append(name)
         else:
             print name
     print sortedNames
                 
 if __name__ == "__main__":
-    findMatches(hunger)
+    findMatches(saw)
+    print common_names
     
     #print common_words
