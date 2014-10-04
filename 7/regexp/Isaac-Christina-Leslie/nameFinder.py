@@ -1,6 +1,6 @@
 import re
 
-full = open("names.txt", "r").readlines()
+full = open("sherlock.txt", "r").read().split("\n")
 first_names = open("all.txt", "r").read().split("\n") # Extract data from firstname database
 first_names = {x:x for x in first_names} # Make a dictionary out of the firstname database 
 
@@ -22,7 +22,14 @@ def check_names(potential_names):
 			checked_names.append(i)
 	return checked_names
 
+def no_dupe(name_list):
+	single = []
+	for i in name_list:
+		if i not in single:
+			single.append(i)
+	return single
+
 if __name__ == "__main__":
-	names = get_potential_names(full)
-	checked = check_names(names) 
-	print checked
+	names = no_dupe(check_names(get_potential_names(full)))
+	print names
+	
