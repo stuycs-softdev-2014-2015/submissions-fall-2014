@@ -4,7 +4,9 @@ by Brian and Matt
 How to use: <br> 
 
 Run in your terminal by issuing this command:
-<br>```
+<br>
+<br>
+```
     python findnames.py <filename without extension>
 ```
     
