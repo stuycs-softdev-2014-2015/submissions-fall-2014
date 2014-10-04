@@ -1,6 +1,6 @@
 #Victor and Lise's name search
-#returns dictionary of names based on a file with common first names
-#there are some glitches as some of the listed first names may not be a name of a person in context
+#Returns dictionary of names based on a file with common first names
+#There are some glitches as some of the listed first names may not be a name of a person in context
 import re
 
 def opentestfile(fname):
@@ -28,6 +28,7 @@ fname = "testfile.txt"
 
 
 x = opentestfile(fname)
+#test string (not a complete sentence....)
 #x = "\"Zane said New York married Alaska and had a child country named Indonesia whose child was Australia... but Johnny Aaron Deep's was loved by Emily J. Jenkino and Mary's cat but not Jane Terrance but he is also loved by James! "
 
 def findname():
@@ -77,7 +78,7 @@ def findname():
         dictmatches(listm,numbnames)
     return numbnames   
    
-#adds elements in list to dict while balancing dict so if first name in dictionary -> count is subtracted by one
+#adds elements in list to dict while balancing dict so eliminated repeated names from the dictionary
 def dictmatches(L,D):
     for name in L:
         if name in D:
@@ -85,14 +86,14 @@ def dictmatches(L,D):
         else:
             D[name] = 1
         firstn = firstname(name)
-        #checks to see if firstname of the name inputted is already in the dictionary; if so, subtracts it from the dictionary
+        #checks to see if firstname of the name inputted is already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
         if firstn in D:  
             D[firstn] -= 1
             if D[firstn] ==0:
                 del D[firstn]
         
         try:
-            #checks to see if lastname is a valid firstname but already in the dictionary; if so, subtracts it from the dictionary
+            #checks to see if lastname is a valid firstname but already in the dictionary; if so, subtracts it from the dictionary(b/c there would be one extra name included in the dictionary)
             lastn = lastname(name)
             if lastn in D and lastn in names:  
                  D[lastn] -= 1
@@ -101,6 +102,7 @@ def dictmatches(L,D):
             break
         except:
             try:
+                #checks to see if middlename is a valid firstname but already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
                 midn = midname(name)
                 if midn in D and midn in names:  
                     D[midn] -= 1
