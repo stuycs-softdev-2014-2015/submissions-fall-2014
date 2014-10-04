@@ -9,7 +9,7 @@ Run in your terminal by issuing this command:
     
 For example, if your text file was testtext.txt, you would run this:
 ```
-    python findnames.py testext
+    python findnames.py testtext
 ```
 
 NOTE: Names with Mr. and Mrs. are kept by our name finder.
