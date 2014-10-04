@@ -1,4 +1,4 @@
-Regex Name Finder
+<h1> Regex Name Finder </h1>
 by Brian and Matt 
 
 How to use:
