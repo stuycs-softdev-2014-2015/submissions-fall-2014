@@ -1,4 +1,56 @@
-import unittest, re
+import unittest, re, math
+
+
+
+sl = 'abcdefghijklmnopqrstuvwxyz'
+
+
+d = open('words.txt').readlines()
+datad = [x.rstrip() for x in d]
+dd={}
+for x in sl:
+    dd[x]=0
+for x in datad:
+    for y in x:
+        if y in dd:
+            dd[y]+=1
+for x in sl:
+    dd[x]=dd[x]*100.0/484585
+#for x in xrange(len(dd)):
+#    print list(dd.viewkeys())[x] + " " + str(list(dd.viewvalues())[x])
+
+
+
+nm = open('males.txt').readlines()
+datam = [x.rstrip().lower() for x in nm]
+dm={}
+for x in sl:
+    dm[x]=0
+for x in datam:
+    for y in x:
+        dm[y]+=1
+for x in sl:
+    dm[x]=dm[x]*100.0/569
+#for x in xrange(len(dm)):
+    #print list(dm.viewkeys())[x] + " " + str(list(dm.viewvalues())[x])
+nf = open('females.txt').readlines()
+dataf = [x.rstrip().lower() for x in nf]
+df={}
+for x in sl:
+    df[x]=0
+for x in dataf:
+    for y in x:
+        df[y]+=1
+for x in sl:
+    df[x]=df[x]*100.0/596
+#for x in xrange(len(df)):
+    #print list(df.viewkeys())[x] + " " + str(list(df.viewvalues())[x])
+
+
+def vectorize(l):
+    return math.sqrt(sum(l))
+
+
 
 def find_title_last(text):
     s=  re.findall(r'((Mr|Mrs|Ms|Dr|Miss)\.?\s[A-Z][a-z]+)', text) #//get first match group because match groups suck
@@ -17,12 +69,34 @@ def last_first(text):
     s = re.findall(r'[A-Z]\w+,\s[A-Z]\w+', text)
     return s
 
+def name_vector_filter(text):
+    data = {}
+    
+    result = []
+    for t in text:
+        t = t.lower()
+        for x in sl:
+            data[x]=0
+        for x in t:
+            if x in data:
+                data[x]+=1
+        for x in sl:
+            data[x]=data[x]*100.0/len(t)
+        #add not to the statement below to see what was removed
+        if ((vectorize([ abs(data[x]-dd[x]) for x in sl]) > vectorize([abs(data[x] - df[x]) for x in sl])) or (vectorize([ abs(data[x]-dd[x]) for x in sl]) > vectorize([abs(data[x] - dm[x]) for x in sl]))):
+            if "the " not in t:
+                result.append(t)
+    return list(set(result))
+
+
 def validate_title(names,num,test):
     #print names + "\n\n"
     return names[num][0]==test
 
 def validate_first_last(names,num,test):
     return names[num][0]==test
+
+
 
 def validate_last_first(names,num, test):
     return names[num] == test
@@ -51,12 +125,21 @@ class names(unittest.TestCase):
         
 if __name__=="__main__":
     #unittest.main()
-    f = open('data.txt', 'r')
+    
+    
+            
+    #f = open('muricans.txt', 'r')
+    f = open('data.txt','r')
     data = ''
     for x in f:
         data += x
     f.close()
     captures = [x[0] for x in first_last(data)]
-#    first_last(data)
-    #print data
-    print captures
+    print (name_vector_filter(captures))
+    #print captures
+    """#On the spot testing
+    while (True):
+        ans = raw_input(">")
+        print name_vector_filter([ans])
+    """
+    
