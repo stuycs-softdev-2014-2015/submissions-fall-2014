@@ -3,4 +3,4 @@ This is a test file for our regular expression Software Development project. Sin
 CarolLynn Mills is a cyclist
 Anne-Claire Burghard is a student
 Mr. Topher BrownMykolyk is a teacher
-DeLisa BrownGuc is a librarian
+DeLisa Brown Guc is a librarian
