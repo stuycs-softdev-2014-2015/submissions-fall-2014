@@ -7,7 +7,7 @@ Run in your terminal by issuing this command:
     python findnames.py <filename without extension>
 ```
     
-For example, if your text file was testtext.txt, you would run this:
+For example, if your test file was testtext.txt, you would run this:
 ```
     python findnames.py testtext
 ```
