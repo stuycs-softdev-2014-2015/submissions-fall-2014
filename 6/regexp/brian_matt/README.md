@@ -1,9 +1,10 @@
 <h1> Regex Name Finder </h1>
 by Brian and Matt 
 
-How to use:
+How to use: <br> 
+
 Run in your terminal by issuing this command:
-```
+<br>```
     python findnames.py <filename without extension>
 ```
     
