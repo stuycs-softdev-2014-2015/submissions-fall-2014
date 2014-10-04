@@ -1,1 +1,6 @@
 This is a test file for our regular expression Software Development project. Since Software Development is the name of a class, it is capitalized and may be picked up by the namefinder even though it isn't the name of a person.
+
+CarolLynn Mills is a cyclist
+Anne-Claire Burghard is a student
+Mr. Topher BrownMykolyk is a teacher
+DeLisa BrownGuc is a librarian
