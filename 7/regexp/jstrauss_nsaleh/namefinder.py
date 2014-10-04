@@ -11,13 +11,15 @@ def readText(filename):
 	instream.close()
 	return text
 
-def listPossibleNames():
-	print text
+def listPossibleNames(filename):
+	# uses a regular expression to pass the text through the first layer of filtration
+	# any 
+	text = readText(filename)
+	re.
 
-def findNames():
-	readText("test.txt")
-	listPossibleNames()
-	print "This is test 1:"
+def findNames(filename):
+	print listPossibleNames(filename)
 
-if __name___="__main__":
-	findNames()
+if __name__=="__main__":
+	filename = raw_input("What file do you want to find people's names in?")
+	findNames(filename)
