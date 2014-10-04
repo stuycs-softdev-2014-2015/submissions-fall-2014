@@ -1,6 +1,6 @@
 import re
 
-full = open("sherlock.txt", "r").read().split("\n")
+full = open("dorian.txt", "r").read().split("\n")
 first_names = open("all.txt", "r").read().split("\n") # Extract data from firstname database
 first_names = {x:x for x in first_names} # Make a dictionary out of the firstname database 
 
