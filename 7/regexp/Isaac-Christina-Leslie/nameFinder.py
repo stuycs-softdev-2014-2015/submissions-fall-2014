@@ -1,13 +1,12 @@
 import re
 
-full = open('names.txt', 'r').readlines()
-first_names = open("CSV_Database_of_First_Names.csv", "r").readlines()
+full = open("names.txt", "r").readlines()
+first_names = open("CSV_Database_of_First_Names.csv", "r").readlines()[0].split("\r")
 first_names = {x:x for x in first_names}
-print first_names
 
 def getNames(text):
     names = []
-    exp = '[A-Z]\w+\s[A-Z]\w+'
+    exp = "[A-Z]\w+\s[A-Z]\w+"
     for i in text:
         names += re.findall(exp, i)
     return names
@@ -16,9 +15,8 @@ def checkNames(names):
     checked_names = []
     for i in names:
         first = i.split(" ")[0]
-       
         if first in first_names:
-            checked_names += i
+        	checked_names.append(i)
     return checked_names
             
 
