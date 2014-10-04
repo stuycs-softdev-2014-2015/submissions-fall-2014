@@ -39,7 +39,7 @@ def findnames():
     for i in xrange(len(L)):
         L[i] = L[i].replace('\n',' ')
         L[i] = L[i].lower().split(" ")
-    print stringify(L)
+    #print stringify(L)
 
     L[:] = [ o for o in L if notname(o)==False]
     return L  
