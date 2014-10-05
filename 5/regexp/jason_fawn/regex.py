@@ -29,5 +29,5 @@ def ifName(l):
         if name.split()[0] in firstnames:
             names.append(name)
 
-            
-findNames(text)
+if __name__=="__main__":
+    findNames(text)
