@@ -18,7 +18,8 @@ def letters_only(string):
     return "".join(result)
 
 def is_name(string):
-    '''Takes a string and returns True if the string is a name; and false otherwise.'''
+    '''Takes a string and returns True if the string is a name, and False otherwise.'''
+    #TODO; make this better.
     return ( (re_caps.match(string)) and
              ( (string.upper() in d_names) or
                not (string.upper() in d_words)))
