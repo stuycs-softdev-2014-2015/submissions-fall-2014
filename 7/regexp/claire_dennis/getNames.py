@@ -21,22 +21,27 @@ lastnamesInText = []
 fullnamesInText = []
     
 def getNames(text):
+
+    #split the text into a list of words.
     textList = text.split()
-    for num in range(0, len(textList)):
-        currentWord = textList[num]
-        end = num == len(textList)-1
-        if end != True:
-            nextWord = textList[num+1]
-            if (currentWord.upper() in firstnamesMaster):
-                regex = "(" + currentWord + "((\s[A-Z][a-z]+)+)" + ")"
-                print regex
-                fullnamesInText.append(re.findall(regex,text,flags=0)) 
+
+    #The variable i will keep our place.
+    i = 0
+
+    while (i < len(textList)):
+        currentWord = textList[i]
+        if (currentWord.upper() in firstnamesMaster):
+            firstnamesInText.append(currentWord)
+            regex = currentWord + "((\s[A-Z][a-z]+)*)"
+            fullnamesInText.append(re.findall(regex,text,flags=0)) 
+        i+=1
 
 
     
 
 getNames("This is just a test. Dennis is just testing code that Claire wrote. John Smith is a full name. But John is not. Neither is Smith. Alan Frederick Dehddgga, on the other hand, is a full name.")
 
+print firstnamesInText
 print fullnamesInText
 
 
