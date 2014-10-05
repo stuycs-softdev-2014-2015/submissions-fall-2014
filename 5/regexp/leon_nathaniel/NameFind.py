@@ -15,8 +15,11 @@ book = " ".join(splitBook) #fixes weird book formatting
 #prepping the name/notName list
 y = open("names.txt", "r")
 names = y.read().replace("\t", "").split("\n")
+z = open("notNames.txt", "r")
+notName = y.read().replace("\t", "").split("\n")
 x.close()
 y.close()
+z.close()
 
 
 #find names
@@ -29,11 +32,17 @@ for x in List:
         if word in names:
             BookNamesInitial.append(x[0])
 
+#removing thing that arent names part 2
+for name in BookNamesInitial:
+    if name in notName:
+        BookNamesInitial.remove(name)
+    
+
 #removing repeats
 BookNames = []
 for x in BookNamesInitial:
-    if x not in BookNames:
-        BookNames.append(x)
+    if x.strip() not in BookNames:
+        BookNames.append(x.strip())
 
 
 print BookNames
