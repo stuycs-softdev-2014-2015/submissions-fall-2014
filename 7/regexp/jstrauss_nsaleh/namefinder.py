@@ -17,11 +17,6 @@ def makeList(filename):
 	fulllist = instream.read().replace("\n"," ").split()
 	instream.close()
 	return [fulllist[x] for x in range(len(fulllist)) if x%4==0]
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 6016e2e3e42efbcfe8492b04b4af7a9390e65f48
 
 def processTripleNames(text):
 	# uses a regular expression to find groups of 3 consecutive words all beginning with caps
