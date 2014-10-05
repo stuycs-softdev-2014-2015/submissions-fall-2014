@@ -33,13 +33,13 @@ def stringify(L):
     return s[:-1]
 
 def findnames():
-    p = re.compile('[A-Z][a-z]+\.*(?:\s[A-Z][a-z]+)+')
+    p = re.compile('(?:[A-Z][a-z].\.)* (?:[A-Z][a-z]+)(?:\s[A-Z][a-z]+)+')
     L=p.findall(g)
     x=0
     for i in xrange(len(L)):
         L[i] = L[i].replace('\n',' ')
         L[i] = L[i].lower().split(" ")
-    print stringify(L)
+    #print stringify(L)
 
     L[:] = [ o for o in L if notname(o)==False]
     return L  

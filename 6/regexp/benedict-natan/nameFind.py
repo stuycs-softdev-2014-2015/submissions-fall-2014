@@ -18,7 +18,8 @@ firstPass = re.findall("[A-Z][A-Za-z'\-]*\s[A-Z][A-Za-z'\-]*", content)
 
 secondPass = []
 for word in firstPass:
-	names=word.split(" ")
+	names=re.findall("[\w]+",word)
+	#names=word.split(" ")
 	check=True
 	for name in names:
 		if name.upper() in words:

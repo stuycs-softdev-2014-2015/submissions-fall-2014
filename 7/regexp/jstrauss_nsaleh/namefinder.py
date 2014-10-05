@@ -18,8 +18,6 @@ def makeList(filename):
 	instream.close()
 	return [fulllist[x] for x in range(len(fulllist)) if x%4==0]
 
-
-
 def processTripleNames(text):
 	# uses a regular expression to find groups of 3 consecutive words all beginning with caps
 	triplenames = []
