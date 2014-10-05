@@ -12,46 +12,57 @@ def readText(filename):
 	return text
 
 def makeList(filename):
-	# turns the raw census databases of names into lists
+        #turns the raw census databases of names into lists
 	instream = open(filename,'r')
 	fulllist = instream.read().replace("\n"," ").split()
 	instream.close()
 	return [fulllist[x] for x in range(len(fulllist)) if x%4==0]
 
-def processTripleNames(text):
-	# uses a regular expression to find groups of 3 consecutive words all beginning with caps
-	triplenames = []
-	for m in re.finditer(r"(([A-Z][a-z-]+){1,2}\s){2}([A-Z][a-z-]+){1,2}", text):
-	     triplenames.append( '%02d-%02d: %s' % (m.start(), m.end(), m.group(0)) )
-	justthenames = [x[x.find(":")+2:] for x in triplenames]
-	newtext = text
-	for name in justthenames:
-		newtext[newtext.find(name):len(name)] = " "
-	return newtext
-
-def processDoubleNames(text):
-	# uses a regular expression to find groups of 2 consecutive words both beginning with caps
-	doublenames = []
-
-def processSingleNames(text):
-	# uses a regular expression to find words beginning with caps
-	singlenames = []
 
 
-def filterTwo():
-	names = listPossibleNames("stateoftheunion.txt")
-	justthenames = []
-	for name in names:
-		justthenames.append( name[name.find(":")+2:] )
-	return justthenames
+def findPossibleNames(filetext):
+        possiblenames = []
+        for m in re.finditer(r"(([A-Z][a-z]+\s?)){2,}", filetext):
+                possiblename = m.group(0)
+                if possiblename[-1] == " ":
+                        possiblename = possiblename[:-1]
+                possiblenames.append(possiblename)
+        return possiblenames
+        
+def filterNames (possiblenames):
+        femaleNames = makeList("femalenames.txt")
+        maleNames = makeList("malenames.txt")
+        surnames = makeList("surnames.txt")
 
-	#possibleNames = re.match("[A-Z][a-z]+\s(([A-Z][a-z-]+){1,2})",text)
-	#possibleNames.group(0)
-	#return possibleNames
+        firstNames = femaleNames + maleNames
+        names = []
+
+        for name in possiblenames:
+                eachword = name.split(" ")
+                firstName = eachword[0].upper()
+                secondName = eachword[1].upper()
+
+                if firstName in firstNames:
+                        names.append(name)
+                elif secondName in firstNames or secondName in surnames:
+                        names.append(name)
+                elif len(eachword) == 3:
+                        thirdName = eachword[2].upper()
+                        if thirdName in surnames:
+                                names.append(name)
+        return names
+
+
+def findNames(filename):
+        filetext = readText(filename)
+        possiblenames = findPossibleNames(filetext)
+        filterNames(possiblenames)
+        
 
 if __name__=="__main__":
+        findNames("stateoftheunion.txt")
 	#filename = raw_input("What file do you want to find people's names in?\n")
 	#try:
-	print processTripleNames(readText(str("test.txt")))
+	#print processTripleNames(readText(str("test.txt")))
 	#except:
 	#	print "Filename invalid. Please try again."

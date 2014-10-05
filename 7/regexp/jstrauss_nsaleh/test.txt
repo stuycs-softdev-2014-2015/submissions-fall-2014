@@ -1,15 +1,11 @@
 This is a test file for our regular expression Software Development project. Since Software Development is the name of a class, it is capitalized and may be picked up by the namefinder even though it isn't the name of a person.
 
-<<<<<<< HEAD
-CarolLynn Mills is a cyclist.
-Anne-Claire Burghard is a student.
-A possible date is Friday Ocotber Third.
-Mr. Topher BrownMykolyk is a teacher.
-DeLisa BrownGuc is a librarian.
+Sometimes there will be Singular words in the middle of a sentence.
 
-=======
-CarolLynn Mills is a cyclist
-Anne-Claire Burghard is a student
-Mr. Topher BrownMykolyk is a teacher
-DeLisa Brown Guc is a librarian
->>>>>>> 810fd033f1fb8f1f764a9be6db9c4f7a5cb9b4aa
+Carol Lynn Mills is a cyclist.
+Anne Claire Burghard is a student.
+A possible date is Friday Ocotber Third.
+Mr. Topher Brown Mykolyk is a teacher.
+DeLisa Brown Guc is a librarian.
+One super common name that should work is John Smith.
+Another super common name is Sophia Brown, and so it should also work.
