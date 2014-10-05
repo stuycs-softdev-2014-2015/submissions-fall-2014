@@ -39,6 +39,9 @@ def getNames(text):
     while (i < len(textList)):
 
         currentWord = textList[i]
+        
+        #resets l
+        l = 0
 
         #checks if the currentWord is a first name.
         if (currentWord.upper() in firstnamesMaster):
@@ -66,13 +69,13 @@ def getNames(text):
                     finalfullname = step3
 
                     #this part determines the length of the full name, and then skips over the entire thing,
-                    #so that segments of the full name are not mistaken as full names. 
+                    #so that segments of the full name are not mistaken as full names.
                     for n in finalfullname:
                         if n == " ":
-                            l+1
-                    l+1
-                    print l
-        i = i+1;
+                            l = l+1
+        l = l+1
+        i = i+l
+                
             
 
 
