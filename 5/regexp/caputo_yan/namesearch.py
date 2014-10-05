@@ -5,28 +5,24 @@ lastnames = open("Last_Names.csv", 'r')
 
 firstn = firstnames.read()
 firstnames.close()
-first = firstn.split(",")
+first = firstn.split("\r")
 
 lastn = lastnames.read()
 lastnames.close()
-last = lastn.split(",")
+last = lastn.split("\r")
 
+names = first + last
 def gothrough(filename):
     document = open(filename, 'r')
     docopen = document.read()
     document.close()
     regex = re.compile('[A-Z][a-z]+')
     possName = regex.findall(docopen)
-    print possName
     final = []
-    '''
     for x in possName:
-#FOR SOME REASON THIS IS NOT RUNNING...
-        if x in first:
-            print "iudius"
+        if x in names:
             final.append(x)
+        
     print final
-    '''
-
 if __name__=="__main__":
     gothrough("PrideandPrejudice.txt")
