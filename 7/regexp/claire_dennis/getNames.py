@@ -22,18 +22,39 @@ fullnamesInText = []
     
 def getNames(text):
 
+
     #split the text into a list of words.
     textList = text.split()
+
 
     #The variable i will keep our place.
     i = 0
 
+
     while (i < len(textList)):
+
         currentWord = textList[i]
+
+        #checks if the currentWord is a first name.
         if (currentWord.upper() in firstnamesMaster):
+
+            #adds that first name to our list of first names in the text.
             firstnamesInText.append(currentWord)
-            regex = currentWord + "((\s[A-Z][a-z]+)*)"
-            fullnamesInText.append(re.findall(regex,text,flags=0)) 
+
+            #regular expression that includes this first name plus any capitalized
+            #names after it (gets the full name, if there is one). 
+            regex = "(" +  currentWord + "((\s[A-Z][a-z]+)+)" + ")"
+
+            #this part isolates the longest version of the full name that is found.
+            tempfullname = (re.findall(regex,text,flags=0))
+            print tempfullname
+            if tempfullname:
+                finalfullname = tempfullname.pop()
+                print finalfullname
+                if (finalfullname not in fullnamesInText):
+                    fullnamesInText.append(finalfullname)
+                    
+                
         i+=1
 
 
