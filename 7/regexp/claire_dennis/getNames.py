@@ -30,6 +30,11 @@ def getNames(text):
     #The variable i will keep our place.
     i = 0
 
+    #The variable l will be used later to increment i. 
+    l = 0
+
+    #This variable will be used to mark each finalized full name that is found.
+    finalfullname = ""
 
     while (i < len(textList)):
 
@@ -45,7 +50,7 @@ def getNames(text):
             #names after it (gets the full name, if there is one). 
             regex = "(" +  currentWord + "((\s[A-Z][a-z]+)+)" + ")"
 
-            #this part isolates the longest version of the full name that is found, in three steps..
+            #this part isolates the longest version of the full name that is found, in three steps.
             step1 = (re.findall(regex,text,flags=0))
             print "Step 1:"
             print step1
@@ -58,9 +63,17 @@ def getNames(text):
                 print step3
                 if (step3 not in fullnamesInText):
                     fullnamesInText.append(step3)
-                    
-                
-        i+=1
+                    finalfullname = step3
+
+                    #this part determines the length of the full name, and then skips over the entire thing,
+                    #so that segments of the full name are not mistaken as full names. 
+                    for n in finalfullname:
+                        if n == " ":
+                            l+1
+                    l+1
+                    print l
+        i = i+1;
+            
 
 
     
