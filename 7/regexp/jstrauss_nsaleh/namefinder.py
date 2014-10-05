@@ -48,10 +48,9 @@ def nameCheck(name, firsts, lasts):
         secondName = eachword[1].upper()
         if firstName in firsts:
                 return True
-        elif secondName in firsts or secondName in lasts:
+        elif (len(eachword) == 2 and secondName in lasts) or (len(eachword) == 2 and (secondName in lasts or secondName in firsts)):
                 return True
-        elif len(eachword) == 3:
-                thirdName = eachword[2].upper()
+        elif len(eachword) == 3 and eachword[2].upper() in lasts:
                 return True
         return False
 
