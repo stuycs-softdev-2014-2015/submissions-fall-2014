@@ -22,7 +22,7 @@ def gothrough(filename):
     for x in possName:
         if x in names:
             final.append(x)
-        
+            possName.delete(x)
     print final
 if __name__=="__main__":
     gothrough("PrideandPrejudice.txt")
