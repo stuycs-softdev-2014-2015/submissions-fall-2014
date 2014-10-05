@@ -16,7 +16,7 @@ numfirstnames = 0
 numlastnames = 0
 numfullnames = 0
 
-firstnamesInText = []
+firstnamesInText = [] 
 lastnamesInText = []
 fullnamesInText = []
     
@@ -45,14 +45,19 @@ def getNames(text):
             #names after it (gets the full name, if there is one). 
             regex = "(" +  currentWord + "((\s[A-Z][a-z]+)+)" + ")"
 
-            #this part isolates the longest version of the full name that is found.
-            tempfullname = (re.findall(regex,text,flags=0))
-            print tempfullname
-            if tempfullname:
-                finalfullname = tempfullname.pop()
-                print finalfullname
-                if (finalfullname not in fullnamesInText):
-                    fullnamesInText.append(finalfullname)
+            #this part isolates the longest version of the full name that is found, in three steps..
+            step1 = (re.findall(regex,text,flags=0))
+            print "Step 1:"
+            print step1
+            if step1:
+                step2 = step1.pop()
+                print "Step 2:"
+                print step2
+                step3 = step2[0]
+                print "Step 3:"
+                print step3
+                if (step3 not in fullnamesInText):
+                    fullnamesInText.append(step3)
                     
                 
         i+=1
