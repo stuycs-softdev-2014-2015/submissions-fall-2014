@@ -12,59 +12,66 @@ def readText(filename):
 	return text
 
 def makeList(filename):
-        #turns the raw census databases of names into lists
+        # turns the raw census databases of names into lists
 	instream = open(filename,'r')
 	fulllist = instream.read().replace("\n"," ").split()
 	instream.close()
 	return [fulllist[x] for x in range(len(fulllist)) if x%4==0]
 
-
-
 def findPossibleNames(filetext):
         possiblenames = []
-        for m in re.finditer(r"(([A-Z][a-z]+\s?)){2,3}", filetext):
-                possiblename = m.group(0)
-                if possiblename[-1] == " ":
+        # uses a regular expression to find groups of 2 or 3 consecutive words all beginning with caps
+        for m in re.finditer(r"(([A-Z][a-z-]+){1,2}\s){2,3}", filetext):
+                possiblename = ( '%02d-%02d: %s' % (m.start(), m.end(), m.group(0)) )
+                if possiblename[-1] == " ": # gets rid of trailing whitespace
                         possiblename = possiblename[:-1]
-                possiblenames.append(possiblename)
+                        possiblenames.append(possiblename)
         return possiblenames
         
 def filterNames (possiblenames):
+        justthenames = [x[x.find(":")+2:] for x in possiblenames]
+        # the list of names that doesn't include the location marker
+
+        validnames = []
+        # a list of indices of elements of justthenames that pass the test
+
         femaleNames = makeList("femalenames.txt")
         maleNames = makeList("malenames.txt")
-        surnames = makeList("surnames.txt")
-        firstNames = femaleNames + maleNames
+        validlasts = makeList("surnames.txt")
+        validfirsts = femaleNames + maleNames
+        #our lists of "real" names
 
-        names = []
+        for fullname in justthenames:
+                if (not fullname in validnames) and nameCheck(fullname, validfirsts, validlasts):
+                # checks for duplicates and references database
+                        validnames.append(justthenames.index(fullname))
 
-        for name in possiblenames:
-                if not name in names and nameCheck(name,firstNames,surnames):
-                        names.append(name)
-        return names
+        return [x for x in possiblenames if possiblenames.index(x) in validnames]
 
-def nameCheck(name, firsts, lasts):
-        eachword = name.split(" ")
-        firstName = eachword[0].upper()
-        secondName = eachword[1].upper()
-        if firstName in firsts:
-                return True
-        elif (len(eachword) == 2 and secondName in lasts) or (len(eachword) == 2 and (secondName in lasts or secondName in firsts)):
-                return True
-        elif len(eachword) == 3 and eachword[2].upper() in lasts:
-                return True
-        return False
+def nameCheck(fullname,validfirsts,validlasts):
+        nameparts = fullname.upper().replace("-"," ").split(" ")
+
+        if len(nameparts)==2:
+                return nameparts[0] in validfirsts and nameparts[1] in validlasts
+        else:
+                a = nameparts[0] in validfirsts
+                b = (nameparts[1] in validfirsts) or (nameparts[1] in validlasts)
+                c = nameparts[2] in validlasts
+                return a and (b or c)
+                # a must be true to prevent words like "Is" and "By" from getting through
 
 
 def findNames(filename):
         filetext = readText(filename)
         possiblenames = findPossibleNames(filetext)
-        print(filterNames(possiblenames))
+        print "Location: Person's Name"
+        for name in filterNames(possiblenames):
+                print name
         
 
 if __name__=="__main__":
-        findNames("prideandprejudice.txt")
-	#filename = raw_input("What file do you want to find people's names in?\n")
-	#try:
-	#print processTripleNames(readText(str("test.txt")))
-	#except:
-	#	print "Filename invalid. Please try again."
+	filename = raw_input("What file do you want to find people's names in?\n")
+	try:
+	       findNames(filename)
+	except:
+	       print "Filename invalid. Please try again."
