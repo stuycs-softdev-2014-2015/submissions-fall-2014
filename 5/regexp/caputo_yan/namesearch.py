@@ -47,5 +47,23 @@ def gothrough(filename):
     doc = open(filename, 'r')
     docopen = doc.readline()
     doc.close()
-    nameRegex = re.compile("(\b[MSDLP][rasio][srd'mo]?[tsaedyf]?[e]?[rm]?\.?)?\s?(\b[A-Z]\w+)( ([A-Z]\w+))?")
-    possName = nameRegex.findall(docopen)
+    """
+nameRegex = re.compile("(\b[MSDLP][rasio][srd'mo]?[tsaedyf]?[e]?[rm]?\.?)?\s?(\b[A-Z]\w+)( ([A-Z]\w+))?")
+
+"""
+    possName = re.findall( "NEED WORKING REGEX", docopen)
+    final = []
+    for x in possName:
+#FOR SOME REASON THIS IS NOT RUNNING...
+        if x in first:
+            print "iudius"
+            final.append(x)
+    print final
+
+"""        
+    
+
+"""
+
+if __name__=="__main__":
+    gothrough("PrideandPrejudice.txt")
