@@ -10,7 +10,10 @@ def findnames(d):
     suffixes=re.findall("[A-Z]\w+ (?:Sr|Jr|PhD|MD)\.?",data)
     begofsent=re.findall("(?:\.|\?|\!)\s([A-Z]\w+)",data)
     f.close()
-    names=fullnames + titles + suffixes
+    names=[]
+    appendnorep(fullnames,names)
+    appendnorep(titles,names)
+    appendnorep(suffixes,names)
     unsure=appeared(capital,names)
     for x in capital:
         if not appearwithin(x,names) and x not in begofsent:
@@ -38,6 +41,11 @@ def appearwithin(x,group):
         if x in a:
             return True
     return False
+
+def appendnorep(list1,list2):
+    for x in list1:
+        if x not in list2:
+            list2.append(x)
 
 
 findnames("corpus.txt")
