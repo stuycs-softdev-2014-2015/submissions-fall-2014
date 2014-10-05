@@ -24,11 +24,11 @@ def getNames(text):
     
     for num in range(0, len(textList)):
         currentWord = textList[num]
-        nextWordFlag = num == len(textList) - 1
-        if nextWordFlag != True: 
+        end = num == len(textList) - 1
+        if end != True: 
             nextWord = textList[num + 1]
         print currentWord
-        if ((currentWord.upper() in firstnamesMaster) and (nextWordFlag != True) and (nextWord[0:1].isupper()) and ((currentWord + " " + nextWord) not in fullnamesInText)):
+        if ((currentWord.upper() in firstnamesMaster) and (end != True) and (nextWord[0:1].isupper()) and ((currentWord + " " + nextWord) not in fullnamesInText)):
             fullnamesInText.append(currentWord + " " + nextWord)
             numfullnames += 1
             if (currentWord not in firstnamesInText):
@@ -49,7 +49,26 @@ def getNames(text):
     print lastnamesInText
     print fullnamesInText
 
+    for num in range(0, len(textList)):
+        currentWord = textList[num]
+        end = num == len(textList)-1
+        if end != True:
+            nextWord = textList[num+1]
+            if ((currentWord.upper() in firstnamesMaster) and (nextWord[0:1].isupper()) and ((currentWord + " " + nextWord) not in fullnamesInText)):
+                fullnamesInText.append(currentWord + " " + nextWord)
+                numfullnames += 1
+                if (currentWord not in firstnamesInText):
+                firstnamesInText.append(currentWord)
+                numfirstnames += 1
+            if (nextWord not in lastnamesInText):
+                lastnamesInText.append(nextWord)
+                numlastnames += 1
+            num += 1
 
-getNames("This is just a test. Dennis is just testing code that Claire wrote. John Smith is a full name. But John is not. Neither is Smith. Alan Dehddgga , on the other hand, is a full name.")
+    
+
+getNames("This is just a test. Dennis is just testing code that Claire wrote. John Smith is a full name. But John is not. Neither is Smith. Alan Dehddgga, on the other hand, is a full name.")
+
+
 
         
