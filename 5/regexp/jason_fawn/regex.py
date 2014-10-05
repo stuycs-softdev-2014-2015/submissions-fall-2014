@@ -36,7 +36,7 @@ def findNames(s):
     ifName(matchNames)
     matchNames = re.findall(r'([A-Z][a-z.-]+ [A-Z][a-z.-]+ [A-Z][a-z.-]+)', s)
     ifName(matchNames)    
-    print(cleanUp(names))
+    print cleanUp(names)
     #print (names)
 
 def ifName(l):
