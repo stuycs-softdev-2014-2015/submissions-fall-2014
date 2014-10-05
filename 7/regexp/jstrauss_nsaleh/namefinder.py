@@ -22,7 +22,7 @@ def makeList(filename):
 
 def findPossibleNames(filetext):
         possiblenames = []
-        for m in re.finditer(r"(([A-Z][a-z]+\s?)){2,}", filetext):
+        for m in re.finditer(r"(([A-Z][a-z]+\s?)){2,3}", filetext):
                 possiblename = m.group(0)
                 if possiblename[-1] == " ":
                         possiblename = possiblename[:-1]
