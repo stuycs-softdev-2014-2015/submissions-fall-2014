@@ -25,13 +25,8 @@ def gothrough(filename):
     possName = regex.findall(docopen)
     final = []
     for x in possName:
-        if  x.lower() in dicti:
-            possName.remove(x)
-        elif x in names:
+        if x in names or x.lower() not in dicti:
             final.append(x)
-            possName.remove(x)
-        
-#removed +possName
     print final
 if __name__=="__main__":
     gothrough("PrideandPrejudice.txt")
