@@ -30,6 +30,7 @@ def FindNames():
     i = 0
     print len(names)
 
+<<<<<<< HEAD
     while i < len(names):
         if not names[i] in popnames:
             names.remove(names[i])
@@ -38,6 +39,12 @@ def FindNames():
 
     """
 
+=======
+    newNames = []
+    for i in range(len(names)):
+        if names[i] in popnames:
+            newNames.append(names[i])
+>>>>>>> 9d7a5119d0f178334a4481ef6020b2f1a7d5fca0
     #cross referencing with a dictionary
     file = open('dictionary.txt')
     regex3 = re.compile("[a-z]+")
@@ -45,6 +52,7 @@ def FindNames():
     file.close()
     for n in range(len(dictWords)):
         dictWords[n] = dictWords[n].lower().capitalize()
+<<<<<<< HEAD
     final=[]
     i=0
     while i < len(ProperNames):
@@ -59,6 +67,19 @@ def FindNames():
     print names
     """
     print ProperNames
+=======
+
+    newNames2 = []
+    for n in range(len(names)):
+        if not names[n] in dictWords:
+            newNames2.append(names[n])
+    print newNames2
+    #print
+    """print popnames"""
+    
+
+
+>>>>>>> 9d7a5119d0f178334a4481ef6020b2f1a7d5fca0
         
 if __name__ == "__main__":
     FindNames()
