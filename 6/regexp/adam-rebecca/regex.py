@@ -26,7 +26,26 @@ def checkNames( allNames ):
             result.append( name )
     return result
 
-def checkDuplicates
+#makes sure there are not two of the same name
+def checkDuplicates( allNames ):
+    result = []
+
+    i = 0
+    while i < len(allNames):
+        current = allNames[i]
+        duplicate = False
+       
+        j = i + 1
+        while j < len(allNames):
+            if current == allNames[j]: #oh no! there is a duplicate
+                duplicate = True
+            j = j + 1
+
+        if duplicate == False: #this word is not a duplicate
+            result.append( current )
+        i = i + 1
+    
+    return result
 
 if __name__ == "__main__":
     result = checkNames( getNames( tester ) )
