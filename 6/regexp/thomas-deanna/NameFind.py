@@ -22,11 +22,11 @@ def FindNames():
     final=[]
     i = 0
 
-    for n in popnames:
-        if n in ProperNames:
-            final.append(n)
+    for n in range(len(ProperNames)):
+        if ProperNames[n] in popnames:
+            final.append(popnames[n])    
 
-            """
+    """
     while i < len(ProperNames):
         if ProperNames[i] in popnames:
             final.append(ProperNames[i])
