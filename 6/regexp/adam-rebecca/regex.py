@@ -1,10 +1,17 @@
 #!/usr/bin/python
+
 import re
 
 text = open("doctor_who_wiki.txt", "r")
-test = text.read()
+tester = text.read()
 text.close()
 
-match = re.findall( r'[A-Z][a-z]* [A-Z][a-z]*|Mrs?. [A-Z][a-z]*|Dr. [A-Z][a-z]*' , test)
+def getNames( text ):
+    names = re.findall( r'[A-Z][a-z]* [A-Z][a-z]*|Mrs?. [A-Z][a-z]*|Dr. [A-Z][a-z]*' , tester)
+    return names
 
-print match
+def checkFirstNames( allNames )
+
+if __name__ == "__main__":
+    result = getNames(tester)
+    print result
