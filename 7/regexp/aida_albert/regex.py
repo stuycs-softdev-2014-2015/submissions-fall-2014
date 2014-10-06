@@ -24,7 +24,19 @@ for sir in sirs:
         sirs_dict[sir] = 1
 
 ## Finding locations in the story (roads, avenues, etc.)
+place_types = ['Road', 'Square', 'Street', 'Court', 'Avenue', 'Lodge', 'Yard', 'Place', 'Pool', 'Farm'
+          'Dockyard', 'Bridge', 'Lane', 'St', 'Valley']
+names = re.findall( r"([A-Z][a-z]*) ([A-Z][a-z]*)", text)
+places_dict = {}
+for string in names:
+    if string[1] in place_types:
+        place = string[0] + " " + string[1]
+        if place in places_dict:
+            places_dict[place] += 1
+        else:
+            places_dict[place] = 1 
+    
 if __name__=="__main__":
     
-    print sirs_dict
+    print places_dict
 
