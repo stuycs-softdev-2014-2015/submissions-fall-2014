@@ -12,7 +12,9 @@ dict_f.close()
 match_twoNames = re.findall(r'([A-Z][a-z]+ [A-Z][a-z]+)', text)
 match_titles = re.findall(r'([A-Z][a-z]+\. [A-Z][a-z]*)', text)
 
-places = ['College', 'University', 'City', 'Library','Park','Street','Island','Creek','Railroad','Islands','Territory','Valley','House','River','Mountain','Mountains','Railway','Yard','Fort','Peak','Hotel','Lake']
+places = ['College', 'University', 'Institution', 'City', 'Library','Park','Street','Island','Creek','Railroad','Islands','Territory','Valley','House','River','Mountain','Mountains','Railway','Yard','Fort','Peak','Hotel','Lake', 'Camp', 'Row', 'New', 'Gate']
+
+starting_words = ['But', 'On', 'From', 'Then', 'Down', 'To', 'A', 'An', 'The', 'In', 'Left', 'East', 'West', 'South', 'North', 'Last']
 ##print match_twoNames
 ##print match_titles
 
@@ -51,6 +53,8 @@ for name in names:
     last_name_l = last_name.lower()        
     if (name in places) or (first_name in places) or (last_name in places):
         #names.remove(name)
+        to_add = False
+    if (first_name in starting_words):
         to_add = False
     elif first_name not in first_names_list and first_name not in last_names_list and name not in match_titles:
         if first_name_l in dictionary: # first name isnt common and IS in dictionary
