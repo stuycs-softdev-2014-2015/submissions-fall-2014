@@ -23,12 +23,10 @@ def FindNames():
     i = 0
     print len(names)
 
-    while i < len(names):
-        if not names[i] in popnames:
-            names.remove(names[i])
-        else:
-            i+= 1
-
+    newNames = []
+    for i in range(len(names)):
+        if names[i] in popnames:
+            newNames.append(names[i])
     #cross referencing with a dictionary
     file = open('dictionary.txt')
     regex3 = re.compile("[a-z]+")
@@ -36,17 +34,16 @@ def FindNames():
     file.close()
     for n in range(len(dictWords)):
         dictWords[n] = dictWords[n].lower().capitalize()
-    i=0
-    while i < len(names):
-        if names[i] in dictWords:
-            names.remove(names[i])
-        else:
-            i+=1
 
+    newNames2 = []
+    for n in range(len(names)):
+        if not names[n] in dictWords:
+            newNames2.append(names[n])
+    print newNames2
     #print
     """print popnames"""
-    print len(names)
-    print names
+    
+
 
         
 if __name__ == "__main__":
