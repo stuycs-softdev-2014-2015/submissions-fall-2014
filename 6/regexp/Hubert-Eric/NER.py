@@ -1,23 +1,34 @@
-import re
-first = [name.strip() for name in open('first.txt', 'r').read().split('|')]
-last = [last for last in open('last.txt', 'r').read().split('|')]
-firstAdd, lastAdd = [], []
+import re, timeit, enchant
 
-test = """Dear my boy John Smith, 
-     You have a very typical name, it should get recognized on the first run.
-However, Hubert Puszklewicz or Eric Morgenstern won't be detected a first because of their last names. However, on the second run through, their names should be
-matched. The same can apply with names where the last name is recognized, but first isn't. Lastly, Mr. Lester Smith should be taken care of as well.
-Sincerely,
-Hubert"""
+d = enchant.Dict("en_us")
 
-def findNames(text, n=2):
-    possibleFull=re.findall("((([A-Z][a-z]+)|M([rs]|rs)\.)( [A-Z][a-z]+)+)",text)
-    L = []
-    for k in possibleFull:
-        L.append(k[0])
-    print L
+def findNames(text):
+    pattern = "[^The]((([A-Z][a-z]+)|M([rs]|rs)\.|Dr\.)((\s[A-Z]\.)?\s[A-Z][a-z]+-?[A-Z]?[a-z]+)+)"
+    result = [name[0] for name in re.findall(pattern, text)]
+    if len(text) < 4000:
+        return set(result)
+    else:
+        return set([name for name in result if not inDict(name)])
 
-findNames(test)
+def inDict(name):
+    parts = name.split(' ')
+    for part in parts:
+        if not d.check(part):
+            return False
+    return True
+
+if __name__ == '__main__':
+    f = raw_input("File name (+location if not in same directory): ")
+    tlq = open(f, 'r').read()
+    print("\nResults from input file:\n " + str(findNames(tlq)) + "\n\n")
+
+    test = """Hello John Smith,
+That's a very typical name. Can I filter out Dr. Brown? How about Mrs. Floyd. How about Dr. Bowman-brown. How about this Version:
+Mr. Bowman-Hal. Heywood R. Floyd works as well!!! Finally. This is a SPmannnenea NAmenmaneme, that probably won't be filtered out.
+Some more stuff.
+    Sincerely, Dave Bowman"""
+
+    print("This is the default test:\n " +  str(findNames(test)))
 
 
 
