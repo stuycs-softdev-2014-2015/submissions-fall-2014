@@ -1,6 +1,7 @@
 #Victor and Lise's name search
 #Returns dictionary of names based on a file with common first names
 #There are some glitches as some of the listed first names may not be a name of a person in context
+#
 import re
 
 def opentestfile(fname):
@@ -20,23 +21,24 @@ def lastname(string):
 
 names= opentestfile("names.csv");
 names= names.split()
-
-fname="JackWinters.txt"
+#other files from the class
+fname = "Test.txt" #chris_fish
+#slight errors with oddly formatted txt
+fname = "sample.txt" #Ling_BrianG
+####################
 fname = "testfile.txt"
-
-
-
+fname="JackWinters.txt"
 
 x = opentestfile(fname)
 #test string (not a complete sentence....)
 #x = "\"Zane said New York married Alaska and had a child country named Indonesia whose child was Australia... but Johnny Aaron Deep's was loved by Emily J. Jenkino and Mary's cat but not Jane Terrance but he is also loved by James! "
-
+#print x
 def findname():
     #matches all capitalized letters
     matches = re.findall("[A-Z][a-z]+",x)
 
     #matches  ('firstname', 'lastname')
-    flmatches = re.findall("[\s][a-z]+[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+)[']?[s]?[\s][a-z]+",x)
+    flmatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+)[']?[s]?[\s][a-z]+",x)
     #matches with middle initials ('firstname','MI','lastname')
     mimatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][\.])[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+)[']?[s]?",x)    
     #matches with middle name
@@ -49,17 +51,17 @@ def findname():
     for name in flmatches:
         if name[0] in names:
             FLmatches.append(name[0]+" " + name[1])
-    
+    print FLmatches
     MImatches = []
     for name in mimatches:
         if name[0] in names:
             MImatches.append(name[0] + " " + name[1] +" "+name[2])
-    
+    print MImatches
     MIDmatches = []
     for name in midmatches:
         if name[0] in names:
             MIDmatches.append(name[0] + " " + name[1] +" "+name[2])
-   
+    print MIDmatches
     numbnames={}
     '''
     adds all names in matches that match the first name list
