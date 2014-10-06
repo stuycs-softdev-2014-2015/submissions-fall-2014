@@ -4,13 +4,16 @@ f = open('text.txt', 'r')
 rawtext = f.read() #test is a string
 f.close()
 
+rawtext = rawtext.replace("\xe2\x80\x9d", '\"');
+rawtext = rawtext.replace("\xe2\x80\x99s", "\'");
+
 words = rawtext.split()
 pairs = []
 
 i = 1
 while i < len(words):
     new = words[i-1] + " " +  words[i]
-    pairs.append(new.strip(",!?.;:\""))
+    pairs.append(new.strip(",!?.;:\"\'"))
     i = i + 1
 
 reg = re.compile('[A-Z]([a-z|\-|\'])+ [A-Z]([a-z|\-|\'])+')
