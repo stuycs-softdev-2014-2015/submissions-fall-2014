@@ -1,11 +1,10 @@
 import re
 
-
 f = open("sherlockholmes.txt")
 text = f.read().replace("\n"," ")
 f.close()
 
-## Finding all names
+
 names = re.findall( '[A-Z][a-z]*\s(?:\s[A-Z][a-z]*)*', text, flags = 0 )
 ## Finding all 'Misses' in the story
 misses = re.findall( 'Miss\s[A-Z][a-z]*(?:\s[A-Z][a-z]*)*',text,flags=0 )
@@ -52,9 +51,9 @@ for place in places_dict:
 
 ## Finding other Titles
 if __name__=="__main__":
-     
+    print "READ THE README"
     print "The main man: " + leading_man
     print "The main dame: " + leading_lady
     print "Where it all goes down: " + leading_place
 
-
+    
