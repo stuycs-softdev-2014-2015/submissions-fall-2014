@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import unittest
 import re
 
 txt = open("book.txt", "r")
@@ -16,11 +17,11 @@ firstNames.close()
 def nameFind():
     FNDic = {}
     FirstNames = fNames.split()
-    FNDic = dict.fromKeys(FirstNames, FirstNames)
+    FNDic = dict.fromkeys(FirstNames, FirstNames)
 
     LNDic={}
     LastNames = lNames.split()
-    LNDic = dict.fromKeys(LastNames, LastNames)
+    LNDic = dict.fromkeys(LastNames, LastNames)
     
     match = re.findall( r'[A-Z][a-z]* [A-Z][a-z]* | Mrs?. [A-Z][a-z]* | Dr. [A-Z][a-z]*' , text)
 
