@@ -16,10 +16,19 @@ while i < len(words):
 reg = re.compile('[A-Z]([a-z|\-|\'])+ [A-Z]([a-z|\-|\'])+')
 names = []
 
+dict = {}
 j = 0
 while j < len(pairs):
-    if ( reg.match(pairs[j]) != None ):
-        names.append(pairs[j])
+    if ( reg.match(pairs[j]) != None and pairs[j] not in names):
+            names.append(pairs[j])
     j = j + 1
+
+k = 0
+while k < len(names):
+    if ((names[k] + "").find("Dear") > -1 or (names[k] + "").find("College") > -1
+        or (names[k] + "").find("University") > -1):
+        names.pop(k)
+    k = k + 1
+
 
 print names
