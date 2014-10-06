@@ -9,6 +9,7 @@ def run(filename):
     ret = file.read()
     ret = re.findall(reg, ret )
     for x in ret:
-        print x[0]
+        if x[0][:3] != "The":
+            print x[0]
 
 run("words.txt")
