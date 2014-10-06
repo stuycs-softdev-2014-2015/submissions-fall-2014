@@ -15,7 +15,7 @@ text2.close()
 
 #gets all of the names out of the text file
 def getNames( text ): 
-    names = re.findall( r'[A-Z][a-z]* [A-Z][a-z]*|Mrs?. [A-Z][a-z]*|Dr. [A-Z][a-z]*' , tester)
+    names = re.findall( r"[A-Z][a-z]* [A-Z][a-z]?'?[A-Z]?[a-z]*|Mrs?. [A-Z][a-z]?'?[A-Z]?[a-z]*|Dr. [A-Z][a-z]?'?[A-Z]?[a-z]*" , tester)
     return names
 
 #checks the first names against the dictionary
