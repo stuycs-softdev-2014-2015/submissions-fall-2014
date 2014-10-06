@@ -72,8 +72,16 @@ def last_first(text):
     return s
 
 def word_filter(text):
-    filtered = [x for x in text if x.split()[0] not in datad or x.split()[1] not in datad] #may take a while.
-
+    #filtered = [x for x in text if (x.split()[0] not in datad or x.split()[1] not in datad)] #may take a while.
+    filtered = []
+    for x in text:
+        y = x.split()
+        for q in xrange(0,2):
+            if y[q] not in datam and y[q] not in dataf:
+                if y[q] not in datad:
+                    filtered.append(y)
+            else:
+                filtered.append(y)
     return filtered
 
 def name_vector_filter(text):
