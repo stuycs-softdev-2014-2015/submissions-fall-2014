@@ -14,6 +14,8 @@ for x in datad:
     for y in x:
         if y in dd:
             dd[y]+=1
+
+#print datad
 for x in sl:
     dd[x]=dd[x]*100.0/484585
 #for x in xrange(len(dd)):
@@ -69,6 +71,19 @@ def last_first(text):
     s = re.findall(r'[A-Z]\w+,\s[A-Z]\w+', text)
     return s
 
+def word_filter(text):
+    #filtered = [x for x in text if (x.split()[0] not in datad or x.split()[1] not in datad)] #may take a while.
+    filtered = []
+    for x in text:
+        y = x.split()
+        for q in xrange(0,2):
+            if y[q] not in datam and y[q] not in dataf:
+                if y[q] not in datad:
+                    filtered.append(y)
+            else:
+                filtered.append(y)
+    return filtered
+
 def name_vector_filter(text):
     data = {}
     
@@ -86,7 +101,7 @@ def name_vector_filter(text):
         if ((vectorize([ abs(data[x]-dd[x]) for x in sl]) > vectorize([abs(data[x] - df[x]) for x in sl])) or (vectorize([ abs(data[x]-dd[x]) for x in sl]) > vectorize([abs(data[x] - dm[x]) for x in sl]))):
             if "the " not in t:
                 result.append(t)
-    return list(set(result))
+    return word_filter(list(set(result)))
 
 
 def validate_title(names,num,test):
@@ -103,6 +118,8 @@ def validate_last_first(names,num, test):
 
 def validate_last_possessive(names,num, test):
     return names[num] == test
+
+
 
 class names(unittest.TestCase):
     def test_titles(self):

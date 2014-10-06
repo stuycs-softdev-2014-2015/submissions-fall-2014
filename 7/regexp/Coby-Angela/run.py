@@ -20,8 +20,6 @@ def readTimes():
     firstList = [] #will be list of first names that we find in our text files
     firstDic = {} #using dictionary for efficiency => constant runtime for finding?
     names = re.findall("[A-Z][a-z]+", nytimes)
-    
-    fullNames = re.findall("[A-Z][a-z]+\s[A-Z][a-z]+",nytimes)
     firstNames = read2.split() #all first names via our database
     firstDic = dict.fromkeys(firstNames, firstNames)
     
@@ -29,7 +27,8 @@ def readTimes():
     for a in names:
         if a in firstDic:
             firstList.append(a)
-    print firstList
+    #print firstList
+   
     #####################################
 
     surnameList = []
@@ -41,9 +40,20 @@ def readTimes():
     for a in names:
         if a in surnameDic:
             surnameList.append(a)
-    print surnameList
+    #print surnameList
     
-    
+    ######################################
+
+    fullname = []
+   
+    names = re.findall("[A-Z][a-z]+\s[A-Z][a-z]+",nytimes)
+    for a in names:
+        firstLast = a.split()
+        if firstLast[0] in firstDic and firstLast[1] in surnameDic:
+            fullname.append(a)
+            
+    print fullname
+
             
 if __name__ == "__main__":
     readTimes()

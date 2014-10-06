@@ -13,36 +13,44 @@ UPPER_CASE_ALPHABET_RANGE = "[A-ZÛÚÙÙÜÁÀÀÂÇÉÉÈÈÊËÍÌÎÏÑÓÒ�
 def getFilteredInputList():
     global wordList, inputList, results
     f = open(inputFile, 'r')
-    regex_capitals_with_surname_epithet = "(?!\s|-)([A-Z][a-z]+((( |-)[A-Z][a-z]+)*)?((( ([a-z]{2,3}(?=\s|-))){1,2})?(( |-)([a-z]\')?[A-Z][a-z]+)+)?)"
+    # regex matches names such as:
+    # Les Demoiselles d'Avignon, Mademoiselle de l'Amour, Abd el-Fattah, Jean-Jacques Rousseau, and James Bond
+    regex_capitals_with_surname_epithet = "([A-Z][a-z]+((( |-)[A-Z][a-z]+)*)?((( ([a-z]{2,3}(?=\s|-))){1,2})?(( |-)([a-z]\')?[A-Z][a-z]+)+)?)"
+    # expand alphabet with accent mark variations
     regex_capitals_with_surname_epithet = regex_capitals_with_surname_epithet\
         .replace('[A-Z]', UPPER_CASE_ALPHABET_RANGE)\
         .replace('[a-z]', LOWER_CASE_ALPHABET_RANGE)
-    # regex matches names such as:
-    # Les Demoiselles d'Avignon, Mademoiselle de l'Amour, Abd el-Fattah, Jean-Jacques Rousseau, and James Bond
     regex = re.compile(regex_capitals_with_surname_epithet)
+    # find all matches, returns a tuple whose first element is the full match
     words = regex.findall(f.read())
     for _tuple in words:
         if len(_tuple) > 0:
-            word = _tuple[0]
-            word = word.replace('\r', ' ')\
+            match = _tuple[0]
+            # replace newlines with spaces
+            match = match.replace('\r', ' ')\
                     .replace('\n', ' ')
-            word = word.strip()
-            if word.find(' ') < 0:
-                if (inNameList(word)):
-                    #print "Matched: " + word
-                    results.add(word)
+            # strip extra whitespace
+            match = match.strip()
+            # check if match has multiple words 
+            if match.find(' ') < 0:
+                if (inNameList(match)):
+                    #print "Matched: " + match
+                    results.add(match)
             else:
+                # if match has multiple words, check each word against the name list
                 each_part_is_valid_name = True
                 valid_parts = []
-                for part in word.split(" "):
+                for part in match.split(" "):
                     if (not inNameList(part)):
                         each_part_is_valid_name = False
                     else:
                         if len(part) > 0 and part[0].isupper():
                             valid_parts.append(part)
+                # if all words are valid, then add the entire match to results
                 if each_part_is_valid_name:
-                    #print "Matched multiword: " + word
-                    results.add(word)
+                    #print "Matched multiword: " + match
+                    results.add(match)
+                # if not all words are valid, only add the valid ones to results
                 else:
                     for valid_part in valid_parts:
                         #print "Matched substring: " + valid_part;
@@ -68,6 +76,7 @@ def inNameList(word):
     word = word.upper()
     low = 0
     high = len(nameList) - 1
+    # Use a binary search to find the word in the name list
     while (low <= high):
         middle = (low + high) / 2
         if (word > nameList[middle]):
@@ -78,14 +87,10 @@ def inNameList(word):
             return True
     return False
 
-def removeDuplicates(a_list, target):
-    return [value for value in a_list if value != target]
-
 if __name__ == "__main__":
     getNameList()
     getFilteredInputList()
     print "\n==============================START=============================="
     print results
     print "==============================END=============================="
-
 

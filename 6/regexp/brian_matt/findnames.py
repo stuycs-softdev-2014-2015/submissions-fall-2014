@@ -12,7 +12,7 @@ d= pickle.load(h)
 h.close()
 
 
-def notname(lis):
+def isname(lis):
     x=0
     for sub in lis:
         if sub in d:
@@ -21,8 +21,8 @@ def notname(lis):
             x=x+1
             #print x
         if x==2: 
-            return True
-    return False
+            return False
+    return True
 
 def stringify(L):
     s = ""
@@ -41,7 +41,7 @@ def findnames():
         L[i] = L[i].lower().split(" ")
     #print stringify(L)
 
-    L[:] = [ o for o in L if notname(o)==False]
+    L[:] = [ o for o in L if isname(o)]
     return L  
 
 print stringify(findnames())
