@@ -48,5 +48,5 @@ def checkDuplicates( allNames ):
     return result
 
 if __name__ == "__main__":
-    result = checkNames( getNames( tester ) )
+    result = checkDuplicates( checkNames( getNames( tester ) ) )
     print result
