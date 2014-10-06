@@ -21469,7 +21469,6 @@ genealogies
 genealogist
 genealogy
 genera
-general
 generalisable
 generalisation
 generalisations
