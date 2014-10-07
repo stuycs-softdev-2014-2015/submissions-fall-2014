@@ -51,17 +51,14 @@ def findname():
     for name in flmatches:
         if name[0] in names:
             FLmatches.append(name[0]+" " + name[1])
-    print FLmatches
     MImatches = []
     for name in mimatches:
         if name[0] in names:
             MImatches.append(name[0] + " " + name[1] +" "+name[2])
-    print MImatches
     MIDmatches = []
     for name in midmatches:
         if name[0] in names:
             MIDmatches.append(name[0] + " " + name[1] +" "+name[2])
-    print MIDmatches
     numbnames={}
     '''
     adds all names in matches that match the first name list
