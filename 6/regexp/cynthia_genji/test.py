@@ -61,7 +61,7 @@ def findMatches(text):
             #then check if the last name is a common word or city. if not, add to sortedNames list
             if last.upper() in common_names or first in learned_names:
                 sortedNames.append(name)
-            elif last.upper() not in common_words_1000 and first.lower() not in common_words_10000 and last not in common_cities:
+            elif last.upper() not in common_words_1000 and last.lower() not in common_words_10000 and last not in common_cities:
                 sortedNames.append(name)
                 new_names.append(last)
         elif last.upper() in common_names or last in learned_names:
