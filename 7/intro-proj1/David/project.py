@@ -17,6 +17,9 @@ def tabledata():
 @app.route("/")
 def analysis():
     return render_template("analysis.html", table = tabledata())
+@app.route("/analysis")
+def analysis():
+    return render_template("analysis.html", table = tabledata())
 @app.route("/data")
 def data():
     return render_template("page.html", table = tabledata())
