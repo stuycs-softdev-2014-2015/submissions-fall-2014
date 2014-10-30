@@ -3,13 +3,14 @@ from flask import Flask, flash, render_template, request, redirect, url_for
 app = Flask(__name__)
 app.secret_key = 'secret'
 
-#login page
+# Login page
 @app.route("/", methods=["GET","POST"])
 @app.route("/login", methods=["GET","POST"])
 def login():
     if request.method=="GET":
         return render_template("login.html", message = "")
     else:
+        # Get form data
         username = request.form["username"]
         password = request.form["password"]
         button = request.form["b"]
@@ -25,6 +26,7 @@ def login():
         else:
             return redirect(url_for('register'))
 
+# Register Page
 @app.route("/register", methods=["GET","POST"])
 def register():
     if request.method=="GET":
@@ -39,10 +41,12 @@ def register():
         else:
             return render_template("register.html")
 
+# About Page
 @app.route("/about", methods=["GET"])
 def about():
     return render_template("about.html")
 
+# Profile Page
 @app.route("/profile", methods=["GET","POST"])
 def profile():
     if request.method=="GET":
