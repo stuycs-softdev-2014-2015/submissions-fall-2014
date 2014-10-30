@@ -1,5 +1,5 @@
-IMPORTANT
-<h1>THE COMMITS ON THIS REPO ARE NOT CONSISTENT WITH THE TIME the files in this repo was pushed... </h1>
+<h1>IMPORTANT THINGS TO KNOW</h1>
+<b>THE commits on this repo are <u>NOT CONSISTENT</u> WITH THE TIME the files in this repo was pushed... <b>
 We are working primarily in another repo.
 PLEASE VISIT THE OTHER REPO TO SEE accurate commit times. 
 
