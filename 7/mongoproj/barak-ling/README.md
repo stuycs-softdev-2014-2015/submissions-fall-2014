@@ -1,5 +1,5 @@
-Account Manager Project.
-Will have the following pages:
+#Account Manager Project.
+##Will have the following pages:
 
 1. A login page
 2. A logout page
@@ -11,11 +11,10 @@ All pages should indicate if you're logged in or not by displaying either the us
 
 If you go to a protected page and you're not logged in, it should redirect you to the login page. Once you log in (or register / login) it should redirect you back to the protected page.
 
--Would be nice if one of the protected pages is a change account specifics page.
+- Would be nice if one of the protected pages is a change account specifics page. 
+- Might also want to track things like last login or logout or something like that.
 
--Might also want to track things like last login or logout or something like that.
-
-Things needed in addition to basic flask stuff:
+##Things needed in addition to basic flask stuff:
 
 1. Mongo to store the accounts -- username and password is a minimum but you might want to track other info.
 2. Sessions - to keep track of your state.
