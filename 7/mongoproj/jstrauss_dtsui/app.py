@@ -1,19 +1,18 @@
 import random
 from flask import Flask, render_template, request
-from pymongo import Connection
+from pymongo import Connection,MongoClient
 #let this be the main file
 
 app = Flask(__name__)
+client = MongoClient()
 
 @app.route('/', methods=["POST","GET"])
 def index():
-    conn = Connection('localhost',5000)
+    conn = Connection()
     if request.method == "POST":
         form = request.form
-    
-    '''
+        
     db = conn['jsdt']
-    
     users = {'thluffy':0001,'dennis':0002,'bucky':0003,'doughjoe':0004}
 
     dlist = []
@@ -22,13 +21,10 @@ def index():
         dlist.append(d)
 
     db.jsdt.insert(dlist)
-    '''
     print "COLLECTION"
-    '''
     print(db.collection_names())
     print "FIND"
     print db.jsdt.find({})
-    '''
     return render_template("index.html")
 
 @app.route("/about")
