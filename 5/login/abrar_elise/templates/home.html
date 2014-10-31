@@ -1,7 +1,35 @@
-<html>
-  <form>
-    <input type="text" name="uname">enter name:</input>
-    <input type="text" name="pword">
-    <input type="submit" name="enter"></submit>
-  </form>
-</html>
+{% extends "base.html" %}
+{% block bodycontent %}
+<head>
+<title> Hairy Dubstep </title>
+</head>
+<!--
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+<link rel="stylesheet" href="/combo/1.17.16?/css/layouts/blog.css">
+-->
+<body bgcolor="#01DF74">
+<center> <h1>Welcome to Hairy Dubstep!</h1>
+<div class="container jumbotron" style="border-radius:30px">
+<!-- A wrapper for all the blog posts -->
+<div class="posts">
+<h1 class="content-subhead">Look at all these blog posts!</h1>
+
+</div>
+<br><br>
+<form class="pure-form pure-form-stacked" method = "POST" style="background-color:808089">
+<fieldset>
+<legend>Write yo blog post!</legend>
+<label for="title">Unique Title</label>
+<input class="form-control" type="text" name="title" placeholder="Title">
+<label for="author">Author</label>
+<input class="form-control" type="text" name="author" placeholder="Author">
+<label for= "blog">Blog Text</label>
+<center><textarea class="form-control" name="textarea" style="width:250px;height:150px;" placeholder="Blog Post">
+</textarea></center>
+<button type="submit" class="pure-button pure-button-primary" name="submit">Post!</button>
+</fieldset>
+</form>
+</div></center>
+</body></html>
+{% endblock bodycontent %}
