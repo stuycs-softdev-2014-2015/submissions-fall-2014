@@ -1,26 +1,26 @@
-from flask import Flask, render_template,session,redirect
-#
-#import pymongo
-#from pymongo import MongoClient
-#client=MongoClient('localhost',1614)
+from flask import Flask, render_template,session,redirect, request
+import mongodb_helper
 
 app=Flask(__name__)
 
 @app.route("/")
 def index():
-    if 'n' not in session:
-        session['n']=0
+    if 'SESS_ID' not in session:
+        # default value for now
+        session['SESS_ID']=0
         
-    n = session['n']
-    n=n+1
-    session['n']=n
+    sess_id = session['SESS_ID']
     return render_template("index.html")
 
-@app.route("/register")
+@app.route("/register", methods=['POST'])
 def register():
+    username = request.form['username']
+    password = request.form['password']
+    if (insert(username, password)):
+        return redirect("/")
     return render_template("register.html")
 
-@app.route("/logout")
+@app.route("/logout", methods=['POST'])
 def logout():
     session.pop('n',None)
     return redirect("/")
