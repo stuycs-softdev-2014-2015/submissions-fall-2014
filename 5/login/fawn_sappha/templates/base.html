@@ -9,7 +9,9 @@
   <div class = "container">
   <h1>Mongo Thing</h1>
   {% block bodycontent %}
-  
+  {% if message %}
+  <strong>{{message}}</strong>
+  {% endif %}
   {% endblock bodycontent %}
   </div>
 </body>
