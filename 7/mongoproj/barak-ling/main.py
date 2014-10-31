@@ -1,6 +1,5 @@
 import pymongo
 from pymongo import MongoClient
-from bs4 import BeautifulSoup
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -10,6 +9,7 @@ app = Flask(__name__)
 # http://api.mongodb.org/python/current/tutorial.html
 client = MongoClient()
 
+db = client.test_database
 collection = db.test
 
 @app.route('/')
