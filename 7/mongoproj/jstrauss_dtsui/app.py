@@ -9,19 +9,24 @@ app = Flask(__name__)
 def index():
     if request.method == "POST":
         form = request.form
+
+    db.jsdt.drop()
         
     users = {'thluffy':0001,'dennis':0002,'bucky':0003,'doughjoe':0004}
 
     dlist = []
     for i in users:
-        d = {i:users[i]}
+        #d = {i:users[i]}
+        d = {'name':i,'pw':users[i]}
         dlist.append(d)
 
     db.jsdt.insert(dlist)
     print "COLLECTION"
     print(db.collection_names())
     print "FIND"
-    print db.jsdt.find({})
+    res = db.jsdt.find({})
+    info = [x for x in res]
+    print info
     return render_template("index.html")
 
 @app.route("/about")
