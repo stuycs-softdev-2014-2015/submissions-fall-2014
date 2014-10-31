@@ -16,6 +16,9 @@ collection = db.test
 def home():
     pass
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return 'This page does not exist', 404
 
 if __name__ == "__main__":
     app.debug=True
