@@ -1,21 +1,31 @@
 from flask import Flask, render_template, request, redirect, session
 
-http://runnable.com/Uhf58hcCo9RSAACs/using-sessions-in-flask-for-python
+#http://runnable.com/Uhf58hcCo9RSAACs/using-sessions-in-flask-for-python
 
 app = Flask(__name__)
 id=0
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
+def sumSessionCounter():
+  try:
+    session['counter'] += 1
+  except KeyError:
+    session['counter'] = 1
 
-#homepage
+#login page
 @app.route("/")
 def index():
-    session['tmp'] = 43
-    return '43'
+    sumSessionCounter()
     if (submit == "Submit"):
         return redirect ("")
     
 
+@app.route('/logout')
+def clearsession():
+    # Clear the session
+    session.clear()
+    # Redirect the user to the main page
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()
