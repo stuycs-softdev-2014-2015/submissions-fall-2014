@@ -10,6 +10,8 @@ def add_user(u, pw):
 def update_user(u, i):
     db.users.update({'user':u}, {'$set':{'info':i}})
 
+def get_password(u):
+    db.users.find({'user':u})
 add_user("hi","bye")
 
 res = db.users.find({},{'_id':False})
