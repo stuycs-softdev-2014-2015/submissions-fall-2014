@@ -12,6 +12,7 @@ def login():
         return render_template("login.html", message = message)
     else:
         button = request.form['b']
+        print button
         global name
         name = request.form['name']
         password = request.form['password']

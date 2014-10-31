@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+
+<form class="pure-form" action = "/" method = "POST">
+  <fieldset class="pure-group">
+    <input type="text" name="username" class = "pure-input-1-3" placeholder = "Enter Username" required>
+    <input type="text" name = "password" class = "pure-input-1-3" placeholder = "Enter Password" required>
+  </fieldset>
+  <button type="submit" class = "pure-button pure-input-1-3 colored-button">Login!</button>
+</form>
+
+{% endblock bodycontent %}

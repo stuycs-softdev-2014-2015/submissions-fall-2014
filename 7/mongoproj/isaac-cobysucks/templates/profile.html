@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>PROFILE</title> 
+  </head>
+  <body>
+    <h1>Profile</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <p> My profile! </p>
+  </body>
