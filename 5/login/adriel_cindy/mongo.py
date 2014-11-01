@@ -11,9 +11,11 @@ def update_user(u, i):
     db.users.update({'user':u}, {'$set':{'info':i}})
 
 def get_password(u):
-    db.users.find({'user':u})
+    return db.users.find({'user':u})[0]['password']
+
 add_user("hi","bye")
 
-res = db.users.find({},{'_id':False})
-for r in res:
-    print r
+get_password('hi')
+#res = db.users.find({},{'_id':False})
+#for r in res:
+#    print r
