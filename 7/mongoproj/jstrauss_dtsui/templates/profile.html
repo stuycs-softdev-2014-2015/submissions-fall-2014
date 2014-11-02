@@ -1,4 +1,30 @@
 {% extends "base.html" %}
   {% block bodycontent %}
     <h1>This is your profile.</h1>
-  {% endblock bodycontent %}
+	{{profile}}
+
+<h2> Please fill out this form if you'd like to change your password. </h2>
+
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+
+        <div class="pure-control-group">
+            <label for="password">New Password</label>
+            <input id="newpassword" type="password" placeholder="New Password" name="newpassword">
+        </div>
+
+		<div class="pure-control-group">
+            <label for="password">Retype New Password</label>
+            <input id="newpassword2" type="password" placeholder="Retype New Password" name="newpassword2">
+        </div>
+
+        <div class="pure-controls">
+
+            <button type="submit" name="b" value="Change" class="pure-button pure-button-primary">Change</button>
+
+        </div>
+    </fieldset>
+</form>
+
+  {% endblock bodycontent %}}
+}
