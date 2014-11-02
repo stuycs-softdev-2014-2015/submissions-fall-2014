@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h1>Login here.</h1>
+
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+
+        <div class="pure-control-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="Email Address">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password">
+        </div>
+
+        <div class="pure-controls">
+            
+            <label for="cb" class="pure-checkbox">
+                <input id="cb" type="checkbox"> Remember me
+            </label>
+
+            <button type="submit" name="b" value="Login" class="pure-button pure-button-primary">Login</button>
+
+        </div>
+    </fieldset>
+</form>
+
+  {% endblock bodycontent %}

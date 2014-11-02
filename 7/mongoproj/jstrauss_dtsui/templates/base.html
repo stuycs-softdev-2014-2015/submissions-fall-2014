@@ -2,16 +2,25 @@
 <head>
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+
+    <!--<style>
+    .pure-menu.pure-menu-open.pure-menu-horizontal {
+        float:right;
+        display: block;
+        width: auto;
+    }
+    </style>-->
 </head>
 
+
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
-    <a href="#" class="pure-menu-heading">Account Manager</a>
+    <a href="/" class="pure-menu-heading">Account Manager</a>
 
     <ul>
-        <li><a href="/">Login</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/login"> {% if user==None %} Login {% else %} Logout {% endif %} </a></li>
         <li><a href="/register">Register</a></li>
 		<li><a href="/profile">Profile</a></li>
-		<li><a href="/about">About</a></li>
 		<li><a href="/contacts">Contacts</a></li>
     </ul>
 </div>
