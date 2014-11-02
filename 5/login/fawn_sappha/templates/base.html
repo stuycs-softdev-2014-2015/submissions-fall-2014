@@ -7,11 +7,12 @@
 
 <body>
   <div class = "container">
-  <h1>Mongo Thing</h1>
-  {% block bodycontent %}
+  <h1><a href="/">Mongo Thing</a></h1>  
   {% if message %}
   <strong>{{message}}</strong>
   {% endif %}
+  {% block bodycontent %}
+
   {% endblock bodycontent %}
   </div>
 </body>
