@@ -2,9 +2,8 @@
 # Software Development Period 7
 # MongoDB Project
 
-import random
-from flask import Flask, render_template, request, redirect, session, url_for
-from pymongo import Connection
+import db
+from flask import Flask, render_template, request, redirect, session, url_for, flash
 
 app = Flask(__name__)
 
@@ -13,29 +12,7 @@ app = Flask(__name__)
 def index():
     if "name" not in session:
         session["name"] = None
-    return render_template("index.html",user=session['name'])
-
-    # if request.method == "POST":
-    #     form = request.form
-
-    # db.jsdt.drop()
-        
-    # users = {'thluffy':0001,'dennis':0002,'bucky':0003,'doughjoe':0004}
-
-    # dlist = []
-    # for i in users:
-    #     #d = {i:users[i]}
-    #     d = {'name':i,'pw':users[i]}
-    #     dlist.append(d)
-
-    # db.jsdt.insert(dlist)
-    # print "COLLECTION"
-    # print(db.collection_names())
-    # print "FIND"
-    # res = db.jsdt.find({})
-    # info = [x for x in res]
-    # print info
-
+    return render_template("index.html")
 
 @app.route("/login", methods=["POST","GET"])
 def login():
@@ -44,11 +21,16 @@ def login():
         passwork = request.form["password"]
         #if authenticate(username,password):
         session['name'] = username
-        return redirect(url_for('index'))
+        global prevpage
+        page = prevpage
+        prevpage = "index"
+        return redirect(url_for(page))
         #else:
-        #   flash("username/password invalid")
+        #   flash(message)
+        # username does not exist
+        # incorrect password
     else:
-        return render_template("login.html",user=session['name'])
+        return render_template("login.html")
 
 @app.route('/logout')
 def logout():
@@ -62,21 +44,31 @@ def register():
         #add info to database
         return
     else:
-        return render_template("register.html",user=session['name'])
+        return render_template("register.html")
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html",user=session['name'])
+    if session["name"]==None:
+        flash("You must login to access Profile, which is a protected page!")
+        global prevpage
+        prevpage = "profile"
+        return redirect(url_for('login'))
+    else:
+        return render_template("profile.html")
 
 @app.route("/contacts")
 def contacts():
-    return render_template("contacts.html",user=session['name'])
-
-
+    if session["name"]==None:
+        flash("You must login to access Contacts, which is a protected page!")
+        global prevpage 
+        prevpage = "contacts"
+        return redirect(url_for('login'))
+    else:
+        return render_template("contacts.html")
 
 if __name__ == '__main__':
-    # conn = Connection()
-    # db = conn['jsdt']
+    #db.setup()
+    prevpage = "index"
     app.secret_key = "don't store this on github"
     app.debug = True
     app.run(host='0.0.0.0')
