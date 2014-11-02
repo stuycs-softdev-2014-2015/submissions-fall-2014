@@ -18,19 +18,22 @@ def index():
 def login():
     if request.method == "POST":
         username = request.form["username"]
-        passwork = request.form["password"]
+        password = request.form["password"]
         #if authenticate(username,password):
-        session['name'] = username
-        global prevpage
-        page = prevpage
-        prevpage = "index"
-        return redirect(url_for(page))
-        #else:
-        #   flash(message)
-        # username does not exist
-        # incorrect password
-    else:
-        return render_template("login.html")
+        if db.authenticate(username,password):
+            session['name'] = username
+            global prevpage
+            page = prevpage
+            prevpage = "index"
+            return redirect(url_for(page))
+        else:
+            if db.userexists(username):
+                flash("You've inputted the wrong password for the given user.")
+                return redirect(url_for('login'))
+            else:
+                flash("The username you inputted hasn't been registered yet.")
+                return redirect(url_for('register'))
+    return render_template("login.html")
 
 @app.route('/logout')
 def logout():
@@ -41,20 +44,51 @@ def logout():
 @app.route("/register", methods=["POST","GET"])
 def register():
     if request.method == "POST":
-        #add info to database
-        return
+        username = request.form["username"]
+        email = request.form["email"]
+        pw = request.form["password"]
+        pw2 = request.form["password2"]
+        if pw != pw2:
+            flash("The passwords you submitted don't match, please try again.")
+            return redirect(url_for('register'))
+        if db.userexists(username):
+            flash("The username you submitted is already taken, please try again.")
+            return redirect(url_for('register'))
+        if db.emailexists(email):
+            flash("The email you submitted already has an account tied to it, please try again.")
+            return redirect(url_for('register'))
+        else:
+            db.adduser(username,email,pw)
+            flash("You've sucessfully registered, now login!")
+            return redirect(url_for('login'))
     else:
+        if session['name']!=None:
+            flash("You're already logged in, so you can't register for a second account!")
+            return redirect(url_for(prevpage))
         return render_template("register.html")
 
-@app.route("/profile")
+@app.route("/profile", methods=["POST","GET"])
 def profile():
-    if session["name"]==None:
-        flash("You must login to access Profile, which is a protected page!")
-        global prevpage
-        prevpage = "profile"
-        return redirect(url_for('login'))
+    if request.method == "GET":
+        if session["name"]==None:
+            flash("You must login to access Profile, which is a protected page!")
+            global prevpage
+            prevpage = "profile"
+            return redirect(url_for('login'))
+        else:
+            profile=db.getprofile(session['name'])
+            print profile
+            return render_template("profile.html",profile=profile)
     else:
-        return render_template("profile.html")
+        newpw = request.form["newpassword"]
+        newpw2 = request.form["newpassword2"]
+        if (newpw != newpw2):
+            flash("The new passwords you submitted don't match, please try again.")
+            return redirect(url_for('profile'))
+        else:
+            db.updatepw(session['name'],newpw)
+            flash("Your password has been sucessfully changed. Please re-login.")
+            return redirect(url_for('logout'))
 
 @app.route("/contacts")
 def contacts():
@@ -64,18 +98,13 @@ def contacts():
         prevpage = "contacts"
         return redirect(url_for('login'))
     else:
-        return render_template("contacts.html")
+        contacts=db.getcontacts(session['name'])
+        print contacts
+        return render_template("contacts.html",contacts=contacts)
 
 if __name__ == '__main__':
-    #db.setup()
+    db.setup()
     prevpage = "index"
     app.secret_key = "don't store this on github"
     app.debug = True
     app.run(host='0.0.0.0')
-    
-
-
-    
-    
-
-

@@ -14,7 +14,7 @@ If you're logged, all pages indicate this by displaying your username in the upp
 
 If you go to a protected page and you're not logged in, it redirects you to the login page. Once you log in (or register then login) it redirects you back to the protected page.
 
-It would be nice if one of the protected pages is a change account specifics page. You might also want to track things like last login or logout or something like that.
+The protected profile page allows you to change your account password. You might also want to track things like last login or logout or something like that.
 
 Tools used in addition to basic Flask:
 
