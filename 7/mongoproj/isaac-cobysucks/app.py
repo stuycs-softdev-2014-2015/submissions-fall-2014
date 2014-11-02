@@ -1,8 +1,37 @@
+import datetime
 from flask import Flask, flash, render_template, request, redirect, url_for
 from pymongo import MongoClient
 
 app = Flask(__name__)
 app.secret_key = 'secret'
+
+# MongoDB
+client = MongoClient('localhost', 27017)
+db = client.mongo_project
+users = db.users
+
+def create_user(username, password, name, birthday):
+	'''Adds user to the database, returns their mongo _id'''
+	user = {
+	'username' : username,
+	'password' : password,
+    'name' : name,
+    'birthday' : birthday,
+	'date' : datetime.datetime.utcnow()
+	}
+	return users.insert(user)
+
+def find_user(username):
+    user = users.find_one({'username': username})
+    return user
+
+# update dict must be in the form {field_to_update : new_val}
+def update_user(username, update_dict):
+    update_dict.update( {'date' : datetime.datetime.utcnow()} )
+    db.users.update({'username' : username}, {'$set' : update_dict}, upsert=False)
+    return True
+# End MongoDB
+
 
 # Login page
 @app.route("/", methods=["GET","POST"])
@@ -35,9 +64,11 @@ def register():
     else:
         username = request.form["username"]
         password = request.form["password"]
+        password_check = request.form["confirm_password"]
+        name = request.form["name"]
         button = request.form["b"]
         if button == "Register":
-            #method to add user
+            create_user(username, password, name, None)
             return redirect(url_for('login'))
         else:
             return render_template("register.html")
@@ -57,8 +88,16 @@ def profile():
         return render_template("profile.html")
 
 def authenticate(username, password):
-    #add methods to actually verify the password
-    return True
+    user = find_user(username)
+    # No such user
+    if user == None:
+        return False
+    # Username/Password combo don't match
+    elif str(user['username']) != username or str(user['password']) != password:
+        return False
+    # We good
+    else:
+        return True
 
 if __name__=="__main__":
     app.debug = True
