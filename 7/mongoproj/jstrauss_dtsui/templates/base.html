@@ -14,11 +14,15 @@
 
 
 <div class="pure-menu pure-menu-open pure-menu-horizontal">
-    <a href="/" class="pure-menu-heading">Account Manager</a>
+    <a href="/" class="pure-menu-heading">{% if user==None %} Account Manager {% else %} Welcome {{user}} {% endif %}</a>
 
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/login"> {% if user==None %} Login {% else %} Logout {% endif %} </a></li>
+        {% if user==None %}
+        <li><a href="/login">Login</a></li>
+        {% else %}
+        <li><a href="/logout">Logout</a></li>
+        {% endif %}
         <li><a href="/register">Register</a></li>
 		<li><a href="/profile">Profile</a></li>
 		<li><a href="/contacts">Contacts</a></li>

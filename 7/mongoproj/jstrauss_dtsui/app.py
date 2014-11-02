@@ -3,7 +3,7 @@
 # MongoDB Project
 
 import random
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, url_for
 from pymongo import Connection
 
 app = Flask(__name__)
@@ -11,6 +11,10 @@ app = Flask(__name__)
 @app.route('/', methods=["POST","GET"])
 @app.route('/index', methods=["POST","GET"])
 def index():
+    if "name" not in session:
+        session["name"] = None
+    return render_template("index.html",user=session['name'])
+
     # if request.method == "POST":
     #     form = request.form
 
@@ -31,24 +35,42 @@ def index():
     # res = db.jsdt.find({})
     # info = [x for x in res]
     # print info
-    return render_template("index.html",user=None)
 
-@app.route("/login")
+
+@app.route("/login", methods=["POST","GET"])
 def login():
-    return render_template("login.html",user=None)
+    if request.method == "POST":
+        username = request.form["username"]
+        passwork = request.form["password"]
+        #if authenticate(username,password):
+        session['name'] = username
+        return redirect(url_for('index'))
+        #else:
+        #   flash("username/password invalid")
+    else:
+        return render_template("login.html",user=session['name'])
 
-@app.route("/register")
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('name', None)
+    return redirect(url_for('index'))
+
+@app.route("/register", methods=["POST","GET"])
 def register():
-    if request.method == "GET":
-        return render_template("register.html",user=None)
+    if request.method == "POST":
+        #add info to database
+        return
+    else:
+        return render_template("register.html",user=session['name'])
 
 @app.route("/profile")
 def profile():
-    return render_template("profile.html",user=None)
+    return render_template("profile.html",user=session['name'])
 
 @app.route("/contacts")
 def contacts():
-    return render_template("contacts.html",user=None)
+    return render_template("contacts.html",user=session['name'])
 
 
 
