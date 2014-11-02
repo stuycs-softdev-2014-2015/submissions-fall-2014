@@ -57,6 +57,7 @@ def login():
             return redirect(url_for('register'))
 
 # Register Page
+# STILL NEEDS TO CHECK AGAIST EXISTING USERNAMES & PWORD VALIDITY
 @app.route("/register", methods=["GET","POST"])
 def register():
     if request.method=="GET":
@@ -67,6 +68,7 @@ def register():
         password_check = request.form["confirm_password"]
         name = request.form["name"]
         button = request.form["b"]
+
         if button == "Register":
             create_user(username, password, name, None)
             return redirect(url_for('login'))
