@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, g
-#import sqlite3
+from pymongo import Connection
 
 app = Flask(__name__)
-DATABASE = 'data.db'
+conn = Connection()
+db = conn ['sweg']
 
 @app.route("/", methods=["GET","POST"])
 def home():
@@ -83,5 +84,5 @@ def pages(title):
 
 if __name__=="__main__":    
     app.debug=True
-    app.run(host="0.0.0.0",port=5678)
+    app.run(host="127.0.0.1",port=5678)
 
