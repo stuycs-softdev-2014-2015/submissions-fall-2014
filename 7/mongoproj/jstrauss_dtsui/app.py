@@ -73,7 +73,7 @@ def myself():
         if session["name"]==None:
             flash("You must login to access Profile, which is a protected page!")
             global prevpage
-            prevpage = "profile"
+            prevpage = "myself"
             return redirect(url_for('login'))
         else:
             profile=db.getprofile(session['name'])
@@ -85,7 +85,7 @@ def myself():
         newpw2 = request.form["newpassword2"]
         if (newpw != newpw2):
             flash("The new passwords you submitted don't match, please try again.")
-            return redirect(url_for('profile'))
+            return redirect(url_for('myself'))
         else:
             db.updatepw(session['name'],newpw)
             flash("Your password has been sucessfully changed. Please re-login.")
@@ -96,7 +96,7 @@ def user(username):
     if session["name"]==None:
         flash("You must login to access Profile, which is a protected page!")
         global prevpage
-        prevpage = "profile"
+        prevpage = "myself"
         return redirect(url_for('login'))
     else:
         profile=db.getprofile(username)
