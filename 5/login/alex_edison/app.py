@@ -9,6 +9,11 @@ db = conn ['sweg']
 def home():
     return render_template("home.html")
 
+if __name__=="__main__":    
+    app.debug=True
+    app.run(host="127.0.0.1",port=5678)
+
+    
 """def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -82,7 +87,5 @@ def pages(title):
         return render_template("failure.html")
 """
 
-if __name__=="__main__":    
-    app.debug=True
-    app.run(host="127.0.0.1",port=5678)
+
 
