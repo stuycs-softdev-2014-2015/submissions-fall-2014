@@ -22,7 +22,7 @@ def index():
 def login():
     if "username" in session:
         return "youre already logged in as %s" %escape(session["username"])
-    elif request.method == "POST":
+    elif request.method == "POST": 
         session["username"] = request.form["username"]
         return redirect("/")
     return render_template("login.html")
