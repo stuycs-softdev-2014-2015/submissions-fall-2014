@@ -23,27 +23,17 @@ def login():
         return "youre already logged in as %s" %escape(session["username"])
     elif request.method == "POST":
         session["username"] = request.form["username"]
-        return redirect(url_for(index))
+        return redirect("/")
     return render_template("login.html")
     
-@app.route("/logout")
+@app.route("/logout", methods = ["GET", "POST"])
 def logout():
-    if "username" in session:
-        return render_template("logout.html")
-    elif request.args.get("logout") == "logout":
+    if "username" not in session:
+        return "you're not logged in"
+    elif request.method == "POST":
         session.pop("username", None)
-        return redirect(url_for(index))
-    else:
-        return "water u dongyou arent in"
-    '''
-    if request.args.get("logout")=="logout":
-        session.pop('username', None)
-        return redirect(url_for(index))
-    elif session['username'] != None:
-        return render_template("logout.html")
-    else:
-        return "water u doing youa rent in"
-    '''
+        return redirect("/")
+    return render_template("logout.html")
 
 if __name__ == "__main__":
     app.secret_key = "asdf"
