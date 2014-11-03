@@ -2,7 +2,7 @@ Justin Strauss and Derek Tsui
 Software Development Period 7
 MongoDB Project
 
-This project is an account manager with the following pages:
+This project is a blog account manager with the following pages:
 
 1. A login page - /login
 2. A logout route that logs you out and brings you back to index - /logout

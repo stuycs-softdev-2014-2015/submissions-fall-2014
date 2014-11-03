@@ -1,7 +1,21 @@
 {% extends "base.html" %}
   {% block bodycontent %}
-    <h1>{{title}}</h1>
-
+<div class="pure-g">
+<div class="pure-u-5-6">
+<h1>{{title}}</h1>
+<span class="timestamp">
+posted {{blogcontent[0]['time'][0]}}/{{blogcontent[0]['time'][1]}}/{{blogcontent[0]['time'][2]}} {{blogcontent[0]['time'][3]}}:{{blogcontent[0]['time'][4]}}
+by <a class="user" href="/user/{{blogcontent[0]['author']}}">{{blogcontent[0]['author']}}</a>
+</span>
+</div>
+<div class="pure-u-1-6" id="vote"><br>
+  {{blogcontent[0]['points']}} points<br>
+  <a href="/blog/upvote/{{blogcontent[0]['title']}}"><img class="icon" src ="/static/upvote.png" width="20%" height ="20%"/></a>
+  &nbsp;
+  <a href="/blog/downvote/{{blogcontent[0]['title']}}"><img class="icon" src ="/static/downvote.png" width="20%" height ="20%"/></a>
+</div>
+</div>
+<hr>
 <p> {{blogcontent[0]['content']}}</p>
 <br>
 <hr>

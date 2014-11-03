@@ -20,7 +20,19 @@
     </fieldset>
 </form>
 <hr>
+
 {%for x in blog%}
+<div class="pure-g">
+  <div class="pure-u-1-12" id="vote">
+    <br>
+    <a href="/blog/upvote/{{x['title']}}"><img class="icon" src ="/static/upvote.png" width="30%" height ="30%"/></a>
+    <br>
+    {{x['points']}}
+    <br>
+    <a href="/blog/downvote/{{x['title']}}"><img class="icon" src ="/static/downvote.png" width="30%" height ="30%"/></a>
+  </div>
+
+  <div class="pure-u-11-12">
     <p>
       <a href="/blog/{{x['title']}}">{{x['title']}}</a>
       <br>
@@ -31,7 +43,9 @@
         </b>
       </span>
     </p>
-
+  </div>
+</div>
 {%endfor%}
+
   {% endblock bodycontent %}}
 }

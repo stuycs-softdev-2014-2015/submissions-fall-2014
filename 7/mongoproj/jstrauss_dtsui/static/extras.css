@@ -12,6 +12,20 @@
     font-size: 14px;
     color: #333333;
   }
+.icon{
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+  }
+
+.icon:hover{
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+  }
+
+#vote{
+  margin: 0 auto;
+  text-align:center;
+}
 
 a {
   text-decoration:none;

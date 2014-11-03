@@ -149,6 +149,28 @@ def blogcontent(title):
             flash("You have successfully made a comment!")
             return redirect(url_for('blog'))
 
+@app.route("/blog/upvote/<title>", methods=["POST","GET"])
+def upvote(title):
+    if session["name"]==None:
+        flash("You must login to access Blog, which is a protected page!")
+        global prevpage
+        prevpage = "blog"
+        return redirect(url_for('login'))
+    else:
+        db.votepost(title,1)
+        return redirect(url_for('blog'))
+
+@app.route("/blog/downvote/<title>", methods=["POST","GET"])
+def downvote(title):
+    if session["name"]==None:
+        flash("You must login to access Blog, which is a protected page!")
+        global prevpage
+        prevpage = "blog"
+        return redirect(url_for('login'))
+    else:
+        db.votepost(title,-1)
+        return redirect(url_for('blog'))
+
 @app.route("/contacts")
 def contacts():
     if session["name"]==None:
