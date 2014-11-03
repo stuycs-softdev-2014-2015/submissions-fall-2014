@@ -10,8 +10,13 @@ def setup():
 	db = conn['jsdt']
 	db.jsdt.drop()
 
-	# user = {'thluffy':0001,'dennis':0002,'bucky':0003,'doughjoe':0004}
-	users = [["justin","jis7991@gmail.com","test"],["derek","dtsui918@yahoo.com","test"],["zamansky","zamansky@stuycs.org","test"]]
+	#default to test
+	users = []
+	#[name,email,test]
+	users.append(["justin","jis7991@gmail.com","test"])
+	users.append(["derek","dtsui@example.com","test"])
+	users.append(["robbie","doughnuts@gmail.com","test"])
+	users.append(["zamansky","zamansky@stuycs.org","test"])
 
 	dlist = []
 	for i in range(len(users)):
@@ -20,14 +25,15 @@ def setup():
 
 	db.jsdt.insert(dlist)
 
+
 	db = conn['jsdt_blog']
 	db.jsdt_blog.drop()
 
 	dlist = []
-	now = datetime.datetime.now()
-	for i in range(len(users)):
-		d = {'title':str(users[i][0]+' first post'), 'author':users[i][0], 'content':'This the post content','comments':[['First comment','derek',[now.month,now.day,now.year,now.hour,now.minute]]],'time':[now.month,now.day,now.year,now.hour,now.minute]}
-		dlist.append(d)
+	dlist.append({'title':'First post weee!', 'author':'derek', 'content':'I have just made my first post.','comments':[['First comment!','justin',[11,2,2014,23,20]]],'time':[11,2,2014,23,13], 'points':2})
+	dlist.append({'title':'Anybody know how to use MongoDB...', 'author':'justin', 'content':'I\'m having a little trouble with setting up MongoDB on my Mac.  Can anyone help','comments':[['I can!','derek',[11,2,2014,23,18]]],'time':[11,2,2014,23,14], 'points':2})
+	dlist.append({'title':'I like donuts.', 'author':'robbie', 'content':'...but I missed out on free donuts day.  Robbie sad.','comments':[['I like doughnuts too!','zamansky',[11,2,2014,23,21]]],'time':[11,2,2014,23,16], 'points':5})
+	dlist.append({'title':'Evil!!', 'author':'zamansky', 'content':'The pit of ultimate darkness. https://www.youtube.com/watch?v=LjoUUvEUFbY','comments':[['HECUBUS','robbie',[11,2,2014,23,21]]],'time':[11,2,2014,23,17], 'points':9})
 
 	db.jsdt_blog.insert(dlist)
 
@@ -123,6 +129,11 @@ def addcomment(title, username,comment):
 	print newcomment
 	print title
 	db.jsdt_blog.update({'title':title},{'$push':{'comments':newcomment}})
+
+def votepost(title,points):
+	conn = Connection()
+	db = conn['jsdt_blog']
+	db.jsdt_blog.update({'title':title},{'$inc':{'points':points}})
 
 
 # if __name__ == '__main__':

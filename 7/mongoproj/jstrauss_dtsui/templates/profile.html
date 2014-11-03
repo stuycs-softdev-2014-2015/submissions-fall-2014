@@ -13,7 +13,7 @@
         posted {{x['time'][0]}}/{{x['time'][1]}}/{{x['time'][2]}} {{x['time'][3]}}:{{x['time'][4]}}
         &nbsp;by <a class="user" href="/user/{{x['author']}}">{{x['author']}}</a>
         <br><b>{{x['comments']|length}} comment{%if x['comments']|length != 1 %}s{%endif%}
-        </b>
+        &nbsp;{{x['points']}} points</b>
       </span>
     </p>
 
