@@ -48,5 +48,5 @@ def appendnorep(list1,list2):
             list2.append(x)
 
 
-findnames("corpus.txt")
+findnames("isaac.test")
 

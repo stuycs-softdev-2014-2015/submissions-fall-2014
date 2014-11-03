@@ -2,19 +2,17 @@
 <html>
   <head>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-  </head>
-  <body bgcolor="#236467">
+    <link rel="stylesheet" href="static/css/blah.css">
+ </head>
+  <body>
     
     {% if loggedin == False %}
 
     <div class="pure-g">
       <div class="pure-u-1-24"></div>
       <div class="pure-u-22-24">
-	<style scoped>
-	  .fill-color{
-	  text-shadow: 0 1px 1px rgb(35, 100, 103)
-	  }
-	  <div class="fill-color pure-menu pure-menu-open pure-menu-horizontal" background="white">
+	<div class="pure-menu pure-menu-open pure-menu-horizontal">
+	  <a href="#" class="pure-menu-heading">SadTerry</a>
 	  <ul>
             <li><a href="/">Home</a></li>
             <li class="pure-menu-selected"><a href="/login">Login</a></li>
@@ -22,27 +20,26 @@
             <li><a href="#">Fill2</a></li>
 	  </ul>
 	</div>
-	</style>
 	<h1 align="center"><font color="#AAA339">SadTerry</font></h1>
 	<hr>
 	<font color="white">
-	<h2>Login</h2>
-	<form action="login" method="post">
-	  Username:  <input required type="text" name="username"></input>
-	  <br>
-	  Password:&nbsp <input required type="password" name="password"></input>
-	  <br>
-	  <br>
-	  <div>
-	    <style scoped>
-	      
-              .button-small {
-              font-size: 85%;
-              }
-	    </style>
-	    <button class="button-small pure-button" type = "submit">Login</button>
-	  </div>
-	</form>
+	  <h2>Login</h2>
+	  <form action="login" method="post">
+	    Username:  <input required type="text" name="username"></input>
+	    <br>
+	    Password:&nbsp <input required type="password" name="password"></input>
+	    <br>
+	    <br>
+	    <div>
+	      <style scoped>
+		
+		.button-small {
+		font-size: 85%;
+		}
+	      </style>
+	      <button class="button-small pure-button" type = "submit">Login</button>
+	    </div>
+	  </form>
 	</font>
 	<hr>
       </div>
@@ -50,9 +47,9 @@
     {% if exists == True %}
     This username already exists
     {% endif %}
-
+    
     {% endif %}
-
-
+    
+    
   </body>
 </html>
