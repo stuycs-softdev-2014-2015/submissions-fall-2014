@@ -64,7 +64,7 @@ def updatepw(username,newpw):
 def adduser(username,email,password):
 	conn = Connection()
 	db = conn['jsdt']
-	db.jsdt.insert({'name':username},{'email':email},{'pw':password})
+	db.jsdt.insert([{'name':username,'email':email,'pw':password}])
 
 # if __name__ == '__main__':
 # 	setup()
