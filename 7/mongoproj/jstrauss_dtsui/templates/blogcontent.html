@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h1>{{title}}</h1>
+
+<p> {{blogcontent[0]['content']}}</p>
+<br>
+<hr>
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+    <div class="pure-control-group">
+            <textarea cols="75" rows="2" placeholder="Comment on the post" name="comment"></textarea>
+        </div>
+
+        <button type="submit" name="b" value="Comment!" class="pure-button pure-button-primary">Comment!</button>
+
+    </fieldset>
+</form>
+<h3> Comments </h3>
+{%for x in blogcontent[0]['comments']%}
+    <p>
+      <a class="user" href="/user/{{x['title']}}">{{x[1]}}</a>
+      <span class="timestamp">
+        posted {{x[2][0]}}/{{x[2][1]}}/{{x[2][2]}} {{x[2][3]}}:{{x[2][4]}}
+      </span>
+      <br>
+      <div class="comment">
+      {{x[0]}}
+      </div>
+    </p>
+    <br>
+{%endfor%}
+  {% endblock bodycontent %}}
+}
