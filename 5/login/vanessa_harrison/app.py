@@ -1,4 +1,5 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
+import mongo
 
 '''
 login
@@ -34,6 +35,14 @@ def logout():
         session.pop("username", None)
         return redirect("/")
     return render_template("logout.html")
+
+@app.route("/register", methods = ["GET", "POST"])
+def register():
+    if request.method == "POST":
+        mongo.add(request.form["username"], request.form["password"])
+        return "registry successful"
+    else:
+        return render_template("register.html")
 
 if __name__ == "__main__":
     app.secret_key = "asdf"
