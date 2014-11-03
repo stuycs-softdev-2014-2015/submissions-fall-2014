@@ -8,7 +8,16 @@
       <input type="text" name="username" placeholder="Username"><br>
       <input type="password" name="password" placeholder="Password"><br>
       <button type="Login" name="b" value="Login">Login</button><br>
-      <p>{{message}}</p>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+	{% for message in messages %}
+	<p>{{ message }}</p>
+	{% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block body %}{% endblock %}
       <h3>Don't have an account with us? Register now!</h3>
       <button type="submit" name="b" value="Register">Register</button>
     </form>

@@ -14,5 +14,12 @@
     {% endif %}
     {% endwith %}
     {% block body %}{% endblock %}
-    <p> My profile! </p>
+    <p> {{name}}'s profile! <br>
+      Born on {{birthday}} <br>
+      Registered on the website on {{date}}
+      <p>
+	<form method="POST">
+	  <button type="submit" name="b" value="Update">Update Profile</button><br>
+	  <button type="submit" name="b" value="Logout">Logout</button><br>
+	</form>
   </body>
