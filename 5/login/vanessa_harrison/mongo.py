@@ -1,8 +1,8 @@
 from pymongo import Connection
 
 conn = Connection()
-print conn["butts"]
+db = conn["butts"]
 
 def add(username, password):
-    conn.users.insert({"username":username, "password":password})
-    print conn.users.find()
+    db.users.insert({"username":username, "password":password})
+    print [x for x in db.users.find()]
