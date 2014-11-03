@@ -12,10 +12,8 @@ def insert(username, password):
                 "password" : password
                 }
         users.insert(new_user)
-        return True
     else:
-        print "User %s exists." % username
-        return False
+        print "User exists."
 
 def user_exists(username):
     return users.find({"username" : username}).count() > 0
@@ -23,8 +21,5 @@ def user_exists(username):
 def remove(username):
     users.remove({"username" : username})
 
-def validate(username, password):
-    return users.find({"username" : username, "password" : password}).count() == 1
-
-#if __name__ == "__main__":
+if __name__ == "__main__":
 
