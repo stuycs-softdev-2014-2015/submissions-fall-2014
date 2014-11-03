@@ -8,6 +8,9 @@ client = MongoClient('localhost', 27017)
 db = client.account_manager
 logins = db.logins
 
+default_user = {'username':'jkalodog23@aim.com', 'name':'Julian', 'password':'bowtoking', 'date':datetime.datetime.utcnow()}
+logins.insert(default_user)
+
 def create_user(user, name, password):
     #Checks if the username already exists, if not adds the new user
     if(find_user(user) == None):
