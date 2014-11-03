@@ -7,6 +7,19 @@ db = conn["fawn-sappha"]
 
 @app.route("/", methods=["POST", "GET"])
 def index():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        account = db.accounts.find({username: username},{"_if":False})
+        #find a better way of doing this
+        a = {}
+        for q in account:
+            a["user"]= q.get(username)
+            a["passw"]  = q.get(password)
+        if a == {} or a["passw"] != password:
+            return render_template("login.html", message = "Incorrect username or password")
+        else:
+            return render_template("index.html", username = username, loggedin = True)
     return render_template("index.html")
 
 @app.route("/register", methods=["POST", "GET"])
@@ -16,9 +29,12 @@ def register():
         password = request.form["password"]
         confirmpw = request.form["confirmpw"]
         accounts = db.accounts.find({}, {"_id":False})
-        if not username in accounts:
+        uns = []
+        for q in accounts:
+            uns.append(q.get(username))
+        if not username in uns:
             if password == confirmpw:
-                new = {"username": username, "password": password}
+                new = {username: username, password: password}
                 db.accounts.insert(new)
                 return render_template("login.html", message = "Register Successful")
             else:
@@ -29,10 +45,6 @@ def register():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]       
-    accounts= db.accounts.find({},{"_if":False})
     return render_template("login.html")
 
 if __name__ == "__main__":

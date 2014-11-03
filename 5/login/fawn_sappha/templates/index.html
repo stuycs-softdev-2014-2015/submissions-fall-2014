@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block bodycontent %}
+{% if loggedin %}
+<p>Welcome {{username}}</p>
+<a href = "/" class = "button logout">Logout</a>
+{% else %}
 <p> this is the index page </p>
-<br>
 <a href = "/register" class = "button">Register here</a>
 <a href = "/login" class = "button">Login here</a>
+{% endif %}
 {% endblock bodycontent %}

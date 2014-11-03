@@ -15,9 +15,11 @@ def sumSessionCounter():
 #login page
 @app.route("/")
 def index():
-    sumSessionCounter()
-    if (submit == "Submit"):
-        return redirect ("")
+    return render_template ("login.html")
+
+@app.route("/register")
+def register():
+    return render_template ("register.html")
     
 
 @app.route('/logout')
