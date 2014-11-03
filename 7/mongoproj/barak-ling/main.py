@@ -45,6 +45,12 @@ def register_user(username, password):
     user_id = users.insert(user)
     return user_id
 
+# checks if the username and password together works
+def check_login(username, password):
+    if users.find_one({"username":username,"password":password}) == None:
+        return False
+    return True
+
 #for now, home page is login page
 #THIS IS NOT DONE, DON'T ACTUALLY HIT SUBMIT
 @app.route('/')
@@ -70,7 +76,7 @@ def register():
         password = request.form['password']
         #success = new_user(username,password)
         #print success
-        if !check_username(username):
+        if not check_username(username):
             return "you failed!" #yes this must be improved
         else:
             register_user(username, password)
