@@ -72,7 +72,6 @@ def getblogcontent(title):
 	conn = Connection()
 	db = conn['jsdt_blog']
 	res = db.jsdt_blog.find({'title':title},{"_id":False})
-	#info = [x for x in res]
 	return res
 
 def getprofile(username):
@@ -81,6 +80,13 @@ def getprofile(username):
 	res = db.jsdt.find({'name':username},{"_id":False})
 	info = [x for x in res]
 	return info
+
+def getposts(username):
+	conn = Connection()
+	db = conn['jsdt_blog']
+	res = db.jsdt_blog.find({'author':username},{"_id":False})
+	info = [x for x in res]
+	return reversed(info)
 
 def updatepw(username,newpw):
 	conn = Connection()

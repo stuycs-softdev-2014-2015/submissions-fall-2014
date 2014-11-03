@@ -1,6 +1,6 @@
 {% extends "base.html" %}
   {% block bodycontent %}
-    <h1>Here are your contacts.</h1>
+    <h1>Contacts</h1>
 
 <table class="pure-table pure-table-horizontal">
     <thead>
@@ -15,7 +15,7 @@
     {% for x in contacts %}
 
         <tr>
-            <td>{{x['name']}}</td>
+            <td><a href="/user/{{x['name']}}">{{x['name']}}</a></td>
             <td>{{x['email']}}</td>
         </tr>
 
@@ -23,6 +23,5 @@
 
     </tbody>
 </table>
-{{contacts}}
   {% endblock bodycontent %}}
 }

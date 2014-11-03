@@ -16,9 +16,9 @@
     </fieldset>
 </form>
 <h3> Comments </h3>
-{%for x in blogcontent[0]['comments']%}
+{%for x in blogcontent[0]['comments']|sort(reverse=True)%}
     <p>
-      <a class="user" href="/user/{{x['title']}}">{{x[1]}}</a>
+      <a class="user" href="/user/{{x[1]}}">{{x[1]}}</a>
       <span class="timestamp">
         posted {{x[2][0]}}/{{x[2][1]}}/{{x[2][2]}} {{x[2][3]}}:{{x[2][4]}}
       </span>
@@ -27,7 +27,6 @@
       {{x[0]}}
       </div>
     </p>
-    <br>
 {%endfor%}
   {% endblock bodycontent %}}
 }

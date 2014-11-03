@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h2>{{profile[0]['name']}}</h2>
+  <i>{{profile[0]['email']}}</i>
+<br><br><hr>
+<h3>Recent posts</h3>
+{%for x in posts%}
+    <p>
+      <a href="/blog/{{x['title']}}">{{x['title']}}</a>
+      <br>
+      <span class="timestamp">
+        posted {{x['time'][0]}}/{{x['time'][1]}}/{{x['time'][2]}} {{x['time'][3]}}:{{x['time'][4]}}
+        &nbsp;by <a class="user" href="/user/{{x['author']}}">{{x['author']}}</a>
+        <br><b>{{x['comments']|length}} comment{%if x['comments']|length != 1 %}s{%endif%}
+        </b>
+      </span>
+    </p>
+
+{%endfor%}
+<hr>
+  {% endblock bodycontent %}}
+}

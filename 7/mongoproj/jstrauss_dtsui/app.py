@@ -67,8 +67,8 @@ def register():
             return redirect(url_for(prevpage))
         return render_template("register.html")
 
-@app.route("/profile", methods=["POST","GET"])
-def profile():
+@app.route("/user", methods=["POST","GET"])
+def myself():
     if request.method == "GET":
         if session["name"]==None:
             flash("You must login to access Profile, which is a protected page!")
@@ -78,7 +78,8 @@ def profile():
         else:
             profile=db.getprofile(session['name'])
             #print profile
-            return render_template("profile.html",profile=profile)
+            posts = db.getposts(session['name'])
+            return render_template("profile.html",profile=profile, posts=posts)
     else:
         newpw = request.form["newpassword"]
         newpw2 = request.form["newpassword2"]
@@ -89,6 +90,19 @@ def profile():
             db.updatepw(session['name'],newpw)
             flash("Your password has been sucessfully changed. Please re-login.")
             return redirect(url_for('logout'))
+
+@app.route("/user/<username>")
+def user(username):
+    if session["name"]==None:
+        flash("You must login to access Profile, which is a protected page!")
+        global prevpage
+        prevpage = "profile"
+        return redirect(url_for('login'))
+    else:
+        profile=db.getprofile(username)
+        #print profile
+        posts = db.getposts(username)
+        return render_template("profileother.html",profile=profile,posts=posts)
 
 @app.route("/blog", methods=["POST","GET"])
 def blog():
@@ -130,12 +144,10 @@ def blogcontent(title):
         if db.invalidcomment(comment):
             flash("There is no text in your comment!")
             return redirect(url_for('blog'))
-            #return redirect(url_for(str('blog/'+title)))
         else:
             db.addcomment(title,session['name'],comment)
             flash("You have successfully made a comment!")
             return redirect(url_for('blog'))
-            #return redirect(url_for(str('blog/'+title)))
 
 @app.route("/contacts")
 def contacts():
