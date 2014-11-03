@@ -28,14 +28,18 @@ def login():
       #print db.accounts.find() + '\n'
       exists = False
       loggedin = False
-
+      incorrectlogin = False
+      
       for d in db.accounts.find():
          if username == d['username']:
             exists = True
+            savedpass = d['password']
             
-      if (exists == False):
-         db.accounts.insert(doc);
+      if (exists == True and savedpass == password):
          loggedin = True
+
+      if (exists == True and savedpass != password):
+         incorrectlogin = True
          
       for d in db.accounts.find():
          print d['username']
@@ -50,8 +54,9 @@ def login():
       print db
       print ''
       
-      print loggedin
-      return render_template("login.html", exists=exists, loggedin=loggedin)
+      print "login status"
+      print incorrectlogin
+      return render_template("login.html", exists=exists, loggedin=loggedin, username=username, password=password, incorrectlogin=incorrectlogin)
    else:
       return render_template("login.html", loggedin=False)
   

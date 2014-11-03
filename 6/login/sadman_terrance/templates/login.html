@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="static/css/blah.css">
  </head>
   <body>
+
+    {% if loggedin == True %}
+    You are logged in {{loggedin}} .
+    {{username}}
+    {{password}}
+    {% endif %}
     
     {% if loggedin == False %}
 
@@ -22,7 +28,7 @@
 	</div>
 	<h1 align="center"><font color="#AAA339">SadTerry</font></h1>
 	<hr>
-	<font color="white">
+	<font color="black">
 	  <h2>Login</h2>
 	  <form action="login" method="post">
 	    Username:  <input required type="text" name="username"></input>
@@ -44,8 +50,13 @@
 	<hr>
       </div>
     </div>
-    {% if exists == True %}
-    This username already exists
+
+    {% if incorrectlogin %}
+    Your username and password do not match
+    {% endif %}
+
+    {% if exists == False %}
+    This username does not exist
     {% endif %}
     
     {% endif %}
