@@ -77,7 +77,7 @@ def profile():
             return redirect(url_for('login'))
         else:
             profile=db.getprofile(session['name'])
-            print profile
+            #print profile
             return render_template("profile.html",profile=profile)
     else:
         newpw = request.form["newpassword"]
@@ -90,11 +90,58 @@ def profile():
             flash("Your password has been sucessfully changed. Please re-login.")
             return redirect(url_for('logout'))
 
+@app.route("/blog", methods=["POST","GET"])
+def blog():
+    if request.method == "GET":
+        if session["name"]==None:
+            flash("You must login to access Blog, which is a protected page!")
+            global prevpage
+            prevpage = "blog"
+            return redirect(url_for('login'))
+        else:
+            blog=db.getblog(session['name'])
+            print blog
+            return render_template("blog.html",blog=blog)
+    else:
+        title = request.form["title"]
+        content = request.form["content"]
+        if db.invalidpost(title, content):
+            flash("A post of this title already exists or there is no content!")
+            return redirect(url_for('blog'))
+        else:
+            db.addpost(title,session['name'],content)
+            flash("You have successfully made a blog post!")
+            return redirect(url_for('blog'))
+
+@app.route("/blog/<title>", methods=["POST","GET"])
+def blogcontent(title):
+    if request.method == "GET":
+        if session["name"]==None:
+            flash("You must login to access Blog, which is a protected page!")
+            global prevpage
+            prevpage = "blog"
+            return redirect(url_for('login'))
+        else:
+            blogcontent=db.getblogcontent(title)
+            print blogcontent
+            return render_template("blogcontent.html",title=title,blogcontent=blogcontent)
+    else:
+        comment = request.form["comment"]
+        if db.invalidcomment(comment):
+            flash("There is no text in your comment!")
+            return redirect(url_for('blog'))
+            #return redirect(url_for(str('blog/'+title)))
+        else:
+            db.addcomment(title,session['name'],comment)
+            flash("You have successfully made a comment!")
+            return redirect(url_for('blog'))
+            #return redirect(url_for(str('blog/'+title)))
+
 @app.route("/contacts")
 def contacts():
     if session["name"]==None:
         flash("You must login to access Contacts, which is a protected page!")
-        global prevpage 
+        global prevpage
         prevpage = "contacts"
         return redirect(url_for('login'))
     else:
