@@ -4,7 +4,7 @@ import datetime
 from pymongo import MongoClient
 
 #---------MONGO------------------------------------------------------------------------
-client = MongoClient()
+client = MongoClient('localhost', 27017)
 db = client.account_manager
 logins = db.logins
 
@@ -17,7 +17,7 @@ def create_user(user, name, password):
             'password': password,
             'date':datetime.datetime.utcnow()
             }
-        return logins.insert(new_login})
+        return logins.insert(new_login)
     else:
         print("username already exists")
 
