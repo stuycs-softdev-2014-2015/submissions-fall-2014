@@ -51,7 +51,14 @@ def home():
 @app.route("/login", methods = ["GET","POST"])
 def login():
     if request.method=="POST":
-        return render_template("login.html")
+        email = request.form["email"]
+        pw = request.form["password"]
+        user = find_user(user,pw)
+        if user != None:
+            #redirect to personal profile.
+        else:
+            print("user not found")
+    return render_template("login.html")
     
 @app.route("/register", methods = ["GET", "POST"])
 def register():
