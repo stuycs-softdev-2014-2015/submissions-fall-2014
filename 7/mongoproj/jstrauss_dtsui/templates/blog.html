@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h1>Your Blog Page!</h1>
+
+<h2> Make a blog post!</h2>
+
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+
+        <div class="pure-control-group">
+            <input type="text" size="75" placeholder="Title of your blog post" name="title">
+        </div>
+
+    <div class="pure-control-group">
+            <textarea cols="75" rows="6" placeholder="Contents" name="content"></textarea>
+        </div>
+
+        <button type="submit" name="b" value="Post!" class="pure-button pure-button-primary">Post!</button>
+
+    </fieldset>
+</form>
+<hr>
+
+{%for x in blog%}
+<div class="pure-g">
+  <div class="pure-u-1-12" id="vote">
+    <br>
+    <a href="/blog/upvote/{{x['title']}}"><img class="icon" src ="/static/upvote.png" width="30%" height ="30%"/></a>
+    <br>
+    {{x['points']}}
+    <br>
+    <a href="/blog/downvote/{{x['title']}}"><img class="icon" src ="/static/downvote.png" width="30%" height ="30%"/></a>
+  </div>
+
+  <div class="pure-u-11-12">
+    <p>
+      <a href="/blog/{{x['title']}}">{{x['title']}}</a>
+      <br>
+      <span class="timestamp">
+        posted {{x['time'][0]}}/{{x['time'][1]}}/{{x['time'][2]}} {{x['time'][3]}}:{{x['time'][4]}}
+        &nbsp;by <a class="user" href="/user/{{x['author']}}">{{x['author']}}</a>
+        <br><b>{{x['comments']|length}} comment{%if x['comments']|length != 1 %}s{%endif%}
+        </b>
+      </span>
+    </p>
+  </div>
+</div>
+{%endfor%}
+
+  {% endblock bodycontent %}}
+}
