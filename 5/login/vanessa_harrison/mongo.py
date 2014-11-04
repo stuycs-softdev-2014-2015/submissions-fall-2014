@@ -10,4 +10,4 @@ def add(username, password):
     return exists
 
 def validate(username, password):
-    return db.users.find_one({"username":username, "password":password})
+    return db.users.find_one({"username":username, "password":password}) != {}
