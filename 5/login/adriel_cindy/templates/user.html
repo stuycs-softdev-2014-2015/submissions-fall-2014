@@ -4,6 +4,15 @@
 Welcome, <b>{{user}}</b>.
 {% endblock head %}
 
+{% block logout %}
+<li role="presentation"><a href="/logout">Logout</a></li>
+{% endblock logout %}
+
 {% block body %}
+
+{% block home %}
+<a href="/page/{{user}}">
+{% endblock home %}
+
 <a href="/profile/{{user}}">page</a>
 {% endblock body %}
