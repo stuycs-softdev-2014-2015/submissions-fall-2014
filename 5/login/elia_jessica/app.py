@@ -3,11 +3,15 @@ from flask import Flask, session, redirect, url_for, escape, request, render_tem
 import base
 
 app = Flask(__name__)
-
+corner = """
+ 
+"""
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template ("index.html", usrname = escape(session['username']))
+        return render_template ("index.html", 
+                                corner = escape(session['username']), 
+                                usrname = escape(session['username']))
     else:
         return render_template ("index2.html")
 
@@ -45,7 +49,7 @@ def register():
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
-    error = "None"
+    error = None
     if 'username' in session:
         if request.method == 'POST':
             if base.updateUser (escape(session['username']), request.form['password'], request.form ['newpassword']):
@@ -53,8 +57,10 @@ def settings():
                 return redirect(url_for('index'))
             else:
                 error = "You have entered the wrong password"
+                return render_template ("settings.html", error = error)
+
         else:
-            return render_template ("settings.html")
+            return render_template ("settings.html", error = error)
     else:
         #flash
         return """
