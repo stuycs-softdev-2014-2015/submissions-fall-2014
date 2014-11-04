@@ -25,7 +25,15 @@
 	      </div>
       </nav>
       <h1> Profile </h1>
-      {% with messages = get_flashed_messages() %}
+      <p>{{name}}'s profile! </p>
+	Born on {{birthday}} <br>
+      Registered on the website on {{date}}
+      <p>
+	<form method="POST">
+	  <button type="submit" name="b" value="Update">Update Profile</button><br>
+	  <button type="submit" name="b" value="Logout">Logout</button><br>
+	</form>
+{% with messages = get_flashed_messages() %}
       {% if messages %}
       <ul class=flashes>
 	{% for message in messages %}
@@ -42,15 +50,6 @@
       {% endif %}
       {% endwith %}
       {% block body %}{% endblock %}
-      <table class="table">
-      <ul>{{name}}'s profile! </ul>
-	Born on {{birthday}} <br>
-      Registered on the website on {{date}}
-      <p>
-	<form method="POST">
-	  <button type="submit" name="b" value="Update">Update Profile</button><br>
-	  <button type="submit" name="b" value="Logout">Logout</button><br>
-	</form>
     </div>
   </body>
 </html>
