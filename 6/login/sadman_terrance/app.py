@@ -67,7 +67,46 @@ def logout():
 
 @app.route("/register",methods=['GET','POST'])
 def register():
-   pass
+   if request.method=='POST':
+      print '\nThe request method is ' + str(request.method) + '\n' 
+      
+      username = request.form['username']
+      password = request.form['password']
+      reppassword = request.form['password2']
+      
+      reason = ""
+      registered=False
+
+      if password == reppassword:
+         registered=True
+      else:
+         registered=False
+         reason = "Passwords do not match"
+         print "Passwords do not match"
+
+
+      for d in db.accounts.find():
+         if username == d['username']:
+            registered=False
+            reason="The username "+username+" already exists!"
+            print "Username %s already in use" %username
+
+      if registered:
+         doc = {"username":username, "password":password}
+         db.accounts.insert(doc)
+         print 'Username and Password have been recorded as variables'
+      else:
+         print "Failure to register"
+         
+      for d in db.accounts.find():
+         print d['username']+": "+d['password']
+   
+      if registered:
+         return render_template("register.html", page=1, success=True)
+      else:
+         return render_template("register.html", page=2, success=False, reason=reason)
+   else:
+      return render_template("register.html", page=3) 
    #register
 
 @app.route("/intro")
