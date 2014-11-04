@@ -20,7 +20,7 @@ def login():
                     good=True
                     session['username'] = request.form['username']
                     print "loggedinswag"
-                    return redirect(url_for("login"))
+                    return redirect(url_for("loggedin1"))
 
         print "wrong username password"
         return redirect(url_for("home"))
@@ -38,6 +38,10 @@ def register():
         return redirect(url_for("login"))
     else:
         return render_template("register.html")
+
+@app.route("/loggedin1")
+def loggedin1():
+    return render_template("loggedin1.html")
 
 @app.route("/")
 def home():
