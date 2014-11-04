@@ -22,9 +22,14 @@ def index():
 def login():
     if "username" in session:
         return "youre already logged in as %s" %escape(session["username"])
-    elif request.method == "POST": 
-        session["username"] = request.form["username"]
-        return redirect("/")
+    elif request.method == "POST":
+        if validate(request.form["username"], request.form["password"]):
+            session["username"] = request.form["username"]
+            #login successful things
+            return redirect("/")
+    else:
+        #login unsuccessful things
+        pass
     return render_template("login.html")
     
 @app.route("/logout", methods = ["GET", "POST"])
@@ -33,6 +38,7 @@ def logout():
         return "you're not logged in"
     elif request.method == "POST":
         session.pop("username", None)
+        session.pop("password", None)
         return redirect("/")
     return render_template("logout.html")
 
