@@ -18,14 +18,8 @@ def login():
       
       username = request.form['username']
       password = request.form['password']
-      #print user + " : " + password;
       print 'Username and Password have been recorded as variables'
       
-      #db.drop_collection('accounts')
-      doc = {"username":username, "password":password}
-      
-      #db.accounts.insert(doc);
-      #print db.accounts.find() + '\n'
       exists = False
       loggedin = False
       incorrectlogin = False
@@ -56,6 +50,10 @@ def login():
       
       print "login status"
       print incorrectlogin
+
+      if loggedin:
+         db.account.update({"username"=username}{"status":"in"})
+
       return render_template("login.html", exists=exists, loggedin=loggedin, username=username, password=password, incorrectlogin=incorrectlogin)
    else:
       return render_template("login.html", loggedin=False)
@@ -92,7 +90,7 @@ def register():
             print "Username %s already in use" %username
 
       if registered:
-         doc = {"username":username, "password":password}
+         doc = {"username":username, "password":password, "status"="out"}
          db.accounts.insert(doc)
          print 'Username and Password have been recorded as variables'
       else:

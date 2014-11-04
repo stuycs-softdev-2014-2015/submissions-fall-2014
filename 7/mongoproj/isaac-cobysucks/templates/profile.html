@@ -1,25 +1,55 @@
 <html>
   <head>
     <title>PROFILE</title> 
+    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/login.css" rel="stylesheet">
+    <style>
+      .navbar-right{
+      margin-right: 5px;
+      margin-top: 28px;
+      }
+
+      .form-signin {
+      margin-top: 70px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Profile</h1>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class=flashes>
-      {% for message in messages %}
-      <p>{{ message }}</p>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
-    {% block body %}{% endblock %}
-    <p> {{name}}'s profile! <br>
-      Born on {{birthday}} <br>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<h1> {{name}}'s PROFILE <small> Goldberg & Sacs </small></h1>
+	      </div>
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<a href="/about" class="navbar-right">About</a>
+	      </div>
+      </nav>
+      <h1> Profile </h1>
+      <p>{{name}}'s profile! </p>
+	Born on {{birthday}} <br>
       Registered on the website on {{date}}
       <p>
 	<form method="POST">
 	  <button type="submit" name="b" value="Update">Update Profile</button><br>
 	  <button type="submit" name="b" value="Logout">Logout</button><br>
 	</form>
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+	{% for message in messages %}
+	<div class="alert alert-success alert-dismissible fade in" role="alert">
+	  <button type="button" class="close" data-dismiss="alert">
+	    <script> alert.js </script>
+	    <span aria-hidden="true">x</span>
+	    <span class="sr-only">Close</span>
+	  </button>
+	  {{ message }}
+	</div>
+	{% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block body %}{% endblock %}
+    </div>
   </body>
+</html>
