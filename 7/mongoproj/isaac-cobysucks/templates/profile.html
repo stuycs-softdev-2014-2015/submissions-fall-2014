@@ -12,6 +12,11 @@
       .form-signin {
       margin-top: 70px;
       }
+
+      .table{
+      margin-top: 70px;
+      max-width: 6000px;
+      }
     </style>
   </head>
   <body>
@@ -25,9 +30,22 @@
 	      </div>
       </nav>
       <h1> Profile </h1>
-      <p>{{name}}'s profile <br>
-	Born on {{birthday}} <br>
-      Registered on the website on {{date}}  </p>
+      <table class="table table-hover">
+	<tbody>
+	  <tr class="success">
+	    <td>Name: </td>
+	    <td>{{name}} </td>
+	  </tr>
+	  <tr class="success">
+	    <td>Birthday: </td>
+	    <td>{{birthday}}</td>
+	  </tr>
+	  <tr class="success">
+	    <td> Registration date: </td>
+	    <td>{{date}}</td>
+	  </tr>
+	</tbody>
+      </table>
 	<form method="POST">
 	  <button type="submit" class="btn btn-primary" name="b" value="Update">Update Profile</button><br>
 	  <button type="submit" class="btn btn-danger" name="b" value="Logout">Logout</button><br>
