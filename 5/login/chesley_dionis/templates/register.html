@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+
+<div class="center noselect">
+    <form action="{{url_for("register")}}" method="POST" class="pure-form">
+        <fieldset>
+            <h1 class="gray">Register</h2>
+
+            <input type="text" name="username" placeholder="Username"/>
+            <input type="password" name="password" placeholder="Password"/>
+            <br/>
+            <br/>
+            <input type="submit" class="pure-button pure-button-primary" value="Sign up"/>
+
+        </fieldset>
+    </form>
+</div>
+
+{% endblock bodycontent %} 

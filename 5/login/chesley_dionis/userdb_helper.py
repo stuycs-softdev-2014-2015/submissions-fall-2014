@@ -12,8 +12,9 @@ def insert(username, password):
                 "password" : password
                 }
         users.insert(new_user)
+        return [True, "Registration successful. Enjoy!"] 
     else:
-        print "User exists."
+        return [False, "Registration error: A user with that name already exists."]
 
 def user_exists(username):
     return users.find({"username" : username}).count() > 0
@@ -21,5 +22,5 @@ def user_exists(username):
 def remove(username):
     users.remove({"username" : username})
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 

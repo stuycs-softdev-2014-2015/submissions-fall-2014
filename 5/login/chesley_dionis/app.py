@@ -1,5 +1,5 @@
-from flask import Flask, render_template,session,redirect, request
-import mongodb_helper
+from flask import Flask, render_template, session, redirect, request, flash
+import userdb_helper, sessiondb_helper
 
 app=Flask(__name__)
 
@@ -10,15 +10,22 @@ def index():
         session['SESS_ID']=0
         
     sess_id = session['SESS_ID']
-    return render_template("index.html")
+    return render_template("index.html", page_title="Home")
 
-@app.route("/register", methods=['POST'])
+@app.route("/register", methods=['GET', 'POST'])
 def register():
-    username = request.form['username']
-    password = request.form['password']
-    if (insert(username, password)):
-        return redirect("/")
-    return render_template("register.html")
+    if request.method == 'GET':
+        return render_template("register.html")
+    else:
+        username = request.form['username']
+        password = request.form['password']
+        result = userdb_helper.insert(username, password)
+        if (result[0]):
+            flash(result[1])
+            return redirect("/")
+        else:
+            flash(result[1])
+            return render_template("register.html", page_title="Register")
 
 @app.route("/logout", methods=['POST'])
 def logout():

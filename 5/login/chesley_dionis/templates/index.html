@@ -4,22 +4,18 @@
 
 <div>
   <center>  
-    <form class="pure-form">
+      <form action="{{url_for("register")}}" method="POST" class="pure-form">
       <fieldset>
-        <legend>Sign In to do stuff</legend>
-	
+        <h1>Sign In</h1>
         <input type="text" placeholder="Username">
         <input type="password" placeholder="Password">
-		
+        <br/>
+        <br/>
         <button type="submit" class="pure-button pure-button-primary">Sign in</button>
 	
       </fieldset>
     </form>
-    <form class="pure-form">
-      <fieldset>	
-        <button type="submit" class="pure-button pure-button-primary">Sign up</button>	
-      </fieldset>
-    </form>
+    <a class="hint center" href="{{ url_for("register") }}">Don't have an account? Click here to register!</a>
   </center>
 </div>
 
