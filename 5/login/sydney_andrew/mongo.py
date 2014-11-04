@@ -1,15 +1,16 @@
 import random
-from pymongo import Connection
+#from pymongo import Connection--Deprecated
+from pymongo import MongoClient
 
-conn = Connection()
+conn = MongoClient()
 db = conn['sydandrew']
-users= db.users
+users = db.users
 
 def addNewUser(uname, pword, pic):
     #need to be able to pick a picture 
     #check if both items are not empty
     #check if it does not equal anything in the collection 
-    if db.users.find_one()==None:
+    if db.users.find_one({"username": uname}) == None:
         newuser = {'username': uname, 'password': pword, 'picture': pic}
         if uname != '' or pword != '':
             db.users.insert(newuser)
@@ -25,10 +26,10 @@ def addNewUser(uname, pword, pic):
 
 
 def loginUser(uname, pword):
-    if db.users.find({'username':uname, 'password':pword})==None:
-        return [False, "Sorry, there was an error when you entered your username or password"]
+    if db.users.find_one({'username':uname, 'password':pword}) == None:
+        return [False, "Incorrect username or password"]
     else:
+        print(db.users.find_one({'username':uname, 'password':pword}))
         return [True]
         # in the app.py should now redirect there 
     #check that it matches the existing thing 
-
