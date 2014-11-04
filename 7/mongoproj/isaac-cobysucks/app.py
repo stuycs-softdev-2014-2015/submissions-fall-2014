@@ -31,7 +31,17 @@ def update_user(username, update_dict):
         return True
         # End MongoDB
         
+@app.route("/google")
+def google():
+        return redirect("http://www.google.com")
 
+@app.route("/whitehouse")
+def whitehouse():
+        return redirect("http://www.whitehouse.gov")
+
+@app.route("/bootstrap")
+def bootstrap():
+        return redirect("http://getbootstrap.com/")
 
 # Login page
 @app.route("/", methods=["GET","POST"])

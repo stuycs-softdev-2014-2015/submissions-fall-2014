@@ -1,4 +1,4 @@
-from flask import Flask, session, redirect, url_for, escape, request, render_template
+from flask import Flask, session, redirect, url_for, escape, request, render_template, flash
 
 import base
 
@@ -7,25 +7,21 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     if 'username' in session:
-        return render_template ("index.html")% escape(session['username'])
+        return render_template ("index.html", usrname = escape(session['username']))
     else:
-        return """
-    You are not logged in
-    <br>
-    <a href = "/login"> <input type = "submit" value= "Login"></a>
-    """
+        return render_template ("index2.html")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
-    return '''
-        <form action="" method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
-        </form>
-    '''
+        if base.validate (request.form['username'], request.form['password']):
+            session['username'] = request.form['username']
+            flash('You were successfully logged in')
+            return redirect(url_for('index'))
+        else:
+            error = "Invalid credentials"
+    return render_template ("login.html", error = error)
 
 @app.route('/logout')
 def logout():
@@ -33,8 +29,41 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
-@app.route('/restart')
-def restart():
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    error = None
+    if 'username' in session:
+        return "logged in"
+    if request.method == 'POST':
+        if base.addUser (request.form['username'], request.form['password']):
+            session['username'] = request.form['username']
+            flash ("You have successfully registered")
+            return redirect(url_for('index'))
+        else:
+            error = "That username is already taken"
+    return  render_template ("register.html", error = error)
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    error = "None"
+    if 'username' in session:
+        if request.method == 'POST':
+            if base.updateUser (escape(session['username']), request.form['password'], request.form ['newpassword']):
+                flash ("You have successfully changed your settings")
+                return redirect(url_for('index'))
+            else:
+                error = "You have entered the wrong password"
+        else:
+            return render_template ("settings.html")
+    else:
+        #flash
+        return """
+        You must be logged in to access this page
+        """
+        
+
+@app.route('/reset')
+def reset():
     base.restart()
     return redirect(url_for('index'))
 
@@ -44,4 +73,4 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(host = "0.0.0.0", port = 1247)

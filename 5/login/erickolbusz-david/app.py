@@ -5,22 +5,19 @@ app = Flask(__name__)
 id=0
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
-def sumSessionCounter():
-  try:
-    session['counter'] += 1
-  except KeyError:
-    session['counter'] = 1
-
 #login page
 @app.route("/")
 def index():
-    user = request.args.get("username","None")
-    pw = request.args.get("password","None")
-    if (user == "None" and pw == "None"):
-      return render_template ("login.html") #have a button that redirects to /register
-    if mongo.login(user,pw):
-      session ['username'] = username
-      return redirect("/welcome")
+    user = request.args.get("username")
+    pw = request.args.get("password")
+    submit = request.args.get("submit")
+    if (submit == "Submit"):
+      if mongo.login(user,pw):
+        session ['username'] = username
+        return redirect("/welcome")
+      else:
+        flash ("Invalid User or Password")
+    return render_template ("login.html")
     
 
 @app.route("/register")
@@ -28,7 +25,7 @@ def register():
     user = request.args.get("username","None")
     pw = request.args.get("password","None")
     register = request.args.get("register")
-    if (submit == "Register")
+    if (register == "Register"):
         error = mongo.add_account(user,pw)
         if (error == 0):
             flash("Successfully registered")
@@ -45,10 +42,16 @@ def register():
     
 @app.route("/welcome")
 def welcome():
-    sumSessionCounter();
-    return render_template ("welcome.html", username = session.get("username"), l, counter = session.get ("counter")) #button for other page (?) and for /logout
+  return render_template ("welcome.html", username = session.get('username'), counter = mongo.login_count(session.get('username'))) #button for other page (?) and for /logout
                       
-@app.route('/logout')
+@app.route ("/about")
+def about():
+  if (submit == "Submit"):
+    userinfo = request.args.get("userinfo")
+    mongo.change_info(session.get("username"), userinfo)
+  return render_template ("about.html", username = session.get("username"), userinfo = mongo.user_info(session.get("username")))
+
+@app.route("/logout")
 def logout():
   session.pop('username', None)
   flash('You were logged out')
