@@ -13,24 +13,28 @@ def index():
     if (user == "None" and pw == "None"):
       return render_template ("login.html") #have a button that redirects to /register
     if mongo.login(user,pw):
-      return redirect(url_for('/welcome')
+      session ['username'] = username
+      return redirect("/welcome")
     
 
 @app.route("/register")
 def register():
     user = request.args.get("username","None")
     pw = request.args.get("password","None")
-    error = mongo.add_account(user,pw)
-    if (error == 0):
+    register = request.args.get("register")
+    if (submit == "Register")
+        error = mongo.add_account(user,pw)
+        if (error == 0):
                       #why is this indentation here
-                      message = "Successfully registered"
-    if (error == 1):
-                      message = "Account already exists"
-    if (error == 2):
-                      message = "Username too short, must be at least 6 characters"
-    else:
+                      flash("Successfully registered")
+                      return redirect ("/")
+        if (error == 1):
+                      flash("Account already exists")
+        if (error == 2):
+                      flash("Username too short, must be at least 6 characters")
+        else:
                       #error = 3
-                      message = "Password too short, must be at least 8 characters"
+                      flash("Password too short, must be at least 8 characters")
     #flash the message
     return render_template ("register.html") #have a button that redirects to /
     
