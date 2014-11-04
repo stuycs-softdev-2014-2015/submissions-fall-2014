@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block head %}
+Welcome, <b>{{user}}</b>.
+{% endblock head %}
+
+{% block body %}
+<a href="/profile/{{user}}">page</a>
+{% endblock body %}
