@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>iBM Change Settings</title>
+    <link rel="stylesheet" href="/static/style.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <ul id="menu">
+      <div id="name">{{name}}</div>
+      <li><a href="/logout">Logout</a></li>
+      <li><a href="/home">Home</a></li>
+    </ul>
+    <form method="post" class="box">
+      <b>*Required*</b><br><input type="password" name="oldpw" placeholder="Current Password"><br><hr><br>
+      <input type="text" name="name" placeholder="New Name"><br>
+      <input type="password" name="newpw" placeholder="New Password"><br>
+      <input type="text" name="color" placeholder="New Favorite Color"><br>
+      <input type="submit" name="submit" value="Update" class="button">
+    </form>
+    {% include 'messages.html' %}
+  </body>
+</html>
