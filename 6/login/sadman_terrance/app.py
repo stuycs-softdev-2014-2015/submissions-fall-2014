@@ -35,9 +35,6 @@ def login():
       if (exists == True and savedpass != password):
          incorrectlogin = True
          
-      for d in db.accounts.find():
-         print d['username']
-         print d['password']
          
       #print db.accounts.find({username:'a', password:"a"})  
       doc = list(db.accounts.find({})) 
@@ -52,12 +49,25 @@ def login():
       print incorrectlogin
 
       if loggedin:
-         db.account.update({"username"=username}{"status":"in"})
+         db.account.update({"username":username},{'$set':{"status":"in"}})
+
+      print loggedin
+      for d in db.accounts.find():
+         print d['username']+": "+d['password']+" "+d["status"]
+ 
 
       return render_template("login.html", exists=exists, loggedin=loggedin, username=username, password=password, incorrectlogin=incorrectlogin)
    else:
-      return render_template("login.html", loggedin=False)
-  
+      loguser = db.accounts.find_one({"status":"in"})
+      islogin = False
+      if loguser!=None:
+         islogin = True
+      if islogin:
+         return render_template("login.html", loggedin=True, username=loguser['username'],password=loguser['password'] )
+      else:
+         return render_template("login.html", loggedin=False)
+   
+     
 @app.route("/logout")
 def logout():
    pass
@@ -90,7 +100,7 @@ def register():
             print "Username %s already in use" %username
 
       if registered:
-         doc = {"username":username, "password":password, "status"="out"}
+         doc = {"username":username, "password":password, "status":"out"}
          db.accounts.insert(doc)
          print 'Username and Password have been recorded as variables'
       else:
