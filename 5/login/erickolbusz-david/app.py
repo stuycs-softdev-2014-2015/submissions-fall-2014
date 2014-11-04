@@ -5,12 +5,6 @@ app = Flask(__name__)
 id=0
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
-def sumSessionCounter():
-  try:
-    session['counter'] += 1
-  except KeyError:
-    session['counter'] = 1
-
 #login page
 @app.route("/")
 def index():
@@ -45,9 +39,15 @@ def register():
     
 @app.route("/welcome")
 def welcome():
-    sumSessionCounter();
-    return render_template ("welcome.html", username = session.get("username"), l, counter = session.get ("counter")) #button for other page (?) and for /logout
+  return render_template ("welcome.html", username = session.get("username"), l, counter = mongo.login_count(session.get("username"))) #button for other page (?) and for /logout
                       
+@app.route ("/about")
+def about():
+  if (submit == "Submit"):
+    userinfo = request.args.get("userinfo")
+    mongo.change_info(session.get("username"), userinfo)
+  return render_template ("about.html", username = session.get("username"), userinfo = mongo.get_userinfo(session.get("username"))
+
 @app.route('/logout')
 def logout():
   session.pop('username', None)
