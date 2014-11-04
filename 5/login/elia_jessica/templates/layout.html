@@ -1,12 +1,53 @@
 <!doctype html>
-<title>Kairos</title>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>**{{ message }}**</li>
-    {% endfor %}
+<html>
+  <head>
+    <title>Kairos</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+
+  </head>
+  
+  <div class="col-md-1 pull-right">
+
+  {% if corner %}
+   <ul class="nav nav-pills navbar-right" role="tablist">
+    <li role="presentation" class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Hello <b>{{corner}}</b>! <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="#" data-toggle="dropdown">Settings</a></li>
+      <li class="divider"></li>
+      <li><a href="#" data-toggle="dropdown">Logout</a></li>
     </ul>
+    </li>
+  </ul>
+   {% else %}
+   <ul class="nav nav-pills navbar-right" role="tablist">
+     <li role="presentation"><a href="#">Hello Guest!</a></li>
+   </ul>
+   {% endif %}
+  </div>
+    <div class="col-md-8 page-header">
+  <h1 position="fixed" top="50%">Kairos</h1>
+    </div>
+  <body>
+    <div class="col-md-12">
+      {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul class=flashes>
+    {% for message in messages %}
+    <li>**{{ message }}**</li>
+    {% endfor %}
+  </ul>
   {% endif %}
-{% endwith %}
-{% block body %}{% endblock %}
+  {% endwith %}
+    {% block body %}{% endblock %}
+    <div>
+  </body>
+</html>
