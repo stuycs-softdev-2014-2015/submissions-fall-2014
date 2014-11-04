@@ -34,6 +34,12 @@ def login_count(username):
     user = user_list[0]
     return user['logincount']
 
+def user_info(username):
+    db = establish_connection()
+    user_list = db.users.find({'name':username})
+    user = user_list[0]
+    return user['info']
+
 def change_info(username,addedinfo):
     db = establish_connection()
     user_list = db.users.find({'name':username})
