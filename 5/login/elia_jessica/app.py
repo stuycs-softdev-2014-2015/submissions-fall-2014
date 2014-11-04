@@ -1,5 +1,7 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 
+import base
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -29,6 +31,11 @@ def login():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
+    return redirect(url_for('index'))
+
+@app.route('/restart')
+def restart():
+    base.restart()
     return redirect(url_for('index'))
 
 # set the secret key.  keep this really secret:
