@@ -31,6 +31,7 @@ def login():
 def logout():
     # remove the username from the session if it's there
     session.pop('username', None)
+    flash("You have logged out")
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -57,10 +58,14 @@ def settings():
                 return redirect(url_for('index'))
             else:
                 error = "You have entered the wrong password"
-                return render_template ("settings.html", error = error)
+                return render_template ("settings.html", 
+                                        corner = escape(session['username']), 
+                                        error = error)
 
         else:
-            return render_template ("settings.html", error = error)
+            return render_template ("settings.html",
+                                    corner = escape(session['username']),
+                                    error = error)
     else:
         #flash
         return """
