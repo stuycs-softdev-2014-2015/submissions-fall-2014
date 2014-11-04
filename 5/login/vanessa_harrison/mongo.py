@@ -4,7 +4,7 @@ conn = Connection()
 db = conn["buttqs"]
 
 def add(username, password, periphery):
-    exists = db.users.find_one({"username":username})
+    exists = db.users.find_one({"username":username}) != None
     if not exists:
         periphery["username"] = username
         periphery["password"] = password
