@@ -5,6 +5,12 @@ app = Flask(__name__)
 id=0
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
+def sumSessionCounter():
+  try:
+    session['counter'] += 1
+  except KeyError:
+    session['counter'] = 1
+
 #login page
 @app.route("/")
 def index():
@@ -25,29 +31,28 @@ def register():
     if (submit == "Register")
         error = mongo.add_account(user,pw)
         if (error == 0):
-                      #why is this indentation here
-                      flash("Successfully registered")
-                      return redirect ("/")
+            flash("Successfully registered")
+            return redirect ("/")
         if (error == 1):
-                      flash("Account already exists")
+            flash("Account already exists")
         if (error == 2):
-                      flash("Username too short, must be at least 6 characters")
+            flash("Username too short, must be at least 6 characters")
         else:
-                      #error = 3
-                      flash("Password too short, must be at least 8 characters")
+            #error = 3
+            flash("Password too short, must be at least 8 characters")
     #flash the message
     return render_template ("register.html") #have a button that redirects to /
     
 @app.route("/welcome")
 def welcome():
-    return render_template ("welcome.html") #button for other page (?) and for /logout
+    sumSessionCounter();
+    return render_template ("welcome.html", username = session.get("username"), l, counter = session.get ("counter")) #button for other page (?) and for /logout
                       
 @app.route('/logout')
-def clearsession():
-    # Clear the session
-    session.clear()
-    # Redirect the user to the main page
-    return redirect(url_for('/'))
+def logout():
+  session.pop('username', None)
+  flash('You were logged out')
+  return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.debug = True
