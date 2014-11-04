@@ -1,6 +1,6 @@
 import pymongo
 from pymongo import MongoClient
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session, url_for, escape
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Create a MongoClient to the running mongod instance.
 # Assumes that a MongoDB instance is running on default host and port
-# http://api.mongodb.org/python/current/tutorial.html
+# http://api.mongodb.org/python/current/tutorial.html godbless
 client = MongoClient()
 
 #declares a database for users
@@ -24,6 +24,7 @@ users = db.users
 #        "password":"qwer"}
 #user2 = {"username":"user2",
 #        "password":"tyui"}
+
 #adding a user document to the collection
 #user_id = users.insert(user)
 #user_id = users.insert(user2)
@@ -52,41 +53,67 @@ def check_login(username, password):
     return True
 
 #for now, home page is login page
-#THIS IS NOT DONE, DON'T ACTUALLY HIT SUBMIT
-@app.route('/')
-@app.route('/home')
-@app.route('/login')
-def home():
+#@app.route('/home')
+@app.route("/", methods=["GET","POST"])
+@app.route("/login", methods=["GET","POST"])
+#def home():
+def login():
+    if 'username' in session:
+        return redirect(url_for('logout'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        #if check_user(username,password):
-        #    session['username'] = request.form['username']
-        #    return redirect(url_for('index'))
-        #else:
-        #    return redirect(url_for('login'))
+        if check_login(username,password):
+            session['username'] = request.form['username']
+
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('login_failure')) #needs something better
 
     return render_template("login.html")
 
+@app.route('/login_failure')
+def login_failure():
+    return render_template("login_0.html")
 
-@app.route('/register')
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+@app.route('/register', methods=["GET","POST"])
 def register():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password']
-        #success = new_user(username,password)
-        #print success
+        password = request.form['password']        
+        print username
         if not check_username(username):
-            return "you failed!" #yes this must be improved
+            return redirect(url_for('register_failure'))
         else:
             register_user(username, password)
-            #return redirect -> success
+            return redirect(url_for('register_success'))
     return render_template("register.html")
 
+@app.route('/register_success')
+def register_success():
+    return render_template("register_1.html")
+@app.route('/register_failure')
+def register_failure():
+    return render_template("register_0.html")
+
+@app.route('/home')
+def home():
+    if 'username' in session:
+        name = escape(session['username'])
+        #return "logged in as %s" % name
+        return render_template("home.html", name=name);
+    return "Error: Access denied!!"
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return 'This page does not exist', 404
+    return 'This page does not exist!!', 404
+
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RRR'
 
 if __name__ == "__main__":
     app.debug=True

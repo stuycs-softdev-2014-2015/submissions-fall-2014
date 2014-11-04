@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block name %}
+<a class="navbar-brand" href="/">Simple</a>
+{% endblock name %}
+
+{% block css %}
+<link href="/static/status.css" rel="stylesheet">
+{% endblock css %}
+
+{% block session_button %}
+<li><a href="/login">Login</a></li>
+<li><a href="/register">Register</a></li>
+{% endblock session_button %}
+
+
+{% block main %}
+<title>Registration Successful</title>
+<div class="alert alert-success" role="alert">
+  <strong>Registration Successful.</strong> You may now log in.
+</div>
+
+{% endblock main %}
