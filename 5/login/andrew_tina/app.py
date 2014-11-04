@@ -13,13 +13,15 @@ def login():
 
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
-    if request.method == 'POST':
+    error = None
+    if request.method == 'POST' or request.mthod == 'GET':
         flash('You are now registered')
         return redirect(url_for('login'))
     else:
-        flash('Invalid username or password')
-        return render_template("register.html")
-
+        #flash('Invalid username or password')
+        #return redirect(url_for("register"))
+        render_template('register.html')
+        
 if __name__ == "__main__":
     app.debug = True
     app.run()
