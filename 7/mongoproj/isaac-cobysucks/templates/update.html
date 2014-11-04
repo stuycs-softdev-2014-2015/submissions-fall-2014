@@ -1,20 +1,63 @@
 <html>
   <head>
     <title>UPDATE PROFILE</title> 
+  <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/login.css" rel="stylesheet">
+    <style>
+      .navbar-right{
+      margin-right: 5px;
+      margin-top: 28px;
+      }
+
+      .form-signin {
+      margin-top: 70px;
+      }
+    </style>
   </head>
   <body>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<h1> UPDATE PROFILE <small> Goldberg & Sacs </small></h1>
+	      </div>
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<a href="/about" class="navbar-right">About</a>
+	      </div>
+      </nav>
     <h1>Update Profile</h1>
-      <p>
-	<form method="POST">
-	  <input type="text" name="username" placeholder="Username">
-	  <input type="checkbox" name="check" value="username">Update Username<br>
-	  <input type="password" name="password" placeholder="Password"><br>
-	  <input type="checkbox" name="check" value="password">Update Password<br>
-	  <input type="text" name="name" placeholder="Your Name"><br>
-	  <input type="checkbox" name="check" value="name">Update Name<br>
-	  <input type="text" name="birthday" placeholder="Birthday"><br>
-	  <input type="checkbox" name="check" value="birthday">Update Birthday<br>
-	  <button type="submit" name="b" value="Update">Update</button><br>
-	  <button type="submit" name="b" value="Cancel">Cancel</button><br>
+	<form class="form-signin" role="form"  method="POST">
+	  <div class="form-group">
+	    <label for="username">Username</label>
+	    <input type="text" class="form-control" name="username" placeholder="Username">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">Password</label>
+	    <input type="password" class="form-control" name="password" placeholder="Password">
+	  </div>
+	  <div class="form-group">
+	    <label for="name">Name</label>
+	    <input type="text" class="form-control" name="name" placeholder="Your Name">
+	  </div>
+	  <div class="form-group">
+	    <label for="birthday">Birthday</label>
+	    <input type="text" class="form-control" name="birthday" placeholder="Birthday">
+	  </div>
+
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" name="check" value="username">Update Username
+	    </label>
+	    <label>
+	      <input type="checkbox" name="check" value="password">Update Password
+	    </label>
+	    <label>
+	      <input type="checkbox" name="check" value="name"> Update Name
+	    </label>
+	    <label>
+	      <input type="checkbox" name="check" value="birthday">Update Birthday
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-success"  name="b" value="Update">Update</button><br>
+	  <button type="submit" class="btn btn-danger" name="b" value="Cancel">Cancel</button><br>
 	</form>
   </body>

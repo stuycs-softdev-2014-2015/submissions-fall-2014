@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 import mongo
 
 app = Flask(__name__)
+app.secret_key = 'secret'
 
 @app.route("/")
 def home():
@@ -14,12 +15,17 @@ def home():
         if (password == mongo.get_password(user)):
             return "success"
         else:
-            return "Username or password is not valid"
+            flash("Username or password is not valid")
+        return redirect("/")
         #return login
     elif (register == "r"):
         return redirect("/register")
     else:
         return render_template("home.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 @app.route("/register")
 def register():

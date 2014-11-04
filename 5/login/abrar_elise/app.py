@@ -14,44 +14,45 @@ def home():
 
 @app.route("/login",methods=["GET","POST"])
 def login():
-    if request.method=="POST":        
-        button = request.args.get("sub", None)
-        username = request.args.get("username", None)
-        passw = request.args.get("password", None)
+    if request.method=="POST":
+        button = request.form.get("sub")
+        username = request.form.get("username", None)
+        passw = request.form.get("password", None)
         error = None     
-        if button == "Login":
-            loginfo = { 'name': username, 'pword': passw }
-            if db.users.find_one ( { 'name' : username , 'pword' : passw } ) != None:
-                #flash("correct login info")
-                return redirect(url_for('home.html'))
-            else: 
-                flash("incorrect login info")
-                return redirect(url_for('login.html'))
-        
+        loginfo = { 'name': username, 'pword': passw }
+        for x in db.users.find():
+            print x
+        print "AAAAAAA" + str(db.users.find_one ( { 'name' : username , 'pword' : passw } ) )
+        print username + passw
+        if db.users.find_one ( { 'name' : username , 'pword' : passw } ) != None:
+            #flash("correct login info")
+            return render_template("loggedin.html", username=username)
+        else: 
+            flash("incorrect login info")
+            return redirect(url_for('login'))
     return render_template("login.html")
 
 @app.route("/register",methods=["GET","POST"])
 def register():
     if request.method=="POST":
-        button = request.args.get("sub", None)
-        username = request.args.get("username", None)
-        passw = request.args.get("password", None)
+        button = request.form.get("sub", None)
+        username = request.form.get("username", None)
+        passw = request.form.get("password", None)
         error = None
         if db.users.find_one ( { 'name' : username } ) == None:
             db.users.insert ( { 'name': username, 'pword': passw } )
-            #return "<h1>Thanks for joining!</h1>"
-            flash("Thanks for joining")
-            return redirect(url_for('login'))
+            return "<h1>Thanks for joining!</h1>" + str ( { 'name':username, 'pword': passw } )
+            #flash("Thanks for joining")
+            #return redirect(url_for('login'))
             #return redirect(url_for('home'))
         else:
-            #return "<h1>Please select an available username</h1>"
             flash("Please select an available username")
-            #return redirect(url_for('register'))
-            
+            #return "<h1>Please select an available username</h1>"
+            return redirect(url_for('register'))
     return render_template("register.html")
 
 
 if __name__=="__main__":
     app.debug = True
-    app.run()
+    app.run(host="0.0.0.0", port=1847)
     
