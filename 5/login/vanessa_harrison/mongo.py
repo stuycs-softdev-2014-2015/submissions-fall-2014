@@ -11,5 +11,5 @@ def add(username, password, periphery):
         db.users.insert(periphery)
     return exists
 
-def validate(username, password):
-    return db.users.find_one({"username":username, "password":password}) != None
+def get(username, password):
+    return db.users.find_one({"username":username, "password":password})

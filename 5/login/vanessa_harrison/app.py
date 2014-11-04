@@ -17,7 +17,7 @@ def login():
         return "youre already logged in as %s" %escape(session["username"])
     elif request.method == "POST":
         print "method post"
-        if mongo.validate(request.form["username"], request.form["password"]):
+        if mongo.get(request.form["username"], request.form["password"]) != None:
             #login successful things
             print "valildated"
             session["username"] = request.form["username"]
