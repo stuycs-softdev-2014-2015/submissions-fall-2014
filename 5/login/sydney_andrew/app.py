@@ -43,7 +43,7 @@ def login():
 def logout():
     session.pop('username', None)
     flash("You have been logged out")
-    return redirect(url_for("index.html"))
+    return redirect("/")
 
 if __name__ == "__main__":
     app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
