@@ -45,7 +45,7 @@ def logout():
 @app.route("/register", methods = ["GET", "POST"])
 def register():
     if request.method == "POST":
-        mongo.add(request.form["username"], request.form["password"])
+        mongo.add(request.form["username"], request.form["password"] {}) #change {} into something
         return "registry successful"
     else:
         return render_template("register.html")

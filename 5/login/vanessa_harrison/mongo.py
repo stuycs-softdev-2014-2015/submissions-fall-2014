@@ -3,11 +3,13 @@ from pymongo import Connection
 conn = Connection()
 db = conn["butts"]
 
-def add(username, password):
+def add(username, password, periphery):
     exists = db.users.find_one({"username":username})
     if not exists:
-        db.users.insert({"username":username, "password":password})
+        periphery["username"] = username
+        periphery["password"] = password
+        db.users.insert(periphery)
     return exists
 
 def validate(username, password):
-    return db.users.find_one({"username":username, "password":password})
+    return db.users.find_one({"username":username, "password":password}) != {}
