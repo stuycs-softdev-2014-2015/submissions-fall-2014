@@ -1,14 +1,6 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 import mongo
 
-'''
-login
-logout
-register
-
-stufffff
-'''
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -49,8 +41,11 @@ def logout():
 @app.route("/register", methods = ["GET", "POST"])
 def register():
     if request.method == "POST":
-        mongo.add(request.form["username"], request.form["password"], {}) #change {} into something
-        return "registry successful"
+        if not mongo.add(request.form["username"], request.form["password"], {}):
+            #change {} into something
+            return "registry successful"
+        else:
+            return "already registered"
     else:
         return render_template("register.html")
 
