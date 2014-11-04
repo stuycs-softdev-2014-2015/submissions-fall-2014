@@ -1,35 +1,20 @@
-<html>
-  <head>
-    <title>Account Keeper</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
-    <link href="jumbotron-narrow.css" rel="stylesheet">
-  </head>
+{% extends "base.html" %}
 
-  <body>
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right" role="tablist">
-          <li role="presentation" class="active"><a href="/">Home</a></li>
-          <li role="presentation"><a href="about">About</a></li>
-        </ul>
-        <h3 class="text-muted">Account Keeper</h3>
-      </div>
-      <div class="jumbotron">
-	<form>
-	  <div class="pull-right">
-	    
-	    <input type="text" class="form-control" name="user" placeholder="Username">
-	    <input type="password" class="form-control" name="pwd" placeholder="Password"><br>
-            <input type="submit" class="btn btn-sm btn-success pull-right" name="login" value="Login">
-
-	  </div>
-	</form>
-        <h1>Join the coolest account community!</h1>
-        <p class="lead">Don't have an account? You can sign up for one right now.</p>
-	<p>    
-	  <a class="btn btn-lg btn-success" href="/register" role="button" name="register" value="r">Sign up today</a>
-	</p>
-      </div>
+{% block body %}
+<div class="jumbotron">
+  <form>
+    <div class="pull-right">
       
-  </body>
-</html>
+      <input type="text" class="form-control" name="user" placeholder="Username">
+      <input type="password" class="form-control" name="pwd" placeholder="Password"><br>
+      <input type="submit" class="btn btn-sm btn-success pull-right" name="login" value="Login">
+
+    </div>
+  </form>
+  <h1>Join the coolest account community!</h1>
+  <p class="lead">Don't have an account? You can sign up for one right now.</p>
+  <p>    
+    <a class="btn btn-lg btn-success" href="/register" role="button" name="register" value="r">Sign up today</a>
+  </p>
+</div>
+{% endblock body %}

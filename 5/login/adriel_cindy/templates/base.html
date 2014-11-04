@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>{% block title %}Account Keeper{% endblock title %}</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+
+      {% block navbar %}
+      <div class="header">
+        <ul class="nav nav-pills pull-right" role="tablist">
+          <li role="presentation" class="active"><a href="/">Home</a></li>
+          <li role="presentation"><a href="about">About</a></li>
+        </ul>
+        <h3 class="text-muted">Account Keeper</h3>
+      </div>
+      {% endblock navbar %}
+
+      {% block body %}
+      Body
+      {% endblock body %}
+  </body>
+</html>

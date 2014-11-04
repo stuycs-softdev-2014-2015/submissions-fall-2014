@@ -20,6 +20,7 @@
 	</div>
 	<h1 align="center"><font color="#AAA339">SadTerry</font></h1>
 	<hr>
+	{% if page==2 or page==3 %}
 	<font color="white">
 	  <h2>Register</h2>
 	  <form action="register" method="post">
@@ -43,9 +44,15 @@
 	<hr>
       </div>
     </div>
-    {% if page == 1 or page == 2%}
+    {% if page == 2%}
     {{reason}}
     {% endif %}
+    {% endif %}
     
+    {% if page==1 %}
+    You have successfully registered!
+    {% endif %}
+
+
   </body>
 </html>
