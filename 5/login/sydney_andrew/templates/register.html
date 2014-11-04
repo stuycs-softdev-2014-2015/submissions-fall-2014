@@ -1,8 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+
 <html>
 Register Here: 
 <form name="input" action="" method="POST">
-Username: <input type="text" name="firstname" placeholder="PICK AN AWESOME NAME"><br>
-Password: <input type="password" name="pword" placeholder="PICK A SOLID PASSWORD">
+Username: <input type="text" name="username" placeholder="PICK AN AWESOME NAME"><br>
+Password: <input type="password" name="password" placeholder="PICK A SOLID PASSWORD">
 
 <input type="submit" value="Submit">
 </form>
@@ -10,3 +13,4 @@ Password: <input type="password" name="pword" placeholder="PICK A SOLID PASSWORD
 
 </html>
  
+{% endblock %}

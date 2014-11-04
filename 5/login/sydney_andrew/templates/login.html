@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block body %}
 <html>
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
@@ -6,16 +8,17 @@
 WELCOME TO THE MANATEE LOVERS PAGE!
 </center>
 <br><br>
-If you are not already a user, sign up <a href="register.html"> here </a>
+If you are not already a user, sign up <a href="register"> here </a>
 <br> <br>
 Sign In:
 <br>
 <form name="input" action="" method="POST"> 
-Username: <input type="text" name="user">
+Username: <input type="text" name="username">
 <br>
-Password: <input type="text" name="pword">
+Password: <input type="text" name="password">
 <br>
 <input type="submit" value="Submit">
 </form> 
 
 </html>
+{% endblock %}
