@@ -26,7 +26,7 @@ def login():
         print username + passw
         if db.users.find_one ( { 'name' : username , 'pword' : passw } ) != None:
             #flash("correct login info")
-            return "correct"#redirect(url_for('home.html'))
+            return render_template("loggedin.html", username=username)
         else: 
             flash("incorrect login info")
             return redirect(url_for('login'))
@@ -54,5 +54,5 @@ def register():
 
 if __name__=="__main__":
     app.debug = True
-    app.run()
+    app.run(host="0.0.0.0", port=1847)
     
