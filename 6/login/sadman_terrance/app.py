@@ -102,9 +102,9 @@ def register():
          print d['username']+": "+d['password']
    
       if registered:
-         return render_template("register.html", page=1, success=True)
+         return render_template("register.html", page=1)
       else:
-         return render_template("register.html", page=2, success=False, reason=reason)
+         return render_template("register.html", page=2, reason=reason)
    else:
       return render_template("register.html", page=3) 
    #register
