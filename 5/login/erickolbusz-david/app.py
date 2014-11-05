@@ -17,7 +17,7 @@ def index():
         session ['currentp'] = "login"
     if (session.get('username') != None):
         flash ("You are already logged in!")
-        if (session.get('currentp') == "about")):
+        if (session.get('currentp') == "about"):
             return render_template ("about.html", username = session.get("username"), userinfo = info)
         else:
             return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
@@ -46,7 +46,7 @@ def index():
 def register():
     if (session.get('username') != None):
         flash ("You are already logged in!")
-        if (session.get('currentp') == "about")):
+        if (session.get('currentp') == "about"):
             return render_template ("about.html", username = session.get("username"), userinfo = info)
         else:
             return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
@@ -71,7 +71,7 @@ def register():
 def welcome():
     if (session.get('username') == None):
         flash ("You are not logged in!")
-        if (session.get('currentp') == "login")):
+        if (session.get('currentp') == "login"):
             return render_template ("login.html")
         else:
             return render_template ("register.html")
@@ -82,7 +82,7 @@ def welcome():
 def about():
     if (session.get('username') == None):
         flash ("You are not logged in!")
-        if (session.get('currentp') == "login")):
+        if (session.get('currentp') == "login"):
             return render_template ("login.html")
         else:
             return render_template ("register.html")
