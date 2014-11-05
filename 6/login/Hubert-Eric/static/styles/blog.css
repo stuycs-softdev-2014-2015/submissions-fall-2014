@@ -1,0 +1,158 @@
+body {
+    line-height: 1.7em;
+    background: #2d3e50;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+    color: #34495e;
+}
+
+.content-subhead {
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #DBDBDB;
+    padding: 0.4em 0;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.is-center {
+    text-align: center;
+}
+
+.header-image{
+    text-align: center;
+}
+
+.home-menu {
+    padding: 0.5em;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    border-bottom: none;
+}
+
+.pure-menu.pure-menu-open {
+    /* Fixed menus normally have a border at the bottom. */
+    background: #F3F3F3;
+    border-bottom: none;
+}
+
+/* Pinterest style format */
+#wrapper {
+    width: 100%;
+    max-width: 1200px;
+    min-width: 800px;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.pin {
+    display: inline-block;
+    background: #F3F3F3;
+    border: 2px solid #FAFAFA;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    margin: 0 2px 15px;
+    padding: 15px;
+    padding-bottom: 5px;
+    background: -webkit-linear-gradient(45deg, #FFF, #F3F3F3);
+    opacity: 1;
+    min-width: 250px;
+
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -o-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.pin h1 {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+}
+
+.pin p {
+    font: 12px/18px Arial, sans-serif;
+    color: #333;
+    margin: 0;
+}
+
+#wrapper .pin:hover {
+    box-shadow: 0 6px 6px rgba(102, 178, 255, 0.4);
+}
+
+#wrapper .pin h1 {
+    text-decoration: none;
+    color: black;
+}
+
+#container {
+    background: #fff;
+    height: 400px;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.lower-form-container {
+    padding: 2em;
+    width: 500px;
+    margin: 0 auto;
+}
+
+.lower-form-container h3 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.pure-control-group.pure-control-group-large {
+    margin-top: 10px;
+}
+
+.pure-button.pure-button-primary {
+    margin-top: 10px;
+}
+
+.posts {
+    overflow: auto;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 50px;
+    background: #F3F3F3;
+    border: 2px solid #FAFAFA;
+    box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+    padding: 15px;
+    padding-bottom: 5px;
+    background: -webkit-linear-gradient(45deg, #FFF, #F3F3F3);
+    opacity: 1;
+
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -o-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.posts h1, h2, h3, h4, h5, h6 {
+    color: black;
+}
+
+.posts .content-subhead h1 {
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #DBDBDB;
+    padding: 0.4em 0;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.single-comment {
+    padding-bottom: 50px;
+}
