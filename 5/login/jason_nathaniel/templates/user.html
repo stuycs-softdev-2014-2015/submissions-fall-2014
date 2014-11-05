@@ -1,18 +1,14 @@
 <!doctype html>
 <html lang="en">
   
-  
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A layout example that shows off a responsive product landing page.">
     
-    <title>Mustached Octo Dangerzone </title>
-
-    
+    <title>{{username}}</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 
-    
     <!--[if lte IE 8]>
 	
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure//grids-responsive-old-ie.css">
@@ -24,31 +20,22 @@
 	
 	<!--<![endif]-->
 	
-	
-	
-	
 	<!--[if lte IE 8]>
             <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
 	    <![endif]-->
 	<!--[if gt IE 8]><!-->
             <link rel="stylesheet" href="css/layouts/marketing.css">
 	    <!--<![endif]-->
-	    
-	    
-	    
-	    
+
 	    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-	     
-	    
-	    
+	 
   </head>
 
-    
-
+  
     <div class="header">
       <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
         <a class="pure-menu-heading" href="/">Home</a>
-
+	
 <center>
 <body>
 
@@ -68,7 +55,7 @@
     <div class="splash-container">
       <div class="splash">
 	<br><br>
-        <h1 class="splash-head">Mustached Octo Dangerzone Login</h1>
+        <h1 class="splash-head">Mustached Octo Dangerzone Tour</h1>
         <p class="splash-subhead">
           By: Jason Lu and Nathaniel Brassell
         </p>
@@ -77,42 +64,25 @@
     
     <div class="content-wrapper">
       
-      <h2 class="content-head is-center">Sign In</h2>
-
+      <h2 class="content-head is-center">Your Page</h2>
+      Hello {{username}}
       <div class="pure-g">
-        <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-          <form class="pure-form pure-form-stacked" action="/user">
-            <fieldset>
 
-              <label for="name">Your Name</label>
-              <input id="name" type="text" placeholder="Your Name">
-	      
-	      
-              
-              <label for="password">Your Password</label>
-              <input id="password" type="password" placeholder="Your Password">
-
-              <button type="submit" class="pure-button">Sign In</button>
-            </fieldset>
-          </form>
-        </div>
-	
         <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
           
 	  
           <h4>More Information</h4>
           <p>
-            This is a login service that does absolutely nothing! =)
+            This is a tour service that does absolutely nothing! =)
           </p>
         </div>
       </div>
       
     </div>
     
-    
     <div class="footer l-box is-center">
 
-      
+
         By Nathaniel and Jason
 
     </div>
