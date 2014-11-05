@@ -1,6 +1,6 @@
 import pymongo
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, session, url_for, escape
+from flask import Flask, render_template, request, redirect, session, url_for, escape, flash
 
 app = Flask(__name__)
 
@@ -53,10 +53,7 @@ def check_login(username, password):
     return True
 
 #for now, home page is login page
-#@app.route('/home')
-#@app.route('/', methods=["GET","POST"]) #so user doesn't have to type login?
 @app.route("/login", methods=["GET","POST"])
-#def home():
 def login():
     if 'username' in session:
         return redirect(url_for('logout'))
@@ -136,15 +133,17 @@ def settings():
 def about():
     if 'username' in session:
         name = escape(session['username'])
-        header = "Welcome, "
+        header = "Hello, "
     else:
         name = ""
-        header = "Simple"
+        header = "Account Manager"
+        return render_template("about2.html", header=header, name=name)
     return render_template("about.html", header=header, name=name)
     
 @app.errorhandler(404)
 def page_not_found(error):
-    return 'This page does not exist!!', 404
+    #return 'This page does not exist!!', 404
+    return render_template("dne.html")
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RRR'
 

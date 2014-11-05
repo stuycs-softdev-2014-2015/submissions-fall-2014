@@ -8,8 +8,7 @@
 {% endblock tophead %}
 {% block content_block %}
 <h1 class="splash-head">Registering for Super Fun Stuff</h1>
-<span class="error_msg" style="font-size:0.8em">*REQUIRED FIELD</span>
-<br><br>
+<br>
 <span class="error_msg">{{rconf}}</span>
 
 <p class="splash-subhead">
@@ -17,24 +16,16 @@
     <div class="pure-control-group">
       <label for="name">Username</label>
       <input name="runame" type="text" placeholder="Username">
-      <span class="error_msg">*</span>
     </div>
     <br>
     <div class="pure-control-group">
       <label for="password">Password</label>
       <input name="rpswd" type="password" placeholder="Password">
-      <span class="error_msg">*</span>
     </div>
     <br>
     <div class="pure-control-group">
       <label for="password">Renter Password</label>
-      <input name="confirm_password" type="password" placeholder="Password">
-      <span class="error_msg">*</span>
-          </div>
-    <br>
-    <div class="pure-control-group">
-      <label for="name">Nickname</label>
-      <input name="nickname" type="text" placeholder="Name">
+      <input name="confirm_password" type="password" placeholder="Confirm Password">
     </div>
     <br>
     <button type="submit" class="pure-button pure-button-primary">Submit</button>
