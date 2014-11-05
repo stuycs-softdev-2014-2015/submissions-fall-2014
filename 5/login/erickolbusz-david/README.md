@@ -4,7 +4,7 @@ Mongo pretends to be easy, at least SQL doesn't trick you
 David Bang and Eric Kolbusz PD 5 softdev
 =====================================
 
-About the Project
+About the Project<br>
 Anyone can visit this page, you do not have to be logged in or anything of that sort, though you can be if you choose to.
 Now to talk about this project.
 It is a simple account manager. A person must register on the register page and then login on the login page
