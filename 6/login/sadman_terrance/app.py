@@ -6,11 +6,21 @@ conn = pymongo.MongoClient()
 db = conn.sadterry
 accounts = db.accounts
 
+
 app = Flask(__name__) 
 
 
 
 @app.route("/")
+def home():
+   if 'username' in session:
+      loggedin=True
+      username=session['username']
+   else:
+      loggedin=False
+      username = '-'
+   print loggedin
+   return render_template("base.html", loggedin=loggedin, username=username)
 @app.route("/login",methods=['GET','POST'])
 def login():
    if 'username' in session:
@@ -69,54 +79,62 @@ def logout():
    if 'username' in session:
       session.pop('username', None)
       print "login status: logged in"
-      return render_template("logout.html", loggedin=True)
+      return render_template("logout.html", loggedin=False, previous=True)
    else:
       print "login status: not logged in"
-      return render_template("logout.html",loggedin=False)
+      return render_template("logout.html",loggedin=False, previous=False)
    #logout
 
 @app.route("/register",methods=['GET','POST'])
 def register():
-   if request.method=='POST':
-      print '\nThe request method is ' + str(request.method) + '\n' 
-      
-      username = request.form['username']
-      password = request.form['password']
-      reppassword = request.form['password2']
-      
-      reason = ""
-      registered=False
-
-      if password == reppassword:
-         registered=True
-      else:
-         registered=False
-         reason = "Passwords do not match"
-         print "Passwords do not match"
-
-
-      for d in db.accounts.find():
-         if username == d['username']:
-            registered=False
-            reason="The username "+username+" already exists!"
-            print "Username %s already in use" %username
-
-      if registered:
-         doc = {"username":username, "password":password}
-         db.accounts.insert(doc)
-         print 'Username and Password have been recorded as variables'
-      else:
-         print "Failure to register"
-         
-      for d in db.accounts.find():
-         print d['username']+": "+d['password']
-   
-      if registered:
-         return render_template("register.html", page=1)
-      else:
-         return render_template("register.html", page=2, reason=reason)
+   if 'username' in session:
+      loggedin=True
+      username=session['username']
    else:
-      return render_template("register.html", page=3) 
+      loggedin=False
+      username=''
+
+   if request.method=='POST':
+      if 'username' not in session:
+         print '\nThe request method is ' + str(request.method) + '\n' 
+      
+         username = request.form['username']
+         password = request.form['password']
+         reppassword = request.form['password2']
+         
+         reason = ""
+         registered=False
+         
+         if password == reppassword:
+            registered=True
+         else:
+            registered=False
+            reason = "Passwords do not match"
+            print "Passwords do not match"
+
+
+         for d in db.accounts.find():
+            if username == d['username']:
+               registered=False
+               reason="The username "+username+" already exists!"
+               print "Username %s already in use" %username
+
+         if registered:
+            doc = {"username":username, "password":password}
+            db.accounts.insert(doc)
+            print 'Username and Password have been recorded as variables'
+         else:
+            print "Failure to register"
+         
+         for d in db.accounts.find():
+            print d['username']+": "+d['password']
+         
+         if registered:
+            return render_template("register.html", page=1, username=username)
+      else:
+         return render_template("register.html", page=2, reason=reason, a = "a")
+   else:
+      return render_template("register.html", page=3, a = "b", loggedin=loggedin, username=username) 
    #register
 
 @app.route("/intro")
