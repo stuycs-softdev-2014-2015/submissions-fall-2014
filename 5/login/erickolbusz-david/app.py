@@ -73,7 +73,7 @@ def logout():
   session.pop('username', None)
   session.pop('logins', None)
   flash('You were logged out')
-  return redirect(url_for('index'))
+  return redirect("/")
 
 if __name__ == '__main__':
     app.debug = True
