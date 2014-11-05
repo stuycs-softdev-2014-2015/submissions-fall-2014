@@ -1,6 +1,7 @@
 
 {% extends "base.html" %}
 
+
 {% block options %}
 {% if logged is odd %}
 <li class="nav-item"><a href="/logout">Logout</a></li>
@@ -10,13 +11,15 @@
   <li class="nav-item"><a href="/register">Register</a></li>
 
 {% endif %}
-{{logged}}
-  {% endblock options%}
-{% block bodycontent %}
+{% endblock options%}
 
-<a href="/login">Login</a>
-<a href="/register">Register</a>
-{{u}}
+
+{% block bodycontent %}
+<h1> Error </h1>
+
+
+{{e}}
+
 {% endblock bodycontent %}
 
 

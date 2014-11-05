@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+
+<div class="center noselect">
+    <div id="navbar" class="pure-menu pure-menu-open pure-menu-horizontal">
+        <a href="#" class="pure-menu-heading">{{username}}</a>
+
+        <ul>
+            <li><a href="{{ url_for("info") }}">Your Info</a></li>
+            <li><a href="{{ url_for("update") }}">Update Info</a></li>
+            <li><a href="{{ url_for("logout") }}" class="red">Logout</a></li>
+        </ul>
+    </div>
+    <form action="{{url_for("update")}}" method="POST" class="pure-form pure-form-aligned">
+      <fieldset>
+        <div class="pure-control-group">
+          <label for="name">Name:</label>
+          <input name="name" type="text" placeholder="Name">
+        </div>
+        <div class="pure-control-group">
+          <label for="job">Occupation:</label>
+          <input name="job" type="text" placeholder="Occupation">
+        </div>
+        <div class="pure-control-group">
+          <label for="age">Age:</label>
+          <input name="age" type="number" min="1" max="150" placeholder="17">
+        </div>
+          <button type="submit" class="pure-button pure-button-primary">Update</button>
+      </fieldset>
+    </form>
+</div>
+
+{% endblock bodycontent %} 

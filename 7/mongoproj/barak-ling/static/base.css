@@ -10,15 +10,18 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: normal;
   color: #333;
 }
 .container {
+    padding-top: 40px;
     max-width: 1024px;
     margin: auto;
 } 
-
+.jumbotron {
+    background-color: #d0d0d0
+}
 .form-signin {
   max-width: 330px;
   padding: 15px;
