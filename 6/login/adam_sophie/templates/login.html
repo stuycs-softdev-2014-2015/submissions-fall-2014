@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+
+<h2> Login </h2>
+<form action="/verify" method="post" class="pure-form pure-form-aligned">
+<fieldset>
+<div class="pure-control-group">
+<label for="uname">Username</label>
+  <input id="uname" name="uname" type="text" placeholder="Username"></div><br>
+<div class="pure-control-group">
+<label for="pw">Password</label>
+  <input id="pw" name="pw" type="password" placeholder="Password"></div><br>
+
+<button type="submit" class="pure-button">Login</button>
+  </fieldset>
+<br><br><br>
+
+{% endblock %}

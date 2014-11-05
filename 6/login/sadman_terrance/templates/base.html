@@ -8,6 +8,15 @@
 
 {% if loggedin %}
 Welcome, {{username}}
+<div align="right">
+  <a class="pure-button" type="submit" href="/logout">Log out!</a> 
+</div>
+{% endif %}
+
+{% if loggedin == False %}
+<div align="right">
+  <a class="pure-button" type="submit" href="/login">Login!</a> 
+</div>
 {% endif %}
 
 <h1 align ="center"><font color="AAA339">SadTerry</font></h1>
