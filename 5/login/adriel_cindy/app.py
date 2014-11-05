@@ -14,6 +14,7 @@ def home():
     if (login == "Login" and user != "" and password != ""):
         print mongo.get_password(user)
         if (password == mongo.get_password(user)):
+            mongo.login_user(user)
             return redirect("/page/"+user)
         else:
             flash("Username or password is not valid.")
@@ -27,20 +28,26 @@ def home():
 @app.route("/page")
 @app.route("/page/<user>")
 def page(user=None):
-    if (user==None):
-        return redirect("/")
-    return render_template("user.html", user=user)
+    if (user!=None and mongo.logged_in(user)=="y"):
+        return render_template("user.html", user=user)
+    return redirect("/")
 
 @app.route("/profile")
 @app.route("/profile/<user>")
 def profile(user=None):
-    if (user==None):
-        return redirect("/")
-    return render_template("profile.html", user=user)
+    if (user!=None and mongo.logged_in(user)=="y"):
+        return render_template("profile.html", user=user)
+    return redirect("/")
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/logout/<user>")
+def logout(user=None):
+    mongo.logout_user(user)
+    flash("Logged out successfully")
+    return redirect("/")
 
 @app.route("/register")
 def register():
