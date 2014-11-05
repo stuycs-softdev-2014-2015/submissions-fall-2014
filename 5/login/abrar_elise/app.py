@@ -6,8 +6,6 @@ app.secret_key = "shhh"
 conn = Connection()
 db = conn ['aaez']
 
-
-
 @app.route("/")
 def home(): 
     return render_template("home.html")
@@ -26,7 +24,12 @@ def login():
         print username + passw
         if db.users.find_one ( { 'name' : username , 'pword' : passw } ) != None:
             #flash("correct login info")
-            return render_template("loggedin.html", username=username)
+            if 'n' not in session:
+                session['n'] = 0
+            n = session['n']
+            n = n + 1
+            session['n']=n
+            return render_template("loggedin.html", username=username, n=n)
         else: 
             flash("incorrect login info")
             return redirect(url_for('login'))
@@ -40,6 +43,12 @@ def register():
         passw = request.form.get("password", None)
         error = None
         if db.users.find_one ( { 'name' : username } ) == None:
+            if username == "":
+                flash("Please enter a username")
+                return redirect(url_for('register'))
+            if passw == "":
+                flash("Please enter a password")
+                return redirect(url_for('register'))
             db.users.insert ( { 'name': username, 'pword': passw } )
             return "<h1>Thanks for joining!</h1>" + str ( { 'name':username, 'pword': passw } )
             #flash("Thanks for joining")
@@ -51,6 +60,9 @@ def register():
             return redirect(url_for('register'))
     return render_template("register.html")
 
+@app.route("/exclusive")
+def exclusive():
+    return render_template("justforusers.html")
 
 if __name__=="__main__":
     app.debug = True

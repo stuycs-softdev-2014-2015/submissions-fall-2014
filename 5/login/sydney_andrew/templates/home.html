@@ -1,13 +1,48 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
 <html>
-Welcome {{ username }}!
+  <head>
+    <title>User Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
+    <style> .navbar-text {color: #777}</style>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+	<ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="about">About</a></li>
+          <li><a href="logout">Logout</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li class="divider"></li>
+	  <li class="navbar-brand">Welcome {{ username }}</li>
+	</ul>
+      </div>
+    </nav>   
+
+  </head>
+  <div class="container">
+    <center>
+      <div class="jumbotron">
+	<h1> Hello {{ username }} </h1>	
+      </div>
+    </center>
+  </div>
 
 
+  <h3> Check out some of these cool pages:
+    <br>
+    <h4><a href="http://www.smithsonianmag.com/science-nature/14-fun-facts-about-manatees-180950308/?no-ist"> 14 Fun Facts About Manatees </a> <br>
+      <a href="http://www.savethemanatee.org/"> Save the Manatee </a> <br>
+      <a href="https://www.youtube.com/watch?v=TpqaH4NJpQA"> Silly Manatee Face Smoosh </a>
+  </h4> </h3>
+  <br>
+  <br>
+  <h3>
+    Change your manatee icon <a href="link to page for pictures"> here </a>
 
-Check out some of these cool pages:
-
-
-
-Change your manatee <a href="link to page for pictures"> here </a>
-
-
+  </h3>
 </html>
+{% endblock %}
