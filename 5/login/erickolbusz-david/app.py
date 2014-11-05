@@ -67,7 +67,7 @@ def welcome():
                       
 @app.route ("/about")
 def about():
-   if ('username' not in session):
+    if ('username' not in session):
         flash ("You are not logged in")
         redirect ("/")
     if (submit == "Submit"):
