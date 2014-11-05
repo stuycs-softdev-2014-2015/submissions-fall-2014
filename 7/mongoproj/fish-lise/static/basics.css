@@ -1,7 +1,28 @@
-#right-heading{
-    float:right;
-    clear:both;
-}
 #top-header{
     background-color:blue;
+    position:absolute;
+}
+#content-bg{
+    background-color:green; 
+}
+.error_msg{
+    color:red;
+    text-align:center;
+    font-weight:bold;
+}
+#white_block{
+    padding:1em;
+}
+#content-s{
+    background-color:orange;
+    text-align:center;
+    position:relative;
+    padding:1em;
+    margin-right:9em;
+    margin-left:9em;
+    border:0.3em solid black;
+    border-radius:5px;
+}
+.centered{
+    text-align:center;
 }

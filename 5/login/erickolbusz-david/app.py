@@ -18,14 +18,9 @@ def index():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         if (session.get('currentp') == "about"):
-            user_list = db.users.find({'name':session.get("username")})
-            user = user_list [0]
-            info = user['info']
-            redirect ("/about")
-            return render_template ("about.html", username = session.get("username"), userinfo = info)
+            return redirect ("/about")
         else:
-            redirect ("/welcome")
-            return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
+            return redirect ("/welcome")
     session ['username'] = None
     session ['currentp'] = "login"
     submit = request.args.get("submit")
@@ -44,6 +39,7 @@ def index():
             session ['logins'] = new_login_count
             return redirect("/welcome")
         flash ("Invalid Username or Password")
+        return redirect ("/")
     
     return render_template ("login.html")
     
@@ -53,14 +49,9 @@ def register():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         if (session.get('currentp') == "about"):
-            redirect ("/about")
-            user_list = db.users.find({'name':session.get("username")})
-            user = user_list [0]
-            info = user['info']
-            return render_template ("about.html", username = session.get("username"), userinfo = info)
+            return redirect ("/about")
         else:
-            redirect ("/welcome")
-            return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
+            return redirect ("/welcome")
     session ['currentp'] = "register"
     register = request.args.get("register")
     if (register == "Register"):
@@ -69,13 +60,17 @@ def register():
         does_account_exist = (users.find({'name':username}).count() > 0)
         if (does_account_exist == True):
             flash("Account already exists") #tried registering with taken username (None, None) is not a valid user/pass combo
+            return redirect("/register")
         elif (len(username)<6):
             flash("Username too short, must be at least 6 characters") #username too short, None falls under here too
+            return redirect("/register")
         elif (len(password)<8):
             flash("Password too short, must be at least 8 characters") #password too short, None falls under here too
+            return redirect("/register")
         else:
             db.users.insert({'name':username,'pw':password,'logincount':0,'info':""})
             flash("Successfully registered")
+            return redirect ("/")
     return render_template ("register.html") #have a button that redirects to /
     
 @app.route("/welcome")
@@ -83,11 +78,9 @@ def welcome():
     if (session.get('username') == None):
         flash ("You are not logged in!")
         if (session.get('currentp') == "login"):
-            redirect ("/")
-            return render_template ("login.html")
+            return redirect ("/")
         else:
-            redirect ("/register")
-            return render_template ("register.html")
+            return redirect ("/register")
     session ['currentp'] = "welcome"
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
@@ -96,11 +89,10 @@ def about():
     if (session.get('username') == None):
         flash ("You are not logged in!")
         if (session.get('currentp') == "login"):
-            redirect ("/")
-            return render_template ("login.html")
+            return redirect ("/")
         else:
-            redirect ("/register")
-            return render_template ("register.html")
+            return redirect ("/register")
+    
     session ['currentp'] = "about"
     submit = request.args.get("submit")
     user_list = db.users.find({'name':session.get("username")})
