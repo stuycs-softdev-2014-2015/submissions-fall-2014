@@ -5,10 +5,13 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    flash("HIII")
     if 'username' in session:
         return render_template("home.html", username = session['username']);
     return render_template("index.html");
+
+@app.route('/about')
+def about():
+    return render_template("about.html")
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
