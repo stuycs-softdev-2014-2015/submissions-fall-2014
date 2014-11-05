@@ -2,13 +2,15 @@
 {% extends "base.html" %}
 {% block bodycontent %}
 
-<ul class="nav navbar-nav navbar-right">
-      <li><a href="/register">Register</a></li>
-      <li><a href="/">Home</a></li>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <center>{{ message }}</center>
+    {% endfor %}
     </ul>
-  </div>
-</div>
-
+  {% endif %}
+{% endwith %}
 
 <form class="pure-form pure-form-stacked" method="POST">
 <center>

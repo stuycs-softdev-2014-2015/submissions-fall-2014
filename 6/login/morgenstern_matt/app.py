@@ -18,12 +18,17 @@ def login():
             if l['username']==euser:
                 if l['password']==epassword:
                     good=True
-                    session['username'] = request.form['username']
+                    if 'username' not in session:
+                        session['username'] = request.form['username']
+                    else:
+                        session['error'] = "Already logged in. Log out to log in as another user."
+                        return redirect(url_for("error"))
                     print "loggedinswag"
                     return redirect(url_for("loggedin1"))
 
         print "wrong username password"
-        return redirect(url_for("home"))
+        session['error']= "Incorrect username/password combination. Please try again."
+        return redirect(url_for("error"))
     else:
         return render_template("login.html")
     
@@ -42,14 +47,20 @@ def register():
 @app.route("/loggedin1")
 def loggedin1():
     return render_template("loggedin1.html")
+@app.route("/error")
+def error():
+    e= session['error']
+    return render_template("error.html",e=e)
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    if 'username' in session:
+        u=session['username']
+    return render_template("home.html", u=u)
 
 
 if __name__=="__main__":
     app.debug=True
-    app.run();
+    app.run("0.0.0.0");
 
 
