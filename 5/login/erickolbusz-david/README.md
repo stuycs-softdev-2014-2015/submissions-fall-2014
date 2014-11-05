@@ -1,4 +1,5 @@
 Mongo pretends to be easy, at least SQL doesn't trick you
+==========================================================
 
 David Bang and Eric Kolbusz PD 5 softdev
 
