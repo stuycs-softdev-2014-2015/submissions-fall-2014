@@ -12,10 +12,12 @@ users = db.users
 #login page
 @app.route("/")
 def index():
+    if ('username' not in session)
+        session ['username'] = None
     if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
-    session ['username'] = ""
+    session ['username'] = None
     username = request.args.get("username")
     password = request.args.get("password")
     submit = request.args.get("submit")
