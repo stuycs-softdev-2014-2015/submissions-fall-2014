@@ -107,6 +107,14 @@ def logout():
     flash('You are or were already logged out')
     return redirect("/")
 
+@app.route ("/aboutproj")
+def aboutproj():
+    return render_template ("aboutproject.html")
+
+@app.route ("/random")
+def random():
+    return render_template ("random.html")
+
 if __name__ == '__main__':
     app.debug = True
     app.run(host = '0.0.0.0')
