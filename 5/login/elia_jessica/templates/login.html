@@ -7,10 +7,19 @@
   <p class=error><strong>Error:</strong> {{ error }}</p>
 </div>
 {% endif %}
-<form action="" method="post">
-  <p>Username: <input type=text name=username>
-  <p>Password: <input type="password" name=password>
-  <p><input type=submit value=Login>
+
+<div class="col-md-2">
+<form role="form" method = "post">
+  <div class="form-group">
+   <label for="pwd1">Username:</label>
+   <input type="text" class="form-control" id="pwd1" placeholder="Enter username" name=username>
+  </div>
+  <div class="form-group">
+   <label for="pwd">Password:</label>
+   <input type="password" class="form-control" id="pwd2" placeholder="Enter password" name=password>
+  </div>
+  <button type="submit" class="btn btn-default">Login</button>
 </form>
+</div>
 
 {% endblock %}

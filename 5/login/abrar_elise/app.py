@@ -8,7 +8,11 @@ db = conn ['aaez']
 
 @app.route("/")
 def home(): 
-    return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register")
+    return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register",url0="/about",link0="About")
+
+@app.route("/about")
+def about(): 
+    return render_template("about.html",url1="/login",link1="Login",url2="/register",link2="Register",url0="/",link0="Home")
 
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -26,14 +30,18 @@ def login():
         #print username + passw
         if (excl != None): 
             #return exclusive(username2)
-            return redirect(url_for('exclusive',user=username2))
+            return redirect(url_for('exclusive', user=username2))
         if db.users.find_one ( { 'name' : username , 'pword' : passw } ) != None:
             #flash("correct login info")
-            if 'n' not in session:
-                session['n'] = 0
-            n = session['n']
-            n = n + 1
-            session['n']=n
+            n = db.users.update ( { 'name': username } , { '$inc': { 'n' : 1 } } )
+	    #for q in db.users.find({'name':username}):
+ 	        #print int(str(q)[str(q).find("u'n': ")+6: str(q).rfind("}")])
+	    q = db.users.find({'name':username})[0]
+	    n = int(str(q)[str(q).find("u'n': ")+6: str(q).rfind("}")])
+            #n = n + 1
+            #session['n']=n
+	    for x in db.users.find({'name': username,'pword':passw}):
+	        print "bleh" + str(db.users.find({'name':username,'pword':passw}))
             return render_template("loggedin.html", username=username, n=n,url1="/exclusive",link1="Exclusively for Users",url2="/",link2="Logout")
         else: 
             flash("incorrect login info")
@@ -54,20 +62,19 @@ def register():
             if passw == "":
                 flash("Please enter a password")
                 return redirect(url_for('register'))
-            db.users.insert ( { 'name': username, 'pword': passw } )
-            return "<h1>Thanks for joining!</h1>" + str ( { 'name':username, 'pword': passw } )
-            #flash("Thanks for joining")
-            #return redirect(url_for('login'))
-            #return redirect(url_for('home'))
+            db.users.insert ( { 'name': username, 'pword': passw, 'n': 0 } )
+            #return "<h1>Thanks for joining!</h1>" + str ( { 'name':username, 'pword': passw } )
+            flash("Thanks for joining! Please log in now.")
+            return redirect(url_for('login'))
         else:
             flash("Please select an available username")
             #return "<h1>Please select an available username</h1>"
             return redirect(url_for('register'))
-    return render_template("register.html",url1="/login",link1="Login",url2="/",link2="Home")
+    return render_template("register.html",url2="/login",link2="Login",url0="/",link0="Home",url1="/about",link1="About")
 
-@app.route("/exclusive")
+@app.route("/exclusive/<user>")
 def exclusive(user):
-    return render_template("justforusers.html",user=user,url2="/",link2="Home")
+    return render_template("justforusers.html",user=user,url1="/",link1="Logout")
 
 if __name__=="__main__":
     app.debug = True

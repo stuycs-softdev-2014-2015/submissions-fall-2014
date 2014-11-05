@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Register/Login{% endblock %}
+
+{% block content %}
+<center>
+    <div class="pure-u-2">
+      <form class="pure-form" method="POST" action="http://localhost:5000/login">
+        <fieldset>
+            <legend>Login Here</legend>
+
+            <input name="username" type="text" placeholder="Username" required>
+            <input name="password" type="password" placeholder="Password" required>
+            
+            <label for="remember">
+                <input name="remember" type="checkbox"> Remember me
+            </label>
+            
+            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
+        </form>
+    </div>
+    <div class="pure-u-2">
+      <h1>Sign Up Here</h1>
+      <form class="pure-form pure-form-aligned" method="POST" action="http://localhost:5000/register">
+        <fieldset>
+        <div class="pure-control-group">
+            <label for="username">Username</label>
+            <input name="username" type="text" placeholder="Username">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input name="password" type="password" placeholder="Password">
+        </div>
+
+
+        <div class="pure-control-group">
+            <label for="email">Email Address</label>
+            <input name="email" type="email" placeholder="Email Address">
+        </div>
+
+
+        <div class="pure-controls">
+            <label for="cb" class="pure-checkbox">
+                <input id="cb" type="checkbox"> I am officially awesome.
+            </label>
+
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+    </form>
+  </div>
+</center>
+
+
+<div id="error" style="position: fixed; color: red; display: block; bottom: 0px; left: 0px;">
+{{ error }}
+</div>
+{% endblock %}
+
+
+<!--
+<html>
+  <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+          <li><a href="/home">Home</a></li>
+          <li class="pure-menu-selected">
+          <li><a href="/other">Other People</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/register">Login/Register</a></li>
+      </ul>
+    </div>
+  </head>
+  <body><center>
+    <div class="pure-u-2">
+      <form class="pure-form" method="POST" action="http://localhost:5000/login">
+        <fieldset>
+            <legend>Login Here</legend>
+
+            <input name="username" type="text" placeholder="Username" required>
+            <input name="password" type="password" placeholder="Password" required>
+            
+            <label for="remember">
+                <input name="remember" type="checkbox"> Remember me
+            </label>
+            
+            <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
+        </form>
+    </div>
+    <div class="pure-u-2">
+      <h1>Sign Up Here</h1>
+      <form class="pure-form pure-form-aligned">
+        <fieldset>
+        <div class="pure-control-group">
+            <label for="username">Username</label>
+            <input name="username" type="text" placeholder="Username">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input name="password" type="password" placeholder="Password">
+        </div>
+
+
+        <div class="pure-control-group">
+            <label for="email">Email Address</label>
+            <input name="email" type="email" placeholder="Email Address">
+        </div>
+
+
+        <div class="pure-controls">
+            <label for="cb" class="pure-checkbox">
+                <input id="cb" type="checkbox"> I am officially awesome.
+            </label>
+
+            <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        </div>
+    </fieldset>
+    </form>
+  </div>
+  </body>
+</center>
+</html>
+-->

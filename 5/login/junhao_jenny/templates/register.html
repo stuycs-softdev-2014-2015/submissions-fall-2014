@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block logoutlink %}
+<br>Log out <a href="{{ url_for('logout') }}">here</a>!
+{% endblock logoutlink %}
+
+{% block bodycontent %}
+
+<br>
+
+<div class="container">
+    
+    <div class="panel panel-default">
+        
+        <div class="panel-heading">
+            <center><h3>Register!</h3></center>
+        </div>
+        
+        <div class="panel-body form-group">
+            <form method="POST">
+                <input type="text" class="form-control" name="user" placeholder="Username">
+                <br>
+                <input type="password" class="form-control" name="password" placeholder="Password"></textarea>
+                <br>
+                <center>
+                    <button type="submit" name="button_register" class="btn btn-default btn-primary">Register!</button>
+                </center>
+            </form>
+        </div>
+        
+        <div class="panel-footer">
+            <a href="{{ url_for('login') }}">Already have an account? Log in!</a>
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock bodycontent %}

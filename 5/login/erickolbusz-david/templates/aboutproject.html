@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+About the Project
+{% endblock title %}
+
+{% block header %}
+About the Project
+{% endblock header %}
+
+{% block body %}
+Anyone can visit this page, you do not have to be logged in or anything of that sort, though you can be if you choose to.
+<br>
+<br>
+Now to talk about this project.<br>
+It is a simple account manager. A person must register on the register page and then login on the login page
+to access the Welcome and About me pages. Usernames cannot be duplicated and require 6 characters minimum and a 8 character password.
+<br>The Welcome page just tells you your username and the number of times you have logged in.<br>
+The About me page lets you write whatever you want. You can write about yourself or about anything that is on your mind.<br>
+The info will be recorded and stored in the database and can never be deleted from your account.
+The Logout link in the menu lets you log out whenever you want.
+<br>
+The least important page is the Random page which will have something super random on it. Anyone can access it.
+{% endblock body %}
