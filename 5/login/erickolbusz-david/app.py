@@ -15,8 +15,8 @@ def index():
     if ('username' not in session):
         session ['username'] = None
     if (session.get('username') != None):
+        redirect ("/welcome)
         flash ("You are already logged in!")
-        redirect ("/welcome")
     session ['username'] = None
     username = request.args.get("username")
     password = request.args.get("password")
@@ -61,15 +61,15 @@ def register():
 @app.route("/welcome")
 def welcome():
     if (session.get('username') == None):
-        flash ("You are not logged in!")
         redirect ("/")
+        flash ("You are not logged in!")
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
     if (session.get('username') == None):
-        flash ("You are not logged in!")
         redirect ("/")
+        flash ("You are not logged in!")
     submit = request.args.get("submit")
     user_list = db.users.find({'name':session.get("username")})
     user = user_list[0]
@@ -85,7 +85,7 @@ def about():
 def logout():
     session.pop('username', None)
     session.pop('logins', None)
-    flash('You were logged out')
+    flash('You are logged out')
     return redirect("/")
 
 if __name__ == '__main__':
