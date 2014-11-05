@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html lang="en">
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Account Manager</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <form class="navbar-form navbar-right" method="POST">
+	{% if logged_in %}
+	    <input type="submit" name="b" class="btn btn-default" value="Home">
+      <input type="submit" name="b" class="btn btn-default" value="Log Out">
+	{% else %}
+	    <input type="submit" name="b" class="btn btn-default" value="Log In">
+      <input type="submit" name="b" class="btn btn-default" value="Sign Up">
+	{% endif %}
+</form>
+  {% if logged_in %}
+    <p class="navbar-text">Logged in as {{ session['username'] }}</p>
+  {% endif %}
+
+	
+          </form>
+        </div> 
+      </nav>
+
+      <div class="jumbotron">
+	<h1> About </h1>
+	<p>Account Manager is a web application created by Kyler Chase and Aida Piccato. It doesnt do a whole lot right now, but it implemets mongodb which is pretty cool. You can log in, see the time, and admire a picture of Homer Simpson eating a donut. </p>
+  <p>What more does one need, really. </p>
+</div> 
+<img src="http://fc09.deviantart.net/fs16/f/2007/150/d/e/Simpsons__Homer_Donut__by_koyuki222.jpg" class="img-responsive img-rounded" alt="Responsive image"></img></span>

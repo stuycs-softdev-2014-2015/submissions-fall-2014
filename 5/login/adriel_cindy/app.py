@@ -12,7 +12,6 @@ def home():
     register = request.args.get("register")
 
     if (login == "Login" and user != "" and password != ""):
-        print mongo.get_password(user)
         if (password == mongo.get_password(user)):
             mongo.login_user(user)
             return redirect("/page/"+user)
@@ -46,7 +45,8 @@ def profile(user):
         return redirect("/")
     if (mongo.exists_user(user)):
         if(mongo.logged_in(user)=="y"):
-            return render_template("profile.html", user=user)
+            ctr = mongo.get_info(user)
+            return render_template("profile.html", user=user, ctr=ctr)
         else:
             flash("You don't have permission to view that user's profile.")
             return redirect("/")
@@ -69,6 +69,9 @@ def register():
     register = request.args.get("register")
 
     if (user != None and password != None and pcheck != None):
+        if (len(password) < 5):
+            flash("Password must be at least 5 characters.")
+            return redirect("/register")
         if (password == pcheck and not(mongo.exists_user(user))):
             mongo.add_user(user,password)
             mongo.login_user(user)

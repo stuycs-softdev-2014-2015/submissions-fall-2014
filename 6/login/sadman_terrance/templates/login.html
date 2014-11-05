@@ -1,30 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-    <link rel="stylesheet" href="static/css/blah.css">
- </head>
-  <body>
+{% extends "base.html" %}
 
-    <div class="pure-g">
-      <div class="pure-u-1-24"></div>
-      <div class="pure-u-22-24">
-	<div class="pure-menu pure-menu-open pure-menu-horizontal">
-	  <a href="#" class="pure-menu-heading">SadTerry</a>
-	  <ul>
-            <li><a href="/">Home</a></li>
-            <li class="pure-menu-selected"><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="#">Fill2</a></li>
-	  </ul>
-	</div>
-	<h1 align="center"><font color="#AAA339">SadTerry</font></h1>
-	<hr>
+{% block text %}
 
 	{% if loggedin == True %}
 	You are logged in as {{username}}
 	<br>
-	<a class="pure-button" href="/logout"> Logout </a>
+	<a class="pure-button" href="/logout" type = "submit"> Logout </a>
 
 	{% endif %}
 	
@@ -48,13 +29,12 @@
 	      <button class="button-small pure-button" type = "submit">Login</button>
 	    </div>
 	  </form>
+	  Don't have an account? <a href="/register">Register Here!</a>
+	  
 	</font>
 	{{reason}}
 	{% endif %}    
 	<hr>
       </div>
     </div>
-
-    
-  </body>
-</html>
+{% endblock %}

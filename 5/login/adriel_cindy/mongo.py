@@ -4,17 +4,20 @@ conn = Connection()
 
 db = conn['Login']
 #For clearing database
-conn.drop_database('Login');
+#conn.drop_database('Login');
 def add_user(u, pw):
-    db.users.insert({'user':u, 'password':pw, 'login':'n'})
+    db.users.insert({'user':u, 'password':pw, 'login':'n', 'info':0})
 
-def update_user(u, i):
-    db.users.update({'user':u}, {'$set':{'info':i}})
+def get_info(u):
+    l = db.users.find({'user':u})
+    for u in l:
+        return u['info']
+    return None
 
 #logged in = y
 #logged out = n
 def login_user(u):
-    db.users.update({'user':u}, {'$set':{'login':'y'}})
+    db.users.update({'user':u}, {'$set':{'login':'y', 'info':get_info(u)+1}})
 
 def logout_user(u):
     db.users.update({'user':u}, {'$set':{'login':'n'}})
