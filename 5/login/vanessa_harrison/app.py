@@ -8,28 +8,25 @@ def index():
     if "username" in session:
         return "YOURE LOGGED IN AS %s" %escape(session["username"])
     else:
-        return "this is the home page which means you arent logged in"
+        return render_template("index.html")
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if "username" in session:
         return "youre already logged in as %s" %escape(session["username"])
     if request.method == "POST":
+        #print "sdfsdfsdfds"
         try:
             if request.form["login"] == "Submit":
-                if (request.form["username"] == "" or request.form["password"] == ""):
-                    return "you didnt fill out both fields"
-                    if mongo.get(request.form["username"], request.form["password"]) != None:
-                        #login successful things
-                        session["username"] = request.form["username"]
-                        return redirect("/")
-                    else:
-                        return "that's not valid"
+                if mongo.get(request.form["username"], request.form["password"]) != None:
+                    #login successful things
+                    session["username"] = request.form["username"]
+                    return redirect("/")
+                else:
+                    return "that's not valid"
         except:
             pass
         if request.form["register"] == "Submit":
-            if (request.form["usernameR"] == "" or request.form["passwordR"] == "" or request.form["passwordR1"] == ""):
-                return "you didnt fill out all of the fields"
             if (request.form["passwordR"] != request.form["passwordR1"]):
                 return "passwords dont match"
             if not mongo.add(request.form["usernameR"], request.form["passwordR"], {}):

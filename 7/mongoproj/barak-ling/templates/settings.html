@@ -10,16 +10,23 @@
 
 {% block session_button %}
 <li><a href="/logout">Logout</a></li>
-<li><a href="/settings">Settings</a></li>
 {% endblock session_button %}
 
 
 {% block main %}
-<title>Main</title>
+<title>Settings</title>
 <div class="container">
   <div class="jumbotron">
-    <h3>{{name}}'s Page</h3>
-    <p>{{message}}</p> 
+    <form role="form" method="POST">
+
+      <p>Enter your password.</p>
+        <input type="password" name="password" class="form-control" placeholder="Password">
+	<br>
+	<p>Change your message.</p>
+	<input type="text" name="message" class="form-control" placeholder="New message...">
+	<br>
+        <button class="btn btn-default btn-lg" type="submit">Update</button>	
+      </form>
   </div>
 </div>
 

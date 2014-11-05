@@ -9,10 +9,15 @@
         <ul>
             <li><a href="{{ url_for("info") }}">Your Info</a></li>
             <li><a href="{{ url_for("update") }}">Update Info</a></li>
-	    <li><a href="{{ url_for("logout") }}" class="red">Logout</a></li>
+            <li><a href="{{ url_for("logout") }}" class="red">Logout</a></li>
         </ul>
     </div>
-    <h1 class="gray">Welcome {{username}}!</h1>
+    <ul>
+      <li> username: {{username}} </li>
+      {% for i in range(info[0]|length) %}
+          <li> {{info[0].keys()[i]}}: {{info[0].values()[i]}} </li>
+      {% endfor %}
+    </ul>
 </div>
 
 {% endblock bodycontent %} 

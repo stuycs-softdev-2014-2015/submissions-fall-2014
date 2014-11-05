@@ -1,68 +1,91 @@
-from flask import Flask, render_template, request, redirect, session
-import mongo
+from flask import Flask, render_template, request, redirect, session, flash
+from pymongo import Connection
 
 app = Flask(__name__)
 id=0
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
+conn = Connection()
+db = conn['accountinfo']
+users = db.users
+
 #login page
 @app.route("/")
 def index():
     if ('username' in session):
-        flash ("You are already logged in")
+        flash ("You are already logged in!")
         redirect ("/welcome")
-    user = request.args.get("username")
-    pw = request.args.get("password")
+    username = request.args.get("username","None")
+    password = request.args.get("password","None")
     submit = request.args.get("submit")
     if (submit == "Submit"):
-      if mongo.login(user,pw):
-        session ['username'] = username
-        return redirect("/welcome")
-      else:
-        flash ("Invalid User or Password")
+        does_account_exist = (users.find({'username':username, 'password':password}).count() == 1)
+        if (does_account_exist == True):
+            user_list = db.users.find({'name':username, 'pw':password})
+            user = user_list[0]
+            new_login_count = user['logincount'] + 1
+            users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':user['info']}, upsert=True)
+            session ['username'] = username
+            session ['logins'] = new_login_count
+            return redirect("/welcome")
+        flash ("Invalid Username or Password")
     return render_template ("login.html")
     
 
 @app.route("/register")
 def register():
     if ('username' in session):
-        flash ("You are already logged in")
+        flash ("You are already logged in!")
         redirect ("/welcome")
-    user = request.args.get("username","None")
-    pw = request.args.get("password","None")
+    username = request.args.get("username","None")
+    password = request.args.get("password","None")
     register = request.args.get("register")
     if (register == "Register"):
-        error = mongo.add_account(user,pw)
-        if (error == 0):
-            flash("Successfully registered")
-            return redirect ("/")
-        if (error == 1):
-            flash("Account already exists")
-        if (error == 2):
-            flash("Username too short, must be at least 6 characters")
+        print "0\n"*5
+        does_account_exist = (users.find({'username':username}).count() > 0)
+        if (does_account_exist == True):
+            print "1\n"*5
+            flash("Account already exists") #tried registering with taken username (None, None) is not a valid user/pass combo
+        elif (len(username)<6):
+            print "2\n"*5
+            flash("Username too short, must be at least 6 characters") #username too short, None falls under here too
+        elif (len(password)<8):
+            print "3\n"*5
+            flash("Password too short, must be at least 8 characters") #password too short, None falls under here too
         else:
-            #error = 3
-            flash("Password too short, must be at least 8 characters")
-    #flash the message
+            print "4\n"*5
+            db.users.insert({'name':username,'pw':password,'logincount':1,'info':""})
+            flash("Successfully registered")
     return render_template ("register.html") #have a button that redirects to /
     
 @app.route("/welcome")
 def welcome():
-  return render_template ("welcome.html", username = session.get('username'), counter = mongo.login_count(session.get('username'))) #button for other page (?) and for /logout
+    if ('username' not in session):
+        flash ("You are not logged in")
+        redirect ("/")
+    return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
-  if (submit == "Submit"):
-    userinfo = request.args.get('userinfo')
-    mongo.change_info(session.get('username'), userinfo)
-  return render_template ("about.html", username = session.get('username'), userinfo = mongo.user_info(session.get('username')))
+    if ('username' not in session):
+        flash ("You are not logged in")
+        redirect ("/")
+    if (submit == "Submit"):
+        user_list = db.users.find({'name':session.get("username")})
+        user = user_list[0]
+        info = user['info']
+        addedinfo = request.args.get("userinfo")
+        new_info = info + addedinfo
+        users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':new_info}, upsert=True)
+    return render_template ("about.html", username = session.get("username"), userinfo = mongo.user_info(session.get("username")))
 
 @app.route("/logout")
 def logout():
-  session.pop('username', None)
-  flash('You were logged out')
-  return redirect(url_for('index'))
+    session.pop('username', None)
+    session.pop('logins', None)
+    flash('You were logged out')
+    return redirect("/")
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(host ='0.0.0.0')
