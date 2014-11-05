@@ -27,16 +27,21 @@ def register():
     else:
         username = request.form['username']
         password = request.form['password']
-        result = userdb_helper.validate(username, password)
-        if (not result[0]): # invalid username or password 
-            flash(result[1])
-            return render_template("register.html", page_title="Register")
-        result = userdb_helper.insert(username, password)
-        if (result[0]): # valid registration
-            flash(result[1])
-            return redirect("/")
-        else: # user already exists
-            flash(result[1])
+        password2 = request.form['password2']
+        if(password == password2):
+            result = userdb_helper.validate(username, password)
+            if (not result[0]): # invalid username or password 
+                flash(result[1])
+                return render_template("register.html", page_title="Register")
+            result = userdb_helper.insert(username, password)
+            if (result[0]): # valid registration
+                flash(result[1])
+                return redirect("/")
+            else: # user already exists
+                flash(result[1])
+                return render_template("register.html", page_title="Register")
+        else:
+            flash("Registration error: Passwords do not match.")
             return render_template("register.html", page_title="Register")
 
 @app.route("/logout", methods=['GET'])
@@ -47,11 +52,35 @@ def logout():
 
 @app.route("/home")
 def home():
-    return render_template("home.html", page_title="Home", username=escape(session['username']))
+    if('username'in session):
+        return render_template("home.html", page_title="Home", username=escape(session['username']))
+    else:
+        return redirect("/")
 
 @app.route("/info")
 def info():
-    return render_template("info.html", page_title="Info")
+    try:
+        username=escape(session['username'])
+    except:
+        return redirect("/")
+    return render_template("info.html", page_title="Info", username=escape(session['username']), info=userdb_helper.getInfo(escape(session['username'])))
+
+@app.route("/update", methods=['GET','POST'])
+def update():
+    try:
+        username=escape(session['username'])
+    except:
+        return redirect("/")
+    if request.method == 'GET':
+        return render_template("update.html", page_title="Update Info",username=escape(session['username']))
+    else:
+        name = request.form['name']
+        job = request.form['job']
+        age = request.form['age']
+        print age
+        result = userdb_helper.updateInfo(username,name,job,age)
+        flash(result)
+        return render_template("update.html", page_title="Update Info",username=escape(session['username']))
 
 @app.route("/about")
 def about():

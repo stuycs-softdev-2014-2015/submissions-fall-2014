@@ -1,6 +1,12 @@
 body {
     font-family: Open Sans;
 }
+ul {
+    display:table;
+    margin:0 auto;
+    font-family: Open Sans;
+    font-size: 20px;
+}
 ul.flashed_messages_list {
     margin: 0 auto;
     text-align: center;
@@ -30,6 +36,13 @@ ul.flashed_messages_list {
 .success {
     color: rgba(50, 200, 50, 150);
 }
+.about {
+    font-family: Comic Sans MS;
+    text-align: left;
+    margin-left: 100px;
+    margin-right: 100px;
+    color: #5858FA;
+}
 #navbar li a {
     -webkit-transition: all 0.3s ease-in;
     -moz-transition: all 0.3s ease-in;
@@ -40,6 +53,18 @@ ul.flashed_messages_list {
 #navbar .red {
     color: rgba(200, 50, 50, 150);
 }
+/*
+  #full-background-image {
+  z-index: -999;
+  min-height: 100%;
+  min-width: 100%;
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+*/
 a.hint {
     color: #444444;
     font-size: 12px;
