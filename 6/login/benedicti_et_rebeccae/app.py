@@ -63,22 +63,24 @@ def base():
     print "logging" in session
     if "logged" not in session:
       session['logged'] = False
+    if 'user' not in session:
+      session['user'] = ""
     if "logging" in session:
       logging = session["logging"]
       print logging
       session.pop("logging", None)
       if logging:
-        return render_template("home.html", logging = logging, logged = session['logged'])
+        return render_template("home.html", logging = logging, logged = session['logged'], user = session['user'])
       else:
-        return render_template("login.html", logging = logging, logged = session['logged'])
+        return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
     if "success" in session:
       success = session["success"]
       session.pop("success", None)
       if success:
-        return render_template("login.html", success = success, logged = session['logged'])
+        return render_template("login.html", success = success, logged = session['logged'], user = session['user'])
       else:
-        return render_template("register.html", success = success, logged = session['logged'])
-    return render_template("login.html", logged = session['logged'])
+        return render_template("register.html", success = success, logged = session['logged'], user = session['user'])
+    return render_template("login.html", logged = session['logged'], user = session['user'])
 
 @app.route("/register", methods=["GET", 'POST'])
 def register():
@@ -87,17 +89,17 @@ def register():
     print logging
     session.pop("logging", None)
     if logging:
-      return render_template("home.html", logging = logging, logged = session['logged'])
+      return render_template("home.html", logging = logging, logged = session['logged'], user = session['user'])
     else:
-      return render_template("login.html", logging = logging, logged = session['logged'])
+      return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
   if "success" in session:
     success = session["success"]
     session.pop("success", None)
     if success:
-      return render_template("login.html", success = success, logged = session['logged'])
+      return render_template("login.html", success = success, logged = session['logged'], user = session['user'])
     else:
-      return render_template("register.html", success = success, logged = session['logged'])
-  return render_template("register.html", logged = session['logged'])
+      return render_template("register.html", success = success, logged = session['logged'], user = session['user'])
+  return render_template("register.html", logged = session['logged'], user = session['user'])
 
 @app.route("/logging", methods=['POST'])
 def index():
@@ -109,10 +111,14 @@ def index():
         username=request.form["username"]
         password=request.form["password"]
     if authenticate(username, password):
-      if "user" not in session:
-        session['user'] = username
       session['logging'] = True
       session['logged'] = True
+      session['user'] = username
+      if "return" in session:
+        url = "/" + session['return']
+        print url
+        session.pop('return', None)
+        return redirect(url)
       return redirect("/home")
     else:
       session['logging'] = False
@@ -121,7 +127,7 @@ def index():
 #A moment of silence for our fallen code :|
 '''@app.route("/cladius")
 def test():
-  if 'user' in session:
+  if session['logged']:
     return render_template("cladius.html")
   else:
     return render_template('fail.html')'''
@@ -154,7 +160,7 @@ def logout():
 
 @app.route("/about")
 def about():
-    return render_template("about.html", logged = session['logged'])
+    return render_template("about.html", logged = session['logged'], user = session['user'])
 
 #Ruuun Trees Ruuunnnn, the logging is coming!!!
 @app.route("/home")
@@ -163,35 +169,39 @@ def home():
     logging = session["logging"]
     session.pop("logging", None)
     if logging:
-      return render_template("home.html", logging = logging, logged = session['logged'])
+      return render_template("home.html", logging = logging, logged = session['logged'], user = session['user'])
     else:
-      return render_template("login.html", logging = logging, logged = session['logged'])
+      return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
   return render_template("home.html", logged=session["logged"])
 @app.route("/caesar")
 def hail():
-    if 'user' in session:
-        return render_template("caesar.html", logged = session['logged'])
+    if session['logged']:
+        return render_template("caesar.html", logged = session['logged'], user = session['user'])
     else:
+        session["return"] = "caesar"
         return redirect("/")
 
 @app.route("/dogs")
 def omfg():
-    if 'user' in session:
-        return render_template("dogs.html", logged = session['logged'])
+    if session['logged']:
+        return render_template("dogs.html", logged = session['logged'], user = session['user'])
     else:
+        session["return"] = "dogs"
         return redirect("/")
 
 @app.route("/caligula")
 def caligula():
-    if 'user' in session:
-        return render_template("caligula.html", logged = session['logged'])
+    if session['logged']:
+        return render_template("caligula.html", logged = session['logged'], user = session['user'])
     else:
+        session["return"] = "caligula"
         return redirect("/")
 @app.route("/bees")
 def bees():
-    if 'user' in session:
-        return render_template("bees.html", logged = session['logged'])
+    if session['logged']:
+        return render_template("bees.html", logged = session['logged'], user = session['user'])
     else:
+        session["return"] = "bees"
         return redirect("/")
 
 if __name__=="__main__":

@@ -56,6 +56,9 @@ h1{ font-family: Cinzel-Title, serif;}
             {% if logged is defined %}
               {% if logged %}
                 <li><a href="\logout">Sign Out</a></li>
+                {% if user is defined %}
+                  <li>Welcome {{user}}</li>
+                {% endif %}
               {% else %}
                 <li><a href="\">Sign In</a></li>
               {% endif %}
