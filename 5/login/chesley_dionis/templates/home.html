@@ -1,17 +1,11 @@
-{% extends "base.html" %}
+{% extends "base-home.html" %}
 
 {% block bodycontent %}
 
-<div class="center noselect">
-    <div id="navbar" class="pure-menu pure-menu-open pure-menu-horizontal">
-        <a href="#" class="pure-menu-heading">{{username}}</a>
+<div class="center-all noselect">
+    {% block navbar %}
+    {% endblock navbar %}
 
-        <ul>
-            <li><a href="{{ url_for("info") }}">Your Info</a></li>
-            <li><a href="{{ url_for("update") }}">Update Info</a></li>
-	    <li><a href="{{ url_for("logout") }}" class="red">Logout</a></li>
-        </ul>
-    </div>
     <h1 class="gray">Welcome {{username}}!</h1>
 </div>
 
