@@ -63,7 +63,7 @@ def welcome():
     if ('username' not in session):
         flash ("You are not logged in")
         redirect ("/")
-  return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
+    return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
