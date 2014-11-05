@@ -104,7 +104,7 @@ def logout():
     session.pop('logins', None)
     session.pop('currentp', None)
     session ['currentp'] = "login"
-    flash('You are logged out')
+    flash('You are or were already logged out')
     return redirect("/")
 
 if __name__ == '__main__':
