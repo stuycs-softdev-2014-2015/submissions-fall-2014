@@ -32,3 +32,11 @@ def loginUser(uname, pword):
         return [True]
         # in the app.py should now redirect there 
     #check that it matches the existing thing 
+
+def getUser(username):
+    x = db.users.find_one({'username':username})
+    return x
+
+def changeUser(username, pNum):
+    db.users.update({"username":username}, {"$set":{"picture":pNum}})
+    return 0

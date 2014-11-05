@@ -14,9 +14,10 @@ def home():
     if (login == "Login" and user != "" and password != ""):
         print mongo.get_password(user)
         if (password == mongo.get_password(user)):
+            mongo.login_user(user)
             return redirect("/page/"+user)
         else:
-            flash("Username or password is not valid")
+            flash("Username or password is not valid.")
             return redirect("/")
         #return login
     elif (register == "r"):
@@ -26,21 +27,39 @@ def home():
 
 @app.route("/page")
 @app.route("/page/<user>")
-def page(user=None):
-    if (user==None):
+def page(user):
+    if not(mongo.exists_user(user)):
+        flash("There is no such user.")
         return redirect("/")
-    return render_template("user.html", user=user)
+    if (mongo.exists_user(user)):
+        if(mongo.logged_in(user)=="y"):
+            return render_template("user.html", user=user)
+        else:
+            flash("You don't have permission to view that user's page.")
+            return redirect("/")
 
 @app.route("/profile")
 @app.route("/profile/<user>")
-def profile(user=None):
-    if (user==None):
+def profile(user):
+    if not(mongo.exists_user(user)):
+        flash("There is no such user.")
         return redirect("/")
-    return render_template("profile.html", user=user)
+    if (mongo.exists_user(user)):
+        if(mongo.logged_in(user)=="y"):
+            return render_template("profile.html", user=user)
+        else:
+            flash("You don't have permission to view that user's profile.")
+            return redirect("/")
 
 @app.route("/about")
 def about():
     return render_template("about.html")
+
+@app.route("/logout/<user>")
+def logout(user=None):
+    mongo.logout_user(user)
+    flash("Logged out successfully")
+    return redirect("/")
 
 @app.route("/register")
 def register():
@@ -49,17 +68,17 @@ def register():
     pcheck = request.args.get("pwdcheck")
     register = request.args.get("register")
 
-    if (user != "" and password != ""):
+    if (user != None and password != None and pcheck != None):
         if (password == pcheck and not(mongo.exists_user(user))):
-            mongo.add_user(user,pwd)
+            mongo.add_user(user,password)
+            mongo.login_user(user)
             return redirect("/page/"+user)
-        elif (mongo.exists_user(user)):
+        if (mongo.exists_user(user)):
             flash("This username is taken.")
-            return redirect("/")
-            #return login
-        elif (password != pcheck):
+            return redirect("/register")
+        if (password != pcheck):
             flash("The passwords do not match.")
-            return redirect("/")
+            return redirect("/register")
     else:
         return render_template("register.html")
 

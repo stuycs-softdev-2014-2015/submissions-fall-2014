@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+  <head>
+    {% block body %}
+    <title>User Home</title>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+	<ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="about">About</a></li>
+          <li class="active"><a href="account">Account</a></li>
+          <li><a href="logout">Logout</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li class="divider"></li>
+	  <li class="navbar-brand">Welcome {{ username }}</li>
+	</ul>
+      </div>
+    </nav>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+	<h2> Account details: </h2>
+	<strong>Username:</strong> {{ username }} <br><br>
+	<strong>Picture:</strong> <img height="50" width="50" src={{ pic }}>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      Change your Manatee Picture: <br>
+      <form name="input" action="" method="POST">
+	<br><br>
+	<input type="radio" name="pic" value="1" checked> 1&emsp;
+	  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHMWkgpCaI9ybEfMJZGRMMNcyoAehisCnhGrlpXl8c6fdrjNoF2rhiHAc" alt="M1" width=150 height=100><br><br>
+	<input type="radio" name="pic" value="2"> 2&emsp;
+	  <img src="http://ngm.nationalgeographic.com/2013/04/manatees/img/01-florida-manatee-670.jpg" alt="M2" width=150 height=100><br><br>
+	<input type="radio" name="pic" value="3"> 3&emsp;
+	  <img src="http://i.huffpost.com/gen/1273181/thumbs/o-MANATEE-900.jpg?1" alt="m3" width=150 height=100><br><br>
+	<input type="radio" name="pic" value="4"> 4&emsp;
+	  <img src="http://i.huffpost.com/gen/1272530/thumbs/o-MANATEES-900.jpg?5" alt="m4" width=150 height=100><br><br>
+
+	<button class="btn btn-lg btn-info" type="submit"> Submit </button>
+      </form>
+    </div>
+
+    {% endblock %}
+  </body>
+</html>

@@ -11,6 +11,7 @@
 	<ul class="nav navbar-nav">
           <li class="active"><a href="/">Home</a></li>
           <li><a href="about">About</a></li>
+          <li><a href="account">Account</a></li>
           <li><a href="logout">Logout</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
@@ -24,7 +25,7 @@
     <div class="container">
       <center>
 	<div class="jumbotron">
-	  <h1> Hello {{ username }} </h1>	
+	  <h1> Hello {{ username }} </h1> <img height="200" width="200" src={{ pic }}>	
 	</div>
       </center>
     </div>
@@ -38,6 +39,9 @@
     </h4> </h3>
     <br>
     <br>
+    <h3>
+      Change your manatee icon <a href="account"> here </a>
+    </h3>
    
     {% endblock %}
   </body>

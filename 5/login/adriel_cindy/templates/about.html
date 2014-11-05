@@ -3,3 +3,15 @@
 {% block head %}
 About
 {% endblock head %}
+
+{% if user!="None" %}
+
+{% block tab %}
+{{user}}hello
+<li role="presentation"><a href="/page/{{user}}">Home</a></li>
+<li role="presentation"><a href="/about/{{user}}">About</a></li>
+<li role="presentation"><a href="/profile/{{user}}">Profile</a></li>
+<li role="presentation"><a href="/logout/{{user}}">Logout</a></li>
+{% endblock tab %}
+
+{% endif %}
