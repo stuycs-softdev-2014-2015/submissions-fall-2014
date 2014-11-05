@@ -6,6 +6,7 @@
 
 {% block css %}
 <link href="/static/base.css" rel="stylesheet">
+<link href="/static/status.css" rel="stylesheet">
 {% endblock css %}
 
 {% block session_button %}
@@ -15,13 +16,11 @@
 
 
 {% block main %}
-<title>Main</title>
-<div class="container">
-  <div class="jumbotron">
-    <h3>{{name}}'s Page</h3>
-    <p>{{message}}</p> 
-  </div>
+<title>New Message Failed</title>
+<div class="alert alert-danger" role="alert">
+  <strong>Error:</strong> Incorrect password.
 </div>
+
 
 
 {% endblock main %}
