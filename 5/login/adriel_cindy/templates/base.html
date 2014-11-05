@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>{% block title %}Account Keeper{% endblock title %}</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
+    <link href="jumbotron-narrow.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <font color="red">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul class=flashes>
+	{% for message in messages %}
+	<li>{{ message }}</li>
+	{% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      </font>
+
+      {% block navbar %}
+      <div class="header">
+        <ul class="nav nav-pills pull-right" role="tablist">
+	  <li role="presentation">
+          {% block home %}
+	  <a href="/">	  
+	    {% endblock home %}
+	    Home</a>
+	  </li>
+          <li role="presentation"><a href="/about">About</a></li>
+	  {% block logout %}
+	  {% endblock logout %}
+        </ul>
+
+        <h3 class="text-muted">
+	{% block head %}
+	Head
+	{% endblock head %}
+	</h3>
+	
+      </div>
+      {% endblock navbar %}
+
+      {% block body %}
+      Body
+      {% endblock body %}
+
+  </body>
+</html>

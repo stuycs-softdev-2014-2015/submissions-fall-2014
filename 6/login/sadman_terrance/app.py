@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import csv
 import pymongo
 
@@ -18,14 +18,8 @@ def login():
       
       username = request.form['username']
       password = request.form['password']
-      #print user + " : " + password;
       print 'Username and Password have been recorded as variables'
       
-      #db.drop_collection('accounts')
-      doc = {"username":username, "password":password}
-      
-      #db.accounts.insert(doc);
-      #print db.accounts.find() + '\n'
       exists = False
       loggedin = False
       incorrectlogin = False
@@ -41,9 +35,6 @@ def login():
       if (exists == True and savedpass != password):
          incorrectlogin = True
          
-      for d in db.accounts.find():
-         print d['username']
-         print d['password']
          
       #print db.accounts.find({username:'a', password:"a"})  
       doc = list(db.accounts.find({})) 
@@ -56,10 +47,19 @@ def login():
       
       print "login status"
       print incorrectlogin
+
+      if loggedin:
+         db.account.update({"username":username},{'$set':{"status":"in"}})
+
+      for d in db.accounts.find():
+         print d['username']+": "+d['password']
+ 
+
       return render_template("login.html", exists=exists, loggedin=loggedin, username=username, password=password, incorrectlogin=incorrectlogin)
    else:
       return render_template("login.html", loggedin=False)
-  
+   
+     
 @app.route("/logout")
 def logout():
    pass
@@ -102,9 +102,9 @@ def register():
          print d['username']+": "+d['password']
    
       if registered:
-         return render_template("register.html", page=1, success=True)
+         return render_template("register.html", page=1)
       else:
-         return render_template("register.html", page=2, success=False, reason=reason)
+         return render_template("register.html", page=2, reason=reason)
    else:
       return render_template("register.html", page=3) 
    #register
@@ -126,4 +126,5 @@ def joke():
 
 if __name__ == "__main__":
    app.debug = True
+   app.secret_key = "SadmanTerrance"
    app.run()

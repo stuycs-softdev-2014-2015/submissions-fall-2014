@@ -1,16 +1,71 @@
-<html>
+<html lang="en">
   <head>
     <title>Register</title>
+    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/login.css" rel="stylesheet">
+  <style>
+      .navbar-right{
+      margin-right: 5px;
+      margin-top: 28px;
+      }
+
+      .form-signin {
+      margin-top: 70px;
+      }
+
+      .links{
+      margin-top: 23px;
+      margin-left: 20px;
+      }
+
+      .navbar-text{
+      margin-top: 38px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Register</h1>
-    <form method="POST">
-      <input type="text" name="username" placeholder="Username"><br>
-      <input type="password" name="password" placeholder="Password"><br>
-      <input type="password" name="confirm_password" placeholder="Confirm Password"><br>
-      <input type="text" name="name" placeholder="Your Name"><br>
-      <input type="text" name="birthday" placeholder="Birthday"><br>
-      <button type="submit" name="b" value="Register">Register</button>
-    </form>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<h1> REGISTER <small> Goldberg & Sacs </small></h1>
+	      </div>
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<a href="/about" class="navbar-right">About</a>
+	      </div>
+      </nav>
+      <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+	<div class="navbar-header">
+		<h1> Golberg & Sacs <small> Other Projects </small></h1>
+	</div>
+	<div class="collapse navbar-collapse">
+	  <ul class="nav navbar-nav links">
+            <li><a href="/whitehouse">The U.S.</a></li>
+            <li><a href="/google">Google</a></li>
+	    <li><a href="/bootstrap">Bootstrap</a></li>
+	  </ul>
+	  <p class="navbar-text navbar-right">The Bussiness Bussiness LLP Co. Inc. and Sons., Md.</p>
+	</div>
+      </nav>
+      <form class="form-signin" role="form" method="POST">
+	<div class="form-group">
+	  <label for="username">Username</label>
+	  <input type="text" name="username" class="form-control" placeholder="Username">
+	</div>
+	<div class="form-group">
+	  <label for="password">Password</label>
+	  <input type="password" name="password" class="form-control" placeholder="Password">
+	  <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+	</div>
+	<div class="form-group">
+	  <label for="name">Name</label>
+	  <input type="text" name="name" class="form-control" placeholder="Your Name">
+	</div>
+	<div class="form-group">
+	  <label for="birthday">Birthday</label>
+	  <input type="text" name="birthday"class="form-control" placeholder="Birthday">
+	</div>
+	<button type="submit" class="btn btn-success"  name="b" value="Register">Register</button>
+      </form>
+    </div>
   </body>
 </html>

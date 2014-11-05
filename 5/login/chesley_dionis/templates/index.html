@@ -2,25 +2,21 @@
 
 {% block bodycontent %}
 
-<div>
-  <center>  
-    <form class="pure-form">
+<div class="center noselect">
+      <form action="{{url_for("index")}}" method="POST" class="pure-form">
       <fieldset>
-        <legend>Sign In to do stuff</legend>
-	
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-		
+        <h1 class="gray">Sign In</h1>
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <br/>
+        <br/>
         <button type="submit" class="pure-button pure-button-primary">Sign in</button>
 	
       </fieldset>
     </form>
-    <form class="pure-form">
-      <fieldset>	
-        <button type="submit" class="pure-button pure-button-primary">Sign up</button>	
-      </fieldset>
-    </form>
-  </center>
+    <a class="hint center" href="{{ url_for("register") }}">Don't have an account? Click here to register!</a>
+    <br>
+    <a class="hint center" href="{{ url_for("about") }}">About Us</a>
 </div>
 
 {% endblock bodycontent %} 

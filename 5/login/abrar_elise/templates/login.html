@@ -2,20 +2,22 @@
 {% extends "base.html" %}
 {% block bodycontent %}
 
-<ul class="nav navbar-nav navbar-right">
-      <li><a href="/register">Register</a></li>
-      <li><a href="/">Home</a></li>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <center>{{ message }}</center>
+    {% endfor %}
     </ul>
-  </div>
-</div>
-
+  {% endif %}
+{% endwith %}
 
 <form class="pure-form pure-form-stacked" method="POST">
 <center>
 Username: <input type="text" name="username"></input>
-<br> 
 <br>
-Password: <input type="text" name="password"></input>
+<br>
+Password: <input type="password" name="password"></input>
 <br>
 <br>
 

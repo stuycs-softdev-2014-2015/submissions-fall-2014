@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Login</h1>
+{% if error %}
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <p class=error><strong>Error:</strong> {{ error }}</p>
+</div>
+{% endif %}
+<form action="" method="post">
+  <p>Username: <input type=text name=username>
+  <p>Password: <input type="password" name=password>
+  <p><input type=submit value=Login>
+</form>
+
+{% endblock %}

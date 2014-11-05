@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+  <head>
+    <title>Register</title>
+    {% block body %}
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
+    <center>
+      <h1>
+	<span class="label label-success"> 
+	  Register Here: 
+	</span>
+      </h1>
+    </center>
+      <div class="container-fluid">
+
+    <form name="input" action="" method="POST">
+      <div class="row">
+	<div class="col-md-1">Username:</div>
+	<div class="col-md-2"><input type="text" name="username"></div>
+      </div>
+      <div class="row">
+	<div class="col-md-1">Password:</div>
+	<div class="col-md-2"><input type="password" name="password"></div>
+      </div>
+
+      <br>
+      Pick a Manatee Picture: <br>
+      <select name="pic">
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+      </select>
+      <br><br>
+      1&emsp;<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHMWkgpCaI9ybEfMJZGRMMNcyoAehisCnhGrlpXl8c6fdrjNoF2rhiHAc" alt="M1" width=150 height=100><br><br>
+      2&emsp;<img src="http://ngm.nationalgeographic.com/2013/04/manatees/img/01-florida-manatee-670.jpg" alt="M2" width=150 height=100><br><br>
+      3&emsp;<img src="http://i.huffpost.com/gen/1273181/thumbs/o-MANATEE-900.jpg?1" alt="m3" width=150 height=100><br><br>
+      4&emsp;<img src="http://i.huffpost.com/gen/1272530/thumbs/o-MANATEES-900.jpg?5" alt="m4" width=150 height=100><br><br>
+
+      <button class="btn btn-lg btn-info" type="submit"> Submit </button>
+      </div>
+    </form>
+{% endblock %}
+
+
+</html>
+
