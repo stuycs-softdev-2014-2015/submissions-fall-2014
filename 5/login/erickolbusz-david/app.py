@@ -12,7 +12,7 @@ users = db.users
 #login page
 @app.route("/")
 def index():
-    if ('username' not in session)
+    if ('username' not in session):
         session ['username'] = None
     if (session.get('username') != None):
         flash ("You are already logged in!")
