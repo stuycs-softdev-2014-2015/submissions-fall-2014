@@ -2,12 +2,12 @@
 
 {% block bodycontent %}
 
-<div class="center noselect">
+<div class="center-all noselect">
       <form action="{{url_for("index")}}" method="POST" class="pure-form">
       <fieldset>
         <h1 class="gray">Sign In</h1>
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
+        <input class="center" type="text" name="username" placeholder="Username">
+        <input class="center" type="password" name="password" placeholder="Password">
         <br/>
         <br/>
         <button type="submit" class="pure-button pure-button-primary">Sign in</button>
