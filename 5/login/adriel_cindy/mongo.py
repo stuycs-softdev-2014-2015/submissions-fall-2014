@@ -18,7 +18,7 @@ def get_password(u):
     return None
 
 def exists_user(u):
-	if(db.users.find({'user':u}) != 0):
+	if(db.myDocs.find({"mykey": {"$exists": True}}).limit(1).count() > 0):
 		return True
 	return False
 

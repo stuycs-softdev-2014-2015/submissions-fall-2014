@@ -51,13 +51,13 @@ def register():
 
     if (user != None and password != None and pcheck != None):
         if (password == pcheck and not(mongo.exists_user(user))):
-            mongo.add_user(user,pwd)
+            mongo.add_user(user,password)
             return redirect("/page/"+user)
-        elif (mongo.exists_user(user)):
+        if (mongo.exists_user(user)):
             flash("This username is taken.")
             return redirect("/register")
             #return login
-        elif (password != pcheck):
+        if (password != pcheck):
             flash("The passwords do not match.")
             return redirect("/register")
     else:
