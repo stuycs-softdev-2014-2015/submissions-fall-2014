@@ -70,21 +70,21 @@ def about():
    if ('username' not in session):
         flash ("You are not logged in")
         redirect ("/")
-  if (submit == "Submit"):
-    user_list = db.users.find({'name':session.get("username")})
-    user = user_list[0]
-    info = user['info']
-    addedinfo = request.args.get("userinfo")
-    new_info = info + addedinfo
-    users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':new_info}, upsert=True)
-  return render_template ("about.html", username = session.get("username"), userinfo = mongo.user_info(session.get("username")))
+    if (submit == "Submit"):
+        user_list = db.users.find({'name':session.get("username")})
+        user = user_list[0]
+        info = user['info']
+        addedinfo = request.args.get("userinfo")
+        new_info = info + addedinfo
+        users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':new_info}, upsert=True)
+    return render_template ("about.html", username = session.get("username"), userinfo = mongo.user_info(session.get("username")))
 
 @app.route("/logout")
 def logout():
-  session.pop('username', None)
-  session.pop('logins', None)
-  flash('You were logged out')
-  return redirect("/")
+    session.pop('username', None)
+    session.pop('logins', None)
+     flash('You were logged out')
+    return redirect("/")
 
 if __name__ == '__main__':
     app.debug = True
