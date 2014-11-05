@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% block bodycontent %}
+{% if loggedin %}
+Welcome, {{ username }}.
+<br>
+<form method="POST" action="page2" class="pure-form pure-form-stacked">
+  <button type="submit" class="pure-button" name="logout">
+    Logout
+  </button>
+</form>
+{% else %}
+Logged out.
+{% endif %}
+{% endblock bodycontent %}
