@@ -21,7 +21,10 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
+    if 'username' in session:
+        return render_template("about.html", username = session['username'])
+    flash("Please login first")
+    return redirect("/")
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -30,7 +33,7 @@ def register():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         picstr = request.form['manatee']
         if (pic != ''):
-            pic = int(picstr) % 4
+            pic = int(picstr)
         else:
             pic = 0
         r = mongo.addNewUser(request.form['username'], request.form['password'], pic)
