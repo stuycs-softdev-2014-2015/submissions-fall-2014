@@ -21,6 +21,7 @@ def home():
       username = '-'
    print loggedin
    return render_template("base.html", loggedin=loggedin, username=username)
+
 @app.route("/login",methods=['GET','POST'])
 def login():
    if 'username' in session:
@@ -131,8 +132,7 @@ def register():
          
          if registered:
             return render_template("register.html", page=1, username=username)
-      else:
-         return render_template("register.html", page=2, reason=reason, a = "a")
+      return render_template("register.html", page=2, reason=reason, a = "a")
    else:
       return render_template("register.html", page=3, a = "b", loggedin=loggedin, username=username) 
    #register
