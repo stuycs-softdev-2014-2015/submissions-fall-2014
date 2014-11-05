@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect, session, flash, url_for
 from pymongo import Connection
 
 app = Flask(__name__)
@@ -15,8 +15,8 @@ def index():
     if ('username' not in session):
         session ['username'] = None
     if (session.get('username') != None):
-        redirect ("/welcome")
         flash ("You are already logged in!")
+        return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) 
     session ['username'] = None
     username = request.args.get("username")
     password = request.args.get("password")
@@ -41,7 +41,7 @@ def index():
 def register():
     if (session.get('username') != None):
         flash ("You are already logged in!")
-        redirect ("/welcome")
+        return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
     username = request.args.get("username")
     password = request.args.get("password")
     register = request.args.get("register")
@@ -61,15 +61,15 @@ def register():
 @app.route("/welcome")
 def welcome():
     if (session.get('username') == None):
-        redirect ("/")
         flash ("You are not logged in!")
+        return render_template ("login.html")
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
     if (session.get('username') == None):
-        redirect ("/")
         flash ("You are not logged in!")
+        return render_template ("login.html")
     submit = request.args.get("submit")
     user_list = db.users.find({'name':session.get("username")})
     user = user_list[0]
