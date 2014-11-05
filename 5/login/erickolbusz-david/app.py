@@ -83,7 +83,7 @@ def about():
 def logout():
     session.pop('username', None)
     session.pop('logins', None)
-     flash('You were logged out')
+    flash('You were logged out')
     return redirect("/")
 
 if __name__ == '__main__':
