@@ -121,6 +121,8 @@ def index():
         return redirect(url)
       return redirect("/home")
     else:
+        if "return" in session:
+            session.pop('return', None)
       session['logging'] = False
       return redirect("/")
 
