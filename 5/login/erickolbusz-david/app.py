@@ -25,7 +25,7 @@ def index():
 
 @app.route("/register")
 def register():
-    if (session['username'] != "")
+    if ('username' in session):
         flash ("You are already logged in")
         redirect ("/welcome")
     user = request.args.get("username","None")
