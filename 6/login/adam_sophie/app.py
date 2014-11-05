@@ -101,7 +101,7 @@ def colleges():
         for college in colleges:
             newcolleges.append(college.replace("_"," "))
         mongo.addColleges(username, newcolleges)
-        #method to add this list (if it is a list) to the users colleges
+        
     return render_template('colleges.html', udict = mongo.getUser(username))
 
 
@@ -139,6 +139,10 @@ def addcolleges():
             Clist.append(nlist)
         return render_template('collegematches.html',Clist = Clist,udict = mongo.getUser(username))
 
+@app.route('/allcolleges')
+def allcolleges():
+    username = escape(session['username'])
+    return render_template('allcolleges.html', colleges = mongo.getColleges(),udict = mongo.getUser(username))
 
 
 if __name__ == '__main__':

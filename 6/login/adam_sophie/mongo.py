@@ -63,32 +63,41 @@ def getUser(uname):
 def createColleges():
     cols = csv.DictReader(open("colleges.csv"))
     for c in cols:
+        c['min gpa'] = int(c['min gpa'])
         colleges.insert(c)
 
 def collegeLookup(uname, d):
     ucols = getAttribute(uname, 'colleges')
     colnames = []
+    if d.has_key('min gpa'):
+        d['min gpa'] = {'$gte': int(d['min gpa'])} 
     for c in colleges.find(d):
-        if c['name'] not in ucols: 
+        if c['name'] not in ucols:  
             colnames.append(colleges.find_one({'name':c['name']}))
     return colnames
-        
+
+def getColleges():
+    return colleges.find()
+
 
 if __name__ == '__main__':
-
-    colleges.remove()
-    users.remove() #----AFTER YOU RUN THIS COMMENT THIS OUT-----#
+    #users.remove() #----AFTER YOU RUN THIS COMMENT THIS OUT-----#
+    colleges.remove()    
     createColleges()
-    #collegeLookup('s',{})
+    
+    peeps = collegeLookup('sophgersh',{'min gpa':100})
+
+    """
     peeps = users.find({},{'_id':False}) 
     for p in peeps:
         print p
-    
-    print    
-    peeps = colleges.find({},{'_id':False}) 
+   
+    print "PEOPLE"     
+    peeps = users.find({},{'_id':False}) 
     for p in peeps:
         print p
-    """
+        
+  
     d = {}
     d['size'] = 'medium'
     d['type'] = 'private'
@@ -108,7 +117,7 @@ if __name__ == '__main__':
      people.insert(dict)
         
  to update:
-     person = people.find_one({"food":"ham"})
+     person = people.find_one({"food":"ham","name":"sophie"})
      person["food"] = "eggs"
      people.save(person)
 
