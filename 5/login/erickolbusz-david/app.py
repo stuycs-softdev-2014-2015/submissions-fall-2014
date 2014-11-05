@@ -74,8 +74,8 @@ def register():
             flash("Password too short, must be at least 8 characters") #password too short, None falls under here too
         else:
             db.users.insert({'name':username,'pw':password,'logincount':0,'info':""})
-            flash("Successfully registered")
             redirect("/")
+            flash("Successfully registered")
             return render_template ("login.html")
     return render_template ("register.html") #have a button that redirects to /
     
