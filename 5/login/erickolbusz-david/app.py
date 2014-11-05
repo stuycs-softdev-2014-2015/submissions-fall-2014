@@ -28,10 +28,10 @@ def index():
             return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
     session ['username'] = None
     session ['currentp'] = "login"
-    username = request.args.get("username")
-    password = request.args.get("password")
     submit = request.args.get("submit")
     if (submit == "Submit"):
+        username = request.args.get("username")
+        password = request.args.get("password")
         i = users.find({'name':username, 'pw':password}).count()
         print i
         does_account_exist = (users.find({'name':username, 'pw':password}).count() == 1)
@@ -44,6 +44,7 @@ def index():
             session ['logins'] = new_login_count
             return redirect("/welcome")
         flash ("Invalid Username or Password")
+    
     return render_template ("login.html")
     
 
@@ -61,10 +62,10 @@ def register():
             redirect ("/welcome")
             return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
     session ['currentp'] = "register"
-    username = request.args.get("username")
-    password = request.args.get("password")
     register = request.args.get("register")
     if (register == "Register"):
+        username = request.args.get("username")
+        password = request.args.get("password")
         does_account_exist = (users.find({'name':username}).count() > 0)
         if (does_account_exist == True):
             flash("Account already exists") #tried registering with taken username (None, None) is not a valid user/pass combo
@@ -75,7 +76,6 @@ def register():
         else:
             db.users.insert({'name':username,'pw':password,'logincount':0,'info':""})
             flash("Successfully registered")
-            redirect ("/")
     return render_template ("register.html") #have a button that redirects to /
     
 @app.route("/welcome")
