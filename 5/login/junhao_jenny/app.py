@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import mongo
-from flask import Flask, render_template, request, redirect, \
-    url_for, session, flash
+from flask import Flask, render_template, request, redirect, session, flash
 
 app = Flask(__name__)
 
@@ -14,16 +13,20 @@ def loginForm(page):
         flash(error, "error")
     else:
         session['user'] = user
-        return redirect(url_for(page))
+        return redirect(page)
 
 @app.route("/")
 def home():
+    if 'user' in session:
+        return redirect("animals")
     return render_template("home.html")
 
 @app.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "POST":
         loginForm("animals")
+    if 'user' in session:
+        return redirect("animals")
     return render_template("login.html")
 
 @app.route("/register", methods=["GET","POST"])
@@ -39,7 +42,7 @@ def register():
         else:
             mongo.addAccount(dict)
             flash("Successfully registered")
-            return redirect(url_for("login"))
+            return redirect("login")
 
     return render_template("register.html")
 
@@ -49,7 +52,7 @@ def logout():
         return render_template("logout.html")
     else:
         session.pop("user",None)
-        return redirect(url_for("home"))
+        return redirect("/")
 
 @app.route("/animals", methods=["GET","POST"])
 def animals():

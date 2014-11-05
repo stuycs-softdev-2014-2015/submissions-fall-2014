@@ -57,6 +57,15 @@ def thanks():
     else:
         return render_template("thankyou.html", name=escape(session["username"]))
 
+@app.route("/bird")
+def bird():
+    if "username" not in session:
+        flash("Whoa there, that's for members only.", "error")
+        return redirect(url_for("login"))
+    else:
+        return render_template("bird.html")
+
+
 if __name__ == "__main__":
     app.secret_key = "asdf"
     app.run(debug=True)
