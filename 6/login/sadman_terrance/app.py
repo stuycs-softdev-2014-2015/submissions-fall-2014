@@ -29,7 +29,6 @@ def login():
       return render_template("login.html", loggedin=True, username=luser)
 
    if request.method=='POST':
-      print '\nThe request method is ' + str(request.method) + '\n' 
       
       username = request.form['username']
       password = request.form['password']
@@ -54,17 +53,12 @@ def login():
          reason = "Your username and password do not match"
          
          
-      #print db.accounts.find({username:'a', password:"a"})  
       doc = list(db.accounts.find({})) 
-      #print doc
-      #print conn.database_names()
+
       print ''
       print db.collection_names()
       print db
       print ''
-      
-      for d in db.accounts.find():
-         print d['username']+": "+d['password']
  
       if loggedin:
          session['username']=username
@@ -73,7 +67,7 @@ def login():
    else:
       print session
       return render_template("login.html", loggedin=False)
-   
+   #login
      
 @app.route("/logout")
 def logout():
@@ -97,7 +91,6 @@ def register():
 
    if request.method=='POST':
       if 'username' not in session:
-         print '\nThe request method is ' + str(request.method) + '\n' 
       
          username = request.form['username']
          password = request.form['password']
@@ -126,9 +119,6 @@ def register():
             print 'Username and Password have been recorded as variables'
          else:
             print "Failure to register"
-         
-         for d in db.accounts.find():
-            print d['username']+": "+d['password']
          
          if registered:
             return render_template("register.html", page=1, username=username)
