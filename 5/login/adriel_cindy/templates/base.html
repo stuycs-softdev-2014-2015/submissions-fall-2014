@@ -22,15 +22,10 @@
       {% block navbar %}
       <div class="header">
         <ul class="nav nav-pills pull-right" role="tablist">
-	  <li role="presentation">
-          {% block home %}
-	  <a href="/">	  
-	    {% endblock home %}
-	    Home</a>
-	  </li>
+          {% block tab %}
+	  <li role="presentation"><a href="/">Home</a></li>
           <li role="presentation"><a href="/about">About</a></li>
-	  {% block logout %}
-	  {% endblock logout %}
+	  {% endblock tab %}
         </ul>
 
         <h3 class="text-muted">

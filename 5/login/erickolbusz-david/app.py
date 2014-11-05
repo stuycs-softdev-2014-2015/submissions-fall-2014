@@ -12,12 +12,14 @@ users = db.users
 #login page
 @app.route("/")
 def index():
+    if ('username' not in session):
+        session ['username'] = None
     if (session.get('username') != None):
-        flash ("You are already logged in!")
         redirect ("/welcome")
+        flash ("You are already logged in!")
     session ['username'] = None
-    username = request.args.get("username","None")
-    password = request.args.get("password","None")
+    username = request.args.get("username")
+    password = request.args.get("password")
     submit = request.args.get("submit")
     if (submit == "Submit"):
         i = users.find({'name':username, 'pw':password}).count()
@@ -40,11 +42,11 @@ def register():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
-    username = request.args.get("username","None")
-    password = request.args.get("password","None")
+    username = request.args.get("username")
+    password = request.args.get("password")
     register = request.args.get("register")
     if (register == "Register"):
-        does_account_exist = (users.find({'username':username}).count() > 0)
+        does_account_exist = (users.find({'name':username}).count() > 0)
         if (does_account_exist == True):
             flash("Account already exists") #tried registering with taken username (None, None) is not a valid user/pass combo
         elif (len(username)<6):
@@ -59,15 +61,15 @@ def register():
 @app.route("/welcome")
 def welcome():
     if (session.get('username') == None):
-        flash ("You are not logged in!")
         redirect ("/")
+        flash ("You are not logged in!")
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
     if (session.get('username') == None):
-        flash ("You are not logged in!")
         redirect ("/")
+        flash ("You are not logged in!")
     submit = request.args.get("submit")
     user_list = db.users.find({'name':session.get("username")})
     user = user_list[0]
@@ -83,7 +85,7 @@ def about():
 def logout():
     session.pop('username', None)
     session.pop('logins', None)
-    flash('You were logged out')
+    flash('You are logged out')
     return redirect("/")
 
 if __name__ == '__main__':
