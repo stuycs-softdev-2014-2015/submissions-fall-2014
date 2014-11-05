@@ -8,7 +8,7 @@ def index():
     if "username" in session:
         return "YOURE LOGGED IN AS %s" %escape(session["username"])
     else:
-        return "this is the home page which means you arent logged in"
+        return render_template("index.html")
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
