@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+
+  <body>
+
+    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <a href="/"><h2>The Swag Page</h2></a>
+      <ul>
+          <li><a href="/home">Home</a></li>
+          <li class="pure-menu-selected"></li>
+          <li><a href="/other">Other People</a></li>
+          <li><a href="/register">Login/Register</a></li>
+          <li><a href="/profile">Profile: <span style="color: red;">{{ loggedin }}</span></a></li>
+          <li style="float: right"><a href="/logout">Log Out</a></li>
+      </ul>
+   </div>
+
+   {% block content %}
+
+   {% endblock %}
+  </body>
+
+</html>

@@ -1,0 +1,38 @@
+<head>
+    <title>Pokedex</title>
+    <link rel="shortcut icon" href="\static\ball.png" type="image/x-icon" />
+    <link rel="stylesheet" href = "/static/data.css" type="text/css" media="screen">
+</head>
+<h1 class="center">Pokemon Data Base</h1>
+<body>
+    <center><img src="\static\ball.png" width="300" height="300"></center>
+    Welcome to the best Pokedex in existance!!!!!!! We have compiled all pokemon information into a single page! This is all you need to determine what pokemon is best for you!<br>
+    <form method="POST">
+	Search for Pokemon! <input type="text" name="fname"><br>
+	<input type="submit" value="Search">
+	</form>
+	<br><br>
+	<table border="1" width="100%">
+	  {% for element in pokesearch %}
+	  <tr>
+	    {% for data in element %}
+	    <td> {{data}} </td>
+	    {% endfor %}
+	  </tr>
+	  {% endfor %}
+	  </table>
+
+	<br><br>
+
+	<table border="1" width="100%">
+	  {% for element in pokelist %}
+	  <tr>
+	    {% for data in element %}
+	    <td> {{data}} </td>
+	    {% endfor %}
+	  </tr>
+	  {% endfor %}
+	</table>
+
+	<embed height="2" width="0" src="\static\pokemon.mp3" autostart="true" loop="TRUE">
+</body>

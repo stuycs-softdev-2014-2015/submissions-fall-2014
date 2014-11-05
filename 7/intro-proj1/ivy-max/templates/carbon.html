@@ -1,40 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html;
-      charset=ISO-8859-1">
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=ISO-8859-1">
     <title>Greenhouse Gases</title>
-  </head>
-  <body
-background="http://all-hdwallpapers.com/wallpapers/background-textures-fa_textures.Jpg"
-    bgcolor="#cc9947">
-    <form method="POST" action="{{ url_for('data') }}">
+    <link rel="stylesheet" href="/static/css/pure-min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+  <body background="/static/img/texture.jpg" bgcolor="#cc9947">
+    <div>
+    <form method="POST" class="pure-form" action="{{ url_for('data') }}">
       <h1 align="center"><font color="#99ff99">Greenhouse Gases</font></h1>
       <h1 align="center"><img alt=":("
-src="http://thinkprogress.org/wp-content/uploads/2013/01/CarbonEmissions.jpg"
+src="/static/img/CarbonEmissions.jpg"
           height="232" width="350"><img alt=":(("
-src="http://t1.gstatic.com/images?q=tbn:ANd9GcQuMXe3lZ5uin6LoK1XPgBuPuBFA4P9_z-4Nsm6YSJtHU-AGF-Q"
+src="/static/img/factories.jpg"
           height="232" align="top" width="350"></h1>
-      <p><b>En</b><b>ter a ran</b><b>ge of years</b> <input name="range"
-          size="20" value="Range" type="text">&nbsp; </p>
+      <p><b>Enter a range of years</b> <input name="range"
+          size="20" value="" placeholder="Ex. 2000-2010" type="text">&nbsp; </p>
       <b>Choose a category</b><b><b> (type of Carbon Emission</b>) to sort
         by (default: Total fossil fuels) :<br>
         Note: "000" means there is no data for that specification.</b><br>
-      Total fossil fuels<input name="typeofemission" value="Total fossil fuels" type="radio"><br>
-      Solid fuel consumption <input name="typeofemission" value="Solid fuel consumption" type="radio"><br>
-      Liquid fuel consumption<input name="typeofemission" value="Liquid fuel consumption" type="radio"><br>
-      Gas fuel consumption<input name="typeofemission" value="Gas fuel consumption" type="radio"><br>
-      Cement production<input name="typeofemission" value="Cement production" type="radio"><br>
-      Gas flaring<input name="typeofemission" value="Gas flaring"
-        type="radio"><br>
-      Per capita CO2<input name="typeofemission" value="Per capita CO2"
-        type="radio"><br>
-      Bunker fuels (Not included in total)<input name="typeofemission" value="Bunker fuels"
-        type="radio"><br>
+      <label for="total" class="pure-radio"><input name="typeofemission" id="total" value="Total fossil fuels" type="radio" checked="checked"> Total fossil fuels
+      </label>
+      <label for="solid" class="pure-radio"> <input name="typeofemission" id="solid" value="Solid fuel consumption" type="radio">
+	Solid fuel consumption
+      </label>
+      <label for="liquid" class="pure-radio"> <input name="typeofemission" id="liquid" value="Liquid fuel consumption" type="radio">
+	Liquid fuel consumption
+      </label>
+      <label for="gas-fuel" class="pure-radio"><input name="typeofemission" id="gas-fuel" value="Gas fuel consumption" type="radio">
+	Gas fuel consumption
+      </label>
+      <label for="cement" class="pure-radio"><input name="typeofemission" id="cement" value="Cement production" type="radio">
+	Cement production
+      </label>
+      <label for="flaring" class="pure-radio"><input name="typeofemission" id="flaring" value="Gas flaring"
+        type="radio">
+	Gas flaring
+      </label>
+      <label for="per-capita" class="pure-radio"><input name="typeofemission" id="per-capita" value="Per capita CO2"
+        type="radio">
+	Per capita CO2
+      </label>
+      <label for = "bunker" class="pure-radio"><input name="typeofemission" id="bunker" value="Bunker fuels"
+        type="radio">
+	Bunker fuels (Not included in total)
+      </label>
       <br>
       <b>Sort by years only?</b><br>
-      Yes<input name="isyears" value="yes" type="radio"><br>
-      No<input name="isyears" value="no" type="radio"><br>
+      <label for="yes" class="pure-radio"><input name="isyears" id="yes" value="yes" type="radio" checked="checked">Yes</label>
+      <label for="no" class="pure-radio"><input name="isyears" id="no" value="no" type="radio">No</label>
       <br>
       <font color="#006600">Country 1</font><br>
       <select name="country1">
@@ -152,21 +167,7 @@ src="http://t1.gstatic.com/images?q=tbn:ANd9GcQuMXe3lZ5uin6LoK1XPgBuPuBFA4P9_z-4
         <option value="HAITI">HAITI</option>
         <option value="HONDURAS">HONDURAS</option>
         <option value="HONG KONG SPECIAL ADMINSTRATIVE REGION OF CHINA">HONG
-KONG
-
-
-
-
-
-
-
-
-
-
-
-
-
-          SPECIAL ADMINSTRATIVE REGION OF CHINA</option>
+KONG SPECIAL ADMINSTRATIVE REGION OF CHINA</option>
         <option value="HUNGARY">HUNGARY</option>
         <option value="ICELAND">ICELAND</option>
         <option value="INDIA">INDIA</option>
@@ -199,21 +200,7 @@ KONG
         <option value="LITHUANIA">LITHUANIA</option>
         <option value="LUXEMBOURG">LUXEMBOURG</option>
         <option value="MACAU SPECIAL ADMINSTRATIVE REGION OF CHINA">MACAU
-SPECIAL
-
-
-
-
-
-
-
-
-
-
-
-
-
-          ADMINSTRATIVE REGION OF CHINA</option>
+SPECIAL ADMINSTRATIVE REGION OF CHINA</option>
         <option value="MACEDONIA">MACEDONIA</option>
         <option value="MADAGASCAR">MADAGASCAR</option>
         <option value="MALAWI">MALAWI</option>
@@ -343,21 +330,7 @@ SPECIAL
         <option value="WESTERN SAHARA">WESTERN SAHARA</option>
         <option value="YEMEN">YEMEN</option>
         <option value="YUGOSLAVIA (FORMER SOCIALIST FEDERAL REPUBLIC)">YUGOSLAVIA
-(FORMER
-
-
-
-
-
-
-
-
-
-
-
-
-
-          SOCIALIST FEDERAL REPUBLIC)</option>
+(FORMER SOCIALIST FEDERAL REPUBLIC)</option>
         <option value="YUGOSLAVIA (MONTENEGRO &amp; SERBIA)">YUGOSLAVIA
           (MONTENEGRO &amp; SERBIA)</option>
         <option value="ZAMBIA">ZAMBIA</option>
@@ -673,21 +646,7 @@ SPECIAL
         <option value="WESTERN SAHARA">WESTERN SAHARA</option>
         <option value="YEMEN">YEMEN</option>
         <option value="YUGOSLAVIA (FORMER SOCIALIST FEDERAL REPUBLIC)">YUGOSLAVIA
-(FORMER
-
-
-
-
-
-
-
-
-
-
-
-
-
-          SOCIALIST FEDERAL REPUBLIC)</option>
+(FORMER SOCIALIST FEDERAL REPUBLIC)</option>
         <option value="YUGOSLAVIA (MONTENEGRO &amp; SERBIA)">YUGOSLAVIA
           (MONTENEGRO &amp; SERBIA)</option>
         <option value="ZAMBIA">ZAMBIA</option>
@@ -696,6 +655,6 @@ SPECIAL
       </select>
       <br>
       <br>
-      <input name="notfred" value="I'm done!" type="submit"> </form>
+      <input name="notfred" value="I'm done!" class="button-orange pure-button"  type="submit"> </form>
   </body>
 </html>

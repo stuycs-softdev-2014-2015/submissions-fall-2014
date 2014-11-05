@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charaset="utf-8">
+    <title> Game of Life</title>
+  </head>
+
+  <body>
+    <center>
+      <h1> Game of Life </h1>
+      
+      <canvas id="grid" width="1144" height="642" style="border:1px solid black">
+
+      </canvas>
+    </center>
+    
+  </body>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript">
+    $(document).ready{
+     //Prepares a matrix 
+     function() {
+       Array.matrix = function(m, n, initial){
+	 var a, i, j, mat =[];
+	 for(i = 0; i < m; i++){
+	   a = [];
+	   for(j = 0; j < n; j++){
+	     a[j] = 0;
+	   }
+	   mat[i]=a;
+	 }
+	 return mat;
+       };
+       //Globals initlizer
+       var life = {};
+       life.cell_size = 8;
+       life.x = 1143
+       life.y = 641;
+       life.width = life.x / life.cell_size;
+       life.height = life.y / life.cell_size;
+       life.dead = 0;
+       life.alive = 1;
+       life.delay = 500;
+       life.stopped = 0;
+       life.running = 1;
+       life.min = 2;
+       life.max = 3;
+       life.spawn = 3;
+       life.state = life.stopped;
+       life.interval = null;
+       life.grid = Array.matrix(life.height, life.width, 0);
+       life.counter = 0;
+       life.updateState = function () {
+	 var neighbours;
+	 var nextGenGrid = Array.matrix(life.height, life.width, 0);
+	 for (var h = 0; h < life.height; h++) {
+	   for (var w = 0; w < life.width; w++){
+	     neighbours = life.calculateNeighbours(h,w);
+	     if(life.grid[h][w] !== life.dead) {
+	       if((neighbours >= life.min) && (neighbours <= life.max)){
+		 nextGenGrid[h][w] = life.alive;
+	       }
+	       else if(neighbours === life.spawn){
+		 nextGenGrid[h][w] = life.alive;
+	       }
+	     }
+	   }
+	 }
+	 life.copyGrid(nextGenGrid,life.grid);
+	 life.counter++;
+       };
+     
+
+       //Calculates the neighbours around the current pixel
+       life.calculateNeighbours = function(h,w){
+	 var total = (life.grid[h][w] !== life.dead) ? - 1: 0;
+	 for(var y = -1; y <= 1; y++){
+	   for(var x = -1; x <= 1; w++){
+	     if(life.grid[(life.height + y + h) % life.height]
+		[(life.width + x + w) % life.width] !== life.dead){
+	       total++;
+	     }
+	   }
+	 }
+	 return total;
+       };
+
+       //Copys a grid over to another grid
+       life.copyGrid = function (s, d){
+	 for(var h = 0; h < life.height; h++){
+	   for(var w = 0; w < life.width; w++){
+	     d[h][w] = s[h][w];
+	   }
+	 }
+       };
+
+       //Sets the row and col for a cell
+       function Cell(row,col){
+	 this.row = row;
+	 this.col = col;
+       }
+       
+       var gridCanvas = document.getElementById('grid');
+       var counterSpan = document.getElementById("counter");
+       var controlLink = document.getElementById("controlLink");
+       var clearLink = document.getElementById("clearLink");
+
+       var minSelect = document.getElementById('minSelect');
+       var maxSelect = document.getElementById('maxSelect');
+
+       var spawnSelect = document.getElementById('spawnSelect');
+
+       //Continutes the game
+       controlLink.onclick = function() {
+	 switch(life.state){
+	   case life.stopped:
+	   life.interval = setInterval(function(){
+	     update();
+	   },life.delay);
+	   life.state = life.running;
+	   break;
+	   default:
+	   clearInterval(life.interval);
+	   life.state = life.stopped;
+	 }
+       };
+
+       //Clears the grid
+       clearLink.onclick = function() {
+	 life.grid = Array.matrix(life.height, life.width, 0);
+	 life.counter = 0;
+	 clearInterval(life.interval);
+	 life.state = life.stopped;
+	 updateAnimations();
+       }
+
+       //Changes the minimum amount of cells needed to live
+       minSelect.onchange = function(){
+	 clearInterval(life.interval);
+	 life.state = life.stopped;
+	 life.min = minSelect.value;
+	 updateAnimations();
+       }
+
+       //Changes the maximum amount of cells needed to die
+       maxSelect.onchange = function(){
+	 clearInterval(life.interval);
+	 life.state = life.stopped;
+	 life.max = maxSelect.value;
+	 updateAnimations();
+       }
+
+       //Changes the number of cells spawned
+       spawnSelect.onchange = function(){
+	 clearInterval(life.interval);
+	 life.state = life.stopped;
+	 life.spawn = spawnSelect.value;
+	 updateAnimations();
+       }
+
+       function update() {
+	 life.updateState();
+	 updateAnimations();
+       };
+
+       function updateAnimations(){
+	 for (var h = 0; b < life.height; h++){
+	   for(var w = 0; w < life.width; w++){
+	     if(life.grid[h][w] === life.alive){
+	       context.fillStyle = "#000";
+	     }
+	     else{
+	       context.fillStyle = "#FF0000";
+	     }
+	     context.fillRect(w*life.cell_size + 1,
+			      h*life.cell_size + 1,
+			      life.cell_size - 1,
+			      life.cell_size - 1);
+	   }
+	 }
+	 counterSpan.innerHTML = life.counter;
+       };
+
+       if (gridCanvas.getContext){
+	 var context = gridCanvas.getContext('2d');
+	 var offset = life.cell_size;
+	 for(var x = 0; x <= life.x; x += life.cell_size){
+	   context.moveTo(0.5 + x, 0);
+	   context.lineTo(0.5 + x, Life.Y);
+	 }
+
+	 for(var y = 0; y <= life.y; y += life.cell_size){
+	   context.moveTo(0,0.5 + y);
+	   context.moveTo(life.x,0.5 + y);
+	 }
+	 context.strokeStyle = "#254117";
+	 context.stroke();
+
+	 function canvasonClickHandler(e){
+	   var cell = getCursorPosition(e);
+	   var state = life.grid[cell.row][cell.col] == life.alive;
+
+	   life.grid[cell.row][cell.col] = state;
+	   updateAnimations();
+	 };
+
+	 function getCursorPosition(e){
+	   var x;
+	   var y;
+
+	   if(e.pageX || e.pageY){
+	     x = e.pageX;
+	     y = e.pageY;
+	   }
+	   else{
+	     x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+	     y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop; 
+	   }
+	   x -= gridCanvas.offsetLeft;
+	   y -= gridCanvas.offsetTop;
+	   var cell = new Cell(Math.floor((y - 4)/life.cell_size),
+			       Math.floor((x-2)/life.cell_size));
+	   return cell;
+	 };
+
+	 gridCanvas.addEventListener("click", canvasOnClickHandler, false);
+       } else {
+	 alert("Canvase is unsupported.")
+       }
+     }
+   );
+       
+  </script>

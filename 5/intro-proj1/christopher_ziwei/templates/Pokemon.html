@@ -1,0 +1,32 @@
+<html>
+  <head></head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">				
+  <head><center><b><font color=#900000  size = '7'><img width='75' height=75 src='http://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'> &nbsp; 
+	  P<font color =FFCC33 size=7>
+	    O</font><font  color=#900000 size=7>
+	    K</font><font color =FFCC33 size=7>
+	    E</font><font  color=#900000 size=7>
+	    D</font><font color =FFCC33 size=7>
+	    E</font><font  color=#900000 size=7>
+	    X</font> &nbsp; 
+	  <img width='75' height=75 src='http://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG'> 
+  </b></center></head></font><br><br>
+  <body bgcolor =3399FF>
+
+    <form action="." method="POST">
+      <p align="center"><input type="text" name="text" value="Enter ID"> <input type="submit" name="go" value="find"></p>
+    </form><br>
+    <center>
+      <table>
+      {% for pokemon in data %}
+      <tr>
+	{% for atr in pokemon %}
+	<td> {{ atr }} </td>
+	{% endfor %}
+      </tr>
+      {% endfor %}
+      </table>
+      <img src=http://24.media.tumblr.com/tumblr_m1203znCsk1rr1vyxo1_500.gif>
+    </center><br><br><br>
+  </body>
+</html>

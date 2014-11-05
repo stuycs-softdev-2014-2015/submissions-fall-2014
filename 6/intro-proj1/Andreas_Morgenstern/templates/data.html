@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+     
+        <li class="pure-menu-selected"><a href="/data">Data</a></li>
+	<li><a href="/analysis">Analysis</a></li>
+</ul>
+</div>
+<h1> Mets Team Statistics (Beginning of 2013 Season)</h1>
+<br>
+<table border="1"> 
+  {% for k in info %}
+    <tr>
+      {% for j in k %}
+        <td> {{j}} </td>
+	{% endfor %}
+    </tr>
+   {% endfor %}
+</table>
+
+<br>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Project v2</title>
+
+    <!--Styling-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="../static/marketing.css">
+    <link rel="stylesheet" href="../static/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/main.css">
+  </head>
+  <body>
+    <div class="header">
+      <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+	<a class="pure-menu-heading" href="">Pokemon Data</a>
+	
+        <ul>
+          <li class="pure-menu-selected"><a href="http://localhost:5000">Home</a></li>
+          <li><a href="http://localhost:5000/data">Data</a></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <br><br><br><br><br><br>
+      <div class="data-table is-center">
+	<p><i>Too much data all at once? <b><span class="show-search">Try our new search option</span></b></i></p>
+
+	<div class="pure-g">
+          <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+	    <form action="/data" method="POST">
+
+              <label for="name">Name Query</label>
+              <input id="query" name="query" type="text" placeholder="Name Query">
+	      
+              <button type="submit" class="pure-button" name="search">Enter</button>
+	    </form>
+	  </div>
+	</div>
+
+	<h2>{{ namequery }}</h2>
+
+	<table border=1 style="margin:auto;display:inline-block;">
+
+	  {% for itr in range(0, length) %}
+
+	  <tr>
+
+	    {% for row in data[num].split(',') %}
+	    
+	    <td>
+	      {{row}}
+	    </td>
+	    
+	    {% endfor %}
+	  </tr>
+	  {% set num = num + 1 %}
+	  {% endfor %}
+	</table>
+      </div>
+
+      <div class="footer l-box is-center">
+	2014 Genji Noguchi and Sadman Fahmid
+      </div>
+
+    </div>
+
+  </body>
+</html>

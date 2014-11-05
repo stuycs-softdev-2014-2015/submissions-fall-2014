@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      svg {border: 1px solid;}
+    </style>
+  </head>
+ 
+  <body>
+    <svg class="here" id="s"height=480 width=960>
+    </svg>
+    <script>
+    var height=480;
+    var width=960;
+    
+    var p = document.createElementNS("http://www.w3.org/2000/svg",'rect');
+    p.setAttribute('id',"player");
+    p.setAttribute('x',480);
+    p.setAttribute('y',240);
+    p.setAttribute('width',15);
+    p.setAttribute('height',15);
+    p.setAttribute('fill',"#000000"); 
+    //p.setAttribute('onkeydown',move);
+    var s = document.getElementById("s");
+    s.appendChild(p);
+    
+
+   var move = function(e){
+    e.preventDefault();
+    e = e || window.event;
+    console.log(e.which);
+    px = parseInt(p.getAttribute('x'));
+    py = parseInt(p.getAttribute('y'));
+    if (e.which==37){p.setAttribute('x',px-10);}
+    if (e.which==38){p.setAttribute('y',py-10);}
+    if (e.which==39){p.setAttribute('x',px+10);}
+    if (e.which==40){p.setAttribute('y',py+10);}
+    
+  }   
+  
+    //document.onkeydown(move);
+    document.documentElement.addEventListener('keydown',move);
+    
+    </script>
+  </body>
+</html>

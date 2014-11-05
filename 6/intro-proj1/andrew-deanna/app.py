@@ -1,5 +1,6 @@
 import random
-from flask import Flask,render_template
+import utils
+from flask import Flask,render_template,request
 
 app = Flask(__name__)
 
@@ -7,28 +8,36 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/dice")
-def dice():
-    dice1num = random.randrange(1,7)
-    dice2num = random.randrange(1,7)
-    sumdice = dice1num + dice2num
-    return render_template("dice.html",
-                           dice1num=dice1num,
-                           dice2num=dice2num,
-                           sumdice=sumdice
-                          )
+@app.route("/advertisers")
+def advertisers():
+    import random
+    num = random.randrange(0,15)
+    return render_template("advertisers.html")
 
-def shakeBall():
-    answers = { "Yes!", "No!", "Ask again later.", "If you will it!", "Maybe so!", "No, 'cause you're a bum" }
-    numb = random.randrange(0,8)
-    return answers[numb]
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
 
-@app.route("/ball")
-def ball():
-    result = shakeBall()
-    return render_template("8ball.html",
-                           result=result
-                           )
+@app.route("/rates", methods=['GET', 'POST'])
+def rates():
+    button = request.args.get("b",None)
+    issues = request.args.get("issues",None)
+    size = request.args.get("size",None)
+    print button,issues,size
+    if button == None:
+        return render_template("rates.html",image="AdSizes")
+    else:
+        return render_template("rates.html",
+                                priced="TRUE",
+                                price=utils.findPrice(size,issues),
+                                image=utils.getImg(size)
+                                )
+
+
+
+@app.route("/cssdemo")
+def cssdemo():
+    return render_template("cssdemo.html")
 
 
 if __name__=="__main__":

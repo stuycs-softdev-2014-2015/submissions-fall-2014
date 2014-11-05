@@ -1,0 +1,17 @@
+{% extends "page_template.html" %} 
+
+{% block bodyContent %} 
+
+{% if name != None %} 
+
+This is your Profile
+Name: {{name}}
+
+
+{% else %} 
+
+You are not logged in. Please log in. 
+
+{% endif %} 
+
+{% endblock bodyContent %}

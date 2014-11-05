@@ -1,0 +1,654 @@
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="jquery.js"></script>
+<link href="style.css"></link>
+<link rel="stylesheet" type="style/css" href="style.css"></link>
+<body>
+	<h1>ROI D3 for top 100 ROI colleges<h1>
+    <h2>Can't get text to display in svg...</h2>
+</body>
+
+<script>
+d = [
+  {
+    "name": "Harvey Mudd College",
+    "cost": "$221,700",
+    "roi": "$2,113,000",
+    "roip": "8.3%"
+  },
+  {
+    "name": "California Institute of Technology (Caltech)",
+    "cost": "$213,000",
+    "roi": "$1,991,000",
+    "roip": "8.2%"
+  },
+  {
+    "name": "Polytechnic Institute of New York University (NYU-Poly)",
+    "cost": "$214,300",
+    "roi": "$1,622,000",
+    "roip": "7.6%"
+  },
+  {
+    "name": "Massachusetts Institute of Technology (MIT)",
+    "cost": "$215,700",
+    "roi": "$1,606,000",
+    "roip": "7.5%"
+  },
+  {
+    "name": "SUNY - Maritime College",
+    "cost": "$90,530",
+    "roi": "$1,586,000",
+    "roip": "10.4%"
+  },
+  {
+    "name": "Colorado School of Mines",
+    "cost": "$107,100",
+    "roi": "$1,574,000",
+    "roip": "9.7%"
+  },
+  {
+    "name": "SUNY - Maritime College",
+    "cost": "$124,800",
+    "roi": "$1,552,000",
+    "roip": "9.2%"
+  },
+  {
+    "name": "Colorado School of Mines",
+    "cost": "$170,900",
+    "roi": "$1,510,000",
+    "roip": "8.0%"
+  },
+  {
+    "name": "Stevens Institute of Technology",
+    "cost": "$237,300",
+    "roi": "$1,461,000",
+    "roip": "6.9%"
+  },
+  {
+    "name": "Stanford University",
+    "cost": "$230,100",
+    "roi": "$1,432,000",
+    "roip": "6.9%"
+  },
+  {
+    "name": "Georgia Institute of Technology",
+    "cost": "$87,030",
+    "roi": "$1,389,000",
+    "roip": "10.0%"
+  },
+  {
+    "name": "Rose-Hulman Institute of Technology (RHIT)",
+    "cost": "$209,400",
+    "roi": "$1,354,000",
+    "roip": "7.1%"
+  },
+  {
+    "name": "Claremont McKenna College",
+    "cost": "$220,300",
+    "roi": "$1,341,000",
+    "roip": "6.9%"
+  },
+  {
+    "name": "Harvard University",
+    "cost": "$218,200",
+    "roi": "$1,334,000",
+    "roip": "6.9%"
+  },
+  {
+    "name": "Worcester Polytechnic Institute (WPI)",
+    "cost": "$214,900",
+    "roi": "$1,316,000",
+    "roip": "6.9%"
+  },
+  {
+    "name": "Massachusetts Maritime Academy",
+    "cost": "$96,380",
+    "roi": "$1,316,000",
+    "roip": "9.5%"
+  },
+  {
+    "name": "Georgia Institute of Technology",
+    "cost": "$172,100",
+    "roi": "$1,304,000",
+    "roip": "7.6%"
+  },
+  {
+    "name": "Santa Clara University",
+    "cost": "$217,800",
+    "roi": "$1,282,000",
+    "roip": "6.8%"
+  },
+  {
+    "name": "Dartmouth College",
+    "cost": "$221,600",
+    "roi": "$1,262,000",
+    "roip": "6.7%"
+  },
+  {
+    "name": "Massachusetts Maritime Academy",
+    "cost": "$153,800",
+    "roi": "$1,259,000",
+    "roip": "7.8%"
+  },
+  {
+    "name": "Rensselaer Polytechnic Institute (RPI)",
+    "cost": "$228,700",
+    "roi": "$1,254,000",
+    "roip": "6.6%"
+  },
+  {
+    "name": "Williams College",
+    "cost": "$217,500",
+    "roi": "$1,254,000",
+    "roip": "6.7%"
+  },
+  {
+    "name": "University of Notre Dame",
+    "cost": "$212,200",
+    "roi": "$1,250,000",
+    "roip": "6.8%"
+  },
+  {
+    "name": "Princeton University",
+    "cost": "$213,200",
+    "roi": "$1,234,000",
+    "roip": "6.7%"
+  },
+  {
+    "name": "Babson College",
+    "cost": "$217,300",
+    "roi": "$1,228,000",
+    "roip": "6.7%"
+  },
+  {
+    "name": "South Dakota School of Mines &amp; Technology",
+    "cost": "$85,830",
+    "roi": "$1,228,000",
+    "roip": "9.7%"
+  },
+  {
+    "name": "New Jersey Institute of Technology (NJIT)",
+    "cost": "$134,100",
+    "roi": "$1,223,000",
+    "roip": "8.2%"
+  },
+  {
+    "name": "Carnegie Mellon University (CMU)",
+    "cost": "$229,600",
+    "roi": "$1,222,000",
+    "roip": "6.5%"
+  },
+  {
+    "name": "Haverford College",
+    "cost": "$219,100",
+    "roi": "$1,222,000",
+    "roip": "6.6%"
+  },
+  {
+    "name": "University of Pennsylvania",
+    "cost": "$222,700",
+    "roi": "$1,220,000",
+    "roip": "6.6%"
+  },
+  {
+    "name": "South Dakota School of Mines &amp; Technology",
+    "cost": "$96,720",
+    "roi": "$1,217,000",
+    "roip": "9.2%"
+  },
+  {
+    "name": "Manhattan College",
+    "cost": "$165,300",
+    "roi": "$1,216,000",
+    "roip": "7.5%"
+  },
+  {
+    "name": "Missouri University of Science and Technology (MST)",
+    "cost": "$94,380",
+    "roi": "$1,183,000",
+    "roip": "9.2%"
+  },
+  {
+    "name": "University of California - Berkeley",
+    "cost": "$125,100",
+    "roi": "$1,182,000",
+    "roip": "8.3%"
+  },
+  {
+    "name": "Columbia University",
+    "cost": "$225,800",
+    "roi": "$1,175,000",
+    "roip": "6.4%"
+  },
+  {
+    "name": "New Jersey Institute of Technology (NJIT)",
+    "cost": "$182,700",
+    "roi": "$1,174,000",
+    "roip": "7.0%"
+  },
+  {
+    "name": "California Polytechnic State University (CalPoly) - San Luis Obispo",
+    "cost": "$97,730",
+    "roi": "$1,151,000",
+    "roip": "9.0%"
+  },
+  {
+    "name": "Duke University",
+    "cost": "$219,500",
+    "roi": "$1,146,000",
+    "roip": "6.4%"
+  },
+  {
+    "name": "Lehigh University",
+    "cost": "$212,200",
+    "roi": "$1,145,000",
+    "roip": "6.5%"
+  },
+  {
+    "name": "Swarthmore College",
+    "cost": "$215,200",
+    "roi": "$1,139,000",
+    "roip": "6.5%"
+  },
+  {
+    "name": "Missouri University of Science and Technology (MST)",
+    "cost": "$148,300",
+    "roi": "$1,129,000",
+    "roip": "7.6%"
+  },
+  {
+    "name": "Illinois Institute of Technology (IIT)",
+    "cost": "$198,000",
+    "roi": "$1,127,000",
+    "roip": "6.7%"
+  },
+  {
+    "name": "Embry-Riddle Aeronautical University (ERAU) - Prescott, AZ",
+    "cost": "$189,400",
+    "roi": "$1,122,000",
+    "roip": "6.8%"
+  },
+  {
+    "name": "Lafayette College",
+    "cost": "$212,500",
+    "roi": "$1,119,000",
+    "roip": "6.4%"
+  },
+  {
+    "name": "Brown University",
+    "cost": "$219,700",
+    "roi": "$1,118,000",
+    "roip": "6.3%"
+  },
+  {
+    "name": "Cornell University - Ithaca, NY",
+    "cost": "$218,200",
+    "roi": "$1,117,000",
+    "roip": "6.4%"
+  },
+  {
+    "name": "Clarkson University - Potsdam, NY",
+    "cost": "$201,000",
+    "roi": "$1,100,000",
+    "roip": "6.6%"
+  },
+  {
+    "name": "California Polytechnic State University (CalPoly) - San Luis Obispo",
+    "cost": "$148,400",
+    "roi": "$1,100,000",
+    "roip": "7.5%"
+  },
+  {
+    "name": "Kettering University",
+    "cost": "$218,000",
+    "roi": "$1,097,000",
+    "roip": "6.3%"
+  },
+  {
+    "name": "Bucknell University",
+    "cost": "$216,900",
+    "roi": "$1,094,000",
+    "roip": "6.3%"
+  },
+  {
+    "name": "University of Massachusetts (UMass) - Lowell Campus",
+    "cost": "$97,130",
+    "roi": "$1,094,000",
+    "roip": "8.8%"
+  },
+  {
+    "name": "University of California - Berkeley",
+    "cost": "$218,700",
+    "roi": "$1,088,000",
+    "roip": "6.3%"
+  },
+  {
+    "name": "Johns Hopkins University",
+    "cost": "$222,000",
+    "roi": "$1,072,000",
+    "roip": "6.2%"
+  },
+  {
+    "name": "Touro College - New York, NY",
+    "cost": "$127,500",
+    "roi": "$1,070,000",
+    "roip": "7.9%"
+  },
+  {
+    "name": "Rice University",
+    "cost": "$194,000",
+    "roi": "$1,069,000",
+    "roip": "6.6%"
+  },
+  {
+    "name": "Berkeley College - New York, NY",
+    "cost": "$153,400",
+    "roi": "$1,067,000",
+    "roip": "11.2%"
+  },
+  {
+    "name": "Texas A&amp;M University - Main Campus",
+    "cost": "$88,920",
+    "roi": "$1,057,000",
+    "roip": "9.0%"
+  },
+  {
+    "name": "Washington and Lee University",
+    "cost": "$209,900",
+    "roi": "$1,053,000",
+    "roip": "6.3%"
+  },
+  {
+    "name": "Milwaukee School of Engineering",
+    "cost": "$191,300",
+    "roi": "$1,051,000",
+    "roip": "6.6%"
+  },
+  {
+    "name": "Tufts University",
+    "cost": "$219,400",
+    "roi": "$1,045,000",
+    "roip": "6.1%"
+  },
+  {
+    "name": "University of California - San Diego (UCSD)",
+    "cost": "$115,500",
+    "roi": "$1,042,000",
+    "roip": "8.1%"
+  },
+  {
+    "name": "University of Massachusetts (UMass) - Lowell Campus",
+    "cost": "$151,600",
+    "roi": "$1,039,000",
+    "roip": "7.2%"
+  },
+  {
+    "name": "Cooper Union for The Advancement of Science and Art",
+    "cost": "$224,900",
+    "roi": "$1,037,000",
+    "roip": "6.0%"
+  },
+  {
+    "name": "Virginia Polytechnic Institute and State University (Virginia Tech)",
+    "cost": "$91,790",
+    "roi": "$1,037,000",
+    "roip": "8.9%"
+  },
+  {
+    "name": "The College of William and Mary",
+    "cost": "$92,910",
+    "roi": "$1,036,000",
+    "roip": "8.8%"
+  },
+  {
+    "name": "Hamilton College - Clinton, NY",
+    "cost": "$213,900",
+    "roi": "$1,030,000",
+    "roip": "6.2%"
+  },
+  {
+    "name": "University of the Pacific",
+    "cost": "$211,600",
+    "roi": "$1,029,000",
+    "roip": "6.2%"
+  },
+  {
+    "name": "University of Illinois at Urbana-Champaign (UIUC)",
+    "cost": "$109,000",
+    "roi": "$1,028,000",
+    "roip": "8.3%"
+  },
+  {
+    "name": "Amherst College",
+    "cost": "$218,300",
+    "roi": "$1,024,000",
+    "roip": "6.1%"
+  },
+  {
+    "name": "Colgate University",
+    "cost": "$216,200",
+    "roi": "$1,023,000",
+    "roip": "6.1%"
+  },
+  {
+    "name": "Stony Brook University",
+    "cost": "$82,620",
+    "roi": "$1,023,000",
+    "roip": "9.2%"
+  },
+  {
+    "name": "Drexel University",
+    "cost": "$233,800",
+    "roi": "$1,019,000",
+    "roip": "5.9%"
+  },
+  {
+    "name": "Villanova University",
+    "cost": "$209,700",
+    "roi": "$1,019,000",
+    "roip": "6.2%"
+  },
+  {
+    "name": "New Mexico Institute of Mining and Technology (New Mexico Tech)",
+    "cost": "$70,930",
+    "roi": "$999,500",
+    "roip": "9.6%"
+  },
+  {
+    "name": "Michigan Technological University",
+    "cost": "$108,200",
+    "roi": "$999,300",
+    "roip": "8.2%"
+  },
+  {
+    "name": "Texas A&amp;M University - Main Campus",
+    "cost": "$151,100",
+    "roi": "$994,900",
+    "roip": "7.1%"
+  },
+  {
+    "name": "DeVry University - Columbus, OH",
+    "cost": "$131,800",
+    "roi": "$990,600",
+    "roip": "7.5%"
+  },
+  {
+    "name": "Stony Brook University",
+    "cost": "$117,000",
+    "roi": "$989,100",
+    "roip": "7.9%"
+  },
+  {
+    "name": "Embry-Riddle Aeronautical University (ERAU) - Daytona Beach, FL",
+    "cost": "$191,600",
+    "roi": "$988,900",
+    "roip": "6.4%"
+  },
+  {
+    "name": "Montana Tech of The University of Montana",
+    "cost": "$78,130",
+    "roi": "$985,100",
+    "roip": "9.2%"
+  },
+  {
+    "name": "San Jose State University (SJSU)",
+    "cost": "$108,000",
+    "roi": "$983,000",
+    "roip": "8.1%"
+  },
+  {
+    "name": "Brigham Young University (BYU)",
+    "cost": "$77,820",
+    "roi": "$982,000",
+    "roip": "9.2%"
+  },
+  {
+    "name": "Oregon Institute of Technology (OIT)",
+    "cost": "$84,510",
+    "roi": "$979,100",
+    "roip": "8.9%"
+  },
+  {
+    "name": "Virginia Polytechnic Institute and State University (Virginia Tech)",
+    "cost": "$149,800",
+    "roi": "$978,700",
+    "roip": "7.1%"
+  },
+  {
+    "name": "Indiana Institute Of Technology",
+    "cost": "$141,200",
+    "roi": "$974,700",
+    "roip": "7.3%"
+  },
+  {
+    "name": "University of Illinois at Urbana-Champaign (UIUC)",
+    "cost": "$168,200",
+    "roi": "$968,400",
+    "roip": "6.7%"
+  },
+  {
+    "name": "Wentworth Institute of Technology",
+    "cost": "$161,400",
+    "roi": "$958,800",
+    "roip": "6.8%"
+  },
+  {
+    "name": "Iona College",
+    "cost": "$180,500",
+    "roi": "$958,700",
+    "roip": "6.5%"
+  },
+  {
+    "name": "New Mexico Institute of Mining and Technology (New Mexico Tech)",
+    "cost": "$113,200",
+    "roi": "$957,200",
+    "roip": "7.9%"
+  },
+  {
+    "name": "Case Western Reserve University",
+    "cost": "$215,500",
+    "roi": "$956,000",
+    "roip": "5.9%"
+  },
+  {
+    "name": "Yale University",
+    "cost": "$222,600",
+    "roi": "$954,300",
+    "roip": "5.8%"
+  },
+  {
+    "name": "The College of William and Mary",
+    "cost": "$177,900",
+    "roi": "$951,300",
+    "roip": "6.5%"
+  },
+  {
+    "name": "University of California - San Diego (UCSD)",
+    "cost": "$212,100",
+    "roi": "$944,900",
+    "roip": "5.9%"
+  },
+  {
+    "name": "Michigan Technological University",
+    "cost": "$166,200",
+    "roi": "$941,300",
+    "roip": "6.7%"
+  },
+  {
+    "name": "University of California - Santa Barbara (UCSB)",
+    "cost": "$121,400",
+    "roi": "$939,900",
+    "roip": "7.6%"
+  },
+  {
+    "name": "Montana Tech of The University of Montana",
+    "cost": "$127,700",
+    "roi": "$935,500",
+    "roip": "7.5%"
+  },
+  {
+    "name": "Purdue University - Main Campus",
+    "cost": "$93,210",
+    "roi": "$935,000",
+    "roip": "8.5%"
+  },
+  {
+    "name": "University of Maryland - College Park",
+    "cost": "$92,510",
+    "roi": "$934,800",
+    "roip": "8.5%"
+  },
+  {
+    "name": "Southern Polytechnic State University",
+    "cost": "$79,290",
+    "roi": "$934,500",
+    "roip": "9.0%"
+  }
+]
+
+//might have o change all to a svg cirlce
+
+var svgCont = d3.select('body').append('svg')
+  .attr('width',1800)
+  .attr('height',1200)
+
+var circles = svgCont.selectAll('circle')
+	.data(d)
+	.enter()
+	.append("circle");
+
+
+var circleAttr = circles
+	.attr('cx', function(d) {
+		return (d.cost.replace('$','').replace(',','') - 50000)/125;
+	})
+	.attr("cy",function(d) {
+		return 800 - (d.roi.replace('$','').replace(',','').replace(',','')-900000)/1400;
+	})
+  .attr('r', 30)
+  .attr('stroke', 'black')
+  .attr('stroke-width', 4)
+  .attr('fill', 'crimson')
+	.append('text')
+    .text(function(d) {
+      return d.name + '\n' + 'Cost: ' + d.cost + '\n' + '30-year ROI: ' + d.roi + '\n' + 'Annual ROI: ' + d.roip;
+    })
+    .attr('x', 20)
+    .attr('y', 20)
+    .attr('font-size','1em')
+
+  var text =  circles
+  .on("mouseover", function() {
+    d3.select(this)
+    .attr('r',120)
+    
+    
+  })
+  .on("mouseout", function() {
+    d3.select(this)
+    .attr('r', 30)
+    .text('');
+  });
+
+console.log(d3.selectAll('div'));
+
+</script>

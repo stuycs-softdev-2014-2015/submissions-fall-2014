@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      = block title
+      = endblock
+    </title>
+  </head>
+  <body>
+    <h2>menu</h2>
+    <ul>
+      <li>
+	<a href="/">index</a>
+      </li>
+      <li>
+	= if "username" in session
+	  <a href="/logout">logout</a>
+	= else
+	  <a href="/login">login</a>
+	= endif
+      </li>
+    </ul>
+    = block content
+    = endblock
+  </body>
+</html>

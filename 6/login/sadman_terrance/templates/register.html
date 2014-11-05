@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block text %}
+	{% if loggedin == True %}
+	You are already logged in
+	<br><br>
+	<a class="pure-button" href="/logout" type = "submit"> Logout </a>
+	{% endif %}
+	
+	{% if page==2 or page==3 and loggedin==False %}
+	  <h2>Register</h2>
+	  <form action="register" method="post">
+	    Username:  <input required type="text" name="username"></input>
+	    <br>
+	    Password:&nbsp <input required type="password" name="password"></input>
+	    <br>
+	    Retype Password: <input required type="password" name="password2">
+	    <br>
+	    {% if page == 2%}
+	    <b>{{reason}}</b>
+	    {% endif %}
+	    <div>
+	      <style scoped>
+		
+		.button-small {
+		font-size: 85%;
+		}
+	      </style> <br>
+	      <button class="button-small pure-button" type="submit">Register</button>
+	    </div>
+	  </form>
+	<hr>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if page==1 %}
+    You have successfully registered!
+    {% endif %}
+{% endblock %}

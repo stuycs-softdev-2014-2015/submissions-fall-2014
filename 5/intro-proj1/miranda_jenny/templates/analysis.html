@@ -3,20 +3,23 @@
 <html>
     <head>
         <title>Analysis</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/theme.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
     </head>
 
     <body>
-        <center>
-            <h1>Analysis</h1>
+        <div class="container">
+            <center>
+				<h3><font color="pink">{{name}}</font>  wants to see the</h3>
+                <h1>Analysis</h1>
+            </center>
 
-        </center>
-<div class= "text_body">
-        <p><b>Average Number of Deaths with a Firearm:</b> {{numDeathsGun}}
+    <div class= "text_body">
+        <p style="font-size:16px"><b>Average Number of Deaths with a Firearm:</b> {{numDeathsGun}}
         <br><b>Average Score for Gun Control:</b> {{averageScore}}
-        <br><b>Statistics:</b> From this data I decided to find the number of states with below average scores for gun control, the number with above average rates of death by firearm, and the number of states with both.<br></p>
+        <br><b>Statistics:</b> From this data I decided to find the number of states with below average scores for gun control, the number with above average rates of death by firearm, and the number of states with both.<br></p><br>
 
-        <table border=1 class= "white-table"><tr><th>Statistic</th><th>Number of States</th><th>Percent of States</th></tr>
+    <center>
+        <table border=1 class= "table table-striped table-bordered"><tr><th>Statistic</th><th>Number of States</th><th>Percent of States</th></tr>
             {% for x in basicdataResults %}
             <tr>
                 {%for y in x%}
@@ -25,16 +28,20 @@
             </tr>
             {%endfor%}
         </table>
+    </center>
         
-        <p>30% seems like a small number, but this is out of all states, including those who may have had both high scores and low murder rates. The goal of this was to determine the validity of the Brady Campaign score. So the percent of states that recieved below average scores, and also have above average rates of death by firearm might be more relevant.<br><br><b>15/34--->44.1%</b><br>This corolation is even clearer when plotted in a graph, kindly created by Jacob Olenik:<br><br><a href="http://homer.stuy.edu/~jacob.olenick/Gun%20Control1.html"><b>Graph</b></a><br></p>
+        <br><p style="font-size:16px">30% seems like a small number, but this is out of all states, including those who may have had both high scores and low murder rates. The goal of this was to determine the validity of the Brady Campaign score. So the percent of states that recieved below average scores, and also have above average rates of death by firearm might be more relevant.</p>
+        
+        <center><b><p style="font-size:20px">15/34--->44.1%</p></b></center><br>
         
         <center>
             <h2>Conclusion</h2>
         </center>
 
-        <p>From this data we can see that about half of the states with below average scores from the Brady Campaign also have above average rates of murder with a firearm. This isn't huge, but does suggest that there is at least some sort of correlation between strength of gun control and muder rate with a firearm. It should also be taken into account that in many places with stronger gun control, weapons are brought in from out of state illegally, and the death by firearm rate in the US is over 40 times that of the UK. Either way, to suggest that these numbers should be dismissed or that there is no relation to the number of people who are killed by guns is untrue. </p>
+        <p style="font-size:16px">From this data we can see that about half of the states with below average scores from the Brady Campaign also have above average rates of murder with a firearm. This isn't huge, but does suggest that there is at least some sort of correlation between strength of gun control and muder rate with a firearm. It should also be taken into account that in many places with stronger gun control, weapons are brought in from out of state illegally, and the death by firearm rate in the US is over 40 times that of the UK. Either way, to suggest that these numbers should be dismissed or that there is no relation to the number of people who are killed by guns is untrue.</p><br>
 	<form action="/home">
-	<button value="Home"name="back">Go Back</button>
+	<button class="btn btn-primary btn-sm"value="Home"name="back">Go Back</button>
 	</form>
+    </div>
     </body>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <title>Mongo Thing</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='extend.css')}}">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+
+<body>
+  <div class = "container">
+    <h1><a href="/">Mongo Thing</a></h1>  
+    {% if message %}
+    <strong>
+      {{message}}
+    </strong>
+    <br><br>
+    {% endif %}
+    {% block bodycontent %}
+
+    {% endblock bodycontent %}
+    {% if logout %}
+    <form action="/" method = "POST">
+      <input type="submit" class = "logout button" name = "b" value = "Log Out">
+    </form>
+    <br>
+    {% endif %}
+  </div>
+</body>

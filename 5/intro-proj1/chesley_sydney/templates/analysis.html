@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>
+            {{page_title}}
+        </title>
+        <link rel="stylesheet" type="text/css" href={{ url_for("static",
+                filename="css/style.css") }}/>
+    </head>
+    <body>
+        <div id="container">
+            <h1>{{content_header}}</h1>
+        <div class="table_wrapper">
+        <table class="font_16px">
+            {% for header in headers %}
+            <th>
+                {{ header }}
+            </th>
+            {% endfor %}
+            <tr>
+                {% for item in p1 %}
+                    {% if loop.first %}
+                        <td class="bold">
+                    {% else %}
+                        <td>
+                    {% endif %}
+                    {{item}}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for item in p2 %}
+                    {% if loop.first %}
+                        <td class="bold">
+                    {% else %}
+                        <td>
+                    {% endif %}
+                    {{item}}
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for item in diff %}
+                    {% if loop.first %}
+                        <td class="bold">
+                    {% else %}
+                        {% if item | float > 0 %}
+                            <td class="bold positive">
+                        {% elif item | float == 0 %}
+                            <td class="bold neutral">
+                        {% else %}
+                            <td class="bold negative">
+                        {% endif %}
+                    {% endif %}
+                    {{item}}
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+        </div>
+        <form method="POST" action="{{url_for("analysis")}}">
+<textarea id="comment_field" name="comment_field" placeholder="Say something about the data!"
+        cols=50 rows=5>
+</textarea>
+<br/>
+<input type="submit" name="submit" value="Go!">
+</form>
+  </body>
+    </div>
+
+</html>
+

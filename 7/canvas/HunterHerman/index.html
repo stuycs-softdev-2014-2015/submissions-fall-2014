@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<style>
+			body {
+				margin:0;
+				padding:0;
+			}
+			canvas {
+				width:100%;
+				height:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="main">
+		</canvas>
+	</body>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+	mD = false
+	mpos = null
+	mainCanvas = $("#main")[0]
+	main = mainCanvas.getContext("2d")
+	slope = 1;
+	org = {x:null,y:null}
+	function init() {
+		resizeCanvas(mainCanvas)
+	}
+	function resizeCanvas(cnv) {
+		cnv.width = $(document).width()
+		cnv.height = $(document).height()
+		slope = cnv.height / cnv.width
+		org = {x:cnv.width/2,y:cnv.height/2}
+		lineAB({x:0,y:0},{x:cnv.width,y:cnv.height},main)
+		lineAB({x:cnv.width,y:0},{x:0,y:cnv.height},main)
+		lineAB({x:0,y:cnv.height/2},{x:cnv.width,y:cnv.height/2},main)
+		lineAB({x:cnv.width/2,y:0},{x:cnv.width/2,y:cnv.height},main)
+	}
+	function gradient(mpos,cnv) {
+		cnv.strokeStyle = grad
+	}
+	function updateMpos(e) {
+		mpos = {x: e.pageX,y: e.pageY}
+	}
+	function scaleToLimit(num,src,lim) {
+		return (num/src) * lim
+	}
+	function reflect(a,b) {
+		return 2 * b - a
+	}
+	function reflectY(pt,org) {
+		return {
+			x: pt.x,
+			y: reflect(pt.y,org.y)
+		}
+	}
+	function reflectX(pt,org) {
+		return {
+			x: reflect(pt.x,org.x),
+			y: pt.y
+		}
+	}
+	function reflectOrigin(pt,org) {
+		return {
+			x: reflect(pt.x,org.x),
+			y: reflect(pt.y,org.y)
+		}
+	} 
+	function reflectLine(pt,slope,c) {
+		d = (pt.x + (pt.y-c) * slope)/(1 + slope * slope)
+
+		return {
+			y: 2 * d * slope - pt.y + 2 * c,
+			x: 2 * d - pt.x
+		}
+	}
+	function lineAB(a,b,cnv) {
+		var xs = [a.x,b.x]
+		var ys = [a.y,b.y]
+		xs = xs.map(function(e) {
+			return parseInt(scaleToLimit(e,$(window).width(),255))
+		})
+		ys = ys.map(function(e) {
+			return parseInt(scaleToLimit(e,$(window).height(),255))
+		})
+		var grad = cnv.createLinearGradient(a.x,a.y,b.x,b.y)
+		var rgb1 = "rgb(" + xs[0] + "," + ys[0] + "," + "127)"
+		var rgb2 = "rgb(" + xs[1] + "," + ys[1] + "," + "127)"
+		console.log(rgb1);
+		grad.addColorStop(0,rgb1);
+		grad.addColorStop(1,rgb2);
+
+		cnv.strokeStyle = grad
+		
+		cnv.beginPath();
+		cnv.moveTo(a.x,a.y)
+		cnv.lineTo(b.x,b.y)
+		cnv.stroke()
+
+	}
+	function mapA(arr,f) {
+		arr.map(function(e,i,a) {
+			a.push(f(e))
+		})
+	}
+	$(window).bind("resize",function(e) {
+		//console.log(e)
+		resizeCanvas(mainCanvas)
+	})
+	$("#main").on("mousedown",function(e) {
+		console.log(e)
+		mD = true
+		updateMpos(e)
+	})
+	$("#main").on("mouseup",function(e) {
+		console.log(e)
+		mD = false
+		mpos = null
+	})
+	$("#main").on("mousemove",function(e) {
+
+		if (mD) {
+			if(mpos) {
+				var mpos1 = mpos;
+				updateMpos(e);
+				var points = [[mpos1,mpos]]
+				mapA(points,function(e) {
+					return e.map(function(j) {
+						return reflectOrigin(j,org)
+					})
+				})
+				mapA(points,function(e) {
+					return e.map(function(j) {
+						return reflectLine(j,-1 * slope,$(window).height());
+					})
+				})
+
+				mapA(points,function(e) {
+					return e.map(function(j) {
+						return reflectY(j,org);
+					})
+				})
+
+				points.map(function(e) {
+					lineAB(e[0],e[1],main);
+				})
+			}
+			else {
+				updateMpos(e)
+			}
+		}
+	})
+	$(document).on("ready",function() {
+		init();
+	})
+	</script>
+<html>

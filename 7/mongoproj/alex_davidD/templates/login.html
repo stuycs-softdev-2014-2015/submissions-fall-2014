@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LOGIN</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<style type="text/css">
+body{
+background-color: #CA2E15;
+}
+h1{
+color: #FD7B67;
+font-size:48px;
+text-align: center;
+margin-top:25%;
+}
+h3{
+color: #E6513A;
+font-size:24px;
+text-align: center;
+}
+input{
+margin:2px auto;
+}
+button{
+margin:5px auto;
+color: #109538;
+}
+#info{
+margin:5px auto;
+width:65%
+}
+#actual-blog{
+height: 460;
+width:100%
+}
+</style>
+</head>
+<body>
+<div class="pure-g">
+<div class="pure-u-1-5"></div>
+<div class="pure-u-3-5">
+<h1>LOGIN</h1>
+<center>
+<form method="POST">
+<input type="text" name="username" placeholder="USERNAME"><br>
+<input type="password" name="password" placeholder="Password"><br>
+<button class="pure-button pure-button-active center" type="submit" name="b" value="Login">Login</button><br>
+<p>{{message}}</p>
+<br>
+<br>
+<h3>Don't have an account with us? Register now!</h3>
+<button class="pure-button pure-button-active center" type="submit" name="b" value="Register">Register</button>
+</form>
+</center>
+<br>
+</center>
+</div>
+<div class="pure-u-1-5"></div>
+</div>
+<br><br>
+<center><a href="/about">About us!</a></center>
+</body>
+</html>

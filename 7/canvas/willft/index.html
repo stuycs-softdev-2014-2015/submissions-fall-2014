@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+  <title>Bouncy Balls</title>
+  <script>
+   function resizecanvas() {
+     canvas.width = window.innerWidth
+   }
+  </script>
+</head>
+<html>
+  <body onresize="resizecanvas()" style="margin: 0px">
+    <canvas height="500" width="600" id="c"
+	    style="border:1px solid black">
+      Aaaaaah canvas doesn't work here upgrade your browser!
+    </canvas>
+    <div style="margin: 8px">
+      Time:<br/>
+      -2<input type="range" id="tscale" min="-2" max="2" value="1" step=".1"/>2<br/>
+      <input type="button" id="shake" value="Shake it up!"/><br/>
+      <h2><i>Bouncy Balls</i></h2>
+      <p>Distance is measured as .03 meters per pixel. Time, which starts at 1 second per second can be moved backwards and forwards, though making time negative will not perfectly rewind what just happened. Negative time is just something cool to play with. Spawn a random velocity ball by clicking somewhere. Shake it up if things get boring!</p>
+    <i>Will Field-Thompson</i>
+    </div>
+  </body>
+  <script src="canvassy.js"></script>
+  <script>resizecanvas()</script>
+</html>

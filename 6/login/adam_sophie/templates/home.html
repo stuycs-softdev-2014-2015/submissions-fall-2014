@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+{% if udict['uname'] %}
+<h1> Welcome to your homepage {{udict['fname']}}! </h1>
+<p>
+Are you ready to apply to college? No? Well sucks for you because you
+have to. Uncommon app will help you apply to all of your
+colleges. (Except for the ones that exist in real life but oh well)
+
+</p>
+{% else %}
+<h1> Welcome! </h1>
+<p>
+Please login to access your Uncommon app account
+{% endif %}
+{% endblock %}

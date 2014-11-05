@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    #s {border: 1px solid;}
+    </style>
+  </head>
+  <body>
+    <h2>Raindrops</h2>
+    <h3>click to make rain</h3>
+
+    <svg class="where" id="s" height=400 width=400>
+    </svg>
+
+    <input type="submit" id="start" value="start">
+
+    <script>
+      var addCircle = function(s,x){
+        var c1 = document.createElementNS("http://www.w3.org/2000/svg","circle");
+        c1.setAttribute('cx',x);
+        c1.setAttribute('cy',0);
+        c1.setAttribute('r',20);
+        c1.setAttribute('fill','blue')
+        s.appendChild(c1);
+      console.log("add circle");
+      }
+    
+      var clicked = function(e) {
+        e.preventDefault();
+        s = document.getElementById("s");
+        console.log("clicked");
+        addCircle(s,e.offsetX);
+      }
+    
+      var move = function() {
+        var cs = document.getElementsByTagName("circle");
+        for (var i=0;i<cs.length;i++){
+	    var y = parseFloat(cs[i].getAttribute('cy'));
+	    y = y + 5*Math.random();
+	    cs[i].setAttribute('cy',y);
+        }
+      }
+      var t=0;
+      var go = function(e){
+        e.preventDefault();
+        if (t==0){
+	    t = setInterval(move,2);
+	  }
+        else{
+	    clearInterval(t);
+	    t=0;
+        }
+      }
+      var s = document.getElementById("s");
+      s.addEventListener("click",clicked);
+      var g = document.getElementById("start");
+      g.addEventListener("click",go);
+    </script>
+  </body>
+</html>

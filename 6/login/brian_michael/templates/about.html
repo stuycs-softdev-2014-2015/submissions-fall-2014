@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>About iBM</title>
+    <link rel="stylesheet" href="/static/style.css" type="text/css" media="screen" />
+  </head>
+  <body>
+    <ul id="menu">
+      {% if user %}
+      <div id="name">{{name}}</div>
+      <li><a href="/logout">Logout</a></li>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/settings">Change Settings</a></li>
+      {% else %}
+      <li><a href="/login">Login</a></li>
+      {% endif %}
+    </ul>
+    <p class="box">
+      Hello and welcome to <b>iB</b>(rian)<b>M</b>(ichael)!<br><br>
+      {% if user %}
+      Welcome {{name}}!
+      {% else %}
+      To use the rest of our site, please <a href="/login">login</a>
+      {% endif %}
+    </p>
+  </body>
+</html>

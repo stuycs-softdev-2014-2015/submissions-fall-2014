@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+   <title>DATA</title>
+   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="http://yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+    <script>
+      YUI({
+          classNamePrefix: 'pure'
+      }).use('gallery-sm-menu', function (Y) {
+      
+          var horizontalMenu = new Y.Menu({
+              container         : '#login-menu',
+              sourceNode        : '#login-menu-items',
+              orientation       : 'horizontal',
+              hideOnOutsideClick: false,
+              hideOnClick       : false
+          });
+      
+          horizontalMenu.render();
+          horizontalMenu.show();
+    });
+  </script>
+
+    <style type="text/css">
+      .background {
+        background-image: url('static/geometry2.png');
+        background-repeat: repeat;
+      }
+      </style>
+</head>
+<body class="background">
+<div id="login-menu" class="pure-menu pure-menu-open pure-menu-horizontal">
+     <img class=="pure-img" src="{{ url_for('static', filename='logo.jpg') }}"></img>
+     <ul id="login-menu-items">
+     	<li><a href = "/analysis"><i class="fa fa-bar-chart"></i> Analysis</a></li>
+       <li><a href="/stuycs">StuyCS</a></li>
+       <li><a href="/enschool">Stuyvesant High School</a></li>
+       <li><a href="/tools">Student Tools</a></li>
+
+       <!-- Drop down menu! -->
+       <li>
+            <a href="#">More</a>
+            <ul>
+                <li class="pure-menu-heading">G&S Side Projects</li>
+                <li class="pure-menu-separator"></li>
+                <li><a href="/google">Google</a></li>
+                <li><a href="/facebook">Facebook</a></li>
+                <li><a href="/whitehouse">The United States of America</a></li>
+            </ul>
+        </li>
+        <!--  -->
+        <li> <a href = "/login">Logout <i class="fa fa-arrow-right"></i></a> </li>
+     </ul>
+   </div>
+<h1 align="center">Welcome, {{name}}</h1>
+
+<br><br>
+<table class="pure-table pure-table-striped">
+
+{% for innerList in dataList  %}
+	<tr>
+		{% for line in innerList %}
+			<td> {{ line }} </td>
+		{% endfor %}
+	</tr>
+{% endfor %}
+
+</table>
+<br><br>
+<h2> <a class="pure-button" href="http://datahub.io/dataset/cdiac">DATA SOURCE</a> Carbon Dioxide Information Analysis Center (CDIAC) Data</h2>
+<br><br>
+</body>
+</html>

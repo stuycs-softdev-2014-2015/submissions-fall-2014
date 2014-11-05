@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<head>
+  
+  <title>Account Info</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+<section class="container">
+    <div class="login">
+	<h1> Hello Username,</h1>
+	<h1> Need to Update Account info? </h1>
+	<h2> Relationship Status </h2>
+  <form class="pure-form" action="/profile" method="POST">
+    
+    <label for="option-one" class="pure-radio">
+        <input id="option-one" type="radio" name="OptionsRadios" value="option1" checked>
+        Single?
+    </label>
+
+    <label for="option-two" class="pure-radio">
+        <input id="option-two" type="radio" name="OptionsRadios" value="option2">
+        Taken?
+    </label>
+
+<h2> Interested in </h2>
+    
+    <label for="option-one" class="pure-radio">
+        <input id="option-one" type="radio" name="OptionsRadios2" value="option1" checked>
+        Men
+    </label>
+    <label for="option-two" class="pure-radio">
+        <input id="option-two" type="radio" name="OptionsRadios2" value="option2">
+        Women
+    </label>
+<h2> Favorite Hobby? </h2> 
+<input type="text" name="hobby">
+<h2> Favorite Movie? </h2> 
+<input type="text" name="movie">
+<h2> Favorite Quote? </h2> 
+<input type="text" name="quote"> 
+<br>
+<input type="submit" name="commit" value="Update">
+</form>
+<br>
+Otherwise go straight to <a href = "/profile"> Profile </a> <br> 
+<a href = "/Logout"> Log out </a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+body {
+	background-color: #111111;
+	color: white;
+	text-align: center;
+	font-family: f;
+}
+@font-face {
+	font-family: f;
+	src: url(Sansation_Light.ttf);
+}
+div.main {
+	padding: 5px;
+	margin: auto auto;
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
+	border-radius: 10px;
+	width: 75%;
+	font-size: 13px;
+	background-color: rgba(255,255,255,0.05);
+}
+#navcontainer ul{
+	padding: 0;
+	margin: auto;
+	list-style-type: none;
+	color: #FFF;
+	text-align: center;
+	width: 25%;
+	background-color: rgba(255,255,255,0.05);
+	border-radius: 10px;
+}
+li { 
+	width: 50px;
+	display: inline; 
+}
+li a {
+	display: inline-block;
+	text-decoration: none;
+	color: #FFF;
+	width: 24%;
+	border-radius: 10px;
+}
+li:hover:nth-child(odd) a {
+	background-color: rgba(255,255,255,0.1);
+	color: #F564B9;
+}
+li:hover:nth-child(even) a {
+	background-color: rgba(255,255,255,0.1);
+	color: #30DDFF;
+}
+h1:first-letter {
+	font-size: 40px;
+	font-weight: bold;
+	color: #30DDFF;
+}
+h1 {
+	background-color: rgba(255,255,255,0.05);
+	border-bottom: 1px dashed white;
+	width: 90%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+p.bottom {
+	color: white;
+	font-size: 10px;
+	text-align: right;
+	margin-right: 10px;
+}
+p:not(.bottom):nth-child(odd):first-letter {
+	font-size: 25px;
+	font-weight: bold;
+	color: #F564B9;
+}
+p:not(.bottom):nth-child(even):first-letter {
+	font-size: 25px;
+	font-weight: bold;
+	color: #30DDFF;
+}
+table {
+	font-size: 10px;
+	width: 90%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 10px;
+	background-color: rgba(255,255,255,0.05);
+}
+th:nth-child(odd){
+	color: #30DDFF;
+}
+th:nth-child(even) {
+	color: #F564B9;
+}
+th {
+	background-color: rgba(255,255,255,0.05);
+	border: 1px solid rgba(255,255,255,0.05);
+	border-radius: 10px;
+}
+td:nth-child(odd):hover {
+	border-radius: 10px;
+	background-color: rgba(245,100,185,0.2);
+}
+td:nth-child(even):hover {
+	border-radius: 10px;
+	background-color: rgba(48,221,255,0.2);
+}
+.inputbutton {
+	border: none;
+	font-family: f;
+	border-radius: 10px;
+	background:rgb(255,255,255); 
+}
+.inputbutton:nth-child(odd):hover {
+	background-color: #F564B9;
+	color: white;
+}
+.inputbutton:nth-child(even):hover {
+	background-color: #30DDFF;
+	color: white;
+}
+.inputtext {
+	font-family: f;
+}
+

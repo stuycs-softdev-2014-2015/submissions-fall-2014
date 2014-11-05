@@ -1,0 +1,54 @@
+<style>
+
+h1 {text-align:center;
+font-family: "Courier New";
+border-style:solid;
+text-shadow: 2px 2px #FF6666;}
+
+body {font-family: "Courier New";}
+
+table {
+}
+
+td:hover{ background: #FF6666; }
+
+td{ background: #FFCCCC;}
+
+h1:hover{  background: #FF6666;}
+h3:hover{ background: #FF6666;}
+p:hover{ background: #FF6666;}
+
+
+</style>
+
+<h1> Body Weight and Age!</h1>
+<h3> by Cooper Weaver and Rebecca Yuste-Golob </h3>
+
+<html>
+<body>
+<p> Below is a table showing the average body weight by age of a group of 250 men. The table clearly shows that both age and weight are numbers. </p>
+
+
+<table style="width:500%">
+  <tr>
+    <td>Age</td>
+    {% for age in avgs %}
+    <td>{{age}}</td>
+    {% endfor %}
+  </tr>
+  <tr>
+    <td>Avg. Weight</td>
+    {% for age in avgs %}
+    <td>{{avgs[age]}}</td>
+    {% endfor %}
+  </tr>
+</table>
+
+<p> From this chart, we can see that the weight of men fluctuates, and has little to do with their age. </p>
+
+
+<br>
+
+
+</body>
+</html>

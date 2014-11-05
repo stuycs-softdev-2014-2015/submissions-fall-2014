@@ -1,0 +1,11 @@
+body {
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.alert{
+    max-width: 1024px;
+    padding-left: 15px;
+    margin: 0 auto;
+    
+}

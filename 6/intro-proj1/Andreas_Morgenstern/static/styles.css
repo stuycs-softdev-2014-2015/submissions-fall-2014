@@ -1,0 +1,12 @@
+
+h1 {
+    color: rgb(255,140,0);
+    text-align: center;
+}
+body {
+    background-color: rgb(30,154,255);
+    color: white;
+}
+table, th, td {
+   border: 1px solid white;
+}

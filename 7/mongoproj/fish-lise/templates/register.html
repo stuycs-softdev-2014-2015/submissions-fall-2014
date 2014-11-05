@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block tophead %}
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="/login">Login</a></li>
+  <li class="pure-menu-selected"><a href="/register">Register</a></li>
+</ul>
+{% endblock tophead %}
+{% block content_block %}
+<h1 class="splash-head">Registering for Super Fun Stuff</h1>
+<br>
+<span class="error_msg">{{rconf}}</span>
+
+<p class="splash-subhead">
+  <form class="pure-form pure-form-aligned" method="POST">
+    <div class="pure-control-group">
+      <label for="name">Username</label>
+      <input name="runame" type="text" placeholder="Username">
+    </div>
+    <br>
+    <div class="pure-control-group">
+      <label for="password">Password</label>
+      <input name="rpswd" type="password" placeholder="Password">
+    </div>
+    <br>
+    <div class="pure-control-group">
+      <label for="password">Renter Password</label>
+      <input name="confirm_password" type="password" placeholder="Confirm Password">
+    </div>
+    <br>
+    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+  </form>
+</p>
+{% endblock content_block %}
+</html>

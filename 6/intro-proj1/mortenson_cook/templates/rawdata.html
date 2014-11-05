@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+  <html>
+    <head><title>Age's Effect on Baseball, Raw Data</title><link rel="shortcut icon" href="http://bart.stuy.edu/~aaron.mortenson/muffins/moop.ico">
+      <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">  
+    </head>
+    
+    <body style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)" bgcolor="gray">
+    
+    <center>
+    <h1>Age's Effect on Baseball, Raw Data</h1>
+   <table bordercolor="black" bgcolor="white"><tr><td> 
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="../home">Home</a></li>
+       
+        <li><a href="../filter">Raw Data Search</a></li>
+        <li><a href="../results">Analisys</a></li>
+	 <li class="pure-menu-selected"><a href="#">Raw Data</a></li>
+</ul>
+</div>
+</td></tr></table></br>
+   <table bordercolor="black" width=95% bgcolor="white"><tr><td>
+    </br>
+ <center>
+<table border=1 class="pure-table" style=
+    "background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#808080), to(#660505), color-stop(.2,#808080));background-image: -moz-linear-gradient(19% 75% 90deg,#660505, #808080, #808080 100%)">
+<thead>
+{% for n in players[:1] %}
+    <tr><th>{{n[0]}}</th>
+      <th>{{n[1]}}</th>
+      <th>{{n[2]}}</th>
+      <th>{{n[3]}}</th>
+      <th>{{n[4]}}</th>
+      <th>{{n[5]}}</th>
+    </tr>
+{% endfor %}
+</thead>
+<tbody>
+{% for n in players[1:] %}
+    <tr><td>{{n[0]}}</td>
+      <td>{{n[1]}}</td>
+      <td>{{n[2]}}</td>
+      <td>{{n[3]}}</td>
+      <td>{{n[4]}}</td>
+      <td>{{n[5]}}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+	</td></tr></table>
+</br>
+</body></html>

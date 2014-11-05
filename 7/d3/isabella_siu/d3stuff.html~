@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Snowman</title>
+  <text>I'll make a real one after I finish studying for/failing my AP Psych exam.</text>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"> </script>
+</head>
+<body>
+  <script>
+    var header = d3.select("body")
+                   .append("h1")
+                   .style("align","center")
+                   .text("Snowman");
+    var canvas = d3.select("body")
+                   .append("svg")
+                   .attr("width",500)
+                   .attr("height",500);
+  </script>
+</body>

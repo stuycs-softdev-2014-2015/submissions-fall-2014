@@ -1,0 +1,55 @@
+<style>
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+</style>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>d3</title>
+    
+</head>
+<body>
+    <h1>Computer Analysis of Chess Games</h1>
+    <h2>Caruana versus Radjabov</h2>
+    <h3>The computer evaluation of the game</h3>
+    <svg class="chart"></svg>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var data = [20, 28, 38, 76, 62, 68, 70, 70, 70, 70, 70, 68, 46, 62, 62, 62, 60, 64, 54, 78, 70, 70, 56, 52, 60, 54, 40, 42, 10, 10, 10, 20, 12, 12, 12, 58, 6, 52, 76, 76, 36, 46, 74, 54, 10, 48, 46, 68, 20, 56, 22, 77, 77, 38, 84, 88, 10, 18, 10, 62, 43, 66, 66, 60, 54, 46, 48, 20, 20, 90, 50, 66, 10, 159, 12, 94, 222, 260, 396, 301, 355, 401, 553, 601, 763 ]
+
+var width = 420,
+    barWidth = 20;
+
+var x = d3.scale.linear()
+    .range([0, d3.max(data)])
+    .domain([0, width]);
+
+var chart = d3.select(".chart")
+    .attr("height", width)
+    .attr("width", barWidth * data.length);
+
+var bar = chart.selectAll("g")
+    .data(data)
+  .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ", 0)"; });
+
+bar.append("rect")
+    .attr("width", barWidth - 1)
+    .attr("height", x);
+
+bar.append("text")
+    .attr("y", function(d) { return x(d) - 3; })
+    .attr("x", barWidth / 2)
+    .attr("dx", ".35em")
+    .text(function(d) { return d; });
+    </script>
+</body>

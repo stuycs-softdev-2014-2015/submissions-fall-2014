@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+</head>
+<body>
+	<h1>Links</h1>
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/page">Page</a></li>
+		= if 'username' in session and session['username'] != None
+			<li><a href="/logout">Logout</a></li>
+		= endif
+	</ul>
+	= block body
+	= endblock
+</body>
+</html>

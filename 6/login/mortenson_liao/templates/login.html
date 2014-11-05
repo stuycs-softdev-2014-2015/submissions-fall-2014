@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block bodycontent %}
+<div class="pure-u-2-3">
+  {% if error %}
+  <font color="red">Invalid username or password</font>
+  {% endif %}
+  <form method="post" class="pure-form pure-form-stacked" action="login">
+    <fieldset>
+      Login<br>
+      <input type="text" name="username" placeholder="Username">
+      <input type="password" name="password" placeholder="Password">
+      <button type="submit" class="pure-button" name="login">
+	Login
+      </button>
+    </fieldset>
+  </form>
+</div>
+{% endblock bodycontent %}

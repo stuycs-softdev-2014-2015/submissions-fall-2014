@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h1>Register here.</h1>
+
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+        <div class="pure-control-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username" name="username">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="email">Email Address</label>
+            <input id="email" type="email" placeholder="Email Address" name="email">
+        </div>
+
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password" name="password">
+        </div>
+
+		<div class="pure-control-group">
+            <label for="password2">Retype Password</label>
+            <input id="password2" type="password" placeholder="Retype Password" name="password2">
+        </div>
+
+        <div class="pure-controls">
+            <button type="submit" name="b" value="Register" class="pure-button pure-button-primary">Register</button>
+	  		<button type="submit" name="b" value="Clear" class="pure-button pure-button-secondary">Clear</button>
+        </div>
+    </fieldset>
+</form>
+
+  {% endblock bodycontent %}

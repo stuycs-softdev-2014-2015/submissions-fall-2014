@@ -1,0 +1,37 @@
+<html>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  <link rel="stylesheet" href="../static/basics.css">
+  <div class="header top-header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed" style="text-align:center" >
+      <a class="pure-menu-heading" href="">Mongo</a>
+     {% block tophead %}
+      <ul>
+	<li class="pure-menu-selected"><a href="/">Home</a></li>
+	<li><a href="/login">Login</a></li>
+	<li><a href="/register">Register</a></li>
+      </ul>
+      {% endblock tophead %}
+    </div>
+  </div>
+  <body id="content-bg">
+  <div id="white_block"></div>
+  <div id="content-bg">
+      <br>
+      <br>
+  <div id="content-s">  
+    {% block content_block %}
+    <h1 class="error_msg">{{msg}}</h1>
+    <h1>Super Fun Stuff</h1>
+    <br>
+    <p>
+      <img src="http://www.naturalhealth365.com/images/eating-mangoes.jpg" width="200px" height="200px">
+       <div id="white_block"></div>
+      <a href="/login" class="pure-button pure-button-primary">Login Page</a>
+      <a href="/register" class="pure-button pure-button-primary">Register Page</a>
+    </p>
+    {% endblock content_block %}
+  </div>
+  <div id="white_block"></div>  
+  </div> 
+</body>
+</html>

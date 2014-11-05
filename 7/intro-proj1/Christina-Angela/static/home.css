@@ -1,0 +1,46 @@
+
+.center {
+  text-align: center;
+  text-color: #FA8072;
+  font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    margin-left: 1px;
+    margin-right: 1px;
+    padding: 0;
+    overflow: hidden;
+}
+
+
+li {
+    display: inline;
+    float: left;
+} 
+
+img {
+    float: right;
+    vertical-align: top;
+}
+
+
+a:link, a:visited {
+    display: block;
+    width: 400px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #FA8072;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover, a:active {
+    background-color: #7A991A;
+}
+
+body {
+background-image: url("/static/test.jpg");
+}

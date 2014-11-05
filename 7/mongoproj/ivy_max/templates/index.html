@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Welcome</h1>	
+    {% if not session.username %}
+      <p><a href="/login">Login</a></p>
+      <p><a href="/register">Register</a></p>
+    {% else %}
+      <p>Welcome, {{session.username}} </p>
+      <p><a href="{{ url_for('profile',username=session.username) }}">Go to profile</a></p>
+      <p><a href="{{ url_for('settings') }}">Settings</a></p>
+      <p><a href="{{ url_for('logout') }}">Log out</a></p>
+    {% endif %}
+    <!--{{session}}-->
+    <!--{{session.username}}-->
+{% endblock body %}
+{% block footer %}
+{% endblock footer %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Data Selection{% endblock %}
+{% block content %}
+
+<div class="page-header">
+	<h1>Data Selection <small>Where all the magic begins</small></h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    Please select the data you would like to view from the drop-down box below.
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdown1" data-toggle="dropdown">
+    Select your dataset
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+  	{% for selection in selection_list %}
+  	<li role="presentation"><a role="menuitem" tabindex="-1" href="/data/{{ selection }}">{{ selection }}: {{ selection_list[selection] }}</a></li>
+  	{% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block tophead %}
+<ul>
+  <li><a href="/home2">Home</a></li>
+  <li class="pure-menu-selected"><a href="/myinfo">Your info</a></li>
+  <li><a href="/info">Fun Stuff</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+{% endblock tophead %}
+{% block content_block %}
+<h1 class="centered">You have successfully logged in.</h1>
+<br>
+<h1 class="centered">Username: {{user}} </h1>
+<h1 class="centered">Password: {{password}} </h1>
+{% endblock content_block %}

@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="/data">Data</a></li>
+        <li class="pure-menu-selected"><a href="/analysis">Analysis</a></li>
+</ul>
+</div>
+<h1> Analysis of our Data </h1>
+To further explore the dataset, we took each column and computed the arithmetic mean of the values, provided by each player's prowess on the field. This made it easy to pinpoint the weaker players, since they consistently performed unspectacularly for each group of data provided.
+
+<table border="1" style="width:100%"> 
+<font size="2">
+  {% for k in info %}
+    <tr>
+      {% for j in k %}
+        <td> {{j}} </td>
+	{% endfor %}
+    </tr>
+   {% endfor %}
+</font>
+
+</table>
+
+ After calculating the averages for each data set, we have determined that so far this season, John Buck, David Wright, and Daniel Murphy have been the most reliable hitters on the Mets.
+ They have the three highest batting averages out of the Mets' starting hitters, and all have double digit RBI totals.
+A fairly large number of the players have been very inconsistent this season. Ike Davis, the first baseman of the future, is only hitting .167. Collin Cowgill, a young center fielder, is hitting a mere .200, and has no stolen bases, which is disappointing for a leadoff hitter. As a team, the Mets are actually hitting pretty well. A .259 team batting average is respectable, compared to the <a href="http://espn.go.com/mlb/stats/team/_/stat/batting/sort/avg/order/true"> batting averages of other teams </a>. The team's OPS (on-base plus slugging) of .813 is outstanding. Like they do every year, the Mets have gotten off to a hot start this season, and will hopefully keep it up for the rest of the year.
+<br><br>
+<img src="http://media.silive.com/advance/photo/2013/04/12509396-standard.jpg" alt="Baseball Player" width="665" height="530">

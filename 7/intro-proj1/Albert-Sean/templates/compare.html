@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Compare Schools</title>
+</head>
+<body>
+	Select one or more schools to compare. Use Ctrl or Shift + Left Mouse Button to select multiple schools.
+	<br>
+	<br>
+	<form method="GET">
+		<select multiple name="schools" required size="10">
+		{% for school in schools %}	<option{% if school in schools_selected %} selected{% endif %} value="{{school}}">{{school}}</option>
+		{% endfor %}</select>
+		<br>
+		<input type="submit" value="Submit">
+	</form>{% if schools_selected %}
+	<table border="1">
+		<tr>{% for x in school_data[0] %}<th>{{x}}</th>{% endfor %}</tr>
+	{% for school in schools_selected %}	<tr>{% for info in school_data[schools.index(school) + 1] %}<td>{{info}}</td>{% endfor %}</tr>
+	{% endfor %}</table>
+	{% endif %}
+	
+	<br><br>
+	<a href="..">Back To Table</a>
+</body>
+</html>

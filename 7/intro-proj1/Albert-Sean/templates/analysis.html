@@ -2,4 +2,20 @@
 <head>
 	<title>School Analysis</title>
 </head>
+<body>
+	Sean Yip, <del>Jia Yu</del> Albert Yeung, Period <del>9</del> 7<br>
+	<center><h1>Comparing SAT Score Results Based on the School's Name<h1></center>
+	<h2>Why?</h2>
+	<a href = "compare">Compare Schools</a><br><br>
+	Noticing that certain schools in the data are all capitalized and some are not, we decided to see whether the case of the school's name makes a difference in the score. Mr. Dyrland-Weaver, seeing this, suggested to us to also analyze whether the length of the school's name will also affect the score. And I, Sean, just wanted to, for teh lolz.
+	<hr>
+	<h2>The raw data</h2>
+	<table border="1">
+		<tr>{% for x in s[0] %}<th>{{x}}</th>{% endfor %}</tr>
+	{% for school in s[1:] %}	<tr>{% for info in school %}<td>{{info}}</td>{% endfor %}</tr>
+	{% endfor %}</table>
+	<hr>
+	Data from <a href="https://nycopendata.socrata.com/">NYC Open Data</a><br>
+	Specifically, <a href="https://nycopendata.socrata.com/Education/SAT-College-Board-2010-School-Level-Results/zt9s-n5aj">https://nycopendata.socrata.com/Education/SAT-College-Board-2010-School-Level-Results/zt9s-n5aj</a>
+</body>
 </html>

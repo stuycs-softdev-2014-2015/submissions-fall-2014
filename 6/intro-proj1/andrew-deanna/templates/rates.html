@@ -1,0 +1,146 @@
+<html>
+
+<style>
+  .nobr {
+    white-space: nowrap
+  }
+</style>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advertise With The Spectator</title>
+  <link rel="stylesheet" href="static/css/foundation.css" />
+  <script src="static/js/vendor/modernizr.js"></script>
+
+  <div class="row">
+    <div class="large-3 columns">
+      <h1><a href="/"> <img src="static/img/logo.png"/> </a></h1>
+    </div>
+    <div class="large-9 columns">
+      <ul class="right button-group">
+        <li><a href="/" class="button">Home</a>
+        </li>
+        <li><a href="/advertisers" class="button">Advertisers</a>
+        </li>
+        <li><a href="/rates" class="button">Rates</a>
+        </li>
+        <li><a href="/contact" class="button">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</head>
+
+
+
+</body>
+
+
+<div class="row">
+
+
+
+  <div class="large-6 push-6 columns">
+
+    <h3>Advertise With Us <small>Discover your opportunity!</small></h3>
+
+    <img src="static/img/{{image}}.svg">
+
+  </div>
+
+
+
+
+  <div class="large-6 pull-6 columns">
+
+    <ul class="side-nav">
+
+      <h4> Get a quote instantly: </h4>
+
+      <div class="large-6 medium-6 columns">
+        <form>
+        <label>Size:</label>
+        <nobr>
+          <input type="radio" name="size" value="full" id="full">
+          <label for="full">Full</label>
+          <input type="radio" name="size" value="half" id="half">
+          <label for="half">Half</label>
+          <input type="radio" name="size" value="quarter" id="quarter">
+          <label for="quarter">Quarter</label>
+          <input type="radio" name="size" value="eighth" id="eighth">
+          <label for="eighth">Eighth</label>
+        </nobr>
+
+        <div class="row collapse">
+          <label>Input Label</label>
+          <div class="small-9 columns">
+            <select name="issues" id=issues>
+              <option value="" disabled selected>How many</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+              <option value="5">Five</option>
+              <option value="6">Six</option>
+              <option value="7">Seven</option>
+              <option value="8">Eight</option>
+              <option value="9">Nine</option>
+              <option value="10">Ten</option>
+              <option value="11">Eleven</option>
+              <option value="12">Twelve</option>
+              <option value="13">Thirteen</option>
+              <option value="14">Fourteen</option>
+              <option value="15">Fifteen</option>
+              <option value="16">Sixteen (Lockout)</option>
+              <option value="0">More than Sixteen</option>
+            </select>
+          </div>
+          <div class="small-3 columns">
+            <span class="postfix">issues</span>
+          </div>
+        </div>
+
+	       <input class="small button" type="submit" name="b" value="Submit">
+	       <input class="small secondary button" type="submit" name="b" value="Cancel">
+
+         {% if priced %}
+         <h4><small>$</small>{{price}} <small>per advertisement</small> </h4>
+         {% endif %}
+       </form>
+      </div>
+
+
+
+    </ul>
+
+  </div>
+
+</div>
+
+
+<footer class="row">
+  <div class="large-12 columns">
+    <hr/>
+    <div class="row">
+      <div class="large-6 columns">
+        <p>© Copyright The Spectator, 2014. All rights reserved.</p>
+      </div>
+      <div class="large-6 columns">
+        <ul class="inline-list right">
+          <li><a href="/">Home</a>
+          </li>
+          <li><a href="/advertisers">Advertisers</a>
+          </li>
+          <li><a href="/rates">Rates</a>
+          </li>
+          <li><a href="/contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</html>
