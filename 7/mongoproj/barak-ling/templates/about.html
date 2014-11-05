@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block name %}
-<a class="navbar-brand" href="/home">Welcome, <strong>{{name}}</strong></a>
+<a class="navbar-brand" href="/">{{header}}<strong>{{name}}</strong></a>
 {% endblock name %}
 
 {% block css %}
@@ -9,17 +9,15 @@
 {% endblock css %}
 
 {% block session_button %}
-<li><a href="/logout">Logout</a></li>
-<li><a href="/settings">Settings</a></li>
 {% endblock session_button %}
 
 
 {% block main %}
-<title>Main</title>
+<title>About</title>
 <div class="container">
   <div class="jumbotron">
-    <h3>{{name}}'s Page</h3>
-    <p>{{message}}</p> 
+    <h2>About</h2>
+    <p>This space is yours.</p>
   </div>
 </div>
 
