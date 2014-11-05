@@ -26,10 +26,17 @@ def login():
             return redirect(url_for('login'))
         elif button == 'submit':
             #authentication stuff
-
-            flash('Successfully logged in!')
-            return redirect(url_for('user',username = un))
-        
+            dlist=[]
+            d = db.users.find()
+            for i in d:
+                dlist.append(i)
+            if un in dlist:
+                flash('Successfully logged in!')
+                return redirect(url_for('user',username = un))
+            else:
+                flash("Wrong username or password.")
+                return render_template('login.html')
+            
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     error = None

@@ -7,12 +7,11 @@ db = conn['sydandrew']
 users = db.users
 
 def addNewUser(uname, pword, pic):
-    #need to be able to pick a picture 
     #check if both items are not empty
     #check if it does not equal anything in the collection 
     if db.users.find_one({"username": uname}) == None:
         newuser = {'username': uname, 'password': pword, 'picture': pic}
-        if uname != '' or pword != '':
+        if uname != '' and pword != '':
             db.users.insert(newuser)
             return [True, "Congrats, you have now joined the website"]
         else:

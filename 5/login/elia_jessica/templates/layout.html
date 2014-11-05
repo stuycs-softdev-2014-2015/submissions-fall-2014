@@ -7,47 +7,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
 
   </head>
   
-  <div class="col-md-1 pull-right">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="col-md-12 container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+	</button>
+	<a class="navbar-brand" href="/">Kairos</a>
+      </div>
 
-  {% if corner %}
-   <ul class="nav nav-pills navbar-right" role="tablist">
-    <li role="presentation" class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Hello <b>{{corner}}</b>! <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li><a href="#" data-toggle="dropdown">Settings</a></li>
-      <li class="divider"></li>
-      <li><a href="#" data-toggle="dropdown">Logout</a></li>
-    </ul>
-    </li>
-  </ul>
-   {% else %}
-   <ul class="nav nav-pills navbar-right" role="tablist">
-     <li role="presentation"><a href="#">Hello Guest!</a></li>
-   </ul>
-   {% endif %}
-  </div>
-    <div class="col-md-8 page-header">
-  <h1 position="fixed" top="50%">Kairos</h1>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	<ul class="nav navbar-nav">
+          <li><a href="/about">About</a></li>
+          <li><a href="/sexy">Sexy</a></li>
+	</ul>
+	{% if corner %}
+	<ul class="nav navbar-nav navbar-right" >
+	  <li role="presentation" class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	      Hello <b>{{corner}}</b>! <span class="caret"></span>
+	    </a>
+	    <ul class="dropdown-menu">
+	      <li><a href="/settings">Settings</a></li>
+	      <li class="divider"></li>
+	      <li><a href="/logout">Logout</a></li>
+	    </ul>
+	  </li>
+	</ul>
+	{% else %}
+	<ul class = "nav navbar-nav navbar-right">
+	  <li role="presentation"><a href="#">Hello Guest!</a></li>
+	</ul>
+	{% endif %}
+      </div>
     </div>
+  </nav>
   <body>
     <div class="col-md-12">
       {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <ul class=flashes>
-    {% for message in messages %}
-    <li>**{{ message }}**</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  {% endwith %}
-    {% block body %}{% endblock %}
-    <div>
+      {% if messages %}
+      <ul class=flashes>
+	{% for message in messages %}
+	<div class="alert alert-success alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	  {{ message }}</div>
+	{% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      {% block body %}{% endblock %}
+      <div>
   </body>
 </html>

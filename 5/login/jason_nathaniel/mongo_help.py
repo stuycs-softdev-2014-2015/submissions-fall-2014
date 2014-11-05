@@ -25,6 +25,6 @@ def authenticate(username,password):
         s = users.find({"name": username},{"_id": False})
         return s['password'] == password
     else:
-        return -1
+        return 0
         
 #if __name__ == "__main__":
