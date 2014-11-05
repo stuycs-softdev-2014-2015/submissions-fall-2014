@@ -9,8 +9,6 @@ collection = db.test
 #db.drop_collection("test")
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if 'logged' not in session:
-        session['logged'] = 1
     
     if request.method == "POST":
         euser = request.form['username']
@@ -126,8 +124,6 @@ def home():
         u=session['username']
     else:
         u=""
-    if 'logged' not in session:
-        session['logged'] = 1 
 
     return render_template("home.html", logged=session['logged'], u=u)
 
@@ -139,6 +135,8 @@ def logout():
 
 if __name__=="__main__":
     app.debug=True
-    app.run("0.0.0.0");
+    app.run();
+    session['logged']=2
+    print session['logged']
 
 
