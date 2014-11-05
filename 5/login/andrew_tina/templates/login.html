@@ -5,23 +5,30 @@
   <head>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   </head>
-  <br>
-  <br>
-  <style>
-    p{
-    margin-left:5em
-    }
-  </style>
-  <form style = margin class = "pure-form pure-form-stacked" method = "POST">
-   
-    <fieldset>
-      <p><legend>Login here</legend>
-      <label for "username">Username</label>
-      <input type="text" name="username" placeholder = "Username">
-      <label for "password">Password</label>
-      <input type = "password" name="password" placeholder = "Password">
-      <button type="submit" name="b" value = "submit" class = "pure-button pure-button-primary">Confirm</button>
-      <button type="submit" name="b" value = "cancel" class = "pure-button">Cancel</button>
-  </form>
+  <body style = "background:#66FFFF">
+    <br>
+    <br>
+    <style>
+      p{
+      margin-left:5em
+      }
+    </style>
+    <form style = margin class = "pure-form pure-form-stacked" method = "POST">
+      
+      <fieldset>
+	<p><legend>Login here</legend>
+	  <label for "username">Username</label>
+	  <input type="text" name="username" placeholder = "Username">
+	  <label for "password">Password</label>
+	  <input type = "password" name="password" placeholder = "Password">
+	  <button type="submit" name="b" value = "submit" class = "pure-button pure-button-primary">Confirm</button>
+	  <button type="submit" name="b" value = "cancel" class = "pure-button">Cancel</button>
+	</p>
+    </form>
+    <br>
+    <p>Forgot to register? <a href = "{{url_for('register')}}">Click here to register</a>
+      <br>Wrong page? <a href = "{{url_for('home')}}">Click here to return home</a>
+    </p>
+  </body>
 </html>
 {% endblock %}

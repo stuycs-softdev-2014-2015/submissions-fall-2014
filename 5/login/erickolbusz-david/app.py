@@ -75,6 +75,7 @@ def register():
         else:
             db.users.insert({'name':username,'pw':password,'logincount':0,'info':""})
             flash("Successfully registered")
+            redirect ("/")
     return render_template ("register.html") #have a button that redirects to /
     
 @app.route("/welcome")
