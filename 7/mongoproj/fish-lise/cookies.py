@@ -36,7 +36,6 @@ def login():
         else:
                       ####### cur_name = get_name(username) #### IMPLEMENT IN UTILS
             session['myuser'] = username
-            print session
             return redirect(url_for('loggedin1'))
         #else:
             #return redirect(url_for('register'))
@@ -75,22 +74,19 @@ def info():
     return render_template("login.html")
 @app.route("/loggedin1")
 def loggedin1():
-    print session
     if "myuser" in session and not session["myuser"] == None :
         return render_template("myindex.html")
-    return render_template("login.html")
+    return redirect(url_for('login'))
 
 @app.route("/loggedin2")
 def loggedin2():
     if "myuser" in session and not session["myuser"]==None :
         return render_template("myinfo.html")
-    return render_template("login.html")
+    return redirect(url_for('login'))
 
 if __name__=="__main__":
  #   conn = Connection()
   #  db = conn['1258']
-    print authenticate("zum","zum")
     app.secret_key="*]%4WQ4ki[uUF!3pZcNbM8_4SsDFSEsd"
     app.debug = True
     app.run()
-
