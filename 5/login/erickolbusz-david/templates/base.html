@@ -8,21 +8,24 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
   </head>
   <body>
-  <div class="center-pane">
-	  <body class="center">
-	    {% with messages = get_flashed_messages() %}
-	        {% if messages %}
+  <% flash.each do |type, message| %>
+  <div class="alert <%= bootstrap_class_for(type) %> fade in">
+  	{% with messages = get_flashed_messages() %}
+		{% if messages %}
 	            <ul class="flashed_messages_list">
-	                {% for message in messages %}
-	                       <li class="flashed_message error">{{ message }}</li>
-	                {% endfor %}
-	            </ul>
-	        {% endif %}
-	    {% endwith %}
+		       	{% for message in messages %}
+		              	<li class="flashed_message error">{{ message }}</li>
+		       	{% endfor %}
+		     </ul>
+		{% endif %}
+	{% endwith %}
+	<button class="close" data-dismiss="alert">×</button>
+	<%= message %>
 	</div>
+	<% end %>
 	    
-	    {% block menu %}
-	    <div class="navbar navbar-inverse">
+	{% block menu %}	
+	<div class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
 	<li><a href="/">Home</a></li>
 	<li><a href="/register">Register</a></li>
