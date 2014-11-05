@@ -18,6 +18,9 @@ def index():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         if (session.get('currentp') == "about"):
+            user_list = db.users.find({'name':session.get("username")})
+            user = user_list [0]
+            info = user['info']
             return render_template ("about.html", username = session.get("username"), userinfo = info)
         else:
             return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
@@ -47,6 +50,9 @@ def register():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         if (session.get('currentp') == "about"):
+            user_list = db.users.find({'name':session.get("username")})
+            user = user_list [0]
+            info = user['info']
             return render_template ("about.html", username = session.get("username"), userinfo = info)
         else:
             return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins'))
