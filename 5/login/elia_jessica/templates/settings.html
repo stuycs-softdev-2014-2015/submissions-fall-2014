@@ -9,15 +9,19 @@ class="sr-only">Close</span></button>
 </div>
 {% endif %}
 
-<div class="jumbotron">
+<div class="col-md-2">
 <form role="form" method = "post">
   <div class="form-group">
    <label for="pwd1">Old Password:</label>
    <input type="password" class="form-control" id="pwd1" placeholder="Enter old password" name=password>
-   <label for="pwd">New Password:</label>
-   <input type="password" class="form-control" id="pwd2" placeholder="Enter new password" name=newpassword>
+  </div>
+  <div class="form-group">
+    <label for="pwd">New Password:</label>
+    <input type="password" class="form-control" id="pwd2" placeholder="Enter new password" name=newpassword>
   </div>
   <button type="submit" class="btn btn-default">Change Password</button>
 </form>
 </div>
+
+
 {% endblock %}
