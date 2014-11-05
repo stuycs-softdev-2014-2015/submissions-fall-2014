@@ -34,6 +34,7 @@ def login():
                 plist.append(i["password"])
             if un in dlist and pw in plist:
                 flash('Successfully logged in!')
+                session['user'] = un
                 return redirect(url_for('user',username = un))
             else:
                 flash("Wrong username or password")
@@ -74,9 +75,34 @@ def register():
                 flash("Username already in use")
                 return render_template("register.html")
 #individual page
-@app.route("/user/<username>")
+@app.route("/user/<username>", methods = ['GET','POST'])
 def user(username):
-    return render_template("user.html", username = username)
+    if request.method == 'GET':
+        if 'user' not in session:
+            flash("You need to be logged in")
+            return redirect(url_for('login'))
+        else:
+            return render_template("user.html", username = username)
+    else:
+        session.pop("user", None)
+        return redirect(url_for('home'))
+
+@app.route("/secret", methods = ['GET','POST'])
+def secret():
+    if request.method == 'GET':
+        if 'user' not in session:
+            flash("You need to be logged in")
+            return redirect(url_for('login'))
+        else:
+            return render_template("secret.html")
+    else:
+        button = request.form['b']
+        if button == 'logout':
+            session.pop("user", None)
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('user',username = session['user']))
+
 
 #url does not exist
 @app.errorhandler(404)
