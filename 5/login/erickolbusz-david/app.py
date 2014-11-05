@@ -13,14 +13,14 @@ users = db.users
 @app.route("/")
 def index():
     if ('username' in session):
-        flash ("You are already logged in")
+        flash ("You are already logged in!")
         redirect ("/welcome")
-    username = request.args.get("username")
-    password = request.args.get("password")
+    username = request.args.get("username","None")
+    password = request.args.get("password","None")
     submit = request.args.get("submit")
     if (submit == "Submit"):
-        res = db.authenticate(username,password)
-        if (res == 1):
+        does_account_exist = (users.find({'username':username, 'password':password}).count() == 1)
+        if (does_account_exist == True):
             user_list = db.users.find({'name':username, 'pw':password})
             user = user_list[0]
             new_login_count = user['logincount'] + 1
@@ -35,20 +35,25 @@ def index():
 @app.route("/register")
 def register():
     if ('username' in session):
-        flash ("You are already logged in")
+        flash ("You are already logged in!")
         redirect ("/welcome")
-    username = request.args.get("username")
-    password = request.args.get("password")
+    username = request.args.get("username","None")
+    password = request.args.get("password","None")
     register = request.args.get("register")
     if (register == "Register"):
-        does_account_exist = db.authenticate(username)
-        if (does_account_exist == 1):
+        print "0\n"*5
+        does_account_exist = (users.find({'username':username}).count() > 0)
+        if (does_account_exist == True):
+            print "1\n"*5
             flash("Account already exists") #tried registering with taken username (None, None) is not a valid user/pass combo
         elif (len(username)<6):
+            print "2\n"*5
             flash("Username too short, must be at least 6 characters") #username too short, None falls under here too
         elif (len(password)<8):
+            print "3\n"*5
             flash("Password too short, must be at least 8 characters") #password too short, None falls under here too
         else:
+            print "4\n"*5
             db.users.insert({'name':username,'pw':password,'logincount':1,'info':""})
             flash("Successfully registered")
     return render_template ("register.html") #have a button that redirects to /
@@ -77,4 +82,4 @@ def logout():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run()
