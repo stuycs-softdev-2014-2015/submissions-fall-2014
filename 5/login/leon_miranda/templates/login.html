@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+			<center>
+	<br>
+	<div class= "container jumbotron " style="border-radius:30px; width:500px">
+	
+			<h1>Login</h1>
+		    {% if error %}
+			<div class="alert alert-dismissable alert-danger">
+		     <strong>Error:</strong> {{ error }}
+		   </div>
+		     {% endif %}
+				<form method="POST"class= "form-horizontal"role="form">
+					<div class= "form-group" >
+					<label class= "control-label">User Name</label> <input class="form-control" type="text" name="user" placeholder="Your User Name"><br><br>
+					<label class = "control-label">Password</label> <input class= "form-control" type ="password" name="pwd" placeholder="Your password"><br><br>
+					<button type="submit" name="login" class=" btn btn-lg btn-warning">Login</button>
+				</div>
+				</form>
+				<a href="/register">Don't have an account? To Register in Click Here</a>		
+	</div>
+	</center>
+{% endblock bodycontent %}

@@ -1,5 +1,6 @@
 body {
     font-family: Open Sans;
+    min-width: 500px;
 }
 ul {
     display:table;
@@ -15,6 +16,13 @@ ul.flashed_messages_list {
     font-size: 20px;
     padding: 0;
 }
+ul.list_centered_plain {
+    margin: 0 auto;
+    text-align: center;
+    list-style: none;
+    font-size: 20px;
+    padding: 0;
+}
 .gray {
     color: #444444;
 }
@@ -26,9 +34,12 @@ ul.flashed_messages_list {
     -ms-user-select: none;
     user-select: none;
 }
-.center {
+.center-all {
     margin: 0 auto;
     text-align: center;
+}
+.center {
+    margin: 0 auto;
 }
 .error {
     color: rgba(200, 50, 50, 150);
@@ -69,6 +80,10 @@ a.hint {
     color: #444444;
     font-size: 12px;
     text-decoration: none;
+}
+input.form_vertical {
+    display: block !important;
+    margin-top: 5px; 
 }
 
 
