@@ -4,7 +4,7 @@
 
 	{% if loggedin == True %}
 	You are logged in as {{username}}
-	<br>
+	<br><br>
 	<a class="pure-button" href="/logout" type = "submit"> Logout </a>
 
 	{% endif %}
@@ -18,6 +18,7 @@
 	    <br>
 	    Password:&nbsp <input required type="password" name="password"></input>
 	    <br>
+	    <b>{{reason}}</b>
 	    <br>
 	    <div>
 	      <style scoped>
@@ -29,10 +30,9 @@
 	      <button class="button-small pure-button" type = "submit">Login</button>
 	    </div>
 	  </form>
-	  Don't have an account? <a href="/register">Register Here!</a>
+	  <br>Don't have an account? <a href="/register">Register Here!</a>
 	  
 	</font>
-	{{reason}}
 	{% endif %}    
 	<hr>
       </div>

@@ -3,10 +3,11 @@
 {% block text %}
 	{% if loggedin == True %}
 	You are already logged in
+	<br><br>
+	<a class="pure-button" href="/logout" type = "submit"> Logout </a>
 	{% endif %}
 	
 	{% if page==2 or page==3 and loggedin==False %}
-	<font color="white">
 	  <h2>Register</h2>
 	  <form action="register" method="post">
 	    Username:  <input required type="text" name="username"></input>
@@ -15,23 +16,22 @@
 	    <br>
 	    Retype Password: <input required type="password" name="password2">
 	    <br>
+	    {% if page == 2%}
+	    <b>{{reason}}</b>
+	    {% endif %}
 	    <div>
 	      <style scoped>
 		
 		.button-small {
 		font-size: 85%;
 		}
-	      </style>
+	      </style> <br>
 	      <button class="button-small pure-button" type="submit">Register</button>
 	    </div>
 	  </form>
-	</font>
 	<hr>
       </div>
     </div>
-    {% if page == 2%}
-    {{reason}}
-    {% endif %}
     {% endif %}
 
     {% if page==1 %}
