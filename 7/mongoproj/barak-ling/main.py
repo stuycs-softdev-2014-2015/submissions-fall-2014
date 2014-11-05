@@ -1,6 +1,6 @@
 import pymongo
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, session, url_for, escape
+from flask import Flask, render_template, request, redirect, session, url_for, escape, flash
 
 app = Flask(__name__)
 
@@ -137,6 +137,7 @@ def about():
     else:
         name = ""
         header = "Account Manager"
+        return render_template("about2.html", header=header, name=name)
     return render_template("about.html", header=header, name=name)
     
 @app.errorhandler(404)
