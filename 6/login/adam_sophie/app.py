@@ -97,7 +97,10 @@ def colleges():
     username = escape(session['username'])
     if request.method=="POST":
         colleges = request.form.getlist("college")
-        mongo.addColleges(username, colleges)
+        newcolleges = []
+        for college in colleges:
+            newcolleges.append(college.replace("_"," "))
+        mongo.addColleges(username, newcolleges)
         #method to add this list (if it is a list) to the users colleges
     return render_template('colleges.html', udict = mongo.getUser(username))
 
@@ -122,7 +125,19 @@ def addcolleges():
             d['min gpa'] = request.form["gpa"]
         
         collegematch = mongo.collegeLookup(username, d)
-        return render_template('collegematches.html',collegematch = collegematch,udict = mongo.getUser(username))
+        collegeunder = []
+        for college in collegematch:
+            collegeunder.append(college['name'].replace(" ","_")) 
+        
+        Clist = []
+        x = 0;
+        while (x < len(collegematch)):
+            nlist = []
+            nlist.append(collegematch[x])
+            nlist.append(collegeunder[x])
+            x=x+1
+            Clist.append(nlist)
+        return render_template('collegematches.html',Clist = Clist,udict = mongo.getUser(username))
 
 
 
