@@ -70,6 +70,7 @@ def about():
     if ('username' not in session):
         flash ("You are not logged in")
         redirect ("/")
+    submit = request.args.get("submit")
     if (submit == "Submit"):
         user_list = db.users.find({'name':session.get("username")})
         user = user_list[0]
