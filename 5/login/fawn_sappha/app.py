@@ -1,25 +1,27 @@
-from flask import Flask, render_template, request
-from pymongo import Connection
+from flask import Flask, render_template, request, flash, redirect, url_for
+import mongo
 
 app = Flask(__name__)
-conn = Connection()
-db = conn["fawn-sappha"]
+un = None
+loggedin = False
+app.secret_key = "super_secret_shhh"
 
 @app.route("/", methods=["POST", "GET"])
 def index():
+    global loggedin, un
     if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        account = db.accounts.find({username: username},{"_if":False})
-        #find a better way of doing this
-        a = {}
-        for q in account:
-            a["user"]= q.get(username)
-            a["passw"]  = q.get(password)
-        if a == {} or a["passw"] != password:
-            return render_template("login.html", message = "Incorrect username or password")
-        else:
-            return render_template("index.html", username = username, loggedin = True)
+        b = request.form["b"]
+        if b == "About":
+            return redirect(url_for("about", logout = True))
+        elif b == "Log Out":
+            un = None      
+            loggedin = False
+        elif b == "Register":
+            return redirect(url_for("register"))
+        elif b == "Log In":
+            return redirect(url_for("login"))
+    if loggedin: 
+        return render_template("index.html", username = un, loggedin = loggedin, logout = True)
     return render_template("index.html")
 
 @app.route("/register", methods=["POST", "GET"])
@@ -28,14 +30,9 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         confirmpw = request.form["confirmpw"]
-        accounts = db.accounts.find({}, {"_id":False})
-        uns = []
-        for q in accounts:
-            uns.append(q.get(username))
-        if not username in uns:
+        if mongo.validusername(username):
             if password == confirmpw:
-                new = {username: username, password: password}
-                db.accounts.insert(new)
+                mongo.adduser(username, password)
                 return render_template("login.html", message = "Register Successful")
             else:
                 return render_template("register.html", message = "Passwords do not match")
@@ -45,7 +42,22 @@ def register():
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if mongo.checkcombo(username, password):
+            global un
+            global loggedin
+            un = username
+            loggedin = True
+            return redirect(url_for('index'))      
+        else:
+            return render_template("login.html", message = "Incorrect username or password")
     return render_template("login.html")
+
+@app.route("/about", methods=["POST", "GET"])
+def about():
+    return render_template("about.html", logout = True)
 
 if __name__ == "__main__":
     app.debug = True
