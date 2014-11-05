@@ -12,7 +12,7 @@ users = db.users
 #login page
 @app.route("/")
 def index():
-    if ('username' in session):
+    if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
     username = request.args.get("username","None")
@@ -36,7 +36,7 @@ def index():
 
 @app.route("/register")
 def register():
-    if ('username' in session):
+    if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
     username = request.args.get("username","None")
@@ -57,14 +57,14 @@ def register():
     
 @app.route("/welcome")
 def welcome():
-    if ('username' not in session):
+    if (session.get('username') == None):
         flash ("You are not logged in!")
         redirect ("/")
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
-    if ('username' not in session):
+    if (session.get('username') == None):
         flash ("You are not logged in!")
         redirect ("/")
     submit = request.args.get("submit")
