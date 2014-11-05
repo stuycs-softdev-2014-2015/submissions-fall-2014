@@ -1,8 +1,18 @@
 {% extends "layout.html" %}
 {% block body %}
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 
 <html>
+  <head>
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
+<center>
+<h1>
+<span class="label label-success"> 
 Register Here: 
+</span>
+</h1>
+</center>
 <form name="input" action="" method="POST">
 Username: <input type="text" name="username" placeholder="PICK AN AWESOME NAME"><br>
 Password: <input type="password" name="password" placeholder="PICK A SOLID PASSWORD">
@@ -21,7 +31,8 @@ Pick a Manatee Picture: <br>
 2<img src="http://ngm.nationalgeographic.com/2013/04/manatees/img/01-florida-manatee-670.jpg" alt="M2" width=150 height=100>
 3<img src="http://i.huffpost.com/gen/1273181/thumbs/o-MANATEE-900.jpg?1" alt="m3" width=150 height=100>
 4<img src="http://i.huffpost.com/gen/1272530/thumbs/o-MANATEES-900.jpg?5" alt="m4" width=150 height=100><br>
-<input type="submit" value="Submit">
+
+<button class="btn btn-lg btn-info" type="submit" value="Submit"> Submit </button>
 </form>
 
 
