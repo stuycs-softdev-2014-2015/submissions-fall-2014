@@ -8,7 +8,7 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 #login page
 @app.route("/")
 def index():
-    if (session['username'] != "")
+    if (session.get('username') != "")
         flash ("You are already logged in")
         redirect ("/welcome")
     session ['username'] = ""
