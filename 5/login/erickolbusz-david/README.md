@@ -2,6 +2,7 @@ Mongo pretends to be easy, at least SQL doesn't trick you
 ==========================================================
 
 David Bang and Eric Kolbusz PD 5 softdev
+=====================================
 
 About the Project
 Anyone can visit this page, you do not have to be logged in or anything of that sort, though you can be if you choose to.
