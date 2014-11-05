@@ -3,7 +3,7 @@
 <html>
 
 <head>
-
+  <link rel="shortcut icon" href="/static/icon.ico">
   <meta charset="UTF-8">
 
   <meta name="google" value="notranslate">
@@ -150,7 +150,16 @@ html, body { height: 100%; width: 100%; font-family: Helvetica, Arial, sans-seri
 <label for="nav-trigger"></label>
 
 <div class="site-wrap">
-<center>
+<div class="top" style="text-align:right;float:left;">
+  {% if logged is odd %}
+<h4> Welcome, {{u}}! </h4>
+
+{% else %}
+Not logged in. <a href="/login"\
+>Login here.</a>
+{% endif %}
+</div>
+  <center>
   	{% block bodycontent %}
 	This is placeholder text in the base html template
 	{% endblock bodycontent %}
