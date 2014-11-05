@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block css %}
+<style>
+div.box {width: auto; max-width: 480px; border: 5px solid #2EB2EB; border-style:ridge; margin: 50px auto auto;}
+span.box {font-size: x-large;}
+</style>
+{% endblock css %}
+
+{% block main %}
+<div style="text-align: center;">
+<div class="box" style="width: auto; max-width: 480px; border: 5px ridge #2EB2EB; box-shadow: 0px 0px 8px #0361A8; margin: 50px auto auto;">
+<div style="background: #2EB2EB; border-radius: 5px 5px 0px 0px; padding: 15px;">
+<span class="box"><b><u>LOGIN</b></u></span>
+</div>
+
+<form class="pure-form pure-form-stacked" method="POST">
+    <fieldset>
+	<div><br></div>
+        <div class="pure-control-group" align="center">
+            <label for="name">Username</label>
+            <input id="name" name="username" type="text" placeholder="Username">
+        </div>
+        <div class="pure-control-group" align="center">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Password">
+        </div>
+	<div><br></div>
+        <div class="pure-controls" align="center">
+            <button type="submit" name="login" class="pure-button pure-button-primary">Login</button>
+        </div>
+	{{errmess}}
+    </fieldset>
+</form>
+	
+</div></div></div>
+
+<div><br></div>
+
+<div align="center">
+Click <a href="/register">here</a> to register.
+<div>
+
+{% endblock main %}
