@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Other Users{% endblock %}
+
+{% block content %}
+    <table class="pure-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>State</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+    {% for x in dicti %}
+        <tr><td>{{x['username']}}</td><td>{{x['name']}}</td><td>{{x['state']}}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

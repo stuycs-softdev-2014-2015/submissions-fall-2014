@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block name %}
+<a class="navbar-brand" href="/">{{header}}<strong>{{name}}</strong></a>
+{% endblock name %}
+
+{% block css %}
+<link href="/static/base.css" rel="stylesheet">
+{% endblock css %}
+
+{% block session_button %}
+{% endblock session_button %}
+
+
+{% block main %}
+<title>About</title>
+<div class="container">
+  <div class="jumbotron">
+    <h2>About</h2>
+    <p>This space is yours.</p>
+  </div>
+</div>
+
+
+{% endblock main %}

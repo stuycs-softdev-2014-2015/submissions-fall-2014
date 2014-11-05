@@ -1,0 +1,20 @@
+{% extends "page_template.html" %}
+
+
+<html>
+{% block bodyContent %}
+{{error}}
+<form name="login"  method="POST">    
+        <label for="usermail">Email</label>  
+        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>  
+
+        <label for="password">Password</label>  
+        <input type="password" name="pword" placeholder="password" required></li>    
+
+        <input type="submit" value="Login"></li>  
+</form>  
+
+{% endblock bodyContent %}
+
+
+</html>

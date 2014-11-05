@@ -78,12 +78,29 @@ def about():
         return render_template  ("page1.html",
                                  corner = escape(session['username']))
     else:
-        return render_template ("error.html")
+        return render_template ("page1.html",
+                                 corner = None)
 
-@app.route('/sexy')
-def sexy():
+@app.route('/love')
+def love():
     if 'username' in session:
         return render_template  ("page2.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/death')
+def death():
+    if 'username' in session:
+        return render_template  ("page3.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/illegal')
+def illegal():
+    if 'username' in session:
+        return render_template  ("page4.html",
                                  corner = escape(session['username']))
     else:
         return render_template ("error.html")
@@ -99,4 +116,4 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host = "0.0.0.0", port = 1247)
+    app.run(host = "127.0.0.1", port = 1247)

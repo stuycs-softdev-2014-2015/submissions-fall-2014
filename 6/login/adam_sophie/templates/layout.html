@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>uncommonapp</title>
+<meta charset="utf-8">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet"
+href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+<style>
+.flashes {color: red; text-indent: 50px}
+</style>
+</head>
+
+<div class="pure-menu pure-menu-open pure-menu-horizontal">
+    <ul>
+        <li><a href="/home">Home</a></li>
+	{% if username or udict['uname'] %}
+	<li><a href="/personal">Personal Info</a></li>
+	<li><a href="/colleges">My Colleges</a></li>
+	{% else %}
+        <li><a href="/register">Register</a></li>
+	{% endif %}
+        
+    </ul>
+ </div>
+
+
+{% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <div class=flashes>
+        {% for message in messages %}
+        <p>{{ message }}
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+
+<body>
+   <div class="pure-g">
+   <div class="pure-u-1-5"></div>
+   <div class="pure-u-3-5">
+<font face ="Baskerville" size ="6"> UNCOMMON APP</font>
+
+{% block body %}
+{% endblock %}
+     
+   </div> 
+
+<div class="pure-u-1-5">
+  <div class="pure-menu pure-menu-open pure-menu-horizontal">
+     <ul>
+       {% if udict['uname'] %}
+       <li><a href="/logout">Logout</a></li>
+       {% else %}
+       <li><a href="/login">Login</a></li>
+       {% endif %}
+     </ul>
+  </div>
+</div>
+</div>
+
+
+
+<hr>
+<address></address>
+
+
+</body> </html>

@@ -52,11 +52,14 @@ def register():
         if button == 'cancel':
             return redirect(url_for('register'))
         elif button == 'submit':
+            if un == '' or pw == '':
+                flash('You must enter in both a username and a password')
+                return redirect(url_for('register'))
             dlist=[]
             d = users.find()
             for i in d:
                 dlist.append(i["username"])
-            if un in dlist:
+            if un not in dlist:
                 flash('Successfully registered!')
                 
                 #adding in database

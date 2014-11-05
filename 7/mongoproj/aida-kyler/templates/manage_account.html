@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html lang="en">
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Account Settings</title>
+  </head>
+
+  <body>
+    <div class="container" style="max-width:730px;">
+
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <p class="navbar-text">Logged in as {{ session['username'] }}</p>
+          <form class="navbar-form navbar-right" method="POST">
+	<input type="submit" name="b" class="btn btn-default" value="Home">
+      <input type="submit" name="b" class="btn btn-default" value="About">
+            <input type="submit" name="b" class="btn btn-default" value="Log Out">
+          </form>
+        </div>
+      </nav>
+      {% if alert %}
+        <div class="alert alert-danger" role="alert">
+          Make sure your new passwords match and your old password is correct
+        </div>
+      {% endif %}
+      <div class="jumbotron" style="max-width:730px;">
+	       <h2>Change your account information</h2>
+      <form role="form" class="form-horizontal" method="POST">
+        <div class="form-group">
+	   <input type="password" class="form-control" name="old_password" placeholder="Old Password"></p>
+      	   <p><input type="text" class="form-control" name="username" placeholder="New Username"></p>
+      	   <p><input type="password" class="form-control" name="password" placeholder="New Password"></p>
+      	   <p><input type="password" class="form-control" name="password_confirm" placeholder="Confirm New Password"></p>
+      	   <p><input type="submit" name="b" class="btn btn-default" value="Submit">
+	   <input type="submit" name="b" class="btn btn-default" value="Cancel"></p>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+    
+
+  

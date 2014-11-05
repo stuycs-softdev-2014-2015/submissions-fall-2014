@@ -1,17 +1,29 @@
 {% extends "base.html" %}
 
 {% block head %}
-{{user}}.
+{{user}}'s Profile
 {% endblock head %}
 
-{% block logout %}
-<li role="presentation"><a href="/logout">Logout</a></li>
-{% endblock logout %}
+{% block tab %}
+<li role="presentation"><a href="/page/{{user}}">Home</a></li>
+<li role="presentation"><a href="/profile/{{user}}">Profile</a></li>
+<li role="presentation"><a href="/logout/{{user}}">Logout</a></li>
+{% endblock tab %}
 
 {% block body %}
-
-{% block home %}
-<a href="/page/{{user}}">
-{% endblock home %}
-
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-striped">
+      <tr>
+	<td>Username</td>
+	<td>{{user}}</td>
+      </tr>
+      <tr>
+	<td>Number of logins</td>
+	<td>{{ctr}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
 {% endblock body %}

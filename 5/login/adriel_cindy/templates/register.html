@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head %}
+Register
+{% endblock head %}
+
+{% block body %}
+
+<div class="jumbotron">
+  <form>
+    <div class="pull-left">
+      
+      <input type="text" class="form-control" name="user" placeholder="Username">
+      <input type="password" class="form-control" name="pwd" placeholder="Password">
+      <input type="password" class="form-control" name="pwdcheck" placeholder="Retype Password"><br>
+      <input type="submit" class="btn btn-sm btn-success" role ="button"name="register" value="Register">
+
+    </div>
+  </form>
+</div>
+{% endblock body %}

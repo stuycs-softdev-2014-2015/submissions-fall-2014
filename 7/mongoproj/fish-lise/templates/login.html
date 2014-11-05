@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block tophead %}
+<ul>
+  <li><a href="/">Home</a></li>
+  <li class="pure-menu-selected"><a href="/login">Login</a></li>
+  <li><a href="/register">Register</a></li>
+</ul>
+{% endblock tophead %}
+{% block content_block %}
+<h1>Log In to See Super Fun Stuff</h1>
+<h2 class="error_msg">{{msg}}</h1>
+    <p class="splash-subhead">
+      <form class="pure-form pure-form-aligned" method="POST">
+	<div class="pure-control-group">
+          <label for="name">Username</label>
+          <input name="uname" type="text" placeholder="Username">
+        </div>
+	<br>
+        <div class="pure-control-group">
+          <label for="password">Password</label>
+          <input name="pswd" type="password" placeholder="Password">
+        </div>
+	<br>
+	<button type="submit" class="pure-button pure-button-primary">Submit</button>
+      </form>
+    </p>
+    <p>
+      <a href="/login" class="pure-button pure-button-primary">Login Page</a>
+      <a href="/register" class="pure-button pure-button-primary">Register Page</a>
+    </p>
+{% endblock content_block %}
+

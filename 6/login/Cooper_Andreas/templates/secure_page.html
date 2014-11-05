@@ -1,0 +1,16 @@
+{% extends "page_template.html" %}
+
+
+{% block bodyContent %}
+
+{% if name != None %}
+<body> You are logged in, {{name}}! </body>
+
+{% else %}
+
+You are not logged in. Please log in.
+
+{% endif %}
+
+
+{% endblock bodyContent %}

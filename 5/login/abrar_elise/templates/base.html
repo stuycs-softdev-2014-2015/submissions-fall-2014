@@ -11,12 +11,25 @@
       <span class="icon-bar"></span>
     </button>
   </div>
+
   <ul class="nav navbar-nav navbar-right">
+    <li><a href={{url0}}>{{link0}}</a></li>
       <li><a href={{url1}}>{{link1}}</a></li>
       <li><a href={{url2}}>{{link2}}</a></li>
     </ul>
   </div>
 </div>
+  
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <center>{{ message }}</center>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 
 {% block bodycontent %}
 {% endblock bodycontent %}

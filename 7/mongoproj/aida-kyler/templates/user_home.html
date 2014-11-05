@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html lang="en">
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>{{ session['username'] }}'s Page</title>
+  </head>
+
+  <body>
+    <div class="container" style="max-width:730px;">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <form class="navbar-form navbar-right" method="POST">
+            <input type="submit" name="b" class="btn btn-default" value="Manage Account">
+            <input type="submit" name="b" class="btn btn-default" value="About">
+            <input type="submit" name="b" class="btn btn-default" value="Log Out">
+          </form>
+	  <p class="navbar-text">Logged in as {{ session['username'] }}</p>
+        </div>
+      </nav>
+	{% if changed %}
+	<div class="alert alert-info" role="alert">Account setting have been changed</div>
+	{% endif %}
+      <div class="header">
+	<h1>Welcome {{ session['first_name'] }} {{ session['last_name'] }}</h1></div>
+  <h2> Today is <b>{{ today }}</b> </h2>
+  <h2> The time is <b>{{ time }}</b> </h2>
+  
+
+<img src="static/homer_simpson.png" class="img-responsive img-rounded" alt="Responsive image"></img>
+      </div>
+    </div>
+  </body>
+</html>
+
+    
