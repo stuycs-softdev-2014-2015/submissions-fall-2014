@@ -132,24 +132,33 @@ def register():
          
          if registered:
             return render_template("register.html", page=1, username=username)
-      return render_template("register.html", page=2, reason=reason, a = "a")
+      return render_template("register.html", page=2, reason=reason)
    else:
-      return render_template("register.html", page=3, a = "b", loggedin=loggedin, username=username) 
+      return render_template("register.html", page=3, loggedin=loggedin, username=username) 
    #register
-
-@app.route("/intro")
-def intro():
-   pass
-   #can view without logging in
 
 @app.route("/funny")
 def funny():
-   pass
+   if 'username' in session:
+      loggedin=True
+      username=session['username']
+   else:
+      loggedin=False
+      username=''
+   return render_template("funny.html", loggedin=loggedin, username=username) 
+
    #viewed only if logged in
 
 @app.route("/joke")
 def joke():
-   pass
+   if 'username' in session:
+      loggedin=True
+      username=session['username']
+   else:
+      loggedin=False
+      username=''
+   return render_template("joke.html", loggedin=loggedin, username=username) 
+
    #viewed only if logged in
 
 if __name__ == "__main__":
