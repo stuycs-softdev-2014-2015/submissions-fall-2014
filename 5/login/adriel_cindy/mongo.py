@@ -17,6 +17,11 @@ def get_password(u):
         return u['password']
     return None
 
+def exists_user(u):
+	if(db.users.find({'user':u}) != 0):
+		return True
+	return False
+
 #Just testing stuff
 add_user("hi","bye")
 

@@ -1,2 +1,1 @@
-tmp
-===
+Mongo pretends to be easy, at least SQL doesn't trick you

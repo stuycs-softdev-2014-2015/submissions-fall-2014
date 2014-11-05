@@ -16,7 +16,7 @@ def home():
         if (password == mongo.get_password(user)):
             return redirect("/page/"+user)
         else:
-            flash("Username or password is not valid")
+            flash("Username or password is not valid.")
             return redirect("/")
         #return login
     elif (register == "r"):
@@ -44,10 +44,28 @@ def about():
 
 @app.route("/register")
 def register():
-    return render_template("register.html")
+    user = request.args.get("user")
+    password = request.args.get("pwd")
+    pcheck = request.args.get("pwdcheck")
+    register = request.args.get("register")
+
+    if (user != None and password != None and pcheck != None):
+        if (password == pcheck and not(mongo.exists_user(user))):
+            mongo.add_user(user,pwd)
+            return redirect("/page/"+user)
+        elif (mongo.exists_user(user)):
+            flash("This username is taken.")
+            return redirect("/register")
+            #return login
+        elif (password != pcheck):
+            flash("The passwords do not match.")
+            return redirect("/register")
+    else:
+        return render_template("register.html")
+
     
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(host='0.0.0.0')
 
     
