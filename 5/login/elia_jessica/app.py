@@ -78,12 +78,29 @@ def about():
         return render_template  ("page1.html",
                                  corner = escape(session['username']))
     else:
-        return render_template ("error.html")
+        return render_template ("page1.html",
+                                 corner = None)
 
-@app.route('/sexy')
-def sexy():
+@app.route('/love')
+def love():
     if 'username' in session:
         return render_template  ("page2.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/death')
+def death():
+    if 'username' in session:
+        return render_template  ("page3.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/illegal')
+def illegal():
+    if 'username' in session:
+        return render_template  ("page4.html",
                                  corner = escape(session['username']))
     else:
         return render_template ("error.html")
