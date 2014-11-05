@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
   </head>
   <body>
+  <body class="center">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashed_messages_list">
+                {% for message in messages %}
+                       <li class="flashed_message error">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
     {% block menu %}
     <div class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
