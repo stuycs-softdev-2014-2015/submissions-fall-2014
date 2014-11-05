@@ -15,9 +15,9 @@ def index():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
-    session ['username'] = None
-    username = request.args.get("username","None")
-    password = request.args.get("password","None")
+    session ['username'] = ""
+    username = request.args.get("username")
+    password = request.args.get("password")
     submit = request.args.get("submit")
     if (submit == "Submit"):
         i = users.find({'name':username, 'pw':password}).count()
@@ -40,11 +40,11 @@ def register():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
-    username = request.args.get("username","None")
-    password = request.args.get("password","None")
+    username = request.args.get("username")
+    password = request.args.get("password")
     register = request.args.get("register")
     if (register == "Register"):
-        does_account_exist = (users.find({'username':username}).count() > 0)
+        does_account_exist = (users.find({'name':username}).count() > 0)
         if (does_account_exist == True):
             flash("Account already exists") #tried registering with taken username (None, None) is not a valid user/pass combo
         elif (len(username)<6):
