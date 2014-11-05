@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import csv
 import pymongo
 
@@ -51,21 +51,13 @@ def login():
       if loggedin:
          db.account.update({"username":username},{'$set':{"status":"in"}})
 
-      print loggedin
       for d in db.accounts.find():
-         print d['username']+": "+d['password']+" "+d["status"]
+         print d['username']+": "+d['password']
  
 
       return render_template("login.html", exists=exists, loggedin=loggedin, username=username, password=password, incorrectlogin=incorrectlogin)
    else:
-      loguser = db.accounts.find_one({"status":"in"})
-      islogin = False
-      if loguser!=None:
-         islogin = True
-      if islogin:
-         return render_template("login.html", loggedin=True, username=loguser['username'],password=loguser['password'] )
-      else:
-         return render_template("login.html", loggedin=False)
+      return render_template("login.html", loggedin=False)
    
      
 @app.route("/logout")
@@ -100,7 +92,7 @@ def register():
             print "Username %s already in use" %username
 
       if registered:
-         doc = {"username":username, "password":password, "status":"out"}
+         doc = {"username":username, "password":password}
          db.accounts.insert(doc)
          print 'Username and Password have been recorded as variables'
       else:
@@ -134,4 +126,5 @@ def joke():
 
 if __name__ == "__main__":
    app.debug = True
+   app.secret_key = "SadmanTerrance"
    app.run()
