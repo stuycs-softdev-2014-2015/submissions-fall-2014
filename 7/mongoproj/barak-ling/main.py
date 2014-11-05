@@ -53,8 +53,8 @@ def check_login(username, password):
     return True
 
 #for now, home page is login page
-@app.route('/home')
-@app.route('/', methods=["GET","POST"]) #so user doesn't have to type login?
+#@app.route('/home')
+#@app.route('/', methods=["GET","POST"]) #so user doesn't have to type login?
 @app.route("/login", methods=["GET","POST"])
 #def home():
 def login():
