@@ -1,14 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
 <head>
-<title> Swag  </title>
+<title>{% block title %} Swagin {% endblock %}</title>
 </head>
 <body>
-<center> <h1>*Swiggety Swag*</h1>
-<legend>Enter your stuff</legend>
-<label for="title">Userswag</label>
-<input class="form-control" type="text" name="userswag" placeholder="Swagname">
-<label for="author">Passwag</label>
-<input class="form-control" type="password" name="passwag" placeholder="Swagword">
-<input type="submit" name="sub" value="Join the Swag"></submit>
-<button type="submit" name="sub" valuse="Login">Login!</button>
+<div class="navbar navbar-default">
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      {%block navbar %}
+      <li><a href ="/about"> Swabout</a></li>
+      <li class="active"><a href ="/"> Swagin</a></li> 
+      <li><a href ="/swagister"> Swagister</a></li>
+       {% endblock %}
+    </ul>
+  </div>
+</div>
+<center> <h1>{% block header %} *Enter your Swag*  {% endblock %}</h1><br>
+{% block form %}
+<form class="form-inline" role="form">
+  <div class="form-group">
+    <label for="username">Userswag</label>
+    <input type="text" class="form-control" name="username" placeholder="Swagname">
+  </div><br><br>
+  <div class="form-group">
+    <label for="pwd">Passwag</label>
+    <input type="password" class="form-control" name="pwd" placeholder="Swagword">
+  </div><br><br>
+  <button type="login" class="btn btn-default"> {% block button %} Swagin {% endblock %}</button>
+</form>
+{% endblock %}
 </center>
 </body></html>
+{% endblock %}

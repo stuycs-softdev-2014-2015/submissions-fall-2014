@@ -10,8 +10,7 @@ corner = """
 def index():
     if 'username' in session:
         return render_template ("index.html", 
-                                corner = escape(session['username']), 
-                                usrname = escape(session['username']))
+                                corner = escape(session['username']))
     else:
         return render_template ("index2.html")
 
@@ -25,7 +24,9 @@ def login():
             return redirect(url_for('index'))
         else:
             error = "Invalid credentials"
-    return render_template ("login.html", error = error)
+            return render_template ("login.html", error = error)
+    else:
+        return render_template ("login.html", error = error)
 
 @app.route('/logout')
 def logout():
@@ -38,15 +39,18 @@ def logout():
 def register():
     error = None
     if 'username' in session:
-        return "logged in"
-    if request.method == 'POST':
+        flash("You are already logged in")
+        return redirect(url_for('index'))
+    elif request.method == 'POST':
         if base.addUser (request.form['username'], request.form['password']):
             session['username'] = request.form['username']
             flash ("You have successfully registered")
             return redirect(url_for('index'))
         else:
             error = "That username is already taken"
-    return  render_template ("register.html", error = error)
+            return  render_template ("register.html", error = error)
+    else:
+        return  render_template ("register.html", error = error)
 
 @app.route('/settings', methods=['GET', 'POST'])
 def settings():
@@ -61,17 +65,28 @@ def settings():
                 return render_template ("settings.html", 
                                         corner = escape(session['username']), 
                                         error = error)
-
         else:
-            return render_template ("settings.html",
-                                    corner = escape(session['username']),
-                                    error = error)
+            return render_template ("settings.html", 
+                                        corner = escape(session['username']), 
+                                        error = error)
     else:
-        #flash
-        return """
-        You must be logged in to access this page
-        """
-        
+        return render_template ("error.html")
+
+@app.route('/about')
+def about():
+    if 'username' in session:
+        return render_template  ("page1.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/sexy')
+def sexy():
+    if 'username' in session:
+        return render_template  ("page2.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
 
 @app.route('/reset')
 def reset():

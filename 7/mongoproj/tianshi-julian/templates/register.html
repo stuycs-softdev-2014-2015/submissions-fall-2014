@@ -1,20 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <form class="pure-form pure-form-stacked">
-    <fieldset>
-      <legend>A Stacked Form</legend>
-
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="Email">
-
-      <label for="password">Password</label>
-      <input id="password" type="password" placeholder="Password">
-
-      <label for="remember" class="pure-checkbox">
-        <input id="remember" type="checkbox"> Remember me
-      </label>
-
-      <button type="submit" class="pure-button pure-button-primary">Sign in</button>
-    </fieldset>
-  </form>
+  <head>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+  </head>
+  <body>
+    <h1>REGISTER HERE!</h1>
+    <form action="/profile" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" />
+      <input type="password" name="password" placeholder="Password" />
+      <input type="submit" name="submit" value="Register" />
+    </form>
+  </body>
 </html>

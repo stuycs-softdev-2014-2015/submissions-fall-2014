@@ -1,22 +1,28 @@
 <!doctype html>
 <head>
+  <link rel="stylesheet" href="http://bootswatch.com/readable/bootstrap.min.css">
   <title>
-    {% block title %}
-    Title
+    Login-erator: {% block title %}
+    page name goes here
     {% endblock title %}
   </title>
 </head>
 
 <body>
-  <h1>
-    {% block heading %}
-    Look this is the heading
-    {% endblock heading %}
-  </h1>
-
-  <h3>
-    {% block body %}
-    body stuff wooooooooooooooooooooo
-    {% endblock body %}
-  </h3>
+  <div class="row">
+    <div class="col-lg-10 col-lg-offset-1">
+      <div class="jumbotron">
+	<center>
+	  <h1>
+	    {% block heading %}
+	    The Login-erator 5000
+	    {% endblock heading %}
+	  </h1>
+	</center>
+      </div>
+    </div>
+  </div>
+  {% block body %}
+  body stuff wooooooooooooooooooooo
+  {% endblock body %}
 </body>

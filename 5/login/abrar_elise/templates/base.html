@@ -3,15 +3,6 @@
 <title>AAEZ</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
 </head>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class=flashes>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
 <div class="navbar navbar-default">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -20,10 +11,17 @@
       <span class="icon-bar"></span>
     </button>
   </div>
-   
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href={{url1}}>{{link1}}</a></li>
+      <li><a href={{url2}}>{{link2}}</a></li>
+    </ul>
+  </div>
+</div>
+
 {% block bodycontent %}
 {% endblock bodycontent %}
 <br>
+
 
 
 <!--

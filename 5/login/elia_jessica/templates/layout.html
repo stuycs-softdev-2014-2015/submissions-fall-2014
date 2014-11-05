@@ -22,14 +22,14 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="#">Kairos</a>
+	<a class="navbar-brand" href="/">Kairos</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	<ul class="nav navbar-nav">
-          <li {{page1}}><a href="#">Link</a></li>
-          <li {{page2}}><a href="#">Link</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/sexy">Sexy</a></li>
 	</ul>
 	{% if corner %}
 	<ul class="nav navbar-nav navbar-right" >
@@ -58,7 +58,7 @@
       {% if messages %}
       <ul class=flashes>
 	{% for message in messages %}
-	<div class="alert alert-warning alert-dismissible" role="alert">
+	<div class="alert alert-success alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 	  {{ message }}</div>
 	{% endfor %}

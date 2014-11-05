@@ -1,9 +1,9 @@
-from pymongo import Connection
+from pymongo import MongoClient
 
-def establish_connection():
-    conn = Connection()
-    db = conn['accountinfo']
-    return db
+client = MongoClient('localhost',5000)
+db = conn['accountinfo']
+
+users = db.users
 
 def add_account(username,password): #registration
     db = establish_connection()
@@ -22,9 +22,9 @@ def login(username,password):
     res = db.authenticate(username,password)
     if (res == 1):
         user_list = db.users.find({'name':username, 'pw':password})
-	user = user_list[0]
-	new_login_count = user['logincount'] + 1
-	users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':user['info']}, upsert=True)
+        user = user_list[0]
+        new_login_count = user['logincount'] + 1
+        users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':user['info']}, upsert=True)
         return True
     return False
 
@@ -47,6 +47,3 @@ def change_info(username,addedinfo):
     info = user['info']
     new_info = info + addedinfo
     users.update({'name':username, 'pw':password, 'logincount':new_login_count, 'info':new_info}, upsert=True)
-    
-    
-    
