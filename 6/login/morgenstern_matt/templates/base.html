@@ -14,7 +14,7 @@ Styling by Austin Wulf
   <title>SoftDev Project</title>
 
   <link rel="stylesheet" href="/assets/reset/normalize.css">
-
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <style>/* Navigation Menu - Background */
 .navigation {
   /* critical sizing and position styles */
@@ -140,11 +140,11 @@ html, body { height: 100%; width: 100%; font-family: Helvetica, Arial, sans-seri
 
   <ul class="navigation">
 	<li class="nav-item"><a href="/">Home</a></li>
-	<li class="nav-item"><a href="#">Portfolio</a></li>
-	<li class="nav-item"><a href="#">About</a></li>
-	<li class="nav-item"><a href="#">Blog</a></li>
-	<li class="nav-item"><a href="#">Contact</a></li>
-</ul>
+	{% block options %}
+
+{% endblock options %}
+	
+  </ul>
 
 <input type="checkbox" id="nav-trigger" class="nav-trigger" />
 <label for="nav-trigger"></label>
