@@ -26,15 +26,21 @@ def home():
 
 @app.route("/page")
 @app.route("/page/<user>")
-def page(user=None):
+def page(user):
     if (user==None):
+        return redirect("/")
+    if not(mongo.exists_user(user)):
+        flash("There is no such user.")
         return redirect("/")
     return render_template("user.html", user=user)
 
 @app.route("/profile")
 @app.route("/profile/<user>")
-def profile(user=None):
+def profile(user):
     if (user==None):
+        return redirect("/")
+    if not(mongo.exists_user(user)):
+        flash("There is no such user.")
         return redirect("/")
     return render_template("profile.html", user=user)
 
@@ -56,7 +62,6 @@ def register():
         if (mongo.exists_user(user)):
             flash("This username is taken.")
             return redirect("/register")
-            #return login
         if (password != pcheck):
             flash("The passwords do not match.")
             return redirect("/register")
