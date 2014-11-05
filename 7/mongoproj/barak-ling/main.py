@@ -53,10 +53,7 @@ def check_login(username, password):
     return True
 
 #for now, home page is login page
-#@app.route('/home')
-#@app.route('/', methods=["GET","POST"]) #so user doesn't have to type login?
 @app.route("/login", methods=["GET","POST"])
-#def home():
 def login():
     if 'username' in session:
         return redirect(url_for('logout'))
@@ -139,7 +136,7 @@ def about():
         header = "Welcome, "
     else:
         name = ""
-        header = "Simple"
+        header = "Account Manager"
     return render_template("about.html", header=header, name=name)
     
 @app.errorhandler(404)
