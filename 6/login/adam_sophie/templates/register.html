@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<h2> Register </h2>
+<form action="/user" method="post" class="pure-form pure-form-aligned">
+<fieldset>
+<div class="pure-control-group">
+<label for="fname">First Name</label>
+  <input id="fname" name="fname" type="text"
+  placeholder="First Name"></div><br>
+  <div class="pure-control-group">
+<label for="lname">Last Name</label>
+  <input id="lname" name="lname" type="text" placeholder="Last Name"></div><br>
+<div class="pure-control-group">
+<label for="uname">Username</label>
+  <input id="uname" name="uname" type="text" placeholder="Username"></div><br>
+<div class="pure-control-group">
+<label for="pw">Password</label>
+  <input id="pw" name="pw" type="password" placeholder="Password"></div><br>
+<div class="pure-control-group">
+<label for="rpw">Confirm Password</label>
+  <input id="rpw" name="rpw" type="password" placeholder="Confirm Password"></div><br>
+
+<button type="submit" class="pure-button">Register!</button>
+  </fieldset>
+<br><br><br>
+
+{% endblock %}
