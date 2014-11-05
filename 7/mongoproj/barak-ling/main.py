@@ -133,7 +133,7 @@ def settings():
 def about():
     if 'username' in session:
         name = escape(session['username'])
-        header = "Welcome, "
+        header = "Hello, "
     else:
         name = ""
         header = "Account Manager"
@@ -141,7 +141,8 @@ def about():
     
 @app.errorhandler(404)
 def page_not_found(error):
-    return 'This page does not exist!!', 404
+    #return 'This page does not exist!!', 404
+    return render_template("dne.html")
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RRR'
 
