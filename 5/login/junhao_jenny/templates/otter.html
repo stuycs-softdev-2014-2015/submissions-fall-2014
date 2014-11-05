@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block logoutlink %}
+    <br>Log out <a href="{{ url_for('logout') }}">here</a>!
+{% endblock logoutlink %}
+
+{% block bodycontent %}
+
+<center><h2>Otters!</h2></center>
+
+<div class="container">
+    <center>
+        <img src="http://www.writework.com/uploads/5/50431/otters-vancouver-aquarium.jpg" class="img-responsive img-rounded" width="500">
+        <br>
+        <img src="http://upload.wikimedia.org/wikipedia/commons/3/3c/Sea_otter_nursing02.jpg" class="img-responsive img-circle" width="500">
+        <br>
+        <img src="http://2.bp.blogspot.com/-rNK32sN64vg/UNGsjEoE3CI/AAAAAAAAISg/an1wMKsitIw/s1600/seaotters1.jpg" class="img-responsive img-thumbnail" width="500">
+    </center>
+</div>
+
+{% endblock bodycontent %}

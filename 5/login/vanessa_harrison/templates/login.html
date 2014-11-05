@@ -1,9 +1,57 @@
 {% extends "base.html" %}
 
+{% block title %}
+Login
+{% endblock title %}
+
 {% block body %}
-<form method="post">
-  <input type="text" name="username">
-  <input type="password" name="password">
-  <input type="submit" name="login">
-</form>
+<div class="row">
+  
+  <div class="col-lg-6">
+    <div class="jumbotron">
+      <div class="row">
+	<div class="col-lg-10 col-lg-offset-1">
+	  <form method="post">
+	    <h3>
+	      Login
+	    </h3>
+	    <br>
+	    <input type="text" class="form-control" placeholder="Username" name="username" required>
+	    <br>
+	    <input type="password" class="form-control" placeholder="Password" name="password" required>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <input type="submit" class="btn btn-primary btn-lg" name="login">
+	  </form>
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="jumbotron">
+      <div class="row">
+	<div class="col-lg-10 col-lg-offset-1">
+	  <form method="post">
+	    <h3>
+	      Register
+	    </h3>
+	    <br>
+	    <input type="text" class="form-control" placeholder="Username" name="usernameR" required>
+	    <br>
+	    <input type="password" class="form-control" placeholder="Password" name="passwordR" required>
+	    <br>
+	    <input type="password" class="form-control" placeholder="Password" name="passwordR1" required>
+	    <br>
+	    <input type="submit" class="btn btn-primary btn-lg" name="register">
+	  </form>
+	</div>
+      </div>
+    </div>
+  </div>
+  
+</div>
 {% endblock body %}
+

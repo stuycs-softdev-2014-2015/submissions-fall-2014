@@ -1,91 +1,107 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, flash, redirect, url_for
 from pymongo import Connection
 
 app = Flask(__name__)
+app.secret_key = "SWAG"
 conn = Connection()
 db = conn ['sweg']
 
+username=""
+pwd=""
+Login=False
+
+def correct_login():
+    global username,pwd
+    users = db.userswags.find({'un' : username})
+    for user in users:
+        return user["pwd"] == pwd
+    return False
+
 @app.route("/", methods=["GET","POST"])
 def home():
-    return render_template("home.html")
+    global username,pwd,Login
+    if Login==False:
+        if request.method=="POST":
+            button = request.form.get("sub", None)
+            username = request.form.get("username", None)
+            pwd = request.form.get("pwd", None)
+            if db.userswags.find_one ( { 'un' : username } ) != None:
+                if username == "":
+                    flash("Please enter a swagname")
+                    return redirect(url_for('home'))
+                elif pwd == "":
+                    flash("Please enter a passwag")
+                    return redirect(url_for('home'))
+                elif correct_login():
+                    Login=True
+                    return redirect(url_for('logged'))
+                else:
+                    flash("Wrong passwag")
+                    return redirect(url_for('home'))
+            else:
+                flash("Name not found, swaggy")
+                return redirect(url_for('home'))
+        return render_template("home.html")
+    else: 
+        return redirect(url_for('logged'))
 
+@app.route("/swagister", methods=["GET","POST"])
+def swagister():
+    global username,pwd,Login
+    if request.method=="POST":
+        Login=False
+        button = request.form.get("sub", None)
+        username = request.form.get("username", None)
+        pwd = request.form.get("pwd", None)
+        if db.userswags.find_one ( { 'un' : username } ) == None:
+            if username == "":
+                flash("Please enter a swagname")
+                return redirect(url_for('swagister'))
+            elif pwd == "":
+                flash("Please enter a passwag")
+                return redirect(url_for('swagister'))
+            else: 
+                db.userswags.insert ( { 'un': username, 'pwd': pwd } )
+                Login=True
+                return redirect(url_for('user'))
+        else:
+            flash("Yo name is taken, swaggy")
+            return redirect(url_for('swagister'))
+    return render_template("register.html")
+
+@app.route("/about", methods=["GET","POST"])
+def about():
+    return render_template("about.html")
+
+@app.route("/user", methods=["GET","POST"])
+def user():
+    global Login
+    if Login==True:
+        return render_template("user.html",un=username)
+    else:
+        return redirect(url_for('swagister'))
+
+@app.route("/logged", methods=["GET","POST"])
+def logged():
+    global Login
+    if Login==True:
+        return render_template("logged.html",un=username)
+    else:
+        return redirect(url_for('swagister'))
+
+@app.route("/logout", methods=["GET","POST"])
+def logout():
+    global Login,username,pwd
+    if Login==True:
+        Login=False
+        flash("Adios my swag hombre, "+username+"!")
+        username=""
+        pwd=""
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('home'))
+    
 if __name__=="__main__":    
     app.debug=True
     app.run(host="127.0.0.1",port=5678)
-
-    
-"""def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect('data.db')
-    return db
-
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
-"""
-
-"""
-@app.route("/", methods=["GET","POST"])
-def home():
-    g.conn = get_db()
-    c = g.conn.cursor()
-    c.execute("CREATE TABLE IF NOT EXISTS blogs(title text, body text, name text, id INTEGER PRIMARY KEY)")
-    c.execute("CREATE TABLE IF NOT EXISTS comments(pid integer, comment text, cname text)")
-    g.conn.commit()
-    if ('title' in request.form and 'body' in request.form):
-        title = request.form['title']
-        body = request.form['body']
-        name = "Anonymous"
-        if ('name' in request.form and request.form['name'] != ""):
-            name = request.form['name']
-        if(title.replace(" ", "")!="" and body.replace(" ", "")!=""):
-            titles=[]
-            for each in c.execute('''SELECT title FROM blogs'''):
-                titles+=each
-            title=give_new_title(title,titles)
-            c.execute("INSERT INTO blogs VALUES(?, ?, ?, NULL)", (title, body, name,))
-            g.conn.commit()
-    
-    L = []
-    posts = c.execute('''SELECT title FROM blogs ORDER BY title;''')
-    for p in posts:
-        L.append(p[0])
-    g.conn.close()
-    return render_template("home.html", l = L)
-"""
-
-"""
-@app.route("/<title>", methods=["GET","POST"])
-def pages(title):
-    g.conn = get_db()
-    c = g.conn.cursor()
-    x = c.execute("select * from blogs")
-    print x.fetchall()
-    x = c.execute("select * from comments")
-    print x.fetchall()
-
-    result = c.execute("select * from blogs where title == ?", (title,)).fetchone()
-    if (result != None):
-        if ('comment' in request.form):
-            comment = request.form['comment']
-            cname = "Anonymous"
-            if ('name' in request.form and request.form['name'] != ""):
-                cname = request.form['name']
-            if(comment.replace(" ", "")!=""):
-                c.execute("insert into comments values(?, ?, ?)", (result[3], comment, cname))
-                g.conn.commit()
-        title = result[0]
-        body = result[1]
-        name = result[2]
-        comments = c.execute("select comment from comments,blogs where blogs.id == comments.pid and blogs.title == ?", (title,)).fetchall()
-        cnames = c.execute("select cname from comments,blogs where blogs.id == comments.pid and blogs.title == ?", (title,)).fetchall()
-        return render_template("post.html", title=title, body=body, name=name, comments=[c[0] for c in comments], names=[n[0] for n in cnames])
-    else:
-        return render_template("failure.html")
-"""
-
-
 

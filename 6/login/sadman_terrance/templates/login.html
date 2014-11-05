@@ -6,14 +6,6 @@
  </head>
   <body>
 
-    {% if loggedin == True %}
-    You are logged in {{loggedin}} .
-    {{username}}
-    {{password}}
-    {% endif %}
-    
-    {% if loggedin == False %}
-
     <div class="pure-g">
       <div class="pure-u-1-24"></div>
       <div class="pure-u-22-24">
@@ -28,6 +20,16 @@
 	</div>
 	<h1 align="center"><font color="#AAA339">SadTerry</font></h1>
 	<hr>
+
+	{% if loggedin == True %}
+	You are logged in as {{username}}
+	<br>
+	<a class="pure-button" href="/logout"> Logout </a>
+
+	{% endif %}
+	
+	{% if loggedin == False %}
+
 	<font color="black">
 	  <h2>Login</h2>
 	  <form action="login" method="post">
@@ -47,20 +49,12 @@
 	    </div>
 	  </form>
 	</font>
+	{{reason}}
+	{% endif %}    
 	<hr>
       </div>
     </div>
 
-    {% if incorrectlogin %}
-    Your username and password do not match
-    {% endif %}
-
-    {% if exists == False %}
-    This username does not exist
-    {% endif %}
-    
-    {% endif %}
-    
     
   </body>
 </html>
