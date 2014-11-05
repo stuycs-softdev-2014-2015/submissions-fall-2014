@@ -8,20 +8,25 @@ db = conn ['aaez']
 
 @app.route("/")
 def home(): 
-    return render_template("home.html")
+    return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register")
 
 @app.route("/login",methods=["GET","POST"])
 def login():
     if request.method=="POST":
-        button = request.form.get("sub")
+        button = request.form.get("sub",None)
+        excl=request.form.get("ex",None)
         username = request.form.get("username", None)
+        username2 = request.form.get("user",None)
         passw = request.form.get("password", None)
         error = None     
         loginfo = { 'name': username, 'pword': passw }
         for x in db.users.find():
             print x
-        print "AAAAAAA" + str(db.users.find_one ( { 'name' : username , 'pword' : passw } ) )
-        print username + passw
+        #print "AAAAAAA" + str(db.users.find_one ( { 'name' : username , 'pword' : passw } ) )
+        #print username + passw
+        if (excl != None): 
+            #return exclusive(username2)
+            return redirect(url_for('exclusive',user=username2))
         if db.users.find_one ( { 'name' : username , 'pword' : passw } ) != None:
             #flash("correct login info")
             if 'n' not in session:
@@ -29,11 +34,11 @@ def login():
             n = session['n']
             n = n + 1
             session['n']=n
-            return render_template("loggedin.html", username=username, n=n)
+            return render_template("loggedin.html", username=username, n=n,url1="/exclusive",link1="Exclusively for Users",url2="/",link2="Logout")
         else: 
             flash("incorrect login info")
             return redirect(url_for('login'))
-    return render_template("login.html")
+    return render_template("login.html",url2="/",link2="Home",url1="/register",link1="Register")
 
 @app.route("/register",methods=["GET","POST"])
 def register():
@@ -58,11 +63,11 @@ def register():
             flash("Please select an available username")
             #return "<h1>Please select an available username</h1>"
             return redirect(url_for('register'))
-    return render_template("register.html")
+    return render_template("register.html",url1="/login",link1="Login",url2="/",link2="Home")
 
 @app.route("/exclusive")
-def exclusive():
-    return render_template("justforusers.html")
+def exclusive(user):
+    return render_template("justforusers.html",user=user,url2="/",link2="Home")
 
 if __name__=="__main__":
     app.debug = True

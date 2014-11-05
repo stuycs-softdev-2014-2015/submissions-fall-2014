@@ -27,10 +27,12 @@ def login():
         elif button == 'submit':
             #authentication stuff
             dlist=[]
+            plist=[]
             d = db.users.find()
             for i in d:
-                dlist.append(i)
-            if un in dlist:
+                dlist.append(i["username"])
+                plist.append(i["password"])
+            if un in dlist and pw in password:
                 flash('Successfully logged in!')
                 return redirect(url_for('user',username = un))
             else:
