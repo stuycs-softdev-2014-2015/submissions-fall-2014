@@ -15,8 +15,8 @@ def index():
     if ('username' in session):
         flash ("You are already logged in")
         redirect ("/welcome")
-    user = request.args.get("username")
-    pw = request.args.get("password")
+    username = request.args.get("username")
+    password = request.args.get("password")
     submit = request.args.get("submit")
     if (submit == "Submit"):
         res = db.authenticate(username,password)
@@ -37,8 +37,8 @@ def register():
     if ('username' in session):
         flash ("You are already logged in")
         redirect ("/welcome")
-    user = request.args.get("username","None")
-    pw = request.args.get("password","None")
+    username = request.args.get("username")
+    password = request.args.get("password")
     register = request.args.get("register")
     if (register == "Register"):
         does_account_exist = db.authenticate(username)
