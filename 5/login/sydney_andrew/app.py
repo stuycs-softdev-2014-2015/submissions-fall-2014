@@ -31,11 +31,11 @@ def register():
     if 'username' in session:
         flash("You are already logged in. Please logout first.")
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        picstr = request.form['manatee']
-        if (pic != ''):
+        picstr = request.form['pic']
+        if (picstr != ''):
             pic = int(picstr)
         else:
-            pic = 0
+            pic = 1
         r = mongo.addNewUser(request.form['username'], request.form['password'], pic)
         if (r[0]):
             flash("You successfully registered. You can now login.")
