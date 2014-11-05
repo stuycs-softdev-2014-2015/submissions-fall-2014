@@ -60,7 +60,9 @@ def logout():
 @app.route("/", methods=["GET","POST"])
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    if 'n' not in session:
+        session['n'] = None
+    return render_template("about.html", name = session['n'])
 
 if __name__=="__main__":
     app.secret_key="This is a secret key"
