@@ -31,10 +31,12 @@ def page(user):
     if not(mongo.exists_user(user)):
         flash("There is no such user.")
         return redirect("/")
-    if (user!=None and mongo.logged_in(user)=="y"):
-        return render_template("user.html", user=user)
-    else:
-        return redirect("/")
+    if (mongo.exists_user(user)):
+        if(mongo.logged_in(user)=="y"):
+            return render_template("user.html", user=user)
+        else:
+            flash("You don't have permission to view that user's page.")
+            return redirect("/")
 
 @app.route("/profile")
 @app.route("/profile/<user>")
@@ -42,10 +44,12 @@ def profile(user):
     if not(mongo.exists_user(user)):
         flash("There is no such user.")
         return redirect("/")
-    if (user!=None and mongo.logged_in(user)=="y"):
-        return render_template("profile.html", user=user)
-    else:
-        return redirect("/")
+    if (mongo.exists_user(user)):
+        if(mongo.logged_in(user)=="y"):
+            return render_template("profile.html", user=user)
+        else:
+            flash("You don't have permission to view that user's profile.")
+            return redirect("/")
 
 @app.route("/about")
 def about():
