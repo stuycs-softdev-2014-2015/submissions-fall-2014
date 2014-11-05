@@ -3,19 +3,28 @@
 
 <html>
   <head>
-    <title>Register</title>
     {% block body %}
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
-    <center>
-      <h1>
-	<span class="label label-success"> 
-	  Register Here: 
-	</span>
-      </h1>
-    </center>
-      <div class="container-fluid">
-
+    <title>Register</title>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+	<ul class="nav navbar-nav">
+          <li class="active"><a href="/">Home</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="login">Login</a></li>
+	  <li class="active"><a href="register">Register</a></li>
+	</ul>
+      </div>
+    </nav>
+  </head>
+  <center>
+    <h1>
+      <span class="label label-success"> 
+	Register Here: 
+      </span>
+    </h1>
+  </center>
+  <div class="container-fluid">
     <form name="input" action="" method="POST">
       <div class="row">
 	<div class="col-md-1">Username:</div>
@@ -41,10 +50,10 @@
       4&emsp;<img src="http://i.huffpost.com/gen/1272530/thumbs/o-MANATEES-900.jpg?5" alt="m4" width=150 height=100><br><br>
 
       <button class="btn btn-lg btn-info" type="submit"> Submit </button>
-      </div>
-    </form>
-{% endblock %}
-
+  </div>
+  </form>
+  {% endblock %}
+  </body>
 
 </html>
 
