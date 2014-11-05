@@ -8,6 +8,10 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 #login page
 @app.route("/")
 def index():
+    if (session['username'] != "")
+        flash ("You are already logged in")
+        redirect ("/welcome")
+    session ['username'] = ""
     user = request.args.get("username")
     pw = request.args.get("password")
     submit = request.args.get("submit")
@@ -22,6 +26,9 @@ def index():
 
 @app.route("/register")
 def register():
+    if (session['username'] != "")
+        flash ("You are already logged in")
+        redirect ("/welcome")
     user = request.args.get("username","None")
     pw = request.args.get("password","None")
     register = request.args.get("register")
@@ -47,9 +54,9 @@ def welcome():
 @app.route ("/about")
 def about():
   if (submit == "Submit"):
-    userinfo = request.args.get("userinfo")
-    mongo.change_info(session.get("username"), userinfo)
-  return render_template ("about.html", username = session.get("username"), userinfo = mongo.user_info(session.get("username")))
+    userinfo = request.args.get('userinfo')
+    mongo.change_info(session.get('username'), userinfo)
+  return render_template ("about.html", username = session.get('username'), userinfo = mongo.user_info(session.get('username')))
 
 @app.route("/logout")
 def logout():
