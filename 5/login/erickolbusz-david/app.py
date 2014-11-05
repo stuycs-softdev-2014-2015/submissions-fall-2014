@@ -31,6 +31,9 @@ def index():
 
 @app.route("/register")
 def register():
+    if (session.get("username") == ""):
+        flash ("You are not logged in")
+        redirect ("/")
     user = request.args.get("username","None")
     pw = request.args.get("password","None")
     register = request.args.get("register")
