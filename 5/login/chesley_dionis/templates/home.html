@@ -7,11 +7,9 @@
         <a href="#" class="pure-menu-heading">{{username}}</a>
 
         <ul>
-            <li><a href="https://www.google.com">Google</a></li>
-            <li><a href="https://www.duckduckgo.com">DuckDuckGo</a></li>
-            <li><a href="https://yahoo.com">Yahoo!</a></li>
-            <li><a href="https://bing.com">Bing</a></li>
-            <li><a href="{{ url_for("logout") }}" class="red">Logout</a></li>
+            <li><a href="{{ url_for("info") }}">Your Info</a></li>
+            <li><a href="{{ url_for("update") }}">Update Info</a></li>
+	    <li><a href="{{ url_for("logout") }}" class="red">Logout</a></li>
         </ul>
     </div>
     <h1 class="gray">Welcome {{username}}!</h1>

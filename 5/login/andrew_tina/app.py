@@ -27,14 +27,16 @@ def login():
         elif button == 'submit':
             #authentication stuff
             dlist=[]
-            d = db.users.find()
+            plist=[]
+            d = users.find()
             for i in d:
-                dlist.append(i)
-            if un in dlist:
+                dlist.append(i["username"])
+                plist.append(i["password"])
+            if un in dlist and pw in plist:
                 flash('Successfully logged in!')
                 return redirect(url_for('user',username = un))
             else:
-                flash("Wrong username or password.")
+                flash("Wrong username or password")
                 return render_template('login.html')
             
 @app.route("/register", methods = ['GET', 'POST'])
@@ -50,17 +52,24 @@ def register():
         if button == 'cancel':
             return redirect(url_for('register'))
         elif button == 'submit':
-            flash('Successfully registered!')
-
-            #adding in database
-            post = {"username": un,
-                    "password": pw}
-            post_id = users.insert(post)
-            post_id
-            print db.collection_names()
-            print users.find_one()
-            return redirect(url_for('login'))
-
+            dlist=[]
+            d = users.find()
+            for i in d:
+                dlist.append(i["username"])
+            if un in dlist:
+                flash('Successfully registered!')
+                
+                #adding in database
+                post = {"username": un,
+                        "password": pw}
+                post_id = users.insert(post)
+                post_id
+                print db.collection_names()
+                print users.find_one()
+                return redirect(url_for('login'))
+            else:
+                flash("Username already in use")
+                return render_template("register.html")
 #individual page
 @app.route("/user/<username>")
 def user(username):

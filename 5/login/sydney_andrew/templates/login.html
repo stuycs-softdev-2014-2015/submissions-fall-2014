@@ -1,21 +1,19 @@
 {% extends "layout.html" %}
-{% block body %}
 
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 
 <html>
   <head>
+    {% block body %}
     <title>User Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/amelia/bootstrap.min.css">
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
 	<ul class="nav navbar-nav">
           <li><a href="/">Home</a></li>
-          <li><a href="about">About</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 	  <li class="active"><a href="login">Login</a></li>
-	  <li class="divider"></li>
+	  <li><a href="register">Register</a></li>
 	</ul>
       </div>
     </nav>   
@@ -28,13 +26,13 @@
       Sign In:
       <br>
       <form name="input" action="" method="POST"> 
-      <div class="row">
+	<div class="row">
 	<div class="col-md-1">Username:</div>
 	<div class="col-md-2"><input type="text" name="username"></div>
       </div>
       <div class="row">
 	<div class="col-md-1">Password:</div>
-	<div class="col-md-2"><input type="text" name="password"></div>
+	<div class="col-md-2"><input type="password" name="password"></div>
       </div>
 	<button type="submit" class="btn btn-default">Submit</button>
       </form> 

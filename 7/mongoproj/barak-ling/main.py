@@ -42,7 +42,7 @@ def check_username(username):
 
 # registers a user. Returns the user_id for no apparent reason
 def register_user(username, password):
-    user = {"username":username, "password":password}
+    user = {"username":username, "password":password, "message":"No message set."}
     user_id = users.insert(user)
     return user_id
 
@@ -54,7 +54,6 @@ def check_login(username, password):
 
 #for now, home page is login page
 #@app.route('/home')
-@app.route("/", methods=["GET","POST"])
 @app.route("/login", methods=["GET","POST"])
 #def home():
 def login():
@@ -101,14 +100,47 @@ def register_success():
 def register_failure():
     return render_template("register_0.html")
 
+@app.route("/", methods=["GET","POST"])
 @app.route('/home')
 def home():
     if 'username' in session:
         name = escape(session['username'])
         #return "logged in as %s" % name
-        return render_template("home.html", name=name);
-    return "Error: Access denied!!"
+        message = users.find_one({"username":name})["message"]
+        #print message
+        return render_template("home.html", name=name,message=message);
+    return redirect(url_for('login'))
 
+@app.route('/settings', methods=["GET","POST"])
+def settings():
+    if not 'username' in session:
+        return redirect(url_for('login'))
+    else:
+        name = escape(session['username'])
+        if request.method == 'POST':
+            password = request.form['password']
+            message = request.form['message']
+        #print users.find_one({"username":name})["message"]
+            if password == users.find_one({"username":name})["password"]:
+                users.update({'username':name},
+                             { '$set': {'message':message} },
+                             upsert=False)
+
+                return redirect(url_for('home'))
+            else:
+                return render_template("settings_error.html",name=name)
+        return render_template("settings.html", name=name)
+
+@app.route('/about')
+def about():
+    if 'username' in session:
+        name = escape(session['username'])
+        header = "Welcome, "
+    else:
+        name = ""
+        header = "Simple"
+    return render_template("about.html", header=header, name=name)
+    
 @app.errorhandler(404)
 def page_not_found(error):
     return 'This page does not exist!!', 404
