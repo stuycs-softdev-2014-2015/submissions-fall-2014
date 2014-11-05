@@ -8,7 +8,11 @@ db = conn ['aaez']
 
 @app.route("/")
 def home(): 
-    return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register")
+    return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register",url0="/about",link0="About")
+
+@app.route("/about")
+def about(): 
+    return render_template("about.html",url1="/login",link1="Login",url2="/register",link2="Register",url0="/",link0="Home")
 
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -59,19 +63,18 @@ def register():
                 flash("Please enter a password")
                 return redirect(url_for('register'))
             db.users.insert ( { 'name': username, 'pword': passw, 'n': 0 } )
-            return "<h1>Thanks for joining!</h1>" + str ( { 'name':username, 'pword': passw } )
-            #flash("Thanks for joining")
-            #return redirect(url_for('login'))
-            #return redirect(url_for('home'))
+            #return "<h1>Thanks for joining!</h1>" + str ( { 'name':username, 'pword': passw } )
+            flash("Thanks for joining! Please log in now.")
+            return redirect(url_for('login'))
         else:
             flash("Please select an available username")
             #return "<h1>Please select an available username</h1>"
             return redirect(url_for('register'))
-    return render_template("register.html",url1="/login",link1="Login",url2="/",link2="Home")
+    return render_template("register.html",url2="/login",link2="Login",url0="/",link0="Home",url1="/about",link1="About")
 
 @app.route("/exclusive/<user>")
 def exclusive(user):
-    return render_template("justforusers.html",user=user,url2="/",link2="Home")
+    return render_template("justforusers.html",user=user,url1="/",link1="Logout")
 
 if __name__=="__main__":
     app.debug = True
