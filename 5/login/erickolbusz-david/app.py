@@ -109,7 +109,7 @@ def about():
         addedinfo = request.args.get("userinfo")
         new_info = info + addedinfo + " : " 
         users.update({'name':session.get("username")}, {"$set": {'info':new_info}}) 
-        info = user['info']
+        info = new_info
     return render_template ("about.html", username = session.get("username"), userinfo = info)
 
 @app.route("/logout")
