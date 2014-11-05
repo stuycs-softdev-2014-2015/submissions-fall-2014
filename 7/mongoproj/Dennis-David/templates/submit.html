@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Submit your post!
+    </title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <style>
+      body {
+      text-align:center;
+      min-height: 2000px;
+      padding-top: 70px;
+      background: url('/static/wooden.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+	  <ul class="nav navbar-nav">
+            <li><a href="{{ url_for('private') }}">Private posts</a></li>
+            <li><a href="{{ url_for('public') }}">Public posts</a></li>
+	  </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><b>{{username}}</b></a></li>
+            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <form form="form" method="POST">
+      <fieldset>
+        <legend>Write a Post:</legend>
+	<textarea Required="True" rows="5" type="text" class="form-control" name="post" placeholder="Write your post here..."></textarea><br><br>
+	Make your post either public or private<br>
+	<input type="radio" Required="True" name="type" value="public">Public
+	<input type="radio" Required="True" name="type" value="private">Private
+	<br>
+	<button type="submit">Post</button>
+      </fieldset>
+    </form>
+    
+  </body>
+</html>

@@ -1,8 +1,5 @@
-{% extends "base.html" %}
+{% extends "loginbase.html" %}
 
-{% block name %}
-<a class="navbar-brand" href="/home">Welcome, <strong>{{name}}</strong></a>
-{% endblock name %}
 
 {% block css %}
 <link href="/static/base.css" rel="stylesheet">
@@ -18,7 +15,7 @@
 <title>Main</title>
 <div class="container">
   <div class="jumbotron">
-    <h3>{{name}}'s Page</h3>
+    <h3><b>Homepage</b></h3>
     <p>{{message}}</p> 
   </div>
 </div>

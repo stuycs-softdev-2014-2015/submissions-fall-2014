@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Settings</h1>
+    <p>Welcome, {{session.username}} </p>
+    <form class="pure-form pure-form-stacked" method="POST" action="{{ url_for('settings') }}">
+        <input type="text" placeholder="Location" value="{{ user.location }}" name="location"></input>
+        <input type="text" placeholder="Favorite Color" value="{{ user.color }}"name="color"></input>
+        <input type="text" placeholder="Favorite Animal" value="{{ user.animal }}"name="animal"></input>
+        <button class="pure-button pure-button-primary" type="submit">Submit</button>
+    </form>
+
+{% endblock body %}

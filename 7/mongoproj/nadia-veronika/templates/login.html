@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  </head>
+  <style type="text/css">
+    body{
+    background-color: #FFFFFF;
+    } 
+    h1{
+    color: #000000;
+    font-size:36px;
+    text-align: center;
+    margin-top:15%;
+    }
+    input{
+    margin:2px auto;
+    }
+    button{
+    margin:5px auto;
+    color: #0099FF;
+    }
+    #info{
+    margin:5px auto;
+    width:65%
+    }
+    #actual-blog{
+    height: 460;
+    width:100%
+}
+ </style>
+  <body>
+    <div class="pure-g">
+    <div class="pure-u-1-5"></div>
+    <div class="pure-u-3-5">
+    <h1>Login:</h1>
+    <center>
+    <form method="POST">
+      <input type="text" name="username" placeholder="Username"><br>
+      <input type="password" name="password" placeholder="Password"><br>
+      <button class="pure-button pure-button-active center" type="submit" name="b" value="Login">Login</button><br>
+
+    </form>
+    Don't have an account?<br>
+        <a href="{{url_for('register') }}">Register</a>
+    </center>
+    <br>
+    </center>
+    </div>
+    <div class="pure-u-1-5"></div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+<h1> Welcome to your College page {{udict['fname']}}! </h1>
+<fieldset>
+<font size="4"><b>Currently Selected Colleges</font></b><br><br>
+ {% if udict['colleges'] %}
+   {% for college in udict['colleges'] %}
+       {{college}}<br>
+   {% endfor %}
+ {% else %}
+      <div style="margin-left:30px;"> You have added no colleges</div> 
+{% endif %}
+</fieldset>
+<br>
+<br>
+<fieldset>
+<font size="4"><b>Search Colleges </font></b>
+<br><br>
+ <div style="margin-left:30px;">
+<form action="/addcolleges" method="post" class="pure-form pure-form-aligned">
+<fieldset>
+<label for="location">Location</label>
+  <input id="location" name="location" type="text" placeholder="Boston"><br>
+<label for="gpa">Min GPA</label>
+  <input id="gpa" name="gpa" type="text" placeholder="65"><br><br>
+<b>Size</b><br>
+<input type="radio" name="size" value="small">Small<br>
+<input type="radio" name="size" value="medium">Medium<br>
+<input type="radio" name="size" value="large">Large<br>
+<br>
+<b>Type</b><br>
+<input type="radio" name="type" value="private">Private<br>
+<input type="radio" name="type" value="state">State<br>
+   <button type="submit" name="submit" value="gpa" class="pure-button">submit</button>
+</div>
+
+</fieldset>
+
+<br>
+
+
+{% endblock %}

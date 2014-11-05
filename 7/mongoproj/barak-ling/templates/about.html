@@ -9,7 +9,9 @@
 {% endblock css %}
 
 {% block session_button %}
+<li><a href="/settings">Settings</a></li>
 {% endblock session_button %}
+
 
 
 {% block main %}
@@ -17,7 +19,25 @@
 <div class="container">
   <div class="jumbotron">
     <h2>About</h2>
-    <p>This space is yours.</p>
+    <p><h3>Welcome to the Account Manager Project.</h3><br>
+      <h4>Will have the following pages:</h4><br>
+      
+      -A login page<br>
+      -A logout page<br>
+      -A register page<br>
+      -At least one page that can be viewed without logging in<br>
+      -At least 2 pages that can only be viewed if you are logged in.<br>
+      <br>All pages should indicate if you're logged in or not by displaying either the username or a link to the login page.<br>
+      
+      <br>If you go to a protected page and you're not logged in, it should redirect you to the login page.<br> Once you log in (or register / login) it should redirect you back to the protected page.<br>
+      
+      <br>Would be nice if one of the protected pages is a change account specifics page.<br>
+      <br>Might also want to track things like last login or logout or something like that.<br><br>
+      <h4>Things needed in addition to basic flask stuff:</h4>
+      
+      Mongo to store the accounts -- username and password is a minimum but you might want to track other info.<br>
+      Sessions - to keep track of your state.<br>
+      <br>You might want to look at flash/flashing in the flask docs - it'll make it easy to do things like displaying one time error messages like invalid password.</p>
   </div>
 </div>
 

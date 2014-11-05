@@ -1,0 +1,100 @@
+/*
+When setting the primary font stack, apply it to the Pure grid units along
+with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
+specific font stacks to ensure the greatest OS/browser compatibility.
+*/
+#banner {
+    position:absolute;
+    top: 0px;
+    left: 110px;
+    right: 110px;
+    width: 80%;
+    height: 50%;
+    z-index: -1;
+}
+.about {
+    text-align: center;
+    font-size: 45px;
+}
+.flashes {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.centered {
+    text-align: center;
+    font-size: 20px;
+}
+
+.form-stuff {
+    font-size: 20px;
+}
+
+.form-stufftwo {
+    font-size: 16px;
+}
+
+.pure-form {
+    position: center;
+    text-align: center;
+    font-size: 20px;
+
+
+}
+.timestamp{
+    font-size: 12px;
+    color: #666666;
+  }
+
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+}
+
+.sidebar {
+    text-align: center;
+    color: #99FFCC;
+    background-image: url("/static/blue.jpg");
+}
+
+.pure-button {
+    text-align: center;
+}
+
+.nav-list {
+    text-align: right;
+}
+.pure-button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
+	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537');
+
+}
+
+p,h1,h2,h3,h4,h5,h6{
+    font-family: Verdana, Times, Georgia, serif;
+}
+
+a {
+  text-decoration:none;
+}
+
+h1 {
+    font-size:30px;
+}
+
+p {
+    font-size:16px;
+}
+
+.pure-u-3-24 {
+    background-image: url("/static/blue.jpg");
+}

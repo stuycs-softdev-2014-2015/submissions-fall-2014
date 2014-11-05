@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Sign Up
+    </title>
+    <!-- Bootstrap core CSS -->
+    <link href="static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/dist/css/signin.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <form class="form-login" role="form" method="POST">
+	<h2 class="form-login-heading">Sign up here!</h2>
+	{% extends "layout.html" %}
+	{% block body %}
+	{% if error %}
+	<p class=error><font color="red"><strong>Error:</strong></font> {{ error }}
+	  {% endif %}
+	<input type="username" name = "username" class="form-control" placeholder="Choose a username" required autofocus>
+	<input type="password" name = "password" class="form-control" placeholder="Choose a password" required>
+	<br>
+	<br>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+      </form>
+      <br>
+      <font color="white">
+      Log in when you've created an account:
+      </font>
+      <br>
+      <a href="{{ url_for('login') }}"><button>Log in</button></a>
+    </div>
+  </body>
+  {% endblock %}
+</html>
