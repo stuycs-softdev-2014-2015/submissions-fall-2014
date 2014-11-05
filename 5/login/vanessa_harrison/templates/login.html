@@ -6,59 +6,52 @@ Login
 
 {% block body %}
 <div class="row">
-  <div class="col-lg-10 col-lg-offset-1">
-    <div class="row">
-
-      <div class="col-lg-6">
-	<div class="jumbotron">
-	  <div class="row">
-	    <div class="col-lg-10 col-lg-offset-1">
-	      <form method="post">
-		<h3>
-		  Login
-		</h3>
-		<br>
-		<input type="text" class="form-control" placeholder="Username" name="username">
-		<br>
-		<input type="password" class="form-control" placeholder="Password" name="password">
-		<br>
-		<br>
-		<br>
-		<br>
-		<input type="submit" class="btn btn-primary btn-lg" name="login">
-	      </form>
-	    </div>
-	  </div>
+  
+  <div class="col-lg-6">
+    <div class="jumbotron">
+      <div class="row">
+	<div class="col-lg-10 col-lg-offset-1">
+	  <form method="post">
+	    <h3>
+	      Login
+	    </h3>
+	    <br>
+	    <input type="text" class="form-control" placeholder="Username" name="username">
+	    <br>
+	    <input type="password" class="form-control" placeholder="Password" name="password">
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <input type="submit" class="btn btn-primary btn-lg" name="login">
+	  </form>
 	</div>
       </div>
-
-      <div class="col-lg-6">
-	<div class="jumbotron">
-	  <div class="row">
-	    <div class="col-lg-10 col-lg-offset-1">
-	      <form method="post">
-		<h3>
-		  Register
-		</h3>
-		<br>
-		<input type="text" class="form-control" placeholder="Username" name="usernameR">
-		<br>
-		<input type="password" class="form-control" placeholder="Password" name="passwordR">
-		<br>
-		<input type="password" class="form-control" placeholder="Password" name="passwordR1">
-		<br>
-		<br>
-		<br>
-		<br>
-		<input type="submit" class="btn btn-primary btn-lg" name="register">
-	      </form>
-	    </div>
-	  </div>
-	</div>
-      </div>
-
     </div>
   </div>
+
+  <div class="col-lg-6">
+    <div class="jumbotron">
+      <div class="row">
+	<div class="col-lg-10 col-lg-offset-1">
+	  <form method="post">
+	    <h3>
+	      Register
+	    </h3>
+	    <br>
+	    <input type="text" class="form-control" placeholder="Username" name="usernameR">
+	    <br>
+	    <input type="password" class="form-control" placeholder="Password" name="passwordR">
+	    <br>
+	    <input type="password" class="form-control" placeholder="Password" name="passwordR1">
+	    <br>
+	    <input type="submit" class="btn btn-primary btn-lg" name="register">
+	  </form>
+	</div>
+      </div>
+    </div>
+  </div>
+  
 </div>
-    {% endblock body %}
-    
+{% endblock body %}
+
