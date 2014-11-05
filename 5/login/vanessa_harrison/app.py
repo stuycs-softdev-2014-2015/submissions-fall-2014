@@ -1,14 +1,6 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 import mongo
 
-'''
-login
-logout
-register
-
-stufffff
-'''
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -21,15 +13,19 @@ def index():
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if "username" in session:
+        print "logged in"
         return "youre already logged in as %s" %escape(session["username"])
     elif request.method == "POST":
-        if validate(request.form["username"], request.form["password"]):
-            session["username"] = request.form["username"]
+        print "method post"
+        if mongo.get(request.form["username"], request.form["password"]) != None:
             #login successful things
+            print "valildated"
+            session["username"] = request.form["username"]
             return redirect("/")
-    else:
-        #login unsuccessful things
-        pass
+        else:
+            print "not valid"
+        return "that's not registered"
+    print "end of if"
     return render_template("login.html")
     
 @app.route("/logout", methods = ["GET", "POST"])
@@ -45,8 +41,11 @@ def logout():
 @app.route("/register", methods = ["GET", "POST"])
 def register():
     if request.method == "POST":
-        mongo.add(request.form["username"], request.form["password"] {}) #change {} into something
-        return "registry successful"
+        if not mongo.add(request.form["username"], request.form["password"], {}):
+            #change {} into something
+            return "registry successful"
+        else:
+            return "already registered"
     else:
         return render_template("register.html")
 
