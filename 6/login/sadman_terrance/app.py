@@ -68,9 +68,11 @@ def login():
 def logout():
    if 'username' in session:
       session.pop('username', None)
-      return render_template("register.html", loggedin=True)
+      print "login status: logged in"
+      return render_template("logout.html", loggedin=True)
    else:
-      return render_template("register.html",loggedin=False)
+      print "login status: not logged in"
+      return render_template("logout.html",loggedin=False)
    #logout
 
 @app.route("/register",methods=['GET','POST'])
