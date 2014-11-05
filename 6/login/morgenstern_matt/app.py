@@ -110,6 +110,9 @@ def notloggedin():
 
 @app.route("/error")
 def error():
+    if 'logged' not in session:
+        session['logged']=2
+    print session['logged']
     if 'username' in session:
         u=session['username']
     else:
@@ -120,6 +123,8 @@ def error():
 
 @app.route("/")
 def home():
+    if 'logged' not in session:
+        session['logged']=2
     if 'username' in session:
         u=session['username']
     else:
@@ -136,7 +141,6 @@ def logout():
 if __name__=="__main__":
     app.debug=True
     app.run();
-    session['logged']=2
-    print session['logged']
+    
 
 
