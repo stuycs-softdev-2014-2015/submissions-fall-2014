@@ -1,27 +1,70 @@
-from flask import Flask, render_template
+#! /usr/bin/python
+from flask import Flask, render_template, session, url_for, request, redirect
+from pymongo import MongoClient
+from mongoauth import *
 
 app = Flask(__name__)
+app.secret_key = "secret"
 
-@app.route("/")
+conn = MongoClient()
+db = conn['userdatabase']
+
+def dbadd(user, password):
+    #(notvalid(user) or notvalid(password)) and 
+  if db.database.find({'username' : user}).count() == 0:
+    db.database.insert({'username': user, 'password': password})
+    return True
+  return False  
+    
+def dbverify(user, password):
+  return db.database.find({'username': user, 'password': password}).count() == 1
+  
+def notvalid(string):
+  return len([filter(lambda x: x in "+=\\#[]{}()'\"", string)]) > 0
+
+@app.route("/" , methods = ["GET" , "POST"])
 def mainpage():
-    return render_template("home.html")
+    return redirect("/home") if 'user' in session else redirect("/login")
 
 @app.route("/logout")
 def logout():
-    return render_template("logout.html")
+    if 'user' in session:
+        session.pop('user', None)
+    return render_template("/")
 
-@app.route("/register")
+@app.route("/login", methods = ["GET" , "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if dbverify(username, password):
+            session["user"] = username
+            return redirect("/")
+        return render_template("login.html") 
+    else:
+        return redirect("/home") if 'user' in session else render_template("login.html")
+
+
+@app.route("/register", methods = ["GET" , "POST"])
 def register():
-    return render_template("register.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if dbadd(username, password):
+            return redirect("/")
+        add( username , password )
+        return render_template("register.html")
+    else:
+        return render_template("register.html")
 
-@app.route("/page1")
-def page1():
-    return render_template("page1.html")
+        
+@app.route("/home")
+def home():
+    return render_template("home.html", name=session['user']) if 'user' in session else redirect("/login")
 
-@app.route("/page2")
+@app.route("/game")
 def page2():
-    return render_template("page2.html")
-
-@app.route("/page3")
-def page3():
-    return render_template("page3.html")
+    return render_template("game.html")
+    
+if __name__ == "__main__":
+    app.run(debug=True)
