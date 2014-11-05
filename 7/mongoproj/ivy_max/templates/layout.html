@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+<head>
+    <title>Account Manager</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/pure-min.css">
+</head>
+{% endblock head %}
+
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flashes">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block body %}{% endblock %}
+
+{% block footer %}
+<p><a href="/">Back</a></p>
+{% endblock footer %}
+</body>
+</html>

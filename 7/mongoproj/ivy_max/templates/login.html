@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Login</h1>
+    <p id="error">{{error}}</p>
+    <form class="pure-form pure-form-stacked" method="POST" action="{{ url_for('login') }}">
+        <input type="text" placeholder="Username" name="username"></input>
+        <input type="password" placeholder="Password" name="password"></input>
+        <button class="pure-button pure-button-primary" type="submit">Login</button>
+    </form>
+{% endblock body %}
