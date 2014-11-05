@@ -5,6 +5,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/slate/bootstrap.min.css">
 <meta charset="utf-8">
 <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 {% block content %}{% endblock %}
 </head>
 </html>
