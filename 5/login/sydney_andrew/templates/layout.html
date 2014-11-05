@@ -1,0 +1,12 @@
+<!doctype html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/cerulean/bootstrap.min.css">
+{% block body %}{% endblock %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="navbar navbar-inverse navbar-fixed-bottom">
+    {% for message in messages %}
+    <p class="navbar-text" style="margin-left: 100px;"> {{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+{% endwith %}

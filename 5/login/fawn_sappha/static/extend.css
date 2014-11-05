@@ -20,34 +20,41 @@ body{
     background: #F4F5ED;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 10px;
     padding: 30px;
     padding-top: 0px;
+    border-radius: 5px;
 }
 
 h1>a {
 	font-family: "Josefin Slab";
 	font-weight: 600;
 	color: #DC4E00;
+	font-size: 80px;
 	text-decoration: none;
 }
-a.button{
-	padding: 5px;
-	color: #F4F5ED;
-	font-weight: 500;
-	text-decoration: none;
-	width: 100%;
-	height: 100%;
-	display: inline;
-	background-color: #89CEDE;
-	border-radius: 10px;
-}
-a:hover {
-	color: #DC4E00;
-}
-.fset {
-	margin-right: 0px;
-	margin-left: 0px;
+.button {
+	margin-right: auto;
+	margin-left: auto;
 	text-align: center;
 	font-family: "Maven Pro";
+	background-color: #89CEDE;
+	color: white;
+	font-weight: 500;
+	border-radius: 5px;
+	border: 0;
+	padding: 5px;
+}
+.button:hover {
+	color: #DC4E00;
+}
+.textfield {
+	font-family: "Maven Pro";
+	border-radius: 5px;
+}
+.logout {
+	background-color: #DC4E00;
+	float: right;
+}
+.logout:hover {
+	color: #89CEDE;
 }
