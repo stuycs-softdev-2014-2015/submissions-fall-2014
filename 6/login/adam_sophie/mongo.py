@@ -69,7 +69,7 @@ def collegeLookup(uname, d):
     ucols = getAttribute(uname, 'colleges')
     colnames = []
     for c in colleges.find(d):
-        if c['name'] not in ucols:  
+        if c['name'] not in ucols: 
             colnames.append(colleges.find_one({'name':c['name']}))
     return colnames
         
@@ -77,9 +77,9 @@ def collegeLookup(uname, d):
 if __name__ == '__main__':
 
     colleges.remove()
-    #users.remove() #----AFTER YOU RUN THIS COMMENT THIS OUT-----#
+    users.remove() #----AFTER YOU RUN THIS COMMENT THIS OUT-----#
     createColleges()
-    collegeLookup('s',{})
+    #collegeLookup('s',{})
     peeps = users.find({},{'_id':False}) 
     for p in peeps:
         print p

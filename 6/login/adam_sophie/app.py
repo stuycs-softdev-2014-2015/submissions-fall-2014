@@ -108,13 +108,17 @@ def addcolleges():
         d = {}
         #college name,location,min gpa,size,type,description
         username = escape(session['username'])
+        print("start")
         if request.form.get("size") != None:
             d['size'] = request.form["size"]
         if request.form.get("type") != None:
+            print(request.form["type"])
+            print("hey1")
             d['type'] = request.form["type"]
-        if request.form.get("location") != None:
+        if request.form.get("location") != '':
+            print("hey")
             d['location'] = request.form["location"]
-        if request.form.get("gpa") != None:
+        if request.form.get("gpa") != '':
             d['min gpa'] = request.form["gpa"]
         
         collegematch = mongo.collegeLookup(username, d)
