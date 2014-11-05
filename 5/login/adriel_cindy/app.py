@@ -27,37 +27,25 @@ def home():
 
 @app.route("/page")
 @app.route("/page/<user>")
-<<<<<<< HEAD
 def page(user):
-    if (user==None):
-        return redirect("/")
     if not(mongo.exists_user(user)):
         flash("There is no such user.")
         return redirect("/")
-    return render_template("user.html", user=user)
+    if (user!=None and mongo.logged_in(user)=="y"):
+        return render_template("user.html", user=user)
+    else:
+        return redirect("/")
 
 @app.route("/profile")
 @app.route("/profile/<user>")
 def profile(user):
-    if (user==None):
-        return redirect("/")
     if not(mongo.exists_user(user)):
         flash("There is no such user.")
         return redirect("/")
-    return render_template("profile.html", user=user)
-=======
-def page(user=None):
-    if (user!=None and mongo.logged_in(user)=="y"):
-        return render_template("user.html", user=user)
-    return redirect("/")
-
-@app.route("/profile")
-@app.route("/profile/<user>")
-def profile(user=None):
     if (user!=None and mongo.logged_in(user)=="y"):
         return render_template("profile.html", user=user)
-    return redirect("/")
->>>>>>> 872cf02aa44da1d1b52c69bc2fa7ee41c2026f10
+    else:
+        return redirect("/")
 
 @app.route("/about")
 def about():
@@ -79,6 +67,7 @@ def register():
     if (user != None and password != None and pcheck != None):
         if (password == pcheck and not(mongo.exists_user(user))):
             mongo.add_user(user,password)
+            mongo.login_user(user)
             return redirect("/page/"+user)
         if (mongo.exists_user(user)):
             flash("This username is taken.")
