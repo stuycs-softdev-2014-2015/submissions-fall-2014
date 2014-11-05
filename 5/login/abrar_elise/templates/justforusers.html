@@ -1,4 +1,8 @@
 <html>
-<h1>This page cannot be seen by anybody unless they have an account</h1>
-<h2>Does that make you feel special? It should.</h2>
+{% extends "base.html" %}
+{% block bodycontent %}
+
+<h1>Are you still here, {{user}}?</h1>
+<h2>Only users like you can see this page, so thank you for supporting our groundbreaking & revolutionary startup!</h2>
+{% endblock bodycontent %}
 </html>
