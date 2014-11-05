@@ -60,10 +60,16 @@ def register():
     
 @app.route("/welcome")
 def welcome():
+    if ('username' not in session):
+        flash ("You are not logged in")
+        redirect ("/")
   return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
 def about():
+   if ('username' not in session):
+        flash ("You are not logged in")
+        redirect ("/")
   if (submit == "Submit"):
     user_list = db.users.find({'name':session.get("username")})
     user = user_list[0]
@@ -82,4 +88,4 @@ def logout():
 
 if __name__ == '__main__':
     app.debug = True
-    app.run()
+    app.run(host ='0.0.0.0')
