@@ -15,6 +15,7 @@ def index():
     if (session.get('username') != None):
         flash ("You are already logged in!")
         redirect ("/welcome")
+    session.get('username') = None 
     username = request.args.get("username","None")
     password = request.args.get("password","None")
     submit = request.args.get("submit")
