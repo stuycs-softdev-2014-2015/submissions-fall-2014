@@ -9,9 +9,35 @@
 </head>
 
 <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="https://github.com/stuycs-softdev/submissions/tree/master/5/login/vanessa_harrison">Login-erator 5000</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-inverse-collapse">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/login">Login/Register</a></li>
+      <li><a href="/logout">Logout</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/thankyou">Thanks</a></li>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
   <div class="row">
     <div class="col-lg-10 col-lg-offset-1">
       <div class="jumbotron">
+	<br>
 	  <h1>
 	    {% block heading %}
 	    <center>
@@ -32,8 +58,42 @@
       </div>
     </div>
   </div>
+
+
+
+
   <div class="row">
     <div class="col-lg-10 col-lg-offset-1">
+      {% with messages = get_flashed_messages(category_filter=["error"]) %}
+      {% if messages %}
+      <div class="panel panel-danger">
+	<div class="panel-heading">
+	  <h3 class="panel-title">Error</h3>
+	</div>
+	<div class="panel-body">
+	  {% for message in messages %}
+	  {{ message }}
+	  {% endfor %}
+	</div>
+      </div>
+      {% endif %}
+      {% endwith %}
+
+      {% with messages = get_flashed_messages(category_filter=["success"]) %}
+      {% if messages %}
+      <div class="panel panel-success">
+	<div class="panel-heading">
+	  <h3 class="panel-title">Success</h3>
+	</div>
+	<div class="panel-body">
+	  {% for message in messages %}
+	  {{ message }}
+	  {% endfor %}
+	</div>
+      </div>
+      {% endif %}
+      {% endwith %}
+
       {% block body %} 
       body stuff wooooooooooooooooooooo
       {% endblock body %}
