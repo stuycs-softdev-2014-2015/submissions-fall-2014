@@ -1,0 +1,22 @@
+<html>
+    <head>
+        {% block filesToInclude %}
+            <link href="static/style.css" rel="stylesheet">
+            <script src="static/script.js"></script>
+        {% endblock filesToInclude %}
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home </a>
+            <a href="/account">Account</a>
+            <a href="/schedule">Schedule</a>
+            <a href="/register">Register</a>
+            <a href="/logout">Logout</a>
+        </nav>
+        <div class="content">
+            {% block content %}
+            OVERRIDE
+            {% endblock %}
+        </div>
+    </body>
+</html>
