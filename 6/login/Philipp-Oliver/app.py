@@ -6,7 +6,11 @@ app.secret_key = "I'm all about that bass"
 
 @app.route('/')
 def home():
-    return render_template("index.html")
+    #show collections
+    #show users
+    #coll = db.users
+    users = db.list_users
+    return render_template("index.html", list = users)
 
 @app.route('/login',methods=['GET','POST'])
 def login():
@@ -85,7 +89,7 @@ def account():
         if not db.password_correct(old_password, uid=session["uid"]):
             flash("Wrong password.")
             return render_template("account.html")
-
+        
         db.update_password(session["uid"], password)
 
 @app.route("/schedule", methods=["GET", "POST"])
@@ -112,7 +116,10 @@ def schedule():
 
 @app.route("/u")
 def user():
-    return "USER SCHEDULE WILL BE DISPLAYED HERE"
+    #return render_template(
+    return "<br>".join(db.show_schedule(session["uid"]))
+    #return db.users.find()
+    #return "USER SCHEDULE WILL BE DISPLAYED HERE"
 
 if __name__== "__main__":
     app.debug = True

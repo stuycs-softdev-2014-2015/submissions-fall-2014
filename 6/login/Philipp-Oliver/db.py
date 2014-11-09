@@ -55,3 +55,10 @@ def update_schedule(uid, schedule):
     db = connect()
     db.users.update({"_id": ObjectId(uid)}, {"schedule":schedule})
 
+def list_users():
+    db = connect()
+    return db.users.find()
+
+def show_schedule(uid):
+    db = connect()
+    return db.users.find({"_id" : ObjectId(uid)})[0]["schedule"]
