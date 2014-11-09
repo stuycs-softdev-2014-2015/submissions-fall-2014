@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% block title %}404{% endblock %}
+{% block title %}500{% endblock %}
 {% block content %}
 <div class="jumbotron">
-	<h1>Dang it!</h1>
-	<p>We couldn't find what you were looking for. 
+	<h1>Yikes!</h1>
+	<p>Something went wrong.
 	Perhaps try going <a href="{{ url_for('home') }}">home</a>?
 </div>
 {% endblock %}

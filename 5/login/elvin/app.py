@@ -92,6 +92,10 @@ def exclusive():
 def not_found(e): # Return rendering, 404
     return render_template('404.html'), 404
     
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('500.html'), 500
+
 if __name__=="__main__":
     app.debug=True
     app.run()
