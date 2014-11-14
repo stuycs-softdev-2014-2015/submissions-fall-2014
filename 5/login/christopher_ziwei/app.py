@@ -22,6 +22,13 @@ def dbverify(user, password):
 def notvalid(string):
   return len([filter(lambda x: x in "+=\\#[]{}()'\"", string)]) > 0
 
+def needlogin(f):
+    def inner(*args):
+        if 'user' not in session
+            return redirect(.....)
+        return f
+    return inner
+
 @app.route("/" , methods = ["GET" , "POST"])
 def mainpage():
     return redirect("/home") if 'user' in session else redirect("/login")
