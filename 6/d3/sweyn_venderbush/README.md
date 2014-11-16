@@ -1,1 +1,0 @@
-This program analyzes an mp3 or ogg file and ouputs a graph of magnitude of pulses versus time in real time as the song plays.  The scale adjusts per the input data.  It really doesn't look pretty yet but it works.
