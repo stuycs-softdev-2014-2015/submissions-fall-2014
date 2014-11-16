@@ -1,28 +1,29 @@
-<html>
-  <head>
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
 
 
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+{% block bodycontent %}
+<center>
+<h1>Home</h1>
 
-  </head>
-  <body>
-    <h1>Home Page</h1>
+{% if name != None %}
+<p>Welcome, {{name}}!</p><br>
+As one of our valued users, you have access to: <br>
+<a class="button-two pure-button" href="{{url_for('s1') }}">Special Page One</a>
+<a class="button-two pure-button" href="{{url_for('s2') }}">Special Page Two</a>
+</center>
+{% else %}
 
-    {% if name != None %}
-    <p>Welcome {{name}}</p><br>
-    Log out <a href="{{url_for('logout') }}">here</a>
-    <br><br>
-    As one of our valued users, you have access to: <br>
-    <a href="{{url_for('s1') }}">Special Page One</a> <br>
-    and
-    <br>
-    <a href="{{url_for('s2') }}">Special Page Two</a> <br>
-    
-    {% else %}
-    Log in <a href="{{url_for('login') }}">here</a><br>
-    or <br>
-    <a href="{{url_for('register') }}">Register</a>
+<center>
+Nothing to see here!<br><br>
+Please log in <a href="{{url_for('login') }}">here</a>.<br>
+Don't have an account? Register <a href="{{url_for('register') }}">here</a>.<br>
+</center>
 
-    {%endif%}
-  </body>
-  </html>
+
+{% endif %}
+
+{% endblock %}
