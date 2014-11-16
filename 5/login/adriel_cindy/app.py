@@ -13,14 +13,14 @@ def home():
 
     try:
         if (session['name']!=""):
-            return redirect("/page/"+session['name'])
+            return redirect("/page")
     except KeyError:
         if (login == "Login" and user != "" and password != ""):
             if (password == mongo.get_password(user)):
                 mongo.login_user(user)
                 session['name']=user
                 print session['name']
-                return redirect("/page/"+user)
+                return redirect("/page")
             else:
                 flash("Username or password is not valid.")
                 return redirect("/")
@@ -31,17 +31,15 @@ def home():
             return render_template("home.html")
 
 @app.route("/page")
-@app.route("/page/<user>")
-def page(user):
-    if not(mongo.exists_user(user)):
+def page():
+    if not(mongo.exists_user(session['name'])):
         flash("There is no such user.")
         return redirect("/")
-    if (mongo.exists_user(user)):
-        if(mongo.logged_in(user)=="y"):
-            return render_template("user.html", user=user)
-        else:
-            flash("You don't have permission to view that user's page.")
-            return redirect("/")
+    if (mongo.exists_user(session['name'])):
+        return render_template("user.html", user=session['name'])
+    else:
+        flash("You don't have permission to view that user's page.")
+        return redirect("/")
 
 @app.route("/profile")
 @app.route("/profile/<user>")
@@ -58,12 +56,16 @@ def profile(user):
             return redirect("/")
 
 @app.route("/about")
-def about():
-    return render_template("about.html")
+def about(user=None):
 
-@app.route("/logout/<user>")
-def logout(user=None):
-    mongo.logout_user(user)
+    try:
+        return render_template("about.html", user=session['name'])
+    except:
+        print user
+        return render_template("about.html", user=None)
+@app.route("/logout")
+def logout():
+    mongo.logout_user(session['name'])
     flash("Logged out successfully")
     session.clear()
     return redirect("/")
@@ -84,7 +86,7 @@ def register():
             print session['name']
             mongo.add_user(user,password)
             mongo.login_user(user)
-            return redirect("/page/"+user)
+            return redirect("/page")
         if (mongo.exists_user(user)):
             flash("This username is taken.")
             return redirect("/register")
