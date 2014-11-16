@@ -15,16 +15,18 @@ def lenCursor(cursor):
     return count
 def authenticate(func):
     def inner(*args):
-        if user == "" or pwd == "":
+        if args[0] == "" or args[1] == "":
             return "You must enter a username AND a password"
         pword = db.users.find({"user":args[0]}, {"_id":0, "pwd":1})
+        #print [f for f in pword]
         if lenCursor(pword) == 0:
             return "Wrong. Try again. (Hint: check your username)"
-        elif db.users.find({"user":args[0]}, {"_id":0, "pwd":1})[0]["pwd"] !=pword:
+        elif db.users.find({"user":args[0]}, {"_id":0, "pwd":1})[0]["pwd"] != args[1]:
             return "Wrong. Try again. (Hint: check your password)"
         return True
     return inner
 
+@authenticate
 def checkLogin(user, pwd):
     if user.lower() == "miranda":
        return "Mirandas are not welcome here!"
