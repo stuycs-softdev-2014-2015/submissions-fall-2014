@@ -18,7 +18,7 @@ def authenticate(func):
         if user == "" or pwd == "":
             return "You must enter a username AND a password"
         pword = db.users.find({"user":args[0]}, {"_id":0, "pwd":1})
-        elif lenCursor(pword) == 0:
+        if lenCursor(pword) == 0:
             return "Wrong. Try again. (Hint: check your username)"
         elif db.users.find({"user":args[0]}, {"_id":0, "pwd":1})[0]["pwd"] !=pword:
             return "Wrong. Try again. (Hint: check your password)"
