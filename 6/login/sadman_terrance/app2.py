@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session
 import csv
 import pymongo
+from functools import wraps
 
 conn = pymongo.MongoClient()
 db = conn.sadterry
@@ -10,22 +11,25 @@ accounts = db.accounts
 app = Flask(__name__) 
 
 def loggedin(func):
-   if 'username' in session:
-      loggedin=True
-      username=session['username']
-   else:
-      loggedin=False
-      username='-'
-   return func(loggedin,username)
+   @wraps(func)
+   def inner(*args, **kwargs):
+      if 'username' in session:
+         login=True
+         user=session['username']
+      else:
+         login=False
+         user='-'
+      return func(*args, **kwargs)
+   return inner
 
 @app.route("/")
 @loggedin
-def home(login,user):
+def home():
    return render_template("base.html", loggedin=login, username=user)
 
 @app.route("/login",methods=['GET','POST'])
 @loggedin
-def login(login,user):
+def login():
    if login:
       return render_template("login.html", loggedin=True, username=user)
 
@@ -72,7 +76,7 @@ def login(login,user):
      
 @app.route("/logout")
 @loggedin
-def logout(login,user):
+def logout():
    if login:
       session.pop('username', None)
       return render_template("logout.html", loggedin=False, previous=True)
@@ -82,7 +86,7 @@ def logout(login,user):
 
 @app.route("/register",methods=['GET','POST'])
 
-def register(login,user):
+def register():
    loggedin=login
    username=user
 
@@ -126,7 +130,7 @@ def register(login,user):
 
 @app.route("/funny")
 @loggedin
-def funny(login,user):
+def funny():
    return render_template("funny.html", loggedin=login, username=user) 
 
    #viewed only if logged in
