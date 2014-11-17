@@ -10,6 +10,7 @@ accounts = db.accounts
 
 app = Flask(__name__) 
 
+#checks if logged in at each function call
 def loggedin(func):
    @wraps(func)
    def inner():
