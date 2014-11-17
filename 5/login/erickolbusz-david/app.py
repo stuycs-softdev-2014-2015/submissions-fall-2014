@@ -87,7 +87,7 @@ def auth(func):
                 return redirect ("/register")
             if (session.get('currentp') == "welcome"):
                 return redirect ("/welcome")
-        return func(*args)
+        return func(args)
     return inner
     
 @app.route("/welcome")
