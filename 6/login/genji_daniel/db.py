@@ -25,22 +25,22 @@ class User(object):
 
 def restricted(check):
 	def decorate(f):
-		if check=="":
+		if check=="admin":
 			def inner(*args,**kwargs):
-				return f(*args,**kwargs)
+				return f
 			return inner
-		if check=="admin"
-			def inner(*args,**kwargs):
-				return f(*args,**kwargs)
-			return inner		
+		else:
+			return f
 
-def update_user(user,check=""):
+def update_user(check=""):
 	@restricted(check)
-	def update():
-		pass:
+	def update(user):
+		if user is User :
+			users = db[col_users]
+				
 
-		
-
+update_admin = update_user("admin")
+update_reg = update_user("")
 
 
 
