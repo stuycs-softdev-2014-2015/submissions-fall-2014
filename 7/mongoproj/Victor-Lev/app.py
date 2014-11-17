@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, session, escape, url_for
 import mengo
-
+from functools import wraps
 
 app=Flask(__name__)
 mengo.new_user('test','test','test','test')
