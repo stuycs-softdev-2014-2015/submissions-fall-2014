@@ -5,7 +5,7 @@ import unittest, re, math
 sl = 'abcdefghijklmnopqrstuvwxyz'
 
 
-d = open('words.txt').readlines()
+d = open('dorian.txt').readlines()
 datad = [x.rstrip() for x in d]
 dd={}
 for x in sl:
@@ -146,7 +146,7 @@ if __name__=="__main__":
     
             
     #f = open('muricans.txt', 'r')
-    f = open('data.txt','r')
+    f = open('dorian.txt','r')
     data = ''
     for x in f:
         data += x

@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+from functools import wraps
 from pymongo import MongoClient
 import config
 
@@ -6,6 +7,15 @@ app = Flask(__name__)
 client = MongoClient('mongodb://kirsche:cherry@ds045077.mongolab.com:45077/granatapfel')
 db = client['granatapfel']
 users = db['users']
+
+def login(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            flash("You must be logged in.")
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def init():
     try:
@@ -85,6 +95,7 @@ def register():
     return render_template("register.html")
 
 @app.route('/profile')
+@login
 def profile():
     if not 'username' in session:
         session['prev_page'] = 'profile'
@@ -99,6 +110,7 @@ def profile():
         return redirect(url_for("index"))
 
 @app.route('/settings', methods=["GET","POST"])
+@login
 def settings():
     if not 'username' in session:
         flash("You must login to access this page.")
