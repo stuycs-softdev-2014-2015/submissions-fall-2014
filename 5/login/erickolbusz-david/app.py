@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 from pymongo import Connection
+from functools import wraps
 
 app = Flask(__name__)
 id=0
