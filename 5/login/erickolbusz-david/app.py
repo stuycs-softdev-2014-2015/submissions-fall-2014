@@ -81,13 +81,10 @@ def auth(func):
             flash ("You are not logged in")
             if (session.get('currentp') == "login"):
                 return redirect ("/")
-            if (session.get('currentp') == "about"):
-                return redirect ("/about")
-            if (session.get('currentp') == "register"):
+            else:
                 return redirect ("/register")
-            if (session.get('currentp') == "welcome"):
-                return redirect ("/welcome")
-        return func()
+        result = func ()
+        return result
     return inner
     
 @app.route("/welcome")
