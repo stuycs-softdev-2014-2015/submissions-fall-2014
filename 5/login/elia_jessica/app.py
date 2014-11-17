@@ -15,16 +15,13 @@ def index():
         return render_template ("index2.html")
 
 @app.route('/login', methods=['GET', 'POST'])
+@base.validate(request.form['username'], request.form['password'])
 def login():
     error = None
     if request.method == 'POST':
-        if base.validate (request.form['username'], request.form['password']):
-            session['username'] = request.form['username']
-            flash('You were successfully logged in')
-            return redirect(url_for('index'))
-        else:
-            error = "Invalid credentials"
-            return render_template ("login.html", error = error)
+        session['username'] = request.form['username']
+        flash('You were successfully logged in')
+        return redirect(url_for('index'))
     else:
         return render_template ("login.html", error = error)
 
