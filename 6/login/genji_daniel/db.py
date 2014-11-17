@@ -14,20 +14,22 @@ class User(object):
 		#username is a string. info is a dictionary containing the user's information.
 		self.set_username(username)
 		self.set_password(info['password'])
+		self.set_admin(info.get('admin'))
 	def set_username(self,username):
 		self.username=username
 	def set_password(self,password):
 		self.password=password
+	def set_admin(self, admin):
+		self.admin = admin
 	def jsonify(self):
 		D = {}
 
 		D['username']=self.username
 		
 		if self.password:
-			D['password']=self.password		
-		else:
-			print "This should never fail, because there are prior password checks."
-
+			D['password']=self.password
+		if self.admin:
+			D['admin']=self.admin
 		return D
 
 def restricted(check):
@@ -41,15 +43,14 @@ def restricted(check):
 						#If the document exists already, then we can't insert.
 						return False
 					else :
-						args[0]["admin":True]
+						args[0].set_admin(True)
 				f(*args)
 			return inner
 		else:
 			@wraps(f)
 			def inner(*args,**kwargs):
-				print f.__name__
 				if args[1] :
-					if verify_reg(args[0]) :
+					if verify_reg(args[0]) :						
 						return False
 				f(*args)
 			return inner
@@ -57,7 +58,7 @@ def restricted(check):
 def update_user(check=""):
 	@restricted(check)
 	def update(user,insert=False):
-		print "screw you python"	
+		print "update"
 		D = user.jsonify()
 
 		if insert : 
@@ -68,7 +69,7 @@ def update_user(check=""):
 				{'$set' : D}
 			)
 			
-	return update	
+	return update
 
 def verify_user(check=""):
 	def verify(user):
@@ -76,19 +77,23 @@ def verify_user(check=""):
 			if users.find({"username":user.username,"admin":True}).count()>=1 :
 				return True
 		else:
-			if users.find({"username":user.username})>=1 :
+			if users.find({"username":user.username}).count()>=1 :
 				return True
 		return False
+	return verify
 
 update_admin = update_user("admin")
 update_reg = update_user("")
 verify_admin = verify_user("admin")
-verify_reg = update_user("")
+verify_reg = verify_user("")
+
+
+
 
 D={"password":"durr"}
-derp = User("swagmaster",D)
+derp = User("swagger",D)
 
-update_reg(derp,True)
+update_admin(derp,True)
 
 
 
