@@ -15,12 +15,12 @@ def index():
 def home():
     username = session['username']
     password = session['password']
-
-    authenticated = ""
+    user=db.User(username,{'password':password})
+    authenticated = db.verify_user(user)
 
     #Authenticate using mongodb
-    if db.users.find({"username": username,"password":password}).count()==1:
-       authenticated=db.users.find({"username": username,"password":password})[0]["username"]
+    #if db.users.find({"username": username,"password":password}).count()==1:
+    #   authenticated=db.users.find({"username": username,"password":password})[0]["username"]
 
     if authenticated:
         return render_template("home.html", loggedin="logged in as: "+authenticated)
@@ -42,11 +42,12 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         email = request.form["email"]
-
+        user=db.User(username,{'password':password})
         error = ""
         #Store the information in mongo
-        if (db.users.find({"username": username,"password":password}).count()==0):
-            db.users.insert({"username":username,"password":password})
+        #if (db.users.find({"username": username,"password":password}).count()==0):
+            #db.users.insert({"username":username,"password":password})
+        if db.update_reg(user, True):
             print "username: "+username
             print "password: "+password
         else:
@@ -67,17 +68,19 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-
+        user=db.User(username,{'password':password})
         error = ""
+        found=db.verify_reg(user)
         #Verify information with mongo. If there is an error, set error to a string describing it.
-        if not db.users.find({"username": username,"password":password}).count()==1:
+        #if not db.users.find({"username": username,"password":password}).count()==1:
+        if not found:
             error="Invalid username or password."
         if error=="":
             #resp = make_response(redirect("http://localhost:5000/home"))
             session["username"]=username
             session["password"]=password #such hackable
             return redirect("http://localhost:5000/home")
-            return resp
+            #return resp
         else:
             return render_template("login-register.html",error=error)
 
@@ -94,13 +97,14 @@ def other():
     username = session['username']
     password = session['password']
 
-    authenticated = ""
+    user=db.User(username,{'password':password})
+    authenticated = db.verify_reg(user)
 
     #Authenticate using mongodb
-    if db.users.find({"username": username,"password":password}).count()==1:
-        authenticated=db.users.find({"username": username,"password":password})[0]["username"]
+    #if db.users.find({"username": username,"password":password}).count()==1:
+    #    authenticated=db.users.find({"username": username,"password":password})[0]["username"]
     if authenticated:
-        cursor=db.users.find()
+        cursor=db.db.users.find()
         #for x in cursor:
         #    print x['username']
         return render_template("other.html",loggedin="logged in as: "+authenticated,dicti=cursor)
@@ -113,12 +117,12 @@ def profile():
     if request.method == "GET":
         username = session['username']
         password = session['password']
-
-        authenticated = ""
+        user=db.User(username,{'password':password})
+        authenticated = db.verify_reg(user)
 
         #Authenticate using mongodb
-        if db.users.find({"username": username,"password":password}).count()==1:
-            authenticated=db.users.find({"username": username,"password":password})[0]["username"]
+        #if db.users.find({"username": username,"password":password}).count()==1:
+        #    authenticated=db.users.find({"username": username,"password":password})[0]["username"]
 
         if authenticated:
             return render_template("profile.html",loggedin="logged in as: "+authenticated)
@@ -132,19 +136,21 @@ def profile():
         print "username: "+username
         print "password: "+password
 
-        authenticated = ""
+        user=db.User(username,{'password':password})
+        authenticated = db.verify_user(user)
         #Authenticate using mongodb
-        if db.users.find({"username": username,"password":password}).count()==1:
-            authenticated=db.users.find({"username": username,"password":password})[0]["username"]
+        #if db.users.find({"username": username,"password":password}).count()==1:
+        #authenticated=db.users.find({"username": username,"password":password})[0]["username"]
 
         if not authenticated:
             return redirect("http://localhost:5000/login-register")
         else:
             if len(request.form["password"])>1:
                 password = request.form["password"]
-                db.users.update({"username":username,"password":password},{ "$set": { "password": password } })
+                user.set_password(user)
+                db.users.update_reg(user,False)
 
-            name=request.form["name"]
+                w='''            name=request.form["name"]
             if len(name)>1:
                 db.users.update({"username":username,"password":password},{ "$set": { "name": name } })
 
@@ -154,7 +160,7 @@ def profile():
 
             email=request.form["email"]
             if len(email)>1:
-                db.users.update({"username":username,"password":password},{ "$set": { "email": email } })
+                db.users.update({"username":username,"password":password},{ "$set": { "email": email } })'''
 
             #resp = make_response(redirect("http://localhost:5000/home"))
             session["password"]=password
