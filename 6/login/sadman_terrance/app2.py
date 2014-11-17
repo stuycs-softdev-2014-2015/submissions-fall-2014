@@ -12,24 +12,24 @@ app = Flask(__name__)
 
 def loggedin(func):
    @wraps(func)
-   def inner(*args, **kwargs):
+   def inner():
       if 'username' in session:
          login=True
          user=session['username']
       else:
          login=False
          user='-'
-      return func(*args, **kwargs)
+      return func(login,user)
    return inner
 
 @app.route("/")
 @loggedin
-def home():
+def home(login,user):
    return render_template("base.html", loggedin=login, username=user)
 
 @app.route("/login",methods=['GET','POST'])
 @loggedin
-def login():
+def login(login,user):
    if login:
       return render_template("login.html", loggedin=True, username=user)
 
@@ -76,7 +76,7 @@ def login():
      
 @app.route("/logout")
 @loggedin
-def logout():
+def logout(login,user):
    if login:
       session.pop('username', None)
       return render_template("logout.html", loggedin=False, previous=True)
@@ -85,11 +85,8 @@ def logout():
    #logout
 
 @app.route("/register",methods=['GET','POST'])
-
-def register():
-   loggedin=login
-   username=user
-
+@loggedin
+def register(login,user):
    if request.method=='POST':
       if 'username' not in session:
       
@@ -125,21 +122,19 @@ def register():
             return render_template("register.html", page=1, username=username)
       return render_template("register.html", page=2, reason=reason)
    else:
-      return render_template("register.html", page=3, loggedin=loggedin, username=username) 
+      return render_template("register.html", page=3, loggedin=login, username=user) 
    #register
 
 @app.route("/funny")
 @loggedin
-def funny():
+def funny(login,user):
    return render_template("funny.html", loggedin=login, username=user) 
-
    #viewed only if logged in
 
 @app.route("/joke")
 @loggedin
-def joke():
+def joke(login,user):
    return render_template("joke.html", loggedin=login, username=user) 
-
    #viewed only if logged in
 
 if __name__ == "__main__":
