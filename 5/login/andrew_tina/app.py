@@ -1,5 +1,6 @@
 from flask import Flask, flash, redirect, request, render_template, url_for, session
 from pymongo import Connection
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'dont_tell'
@@ -74,27 +75,33 @@ def register():
             else:
                 flash("Username already in use")
                 return render_template("register.html")
-#individual page
-@app.route("/user/<username>", methods = ['GET','POST'])
-def user(username):
-    if request.method == 'GET':
+
+
+#decorator
+def authenticate(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
         if 'user' not in session:
             flash("You need to be logged in")
             return redirect(url_for('login'))
-        else:
-            return render_template("user.html", username = username)
+        return func(*args, **kwargs)
+    return inner
+
+#individual page
+@app.route("/user/<username>", methods = ['GET','POST'])
+@authenticate
+def user(username):
+    if request.method == 'GET':
+        return render_template("user.html", username = username)
     else:
         session.pop("user", None)
         return redirect(url_for('home'))
 
 @app.route("/secret", methods = ['GET','POST'])
+@authenticate
 def secret():
     if request.method == 'GET':
-        if 'user' not in session:
-            flash("You need to be logged in")
-            return redirect(url_for('login'))
-        else:
-            return render_template("secret.html")
+        return render_template("secret.html")
     else:
         button = request.form['b']
         if button == 'logout':
@@ -102,6 +109,7 @@ def secret():
             return redirect(url_for('home'))
         else:
             return redirect(url_for('user',username = session['user']))
+
 
 
 #url does not exist

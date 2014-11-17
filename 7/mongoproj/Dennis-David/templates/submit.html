@@ -41,17 +41,18 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <form form="form" method="POST">
-      <fieldset>
-        <legend>Write a Post:</legend>
-	<textarea Required="True" rows="5" type="text" class="form-control" name="post" placeholder="Write your post here..."></textarea><br><br>
-	Make your post either public or private<br>
-	<input type="radio" Required="True" name="type" value="public">Public
-	<input type="radio" Required="True" name="type" value="private">Private
-	<br>
-	<button type="submit">Post</button>
-      </fieldset>
-    </form>
-    
+    <div class="container">
+      <form form="form" method="POST">
+	<fieldset>
+          <legend>Write a Post:</legend>
+	  <textarea Required="True" rows="5" type="text" class="form-control" name="post" placeholder="Write your post here..."></textarea><br><br>
+	  Make your post either public or private<br>
+	  <input type="radio" Required="True" name="type" value="public">Public
+	  <input type="radio" Required="True" name="type" value="private">Private
+	  <br>
+	  <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+	</fieldset>
+      </form>
+    </div>
   </body>
 </html>

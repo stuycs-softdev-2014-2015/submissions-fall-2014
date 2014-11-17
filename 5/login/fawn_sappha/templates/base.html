@@ -8,7 +8,7 @@
 <body>
   <div class = "container">
     <h1><a href="/">Mongo Thing</a></h1>  
-    {% if message %}
+    {% if message and message != "" %}
     <strong>
       {{message}}
     </strong>
@@ -17,7 +17,7 @@
     {% block bodycontent %}
 
     {% endblock bodycontent %}
-    {% if logout %}
+    {% if username %}
     <form action="/" method = "POST">
       <input type="submit" class = "logout button" name = "b" value = "Log Out">
     </form>

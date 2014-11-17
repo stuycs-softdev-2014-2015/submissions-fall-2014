@@ -1,8 +1,19 @@
 from flask import Flask, render_template, request,redirect, session, url_for,session,escape,request, flash
+from functools import wraps
+
 import MongoWork
 app = Flask(__name__)
 app.secret_key = 'Really secret but not really' #just for session usage
 
+def authenticate(f):
+    @wraps(f)
+    def wrap(*args):
+        if 'username' in session:
+            return f(*args)
+        else:
+            flash("You must log in to see that page.")
+            return redirect(url_for('index',redirect_user = True))
+    return wrap
 
 @app.route("/", methods=["POST","GET"])
 def index():
@@ -43,13 +54,12 @@ def about():
 
 
 @app.route("/loggedin/", methods=["POST","GET"])
+@authenticate
 def user():
     #POST METHOD MEANS UPDATING PASSWORD
-    if request.method == 'POST' and 'username' in session:
+    if request.method == 'POST':
         newpwdinput = request.form.get("newpas")
         newrepwdinput = request.form.get("newrepas")
-        print newpwdinput
-        print newrepwdinput
         if newpwdinput == newrepwdinput: #matched successfully, update passwords
             username = escape(session['username'])
             MongoWork.update_password(username,newpwdinput)
@@ -59,26 +69,19 @@ def user():
             flash("Passwords did not match. Password was not updated.")
             return redirect(url_for("user"))
     else: #GET METHOD
-        if 'username' in session:
-            username = escape(session['username'])
-            user_info = MongoWork.find_usrinfo(username)
-            fname = user_info['firstname']
-            lname = user_info['lastname']
-            u = user_info['uname']
-            pwd = user_info['password']
-            return render_template("user.html",username=username,fname=fname, lname=lname,u=u,pwd=pwd);
-        else: 
-            flash("You must log in to see that page.")
-            return redirect(url_for('index',redirect_user = True))
+        username = escape(session['username'])
+        user_info = MongoWork.find_usrinfo(username)
+        fname = user_info['firstname']
+        lname = user_info['lastname']
+        u = user_info['uname']
+        pwd = user_info['password']
+        return render_template("user.html",username=username,fname=fname, lname=lname,u=u,pwd=pwd); 
     
 @app.route("/dashboard")
+@authenticate
 def dashboard():
-    if 'username' in session:
-        username = escape(session['username'])
-        return render_template("dashboard.html",username=username)
-    else:
-        flash("You must log in to see that page.")
-        return redirect(url_for('index'))
+    username = escape(session['username'])
+    return render_template("dashboard.html",username=username)
 
 #must pop off session
 @app.route("/logout")
@@ -122,9 +125,6 @@ def register():
         return render_template("register.html")
 
 
-
-
-
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0')
+    app.run()
