@@ -13,7 +13,7 @@ logins.insert(default_user)
 
 def create_user(user, password):
     #Checks if the username already exists, if not adds the new user
-    if(find_user(user) == None):
+    if(user_exists(user) == None):
         new_login = {
             'username': user,
             'password': password,
@@ -23,20 +23,22 @@ def create_user(user, password):
     else:
         print("username already exists")
 
-def find_user(user):
+
+        
+def user_exists(user):
     #finds a single user by username
-    user = users.find_one({'username': user})
+    user = logins.find_one({'username': user})
     return user
 
 def find_user(user, password):
     #confirms user and password match
-    user = users.find_one({'username': user, 'password': password})
+    user = logins.find_one({'username': user, 'password': password})
     return user
 
 def change_password(user, old_password, new_password):
     #Validates and changes password                       
     if(find_user(user, old_password) != None):
-        db.users.update({'username' : user}, {'$set' : {'password':new_password}})
+        db.logins.update({'username' : user}, {'$set' : {'password':new_password}})
     if(find_user(user) != None):
         print("please enter your correct old password")
 #---------MONGO------------------------------------------------------------------------
@@ -61,9 +63,9 @@ def login():
             #redirect to personal profile.
             session['email']=request.form['email']
             redirect(url_for("/profile"))
-            pass
         else:
             print ("user not found")
+            return render_template("login.html")
     return render_template("login.html")
     
 @app.route("/register", methods = ["GET","POST"])
@@ -73,9 +75,11 @@ def register():
     else:
         email = request.form["email"]
         pw = request.form["password"]
-        create_user(user,name)
-        session['email']=email
-        return render_template("/profile")
+        success=create_user(email,pw)
+        if (success != None):
+            return render_template("login.html")
+        else:
+            return render_template("register.html")
 
 @app.route("/profile", methods=["GET","POST"])
 def profile():
@@ -84,8 +88,8 @@ def profile():
 
 @app.route("/logout", methods = ["GET"])
 def logout():
-    session.pop('username', None)
-    return redirect(url_for('index'))
+    session.pop('email', None)
+    return redirect("/")
 
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 

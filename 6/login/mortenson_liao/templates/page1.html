@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+
+{% block bodycontent %}
+{% if loggedin %}
+Welcome, {{ username }}.
+{% else %}
+You are not logged in.
+{% endif %}
+{% endblock bodycontent %}

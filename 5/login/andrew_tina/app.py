@@ -1,5 +1,6 @@
 from flask import Flask, flash, redirect, request, render_template, url_for, session
 from pymongo import Connection
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'dont_tell'
@@ -34,6 +35,7 @@ def login():
                 plist.append(i["password"])
             if un in dlist and pw in plist:
                 flash('Successfully logged in!')
+                session['user'] = un
                 return redirect(url_for('user',username = un))
             else:
                 flash("Wrong username or password")
@@ -52,11 +54,14 @@ def register():
         if button == 'cancel':
             return redirect(url_for('register'))
         elif button == 'submit':
+            if un == '' or pw == '':
+                flash('You must enter in both a username and a password')
+                return redirect(url_for('register'))
             dlist=[]
             d = users.find()
             for i in d:
                 dlist.append(i["username"])
-            if un in dlist:
+            if un not in dlist:
                 flash('Successfully registered!')
                 
                 #adding in database
@@ -70,10 +75,42 @@ def register():
             else:
                 flash("Username already in use")
                 return render_template("register.html")
+
+
+#decorator
+def authenticate(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        if 'user' not in session:
+            flash("You need to be logged in")
+            return redirect(url_for('login'))
+        return func(*args, **kwargs)
+    return inner
+
 #individual page
-@app.route("/user/<username>")
+@app.route("/user/<username>", methods = ['GET','POST'])
+@authenticate
 def user(username):
-    return render_template("user.html", username = username)
+    if request.method == 'GET':
+        return render_template("user.html", username = username)
+    else:
+        session.pop("user", None)
+        return redirect(url_for('home'))
+
+@app.route("/secret", methods = ['GET','POST'])
+@authenticate
+def secret():
+    if request.method == 'GET':
+        return render_template("secret.html")
+    else:
+        button = request.form['b']
+        if button == 'logout':
+            session.pop("user", None)
+            return redirect(url_for('home'))
+        else:
+            return redirect(url_for('user',username = session['user']))
+
+
 
 #url does not exist
 @app.errorhandler(404)

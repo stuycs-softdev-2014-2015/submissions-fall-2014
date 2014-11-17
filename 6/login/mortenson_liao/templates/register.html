@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block bodycontent %}
+
+<div class="pure-u-2-3">
+Register
+{% if diffPass %}
+<font color="red">Passwords do not match please re-enter</font>
+{% endif %}
+{% if userTaken %}
+<font color="red">Username already taken</font>
+{% endif %}
+
+{% if notComplete %}
+<font color="red">Please fill out all the fields</font>
+{% endif %} 
+
+<form method="POST" action="register" class="pure-form pure-form-stacked">
+  <input type="text" name="username" placeholder="Username">
+  <input type="password" name="password" placeholder="Password">
+  <input type="password" name="password2" placeholder="Retype Password">
+  <button type="submit" class="pure-button" name="register">
+    Register
+  </button>
+</form>
+</div>
+{% endblock bodycontent %}

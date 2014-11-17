@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Account Manager{% if session['username'] %}, {{ session['username'] }}{% endif %}</h1>
+{% endblock %}

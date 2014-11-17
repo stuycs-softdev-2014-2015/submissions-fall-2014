@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block tophead %}
+<ul>
+  <li class="pure-menu-selected"><a href="/home2">Home</a></li>
+  <li><a href="/myinfo">Your info</a></li>
+  <li><a href="/info">Fun Stuff</a></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+{% endblock tophead %}
+{% block content_block %}
+<h1>Super Fun Stuff</h1>
+<br>
+<p>
+  <img src="http://www.naturalhealth365.com/images/eating-mangoes.jpg" width="200px" height="200px">
+  <div id="white_block"></div>
+  <a href="/info" class="pure-button pure-button-primary">Fun Stuff</a>
+  <a href="/myinfo" class="pure-button pure-button-primary">Your Info</a>
+</p>
+{% endblock content_block %}

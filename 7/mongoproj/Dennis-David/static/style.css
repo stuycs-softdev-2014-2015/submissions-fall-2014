@@ -1,0 +1,12 @@
+body {
+	
+	font-family: Sans-serif;
+	background-image: url('congruent_outline.png');
+    background-repeat: repeat;
+}
+
+h1, h3 {
+	text-align: center;
+	margin-top:1px;
+	margin-bottom:1px;
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+</head>
+<link rel="stylesheet" href="/static/extras.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+<!--<![endif]-->
+
+</head>
+
+<div class="pure-g">
+  <div id="layout" class="pure-g">
+  </div>
+</div>
+
+<div class="pure-g">
+  <div class="pure-u-3-24"></div>
+  <div class="pure-u-1-24"></div>
+  <div class="pure-u-16-24">
+
+    <img id="banner" src="/static/Banner.jpg" alt="Banner Image"/>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+      <ul>
+	<li><li>
+        <li class="pure-menu-selected">MONGO DEMO</li>
+        <li><a href="/about">About</a></li>
+	<li><a href="/dashboard">Home</a></li>
+	<li class="pure-menu-selected"><a href="/">Login</a></li>
+	<li><a href="/register">Register</a></li>
+	<li><a href="/loggedin/">User Information</a></li>
+      </ul>
+    </div>
+    <br>
+    
+    {% block body %}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class=flashes>
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    {% endblock %}
+    <br>
+    <div class="error">
+      {% if error %}
+      Incorrect password! Please try again.<br><br>
+      {% elif notreg %}
+       Username was not recognized. Please register.<br><br>
+      {%endif%}
+    </div>
+    <form class="pure-form" method="POST">
+      Username: 
+      <br>  
+      <input class="form-stuff" type="text" size="30" placeholder="Username" name="user"></input>
+      <br><br>
+      Password:
+      <br>
+      <input class-"form-stuff" type="password" size="30" placeholder="Password" name="passwd"></input>
+      <br><br><button class="pure-button" name="submit" value="yes">Submit</button>
+    </form>
+    <br>
+    <div class ="centered">
+    Don't have an account? Register <a href="/register">HERE!</a>
+    </div>
+    <br>
+  </div>
+  <div class="pure-u-1-24"></div>
+  <div class="pure-u-3-24"></div>
+</div>

@@ -7,10 +7,20 @@ conn=pymongo.MongoClient()
 db=conn.userdb
 collection = db.test
 #db.drop_collection("test")
+
+
+def restricted(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if 'username' not in session:
+            session['error'] = "You cannot access this page if you are not logged in! Silly goose."
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return inner
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if 'logged' not in session:
-        session['logged'] = 1
     
     if request.method == "POST":
         euser = request.form['username']
@@ -34,38 +44,100 @@ def login():
         session['error']= "Incorrect username/password combination. Please try again."
         return redirect(url_for("error"))
     else:
-        return render_template("login.html",logged=session['logged'])
+        if 'username' in session:
+            u=session['username']
+        else:
+            u=""
+
+        return render_template("login.html",logged=session['logged'], u=u)
     
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if 'username' in session:
+        u=session['username']
+    else:
+        u=""
+
     if request.method == "POST":
-        
+        f = db.test.find({})
+        euser = request.form['username']
+        for l in f:
+            if l['username'] == euser:
+                session['error'] = "Sorry, someone else already has that username. Please try again."
+                return redirect(url_for("error"))
+        epass =request.form['password']
+        if len(epass) < 8:
+            session["error"] = 'Your password was less than 8 characters, doofus.'
+            return redirect(url_for("error"))
         d = {'username':request.form['username'], 'password':request.form['password']}
         print d
         collection.insert(d)
         print db.collection_names()
         return redirect(url_for("login"))
+
     else:
-        return render_template("register.html", logged = session['logged'])
+        if 'username' in session:
+            u=session['username']
+        else:
+            u=""
+
+        return render_template("register.html", logged = session['logged'], u=u)
+
 
 @app.route("/loggedin1")
+@restricted
 def loggedin1():
-    return render_template("loggedin1.html", logged = session['logged'])
-@app.route("/error")
-def error():
-    e= session['error']
-    return render_template("error.html",e=e,logged = session['logged'])
-
-@app.route("/")
-def home():
     if 'username' in session:
         u=session['username']
     else:
         u=""
-    if 'logged' not in session:
-        session['logged'] = 1 
 
-    return render_template("home.html", u=u,logged=session['logged'])
+    return render_template("loggedin1.html", logged = session['logged'], u=u)
+
+@app.route("/loggedin2", methods=["GET", "POST"])
+@restricted
+def loggedin2():
+    if 'username' in session:
+        u=session['username']
+    else:
+        u=""
+
+    return render_template("loggedin2.html", logged = session['logged'], u=u)
+
+
+@app.route("/notloggedin")
+def notloggedin():
+    if 'username' in session:
+        u=session['username']
+    else:
+        u=""
+
+    return render_template("notloggedin.html", logged = session['logged'], u=u)
+
+
+@app.route("/error")
+def error():
+    if 'logged' not in session:
+        session['logged']=2
+    print session['logged']
+    if 'username' in session:
+        u=session['username']
+    else:
+        u=""
+
+    e= session['error']
+    return render_template("error.html",e=e,logged = session['logged'], u=u)
+
+@app.route("/")
+def home():
+    if 'logged' not in session:
+        session['logged']=2
+    if 'username' in session:
+        u=session['username']
+    else:
+        u=""
+
+    return render_template("home.html", logged=session['logged'], u=u)
 
 @app.route("/logout")
 def logout():
@@ -75,6 +147,7 @@ def logout():
 
 if __name__=="__main__":
     app.debug=True
-    app.run("0.0.0.0");
+    app.run(host='0.0.0.0')
+    
 
 

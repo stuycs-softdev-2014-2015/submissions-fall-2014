@@ -21,6 +21,7 @@ def home():
       username = '-'
    print loggedin
    return render_template("base.html", loggedin=loggedin, username=username)
+
 @app.route("/login",methods=['GET','POST'])
 def login():
    if 'username' in session:
@@ -28,7 +29,6 @@ def login():
       return render_template("login.html", loggedin=True, username=luser)
 
    if request.method=='POST':
-      print '\nThe request method is ' + str(request.method) + '\n' 
       
       username = request.form['username']
       password = request.form['password']
@@ -53,17 +53,12 @@ def login():
          reason = "Your username and password do not match"
          
          
-      #print db.accounts.find({username:'a', password:"a"})  
       doc = list(db.accounts.find({})) 
-      #print doc
-      #print conn.database_names()
+
       print ''
       print db.collection_names()
       print db
       print ''
-      
-      for d in db.accounts.find():
-         print d['username']+": "+d['password']
  
       if loggedin:
          session['username']=username
@@ -72,7 +67,7 @@ def login():
    else:
       print session
       return render_template("login.html", loggedin=False)
-   
+   #login
      
 @app.route("/logout")
 def logout():
@@ -96,7 +91,6 @@ def register():
 
    if request.method=='POST':
       if 'username' not in session:
-         print '\nThe request method is ' + str(request.method) + '\n' 
       
          username = request.form['username']
          password = request.form['password']
@@ -126,30 +120,35 @@ def register():
          else:
             print "Failure to register"
          
-         for d in db.accounts.find():
-            print d['username']+": "+d['password']
-         
          if registered:
             return render_template("register.html", page=1, username=username)
-      else:
-         return render_template("register.html", page=2, reason=reason, a = "a")
+      return render_template("register.html", page=2, reason=reason)
    else:
-      return render_template("register.html", page=3, a = "b", loggedin=loggedin, username=username) 
+      return render_template("register.html", page=3, loggedin=loggedin, username=username) 
    #register
-
-@app.route("/intro")
-def intro():
-   pass
-   #can view without logging in
 
 @app.route("/funny")
 def funny():
-   pass
+   if 'username' in session:
+      loggedin=True
+      username=session['username']
+   else:
+      loggedin=False
+      username=''
+   return render_template("funny.html", loggedin=loggedin, username=username) 
+
    #viewed only if logged in
 
 @app.route("/joke")
 def joke():
-   pass
+   if 'username' in session:
+      loggedin=True
+      username=session['username']
+   else:
+      loggedin=False
+      username=''
+   return render_template("joke.html", loggedin=loggedin, username=username) 
+
    #viewed only if logged in
 
 if __name__ == "__main__":

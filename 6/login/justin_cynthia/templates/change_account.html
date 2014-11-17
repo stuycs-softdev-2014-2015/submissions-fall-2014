@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Change Account Information
+{% endblock %}
+
+{% block body %}
+
+{% if 'username' not in session %}
+You are not logged in.
+
+{% else %}
+
+{% if error %}
+{{error}}<br>
+{% endif %}
+
+<form method="POST" class="pure-form pure-form-aligned">
+  <fieldset>
+    <legend>
+If you wish to change your username or password, please enter them here.</legend>
+    <div class="pure-control-group">
+      <label for="username">New Username</label>
+      <input type="text" name="username" placeholder="New Username">
+    </div>
+    <div class="pure-control-group">
+      <label for="password">New Password</label>
+      <input type="password" name="password" placeholder="New Password"><br>
+    </div>
+    <div class="pure-controls">
+      <input type="submit" class="pure-button pure-button-primary" name="button" value="change">
+      <input type="submit" class="pure-button pure-button-primary" name="button" value="cancel">
+    </div>
+  </fieldset>
+</form>
+{% endif %}
+
+{% endblock %}

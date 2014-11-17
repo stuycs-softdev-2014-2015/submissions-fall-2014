@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
+  <link rel="stylesheet" href="static/home.css">
+</head>
+  <h1>
+    <center>rip</center>
+  </h1>
+  <div class="pure-menu pure-menu-open">
+    <a class="pure-menu-heading">Menu</a>
+    <ul>
+      {% if sess['username'] %}
+      <li><a>Currently logged in as: {{sess['username']}}</a></li>
+      <li><a href="/logout">Log Out</a></li>
+      {% else %}
+      <li><a>Not logged in.</a></li>
+      <li><a href="/login">Log In</a></li>
+      <li><a href="/register">Register</a></li>
+      {% endif %}
+      <li><a href="/posts">Posts</a></li>
+      {% if sess['username'] %}
+      <li><a href="/diary">{{sess['username']}}'s Diary</a></li>
+      <li><a href="/settings">Settings</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <a href="/todo">To Do</a>
+</body> 
+</html>

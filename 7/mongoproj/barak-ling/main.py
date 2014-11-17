@@ -1,6 +1,7 @@
+from functools import wraps
 import pymongo
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, session, url_for, escape
+from flask import Flask, render_template, request, redirect, session, url_for, escape, flash
 
 app = Flask(__name__)
 
@@ -35,6 +36,25 @@ users = db.users
 # db.dropDatabase()
 
 # checks if the username is not used; returns False if username is already registered
+
+def authenticate(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if "username" not in session:
+            flash("Error: not logged in")
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return inner
+    
+def no_user(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if "username" in session:
+            flash("Error: already logged in")
+            return redirect(url_for("home"))
+        return f(*args, **kwargs)
+    return inner
+
 def check_username(username):
     if users.find_one({"username":username}) != None:
         return False #not valid
@@ -53,12 +73,11 @@ def check_login(username, password):
     return True
 
 #for now, home page is login page
-#@app.route('/home')
 @app.route("/login", methods=["GET","POST"])
-#def home():
+@no_user
 def login():
-    if 'username' in session:
-        return redirect(url_for('logout'))
+    #if 'username' in session:
+    #    return redirect(url_for('logout'))
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -72,15 +91,18 @@ def login():
     return render_template("login.html")
 
 @app.route('/login_failure')
+@no_user
 def login_failure():
     return render_template("login_0.html")
 
 @app.route('/logout')
+@authenticate
 def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
 
 @app.route('/register', methods=["GET","POST"])
+@no_user
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -94,14 +116,17 @@ def register():
     return render_template("register.html")
 
 @app.route('/register_success')
+@no_user
 def register_success():
     return render_template("register_1.html")
 @app.route('/register_failure')
+@no_user
 def register_failure():
     return render_template("register_0.html")
 
 @app.route("/", methods=["GET","POST"])
-@app.route('/home')
+@app.route('/home', methods=["GET","POST"])
+@authenticate
 def home():
     if 'username' in session:
         name = escape(session['username'])
@@ -109,9 +134,11 @@ def home():
         message = users.find_one({"username":name})["message"]
         #print message
         return render_template("home.html", name=name,message=message);
-    return redirect(url_for('login'))
+    #return redirect(url_for('login'))
+
 
 @app.route('/settings', methods=["GET","POST"])
+@authenticate
 def settings():
     if not 'username' in session:
         return redirect(url_for('login'))
@@ -135,17 +162,19 @@ def settings():
 def about():
     if 'username' in session:
         name = escape(session['username'])
-        header = "Welcome, "
+        header = "Hello, "
     else:
         name = ""
-        header = "Simple"
+        header = "Account Manager"
+        return render_template("about2.html", header=header, name=name)
     return render_template("about.html", header=header, name=name)
     
 @app.errorhandler(404)
 def page_not_found(error):
-    return 'This page does not exist!!', 404
+    #return 'This page does not exist!!', 404
+    return render_template("dne.html")
 
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RRR'
+app.secret_key = 'bestsecretkeyeverkekekedesu'
 
 if __name__ == "__main__":
     app.debug=True

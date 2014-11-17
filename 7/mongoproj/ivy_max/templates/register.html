@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+    <h1>Register</h1>
+    <p id="error">{{error}}</p>
+    <form class="pure-form pure-form-stacked" method="POST" action="{{ url_for('register') }}">
+        <input type="text" placeholder="Username" name="username"></input>
+        <input type="password" placeholder="Password" name="password"></input>
+        <input type="password" placeholder="Confirm Password" name="confirm_password"></input>
+        <button class="pure-button pure-button-primary" type="submit">Register</button>
+    </form>
+{% endblock body %}

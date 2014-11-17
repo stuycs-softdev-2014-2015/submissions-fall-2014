@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block thing %}
+<h2>
+  Have you ever wanted to log in somewhere?
+  <hr>
+  <small>
+    Well now you have!
+    <br>
+    You're currently logged in as: <strong>{{ name }}</strong>
+  </small>
+  <div class="pull-right">
+    <br>
+    <br>
+    <a href="/thankyou">
+      <input type="submit" class="btn btn-lg btn-default" value="Thanks >>>">
+    </a>
+    <br>
+    <br>
+    <a href="/bird">
+      <input type="submit" class="btn btn-lg btn-default" value="??? >>>">
+    </a>
+    <br>
+    <br>
+    <a href="/logout">
+      <input type="submit" class="btn btn-lg btn-default" value="Logout >>>">
+    </a>
+  </div>
+</h2>
+{% endblock thing %}

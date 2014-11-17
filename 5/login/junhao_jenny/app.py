@@ -1,88 +1,101 @@
 #!/usr/bin/python
 import mongo
-from flask import Flask, render_template, request, redirect, \
-    url_for, session, flash
+from flask import Flask, render_template, request, redirect, session, flash
+from functools import wraps
+
+# the second kitten image link is broken :(
 
 app = Flask(__name__)
 
-def loginForm(page):
-    user = request.form["user"]
-    password = request.form["password"]
-    dict = {'user':user,'password':password}
-    error = mongo.loginErrors(dict)
-    if error:
-        flash(error, "error")
-    else:
-        session['user'] = user
-        return redirect(url_for(page))
+def authenticate(page):
+    def decorate(f):
+        @wraps(f)
+        def inner(*args):
+            if 'user' not in session:
+                flash("You need to be logged in to see that!")
+                session['nextpage'] = page
+                return redirect("/login")
+            return f(*args)
+        return inner
+    return decorate
 
+@app.route("/home")
 @app.route("/")
 def home():
+    if 'user' in session:
+        return redirect("animals")
     return render_template("home.html")
 
 @app.route("/login", methods=["GET","POST"])
 def login():
+    if 'user' in session:
+        flash("Already logged in!", "error")
+        return redirect("/animals")
+    
+    # Logging in
     if request.method == "POST":
-        loginForm("animals")
+        user = request.form["user"]
+        password = request.form["password"]
+        error = mongo.loginErrors(user, password)
+        if error:
+            flash(error, "error")
+        else:
+            session['user'] = user
+            if 'nextpage' in session:
+                page = session['nextpage']
+                session.pop("nextpage")
+                return redirect(page)
+            else:
+                return redirect("animals")
+    # If error or method == GET
     return render_template("login.html")
 
 @app.route("/register", methods=["GET","POST"])
 def register():
+    if 'user' in session:
+        flash("Already logged in!", "error")
+        return redirect("animals")
+
+    # Registering
     if request.method == "POST":
         user = request.form["user"]
         password = request.form["password"]
-        dict = {'user':user, 'password':password}
-        error = mongo.registerErrors(dict)
-
+        error = mongo.registerErrors(user,password)
         if error:
             flash(error, "error")
         else:
-            mongo.addAccount(dict)
+            mongo.addAccount(user,password)
             flash("Successfully registered")
-            return redirect(url_for("login"))
-
+            return redirect("/login")
+    # If error or method == GET
     return render_template("register.html")
 
 @app.route("/logout", methods=["GET","POST"])
 def logout():
-    if request.method == "GET":
-        return render_template("logout.html")
+    if 'user' not in session:
+        flash("Not logged in!", "error")
+        return redirect("login")
+
+    if request.method == "POST":
+        session.pop("user")
+        return redirect("/")
     else:
-        session.pop("user",None)
-        return redirect(url_for("home"))
+        return render_template("logout.html")
 
-@app.route("/animals", methods=["GET","POST"])
+@app.route("/animals")
+@authenticate("/animals")
 def animals():
-    if request.method == "GET":
-        if 'user' not in session:
-            flash("You need to be logged in to see that!")
-            return render_template("login.html")
-        else:
-            return render_template("animals.html")
-    if request.method == "POST":
-        return loginForm("animals")
+    return render_template("animals.html")
 
-@app.route("/otter", methods=["GET","POST"])
+@app.route("/otter")
+@authenticate("/otter")
 def otter():
-    if request.method == "GET":
-        if 'user' not in session:
-            flash("You need to be logged in to see that!")
-            return render_template("login.html")
-        else:
-            return render_template("otter.html")
-    if request.method == "POST":
-        return loginForm("otter")
+    return render_template("otter.html")
 
 @app.route("/kitten", methods=["GET","POST"])
+@authenticate("/kitten")
 def kitten():
-    if request.method == "GET":
-        if 'user' not in session:
-            flash("You need to be logged in to see that!")
-            return render_template("login.html")
-        else:
-            return render_template("kitten.html")
-    if request.method == "POST":
-        return loginForm("kitten")
+    return render_template("kitten.html")
 
 
 #======================END-DEFINITIONS======================

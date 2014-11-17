@@ -1,25 +1,14 @@
-# passwords must have more than 5 characters
-# include at least 1 upper and lowercase letter
+# passwords must have more than 4 characters
 # include at least 1 number
 def isValidPass(pword):
-    hasUpper = False
-    hasLower = False
-    hasNumber = False
-    if (len(pword)>5):
-        for letter in pword:
-            if letter.isupper():
-                hasUpper=True
-            if letter.islower():
-                hasLower=True
-            if letter.isdigit():
-                hasNumber=True
-    if (hasUpper and hasLower and hasNumber):
-        return True
-    else:
-        return False
+    if (len(pword)>4):
+        for char in pword:
+            if char.isdigit():
+                return True
+    return False
 
 
-# taken from previous assignment; could be useful
+# not implemented, but could be useful
 def isValidEmail(email):
     hasUser = False
     hasAtSymbol = False
