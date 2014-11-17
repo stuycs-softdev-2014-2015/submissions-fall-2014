@@ -1,8 +1,20 @@
 from flask import Flask, request, render_template, redirect, session, escape, url_for
 import mengo
+from functools import wraps
 
 app=Flask(__name__)
 mengo.new_user('test','test','test','test')
+
+def authenticate(function):
+    @wraps(function)
+    def inner(*args):
+        if 'username' in session:
+            return function(*args)
+        else:
+            return redirect(url_for('login'))
+    return inner
+    
+    
 @app.route("/", methods=["GET","POST"])
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -47,15 +59,15 @@ def secret():
     return render_template("secret.html")
 
 @app.route("/restricted")
+@authenticate
 def restricted():
-    if 'username' in session:
-        username = escape(session['username'])
-        password = mengo.get_password(username)
-        studentid = mengo.get_id(username)
-        pizza = mengo.get_pizza(username)
-        return render_template("restricted.html", username=username, password=password, studentid=studentid, pizza=pizza)
-    else:
-        return render_template("login.html",errmess="You must be logged in to view this page")    
+    username = escape(session['username'])
+    password = mengo.get_password(username)
+    studentid = mengo.get_id(username)
+    pizza = mengo.get_pizza(username)
+    return render_template("restricted.html", username=username, password=password, studentid=studentid, pizza=pizza)
+
+        
 @app.route("/register_success")
 def register_success():
     return render_template("register_success.html")
