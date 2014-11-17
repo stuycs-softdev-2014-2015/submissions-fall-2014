@@ -1,11 +1,11 @@
-from flask import Flask, redirect, render_template, request, make_response, abort
+from flask import Flask, redirect, render_template, request, make_response, abort, session
 from pymongo import Connection
 
 import db
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-
+app.secret_key= "Iasecret"
 
 @app.route("/") #info page.
 def index():
@@ -13,8 +13,8 @@ def index():
 
 @app.route("/home")
 def home():
-    username = request.cookies.get('username')
-    password = request.cookies.get('password')
+    username = session['username']
+    password = session['password']
 
     authenticated = ""
 
@@ -52,10 +52,10 @@ def register():
         else:
             error="There is already an account under this username."
         if error=="":
-            resp = make_response(redirect("http://localhost:5000/home"))
-            resp.set_cookie("username",username)
-            resp.set_cookie("password",password) #such hackable
-            return resp
+            #resp = make_response(redirect("http://localhost:5000/home"))
+            session["username"]=username
+            session["password"]=password #such hackable
+            return redirect("http://localhost:5000/home")
         else:
             return render_template("login-register.html",error=error)
 
@@ -73,9 +73,10 @@ def login():
         if not db.users.find({"username": username,"password":password}).count()==1:
             error="Invalid username or password."
         if error=="":
-            resp = make_response(redirect("http://localhost:5000/home"))
-            resp.set_cookie("username",username)
-            resp.set_cookie("password",password)
+            #resp = make_response(redirect("http://localhost:5000/home"))
+            session["username"]=username
+            session["password"]=password #such hackable
+            return redirect("http://localhost:5000/home")
             return resp
         else:
             return render_template("login-register.html",error=error)
@@ -83,15 +84,15 @@ def login():
 
 @app.route("/logout")
 def logout():
-    resp = make_response(render_template("logout.html",error="You have successfully logged out."))
-    resp.set_cookie("username","")
-    resp.set_cookie("password","")
-    return resp
+    #resp = make_response(render_template("logout.html",error="You have successfully logged out."))
+    session["username"]=""
+    session["password"]=""
+    return render_template("logout.html",error="You have successfully logged out.")
 
 @app.route("/other")
 def other():
-    username = request.cookies.get('username')
-    password = request.cookies.get('password')
+    username = session['username']
+    password = session['password']
 
     authenticated = ""
 
@@ -110,8 +111,8 @@ def other():
 @app.route("/profile",methods=["GET","POST"])
 def profile():
     if request.method == "GET":
-        username = request.cookies.get('username')
-        password = request.cookies.get('password')
+        username = session['username']
+        password = session['password']
 
         authenticated = ""
 
@@ -126,8 +127,8 @@ def profile():
 
 
     if request.method == "POST":
-        username = request.cookies.get('username')
-        password = request.cookies.get('password')
+        username = session['username']
+        password = session['password']
         print "username: "+username
         print "password: "+password
 
@@ -142,22 +143,22 @@ def profile():
             if len(request.form["password"])>1:
                 password = request.form["password"]
                 db.users.update({"username":username,"password":password},{ "$set": { "password": password } })
-                
+
             name=request.form["name"]
             if len(name)>1:
                 db.users.update({"username":username,"password":password},{ "$set": { "name": name } })
-                    
+
             state=request.form["state"]
             if len(state)>1:
                 db.users.update({"username":username,"password":password},{ '$set': { "state": state } })
-                    
+
             email=request.form["email"]
             if len(email)>1:
                 db.users.update({"username":username,"password":password},{ "$set": { "email": email } })
-              
-            resp = make_response(redirect("http://localhost:5000/home"))
-            resp.set_cookie("password",password)
-            return resp
+
+            #resp = make_response(redirect("http://localhost:5000/home"))
+            session["password"]=password
+            return redirect("http://localhost:5000/home")
             #return render_template("profile.html",loggedin="logged in as: "+authenticated)
 
 if __name__ == "__main__":
