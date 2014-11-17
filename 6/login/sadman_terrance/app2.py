@@ -9,24 +9,25 @@ accounts = db.accounts
 
 app = Flask(__name__) 
 
-
-
-@app.route("/")
-def home():
+def loggedin(func):
    if 'username' in session:
       loggedin=True
       username=session['username']
    else:
       loggedin=False
-      username = '-'
-   print loggedin
-   return render_template("base.html", loggedin=loggedin, username=username)
+      username='-'
+   return func(loggedin,username)
+
+@app.route("/")
+@loggedin
+def home(login,user):
+   return render_template("base.html", loggedin=login, username=user)
 
 @app.route("/login",methods=['GET','POST'])
-def login():
-   if 'username' in session:
-      luser = session['username']
-      return render_template("login.html", loggedin=True, username=luser)
+@loggedin
+def login(login,user):
+   if login:
+      return render_template("login.html", loggedin=True, username=user)
 
    if request.method=='POST':
       
@@ -70,24 +71,20 @@ def login():
    #login
      
 @app.route("/logout")
-def logout():
-   if 'username' in session:
+@loggedin
+def logout(login,user):
+   if login:
       session.pop('username', None)
-      print "login status: logged in"
       return render_template("logout.html", loggedin=False, previous=True)
    else:
-      print "login status: not logged in"
       return render_template("logout.html",loggedin=False, previous=False)
    #logout
 
 @app.route("/register",methods=['GET','POST'])
-def register():
-   if 'username' in session:
-      loggedin=True
-      username=session['username']
-   else:
-      loggedin=False
-      username=''
+
+def register(login,user):
+   loggedin=login
+   username=user
 
    if request.method=='POST':
       if 'username' not in session:
@@ -128,26 +125,16 @@ def register():
    #register
 
 @app.route("/funny")
-def funny():
-   if 'username' in session:
-      loggedin=True
-      username=session['username']
-   else:
-      loggedin=False
-      username=''
-   return render_template("funny.html", loggedin=loggedin, username=username) 
+@loggedin
+def funny(login,user):
+   return render_template("funny.html", loggedin=login, username=user) 
 
    #viewed only if logged in
 
 @app.route("/joke")
+@loggedin
 def joke():
-   if 'username' in session:
-      loggedin=True
-      username=session['username']
-   else:
-      loggedin=False
-      username=''
-   return render_template("joke.html", loggedin=loggedin, username=username) 
+   return render_template("joke.html", loggedin=login, username=user) 
 
    #viewed only if logged in
 
