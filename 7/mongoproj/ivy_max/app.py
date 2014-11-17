@@ -15,7 +15,12 @@ def init():
     except:
         print "user already in database"
 
-def auth(user, pw):
+def reqauth():
+    def inner(*args):
+        pass 
+    return inner 
+
+def check_user(user, pw):
     u = users.find_one({"username": user, "password":pw })
     #print u
     return u != None
@@ -42,7 +47,7 @@ def login():
     if request.method=="POST":
         user = request.form['username']
         pw = request.form['password']
-        valid = auth(user,pw)
+        valid = check_user(user,pw)
         if valid:
             session['username'] = request.form['username']
             #session['logged_in'] = True
@@ -79,23 +84,22 @@ def register():
         flash(error)
     return render_template("register.html")
 
-@app.route('/u/<username>')
-def profile(username=None):
+@app.route('/profile')
+def profile():
     if not 'username' in session:
-        #session['prev_page'] = '/u/%s' %username
-        session['prev_page'] = username
+        session['prev_page'] = 'profile'
         flash("You must login to access that page.")
         return redirect(url_for("login"))
-    u = users.find_one({'username':username})
+    u = users.find_one({'username':session['username']})
     #print u
     if u != None:
-        return render_template("profile.html", username=username, user=u)
+        return render_template("profile.html",user=u)
     else:
         flash("User not found.")
         return redirect(url_for("index"))
 
 @app.route('/settings', methods=["GET","POST"])
-def settings(username=None):
+def settings():
     if not 'username' in session:
         flash("You must login to access this page.")
         session['prev_page'] = "settings"
