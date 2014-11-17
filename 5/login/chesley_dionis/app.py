@@ -1,22 +1,29 @@
 from flask import Flask, render_template, session, redirect, request, flash, escape
+from functools import wraps
 import userdb_helper
 
 app=Flask(__name__)
 
+def validate(fn):
+    @wraps(fn)
+    def inner(*args, **kwargs):
+        if request.method == 'GET':
+            if 'username' in session and userdb_helper.user_exists(session['username']):
+                return redirect("/home")
+        elif request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            if (userdb_helper.validate_login(username, password)):
+                session['username'] = request.form['username']
+                return redirect("/home")
+            else:
+                flash("Login error: Incorrect username or password.")
+        return fn()
+    return inner
+
 @app.route("/", methods=['GET', 'POST'])
+@validate
 def index():
-    if request.method == 'GET':
-        # need some validation here
-        if 'username' in session and userdb_helper.user_exists(session['username']):
-            return redirect("/home")
-    elif request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if (userdb_helper.validate_login(username, password)):
-            session['username'] = request.form['username']
-            return redirect("/home")
-        else:
-            flash("Login error: Incorrect username or password.")
     return render_template("index.html", page_title="Home")
         
 
