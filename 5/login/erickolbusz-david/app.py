@@ -85,14 +85,8 @@ def welcome():
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
                       
 @app.route ("/about")
+@auth
 def about():
-    if (session.get('username') == None):
-        flash ("You are not logged in!")
-        if (session.get('currentp') == "login"):
-            return redirect ("/")
-        else:
-            return redirect ("/register")
-    
     session ['currentp'] = "about"
     submit = request.args.get("submit")
     user_list = db.users.find({'name':session.get("username")})
@@ -121,6 +115,22 @@ def aboutproj():
 @app.route ("/random")
 def random():
     return render_template ("random.html")
+
+def auth(func):
+    @wraps(func)
+    def inner(*args):
+        if 'username' not in session:
+            flash ("You are not logged in")
+            if (session.get('currentp') == "login"):
+                return redirect ("/")
+            if (session.get('currentp') == "about"):
+                return redirect ("/about")
+            if (session.get('currentp') == "register"):
+                return redirect ("/register")
+            if (session.get('currentp') == "welcome"):
+                return redirect ("/welcome")
+        return func(*args)
+    return inner
 
 if __name__ == '__main__':
     app.debug = True
