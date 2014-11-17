@@ -1,14 +1,10 @@
 from flask import Flask, redirect, render_template, request, make_response, abort
 from pymongo import Connection
 
+import db
+
 app = Flask(__name__)
 app.config.from_object(__name__)
-
-
-conn = Connection()
-db = conn["zabariistheman"]
-print "db init"
-
 
 
 @app.route("/") #info page.
