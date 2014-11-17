@@ -88,13 +88,8 @@ def auth(func):
     return inner
     
 @app.route("/welcome")
+@auth
 def welcome():
-    if (session.get('username') == None):
-        flash ("You are not logged in!")
-        if (session.get('currentp') == "login"):
-            return redirect ("/")
-        else:
-            return redirect ("/register")
     session ['currentp'] = "welcome"
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
 
