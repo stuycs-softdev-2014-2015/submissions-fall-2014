@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, session, escape, g
+from functools import wraps
 import mongo
 
 app = Flask(__name__)
@@ -41,6 +42,7 @@ def register():
     return render_template("register.html")
 
 @app.route("/login", methods=["POST", "GET"])
+@authenticate
 def login():
     if request.method == "POST":
         username = request.form["username"]
@@ -54,6 +56,12 @@ def login():
         else:
             return render_template("login.html", message = "Incorrect username or password")
     return render_template("login.html")
+
+def authenticate(f):
+    def inner(*args):
+        ##code
+        return f(*args)
+    return inner
 
 @app.route("/about", methods=["POST", "GET"])
 def about():
