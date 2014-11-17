@@ -77,7 +77,7 @@ def register():
 def auth(func):
     @wraps(func)
     def inner():
-        if 'username' not in session:
+        if (session.get('username') == None):
             flash ("You are not logged in")
             if (session.get('currentp') == "login"):
                 return redirect ("/")
