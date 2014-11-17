@@ -3,8 +3,8 @@ from functools import wraps
 import mongo
 
 app = Flask(__name__)
-un = None
-loggedin = False
+##un = None
+##loggedin = False
 app.secret_key = "super_secret_shhh"
 
 @app.route("/", methods=["POST", "GET"])
