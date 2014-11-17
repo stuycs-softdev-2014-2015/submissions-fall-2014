@@ -14,7 +14,9 @@ def decorate(func):
         try:
             print 'session.user: ' + session['user']
         except KeyError:
-            return "Don't try to view this page without logging in first"
+            flash("Come on, don't try to view this page without logging in first!")
+            return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register",url0="/about",link0="About")
+            #return "Don't try to view this page without logging in first"
         return func(args)
     return inner
 
@@ -36,10 +38,6 @@ def login():
         passw = request.form.get("password", None)
         error = None     
         loginfo = { 'name': username, 'pword': passw }
-        #for x in db.users.find():
-        #print x
-        #print "AAAAAAA" + str(db.users.find_one ( { 'name' : username , 'pword' : passw } ) )
-        #print username + passw
         if (excl != None): 
             #return exclusive(username2)
             return redirect(url_for('exclusive', user=username2))
@@ -88,7 +86,7 @@ def register():
 @app.route("/exclusive/<user>")
 @decorate
 def exclusive(user):
-    return render_template("justforusers.html",user=user,url1="/logout",link1="Logout")
+    return render_template("justforusers.html",user=user.get("user"),url1="/logout",link1="Logout")
 
 @app.route("/logout")
 def logout():
@@ -98,5 +96,5 @@ def logout():
 
 if __name__=="__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=1847)
+    app.run(host="127.0.0.1", port=5000)
     
