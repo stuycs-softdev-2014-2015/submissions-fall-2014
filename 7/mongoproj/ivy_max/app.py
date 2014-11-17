@@ -54,7 +54,7 @@ def login():
             flash('You were successfully logged in')
             prev = session.pop('prev_page', None)
             if prev: #came from somewhere
-                return redirect(url_for('profile', username=prev))
+                return redirect(url_for(prev))
             return redirect(url_for('profile',username=user))
         else:
             error = "Page not found."
