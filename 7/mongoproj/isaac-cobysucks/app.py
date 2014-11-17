@@ -1,6 +1,7 @@
 import datetime
 from flask import Flask, flash, render_template, request, redirect, url_for, session, escape
 from pymongo import MongoClient
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -9,6 +10,16 @@ app.secret_key = 'secret'
 client = MongoClient('localhost', 27017)
 db = client.mongo_project
 users = db.users
+
+def authenticater(func):
+        @wraps(func)
+        def inner(*args):
+                if 'username' not in session:
+                        flash("You are not logged in")
+                        return redirect(url_for('login'))
+                return func(*args)
+        return inner
+                        
 
 def create_user(username, password, name, birthday):
         '''Adds user to the database, returns their mongo _id'''
@@ -94,50 +105,46 @@ def about():
 
 # Profile Page
 @app.route("/profile", methods=["GET","POST"])
+@authenticater
 def profile():
-        if 'username' in session:
-                if request.method == "GET":
-                        username = escape(session['username'])
-                        user = find_user(username)
-                        name = user['name']
-                        birthday = user['birthday']
-                        d = user['date']
-                        return render_template("profile.html", name=name, birthday=birthday, date=d)
-                else:
-                        button = request.form["b"]
-                        if button == "Logout":
-                                session.pop('username', None)
-                                flash("You have been logged out")
-                                return redirect(url_for('login'))
-                        elif button == "Update":
-                                return redirect(url_for('update'))
+        if request.method == "GET":
+                username = escape(session['username'])
+                #print "Finding username!: " + username
+                user = find_user(username)
+                #for key in user:
+                        #print user[key]
+                birthday = user['birthday']
+                name = user['name']
+                d = user['date']
+                return render_template("profile.html", name=name, birthday=birthday, date=d)
         else:
-                flash("You are not logged in")
-                return redirect(url_for('login'))
-            
+                button = request.form["b"]
+                if button == "Logout":
+                        session.pop('username', None)
+                        flash("You have been logged out")
+                        return redirect(url_for('login'))
+                elif button == "Update":
+                        return redirect(url_for('update'))
+                        
 # Profile Page
 @app.route("/update", methods=["GET","POST"])
+@authenticater
 def update():
-        if 'username' in session:
-                if request.method == "GET":
-                        return render_template("update.html")
-                else:
-                        button = request.form["b"]
-                        if button == "Update":
-                                value = request.form.getlist('check')
-                                print value
-                                for val in value:
-                                        v = request.form["%s" %(val,)]
-                                        l = {"%s" % (val,): v}
-                                        print l
-                                        update_user(session['username'],l)
-                                return redirect(url_for('profile'))
-                        elif button == "Cancel":
-                                return redirect(url_for('profile'))
-                        
+        if request.method == "GET":
+                return render_template("update.html")
         else:
-                flash("You are not logged in")
-                return redirect(url_for('login'))
+                button = request.form["b"]
+                if button == "Update":
+                        value = request.form.getlist('check')
+                        print value
+                        for val in value:
+                                v = request.form["%s" %(val,)]
+                                l = {"%s" % (val,): v}
+                                print l
+                                update_user(session['username'],l)
+                                return redirect(url_for('profile'))
+                elif button == "Cancel":
+                        return redirect(url_for('profile'))
 
 def authenticate(username, password):
     user = find_user(username)

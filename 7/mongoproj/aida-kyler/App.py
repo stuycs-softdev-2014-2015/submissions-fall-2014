@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, session, flash
 import mongo
 import datetime
+from functools import wraps
 
 changed = False
 today = datetime.date.today()
@@ -9,7 +10,16 @@ time = datetime.datetime.now().time()
 time = time.strftime("%I:%M")
 
 app = Flask(__name__)
-app.secret_key = '\x80\xd5\xae\x8eJ\xff&\xbe\xd6\x00\xe6\xf3\x18Y\xda@x\xeb\xa9j\xba\xe6\xedX'
+
+def authenticate(f):
+    @wraps(f)
+    def wrapper(*args):
+        if 'username' in session:
+            return f(*args)
+        else:
+            return redirect(url_for('login'))
+    return wrapper
+
 @app.route("/register", methods=["GET","POST"])
 def register():
         if request.method=="GET":
@@ -28,7 +38,7 @@ def register():
                                         session['password'] = pword
                                         session['first_name'] = first_name
                                         session['last_name'] = last_name
-                                        return redirect(url_for('user_home', changed=False, today = today, time=time))
+                                        return redirect(url_for('user_home', username=username, changed=False, today = today, time=time))
                                 else:
                                     return render_template("register.html", 
                                         account=True, pword=False)
@@ -42,22 +52,20 @@ def register():
                     return redirect(url_for("about"))
                 
 
-   
-@app.route("/home", methods=["GET", "POST"])
-def user_home():
-        if 'username' in session:
-            if request.method=="GET":
-                return render_template("user_home.html", changed=changed, today=today, time=time)
-            else:
-                if request.form['b']=="Log Out":
-                    return redirect(url_for("logout"))
-                if request.form['b']=="About":
-                    return redirect(url_for("about"))
-                if request.form['b']=="Manage Account":
-                    return redirect(url_for("manage_account", alert=False))
+@authenticate   
+@app.route("/home/<username>", methods=["GET", "POST"])
+def user_home(username):
+        if request.method=="GET":
+            return render_template("user_home.html", username=username, changed=changed, today=today, time=time)
         else:
-            return redirect(url_for("login"))
+            if request.form['b']=="Log Out":
+                return redirect(url_for("logout"))
+            if request.form['b']=="About":
+                return redirect(url_for("about"))
+            if request.form['b']=="Manage Account":
+                return redirect(url_for("manage_account", username=username, alert=False))
 
+@authenticate
 @app.route("/logout")
 def logout():
     session.pop('username', None)
@@ -79,6 +87,7 @@ def login():
             return redirect(url_for("register"))
         if "Cancel" == request.form['b']:
                 return redirect(url_for("login", alert=False))
+
         if "Log In" == request.form['b']:
             uname  = request.form['username']
             pword  = request.form['password']
@@ -88,14 +97,13 @@ def login():
                 account = mongo.get_account(uname)
                 session['first_name']=account['first_name']
                 session['last_name']=account['last_name']
-                return redirect(url_for('user_home', changed=False, today=today, time=time))
+                return redirect(url_for('user_home', username=uname, changed=False, today=today, time=time))
             else :
                 return render_template("login.html", alert=True)
-        
-@app.route("/manage_account", methods=["GET", "POST"])
-def manage_account():
-    if 'username' in session:
-        username = session['username']
+  
+@authenticate        
+@app.route("/manage_account/<username>", methods=["GET", "POST"])
+def manage_account(username):
     if request.method=="GET" or request.form['b']=="Cancel":
         return render_template("manage_account.html", alert=False)
     else:
@@ -108,7 +116,7 @@ def manage_account():
                 if (mongo.update_account(username, new_username, new_password)):
                     session['username'] = new_username
                     session['password'] = new_password
-                    return redirect(url_for("user_home", changed=True, today=today, time=time))
+                    return redirect(url_for("user_home", username=new_username, changed=True, today=today, time=time))
             else:
                 return render_template("manage_account.html", alert=True)
         if request.form['b']=="About":
@@ -116,8 +124,7 @@ def manage_account():
         if request.form['b']=="Log Out":
             return redirect(url_for("logout"))
         if request.form['b']=="Home":
-
-            return redirect(url_for("user_home", changed=False, today=today, time=time))
+            return redirect(url_for("user_home", username=session['username'],changed=False, today=today, time=time))
 
 @app.route("/about", methods=["GET","POST"])
 def about():
@@ -133,12 +140,15 @@ def about():
                 if request.form['b']=="Sign Up":
                         return redirect(url_for("register"))
                 if request.form['b']=="Home":
-                        return redirect(url_for("user_home", changed=False, today=today, time=time))
+                        return redirect(url_for("user_home", username=username,changed=False, today=today, time=time))
                 if request.form['b']=="Log Out":
                         return redirect(url_for("logout"))
+
+
                                         
 if __name__ == "__main__":
         app.debug=True
+        app.secret_key = '\x80\xd5\xae\x8eJ\xff&\xbe\xd6\x00\xe6\xf3\x18Y\xda@x\xeb\xa9j\xba\xe6\xedX'
         app.run()
 
 

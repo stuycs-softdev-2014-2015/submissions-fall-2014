@@ -1,10 +1,25 @@
 from flask import flash, Flask, g, render_template, session, redirect, url_for, escape, request
-#from flask.ext.pymongo import PyMongo
+from functools import wraps
 
 import mongo
 
 app = Flask(__name__)
 app.secret_key = 'a'
+
+
+def authenticate(page):
+    def yo(func):
+        @wraps(func)
+        def inner(*args):
+            if 'username' not in session:
+                session['nextpage']=page
+                flash("Incorrect access, please login")
+                return redirect("/login")
+            result = func(*args)
+            return result
+        return inner
+    return yo
+
 
 @app.route('/')
 def index():
@@ -61,12 +76,17 @@ def verify():
         valid_msg = mongo.check_pword(uname,pw)
         if valid_msg == '':
             session['username'] = uname
-            return redirect('/home')
+            if 'nextpage' in session:
+                redir = session['nextpage']
+            else:
+                redir='/home'
+            return redirect(redir)
         else:
             flash(valid_msg)
             return redirect('/login')
 
 @app.route('/personal', methods=['GET','POST'])
+@authenticate("/personal")
 def personal():    
     username = escape(session['username'])
     if request.method=="POST":
@@ -78,21 +98,25 @@ def personal():
     return render_template('personal.html', udict=mongo.getUser(username))
 
 @app.route('/name')
+@authenticate("/name")
 def name():
     username = escape(session['username'])
     return render_template('personal.html', udict=mongo.getUser(username),change = "change" )
     
 @app.route('/age')
+@authenticate("/age")
 def age():
     username = escape(session['username'])
     return render_template('personal.html', udict = mongo.getUser(username),changeage = "change" )
 
 @app.route('/gpa')
+@authenticate("/gpa")
 def gpa():
     username = escape(session['username'])
     return render_template('personal.html', udict = mongo.getUser(username),changegpa = "change" )
 
 @app.route('/colleges', methods=['GET','POST'])
+@authenticate("/colleges")
 def colleges():
     username = escape(session['username'])
     if request.method=="POST":
@@ -106,6 +130,7 @@ def colleges():
 
 
 @app.route('/addcolleges', methods=['POST','GET'])
+@authenticate("/colleges")
 def addcolleges():
     if request.method=="POST":
         d = {}

@@ -1,10 +1,24 @@
 from flask import Flask, flash, render_template, request, redirect, url_for,session
 from pymongo import Connection
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = "shhh"
 conn = Connection()
 db = conn ['aaez']
+
+def decorate(func):
+    @wraps(func)
+    def inner(**args):
+        print "inner"
+        try:
+            print 'session.user: ' + session['user']
+        except KeyError:
+            flash("Come on, don't try to view this page without logging in first!")
+            return render_template("home.html",url1="/login",link1="Login",url2="/register",link2="Register",url0="/about",link0="About")
+            #return "Don't try to view this page without logging in first"
+        return func(args)
+    return inner
 
 @app.route("/")
 def home(): 
@@ -24,10 +38,6 @@ def login():
         passw = request.form.get("password", None)
         error = None     
         loginfo = { 'name': username, 'pword': passw }
-        for x in db.users.find():
-            print x
-        #print "AAAAAAA" + str(db.users.find_one ( { 'name' : username , 'pword' : passw } ) )
-        #print username + passw
         if (excl != None): 
             #return exclusive(username2)
             return redirect(url_for('exclusive', user=username2))
@@ -42,7 +52,8 @@ def login():
             #session['n']=n
 	    for x in db.users.find({'name': username,'pword':passw}):
 	        print "bleh" + str(db.users.find({'name':username,'pword':passw}))
-            return render_template("loggedin.html", username=username, n=n,url1="/exclusive",link1="Exclusively for Users",url2="/",link2="Logout")
+            session['user']=username
+            return render_template("loggedin.html", username=username, n=n,url1="/exclusive",link1="Exclusively for Users",url2="/logout",link2="Logout")
         else: 
             flash("incorrect login info")
             return redirect(url_for('login'))
@@ -73,10 +84,17 @@ def register():
     return render_template("register.html",url2="/login",link2="Login",url0="/",link0="Home",url1="/about",link1="About")
 
 @app.route("/exclusive/<user>")
+@decorate
 def exclusive(user):
-    return render_template("justforusers.html",user=user,url1="/",link1="Logout")
+    return render_template("justforusers.html",user=user.get("user"),url1="/logout",link1="Logout")
+
+@app.route("/logout")
+def logout():
+    print "logout"
+    del session['user']
+    return redirect(url_for('home'))
 
 if __name__=="__main__":
     app.debug = True
-    app.run(host="0.0.0.0", port=1847)
+    app.run(host="127.0.0.1", port=5000)
     
