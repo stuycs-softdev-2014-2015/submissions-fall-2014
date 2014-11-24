@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,session,redirect,url_for
 from pymongo import MongoClient
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -17,12 +18,14 @@ def loggedin():
         return False
 
 def requirelogin(f):
+    @wraps(f)
     def ff():
         if loggedin(): return f()
         else: return redirect("/")
     return ff
 
 def requirelogout(f):
+    @wraps(f)
     def ff():
         if not loggedin(): return f()
         else: return redirect("/")
