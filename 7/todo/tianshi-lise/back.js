@@ -3,24 +3,30 @@ var titems = ToDoList.children;
 
 var funct = function(e){
     for (var i = 0; i<titems.length; i++){
-	titems[i].addEventListener('click',   );
+	titems[i].addEventListener('click',  addItem );
     }
 };
 
 
-
+var bb = document.getElementById("b");
 
 var addItem = function(){
-    var todo = document.getElementById("todo");
-    var newtodo = document.getElementById("t");
-
-    var newitem = document.createElement("li");
-    newitem.innerHTML = newtodo;
-    list.appendChild(newitem);  
     console.log("yups");
+    var list = document.getElementById("todo");
+    var inputs = document.getElementById("t");
+    var newitem = document.createElement("li");
+    console.log(inputs.value);
+    newitem.innerHTML = inputs.value;
+    list.appendChild(newitem);  
 };
-var bb = document.getElementbyId("b");
+
 bb.addEventListener('click',addItem);       
 
 
+var add = function(text){
+    var list = document.getElementById("todo");
+    var newitem = document.createElement("li");
+    newitem.innerHTML = text;
+    list.appendChild(newitem);
+};
 
