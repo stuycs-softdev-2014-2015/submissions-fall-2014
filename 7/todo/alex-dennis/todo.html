@@ -1,11 +1,27 @@
 <html>
   <head>
-    Alex's and Dennis's To Do List
+    <center><h1>Alex's and Dennis's To Do List</center>
   </head>
   <body>
-    <h1>To Do</h1>
-    <ol id="todolist">
-      
+    <div id="lists" style="height:60%;">
+      <div id="left" style="float:left; width:50%;">
+	<center><u><h2>To Do</h2></u></center>
+	<ol id="todolist">
+	</ol>
+      </div>
+      <div id="right" style="width;50%;">
+	<center><u><h2>Done</h2></u></center>
+	<ol id = "donelist">
+	</ol>
+      </div>
+    </div>
+    <div id="input" style="clear:both">
+      <center>
+	<input type="text" id="textinput">
+	<button id="b">Submit</button>	
+      </center>
+    </div>
+    <script src="todo.js"></script>
   </body>
 
 </html>
