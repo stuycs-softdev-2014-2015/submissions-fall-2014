@@ -1,12 +1,26 @@
 var ToDoList = document.getElementById("todo");
 var titems = ToDoList.children;
 
-for (var i = 0; i<titems.length; i++){
-    titems[i].addEventListener('click',
+var funct = function(e){
+    for (var i = 0; i<titems.length; i++){
+	titems[i].addEventListener('click',   );
+    }
+};
 
-var list = document.getElementById("t");
 
 
+
+var addItem = function(){
+    var todo = document.getElementById("todo");
+    var newtodo = document.getElementById("t");
+
+    var newitem = document.createElement("li");
+    newitem.innerHTML = newtodo;
+    list.appendChild(newitem);  
+    console.log("yups");
+};
+var bb = document.getElementbyId("b");
+bb.addEventListener('click',addItem);       
 
 
 
