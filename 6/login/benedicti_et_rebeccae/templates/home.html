@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+
+<h1> Domus </h1>
+<h3> You must be logged in to view this content,<br> You will be redirected if you have not logged in. </h3>
+<br><br>
+{% if logging is defined %}
+  {% if logging%}
+  <h2> You Have Successfully Logged In!</h2><br>
+  {% else %}
+  <h2> You Have Failed to Log In...</h2><br>
+  {% endif %}
+{% endif %}
+
+<a class="pure-button" href="/caesar">Primus Locus</a>
+<br> <br>
+<a class="pure-button" href="/dogs">Locus Canorum</a>
+<br> <br>
+<a class="pure-button" href="/caligula">Infandus Locus</a>
+<br><br>
+<a class="pure-button" href="/bees">Locus Apium</a>
+
+{% endblock bodycontent %}

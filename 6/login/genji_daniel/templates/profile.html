@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Change Profile{% endblock %}
+
+{% block content %}
+
+    <form class="pure-form pure-form-stacked" method="POST" action="/profile">
+    <fieldset>
+        <legend>Your Info</legend>
+
+        <label for="email">Email</label>
+        <input name="email" type="email" placeholder="Email">
+
+        <label for="password">Password</label>
+        <input name="password" type="password" placeholder="Password">
+
+        <label for="name">Name</label>
+        <input name="name" type="text" placeholder="Name">
+
+        <label for="state">State</label>
+        <select name="state">
+            <option>NY</option>
+            <option>NJ</option>
+            <option>PA</option>
+        </select>
+
+
+        <button type="submit" class="pure-button pure-button-primary">Update</button>
+    </fieldset>
+    </form>
+  </body>
+
+{% endblock %}

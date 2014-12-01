@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block options %}
+{% if logged is odd %}
+<li class="nav-item"><a href="/loggedin1">Restricted 1</a></li>
+<li class="nav-item"><a href="/loggedin2">Restricted 2</a></li>
+<li class="nav-item"><a href="/logout">Logout</a></li>
+
+{% else %}
+ <li class="nav-item"><a href="/login">Login</a></li>
+<li class="nav-item"><a href="/register">Register</a></li>
+<li class="nav-item"><a href="/notloggedin">About</a></li>
+
+{% endif %}
+{{logged}}
+  {% endblock options%}
+  {% block bodycontent %}
+<h1>Restricted page </h1>
+
+<a href="http://ehsli.org">READ</a><br>
+THE ETHICAL HUMANISTS WILL RULE THE WORLD <br>
+The irony of that <br>
+But still it's hilarious<br>
+Eric Morgenstern is an Ethical Humanist<br>
+Matt Cook is a trash baseball player<br>
+That is all
+
+
+    {% endblock bodycontent %}
+
+
+

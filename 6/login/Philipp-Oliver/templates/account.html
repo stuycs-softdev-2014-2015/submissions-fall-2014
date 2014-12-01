@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+{% endwith %}
+<form action="account" method="POST">
+    <label for="old-password">Old Password: </label>
+    <input id="old-password" name="old-password">
+
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password">
+    <label for="confirm-password">Confirm Password: </label>
+    <input type="password" id="confirm-password" name="confirm-password">
+
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

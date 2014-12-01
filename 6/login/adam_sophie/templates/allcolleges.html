@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+<br>
+{% for c in colleges %}
+
+Name: {{c['name']}}<br>
+<div style="margin-left:30px;">
+Description: {{c['description']}}<br>
+Min GPA: {{c['min gpa']}}<br>
+Location: {{c['location']}}<br>
+  Type: {{c['type']}}<br>
+  Size: {{c['size']}}<br>
+</div>
+<form action="/colleges" method="post" class="pure-form
+pure-form-aligned">
+
+<button type="submit" class="pure-button" name={{c['name']}}>Add College</button></br>
+
+{% endfor %}
+{% endblock %}

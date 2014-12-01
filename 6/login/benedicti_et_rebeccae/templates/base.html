@@ -1,0 +1,73 @@
+<head>
+<link rel="shortcut icon" href="/static/icon.ico">
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Portas Troiae</title>
+
+        <link rel="stylesheet"
+        href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+<style>
+body{
+        wWidth  = $window.width();
+        wHeight = $window.height();
+	width:700px;
+	height:150px;
+	position:relative;
+	left:35%;
+	top:20%;
+	margin:-70px 0 0 -135px;
+background-color: pink;
+}
+
+section{
+  font-weight: normal;
+  line-height: 38px;
+}
+.button-submit{
+        color: white;
+        border-radius: 4px;
+        background:white;
+        }
+.pure-button{
+color: black;
+background: white;
+}
+/* My fancy Fonts I found do not load...and the internet Cannot explain why...and now they are breaking the code...D:...well its kind of fixed now, but they still dont work!*/
+@font-face {font-family:Cinzel-Reg;
+            src: url('\..\static\CinzelFamily\Cinzel\Cinzel-Regular.otf');
+    }
+@font-face {font-familu:Cinzel-Title;
+            src: url('\..\static\CinzelFamily\Cinzel\Cinzel-Black.otf');
+    }
+h3{ font-family: Cinzel-Reg, serif; }
+h2{ font-family: Cinzel-Reg, serif;}
+h1{ font-family: Cinzel-Title, serif;}
+</style>
+</head>
+</style>
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="/">Portas Troiae</a>
+        <ul>
+            <li class="pure-menu-selected"><a href="/home">Home</a></li>
+            {% if logged is defined %}
+              {% if logged %}
+                <li><a href="logout">Sign Out</a></li>
+                {% if user is defined %}
+                  <li>Welcome {{user}}</li>
+                {% endif %}
+              {% else %}
+                <li><a href="/">Sign In</a></li>
+              {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<br>
+
+{% block bodycontent %}
+This is a placeholder
+{% endblock bodycontent %}

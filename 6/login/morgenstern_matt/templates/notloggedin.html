@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+
+{% block options %}
+{% if logged is odd %}
+
+<li class="nav-item"><a href="/loggedin1">Restricted 1</a></li>
+<li class="nav-item"><a href="/loggedin2">Restricted 2</a></li>
+<li class="nav-item"><a href="/logout">Logout</a></li>
+
+{% else %}
+ <li class="nav-item"><a href="/login">Login</a></li>
+<li class="nav-item"><a href="/register">Register</a></li>
+<li class="nav-item"><a href="/notloggedin">About</a></li>
+
+{% endif %}
+{{logged}}
+  {% endblock options%}
+{% block bodycontent %}
+
+<h1>Welome Stupid</h1>
+You are not logged in<br>
+You are stupid<br>
+You should really register or log in<br>
+So that you can fully enjoy this page<br>
+That is all
+
+{% endblock bodycontent %}
+
+
+

@@ -1,41 +1,30 @@
-<!doctype html>
-<html>
-<head>
-  <title>Login Page</title>
-<link rel="stylesheet" href="/static/extras.css">
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h1>Login here.</h1>
 
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
 
-<!--[if lte IE 8]>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
-<![endif]-->
-<!--[if gt IE 8]><!-->
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
-<!--<![endif]-->
-</head>
+        <div class="pure-control-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username" name="username">
+        </div>
 
-<div class="pure-g">
-    <div class="pure-u-3-24"></div>
-    <div class="pure-u-1-24"></div>
-    <div class="pure-u-16-24">
-      <div class="pure-menu pure-menu-open pure-menu-horizontal">
-      <ul>
-  <li>Welcome "user"!<li>
-        <li><a href="/">Home</a></li>
-        <li class="pure-menu-selected"><a href="/about">About</a></li>
-      </ul>
-    </div>
+        <div class="pure-control-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password" name="password">
+        </div>
 
-    <h1>Please login.</h1>
-    <br>
-    <p></p>
+        <div class="pure-controls">
+            
+             <!--<label for="cb" class="pure-checkbox">
+                <input id="cb" type="checkbox"> Remember me
+            #</label>-->
 
-    <br><br><br><br><br><br><br><br><br><br><br><br>
+            <button type="submit" name="b" value="Login" class="pure-button pure-button-primary">Login</button>
 
-      <center><a href="/">Project</a></center>
-    </div>
+        </div>
+    </fieldset>
+</form>
 
-  <div class="pure-u-1-24"></div>
-  <div class="pure-u-3-24"></div>
-
-</div>
+  {% endblock bodycontent %}

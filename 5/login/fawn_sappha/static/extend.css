@@ -1,13 +1,60 @@
+/*
+orange: #DC4E00;
+dark gray: #929487;
+gray: #C7C9BE;
+light gray: #F4F5ED;
+blue: #89CEDE;
+*/
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic);
+@import url(http://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900);
 body{
+	text-align: center;
     font-size: 20px;
-    background-color: #2A2C31 ;
-    font-family: text;
+    background-color: white;
+    color: #929487;
+    font-family: "Maven Pro";
+    font-weight: 400;
 }
-
 .container {
     width: 80%;
-    background: #BBBBBB;
+    background: #F4F5ED;
     margin-left: auto;
     margin-right: auto;
-    
+    padding: 30px;
+    padding-top: 0px;
+    border-radius: 5px;
+}
+
+h1>a {
+	font-family: "Josefin Slab";
+	font-weight: 600;
+	color: #DC4E00;
+	font-size: 80px;
+	text-decoration: none;
+}
+.button {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	font-family: "Maven Pro";
+	background-color: #89CEDE;
+	color: white;
+	font-weight: 500;
+	border-radius: 5px;
+	border: 0;
+	padding: 5px;
+}
+.button:hover {
+	color: #DC4E00;
+}
+.textfield {
+	font-family: "Maven Pro";
+	border-radius: 5px;
+}
+.logout {
+	background-color: #DC4E00;
+	float: right;
+}
+.logout:hover {
+	color: #89CEDE;
 }

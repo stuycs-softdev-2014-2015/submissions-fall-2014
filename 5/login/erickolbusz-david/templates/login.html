@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block header %}
+Login
+<hr>
+{% endblock header %}
+
+{% block body %}
+<br>
+<form>
+  <input type="text" class="form-control" style="width:auto"  name="username" placeholder="Username">
+  <br>
+   <input type="password" class="form-control" style="width:auto" name="password" placeholder="Password">
+  <br>
+  <input type="submit" class="btn btn-success" name="submit" value="Submit">
+  <br>
+</form>
+{% endblock body %}
+

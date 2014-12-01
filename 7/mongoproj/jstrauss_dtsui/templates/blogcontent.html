@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+<div class="pure-g">
+<div class="pure-u-5-6">
+<h1>{{title}}</h1>
+<span class="timestamp">
+posted {{blogcontent[0]['time'][0]}}/{{blogcontent[0]['time'][1]}}/{{blogcontent[0]['time'][2]}} {{blogcontent[0]['time'][3]}}:{{blogcontent[0]['time'][4]}}
+by <a class="user" href="/user/{{blogcontent[0]['author']}}">{{blogcontent[0]['author']}}</a>
+</span>
+</div>
+<div class="pure-u-1-6" id="vote"><br>
+  {{blogcontent[0]['points']}} points<br>
+  <a href="/blog/upvote/{{blogcontent[0]['title']}}"><img class="icon" src ="/static/upvote.png" width="20%" height ="20%"/></a>
+  &nbsp;
+  <a href="/blog/downvote/{{blogcontent[0]['title']}}"><img class="icon" src ="/static/downvote.png" width="20%" height ="20%"/></a>
+</div>
+</div>
+<hr>
+<p> {{blogcontent[0]['content']}}</p>
+<br>
+<hr>
+<form class="pure-form pure-form-aligned" method="POST">
+    <fieldset>
+    <div class="pure-control-group">
+            <textarea cols="75" rows="2" placeholder="Comment on the post" name="comment"></textarea>
+        </div>
+
+        <button type="submit" name="b" value="Comment!" class="pure-button pure-button-primary">Comment!</button>
+
+    </fieldset>
+</form>
+<h3> Comments </h3>
+{%for x in blogcontent[0]['comments']|sort(reverse=True)%}
+    <p>
+      <a class="user" href="/user/{{x[1]}}">{{x[1]}}</a>
+      <span class="timestamp">
+        posted {{x[2][0]}}/{{x[2][1]}}/{{x[2][2]}} {{x[2][3]}}:{{x[2][4]}}
+      </span>
+      <br>
+      <div class="comment">
+      {{x[0]}}
+      </div>
+    </p>
+{%endfor%}
+  {% endblock bodycontent %}}
+}

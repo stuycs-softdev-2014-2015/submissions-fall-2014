@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+  {% block bodycontent %}
+    <h1>Contacts</h1>
+
+<table class="pure-table pure-table-horizontal">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for x in contacts %}
+
+        <tr>
+            <td><a href="/user/{{x['name']}}">{{x['name']}}</a></td>
+            <td>{{x['email']}}</td>
+        </tr>
+
+     {% endfor %}
+
+    </tbody>
+</table>
+  {% endblock bodycontent %}}
+}

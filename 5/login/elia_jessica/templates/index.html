@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <p class=error><strong>Error:</strong> {{ error }}</p>
+</div>
+{% endif %}
+<div class="col-md-6 col-md-offset-3 jumbotron">
+  <center>
+    <h1>You are logged in</h1>
+    <p>Woohoo!</p>
+  </center>
+</div>
+{% endblock %}

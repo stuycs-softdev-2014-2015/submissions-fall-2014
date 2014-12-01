@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block logoutlink %}
+    <br>Log out <a href="{{ url_for('logout') }}">here</a>!
+{% endblock logoutlink %}
+
+{% block bodycontent %}
+
+<center><h2>Kittens!</h2></center>
+
+<div class="container">
+    <center>
+        <img src="http://static3.shop033.com/resources/18/160536/picture/92/85466258.jpg" class="img-responsive img-rounded" width="500">
+        <br>
+        <img src="http://dreamatico.com/data_images/kitten/kitten-7.jpg" class="img-responsive img-circle" width="500">
+        <br>
+        <img src="http://www.creoglassonline.co.uk/ekmps/shops/bohdan/images/cute-grey-kitten-[2]-6022-p.jpg" class="img-responsive img-thumbnail" width="500">
+    </center>
+</div>
+
+{% endblock bodycontent %}

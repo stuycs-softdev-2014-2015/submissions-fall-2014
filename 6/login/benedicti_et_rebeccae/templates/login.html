@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+<body>
+<center>
+<!-- <section> -->
+  <h1>Vene Per Porta</h1>
+<!-- </section> -->
+
+{% if logging is defined %}
+  {% if logging%}
+  <h2> You Have Successfully Logged In!</h2>
+  {% else %}
+  <h2> You Have Failed to Log In...</h2>
+  {% endif %}
+{% endif %}
+{% if success is defined %}
+  {% if success %}
+  <h2> You Have Been Registered, Log On In!</h2>
+  {% else %}
+  <h2> There was an issue with your registration, please try again. </h2>
+  {% endif %}
+{% endif %}
+
+<form name="input" class="pure-form" action="/logging" method="POST">
+ <input type="text" class="pure-input-rounded" name="username" placeholder="Nomen">
+ <br><br>
+ <input type="password" class="pure-input-rounded" name="password" placeholder="Vestra Res">
+ <br><br>
+<input type="submit" href = "/logging" value="Login" class="button-submit pure-button">
+</form>
+<br>
+<h3>Register?</h3>
+<a class="pure-button" href="/register">Register</a>
+<br><br>
+<h3>For more information feel free to visit this page before logging in:</h3>
+<a class="pure-button" href="/about">Locus Dei et Dae</a>
+</center>
+</body>
+{% endblock bodycontent %}

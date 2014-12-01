@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html>
+<head>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"> 
+  <link rel="stylesheet" href="static/home.css">
+</head>
+<body>
+  <h1>
+    <center>register</center>
+  </h1>
+  {% if post %}
+  {% if errorlist %}
+  an error occurred:<br>
+  <ul>
+  {% for error in errorlist %}
+  <li>{{error}}</li>
+  {% endfor %}
+  </ul>
+  {% else %}
+  registration successful
+  {% endif %}
+  {% endif %}
+  <form action="register" method="POST">
+    Username: <input type="text" name="username"><br>
+    Password: <input type="password" name="password"><br>
+    Confirm password: <input type="password" name="pwdconfirm"><br>
+    <input type="submit" name="register" value="Register">
+  </form>
+<br><br>
+<a href = "/home">Return to home</a>
+</body> 
+</html>

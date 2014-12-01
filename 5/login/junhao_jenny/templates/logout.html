@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block bodycontent %}
+
+<center><h2>Are you sure you want to log out?</h2></center>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="form-group">
+        <form method="POST">
+            <center>
+                <button type="submit" name="button_logout" class="btn btn-danger">
+                    Log out!
+                </button>
+            </center>
+        </div>
+    </div>
+</div>
+
+{% endblock bodycontent %}

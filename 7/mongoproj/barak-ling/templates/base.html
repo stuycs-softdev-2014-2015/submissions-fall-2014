@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <link href="../static/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
+	  
+
+	  {% block css %}
+	  {% endblock css %}
+
+	</head>
+
+	<body> <!-- start of body -->
+	  
+	  <nav class="navbar navbar-default" role="navigation">
+	    <div class="container-fluid">
+	      <div class="navbar-header">
+		{% block name %}
+		<a class="navbar-brand" href="/">Account Manager</a>
+		{% endblock name %}
+	      </div>
+
+	      <!-- Collect the nav links, forms, and other content for toggling -->
+	      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+		<ul class="nav navbar-nav">
+		  {% block session_button %}
+		  {% endblock session_button %}
+
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right">
+		  <li><a href="/about">About</a></li>
+		</ul>
+
+	      </div><!-- /.navbar-collapse -->
+	    </div><!-- /.container-fluid -->
+	    		
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul class=flashes>
+		  {% for message in messages %}
+		  <li>{{ message }}</li>
+		  {% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+
+	  </nav>
+
+	  {% block main %}
+		{% endblock main %}
+
+	</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="jumbotron">
+  <div class="container">
+  	<h1>Dashboard</h1>
+    <img src="https://www.dicolab.com/file/PagePics/controlroom_pic1.jpg">
+    <br><br>
+    <p>Your people need you.</p>
+    <a href="{{ url_for('exclusive') }}">...and I'll look down and whisper, "No."</a>
+  </div>
+</div>
+{% endblock %}

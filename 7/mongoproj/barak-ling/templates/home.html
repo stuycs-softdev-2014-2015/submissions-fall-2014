@@ -1,0 +1,24 @@
+{% extends "loginbase.html" %}
+
+
+{% block css %}
+<link href="/static/base.css" rel="stylesheet">
+{% endblock css %}
+
+{% block session_button %}
+<li><a href="/logout">Logout</a></li>
+<li><a href="/settings">Settings</a></li>
+{% endblock session_button %}
+
+
+{% block main %}
+<title>Main</title>
+<div class="container">
+  <div class="jumbotron">
+    <h3><b>Homepage</b></h3>
+    <p>{{message}}</p> 
+  </div>
+</div>
+
+
+{% endblock main %}

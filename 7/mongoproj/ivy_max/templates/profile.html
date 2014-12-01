@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+    <p id="error">{{error}}</p>
+    {% if not session.username %}
+        <p>You must be logged in to see this page. </p>
+        <p><a href="{{url_for('index')}}">Return to index</a></p>
+    {% else %}
+	    <h2>{{session.username}}'s page</h2>
+        <p>Location: {{ user.location }}</p>
+        <p>Favorite color: {{ user.color }}</p>
+        <p>Favorite animal: {{ user.animal }}</p>
+    {% endif %}
+{% endblock body %}

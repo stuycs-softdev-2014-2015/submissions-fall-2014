@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block css %}
+<link href="/static/base.css" rel="stylesheet">
+{% endblock css %}
+
+{% block session_button %}
+<li><a href="/login">Login</a></li>
+{% endblock session_button %}
+
+
+{% block main %}
+<title>Login</title>
+<div class="container">
+      <form class="form-signin" role="form" method="POST">
+
+        <h2 class="form-signin-heading">Register</h2>
+        <input type="username" name="username" class="form-control" placeholder="Username" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	
+      </form>
+
+    </div> <!-- /container -->
+{% endblock main %}
+
+

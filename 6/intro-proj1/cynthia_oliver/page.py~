@@ -6,29 +6,71 @@ from flask import Flask,render_template
 
 app = Flask(__name__)
 
-@app.route("/help")
+def htmlify(s):
+    x = ""
+    x += "<html><head><title>NBAstats</title>"
+    x += s
+    
+    return x
+
+
+def getStats(filename):
+    x = open(filename)
+    y = x.readlines()
+    x.close
+    i = 0
+    while i < len(y):
+        y[i] = y[i].strip()
+        i += 1
+    return y[1:]
+
+def getstatheaders(filename):
+    x = open(filename)
+    y = x.readlines()
+    x.close
+    i = 0
+    while i < len(y):
+        y[i] = y[i].strip()
+        i += 1
+    return y[0].split(",")
+
+def pythtable(csvfile):
+    l = getStats(csvfile)
+    m = getstatheaders(csvfile)
+    p = "<table border = '3'>"
+    k = 0
+    p += "<tr>"
+    while k < len(m):
+        p += "<td>"
+        p += m[k]
+        p += "</td>"
+        k += 1
+    p += "</tr>"
+    i = 0
+    while i < len(l):
+        p += "<tr>"
+        a = l[i].split(",")
+        j = 0
+        while j < len(a):
+            p += "<td>"
+            p += str(a[j])
+            p += "</td>"
+            j += 1
+            
+        p += "</tr>"
+        i += 1
+    p += "</table>"
+    return p
+
+x = "NBAstats.csv"
+
+
+
+@app.route("/project")
 def help():
-	return render_template("NBAstats.csv")
-@app.route("/about")
-def about():
-	#s = "<h1>this is the about page</h1>"
-	s = """
-	<h1>Awesome Flask Web Site</h1>
-	<ul>
-	<li>item 1</li>
-	<li>item 2</li>
-	<li>item 3</li>
-	</ul>
-"""
-	return s
-@app.route("/p")
-@app.route("/p/<lastname>")
-@app.route("/p/<lastname>/<firstname>")
-def person(lastname=None,firstname=None):
-	return render_template("person.html"
-			,lastname=lastname
-			,firstname=firstname)
-@app.route("/random")
+    return htmlify(pythtable(x))
+	#return render_template("NBAstats.csv")
+
 
 
 @app.route("/home")

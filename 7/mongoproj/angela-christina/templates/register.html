@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+</head>
+<link rel="stylesheet" href="/static/extras.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+<!--<![endif]-->
+
+</head>
+
+<div class="pure-g">
+  <div id="layout" class="pure-g">
+  </div>
+</div>
+
+<div class="pure-g">
+  <div class="pure-u-3-24"></div>
+  <div class="pure-u-1-24"></div>
+  <div class="pure-u-16-24">
+
+    <img id="banner" src="/static/Banner.jpg" alt="Banner Image"/>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="pure-menu pure-menu-open pure-menu-horizontal">
+     <ul>
+	<li><li>
+        <li class="pure-menu-selected">MONGO DEMO</li>
+        <li><a href="/about">About</a></li>
+	<li><a href="/dashboard">Home</a></li>
+	<li><a href="/">Login</a></li>
+	<li class="pure-menu-selected"><a href="/register">Register</a></li>
+	<li><a href="/loggedin/">User Information</a></li>
+      </ul>
+    </div>
+    <br>
+    <div class="centered">
+      {% if empty %}
+      <div class="error"> 
+      Missing fields! Please try again. <br>
+      </div> 
+      {% elif reg_error %}
+      <div class="error"> 
+      Passwords did not match! Please try again. <br>
+      </div>
+      {% elif user_taken %}
+      <div class="error"> 
+      Sorry! Username "{{usr}}" is already taken. Please try again. <br>
+      </div>
+      {% else %}
+      Hello, new users! Please fill out this form for your new account:<br>
+      {%endif%}
+    </div>
+    <br><br>
+    <form class="pure-form" method="POST">
+      Username: 
+      <br>  
+      <input class="form-stufftwo" type="text" size="30" placeholder="Username" name="username"></input>
+      <br><br>
+      Password:
+      <br>
+      <input class="form-stufftwo" type="password" size="30" placeholder="Password" name="passwd"></input>
+      <br><br>
+      Re-type Password:
+      <br>
+      <input class="form-stufftwo" type="password" size="30" placeholder="Retype Password" name="repasswd"></input>
+      <br><br>
+      First Name:
+      <br>
+      <input class="form-stufftwo" type="text" size="30" placeholder="First Name" name="fname"></input>
+      <br><br>
+      Last Name:<br>
+      <input class="form-stufftwo" type="text" size="30" placeholder="Last Name" name="lname"></input>
+      <br><br>
+      <button class="pure-button" name="submit" value="yes">Submit</button>
+    </form>
+    <br>
+    <br>
+  </div>
+  <div class="pure-u-1-24"></div>
+  <div class="pure-u-3-24"></div>
+</div>

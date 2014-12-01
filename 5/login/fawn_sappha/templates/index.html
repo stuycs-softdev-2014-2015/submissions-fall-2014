@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
 {% block bodycontent %}
+{% if username %}
+<p>Welcome {{username}}</p>
+<form action="/" method = "POST">
+<input type="submit" class = "button" name = "b" value = "About">
+</form>
+{% else %}
 <p> this is the index page </p>
-<a href = "/register">Register here</a>
-<a href = "/login">Login here</a>
+<form action="/" method = "POST">
+<input type="submit" class = "button" name = "b" value = "About">
+<input type="submit" class = "button" name = "b" value = "Register">
+<input type="submit" class = "button" name = "b" value = "Log In">
+</form>
+{% endif %}
 {% endblock bodycontent %}

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css')}}">
+    <script>
+      function toggle_visibility(id, id2) {
+      var e = document.getElementById(id);
+      var b = document.getElementById(id2);
+      if(e.style.display == 'block'){
+           e.style.display = 'none';
+           b.style.display = 'block';
+           b.style.background = '#f3f4eb';
+          }
+      else{
+           e.style.display = 'block';
+           e.style.background = '#f3f4eb';
+           b.style.display = 'none';
+          }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="pure-g" id="header">
+      <div class="pure-u-21-24 l-box"><p>
+	  <font size="6" color="white"><a href="/">
+	      <img src="static/images/mongoleaf.png" style="width:50px;height:50px"></a>MongoLogin <font size="4" color="red">
+	      {% with messages = get_flashed_messages() %}
+	      {% if messages %}
+	      {% for message in messages %}
+	      {{message}}
+	      {% endfor %}
+	      {% endif %}
+	      {% endwith %}  
+	</font> </p>
+	</font>
+      </div>
+      <div class="pure-u-3-24"><p><br><button class="button-small pure-button" onclick="toggle_visibility('mid', 'regdiv')">Register/Login</button></p>
+      </div>
+    </div>
+    <div class="pure-g" id="regdiv">
+      <div class="pure-u-1-3 l-box"><p></p></div>
+      <div class="pure-u-1-3 l-box">
+	<p>
+	  <form class="pure-form" method="POST">
+	    <center>
+	      <fieldset>
+		<input type="text" size="40" name="un" placeholder="username"><br><br>
+		<input type="password" size="40" name="pw" placeholder="password">
+		<br><center>
+		  <input type="submit" class="button-small pure-button" name="submit" value="Register">
+		<input type="submit" class="button-small pure-button" name="submit" value="Login"</center>
+	    </fieldset></center>
+	  </form>
+	</p>
+      </div>
+      <div class="pure-u-1-3 l-box"><p></p></div>
+    </div>
+    <div class="pure-g" id="mid">
+      <div class="pure-u-1-3 l-box"><p>MongoLogin is a Python module designed for account management using the MongoDB database. It is lightweight, allowing quick prototyping, yet functional enough to be used for a final project.
+	  <br><br>
+	  Why MongoLogin? We are:
+	  <ul>
+	    <li><b>Modular</b>-add any account variables, control accounts in multiple databases on the same site.
+	    <li><b>Open Source</b>-contributions to the module are always welcome. View the code <a href="/">here</a>.
+	    <li><b>Simple</b>-MongoLogin is extremely easy to use. A quick look through the documentation will have you setting up account systems in no time.
+	  </ul>
+	  After you've downloaded the module, import it with 'import login'. Then, to invoke the calls just use login.function(parameters).
+	</p>
+      </div>
+      <div class="pure-u-1-3 l-box"><p><center><b>Documentation</b></center>
+	  <font size="1">You will often see references to dbname and dbCollectionName. These refer to the database and collection in which you are working. By default they are set to <i>people</i> and <i>users</i> respectively. It's perfectly possible to work in multiple collections/databases, just make sure to change the default arguments.</font>
+      <ul>
+      <li><b>addUser</b>(name, password[, dbname[, dbCollectionName])<br><br>
+	Checks if username already exists in correct database and collection. If so, returns False. Otherwise registers a user under the given username and password.<br><br></li>
+      <li><b>login</b>(name, password[, dbname[, dbCollectionName])<br><br>
+	Check if username and password match in the correct database and collection. If so, returns True and updates <i>authenticated</i> to True. Otherwise, returns false.<br><br>
+      </p></div>
+      <div class="pure-u-1-3 l-box"><p>
+	  <ul>
+            <li><b>logout</b>(name[, dbname, [dbCollectionName]])<br>
+	      Sets the <i>authenticated</i> boolean of user to False.<br><br></li>
+	    <li><b>updateUser</b>(name, authenticated[, dbname[, dbCollectioName])<br><br>
+	      If the user is authenticated (logged in), this method can alter different variables of the user. If the change was successful, returns True. If it failed or the user wasn't authenticated, returns False.<br><br></li>
+	    <li><b>isInDatabase</b>(name[, dbname, [dbCollectionName])<br><br>
+	      If the user is located in the correct database and collection, returns True. Otherwise, return False.<br><br></li>
+	    </ul>
+	  Try it out! This website runs MongoLogin, register or login via the button in the top right corner.
+      </p></div>
+    </div>
+    <div class="pure-g l-box">
+      <div class="pure-u-1-1" id="footer"><p></p></div>
+    </div>
+</html>

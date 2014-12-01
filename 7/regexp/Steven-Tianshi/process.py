@@ -5,6 +5,7 @@ s = f.read()
 f.close()
 
 newL = re.findall("[A-Z]+",s)
+print newL
 i = 0
 for name in newL:
     newL[i] = name.lower().capitalize()

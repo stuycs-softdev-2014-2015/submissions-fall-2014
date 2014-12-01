@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+
+{% block bodycontent %}
+<center>
+<h1>Home</h1>
+
+{% if name != None %}
+<p>Welcome, {{name}}!</p><br>
+As one of our valued users, you have access to: <br>
+<a class="button-two pure-button" href="{{url_for('s1') }}">Special Page One</a>
+<a class="button-two pure-button" href="{{url_for('s2') }}">Special Page Two</a>
+</center>
+{% else %}
+
+<center>
+Nothing to see here!<br><br>
+Please log in <a href="{{url_for('login') }}">here</a>.<br>
+Don't have an account? Register <a href="{{url_for('register') }}">here</a>.<br>
+</center>
+
+
+{% endif %}
+
+{% endblock %}
