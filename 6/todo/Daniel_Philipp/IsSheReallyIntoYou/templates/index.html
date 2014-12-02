@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="/" class="title-large">Is She Really Into You? </a>
+
+<div id="changing-content">
+    <button id="start-button">Find Out</button>
+    <div id="friendList"> <ul> </ul> </div>
+    <div id="loading-screen"> </div>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '774211105947350',
+          xfbml      : true,
+          version    : 'v2.1'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+ </script>
+ </div>
+{% endblock %}
