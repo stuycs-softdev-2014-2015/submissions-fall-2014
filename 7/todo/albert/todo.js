@@ -29,5 +29,6 @@ var addItem = function(text,id){
 var form = document.getElementById("form")
 var button = document.getElementById("submitbutton");
 button.addEventListener('click',function(e){
+	e.preventDefault();
 	addItem(form.inputtext.value,"todo");
 });
