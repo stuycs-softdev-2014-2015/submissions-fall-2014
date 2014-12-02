@@ -1,0 +1,32 @@
+body{
+    font-family: "Arial Verdana", Arial, sans-serif;
+    background-color: #0cc;
+}
+
+#todowrapper, #donewrapper{
+    border: #060 5px groove;
+    margin: 5px;
+    width: 50%;
+    background-color: #ff3;
+    text-align: center;
+}
+
+ul{
+    text-align: left;    
+}
+
+#newentry{
+    margin-left: 5px;
+    border-radius: 7px;
+    border: none;
+    height: 25px;
+}
+
+button{
+    background: #444;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff6;
+}
