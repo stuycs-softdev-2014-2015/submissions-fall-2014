@@ -6,16 +6,26 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     if "username" in session:
+<<<<<<< HEAD
+        return "YOURE LOGGED IN AS %s" % escape(session["username"])
+=======
         return render_template("loggedin.html", name=escape(session["username"]))
+>>>>>>> cf294cd332ca0cae8095e21f5c4a65cb711fdd4a
     else:
         return render_template("index.html")
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if "username" in session:
+<<<<<<< HEAD
+        return "youre already logged in as %s" % escape(session["username"])
+    if request.method == "POST":
+        #print "sdfsdfsdfds"
+=======
         flash("Already logged in as %s" %escape(session["username"]), "error")
         return redirect(url_for("index"))
     elif request.method == "POST":
+>>>>>>> cf294cd332ca0cae8095e21f5c4a65cb711fdd4a
         try:
             if request.form["login"] != None:
                 if (mongo.get(request.form["username"], request.form["password"]) != None):
