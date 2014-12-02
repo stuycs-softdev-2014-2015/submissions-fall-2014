@@ -1,16 +1,20 @@
-var doList = document.getElementById("todo");
-var doneList = document.getElementById("done");
+//fun stuff
+var task = document.getElementById("task");
+var buttonToAdd = document.getElementById("add");
 
-var text = document.getElementById("txt");
-var button = document.getElementById("but");
+//the 2 lists
+var doList = document.getElementById("do_list");
+var doneList = document.getElementById("done_list");
 
+//create a new task
 var newItem = function() {
     var item = document.createElement('li');
-    item.innerHTML = text.value;
+    item.innerHTML = task.value;
     item.addEventListener("click", moveToDone);
     doList.appendChild(item);
 }
 
+//move something to the todo list
 var moveToTodo = function() {
     this.parentNode.removeChild(this);
     doList.appendChild(this);
@@ -18,6 +22,7 @@ var moveToTodo = function() {
     this.addEventListener("click", moveToDone);
 }
 
+//move something to the completed tasks list
 var moveToDone = function () {
     this.parentNode.removeChild(this);
     doneList.appendChild(this);
@@ -25,4 +30,5 @@ var moveToDone = function () {
     this.addEventListener("click", moveToTodo);
 }
 
-button.addEventListener("click", newItem);
+//does this have to go at the end?
+buttonToAdd.addEventListener("click", newItem);

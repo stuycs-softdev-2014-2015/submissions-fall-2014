@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 
 Stats = Flask(__name__)
 
@@ -61,6 +61,8 @@ def SAT():
     return render_template("satall.html",table1=table1)
 @Stats.route("/Analysis")
 def Analysis():
+    rule = request.url_rule
+    print rule.rule[1:]
     table3=""
     table2=""
     table3 += sumSAT('2010SAT.csv')
@@ -71,6 +73,7 @@ def Analysis():
     return render_template("sat.html",table=table3,table2=table2)
 @Stats.route("/")
 def Go():
+    
     return render_template("start.html")
 
 if __name__=="__main__":
