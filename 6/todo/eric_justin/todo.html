@@ -25,10 +25,11 @@
                     </ol>
                 </div>
             </div>
-            <form class="pure-form align-middle-horizontal" action="todo_submit" method="get" accept-charset="utf-8">
-                <input type="text" name="todo" placeholder="What do you need to do?">
-                <input class="pure-button pure-button-primary" type="submit" value="Continue &rarr;">
+            <form class="pure-form align-middle-horizontal" accept-charset="utf-8">
+                <input type="text" name="todo" id="todo-item" placeholder="What do you need to do?">
+                <input class="pure-button pure-button-primary" type="button" value="Continue &rarr;" onclick="addItem('todo-item')">
             </form>
         </div>
+        <script type="text/javascript" src="todo.js"></script>
     </body>
 </html>
