@@ -4,12 +4,17 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1>To Do</h1>
-    <ul id="todolist">
-    </ul>
-    <h1>Done</h1>
-    <ul id="donelist">
-    </ul>
+    <div id="todowrapper">
+      <h1>To Do</h1>
+      <ul id="todolist"></ul>
+    </div>
+    <div id="donewrapper">
+      <h1>Done</h1>
+      <ul id="donelist"></ul>
+    </div>
+    <br>
+    <input type="text" placeholder="Add Item to ToDo List" id="newentry" />
+    <button id="add">Add</button>
     <script src="todo.js"></script>
   </body>
 </html>
