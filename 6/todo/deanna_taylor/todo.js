@@ -11,13 +11,15 @@ var moveBack=function(e){
     var wish_list = document.getElementById("wish_list");
     var dreams = document.getElementById("dreams");
     this.classList.remove("active");
+    this.addEventListener('click', wishComeTrue);
     wish_list.appendChild(this);
-} // This doesn't quite work
+} // This doesn't quite work as desired
 
 var wishComeTrue=function(e){
     var wish_list = document.getElementById("wish_list");
     var dreams = document.getElementById("dreams");
     this.classList.remove("active");
+    this.addEventListener('click', moveBack);
     dreams.appendChild(this);
 };
 
