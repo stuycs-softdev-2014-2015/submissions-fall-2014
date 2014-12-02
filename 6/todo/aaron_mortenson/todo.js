@@ -1,37 +1,30 @@
-console.log("HELLO");
+var input = document.getElementById("item");
+var todo = document.getElementById("ToDo");
+var done = document.getElementById("Done");
 
-var x,y;
-var i = "hello";
-console.log(i);
 
 var removeItem = function(num) {
     this.parentNode.removeChild(this);
 };
 
-var addItem = function(text) {
-    var list = document.getElementsByTagName('ol')[0];
+var addItem = function(e) {
     var newitem = document.createElement('li');
-    newitem.innerHTML=text;
-    list.appendChild(newitem);
+    newitem.innerHTML=input.value;
+    todo.appendChild(newitem);
+    newitem.addEventListener('click',moveItem);
 };
 
 var moveItem = function(num) {
-    var source = document.getElementById("ToDo")
-    var dest = document.getElementById("Done");
     item = this.parentNode.removeChild(this);
     console.log(item);
-    dest.appendChild(item);
+    done.appendChild(item);
     item.addEventListener('click',removeItem);
 };
 
-var buttonCallback = function(e){
-    console.log(e);
-    console.log(this);
-};
 var button = document.getElementById("b");
-button.addEventListener('click',buttonCallback);
+button.addEventListener('click',addItem);
 
-var todo = document.getElementById("ToDo");
+
 var litems = todo.children;
 for (var i = 0 ; i < litems.length ; i++ ){
     litems[i].addEventListener('click',moveItem);
