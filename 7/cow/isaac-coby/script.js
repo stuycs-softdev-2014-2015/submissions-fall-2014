@@ -1,5 +1,6 @@
 var mouseX, mouseY, myEvent;
-var curposX, curposY = 5, 200;
+var curposX = 5;
+var curposY = 200;
 
 var move = function(e){
     var topher = document.getElementById("topher");
@@ -13,10 +14,10 @@ var move = function(e){
        curposY += 5;
    }
    else{
-       curposY -=5;
+       curposY -= 5;
    }
-    topher.left = curposX;
-    topher.top = curposY;
+    topher.style.left = curposX + "px";
+    topher.style.top = curposY + "px";
    if ((curposX == 300) && (curposY == 200)){
        alert("You won");
    }
