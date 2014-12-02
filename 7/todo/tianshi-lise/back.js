@@ -8,25 +8,27 @@ var funct = function(e){
 };
 
 
-var bb = document.getElementById("b");
 
 var addItem = function(){
-    console.log("yups");
     var list = document.getElementById("todo");
     var inputs = document.getElementById("t");
     var newitem = document.createElement("li");
     console.log(inputs.value);
     newitem.innerHTML = inputs.value;
-    list.appendChild(newitem);  
-};
-
-bb.addEventListener('click',addItem);       
-
-
-var add = function(text){
-    var list = document.getElementById("todo");
-    var newitem = document.createElement("li");
-    newitem.innerHTML = text;
     list.appendChild(newitem);
 };
+var enterItem = function(e){
+    var x = event.which || event.keyCode; //differs from which and keyCode depending on browswer
+    if (x == 13){
+	addItem();
+    }
+};
 
+
+
+//button functionality
+var bb = document.getElementById("b");
+bb.addEventListener("click",addItem);       
+//enter functionality
+var inputbox = document.getElementById("t");
+inputbox.addEventListener("keyup",enterItem);
