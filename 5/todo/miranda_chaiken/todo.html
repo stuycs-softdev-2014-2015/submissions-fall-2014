@@ -1,0 +1,38 @@
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+	
+	
+	<style>
+	.grey{
+		color: grey;
+	}
+	.active:hover{
+		color:green;
+		font-weight:bold;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+<h1>To Do or Not To Do</h1>
+  	<input type="text" class= 'form-control'style="width:25%" id="new item" placeholder="to-do item"><br>
+    <button id= "add" class='btn btn-warning'name="add" type="submit">Add Item</button>
+<h1>To Do</h1>
+<div class= "container">
+		<ul id= "to_do"></ul>
+</div>
+
+<h1>Done</h1>
+<div class= "container">
+
+<ul id="done"></ul>
+</div>
+</div>
+<script src="todo.js"></script>
+</body>
+</html>
