@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+		<head>
+		  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+		  <style>
+		    .red  {color: #ff0000;}
+		    .green  {color : #00ff00;}
+		    .blue  {color : #0000ff;}
+		    body{
+		    background-color: #FFFF99;
+		    }
+		    input{
+		    display: -webkit-flex; /* Safari */
+		    -webkit-flex-flow: row wrap; /* Safari 6.1+ */
+		    -webkit-align-content: space-around; /* Safari 7.0+ */
+		    display: flex;
+		    flex-flow: row wrap;
+		    align-content: space-around;
+		    }
+		    
+		  </style>
+				
+		</head>
+		<body>
+		  <center>
+				<h1 id="h">WHAT DO I NEED TO DO?</h1>
+				<form>
+New task:
+<input type="text" id="toadd">
+
+</form>
+<button id="b">Add to List</button>
+</center>
+				<div id="contentBox" style="margin:0px auto; width:70%">
+ <div id="column1" style="float:left; margin:0; width:50%;">
+				<h2>To Do</h2>
+				<ol id="todo">
+						<li> Walk the dog</li>
+						<li> Eat dinner</li>
+						<li> Brush Teeth</li>
+						<li> Write essay</li>
+						<li> Get into college</li>
+						<li> Rule the world</li>
+						<li> Do the Dishes</li>
+						
+				</ol>
+			
+				<br>
+				</div>
+ <div id="column1" style="float:left; margin:0; width:50%;">		
+		<h2>Completed!</h2>
+				Click on these to permanently remove them.
+				<ol id = "done">
+				  <li> CompSci Homework</li>
+				 </ol>
+				</div>
+				<script src="background.js"></script>
+		</body>
+</html>
