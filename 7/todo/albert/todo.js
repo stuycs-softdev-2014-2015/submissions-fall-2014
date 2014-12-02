@@ -26,12 +26,8 @@ var addItem = function(text,id){
     list.appendChild(newItem);
 }
 
-var doStuff = function(form){
-	addItem(form.inputtext.value,"todo");
-}
-
 var form = document.getElementById("form")
 var button = document.getElementById("submitbutton");
 button.addEventListener('click',function(e){
-	doStuff(form);
+	addItem(form.inputtext.value,"todo");
 });
