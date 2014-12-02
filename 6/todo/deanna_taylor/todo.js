@@ -5,17 +5,6 @@ var turnRed=function(e){
     this.classList.toggle('red');
 };
 
-var stripe = function() {
-    var items = document.getElementsByTagName("li");
-    for (var i = 0; i < items.length; i++){
-	if (i%2==0){
-	    items[i].classList.add('red');
-	} else {
-	    items[i].classList.add('green');
-	}
-    }
-};
-
 var wishes = [];
 
 var moveBack=function(e){
