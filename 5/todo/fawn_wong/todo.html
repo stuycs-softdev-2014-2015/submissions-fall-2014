@@ -1,17 +1,29 @@
 <html>
-<head>
-  <title>To Do List</title>
-</head>
-<body>
-  <h1>To Do List</h1>
-  <h2>To Do</h2>
-  <ol id = "todo">
-  </ol>
-  <h2>Done</h2>
-  <ol id = "done">
-  </ol>
-  <input type = "text" id = "text">
-  <button id = "add"> Add a Task! </button>
-  <script src = "todo.js"></script>
-</body>
+  <head>
+    <title>To Do List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  </head>
+  <body>
+    <center>
+      <br><br>
+      <div class = "container jumbotron" style="background-color: #EEEEFF; border-radius: 20px;">
+	<h1>To Do List</h1>
+	<div class = "pure-u-1-4" style="background-color: rgba(255,255,255, 0.5); border-radius: 10px">
+	  <h2>To Do</h2>
+	  <ul id = "todo" style="list-style-type:none; padding: 0">
+	  </ul>
+	</div>
+	<div class = "pure-u-1-4" style="background-color: rgba(255,255,255, 0.5); border-radius:10px;">
+	  <h2>Done</h2>
+	  <ul id = "done" style="list-style-type:none; padding: 0">
+	  </ul>
+	</div>
+	<br><br>
+	<input type = "text" id = "text">
+	<button id = "add"> Add a Task! </button>
+	<script src = "todo.js"></script>
+      </div>
+    </center>
+  </body>
 </html>
