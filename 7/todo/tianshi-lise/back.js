@@ -9,16 +9,11 @@ var toDoItems = toDoList.children;
 var doneList = document.getElementById("done");
 var doneItems = doneList.children;
 
-var moveToDone = function(e){
-    var x = this;
-    doneList.appendChild(x);
-    this.remove();
+var moveToDone = function(){
+    doneList.appendChild(this);
 }
 var addmovelistener = function(){
     for(var i=0;i<toDoItems.length;i++){
-	console.log("asdl;kjfalkdsjf");
-	console.log(toDoItems);
-	console.log(toDoItems.length);
 	toDoItems[i].addEventListener('click',moveToDone);
 /*	toDoItems[i].addEventListener('mouseover',function(e){
 	    this.classList.toggle("big");
@@ -36,7 +31,7 @@ var addItem = function(){
     console.log(inputs.value);
     newitem.innerHTML = inputs.value;
     toDoList.appendChild(newitem);
-    addmovelistener();
+    addmovelistener(); //readds all move listeners
 };
 var enterItem = function(e){
     var x = event.which || event.keyCode; //differs from which and keyCode depending on browswer
@@ -54,4 +49,4 @@ bb.addEventListener("click",addItem);
 var inputbox = document.getElementById("t");
 inputbox.addEventListener("keyup",enterItem);
 
-addmovelistener();
+addmovelistener(); //adds beginning move listener
