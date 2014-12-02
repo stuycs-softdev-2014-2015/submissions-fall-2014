@@ -1,6 +1,3 @@
-console.log("HI");
-
-
 var removing = function(e){
     var dd = document.getElementById("dd");
     dd.removeChild(this);
