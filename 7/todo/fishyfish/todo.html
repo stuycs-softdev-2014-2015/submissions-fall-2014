@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>To do</title>
+    <title>To-do</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-    <style type="text/css"></style>
+    <style type="text/css">
+      body{
+      background-color: #81BCC4;
+      }
+      h1{
+      color: #364D51;
+      font-size:48px;
+      text-align: center;
+      margin-top:10%;
+      }
+      h2{
+      color: #090909;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>HI</h1>
-    This is text
+    <div class="pure-g">
+      <div class="pure-u-1-5"></div>
+      <div class="pure-u-3-5">
+      <h1>TO-DO LIST</h1><hr>
+      <h2>This is a to-do list:</h2>
+      <ul id="todolist">
+	</ul>
+      <h2>This is an is-done list:</h2><hr>
+      <ul id="isdonelist">
+	</ul>
+      <input id="newItem" type="text" class="pure-input-rounded" name="newItem" placeholder="Enter new item for to-do list">
+      <button id="b" type="submit" class="pure-button" name="b" value="Submit">Submit</button>
+      </div>
+      <div class="pure-u-1-5"></div>	    
+    <script src="todo.js"></script>
+    </div>
   </body>
 </html>
