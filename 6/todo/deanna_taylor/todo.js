@@ -18,7 +18,6 @@ var wishComeTrue=function(e){
     var wish_list = document.getElementById("wish_list");
     var dreams = document.getElementById("dreams");
     this.classList.remove("active");
-    stripe;
     dreams.appendChild(this);
 };
 
