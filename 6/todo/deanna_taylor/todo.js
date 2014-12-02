@@ -1,11 +1,35 @@
 var button = document.getElementById("add_item");
-var header = document.getElementsByName("heads");
+var header = document.getElementsByClassName("red");
+
+var turnRed=function(e){
+    this.classList.toggle('red');
+};
+
+var stripe = function() {
+    var items = document.getElementsByTagName("li");
+    for (var i = 0; i < items.length; i++){
+	if (i%2==0){
+	    items[i].classList.add('red');
+	} else {
+	    items[i].classList.add('green');
+	}
+    }
+};
+
+var wishes = [];
+
+var moveBack=function(e){
+    var wish_list = document.getElementById("wish_list");
+    var dreams = document.getElementById("dreams");
+    this.classList.remove("active");
+    wish_list.appendChild(this);
+} // This doesn't quite work
 
 var wishComeTrue=function(e){
     var wish_list = document.getElementById("wish_list");
     var dreams = document.getElementById("dreams");
-    this.classList.add("red");
     this.classList.remove("active");
+    stripe;
     dreams.appendChild(this);
 };
 
@@ -13,6 +37,13 @@ var addToWishList=function(e){
     console.log("add wish")
     var wish_list = document.getElementById("wish_list");
     var new_wish = document.createElement('li');
+    if(wishes.length%2==0){
+	new_wish.classList.add("green");
+    }
+    else{
+	new_wish.classList.add("red");
+    }
+    wishes.push(new_wish);
     new_wish.classList.add("active");
     new_wish.innerHTML=document.getElementById("item").value;
     new_wish.addEventListener('click',wishComeTrue);
@@ -29,5 +60,8 @@ var turnColor=function(e){
 };
 
 button.addEventListener('click', addToWishList);
-header.addEventListener('mouseover', turnColor);
+// header.addEventListener('mouseover', turnColor);
 
+for (var i = 0 ; i < header.length ; i++ ){
+    header[i].addEventListener('mouseover', turnColor);
+}
