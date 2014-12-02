@@ -7,10 +7,20 @@ conn=pymongo.MongoClient()
 db=conn.userdb
 collection = db.test
 #db.drop_collection("test")
+
+
+def restricted(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if 'username' not in session:
+            session['error'] = "You cannot access this page if you are not logged in! Silly goose."
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return inner
+
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if 'logged' not in session:
-        session['logged'] = 1
     
     if request.method == "POST":
         euser = request.form['username']
@@ -75,10 +85,8 @@ def register():
 
 
 @app.route("/loggedin1")
+@restricted
 def loggedin1():
-    if 'username' not in session:
-        session['error'] = "You cannot access this page if you are not logged in! Silly goose."
-        return redirect(url_for("login"))
     if 'username' in session:
         u=session['username']
     else:
@@ -87,11 +95,8 @@ def loggedin1():
     return render_template("loggedin1.html", logged = session['logged'], u=u)
 
 @app.route("/loggedin2", methods=["GET", "POST"])
+@restricted
 def loggedin2():
-    if 'username' not in session:
-        session['error'] = "You cannot access this page if you are not logged i\
-n! Silly goose."
-        return redirect(url_for("login"))
     if 'username' in session:
         u=session['username']
     else:
@@ -112,6 +117,9 @@ def notloggedin():
 
 @app.route("/error")
 def error():
+    if 'logged' not in session:
+        session['logged']=2
+    print session['logged']
     if 'username' in session:
         u=session['username']
     else:
@@ -122,12 +130,12 @@ def error():
 
 @app.route("/")
 def home():
+    if 'logged' not in session:
+        session['logged']=2
     if 'username' in session:
         u=session['username']
     else:
         u=""
-    if 'logged' not in session:
-        session['logged'] = 1 
 
     return render_template("home.html", logged=session['logged'], u=u)
 
@@ -139,6 +147,7 @@ def logout():
 
 if __name__=="__main__":
     app.debug=True
-    app.run("0.0.0.0");
+    app.run(host='0.0.0.0')
+    
 
 

@@ -5,7 +5,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for( 'static',filename='css/bootstrap-theme.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-    <title>{{ session['username'] }}'s Page</title>
+    <title>{{ username }}'s Page</title>
   </head>
 
   <body>
@@ -17,21 +17,21 @@
             <input type="submit" name="b" class="btn btn-default" value="About">
             <input type="submit" name="b" class="btn btn-default" value="Log Out">
           </form>
-	  <p class="navbar-text">Logged in as {{ session['username'] }}</p>
+	  <p class="navbar-text">Logged in as {{ username }}</p>
         </div>
       </nav>
 	{% if changed %}
 	<div class="alert alert-info" role="alert">Account setting have been changed</div>
 	{% endif %}
-      <div class="header">
-	<h1>Welcome {{ session['first_name'] }} {{ session['last_name'] }}</h1></div>
+
+  <div class="header">
+  	<h1>Welcome {{ session['first_name'] }} {{ session['last_name'] }}</h1>
+  </div>
+
   <h2> Today is <b>{{ today }}</b> </h2>
   <h2> The time is <b>{{ time }}</b> </h2>
-  
-
-<img src="static/homer_simpson.png" class="img-responsive img-rounded" alt="Responsive image"></img>
-      </div>
-    </div>
+  <img src="http://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png" class="img-responsive img-rounded" alt="Responsive image"></img>
+  </div>
   </body>
 </html>
 

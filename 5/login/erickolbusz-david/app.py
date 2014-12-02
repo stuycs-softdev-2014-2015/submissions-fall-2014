@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 from pymongo import Connection
+from functools import wraps
 
 app = Flask(__name__)
 id=0
@@ -72,27 +73,29 @@ def register():
             flash("Successfully registered")
             return redirect ("/")
     return render_template ("register.html") #have a button that redirects to /
+
+def auth(func):
+    @wraps(func)
+    def inner():
+        if (session.get('username') == None):
+            flash ("You are not logged in")
+            if (session.get('currentp') == "login"):
+                return redirect ("/")
+            else:
+                return redirect ("/register")
+        result = func ()
+        return result
+    return inner
     
 @app.route("/welcome")
+@auth
 def welcome():
-    if (session.get('username') == None):
-        flash ("You are not logged in!")
-        if (session.get('currentp') == "login"):
-            return redirect ("/")
-        else:
-            return redirect ("/register")
     session ['currentp'] = "welcome"
     return render_template ("welcome.html", username = session.get('username'), counter = session.get('logins')) #button for /about and for /logout
-                      
+
 @app.route ("/about")
+@auth
 def about():
-    if (session.get('username') == None):
-        flash ("You are not logged in!")
-        if (session.get('currentp') == "login"):
-            return redirect ("/")
-        else:
-            return redirect ("/register")
-    
     session ['currentp'] = "about"
     submit = request.args.get("submit")
     user_list = db.users.find({'name':session.get("username")})
@@ -121,6 +124,7 @@ def aboutproj():
 @app.route ("/random")
 def random():
     return render_template ("random.html")
+
 
 if __name__ == '__main__':
     app.debug = True

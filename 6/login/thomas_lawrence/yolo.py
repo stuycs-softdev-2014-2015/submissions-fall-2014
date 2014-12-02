@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,session,redirect,url_for
 from pymongo import MongoClient
-
+from functools import wraps
 
 app = Flask(__name__)
 
@@ -10,6 +10,26 @@ acctdb = db['accounts']
 postdb = db['posts']
 replydb = db['replies']
 diary = db['diary']
+
+def loggedin():
+    if ("username" in session):
+        return True
+    else:
+        return False
+
+def requirelogin(f):
+    @wraps(f)
+    def ff():
+        if loggedin(): return f()
+        else: return redirect("/")
+    return ff
+
+def requirelogout(f):
+    @wraps(f)
+    def ff():
+        if not loggedin(): return f()
+        else: return redirect("/")
+    return ff
 
 @app.route("/")
 @app.route("/home",methods=['GET','POST'])
@@ -25,9 +45,8 @@ def todo_html():
     return render_template("todo.html")
 
 @app.route("/login", methods=["GET","POST"])
+@requirelogout
 def login_html():
-    if("username" in session):
-        return redirect("/")
     error = []
     success = True
     post = False
@@ -55,11 +74,13 @@ def login_html():
                            sess=session)
 
 @app.route("/logout")
+@requirelogin
 def logout_html():
     session.pop('username',None)
     return redirect('/')
 
 @app.route("/register", methods=["GET","POST"])
+#@requirelogout
 def register_html():
     if(request.method=="POST"):
         newuser = request.form["username"]
@@ -75,13 +96,13 @@ def register_html():
             error.append("you are jamal")
         if newuser=="Anonymous":
             error.append("no")
-        if accounts.find_one({"login":newuser}):
+        if acctdb.find_one({"login":newuser}):
             error.append("user with that name already exists")
         if len(error)>0:
             success = False
         else:
             newAccount = {"login":newuser,"password":newpass}
-            accounts.insert(newAccount)
+            acctdb.insert(newAccount)
         return render_template("register.html",
                                errorlist=error,
                                success=success,
@@ -140,9 +161,8 @@ def post_html(title):
                            op=postdb.find_one({"title":title}))
 
 @app.route("/settings",methods=['GET','POST'])
+@requirelogin
 def settings_html():
-    if("username" not in session):
-        return redirect("/")
     errors = []
     post = False
     success = True
@@ -169,9 +189,8 @@ def settings_html():
                            sess=session)
 
 @app.route("/diary",methods=["GET","POST"])
+@requirelogin
 def diary_html():
-    if("username" not in session):
-        return redirect("/")
     if (request.method=="POST"):
         content= request.form["content"]
         newEntry = {"author":session["username"],"content":content}

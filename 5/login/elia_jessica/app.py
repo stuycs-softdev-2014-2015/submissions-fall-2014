@@ -1,11 +1,24 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template, flash
-
+from functools import wraps
 import base
 
 app = Flask(__name__)
-corner = """
- 
-"""
+
+def validate(func):
+    @wraps(func)
+    def inner (*args, **kwargs):
+        error = None
+        if request.method == 'POST':
+            if base.validate (request.form['username'], request.form['password']):
+                session['username'] = request.form['username']
+                flash('You were successfully logged in')
+                return redirect(url_for('index'))
+            else:
+                error = "Invalid credentials"
+                return render_template ("login.html", error = error)
+        return func()
+    return inner
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -15,18 +28,19 @@ def index():
         return render_template ("index2.html")
 
 @app.route('/login', methods=['GET', 'POST'])
+#@base.validate(request.form['username'], request.form['password'])
+#def login():
+#    error = None
+#    if request.method == 'POST':
+#        session['username'] = request.form['username']
+#        flash('You were successfully logged in')
+#        return redirect(url_for('index'))
+#    else:
+#        return render_template ("login.html", error = error)
+@validate
 def login():
-    error = None
-    if request.method == 'POST':
-        if base.validate (request.form['username'], request.form['password']):
-            session['username'] = request.form['username']
-            flash('You were successfully logged in')
-            return redirect(url_for('index'))
-        else:
-            error = "Invalid credentials"
-            return render_template ("login.html", error = error)
-    else:
-        return render_template ("login.html", error = error)
+    #else:
+    return render_template ("login.html")
 
 @app.route('/logout')
 def logout():

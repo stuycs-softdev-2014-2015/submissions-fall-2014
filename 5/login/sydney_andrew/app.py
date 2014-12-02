@@ -1,4 +1,5 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template, flash
+from functools import wraps
 import mongo
 
 app = Flask(__name__)
@@ -9,6 +10,18 @@ plist.append("http://i.huffpost.com/gen/1273181/thumbs/o-MANATEE-900.jpg?1")
 plist.append("http://i.huffpost.com/gen/1272530/thumbs/o-MANATEES-900.jpg?5")
 #Makes array to translate integer to link string
 
+def logincheck(link):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args):
+            if 'username' not in session:
+                flash("Please login first")
+                session['nextpage'] = link
+                return redirect(url_for("login"))
+            return func(*args)
+        return wrapper
+    return decorator
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if 'username' in session:
@@ -17,13 +30,15 @@ def index():
     return render_template("index.html");
 
 @app.route('/about')
+@logincheck('/about')
 def about():
-    if 'username' in session:
-        return render_template("about.html", username = session['username'])
-    flash("Please login first") #Flashes appear at bottom navbar, if there are any messages--see layout.html
-    return redirect(url_for("login"))
+    #if 'username' in session:
+    return render_template("about.html", username = session['username'])
+    #flash("Please login first") #Flashes appear at bottom navbar, if there are any messages--see layout.html
+    #return redirect(url_for("login"))
 
 @app.route('/account', methods=['GET', 'POST'])
+@logincheck('/account')
 def account():
     if request.method == 'POST' and 'pic' in request.form:
         picstr = request.form['pic']
@@ -34,11 +49,9 @@ def account():
         mongo.changeUser(session['username'], pic)
         flash("You changed your picture!")
         return redirect("/")
-    elif 'username' in session:
+    else:
         username = session['username']
         return render_template("account.html", username = username, pic = plist[mongo.getUser(username)['picture'] -1])
-    flash("Plase login first")
-    return redirect(url_for("login"))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -69,7 +82,12 @@ def login():
         if (r[0]):
             session['username'] = escape(request.form['username'])
             flash("You were successfully logged in")
-            return redirect("/")
+            if 'nextpage' in session:
+                link = session['nextpage']
+                session.pop('nextpage')
+                return redirect(link)
+            else:
+                return redirect("/")
         else:
             flash(r[1])
     return render_template("login.html") #Happens if login unsuccessful

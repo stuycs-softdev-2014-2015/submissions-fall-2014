@@ -2,6 +2,8 @@ from utils import confirmation
 from flask import Flask, flash, render_template, request, redirect, url_for, session, escape
 from pymongo import MongoClient
 import datetime
+from functools import wraps
+
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -10,6 +12,15 @@ client = MongoClient('localhost', 27017)
 db = client.proj
 users = db.users
 
+def authenticate(f):
+    @wraps(f)
+    def inner(*args):
+        if 'username' in session:
+            return f(*args)
+        else:
+            session['next'] = f.__name__
+            return redirect( url_for('home') )
+    return inner
 
 def add_user(username,password,email,name):
     user = {
@@ -22,7 +33,7 @@ def add_user(username,password,email,name):
     }
     return users.insert(user)
 
-def authenticate( username, passw ):
+def authenticate1( username, passw ):
     user = users.find_one({'username': username})
     #if username does not exist
     if user  == None:
@@ -44,11 +55,16 @@ def home():
             username = request.form["name"]
             password = request.form["password"]
             
-        msg = authenticate( username, password )
+        msg = authenticate1( username, password )
         
         if (msg == "match"):
             session['username'] = username
-            return redirect(url_for('profile'))
+            if 'next' in session:
+                s = session['next']
+                session.pop('next', None)
+                return redirect(url_for(s))
+            else:
+                return redirect(url_for('profile'))
         else:
             return render_template("index.html", msg=msg)
 
@@ -89,8 +105,8 @@ def register():
 
 
 @app.route("/profile", methods=["GET","POST"])
+@authenticate
 def profile():
-    if 'username' in session:
 
         username = escape(session['username'])
         user = users.find_one({'username':username})
@@ -101,7 +117,7 @@ def profile():
 
         if request.method=="GET":
             return render_template("profile.html", username=username, name=name, email=email, description=description, status = status)
-                        
+            
 
         if request.method=="POST":
             statt = request.form["status"]
@@ -109,33 +125,31 @@ def profile():
             if statt != "":
                 db.users.update({ 'username': username },{'$set': {'status': statt}})
                 status = statt
-            if descrip != "":
-                db.users.update({ 'username': username },{'$set': {'description': descrip}})
-                description = descrip
- 
+                if descrip != "":
+                    db.users.update({ 'username': username },{'$set': {'description': descrip}})
+                    description = descrip
+                    
             return render_template("profile.html", username=username, name=name, email=email, description=description, status = status)
-        
-    else:
-        return redirect(url_for('home'))
+            
+
 
 @app.route("/log_out")
 def log_out():
     session.pop('username',None)
     return redirect(url_for('home'))
 
-@app.route("/explore", methods=["GET","POST"])
-def explore():
-    if 'username' in session:
-        username = escape(session['username'])
-        today = datetime.date.today()
-        today = today.strftime('%A,%B%dth, %Y')
-        time = datetime.datetime.now().time()
-        time = time.strftime("%I:%M")
-   
-        return render_template("explore.html", today=today, time=time, username=username)
-    else:
-        return redirect(url_for('home'))
 
+@app.route("/explore", methods=["GET","POST"])
+@authenticate
+def explore():
+    username = escape(session['username'])
+    today = datetime.date.today()
+    today = today.strftime('%A,%B%dth, %Y')
+    time = datetime.datetime.now().time()
+    time = time.strftime("%I:%M")
+    
+    return render_template("explore.html", today=today, time=time, username=username)
+        
 
 if __name__=="__main__":
     app.debug = True

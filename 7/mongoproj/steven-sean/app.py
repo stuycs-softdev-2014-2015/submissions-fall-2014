@@ -1,8 +1,18 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 import hashlib
+from functools import wraps
 from pymongo import MongoClient
 
 app = Flask(__name__)
+
+def authenticate(f):
+    @wraps(f)
+    def inner(*args, **kwargs):
+        if "username" in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('home'))
+    return inner
 
 @app.route("/")
 def home():
@@ -47,28 +57,29 @@ def about():
         return render_template("about.html")
 
 @app.route("/profile/", methods=["GET", "POST"])
+@authenticate
 def profile():
-        if "username" in session:
-                username = session["username"]
-        else:
-                return redirect(url_for("home"))
-
         name = request.form.get("name")
-        users = MongoClient("mongodb://Bouowmx:ReimuHakurei@ds047440.mongolab.com:47440/account-manager")["account-manager"]["users"]
+        submit = request.form.get("submit")
+        if (submit == "Search" or submit == None):
+                users = MongoClient("mongodb://Bouowmx:ReimuHakurei@ds047440.mongolab.com:47440/account-manager")["account-manager"]["users"]
 
-        if (name is None) or (users.find({"username": name}).count() == 0):
-                name = username
+                if (name is None) or (users.find({"username": name}).count() == 0):
+                        name = session["username"]
 
-        info = users.find_one({"username": name})
-        fname = info["fname"]
-        lname = info["lname"]
-        age = info["age"]
-        email = info["email"]
-        phone = info["phone"]
-        address = info["address"]
-        return render_template("profile.html", fname = fname, lname = lname, age = age, email = email, phone = phone, address = address)             
+                info = users.find_one({"username": name})
+                fname = info["fname"]
+                lname = info["lname"]
+                age = info["age"]
+                email = info["email"]
+                phone = info["phone"]
+                address = info["address"]
+                return render_template("profile.html", fname = fname, lname = lname, age = age, email = email, phone = phone, address = address)   
+        else:
+                session.pop("username",None)
+                return redirect(url_for('home'))
 
 app.secret_key = '\x979\xdb\x11\x8e\x1a<\xb9J\xe8;\xa0\x9fb\xb5\x11k\x8d\x7f\xa6\xd4\xe6\xa4\xb6'
 
 if (__name__ == "__main__"):
-	app.run(debug = True, port = 9001)
+	app.run(debug = True, port = 5000)

@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+    <style scoped>
+      .button-one {
+      background: rgb(66,184,221);
+      }
+
+      .button-two {
+      background: rgb(28, 184, 65); 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pure-g">
+      <div class="pure-u-1-8">
+	{% if special==True %}
+	<a class="button-two pure-button" href="{{url_for('home') }}">Home</a>
+	{% endif %}
+      </div>
+      <div class="pure-u-3-4">
+	{% block bodycontent %}
+	{% endblock %}
+      </div>
+      <div class="pure-u-1-8" align="right">
+	{% if logged != None %}
+	{% if logged == True %}
+	<a class="button-one pure-button" href="{{url_for('logout') }}">Log Out</a>
+	{% else %}
+	<a class="button-one pure-button" href="{{url_for('login') }}">Log In</a>
+	{% endif %}
+	{% endif %}
+      </div>
+    </div>
+  </body>
+</html>

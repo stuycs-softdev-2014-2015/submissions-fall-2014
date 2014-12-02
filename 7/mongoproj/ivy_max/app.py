@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+from functools import wraps
 from pymongo import MongoClient
 import config
 
@@ -6,6 +7,15 @@ app = Flask(__name__)
 client = MongoClient('mongodb://kirsche:cherry@ds045077.mongolab.com:45077/granatapfel')
 db = client['granatapfel']
 users = db['users']
+
+def login(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            flash("You must be logged in.")
+            return redirect(url_for('login', next=request.url))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def init():
     try:
@@ -15,7 +25,12 @@ def init():
     except:
         print "user already in database"
 
-def auth(user, pw):
+def reqauth():
+    def inner(*args):
+        pass 
+    return inner 
+
+def check_user(user, pw):
     u = users.find_one({"username": user, "password":pw })
     #print u
     return u != None
@@ -42,14 +57,14 @@ def login():
     if request.method=="POST":
         user = request.form['username']
         pw = request.form['password']
-        valid = auth(user,pw)
+        valid = check_user(user,pw)
         if valid:
             session['username'] = request.form['username']
             #session['logged_in'] = True
             flash('You were successfully logged in')
             prev = session.pop('prev_page', None)
             if prev: #came from somewhere
-                return redirect(url_for('profile', username=prev))
+                return redirect(url_for(prev))
             return redirect(url_for('profile',username=user))
         else:
             error = "Page not found."
@@ -79,23 +94,24 @@ def register():
         flash(error)
     return render_template("register.html")
 
-@app.route('/u/<username>')
-def profile(username=None):
+@app.route('/profile')
+@login
+def profile():
     if not 'username' in session:
-        #session['prev_page'] = '/u/%s' %username
-        session['prev_page'] = username
+        session['prev_page'] = 'profile'
         flash("You must login to access that page.")
         return redirect(url_for("login"))
-    u = users.find_one({'username':username})
+    u = users.find_one({'username':session['username']})
     #print u
     if u != None:
-        return render_template("profile.html", username=username, user=u)
+        return render_template("profile.html",user=u)
     else:
         flash("User not found.")
         return redirect(url_for("index"))
 
 @app.route('/settings', methods=["GET","POST"])
-def settings(username=None):
+@login
+def settings():
     if not 'username' in session:
         flash("You must login to access this page.")
         session['prev_page'] = "settings"

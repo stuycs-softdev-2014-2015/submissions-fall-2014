@@ -1,6 +1,7 @@
 
 from flask import Flask,request,redirect,render_template,session
 from pymongo import Connection,MongoClient
+from functools import wraps
 
 
 
@@ -43,6 +44,19 @@ def authenticate (username, password):
       return True
     else:
       return False
+
+def allow (page):
+    def res(func):
+        @wraps(func)
+        def inner(*args):
+            if not session['logged']:
+                session["return"] = page
+                return redirect("/")
+            result = func(*args)
+            return result
+        return inner
+    return res
+                
 
 
 
@@ -123,8 +137,8 @@ def index():
     else:
         if "return" in session:
             session.pop('return', None)
-      session['logging'] = False
-      return redirect("/")
+        session['logging'] = False
+        return redirect("/")
 
 #A moment of silence for our fallen code :|
 '''@app.route("/cladius")
@@ -175,37 +189,28 @@ def home():
     else:
       return render_template("login.html", logging = logging, logged = session['logged'], user = session['user'])
   return render_template("home.html", logged=session["logged"])
+
 @app.route("/caesar")
+@allow("caesar")
 def hail():
-    if session['logged']:
-        return render_template("caesar.html", logged = session['logged'], user = session['user'])
-    else:
-        session["return"] = "caesar"
-        return redirect("/")
+    return render_template("caesar.html", logged = session['logged'], user = session['user'])
 
 @app.route("/dogs")
+@allow('dogs')
 def omfg():
-    if session['logged']:
-        return render_template("dogs.html", logged = session['logged'], user = session['user'])
-    else:
-        session["return"] = "dogs"
-        return redirect("/")
+    return render_template("dogs.html", logged = session['logged'], user = session['user'])
+        
 
 @app.route("/caligula")
+@allow("caligula")
 def caligula():
-    if session['logged']:
-        return render_template("caligula.html", logged = session['logged'], user = session['user'])
-    else:
-        session["return"] = "caligula"
-        return redirect("/")
+    return render_template("caligula.html", logged = session['logged'], user = session['user'])
+    
 @app.route("/bees")
+@allow("bees")
 def bees():
-    if session['logged']:
-        return render_template("bees.html", logged = session['logged'], user = session['user'])
-    else:
-        session["return"] = "bees"
-        return redirect("/")
-
+    return render_template("bees.html", logged = session['logged'], user = session['user'])
+    
 if __name__=="__main__":
     app.secret_key="Its still a project so to Github this shall go"
     app.debug=True
