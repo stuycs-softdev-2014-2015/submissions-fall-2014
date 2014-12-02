@@ -9,7 +9,6 @@ var removeitem = function(){
 
 var green = function(){
     this.classList.toggle('green');
-    this.remove
     this.removeEventListener('click', green);
     this.addEventListener('click', removeitem);
 }
