@@ -16,7 +16,7 @@
 Task: <input id="task" type="text"> <input id="submit" type="submit">
 </body>
 <script>
-	document.getElementById("submit").addEventListener("click", function() {
+	var task = function() {
 		if (document.getElementById("task").value == "") {return;}
 		var task = document.createElement("li");
 		task.innerHTML = document.getElementById("task").value;
@@ -25,6 +25,8 @@ Task: <input id="task" type="text"> <input id="submit" type="submit">
 			this.addEventListener("click", function() {document.getElementById("done").removeChild(this);})});
 		document.getElementById("to do").appendChild(task);
 		document.getElementById("task").value = "";
-	});
+	};
+	document.getElementById("submit").addEventListener("click", task);
+	document.getElementById("task").addEventListener("keypress", function(event) {if (event.keyCode == 13) {task();}});
 </script>
 </html>
