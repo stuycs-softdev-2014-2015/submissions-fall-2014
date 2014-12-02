@@ -1,26 +1,30 @@
-<!doctype html>
 <html>
   <head>
-    TO DO LIST
+    <style>
+      .red {color : #ff0000;}
+      .green {color : #00ff00;}
+      .blue { color : #0000ff;}
+    </style>
   </head>
 
-  <form>
-    Add to ToDo List:<br>
-    <input type="text" name="addlist">
-    <br>
-  </form>
-  <br>
+  <body>
+    <center>
+      <h1> TO DO & DONE LISTS </h1><br>
 
-  Todo List
-  <ol id="list">
-    
-  </ol> <br>
+      <input type="text" id="text"><br>
+      <button id="button"> Add to Todo List </button><br>
 
-  Done List
-  <ol id= "dlist">
-    
-  </ol>
-    <script src="todo.js">
-    </script>
+      <h2> Todo List </h2><br>
+      <ul id="list">
+      </ul> <br>
+
+      <h2> Done List </h2> <br>
+      <ul id="dlist">
+      </ul>
+      
+      <script src="todo.js">
+      </script>
+    </center>
+  </body>
 
 </html>
