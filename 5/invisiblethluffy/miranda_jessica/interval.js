@@ -9,9 +9,12 @@ document.getElementById("thluffy").style.top=thluffyY+"px";
 var doStuff = function(e) {
 		
 		var distance =Math.sqrt(Math.pow(mouseX-(thluffyX+250),2)+Math.pow(mouseY-(thluffyY+110),2));
-		if (distance <100)
-			document.getElementById("thluffy").style.visibility="visible"
-		 document.getElementById("header").innerHTML= distance	
+		if (distance <200){
+			document.getElementById('javert_loud').play();
+			document.getElementById("thluffy").style.visibility="visible";
+		}
+		document.getElementById("header").innerHTML= distance;
+	
 		myevent = setTimeout(doStuff,100);
 		
 }
