@@ -1,0 +1,21 @@
+#container {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.header {
+    text-transform: uppercase;
+    color: #454545;
+    border-bottom: 1px solid #888888;
+    padding: 0.4em 1em 0em 1em;
+    margin: 2em 1em 2em 1em;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+.align-middle-horizontal {
+    width: 480px;
+    margin: 0 auto;
+}
