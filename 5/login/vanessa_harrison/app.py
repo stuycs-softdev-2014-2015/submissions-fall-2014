@@ -6,14 +6,14 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     if "username" in session:
-        return "YOURE LOGGED IN AS %s" %escape(session["username"])
+        return "YOURE LOGGED IN AS %s" % escape(session["username"])
     else:
         return render_template("index.html")
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
     if "username" in session:
-        return "youre already logged in as %s" %escape(session["username"])
+        return "youre already logged in as %s" % escape(session["username"])
     if request.method == "POST":
         #print "sdfsdfsdfds"
         try:
