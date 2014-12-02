@@ -8,9 +8,14 @@ var toDoItems = toDoList.children;
 
 var doneList = document.getElementById("done");
 var doneItems = doneList.children;
-
 var moveToDone = function(){
     doneList.appendChild(this);
+    this.removeEventListener("click",moveToDone);
+    //when you move something to done, all the alert done event listeners are reentered
+//re-adds all alert listeners in done
+    for(var j=0;j<doneItems.length;j++){
+	doneItems[j].addEventListener('click',alertDone);
+    }
 }
 
 var alertDone = function(){
@@ -20,27 +25,16 @@ var alertDone = function(){
 
 var addmovelistener = function(){
     for(var i=0;i<toDoItems.length;i++){
-	toDoItems[i].addEventListener('click',moveToDone);
-/*	toDoItems[i].addEventListener('mouseover',function(e){
-	    this.classList.toggle("big");
-	});
-	toDoItems[i].addEventListener('mouseout',function(e){
-	    this.classList.toggle("big");
-	});
-*/
-    }
-    for(var j=0;j<doneItems.length;j++){
-	doneItems[j].addEventListener('click',alertDone);
+	toDoItems[i].addEventListener("click",moveToDone);
     }
 }
 
 var addItem = function(){
     var inputs = document.getElementById("t");
     var newitem = document.createElement("li");
-    console.log(inputs.value);
     newitem.innerHTML = inputs.value;
     toDoList.appendChild(newitem);
-    addmovelistener(); //readds all move listeners
+    addmovelistener(); //re-adds all move listeners
 };
 var enterItem = function(e){
     var x = event.which || event.keyCode; //differs from which and keyCode depending on browswer
@@ -48,8 +42,6 @@ var enterItem = function(e){
 	addItem();
     }
 };
-
-
 
 //button functionality
 var bb = document.getElementById("b");
