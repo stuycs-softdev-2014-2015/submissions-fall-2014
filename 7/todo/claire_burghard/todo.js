@@ -1,34 +1,30 @@
-console.log("HELLO")
+var add_to_done = function (x) {
+	var doneList = document.getElementById('done');
+	this.addEventListener('click', removeTask);
+	doneList.appendChild(this);
+}
 
-/*
-var removeTask = function (e) {
-    var doneList = document.getElementById('done');
-    doneList.removeChild(this);
-};
+var removetask = function (x) {
+	var doneList = document.getElementById('done');
+	doneList.removeChild(this);
+}
 
-var addDone = function(e) {
-    var doneList = document.getElementById('done');
-    this.addEventListener('click', removeTask);
-    doneList.appendChild(this);
-};
+var add_to_do = function (x) {
+	var newTask = document.getElementById("newtask").value;
+	var toDoList = document.getElementById("todo");
+	var listItem = document.createElement("li");
+	listItem.innerHTML = newTask;
+	listItem.addEventListener('click', addDone);
+	listItem.addEventListener('mouseover', function(x) {
+		this.classList.toggle('cyan');
+	});
+	listItem.addEventListener('mouseout', function(x) {
+		this.classList.toggle('black');
+	});
+	toDoList.appendChild(listItem);
+}
 
-var addToDo = function(e) {
-    var newTask = document.getElementById("newtask").value;
-    var toDoList = document.getElementById("todo");
-    var listItem = document.createElement("li");
-    listItem.innerHTML = newTask;
-    listItem.addEventListener('click', addDone);
-    listItem.addEventListener('mouseover', function(e) {
-	this.classList.toggle('cyan');
-    });
-    listItem.addEventListener('mouseout', function(e) {
-	this.classList.toggle('black');
-    });
-    toDoList.appendChild(listItem);
-};
+var submit = document.getElementById('sumbit');
+sumbit.addEventListener('click',add_to_do);
 
-var b = document.getElementById('b');
-b.addEventListener('click',addToDo);
-
-var toDoListItems = document.getElementById('todo').children;
-*/
+var to_do_list_items = document.getElementById('todo').children;
