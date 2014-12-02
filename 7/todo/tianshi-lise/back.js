@@ -37,7 +37,8 @@ var addItem = function(){
     addmovelistener(); //re-adds all move listeners
 };
 var enterItem = function(e){
-    var x = event.which || event.keyCode; //differs from which and keyCode depending on browswer
+    var x = event.which || event.keyCode; //differs from which and keyCode depending on browser
+    //13 is the KEYCODE for the ENTER KEY
     if (x == 13){
 	addItem();
     }
