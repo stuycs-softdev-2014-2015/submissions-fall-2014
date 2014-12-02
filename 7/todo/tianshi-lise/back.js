@@ -12,6 +12,12 @@ var doneItems = doneList.children;
 var moveToDone = function(){
     doneList.appendChild(this);
 }
+
+var alertDone = function(){
+    console.log("hi");
+    alert(this.innerHTML + " is moved to the bottom of the list");
+}
+
 var addmovelistener = function(){
     for(var i=0;i<toDoItems.length;i++){
 	toDoItems[i].addEventListener('click',moveToDone);
@@ -22,6 +28,9 @@ var addmovelistener = function(){
 	    this.classList.toggle("big");
 	});
 */
+    }
+    for(var j=0;j<doneItems.length;j++){
+	doneItems[j].addEventListener('click',alertDone);
     }
 }
 
