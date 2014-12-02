@@ -1,28 +1,17 @@
 <html>
-  <head>
-    <title>To Do List</title>
-    <script>
-      var todo = getElementsByClassName("todo");
-      var done = getElementsByClassName("done");
-      for (i = 0; i < todo.length; i++) {
-		      todo[i].addEventListener("click", addToDone(todo[i]));
-		      }
-		      for (i = 0; i < done.length; i++)
-				      done[i].addEventListener("click", addToToDo(done[i]));
-				      
-    </script>
-  </head>
-  <body>
-    <h1>To Do List</h1>
-    <h2>To Do</h2>
-    <ol class = "todo">
-    </ol>
-    <h2>Done</h2>
-    <ol class = "done">
-    </ol>
-    <form>
-      <input type = "text">
-      <input type = "submit" value = "Add a task">
-    </form>
-  </body>
+<head>
+  <title>To Do List</title>
+</head>
+<body>
+  <h1>To Do List</h1>
+  <h2>To Do</h2>
+  <ol id = "todo">
+  </ol>
+  <h2>Done</h2>
+  <ol id = "done">
+  </ol>
+  <input type = "text" id = "text">
+  <button id = "add"> Add a Task! </button>
+  <script src = "todo.js"></script>
+</body>
 </html>
