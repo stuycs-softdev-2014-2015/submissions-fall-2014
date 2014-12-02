@@ -3,13 +3,6 @@ var donelist = document.getElementById("donelist");
 var newtodo = document.getElementById("newtodo");
 var addtodo = document.getElementById("addtodo");
 
-var toggleblue = function() {
-    this.toggle("blue");
-}
-var togglered = function() {
-    this.toggle("red");
-}
-
 var killTask = function() {
   donelist.removeChild(this);
 }
