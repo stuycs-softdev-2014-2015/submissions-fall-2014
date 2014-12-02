@@ -19,7 +19,7 @@ var moveToDone = function(){
 }
 
 var alertDone = function(){
-    console.log("hi");
+    doneList.appendChild(this);
     alert(this.innerHTML + " is moved to the bottom of the list");
 }
 
