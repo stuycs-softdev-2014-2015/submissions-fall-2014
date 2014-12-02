@@ -32,4 +32,10 @@ function begin() {
     myEvent = setInterval(move,100);
 }
 
+
+function end() {
+    window.clearTimeout(myEvent);
+}
+
 document.getElementById("start").addEventListener('click', begin);
+document.getElementById("stop").addEventListener('click', end);
