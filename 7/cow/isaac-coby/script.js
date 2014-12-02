@@ -15,6 +15,8 @@ var move = function(e){
    else{
        curposY -=5;
    }
+    topher.left = curposX;
+    topher.top = curposY;
    if ((curposX == 300) && (curposY == 200)){
        alert("You won");
    }
