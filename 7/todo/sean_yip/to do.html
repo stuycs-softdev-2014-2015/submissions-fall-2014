@@ -1,0 +1,28 @@
+<html>
+<head>
+<style>
+	* {font-family: Verdana, sans-serif}
+</style>
+<title>To do list</title>
+</head>
+<body>
+<h1>To do list</h1>
+<h2>To do</h2>
+<ul id="to do">
+</ul>
+<h2>Done</h2>
+<ul id="done">
+</ul>
+Task: <input id="task" type="text"> <input id="submit" type="submit">
+</body>
+<script>
+	document.getElementById("submit").addEventListener("click", function() {
+		var task = document.createElement("li");
+		task.innerHTML = document.getElementById("task").value;
+		task.addEventListener("click", function() {
+			document.getElementById("done").appendChild(this);
+			this.addEventListener("click", function() {document.getElementById("done").removeChild(this);})});
+		document.getElementById("to do").appendChild(task);
+	});
+</script>
+</html>
