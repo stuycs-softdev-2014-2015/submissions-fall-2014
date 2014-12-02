@@ -1,11 +1,24 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template, flash
-
+from functools import wraps
 import base
 
 app = Flask(__name__)
-corner = """
- 
-"""
+
+def validate(func):
+    @wraps(func)
+    def inner (*args, **kwargs):
+        error = None
+        if request.method == 'POST':
+            if base.validate (request.form['username'], request.form['password']):
+                session['username'] = request.form['username']
+                flash('You were successfully logged in')
+                return redirect(url_for('index'))
+            else:
+                error = "Invalid credentials"
+                return render_template ("login.html", error = error)
+        return func()
+    return inner
+
 @app.route('/')
 def index():
     if 'username' in session:
@@ -15,18 +28,19 @@ def index():
         return render_template ("index2.html")
 
 @app.route('/login', methods=['GET', 'POST'])
+#@base.validate(request.form['username'], request.form['password'])
+#def login():
+#    error = None
+#    if request.method == 'POST':
+#        session['username'] = request.form['username']
+#        flash('You were successfully logged in')
+#        return redirect(url_for('index'))
+#    else:
+#        return render_template ("login.html", error = error)
+@validate
 def login():
-    error = None
-    if request.method == 'POST':
-        if base.validate (request.form['username'], request.form['password']):
-            session['username'] = request.form['username']
-            flash('You were successfully logged in')
-            return redirect(url_for('index'))
-        else:
-            error = "Invalid credentials"
-            return render_template ("login.html", error = error)
-    else:
-        return render_template ("login.html", error = error)
+    #else:
+    return render_template ("login.html")
 
 @app.route('/logout')
 def logout():
@@ -78,12 +92,29 @@ def about():
         return render_template  ("page1.html",
                                  corner = escape(session['username']))
     else:
-        return render_template ("error.html")
+        return render_template ("page1.html",
+                                 corner = None)
 
-@app.route('/sexy')
-def sexy():
+@app.route('/love')
+def love():
     if 'username' in session:
         return render_template  ("page2.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/death')
+def death():
+    if 'username' in session:
+        return render_template  ("page3.html",
+                                 corner = escape(session['username']))
+    else:
+        return render_template ("error.html")
+
+@app.route('/illegal')
+def illegal():
+    if 'username' in session:
+        return render_template  ("page4.html",
                                  corner = escape(session['username']))
     else:
         return render_template ("error.html")
@@ -99,4 +130,4 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host = "0.0.0.0", port = 1247)
+    app.run(host = "127.0.0.1", port = 1247)

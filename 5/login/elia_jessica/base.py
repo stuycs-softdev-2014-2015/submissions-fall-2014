@@ -26,6 +26,18 @@ def validate(usernamei, passwordi):
         return True
     return False
 
+#def validate(usernamei, passwordi):
+#    def decorate(func):
+#        def inner(*args):
+#            cres = db.usertable.find({'username': usernamei,'password': passwordi})
+#            res = [r for r in cres]  
+#            if len(res)>0:
+#                return func(args, kwargs)
+#            
+#            error = "Invalid credentials"
+#            return render_template ("login.html", error = error)
+#        return inner
+
 def addUser(usernamei, passwordi):
     cres = db.usertable.find({'username':usernamei})
     res = [r for r in cres]

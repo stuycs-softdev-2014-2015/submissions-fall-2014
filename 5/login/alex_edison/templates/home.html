@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
-<title>{% block title %} Swagin {% endblock %}</title>
+<title>{% block title %} Home {% endblock %}</title>
 </head>
 <body>
 <div class="navbar navbar-default">
@@ -9,15 +9,16 @@
     <ul class="nav navbar-nav navbar-right">
       {%block navbar %}
       <li><a href ="/about"> Swabout</a></li>
-      <li class="active"><a href ="/"> Swagin</a></li> 
+      <li class="active"><a href ="/"> Home</a></li> 
       <li><a href ="/swagister"> Swagister</a></li>
+      <li><a href ="/logout"> Swagout</a></li>
        {% endblock %}
     </ul>
   </div>
 </div>
 <center> <h1>{% block header %} *Enter your Swag*  {% endblock %}</h1><br>
 {% block form %}
-<form class="form-inline" role="form">
+<form class="form-inline" role="form" method="POST">
   <div class="form-group">
     <label for="username">Userswag</label>
     <input type="text" class="form-control" name="username" placeholder="Swagname">
@@ -26,7 +27,7 @@
     <label for="pwd">Passwag</label>
     <input type="password" class="form-control" name="pwd" placeholder="Swagword">
   </div><br><br>
-  <button type="login" class="btn btn-default"> {% block button %} Swagin {% endblock %}</button>
+  <input type="submit" name= "sub" value="{% block button %} Swagin {% endblock %}" class="btn btn-default"></input>
 </form>
 {% endblock %}
 </center>

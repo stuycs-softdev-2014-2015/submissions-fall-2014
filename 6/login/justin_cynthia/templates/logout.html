@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Log Out
+{% endblock %}
+
+{% block body %}
+
+{% if logged_out %}
+You have logged out.
+
+{% else %}
+You are not logged in.
+
+{% endif %}
+
+{% endblock %}

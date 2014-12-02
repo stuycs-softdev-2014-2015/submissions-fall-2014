@@ -1,0 +1,42 @@
+{%extends "base.html"%}
+{%block main%}
+<head>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+</head>
+<style>
+
+.center{
+margin-left: auto;
+margin-right: auto;
+width:70%;
+text-align:center;
+background-color:#2EB2EB;
+border-style:solid;
+border-color:blue;
+border-width:5px;
+}
+table, td, th {
+border: 2px solid blue;
+}
+body {background-color:white; height:100%;}
+table {width:100%;}
+tr {background-color:white;}
+tr:hover {background-color:#2EB2EB; color: white}
+div.table {background-color:blue; padding:0px; text-align:center; margin-left: auto; margin-right: auto; width:40%}
+
+</style>
+<body>
+
+<h1 class="center"> {{username}} Account Information <h1>
+
+<div class="table">
+<p>
+<table border=1> 
+<tr><td> Username </td><td> {{username}} </td></tr>
+<tr><td> Password </td><td> {{password}} </td></tr>
+<tr><td> Student ID </td><td> {{studentid}} </td></tr>
+<tr><td> Favorite Pizza Topping </td><td> {{pizza}} </td></tr>
+</p>
+</div>
+</body>
+{%endblock main%}

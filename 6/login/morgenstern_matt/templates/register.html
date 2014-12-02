@@ -1,8 +1,28 @@
+{% extends "base.html" %}
+
+{% block options %}
+{% if logged is odd %}
+<li class="nav-item"><a href="/loggedin1">Restricted 1</a></li>
+<li class="nav-item"><a href="/loggedin2">Restricted 2</a></li>
+<li class="nav-item"><a href="/logout">Logout</a></li>
+
+{% else %}
+  <li class="nav-item"><a href="/login">Login</a></li>
+<li class="nav-item"><a href="/register">Register</a></li>
+<li class="nav-item"><a href="/notloggedin">About</a></li>
+
+{% endif %}
+{% endblock options%}
+
+
+
+{% block bodycontent %}
+
 <head>
-      <title>register</title><link rel="shortcut icon" href="static/icon.ico">
+      <title>Register</title><link rel="shortcut icon" href="static/icon.ico">
       <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">  
 </head>
-
+<h1> Register </h1> Your password must have no less than 8 characters.<br><br>
   <form method="POST" class="pure-form" action="/register">
     Username:<input type="text" class="pure-input-rounded" name="username" placeholder="Username"> <br>
     Password:
@@ -11,3 +31,4 @@
 
     <input type="submit" class="pure-button pure-button-primary" value="Go">
 </form>
+{% endblock bodycontent %}

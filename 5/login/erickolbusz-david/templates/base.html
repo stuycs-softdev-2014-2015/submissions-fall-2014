@@ -8,15 +8,26 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
   </head>
   <body>
-    {% block menu %}
-    <div class="navbar navbar-inverse">
+  	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+	            <ul class="flashed_messages_list">
+		       	{% for message in messages %}
+		              	<li class="flashed_message error">{{ message }}</li>
+		       	{% endfor %}
+		     </ul>
+		{% endif %}
+	{% endwith %}
+	    
+	{% block menu %}	
+	<div class="navbar navbar-inverse">
       <ul class="nav navbar-nav">
-	<li><a href="/">Home</a></li>
+	<li><a href="/">Home (Login page)</a></li>
 	<li><a href="/register">Register</a></li>
+	<li><a href="/aboutproj">About the Project</a></li>
 	<li><a href="/welcome">Welcome</a></li>
 	<li><a href="/about">About Me</a></li>
-	<li><a href="/about">Log Out</a></li>
-	
+	<li><a href="/random">Random</a></li>
+	<li><a href="/logout">Log Out</a></li>
       </ul>
     </div>
     {% endblock menu %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+{% block bodycontent %}
+<center><h1>Register</h1></center>
+
+
+<div class="pure-u-1-5"></div>
+<div class="pure-u-3-5">
+  {{message}}
+  <form class="pure-form" method="POST">
+    <fieldset class="pure-group">
+      <input type="text" class="pure-input-1" name="name" placeholder="Your Name">
+      <input type="text" class="pure-input-1" name="username" placeholder="Username">
+      <input type="password" class="pure-input-1" name="password" placeholder="Password">
+      <input type="password" class="pure-input-1" name="confirm_password" placeholder="Confirm Password">
+    </fieldset>
+    <button class="pure-button pure-input-1 pure-button-primary" type="submit" name="b" value="Register">Register</button>
+  </form>
+  Already have an account? <a href="{{url_for('login') }}">Log in!</a>
+</div>
+<div class="pure-u-1-5"></div>
+
+{% endblock %}
+

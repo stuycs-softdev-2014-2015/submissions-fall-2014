@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
-    <link rel="stylesheet" href="static/css/blah.css">
- </head>
-  <body>
-    
-    <div class="pure-g">
-      <div class="pure-u-1-24"></div>
-      <div class="pure-u-22-24">
-	<div class="pure-menu pure-menu-open pure-menu-horizontal">
-	  <a href="#" class="pure-menu-heading">SadTerry</a>
-	  <ul>
-            <li><a href="/">Home</a></li>
-            <li class="pure-menu-selected"><a href="/login">Login</a></li>
-            <li><a href="/register">Register</a></li>
-            <li><a href="#">Fill2</a></li>
-	  </ul>
-	</div>
-	<h1 align="center"><font color="#AAA339">SadTerry</font></h1>
-	<hr>
-	{% if page==2 or page==3 %}
-	<font color="white">
+{% extends "base.html" %}
+
+{% block text %}
+	{% if loggedin == True %}
+	You are already logged in
+	<br><br>
+	<a class="pure-button" href="/logout" type = "submit"> Logout </a>
+	{% endif %}
+	
+	{% if page==2 or page==3 and loggedin==False %}
 	  <h2>Register</h2>
 	  <form action="register" method="post">
 	    Username:  <input required type="text" name="username"></input>
@@ -30,29 +16,25 @@
 	    <br>
 	    Retype Password: <input required type="password" name="password2">
 	    <br>
+	    {% if page == 2%}
+	    <b>{{reason}}</b>
+	    {% endif %}
 	    <div>
 	      <style scoped>
 		
 		.button-small {
 		font-size: 85%;
 		}
-	      </style>
+	      </style> <br>
 	      <button class="button-small pure-button" type="submit">Register</button>
 	    </div>
 	  </form>
-	</font>
 	<hr>
       </div>
     </div>
-    {% if page == 2%}
-    {{reason}}
     {% endif %}
-    {% endif %}
-    
+
     {% if page==1 %}
     You have successfully registered!
     {% endif %}
-
-
-  </body>
-</html>
+{% endblock %}

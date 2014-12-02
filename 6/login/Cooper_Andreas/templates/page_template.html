@@ -1,0 +1,85 @@
+<html>
+<head>
+{% block filesToInclude %}
+<link href="static/css/stylesheet.css" rel="stylesheet">
+<script src="static/js/script.js"></script>
+{% endblock filesToInclude %}
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- Twitter Bootstrap CDN -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- Custom CSS -->
+<!-- Page Attributes -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<link rel="shortcut icon" href="/static/icon.ico" />
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="/">{{blogTitle}}</a>
+</div>
+{% block Header_Options %}
+{% if name != none and name != null %}
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+<li>
+
+<a href="/profile">Profile</a>
+</li>
+<li>
+<a href="/logout">Logout</a>
+</li>
+<li>
+<a href="/about">About</a>
+</li>
+
+<li>
+<a href="/secure_page">Secure Page</a>
+</li>
+
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+{% else %}
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+<li>
+
+<a href="/login">Login</a>
+</li>
+<li>
+<a href="/register">Register</a>
+</li>
+<li>
+<a href="/about">About</a>
+</li>
+<li>
+<a href="/secure_page">Secure Page</a>
+</li>
+</ul>
+</div>
+{% endif %}
+{% endblock Header_Options %}
+</div>
+<!-- /.container -->
+</nav>
+<br>
+<br>
+<br>
+<br>
+ 
+{% block bodyContent %} Placeholder for body content of site. {% endblock bodyContent %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+{% endwith %}
+<form method="POST" action="schedule">
+    <label for="period-1">Period 1: </label>
+    <input id="period-1" name="period-1">
+    <label for="period-2">Period 2: </label>
+    <input id="period-2" name="period-2">
+    <label for="period-3">Period 3: </label>
+    <input id="period-3" name="period-3">
+    <label for="period-4">Period 4: </label>
+    <input id="period-4" name="period-4">
+    <label for="period-5">Period 5: </label>
+    <input id="period-5" name="period-5">
+    <label for="period-6">Period 6: </label>
+    <input id="period-6" name="period-6">
+    <label for="period-7">Period 7: </label>
+    <input id="period-7" name="period-7">
+    <label for="period-8">Period 8: </label>
+    <input id="period-8" name="period-8">
+    <label for="period-9">Period 9: </label>
+    <input id="period-9" name="period-9">
+    <label for="period-10">Period 10: </label>
+    <input id="period-10" name="period-10">
+    <input type="submit" value="Update">
+</form>
+{% endblock %}

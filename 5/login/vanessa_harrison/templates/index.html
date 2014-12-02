@@ -8,16 +8,22 @@ Home
 <div class="jumbotron">
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
+      {% block thing %}	  
       <h2>
 	Have you ever wanted to log in somewhere?
-	<br>
+	<hr>
 	<small>
-	  Are you tired of other websites shoving other services in your face, when you only want the pleasure of clicking that beautiful log in button?  Do you look forward every morning to seeing that sexy "Login Successful" page?  Stop searching!  Meet the Login-erator 500, for all your logging-in needs!  Now you don't have to worry about account customization or posting on your Friend's Walls-- you get all of the bliss of logging into your account, with none of the hassle!  Visit 127.0.0.1:5000 (or whatever the hell you would visit) to log in today!
+	  Are you tired of other websites shoving other services in your face, when you only want the pleasure of clicking that beautiful log in button?  Do you look forward every morning to seeing that sexy "Login Successful" page?  Stop searching!  Meet the Login-erator 500, for all your logging-in needs!  Now you don't have to worry about account customization or posting on your Friend's Walls-- you get all of the bliss of logging into your account, with none of the hassle!  Visit 127.0.0.1:5000 to log in today!
 	</small>
-	<div class="pull-right">
-	  
-	</div>
       </h2>
+      <div class="pull-right">
+	<br>
+	<br>
+	<a href="/login">
+	  <input type="submit" class="btn btn-lg btn-default" value="Take me there >>>">
+	</a>
+      </div>
+      {% endblock thing %}
     </div>
   </div>
 </div>

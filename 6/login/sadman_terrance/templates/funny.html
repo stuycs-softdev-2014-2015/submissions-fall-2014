@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block text %}
+
+{% if loggedin==False %}
+You are not logged in! Only members may see this post.
+<br>
+Please <a href="/login">login!</a>
+{% endif %}
+
+{% if loggedin %}
+HAHAHA FUNNY<br>
+We're not that creative :/
+<br><br>
+<a class="pure-button" href="/logout" type = "submit"> Logout </a>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+<script type="text/JavaScript">
+  setTimeout(function () {
+  window.location.href = "./{{ target }}";
+  }, 2000);
+</script>
+{% extends "base.html" %}
+{% block bodycontent %}
+
+{% if registered %}
+You have been registered!<br>
+{% endif %}
+
+redirecting you to <font color="red">{{ target }}</font>...
+{% endblock bodycontent %}

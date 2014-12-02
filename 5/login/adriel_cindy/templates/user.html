@@ -4,15 +4,15 @@
 Welcome, <b>{{user}}</b>.
 {% endblock head %}
 
-{% block logout %}
+{% block tab %}
+<li role="presentation"><a href="/page">Home</a></li>
+<li role="presentation"><a href="/about">About</a></li>
+<li role="presentation"><a href="/profile/{{user}}">Profile</a></li>
 <li role="presentation"><a href="/logout">Logout</a></li>
-{% endblock logout %}
+{% endblock tab %}
+
 
 {% block body %}
-
-{% block home %}
-<a href="/page/{{user}}">
-{% endblock home %}
-
-<a href="/profile/{{user}}">page</a>
+<br>
+<h6>You have no recent activity.</h6>
 {% endblock body %}

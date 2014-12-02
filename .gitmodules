@@ -1,0 +1,6 @@
+[submodule "6/login/andrew-anya"]
+	path = 6/login/andrew-anya
+	url = git@github.com:afischer/SoftDev_Proj03_MongoLogin.git
+[submodule "6/login/andrew_anya"]
+	path = 6/login/andrew_anya
+	url = git@github.com:afischer/SoftDev_Proj03_MongoLogin.git
