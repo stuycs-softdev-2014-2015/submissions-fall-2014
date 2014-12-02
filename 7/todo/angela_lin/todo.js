@@ -17,7 +17,6 @@ var add_element = function(text){
     todo_list.appendChild(newitem);
     newitem.addEventListener("click", move_element);
     document.getElementById("textbx").value = "";
-    
 }
 
 var delete_element = function(text){
