@@ -13,7 +13,6 @@ var addTask = function(e){
 var removeTask = function(e){
     if (this.parentNode == todo){
 	todo.removeChild(this);
-	//delete todo.this;
 	done.appendChild(this);
     }
     else{ // in done
