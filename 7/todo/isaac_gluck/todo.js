@@ -1,12 +1,23 @@
+var finish = function(e){
+	addDone(this.innerHTML);
+	removeItem(this, 'todo');
+};
+
+var restart = function(e){
+	addTodo(this.innerHTML);
+	removeItem(this, 'done');
+};
+
 var addTodo = function(text){
 	var items = document.getElementById('todo');
 	var toAdd = document.createElement('li');
 	toAdd.innerHTML = text;
 	items.appendChild(toAdd);
+	toAdd.addEventListener('click', finish);
 };
 
-var removeTodo = function(element){
-	document.getElementById('todo').removeChild(element);
+var removeItem = function(element, id){
+	document.getElementById(id).removeChild(element);
 };
 
 var addDone = function(text) {
@@ -14,26 +25,12 @@ var addDone = function(text) {
 	var toAdd = document.createElement('li');
 	toAdd.innerHTML = text;
 	items.appendChild(toAdd);
-};
-
-var finish = function(e){
-	// console.log(this);
-	addDone(this.innerHTML);
-	removeTodo(this);
-};
-
-var giveTodoListeners = function() {
-	var todo_list = document.getElementById('todo').childNodes;
-	// console.log(todo_list);
-	for (var i = 0; i < todo_list.length; i++){
-		todo_list[i].addEventListener('click', finish);
-	};
+	toAdd.addEventListener('click', restart);
 };
 
 var buttonCallBack = function(e) {
 	var input = document.getElementById('user_input').value;
 	addTodo(input);
-	giveTodoListeners();
 };
 
 var button = document.getElementById('add');
