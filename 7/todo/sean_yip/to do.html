@@ -17,12 +17,14 @@ Task: <input id="task" type="text"> <input id="submit" type="submit">
 </body>
 <script>
 	document.getElementById("submit").addEventListener("click", function() {
+		if (document.getElementById("task").value == "") {return;}
 		var task = document.createElement("li");
 		task.innerHTML = document.getElementById("task").value;
 		task.addEventListener("click", function() {
 			document.getElementById("done").appendChild(this);
 			this.addEventListener("click", function() {document.getElementById("done").removeChild(this);})});
 		document.getElementById("to do").appendChild(task);
+		document.getElementById("task").value = "";
 	});
 </script>
 </html>
