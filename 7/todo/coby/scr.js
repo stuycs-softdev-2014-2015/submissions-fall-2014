@@ -1,29 +1,34 @@
-var addTask = function(e){
-  var task = document.getElementById("task").value;
-  var list = document.createElement("li");
-  list.innerHTML = task;
-  listItem.addEventListener('click', done);
-  listItem.addEventListener('mouseover', this.classList.toggle("red"));
-  listItem.addEventListener('mouseout', this.classList.toggle("black"));
-  var curList = document.getElemenentById("not_done");
-  curList.appendChild(list);
-}
-
-var done = function(e){
-  var doneItems = document.getElementById("done").value;
-  var notDoneItems = document.getElementById("task").value;
-  this.removeEventListener('click', done);
-  this.addEventListener('click', delete);
-  this.addEventListener('mouseover', this.classList.toggle("red"));
-  this.addEventListener('mouseout', this.classList.toggle("black"));
-  doneItems.appendChild(this);
-  notDoneItems.removeChild(this);
-}
-
-var delete = function(e){
-  var doneItems = document.getElementById("done").value;
+// remove the element from the list
+var deleteTask = function(e){
+  var doneItems = document.getElementById('done');
   doneItems.removeChild(this);
 }
 
-var b = document.getElementById("b");
+// Move item to done list, it retains coloring listeners
+var doneItem = function(e){
+  var doneItems = document.getElementById('done');
+  this.addEventListener('click', deleteTask);
+  doneItems.appendChild(this);
+}
+
+// Move item to the not done list, make it moveable to done list through click, give coloring properties
+var addTask = function(e){
+  var task = document.getElementById('task').value;
+  document.getElementById('task').placeholder = 'Enter Another!';
+  document.getElementById('task').value = '';
+  var list = document.createElement('li');
+  list.innerHTML = task;
+  list.addEventListener('click', doneItem);
+  list.addEventListener('mouseover', function(e) {
+		this.classList.toggle('red');
+	});
+  list.addEventListener('mouseout', function(e) {
+		this.classList.toggle('black');
+	});
+  var curList = document.getElementById('not-done');
+  curList.appendChild(list);
+}
+
+
+var b = document.getElementById("but");
 b.addEventListener('click', addTask);
