@@ -3,6 +3,7 @@ var cowx = 0;
 var cowy = 0;
 var baseInterval = 200;
 var interval = baseInterval;
+var state = 0;
 
 var init = function(){
     var html = document.documentElement;
@@ -60,10 +61,16 @@ var adjustInterval = function(){
 }
 
 var begin = function(){
-    clearInterval(spawnWindows);
-    adjustInterval();
-    console.log(interval);
-    spawnWindows = setInterval(displayRandomImage,interval);
+    if(state == 0){
+	clearInterval(spawnWindows);
+	adjustInterval();
+	console.log(interval);
+	spawnWindows = setInterval(displayRandomImage,interval);
+    }
+    else if (state == 1){
+	clearInterval(spawnWindows);
+	displayImage("xbox.jpg", 500, 500, "crosshair", 99999);
+    }
 }
 
 var button = document.getElementById("begin")
