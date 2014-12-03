@@ -1,23 +1,26 @@
-var todo = document.getElementById("todo");
-var done = document.getElementById("done");
+var deleteEntirely = function(e){
+    var done = document.getElementById("done");
+    done.removeChild(this);
 
+}
+
+var moveFromList = function(e) {
+    var todo = document.getElementById("todo");
+    var done = document.getElementById("done");
+    done.appendChild(this);
+    this.addEventListener("click",deleteEntirely);
+    
+}
 
 var addToList = function(e) {
-    var i = document.getElementById("input");
+    var todo = document.getElementById("todo");
+    var i = document.getElementById("input").value;
     var input  = document.createElement("li");
     input.innerHTML = i;
-    input.addEventListener("click",moveFromList);
     todo.appendChild(input);
+    input.addEventListener("click",moveFromList);
 }
-var moveFromList = function(e) {
-    done.appendChild(this);
-    todo.remove(this);
-    this.addEventListener("click",addToList);
-    this.addEventListener("dbclick",deleteEntirely);
-}
-var deleteEntirely = function(e){
-    done.remove(this);
-}
+
 
 var button = document.getElementById("button");
 button.addEventListener("click",addToList);
