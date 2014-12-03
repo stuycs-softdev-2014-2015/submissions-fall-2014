@@ -1,5 +1,7 @@
 <html>
 
+ <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
   <title> Where How? </title>
   <head>
     <style>
@@ -12,12 +14,27 @@
   </head>
 
   <body>
+
+    <audio id="where" controls="controls" onload="sound()">
+      <source scr="where.mp3" type="audio/mp3">
+    </audio>
+    <audio id="when" controls="controls" onload="sound()">
+      <source scr="when.mp3" type="audio/mp3">
+    </audio>
+    <audio id="how" controls="controls" onload="sound()">
+      <source scr="how.mp3" type="audio/mp3">
+    </audio>
+
+
     <center>
     <h1>WhereHow?</h1>
     </center>
     
-    <input type="submit" id="start" value="Start">
-    <input type="submit" id="stop" value="Stop">
+    <div>
+      <p>Try you're luck at finding Where How?</p>
+    <button class="pure-button pure-button-active" input type="submit" id="start" value="Start">
+    <button class="pure-button pure-button-active" input type="submit" id="stop" value="Stop">
+     </div>
     <div>
       <img id="wherehow" class="img" src="whenhow.jpg">
     </div>
