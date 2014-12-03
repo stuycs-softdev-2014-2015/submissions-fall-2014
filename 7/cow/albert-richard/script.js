@@ -46,8 +46,6 @@ var createHiddenLocation = function(e){
     //pic.style.position="absolute";
     pic.hspace=hiddenX;
     pic.vspace=hiddenY;
-    pic.src="blank.png";
-    pic.addEventListener('click',popup)
     //pic.style.display="none";
 }
 
@@ -79,4 +77,4 @@ var checkLocation = function(e){
 	popup();
     }
 }
-//window.addEventListener('click',checkLocation);
+window.addEventListener('click',checkLocation);
