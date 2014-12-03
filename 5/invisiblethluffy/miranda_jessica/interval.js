@@ -1,12 +1,22 @@
 var mouseX, mouseY;
 var thluffyX, thluffyY;
+var thluffy = document.getElementById("thluffy");
+var playing= true;
+
 thluffyX=Math.random() * (window.innerWidth-500);
 thluffyY=Math.random()* (window.innerHeight-220);
-var thluffy = document.getElementById("thluffy");
-console.log(thluffyX)
+thluffy.style.cursor="pointer";
+
 document.getElementById("thluffy").style.left=thluffyX+"px";
 document.getElementById("thluffy").style.top=thluffyY+"px";
-var playing= true;
+
+window.addEventListener('mousemove', function(e) {
+		mouseX = e.pageX;
+		mouseY = e.pageY;
+});
+
+
+
 var play = function(e) {
 		var audio =document.getElementById('javert_loud');
 		var distance =Math.sqrt(Math.pow(mouseX-(thluffyX+250),2)+Math.pow(mouseY-(thluffyY+110),2));
@@ -26,13 +36,6 @@ var play = function(e) {
 			myevent = setTimeout(play,300);
 		}
 	}
-
-window.addEventListener('mousemove', function(e) {
-		mouseX = e.pageX;
-		mouseY = e.pageY;
-});
-
-
 
 var done=function(){
 	playing=false;
