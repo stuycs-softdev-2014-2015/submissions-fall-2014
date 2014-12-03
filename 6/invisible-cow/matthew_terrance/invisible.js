@@ -16,6 +16,7 @@ var loow = document.getElementById("loow")
 var supahigh = document.getElementById("supahigh")
 var high = document.getElementById("high")
 var med = document.getElementById("med")
+var merry = document.getElementById("merry")
 
 
 window.addEventListener('mousemove',function(e){
@@ -78,6 +79,7 @@ function moveit() {
     console.log("arewehere2");
     if( Math.abs(window.innerWidth/2 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
 	clearInterval(myEvent);
+	merry.play();
     }
     if (window.innerWidth/2<w) {
 	w=w-3;
