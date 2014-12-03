@@ -46,7 +46,6 @@ function musi(){
     }
     else{
 	loow.play();
-
     }
 }
 
@@ -69,6 +68,31 @@ function togglev(){
     }  
 };
 
+var myEvent;
+function startit() {
+    console.log("arewehere");
+    myEvent = setInterval("moveit()",10);
+};
+
+function moveit() {
+    console.log("arewehere2");
+    if( Math.abs(window.innerWidth/2 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
+	clearInterval(myEvent);
+    }
+    if (window.innerWidth/2<w) {
+	w=w-3;
+    } else {
+	w=w+3;
+    }
+    if (window.innerHeight/2<h) {
+	h=h-3;
+    } else {
+	h=h+3;
+    }
+    move.style.left=w+"px";
+    move.style.top=h+"px";
+};
+
 function findsanta(){
     if (picture.className == "img hidden"){
 	picture.className ="img visible";
@@ -81,27 +105,3 @@ function findsanta(){
 //document.getElementById("visible").addEventListener('click',togglev);
 picture.addEventListener('click',findsanta);
 
-
-function moveit() {
-    console.log("arewehere2");
-  if( Math.abs(window.innerWidth/2 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
-      clearInterval(myEvent);
-}
-  if (window.innerWidth/2<w) {
-     w=w-3;
-  } else {
-     w=w+3;
-   }
-  if (window.innerHeight/2<h) {
-     h=h-3;
-  } else {
-     h=h+3;
-   }
-   move.style.left=w+"px";
-   move.style.top=h+"px";
-};
-var myevent;
-function startit() {
-    console.log("arewehere");
- myevent = setInterval("moveit()",10);
-};
