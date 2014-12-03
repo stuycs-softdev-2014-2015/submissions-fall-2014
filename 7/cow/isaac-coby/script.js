@@ -8,7 +8,7 @@ var djX = (window.innerWidth * .9)
 var djY = 200;
 
 var move = function(e){
-    if ((Math.abs(tophX - moranX) < 70) && (Math.abs(tophY - moranY) < 50)){
+    if ((Math.abs(tophX - moranX) < 80) && (Math.abs(tophY - moranY) < 60)){
 	var body = document.getElementsByTagName("body")[0];
 	body.style.background = "url('lostmoran.jpg')";
 	end()
@@ -18,7 +18,7 @@ var move = function(e){
 	var body = document.getElementsByTagName("body")[0];
 	body.style.background = "url('bowl.jpg')";
 	var h1 = document.getElementsByTagName("h1")[0];
-	console.log(h1);
+	// console.log(h1);
 	h1.innerHTML = "You won! Let the party live";
 	end();
 	
@@ -39,19 +39,17 @@ var move = function(e){
     }
     topher.style.left = tophX + "px";
     topher.style.top = tophY + "px";
-    // if ((tophX == 300) && (tophY == 200)){
-    //   alert("You won");
-    // }
+
 
     var moran = document.getElementById("moran");
     if (mDirection == true){
 	moranY += 14;
-	if (moranY >= window.innerHeight){
+	if (moranY >= window.innerHeight-100){
 	    mDirection = !mDirection;
 	}
     }
 
-    console.log(window.innerHeight);
+    // console.log(window.innerHeight);
 
     if (mDirection == false) {
 	moranY -= 14;
