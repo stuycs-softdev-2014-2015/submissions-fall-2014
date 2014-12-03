@@ -12,6 +12,8 @@ var victoryScreen = function(e){
 	img.removeEventListener("click",victoryScreen);
 	console.log("x");
     }    
+    var c = document.getElementById("count");
+    c.innerText= parseInt(c.innerText)+1;
 };
 var hide = function(e){
     var img = document.getElementById("goal");
