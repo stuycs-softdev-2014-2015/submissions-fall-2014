@@ -32,4 +32,29 @@ var dist = function(e){
 	console.log("d: " + d);
 };
 
+var music = function(){//Needs Play-testing and MP3s
+    if (dist > 1500){
+	document.getElementById("sound_element").innerHTML= 
+	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    }
+    if (dist <= 1500 && dist > 750){
+	document.getElementById("sound_element").innerHTML= 
+	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    }
+    if (dist <= 750 && dist > 400){
+	document.getElementById("sound_element").innerHTML= 
+	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    }
+    if (dist <= 400 && dist >= 100){
+	document.getElementById("sound_element").innerHTML= 
+	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    }
+    if (dist <= 100 && dist >= 0){
+	document.getElementById("sound_element").innerHTML= 
+	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    }
+}
+    
+		    
+
 window.addEventListener("mousemove",getMouseCor);
