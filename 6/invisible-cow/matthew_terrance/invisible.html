@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <style>
-  .move {position:absolute; left:200px; top:200px}
-  .img {height:25%; width:25%}
+  .move {position:absolute;top=200px; left = 200px}
+ <!-- .img {height:25%; width:25%}-->
   .hidden {
   opacity: 0;
   filter: alpha(opacity=0); /* For IE8 and earlier */
@@ -15,8 +15,8 @@
 
 <input type="submit" id="visible" value="Show/Hide"></input>
 
-<div class="move">
-  <img id="picture" class="img visible" src="cookpriest.png">
+<div class="move" id="move">
+  <img id="picture" class="img visible" src="santa.png">
 </div>
 
 <script src="invisible.js"></script>
