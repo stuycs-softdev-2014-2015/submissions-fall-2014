@@ -22,7 +22,7 @@ var checkDist = function(e){
 var displayImage = function(){
     console.log(image);
     //var img = document.createElement("img");
-    var src + "img" + Math.floor(Math.random()*1) + ".jpg";
+    var src + "img" + Math.floor(Math.random()*2) + ".jpg";
     var img = document.createElement(src);
     img.style.position = "absolute";
     img.style.top=Math.floor(Math.random()*document.documentElement.clientHeight);
