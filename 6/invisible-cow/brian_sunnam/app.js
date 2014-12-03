@@ -1,6 +1,8 @@
 var mouseX;
 var mouseY;
 
+var music = document.getElementById('music');
+console.log('music',music);
 var canvas = document.getElementById('canvas');
 var canvasrect = canvas.getBoundingClientRect();
 var minX = canvasrect.left;
@@ -22,14 +24,25 @@ var check = function(){
     var dx = mouseX-goalX;
     var dy = mouseY-goalY;
     var dist = Math.sqrt(dx*dx+dy*dy);
+    dist = Math.floor(dist);
+    var range = Math.sqrt(((maxX-minX)/2)*((maxX-minX)/2)+((maxY-minY)/2)*((maxY-minY)/2))/6;
     console.log(dist);
-    if(dist<100){
+    if(dist<10){
 	//canvas.innerHTML = 'grab';
 	canvas.style.cursor = 'pointer';
 	console.log('YAY');
     }
     else{
 	canvas.style.cursor = 'auto';
+    }
+    if(dist < range){
+	music.src = "Topher6.m4a";
+	music.play();
+    }
+    else if (dist < (range*2)){
+	music.pause();
+	music.src = "Topher5.m4a";
+	music.play();
     }
 }
 
