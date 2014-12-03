@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<style>
+  .move {position:absolute;top=200px; left = 200px}
+ <!-- .img {height:25%; width:25%}-->
+  .hidden {
+  opacity: 0;
+  filter: alpha(opacity=0); /* For IE8 and earlier */
+  }
+  
+  .visible {
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+</style>
+
+<input type="submit" id="visible" value="Show/Hide"></input>
+
+<div class="move" id="move">
+  <img id="picture" class="img visible" src="santa.png">
+</div>
+
+<script src="invisible.js"></script>
