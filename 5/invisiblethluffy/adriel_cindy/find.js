@@ -6,6 +6,9 @@ window.addEventListener('mousemove', function(e) {
     mouseY = e.pageY;
 });
 
+
+
+
 var light = document.createElement('img');
 light.setAttribute('src', 'light.png');
 light.setAttribute('height', '100px');
@@ -19,15 +22,17 @@ swiper.setAttribute('height', '50px');
 swiper.setAttribute('width', '50px');
 swiper.style.position = 'absolute';
 swiper.style.visibility = 'hidden';
-swiper.style.left =  20 + Math.random()*1000 + 'px';
-swiper.style.top = 20 + Math.random()*500 + 'px';
-
+swiper.style.left = Math.random()*window.innerWidth + 'px';
+swiper.style.top = Math.random()*window.innerHeight + 'px';
+console.log(swiper.style.left + ", " + swiper.style.top);
 
 document.getElementsByTagName('body')[0].appendChild(light);
 document.getElementsByTagName('body')[0].appendChild(swiper);
 
 var play = function() {
 
+    console.log(window.innerWidth);
+    
     var x = swiper.style.left;
     var y = swiper.style.top;
     x = x.substring(0, x.length-2)+25;
@@ -70,9 +75,9 @@ var play = function() {
 }
 
 
-    if (x < 0 || x > 1100 || y < 0 || y > 600) {
-    window.alert("He got away!");
-    location.reload();
+    if (x < 0 || x > window.innerWidth || y < 0 || y > window.innerHeight) {
+	window.alert("He got away!");
+	location.reload();
     }
 };
 
