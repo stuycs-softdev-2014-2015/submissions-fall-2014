@@ -1,15 +1,22 @@
 var mouseX, mouseY, hedgehogX, hedgehogY;
 var hedgehog = document.getElementById("hedgehog");
-hedgehog.addEventListener('click', reveal);
-hedgehogX = Math.floor((Math.random() * window.innerWidth));
-hedgehogY = Math.floor((Math.random() * window.innerHeight));
-hedgehog.top = hedgehogY.toString() + "px;";
-hedgehog.left = hedgehogX.toString() + "px;";
+
+//Setting coordinates of hedgehog at random
+hedgehogY = Math.random() * window.innerHeight * .9;
+hedgehogX = Math.random() * window.innerWidth * .9;
+hedgehog.style.top = hedgehogY + "px";
+hedgehog.style.left = hedgehogX + "px";
+//Hiding hedgehog
+hedgehog.style.visibility = "hidden";
+//Adding event listener to hedgehog. Will become visible once clicked.
+hedgehog.addEventListener('click', function(e) {
+    hedgehog.style.visibility = "visible";
+});
+
 window.addEventListener('mousemove', function(e) {
     mouseX = e.pageX;
     mouseY = e.pageY;
 });
-
 
 var setHedgehogCoordinates = function(e) {
     
