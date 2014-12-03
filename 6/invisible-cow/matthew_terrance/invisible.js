@@ -9,11 +9,11 @@ window.addEventListener('mousemove',function(e){
 var picture=document.getElementById("picture");
 
 function togglev(){
-    if (picture.style.visibility=="hidden"){
-	picture.style.visibility="";
+    if (picture.className == "img visible"){
+	picture.className = "img hidden";
     }
     else{
-	picture.style.visibility="hidden";
+	picture.className ="img visible";
     }
     
 };
