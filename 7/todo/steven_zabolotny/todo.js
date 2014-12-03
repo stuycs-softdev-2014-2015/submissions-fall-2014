@@ -34,6 +34,7 @@ var addItemToDo = function(text) {
 var buttonCallback = function(e) {
     var text = document.getElementById("add").value;
     addItemToDo(text);
+    document.getElementById("add").value = "";
 }
 
 var b = document.getElementById("submit");
