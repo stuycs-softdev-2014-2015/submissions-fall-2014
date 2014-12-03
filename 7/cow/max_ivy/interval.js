@@ -25,7 +25,7 @@ var displayImage = function(){
     var src = "img" + Math.floor(Math.random()*2) + ".jpg";
     var img = document.createElement("img");
     img.src = src;
-    img.style.position = "absolute";
+    img.style.position = "fixed";
     img.style.top=Math.floor(Math.random()*document.documentElement.clientHeight) + "px";
     img.style.right=Math.floor(Math.random()*document.documentElement.clientWidth) + "px";
     document.body.appendChild(img);
