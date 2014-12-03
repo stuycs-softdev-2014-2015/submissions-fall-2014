@@ -33,9 +33,6 @@ top = parseInt(top.substring(0, top.length-2));
 var eyes = document.getElementById("eyes");
 var width = eyes.style.width;
 
-//width = parseInt(width.substring(0, width.length-2));
-
-
 var dist = distance(left+210, top+220, mouseX, mouseY);
 console.log(dist);
 console.log(width);
@@ -46,7 +43,7 @@ return dist;
 
 var myevent;
 function startit() {
-myevent = setInterval(resize,1);
+myevent = setInterval(resize,100);
 }
 
 function stopit() {
