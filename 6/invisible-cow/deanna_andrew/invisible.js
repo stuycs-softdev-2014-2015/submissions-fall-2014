@@ -4,12 +4,18 @@ var mouseY;
 var screen = document.getElementById("screen");
 //var this_screen = screen.getBoundingClientRect();
 
-var minX = screen.left;
-var minY = screen.top;
-var maxX = screen.right;
-var maxY = screen.bottom;
+var minX = 0;
+var minY = 0;
+var maxX = window.innerWidth;
+var maxY = window.innerHeight;
 
 var goalX, goalY;
+
+window.addEventListener('mousemove',function(e){
+    mouseX=e.pageX;
+    mouseY=e.pageY;
+    console.log(mouseX+ ", "+ mouseY)
+}); 
 
 var calcDistance=function(){
     var distX = mouseX-goalX;
@@ -30,11 +36,17 @@ var changeCursor=function(){
 img = document.createElement("img");
 img.src="christmas.png";
 
+var starter;
 var start= function(e){
     goalX = Math.random()*(maxX-minX)+minX;
+    goalX = parseInt(goalX)
     goalY = Math.random()*(maxY-minY)+minY;
+    goalY = parseInt(goalY)
+    console.log("GOAL YO: " + goalX + ", " + goalY)
     changeCursor; //don't know why this doesn't work
+    //starter = setInterval(start,100);
 };
+
 
 /* function win(){
     } */
