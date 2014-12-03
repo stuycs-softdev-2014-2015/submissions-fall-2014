@@ -1,1 +1,69 @@
-To Do 
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+<style>
+
+body {
+font-family: "Courier New", Courier, monospace;
+color: #404040;
+background-color: #FAEBD7;
+margin-top: 75px;
+margin-botton: 100px;
+margin-left: 150px;
+margin-right: 150px;
+}
+
+hr {
+color: #404040;
+background-color: #404040;
+height: 2.3px;
+}
+
+input {
+font-family: "Courier New", Courier, monospace;
+}
+
+.button-good {
+background: #404040;
+color: #FAEBD7;
+}
+
+</style>
+
+
+<body>
+
+<h1><center> My To Do List <hr> </center></h1>
+
+<br> <br>
+
+<h2> To Do: </h2>
+
+<ul id="ToDo">
+</ul>
+
+<br> <hr>
+
+<h2> Done: </h2>
+
+<ul id="Done">
+</ul>
+
+<br> <hr> <br>
+
+<h2> New Item: </h2>
+
+<form class="pure-form">
+<input id="newItem" type="text" placeholder="something to do"></input>
+<button  class="button-good pure-button" id="button">Submit</button>
+</form>
+
+<script src="todo.js">
+
+</script> 
+
+</body>
+
+
+</html>

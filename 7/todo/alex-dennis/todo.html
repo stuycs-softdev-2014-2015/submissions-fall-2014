@@ -1,11 +1,63 @@
+<!DOCTYPE html>
 <html>
   <head>
-    Alex's and Dennis's To Do List
+    <title>Dennis' and Alex's To-Do List</title>
+    <!-- Include the bootstrap stylesheet-->
+    <link href="bootstrap.css" rel="stylesheet">
   </head>
+ 
   <body>
-    <h1>To Do</h1>
-    <ol id="todolist">
-      
-  </body>
+    <div class="container">
 
+      <div class="row-fluid" align="center"> 
+        <div class="span12">
+          <h1> To-Do List </h1>
+        </div>
+      </div>
+
+
+
+
+      <!-- The Two Input Forms -->
+      <div class="row-fluid">
+        <div class="span6">
+          <center>
+            <h2> To-Do </h2>
+            <ol id ="to-do"> </ol>
+
+
+          </center>
+        </div>
+        <div class="span6">
+          <center>
+            <h2> Completed Tasks </h2>
+            <ul id ="completed"> </ul>
+
+
+          </center>
+        </div>
+      </div>
+      <div class="row-fluid">
+          <center>
+			  <div class="span12">
+				  <div class="well form-search">
+					  <p> 
+						  Enter the task you want to add to your "To-Do" list.
+					  </p>
+					  <input id="textfield" type="text" class="input-medium search-query">
+					  <button id="submitbutton" class="btn btn-primary">Add</button>
+				  </div>
+          </center>
+			  </div>
+      </div>
+    </div>
+
+    
+    <script src="todo.js"></script>   
+    <!-- JavaScript placed at the end of the document so the pages load faster -->
+    <!-- Include the jQuery library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
+    <!-- Incorporate the Bootstrap Javascript plugins -->
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+  </body>
 </html>
