@@ -1,0 +1,79 @@
+<html>
+  <h1>To Do List</h1>
+  <style>
+    .red{color:red}
+    .blue{color:blue}
+    .todo:hover{
+    color:green;
+    }
+  </style>
+  <body>
+  Enter item to do: <input type="text" id="itm"><button id="btn">Enter</button>
+  <table border="1">
+    <tr>
+      <td>To Do</td>
+      <td>Done</td>
+    </tr>
+    <tr>
+      <td>
+	<ol id="todolist"></ol>
+      <td>
+	<ol id="donelist"></ol>
+      </td>
+    </tr>
+  </table>
+  <script>
+    var i = document.getElementById("itm");
+    var b = document.getElementById("btn");
+    var todo = document.getElementById("todolist");
+    var done = document.getElementById("donelist");
+
+    var addBackToList = function(txt) {
+    var newItem = document.createElement("li");
+    console.log(newItem);
+    newItem.setAttribute("class", "todo");
+    newItem.innerHTML = txt;
+    var list = todo.children;
+    todo.appendChild(newItem);
+    newItem.addEventListener("click", addDoneList);
+    }
+
+    var addDoneList = function(e) {
+    var changeItem = e.srcElement;
+    console.log(changeItem.innerHTML);
+    done.innerHTML = done.innerHTML + "<li class='done'>"+changeItem.innerHTML+"</li>";
+    changeItem.remove();
+    doneList = done.children;
+    console.log("hi");
+    console.log(doneList);
+    for (var k=0; k < doneList.length; k++) {
+      console.log(doneList[k]);
+      doneList[k].addEventListener("mouseover", function(e) {this.classList.add("red");});
+      doneList[k].addEventListener("mouseover", function(e) {this.classList.toggle("blue");});
+      doneList[k].addEventListener("click", function(e) { 
+		      if (this.classList[2]=="blue") {
+		      addBackToList(this.innerHTML);
+		      }
+		      this.remove();
+		      })
+    }
+    }
+
+    var addToList = function(e) {
+    console.log(i.value);
+    var newItem = document.createElement("li");
+    newItem.setAttribute("class", "todo");
+    newItem.innerHTML = i.value;
+    var list = todo.children;
+    todo.appendChild(newItem);
+    console.log(list);
+    for ( var j=0; j < list.length; j++ ) {
+      item = list[j];
+      item.addEventListener("click", addDoneList);
+    }
+    }
+
+    b.addEventListener("click", addToList);
+  </script>
+  </body>
+</html>

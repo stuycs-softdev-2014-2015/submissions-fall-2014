@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="style.css">
+<style type="text/css">
+body{
+cursor: url("bryant.jpg")
+}
+</style>
+<html>
+  <head>
+    <title>
+      Sack the Quarterback
+    </title>
+  </head>
+  <body>
+    <img id="QB" src="quarterback.jpg" width="500" height="500"   style="position:absolute; TOP:10px; LEFT:10px;visibility:hidden" >
+
+    <script>
+      var rect = document.getElementById("rect");
+      var e = document.getElementById("QB");
+      var w = Math.random() * window.innerWidth;
+      var h = Math.random() * window.innerHeight;
+      while (w > window.innerWidth - parseInt(e.width)) {
+      w = Math.random() * window.innerWidth;
+      }
+      while (h > window.innerHeight - parseInt(e.height)) {
+      h = Math.random() * window.innerHeight;
+      }
+      
+      e.style.left = "" + w + "px";
+      e.style.top = "" + h + "px";
+
+</script>
+    <script src="sacktheqb.js"></script>
+  </body>
+</html>

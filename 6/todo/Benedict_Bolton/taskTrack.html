@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+		<head>
+				<style>
+				 .red  {color: #ff0000;}
+				 .green  {color : #00ff00;}
+				 .silver  {color : #c0c0c0;}
+         .gold {color : #ffd700;}
+         #XMas {color: #ffd700;
+                font-family: "Century Gothic", sans-serif;
+                font-size: 26px;
+                }
+				</style>
+		</head>
+		<body>
+				<h1 id="XMas">Merry Christmas!</h1>
+        <h2  id="intro" class="silver"> Plan Your Holidays Tasks...</h2>
+        <table id="toDoLists">
+          <tr>
+            <td class="red"> To be Done: </td>
+            <td class="green"> Done: </td>
+          <tr>
+            <td>
+				          <ol id="doList">
+                    <li> Get Festive </li>
+				         </ol>
+            </td>
+            <td>
+                  <ol id="doneList">
+                    <li>Thanksgiving Completed</li>
+                  </ol>
+            </td>
+          </tr>
+        </table>
+        <input type="text" name="newTask" id="newTask">Enter New Task</input>
+				<button type="submit" name="addNew" id="addNew">Add Task</button>
+        <br><br>
+        <input type="text" name="moveTask" id="moveTask">Move Task From To be Done to Done:</input>
+        <button type="submit" name="move" id="move">Enter Number of Task to be Moved</button>
+        <br><br>
+        <input type="text" name="delTask" id="delTask">Delete Task From Done List</input>
+        <button type="submit" name="delete" id="delete">Enter Number of Task to be Deleted</button>
+        <br><br>
+				<script src="tasker.js"></script>
+		</body>
+</html>
