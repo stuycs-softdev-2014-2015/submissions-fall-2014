@@ -47,6 +47,11 @@ var getDistance = function(e){
     dist.innerHTML = distance;
 }
 
+var popup = function(e){
+    pic = document.getElementById("king");
+    pic.src="sandking.jpg";
+}
+
 createHiddenLocation();
 var recalculate = setInterval(getDistance,100);
 var colorDU = setInterval(function(e){
@@ -55,4 +60,6 @@ var colorDU = setInterval(function(e){
 	color++;
     }
 },1000);
+
+document.getElementById("popup").addEventListener('click',popup);
  
