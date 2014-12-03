@@ -14,6 +14,8 @@ var pX = Math.random() * screen.width;
 var pY = Math.random() * screen.height;
 document.getElementById("image").style.marginLeft = pX;
 document.getElementById("image").style.marginTop = pY;
+var audio = new Audio("03bison.mp3");
+var sound = false;
 
 var square = function(x){
     return x * x;
@@ -30,3 +32,8 @@ var changeBackground = function(e){
     }
     return
 }
+
+
+
+setInterval(function(){sound = true;}, 7000);
+setInterval(function(){if(sound){audio.play();}}, 2500);
