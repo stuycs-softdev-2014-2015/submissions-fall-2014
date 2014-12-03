@@ -12,11 +12,18 @@ var randomLocation = function(){
     
 }; 
 
-var game = function(image){
-    var c = document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
+var moveImage = function(){
+    var x = Math.floor(Math.random()* (window.innerWidth - 50)) + 50;
+    var y = Math.floor(Math.random()* (window.innerHeight - 50)) + 50;
+
     var img = document.getElementById("Harvard");
-    ctx.drawImage(img,hx,hY);
+    img.style.top = y + "px";
+    img.style.left = x + "px";
 };
-    
+
+
+var go = function(){
+    moveImage
+}
+
     
