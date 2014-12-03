@@ -8,26 +8,12 @@
 </head>
 <body>
 <img id="image" src="9.png" height="50" width="50">
-<input id="start" type="submit" value="Start"> <input id="reset" type="submit" value="Reset">
+<input id="start" type="submit" value="Start">
+<input id="pause" type="submit" value="Pause">
+<input id="reset" type="submit" value="Reset">
+<p id="delay"><b>Delay: </b>1000</p>
+<p id="score"><b>Score: </b>0</p>
+<p id="streak"><b>Streak: </b>0</p>
+<script src="T.js"></script>
 </body>
-<script>
-	var image = document.getElementById("image");
-	var delay = 3000;
-	var event;
-	var spawn = function() {
-		image.style.left = Math.random() * window.innerWidth + "px";
-		image.style.top = Math.random() * window.innerHeight + "px";
-		event = setTimeout(spawn, delay);
-		delay -= 100;
-	};
-	var whack = function() {
-		clearTimeout(event);
-		spawn();
-	};
-	image.addEventListener("click", whack);
-	document.getElementById("start").addEventListener("click", function() {
-		spawn();
-	});
-	document.getElementById("reset").addEventListener("click", function() {});
-</script>
 </html>

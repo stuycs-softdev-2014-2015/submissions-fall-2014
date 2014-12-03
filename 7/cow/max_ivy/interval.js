@@ -20,20 +20,25 @@ var checkDist = function(e){
     counter.innerHTML = d;
 }
 
-var displayImage = function(){
-    //console.log(image);
-    //var img = document.createElement("img");
-    var src = "img" + Math.floor(Math.random()*IMG_COUNT) + ".jpg";
+
+var displayRandomImage = function(){
+    var src = "img" + Math.floor(Math.random()*IMG_COUNT) + ".jpg";    
+    var top = Math.floor(Math.random()*document.documentElement.clientHeight) - 100 + "px";
+    var right = Math.floor(Math.random()*document.documentElement.clientWidth) - 100 + "px";
+    displayImage(src,top,right);
+}
+
+var displayImage = function(src, top, right){
     var img = document.createElement("img");
     img.src = src;
     img.style.position = "fixed";
-    img.style.top=Math.floor(Math.random()*document.documentElement.clientHeight) + "px";
-    img.style.right=Math.floor(Math.random()*document.documentElement.clientWidth) + "px";
+    img.style.top = top;
+    img.style.right = right;
     document.body.appendChild(img);
 }
 
 var spawnWindows;
-spawnWindows = setInterval(displayImage,100);
+spawnWindows = setInterval(displayRandomImage,100);
 
 window.addEventListener("mousemove", checkDist);
 init();

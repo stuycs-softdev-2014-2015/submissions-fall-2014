@@ -8,20 +8,19 @@ hedgehog.style.top = hedgehogY + "px";
 hedgehog.style.left = hedgehogX + "px";
 //Hiding hedgehog
 hedgehog.style.visibility = "hidden";
-//Adding event listener to hedgehog. Will become visible once clicked.
+///Adding event listener to hedgehog. Will become visible once clicked.
 hedgehog.addEventListener('click', function(e) {
     hedgehog.style.visibility = "visible";
+    console.log("FOUND IT");
 });
-
-window.addEventListener('mousemove', function(e) {
+var distance = function(e) {
     mouseX = e.pageX;
     mouseY = e.pageY;
-});
-
-var setHedgehogCoordinates = function(e) {
-    
-}
-var distance = function(e) {
     var dist;
     dist = Math.sqrt(Math.pow((mouseX - hedgehogX),2) + Math.pow((mouseY - hedgehogY),2));
+    console.log(dist);
 };
+window.addEventListener('mousemove', distance); 
+
+
+
