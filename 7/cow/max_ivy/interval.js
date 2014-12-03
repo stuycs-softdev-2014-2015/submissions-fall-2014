@@ -20,24 +20,15 @@ var checkDist = function(e){
     counter.innerHTML = d;
 }
 
-<<<<<<< HEAD
+
 var displayRandomImage = function(){
-    var src = "img" + Math.floor(Math.random()*2) + ".jpg";    
+    var src = "img" + Math.floor(Math.random()*IMG_COUNT) + ".jpg";    
     var top = Math.floor(Math.random()*document.documentElement.clientHeight) - 100 + "px";
     var right = Math.floor(Math.random()*document.documentElement.clientWidth) - 100 + "px";
     displayImage(src,top,right);
 }
 
 var displayImage = function(src, top, right){
-//    console.log(image);
-    //var img = document.createElement("img");
-
-=======
-var displayImage = function(){
-    //console.log(image);
-    //var img = document.createElement("img");
-    var src = "img" + Math.floor(Math.random()*IMG_COUNT) + ".jpg";
->>>>>>> 25f6f713fa1e1539beea740535336460bf7114b0
     var img = document.createElement("img");
     img.src = src;
     img.style.position = "fixed";
