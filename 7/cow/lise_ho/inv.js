@@ -3,8 +3,13 @@
 var picX,picY;
 
 var victoryScreen = function(e){
-    
-    
+    console.log("victory");
+    var r = confirm("YAY!!!\n\nYOU HAVE FOUND THLUFFY!!!\n\nPlay Again?");
+    if (r){
+	location.reload();
+    }else{
+	console.log("x");
+    }    
 };
 window.addEventListener('load',function(e){
     var img = document.getElementById("goal");
@@ -39,8 +44,7 @@ window.addEventListener('mousemove',function(e){
     tracker.innerText= mouseX +"," + mouseY;
     dista.innerText= dist(mouseX,mouseY,5,5).toString();
     if (dist(mouseX,mouseY,picX,picY)>0 ){
-	//play music
-//	audio.play();
+	timedevent();
     }
     
 });
@@ -50,15 +54,22 @@ var stoptimer = function(e){
 };
 var timedevent = function(){
     //do your stuff
-
-    myevent = setInterval(act,100);
+    myevent = setInterval(sound,100);
 };
-var act = function(e){
+var sound = function(e){
     //do your stuff here
-
+    //play music
+//	audio.play();
 };
 
-
+var givingup = function(e){
+    var r = confirm("You are giving up on Fluffy. \nIs this really okay with you? ");
+    if (r){
+	window.location.href="home.html";
+    } 
+}
+var giveup = document.getElementById("giveup");
+giveup.addEventListener("click",givingup);
 
 /*
 
