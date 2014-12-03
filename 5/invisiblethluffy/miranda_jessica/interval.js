@@ -16,21 +16,34 @@ window.addEventListener('mousemove', function(e) {
 });
 
 
-
+var buildup =document.getElementById('javert_loud');
+var found =document.getElementById('donotforget');
 var play = function(e) {
-		var audio =document.getElementById('javert_loud');
+	var mode=document.getElementById("mode");
+	if (mode.options[mode.selectedIndex].text == "Scare"){
+		buildup =document.getElementById('donotforget');
+		found =document.getElementById('javert_loud');
+		document.body.style.color= "#ffffff";
+		document.body.style.backgroundColor= "#000000";
+	}
+	else{
+		buildup =document.getElementById('javert_loud');
+		found =document.getElementById('donotforget');
+		document.body.style.backgroundColor= "#ffffff";
+		document.body.style.color= "#000000";
+	}
 		var distance =Math.sqrt(Math.pow(mouseX-(thluffyX+250),2)+Math.pow(mouseY-(thluffyY+110),2));
 		if (distance >500)
-			audio.volume=.05;
+			buildup.volume=.1;
 		else if (distance >400)
-			audio.volume=.2;
+			buildup.volume=.3;
 		else if (distance >300)
-			audio.volume=.5;
+			buildup.volume=.5;
 		else if (distance >200)
-			audio.volume=.8;
+			buildup.volume=.7;
 		else
-			audio.volume=1;
-		audio.play();
+			buildup.volume=1;
+		buildup.play();
 		//console.log(distance);
 		if (playing){
 			myevent = setTimeout(play,300);
@@ -39,8 +52,11 @@ var play = function(e) {
 
 var done=function(){
 	playing=false;
-	var audio =document.getElementById('donotforget');
-	audio.play();
+
+	found.volume=1;
+	buildup.pause();
+	found.play();
+
 	thluffy.style.opacity=1;
 
 
