@@ -1,10 +1,32 @@
 var eX, eY;
 var wherehow = document.getElementById("wherehow");
+var where = document.getElementById("where");
+var when = document.getElementById("when");
+var how = document.getElementById("how");
+var dist;
+
 
 window.addEventListener('mousemove', function(e) {
     eX = e.pageX;
     eY = e.pageY;
 });
+
+var sound = function(e){
+    var x = wherehow.offsetLeft;
+    var y = wherehow.offsetTop;
+    var mouseX = Math.abs(eX-x);
+    var mouseY = Math.abs(eY-y);
+    dist = Math.sqrt(mouseX*mouseX + mouseY*mouseY)/100
+    var readjustedDist = dist/10.0
+    if (dist < 0.1) {
+	wherehow.style.visibility="visible";
+	when.volume = 1.0;
+	how.volume = 1.0;
+	window.alert("Where how? WHEN HOW!");
+    }else {
+	where.volume = readjustedDist;    
+    }
+}
 
 var find = function(e){
     var x = wherehow.offsetLeft;
@@ -96,7 +118,8 @@ var startit = function(){
     wherehow.style.visibility = 'hidden';
     wherehow.style.left = 50 + Math.random()*1000 +'px';
     wherehow.style.top = 50 + Math.random()*500 + 'px';
-    myevent = setInterval(find, 100);
+    //myevent = setInterval(find, 100);
+    myevent = setInterval(sound, 100);
 }
 
 var stopit = function(){
