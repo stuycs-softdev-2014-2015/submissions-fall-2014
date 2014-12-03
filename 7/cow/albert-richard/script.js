@@ -34,6 +34,14 @@ var stopTimer = function(e){
 var createHiddenLocation = function(e){
     hiddenX = Math.floor(Math.random()*size.width);
     hiddenY = Math.floor(Math.random()*size.height);
+    var pic = document.getElementById("king");
+    pic.style.position="absolute";
+    pic.style.left=hiddenX;
+    pic.style.top=hiddenY;
+    pic.height="100";
+    pic.width="100";
+    pic.src="sandking.jpg";
+    pic.style.display="none";
 }
 
 var getDistance = function(e){
@@ -49,11 +57,7 @@ var getDistance = function(e){
 
 var popup = function(e){
     var pic = document.getElementById("king");
-    pic.src="sandking.jpg";
-    pic.height="100";
-    pic.width="100";
-    pic.hspace=hiddenX;
-    pic.vpsace=hiddenY;    
+    pic.style.display="inline-block";
 }
 
 createHiddenLocation();
