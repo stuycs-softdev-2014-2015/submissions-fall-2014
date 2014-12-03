@@ -88,6 +88,8 @@ function end() {
 function restart(){
     var body = document.getElementsByTagName("body")[0];
     body.style.background = "";
+    var h1 = document.getElementsByTagName("h1")[0];
+    h1.innerHTML = "YOU LOST!!!! THE PARTY IS RUINED WITHOUT THE DJ.";
     end();
 }
 
