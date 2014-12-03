@@ -4,11 +4,24 @@ var tophY = 200;
 var moranX = 600;
 var moranY = 0;
 var mDirection = true;
+var djX = (window.innerWidth * .9)
+var djY = 200;
 
 var move = function(e){
-    if ((Math.abs(tophX - moranX) < 50) && (Math.abs(tophY - moranY) < 50)){
+    if ((Math.abs(tophX - moranX) < 70) && (Math.abs(tophY - moranY) < 50)){
 	var body = document.getElementsByTagName("body")[0];
 	body.style.background = "url('lostmoran.jpg')";
+	end()
+    }
+
+    if ((Math.abs(tophX - djX) < 70) && (Math.abs(tophY - djY) < 50)){
+	var body = document.getElementsByTagName("body")[0];
+	body.style.background = "url('bowl.jpg')";
+	var h1 = document.getElementsByTagName("h1")[0];
+	console.log(h1);
+	h1.innerHTML = "You won! Let the party live";
+	end();
+	
     }
 
     var topher = document.getElementById("topher");
@@ -64,10 +77,21 @@ function begin() {
 function end() {
     window.clearTimeout(myEvent);
     var topher = document.getElementById("topher");
+    var moran = document.getElementById("moran");
     topher.style.left = "0px";
+    tophX = 0;
     topher.style.top = "200px";
+    tophY = 200;
     moran.style.top = "0px";
+    var moranX = 600;
+    var moranY = 0;
+}
+
+function restart(){
+    var body = document.getElementsByTagName("body")[0];
+    body.style.background = "";
+    end();
 }
 
 document.getElementById("start").addEventListener('click', begin);
-document.getElementById("stop").addEventListener('click', end);
+document.getElementById("restart").addEventListener('click', restart);
