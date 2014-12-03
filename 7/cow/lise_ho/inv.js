@@ -1,17 +1,19 @@
-//MOZILLA FIREFOX doesnt like this javascript... :(
-//bouncey balls???
+//MOZILLA FIREFOX doesnt like this javascript... Firefox does not write onto the document the mouseX / mouseY, but other functionality does work...
 var picX,picY;
-
 var victoryScreen = function(e){
     console.log("victory");
     var r = confirm("YAY!!!\n\nYOU HAVE FOUND THLUFFY!!!\n\nPlay Again?");
     if (r){
-	location.reload();
+	//location.reload();
+	hide();
     }else{
+	var img = document.getElementById("goal");
+	img.style.visibility= "visible";
+	img.removeEventListener("click",victoryScreen);
 	console.log("x");
     }    
 };
-window.addEventListener('load',function(e){
+var hide = function(e){
     var img = document.getElementById("goal");
     img.style.position = "absolute";
     picX = randomness(window.innerWidth-70);
@@ -22,7 +24,9 @@ window.addEventListener('load',function(e){
     console.log(picY);
     img.style.visibility="hidden";
     img.addEventListener("click",victoryScreen);
-});
+};
+window.addEventListener('load',hide);
+
 var randomness = function(n){
     return Math.random()*n;
 };
@@ -35,17 +39,17 @@ var sq = function(d){
 var dist = function(x1, y1, x2,y2){
     return Math.sqrt(sq(y2-y1)+ sq(x2-x1));
 };
-var audio = document.getElementById("z");
+//var audio = document.getElementById("z");
 window.addEventListener('mousemove',function(e){
    // console.log(window.innerHeight);
 //     console.log(window.innerWidth);
     mouseX = e.pageX;
     mouseY = e.pageY;
-    tracker.innerText= mouseX +"," + mouseY;
+    tracker.innerText= mouseX +" , " + mouseY;
     dista.innerText= dist(mouseX,mouseY,5,5).toString();
-    if (dist(mouseX,mouseY,picX,picY)>0 ){
-	timedevent();
-    }
+    //if (dist(mouseX,mouseY,picX,picY)>0 ){
+//	timedevent();
+   // }
     
 });
 var myevent;
