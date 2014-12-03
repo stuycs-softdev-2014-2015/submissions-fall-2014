@@ -1,5 +1,4 @@
-var mouseX, mouseY
-var findX, findY;
+var mouseX, mouseY;
 var dist;
 
 window.addEventListener('mousemove', function(e) {
@@ -35,44 +34,53 @@ var play = function() {
     y = y.substring(0, y.length-2)+25;
 
     if ( !isNaN(mouseX) && !isNaN(mouseY) ) {
-	light.style.left = mouseX + 'px';
-	light.style.top = mouseY + 'px';
+    light.style.left = mouseX + 'px';
+    light.style.top = mouseY + 'px';
     }
 
     if (mouseX < x) 
-	x = x - 0 + 1;     
+    x = x - 0 + 1;     
     else 
-	x = x - 1;
+    x = x - 1;
     if (mouseY < y)
-	y = y - 0 + 1;
+    y = y - 0 + 1;
     else 
-	y = y - 1;
+    y = y - 1;
     swiper.style.left = x + 'px';
     swiper.style.top = y + 'px';
     x+=25;
     y+=25;
-    dist = Math.sqrt( Math.pow(x-mouseX,2) + Math.pow(y-mouseY,2) )
+    dist = Math.sqrt( Math.pow(x-mouseX,2) + Math.pow(y-mouseY,2) );
 
-    if ( dist < 45 ) 
-	swiper.style.visibility = 'visible'
-    else
-	swiper.style.visibility = 'hidden'
+    if ( dist > 50 && dist < 100 ) {
+    light.setAttribute('height', '150px');
+    light.setAttribute('width', '150px');
+    light.style.margin = '-75px';
+    swiper.style.visibility = "hidden";
+    } else if ( dist < 50 ) {
+    light.setAttribute('height', '170px');
+    light.setAttribute('width', '170px');
+    light.style.margin = '-85px';
+    swiper.style.visibility = 'visible';
+    } else {
+    light.setAttribute('height', '100px');
+    light.setAttribute('width', '100px');
+    light.style.margin = '-50px';
+    swiper.style.visibility = 'hidden';
+}
+
 
     if (x < 0 || x > 1100 || y < 0 || y > 600) {
-	window.alert("He got away!");
-	location.reload();
+    window.alert("He got away!");
+    location.reload();
     }
-//    console.log(dist);
-//    console.log(x + ", " + y);
-//    console.log(mouseX + ", " + mouseY);
-
-}
+};
 
 
 window.addEventListener('mousedown', function() { 
     if ( dist < 20 ) {
-	window.alert("Swiper no swiping!");
-	location.reload();
+    window.alert("Swiper no swiping!");
+    location.reload();
     }
 } );
 
