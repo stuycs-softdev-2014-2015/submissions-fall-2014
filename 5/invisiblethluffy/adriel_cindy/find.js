@@ -1,8 +1,5 @@
 var mouseX, mouseY
-<<<<<<< HEAD
-=======
 var findX, findY;
->>>>>>> 0fc50f4882704a62e9ce92fd1a50169eaceeba31
 var dist;
 
 window.addEventListener('mousemove', function(e) {
@@ -10,7 +7,6 @@ window.addEventListener('mousemove', function(e) {
     mouseY = e.pageY;
 });
 
-<<<<<<< HEAD
 var light = document.createElement('img');
 light.setAttribute('src', 'light.png');
 light.setAttribute('height', '100px');
@@ -81,24 +77,3 @@ window.addEventListener('mousedown', function() {
 } );
 
 event = setInterval(play,100);
-=======
-var play = function() {
-
-    findX = 400;
-    findY = 400;
-
-    dist = Math.sqrt( Math.pow(findX-mouseX,2) + Math.pow(findY-mouseY,2) )
-
-    console.log(dist);
-    console.log(mouseX + ", " + mouseY);
-
-}
-
-window.addEventListener('mousedown', function() { 
-    if ( dist < 100 ) 
-	window.alert("Yay!");
-} );
-
-event = setInterval(play,100);
-
->>>>>>> 0fc50f4882704a62e9ce92fd1a50169eaceeba31
