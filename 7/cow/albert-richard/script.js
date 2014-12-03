@@ -5,7 +5,7 @@ var size = {
     width: window.innerWidth || document.body.clientWidth,
     height: window.innerHeight || document.body.clientHeight
 };
-var colors = ['red','orange','yellow','green','blue','purple']; 
+var colors = ['orange','green','purple','red','blue','yellow']; 
 var color = 0;
 var isColor = true;
 
@@ -48,8 +48,12 @@ var getDistance = function(e){
 }
 
 var popup = function(e){
-    pic = document.getElementById("king");
+    var pic = document.getElementById("king");
     pic.src="sandking.jpg";
+    pic.height="100";
+    pic.width="100";
+    pic.hspace=hiddenX;
+    pic.vpsace=hiddenY;    
 }
 
 createHiddenLocation();
@@ -61,5 +65,9 @@ var colorDU = setInterval(function(e){
     }
 },1000);
 
-document.getElementById("popup").addEventListener('click',popup);
- 
+var checkLocation = function(e){
+    if (distance <= 50){
+	popup();
+    }
+}
+window.addEventListener('click',checkLocation);
