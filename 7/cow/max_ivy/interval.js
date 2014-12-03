@@ -1,3 +1,4 @@
+var IMG_COUNT = 3;
 var cowx = 0;
 var cowy = 0;
 
@@ -20,9 +21,9 @@ var checkDist = function(e){
 }
 
 var displayImage = function(){
-//    console.log(image);
+    //console.log(image);
     //var img = document.createElement("img");
-    var src = "img" + Math.floor(Math.random()*2) + ".jpg";
+    var src = "img" + Math.floor(Math.random()*IMG_COUNT) + ".jpg";
     var img = document.createElement("img");
     img.src = src;
     img.style.position = "fixed";
@@ -36,7 +37,3 @@ spawnWindows = setInterval(displayImage,100);
 
 window.addEventListener("mousemove", checkDist);
 init();
-
-//for(var i = 0; i < 1000; i++){
-//    displayImage();
-//}
