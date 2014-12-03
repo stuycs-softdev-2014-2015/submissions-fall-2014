@@ -7,6 +7,8 @@ var d;
 var picX;
 var picY;
 
+var found = false;
+
 var randomLoc = function(){
     var width = parseInt(pic.getAttribute("width"));
     var height = parseInt(pic.getAttribute("height"));
@@ -39,7 +41,7 @@ var checkIfFound = function(e){
     console.log("click");
     if (d <= 80){
 	pic.style.visibility = "visible";
-	console.log("FOUND");
+	found = true;
     }
 }
 
