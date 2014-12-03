@@ -19,8 +19,8 @@ function distance(x1,y1, x2, y2){
 
 function random() {
 var thluffy=document.getElementById("thluffy");
-thluffy.style.left= Math.floor((Math.random() * 1400) + 1) + "px"; 
-thluffy.style.top= Math.floor((Math.random() * 500) + 1) + "px"; 
+thluffy.style.left= Math.floor((Math.random() * 1300) + 1) + "px"; 
+thluffy.style.top= Math.floor((Math.random() * 200) + 300) + "px"; 
 }
 
 function resize() {
