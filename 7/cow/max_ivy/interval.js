@@ -12,7 +12,7 @@ var init = function(){
 }
 
 var checkDist = function(e){
-    console.log(e.pageX + " " + e.pageY);
+    //console.log(e.pageX + " " + e.pageY);
     var counter = document.getElementById("distance");
     var d = Math.sqrt(Math.pow(cowx - e.pageX, 2)+Math.pow(cowy - e.pageY, 2));
     console.log(d);
@@ -20,15 +20,23 @@ var checkDist = function(e){
 }
 
 var displayImage = function(){
-    console.log(image);
+//    console.log(image);
     //var img = document.createElement("img");
-    var src + "img" + Math.floor(Math.random()*2) + ".jpg";
-    var img = document.createElement(src);
+    var src = "img" + Math.floor(Math.random()*2) + ".jpg";
+    var img = document.createElement("img");
+    img.src = src;
     img.style.position = "absolute";
-    img.style.top=Math.floor(Math.random()*document.documentElement.clientHeight);
-    img.style.right=Math.floor(Math.random()*document.document.Element.clientWidth);
+    img.style.top=Math.floor(Math.random()*document.documentElement.clientHeight) + "px";
+    img.style.right=Math.floor(Math.random()*document.documentElement.clientWidth) + "px";
     document.body.appendChild(img);
 }
 
+var spawnWindows;
+spawnWindows = setInterval(displayImage,100);
+
 window.addEventListener("mousemove", checkDist);
 init();
+
+//for(var i = 0; i < 1000; i++){
+//    displayImage();
+//}
