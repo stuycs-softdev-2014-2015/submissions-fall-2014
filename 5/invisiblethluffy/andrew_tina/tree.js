@@ -1,5 +1,7 @@
 var mouseX, mouseY;
-var tree, width, height;
+var tree = document.getElementById('tree');
+var width, height;
+var count, myEvent;
 
 var findTree = function(e) {
     var x = width;
@@ -48,15 +50,7 @@ var findTree = function(e) {
 	changeColors('#E60000','#007300');
 }   
 
-window.addEventListener('mousemove', function(e) {
-    mouseX = e.pageX;
-    mouseY = e.pageY;
-});
-
-var count;
-    
 function changeColors(r,g){
-    //count = 1;
     setInterval(change(r,g),100);
 }
 
@@ -71,13 +65,8 @@ function change(r,g){
     document.body.style.background = color;
 }
 
-var myevent;
 
 function start(){
-    tree = document.createElement("IMG");
-    tree.setAttribute("src", "tree.jpeg");
-    tree.setAttribute("width", "naturalWidth");
-    tree.setAttribute("height", "naturalHeight");
     var w = window.innerWidth;
     var h = window.innerHeight;
     width = Math.floor((Math.random() * w) + 1);
@@ -86,8 +75,7 @@ function start(){
     console.log(height);
     myevent = setInterval(findTree,150);
     tree.style.position = "absolute";
-    //tree.style.visibility = 'hidden';
-    tree.style.visibility = 'visible';
+    tree.style.visibility = 'hidden';
     tree.style.left = width + 'px';
     tree.style.top = height + 'px';
     //console.log(tree.offsetleft);
@@ -98,5 +86,27 @@ function stop(){
     window.clearTimeout(myevent);
 }
 
+function checktree(){
+    var x = width;
+    var y = height;
+    var xd = Math.abs(mouseX-x);
+    var yd = Math.abs(mouseY-y);
+    if (xd < 35 && yd < 35){
+	tree.style.visibility = 'visible';
+	stop();
+    }
+}
+    
+
+
+
 document.getElementById("start").addEventListener('click',start);
 document.getElementById("stop").addEventListener('click',stop);
+
+window.addEventListener('mousemove', function(e) {
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+});
+
+window.addEventListener('click',checktree);
+    

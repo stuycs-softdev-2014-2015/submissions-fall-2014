@@ -8,29 +8,31 @@ var victoryScreen = function(e){
 	hide();
     }else{
 	var img = document.getElementById("goal");
-	img.style.visibility= "visible";
+	//img.style.display="";
+	//img.style.visibility="visible"  <- not working
 	img.removeEventListener("click",victoryScreen);
+	img.src="static/thluffy.png";
 	window.location.href="home.html";
     }    
     var c = document.getElementById("count");
     c.innerText= parseInt(c.innerText)+1;
     if (c.innerText == 4){
-	alert("You have unlocked a secret feature. Click on Thluffy Donuts!");
+	alert("You have unlocked a secret feature. Click on THLUFFY DONUTS!");
     }
     if(c.innerText >=4){
 	var zum = document.getElementById("zum");
 	zum.href="extras/donuts.html";
-	zum.innerText = "Thluffy Donuts";
+	zum.innerText="THLUFFY DONUTS";
     }
 };
 var hide = function(e){
     var img = document.getElementById("goal");
+    img.src ="static/large.gif";
     img.style.position = "absolute";
     picX = randomness(window.innerWidth-70);
     picY = randomness(window.innerHeight-70);
     img.style.left= picX +"px";
     img.style.top= picY +"px";
-    img.style.visibility="visible"; //***
     img.addEventListener("click",victoryScreen);
 };
 window.addEventListener('load',hide);
@@ -47,7 +49,7 @@ var soundy = function(e){
 	audio.volume = 1;
     }
     else if (distance<250){
-	audio.volume = .69;
+	audio.volume = .49;
     }
     else if(distance<540){
 	audio.volume = .4;
@@ -76,7 +78,7 @@ window.addEventListener('mousemove',function(e){
 });
 
 var givingup = function(e){
-    var r = confirm("You are giving up on Fluffy. \nIs this really okay with you? ");
+    var r = confirm("You are giving up on Fluffy.\n\nIs this really okay with you?\n ");
     if (r){
 	window.location.href="home.html";
     } 
@@ -85,8 +87,14 @@ var giveup = document.getElementById("giveup");
 giveup.addEventListener("click",givingup);
 
 var pause = function(){
-    alert("BREAK TIME. \nPress okay with you are ready to resume your search for Thluffy.");
+    alert("BREAK TIME.\n\nThluffy will stop hissing at you for now.\n\nPress okay with you are ready to resume your search for Thluffy.");
 }
 var p = document.getElementById("break");
 p.addEventListener("click",pause);
+
+
+var reset = document.getElementById("reset");
+reset.addEventListener("click",function(e){
+    hide();
+});
 

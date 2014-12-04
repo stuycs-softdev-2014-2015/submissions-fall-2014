@@ -1,11 +1,9 @@
-var 
 var mouseX;
 var mouseY;
 
 window.addEventListener('mousemove',function(e){
     mouseX=e.pageX;
     mouseY=e.pageY;
-    console.log(mouseX);
 });
 
 window.addEventListener('click',startit);
@@ -23,15 +21,19 @@ function move(e) {
     if (isNaN(y)) y=200;
     if (mouseX<x) {
 	x=x-3;
-	joe.src="static/joe.png";
+	joe.src="static/joe_left.png";
     } else {
 	x=x+3;
-	joe.src="static/joe.png";
+	joe.src="static/joe_right.png";
     }
     if (mouseY<y) {
 	y=y-3;
     } else {
 	y=y+3;
+    }
+    console.log((((Math.abs(mouseX-x))<=20)&&((Math.abs(mouseY-y))<=20)));
+    if (((Math.abs(mouseX-x))<=20)&&((Math.abs(mouseY-y))<=20)){
+	play_joeMP3();
     }
     moveelt.style.left=x+"px";
     moveelt.style.top=y+"px";
@@ -40,9 +42,17 @@ function move(e) {
 var myevent;
 
 function startit() {
-    myevent = setInterval(move,100);
+    myevent = setInterval(move,30);
+    var beg_prompt = document.getElementById("beg_prompt");
+    beg_prompt.parentNode.removeChild(beg_prompt);
+    play_computeMP3();
+    window.removeEventListener('click',startit);
 }
 
-function stopit() {
-    window.clearTimeout(myevent);
+function play_computeMP3(){
+    document.getElementById("compute_mp3").play();
+}
+
+function play_joeMP3(){
+    document.getElementById("joe_mp3").play();
 }

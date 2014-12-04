@@ -21,6 +21,13 @@ function away() {
     var moveelt=document.querySelector('.move');
     moveelt.style.left=1000+"px";
     moveelt.style.top=1000+"px";
+    alert("You killed the fly!");
+}
+
+function detectLeftButton(evt){
+    evt = evt || window.event;
+    var button = evt.which || evt.button;
+    return button == 1;
 }
 
 function move(e) {
@@ -42,12 +49,6 @@ function move(e) {
     var deltaX = mouseX-x;
     var deltaY = mouseY-y;
 
-    if (deltaX<20 && deltaX>-20 && deltaY<20 && deltaY>-20){
-	alert("YOU KILLED THE FLY");
-	stop();
-	away();
-    }
-    else{
 	if (deltaX >0) {
 	    if (deltaX<100)
 		x=x-20;
@@ -79,7 +80,7 @@ function move(e) {
 	    else if (deltaY>-400)
 		y=y+2;
 	}
-    }
+    
 
     if (x<50)
 	x=Math.floor((Math.random() * 50));
