@@ -86,39 +86,23 @@ var whatMusic = function(e){
     console.log("dist: "+dist);
 
     if(dist<50){
-	
+	playMusic(five);
+    }
 
-
-	else if(dist < 250){
-	if (playing){
-	   // console.log("nowPlaying: " + nowPlaying);
-	    nowPlaying.pause();
-	}
-	else {
-	    playing = true;
-	}
-	
-	nowPlaying = four;
-	four.play();
-}
-/*
+    else if(dist < 250){
+	playMusic(four);
+    }
     else if(dist < 450){
-	var three= document.getElementById("three");
-	playing = true;
-	three.addEventListener("canplay",playMusic);
+    	playMusic(three);
     }
     else if(dist < 650){
-	var two= document.getElementById("two");
-	playing = true;
-	two.addEventListener("canplay",playMusic);
+	playMusic(two);
     }
-    else{
-	var one = document.getElementById("one");
-	playing = true;
-	one.addEventListener("canplay",playMusic);
+    else {
+	playMusic(one);
     }
-*/
-}	
+}
+	
 //http://stackoverflow.com/questions/3273552/html-5-audio-looping
 if (typeof one.loop == 'boolean')
 {
