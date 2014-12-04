@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style>
+    <style type="text/css">
       .red {color: #ff0000;}
       .green{color : #00ff00;}
       .blue {color:0000ff;}
       .img {height:50px; }
       .smallerImg {height:10px; }
       .move {position:absolute; left:100px; top:500px; }
-      body { background-image: url("cake.png"); 
-             background-repeat: no-repeat;
-             background-size: cover;
-             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif}
+      body {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      cursor: url(static/swatter.gif);}
+      .noselect {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      }
     </style>
 
     <meta charset="UTF-8">
   </head>
   <body>
-    
-    <div>
-      <input type=submit id="start" value="Start"></submit>
-      <input type=submit id="stop" value="Stop"></submit>
-    </div>
-
+   
+    <div id="body" class="noselect">
     <h3>Ling Dong and Tianshi Wang<br>
       Period 7 </h3>
-    <h1 id="title" class="red">Guard the food.</h1>
+    <h1 id="title" class="red">KILL THE FLY</h1>
     <div class="move">
-      <img id="thluffy" class="img" src="thluffy.gif">
+      <img id="fly" class="img" src=static/fly.png>
     </div>
 
     <script src="timer.js"></script>
 
   </body>
+  </div>
 </html>

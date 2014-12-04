@@ -1,53 +1,328 @@
 <!DOCTYPE HTML>
 <html>
-  <body>
-    <img style="visibility:hidden; " id="thluffy" src="thluffy.png" width="100" height="100">
-    <audio controls id="one" style="visibility:hidden" loop="true">
+  <body id="body" onload="$('#canvasRain').hide()">
+    <canvas  id="canvasRain" width="800px" height="800px">Canvas Not Supported</canvas>
+    <img style="visibility:hidden;" id="thluffy" src="thluffy.png" width="100" height="100">
+    <audio controls id="soundOne" style="visibility:hidden" loop="true">
       <source src="childintime1.ogg" type="audio/ogg">
     </audio>
-    <audio controls id="two" style="visibility:hidden" loop="true">
+    <audio controls id="soundTwo" style="visibility:hidden" loop="true">
       <source src="childintime2.ogg" type="audio/ogg">
     </audio>
-    <audio controls id="three" style="visibility:hidden" loop="true">
+    <audio controls id="soundThree" style="visibility:hidden" loop="true">
       <source src="childintime3.ogg" type="audio/ogg">
     </audio>
+    <audio controls id="soundFour" style="visibility:hidden" loop="true">
+      <source src="angelofdeath.ogg" type="audio/ogg">
+    </audio>
+    <audio controls id="soundFive" style="visibility:hidden" loop="true">
+      <source src="rainingblood1.ogg" type="audio/ogg">
+    </audio>
+    <audio controls id="soundSix" style="visibility:hidden" loop="true">
+      <source src="rainingblood2.ogg" type="audio/ogg">
+   </audio>
+    <audio controls id="soundSeven" style="visibility:hidden" loop="true">
+      <source src="rainingblood3.ogg" type="audio/ogg">
+    </audio>
+    <audio controls id="soundEight" style="visibility:hidden" loop="true">
+      <source src="rainingblood4.ogg" type="audio/ogg">
+    </audio>
+    <div id="txt">
+      <h2 id="score">Score: 0</h2>
+      <h1>Levels:</h1>
+      <ul>
+	<li><button id="levelOne">Easy 1</button></li>
+	<li><button id="levelTwo">Easy 2</button></li>
+	<li><button id="levelThree">Hard 1</button></li>
+	<li><button id="levelFour">Hard 2</button></li>
+      </ul>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
+      var canvas = null;
+      var context = null;
+      var bufferCanvas = null;
+      var bufferCanvasCtx = null;
+      var flakeArray = [];
+      var flakeTimer = null;
+      var maxFlakes = 5000; // Here you may set max flackes to be created 
+      
+      function init() {
+      //Canvas on Page
+      canvas = document.getElementById('canvasRain');
+      context = canvas.getContext("2d");
+      //Buffer Canvas
+      bufferCanvas = document.createElement("canvas");
+      bufferCanvasCtx = bufferCanvas.getContext("2d");
+      //bufferCanvasCtx.canvas.width = context.canvas.width;
+      //bufferCanvasCtx.canvas.height = context.canvas.height;
+      bufferCanvasCtx.canvas.width = window.innerWidth;
+      bufferCanvasCtx.canvas.height = window.innerHeight;
+      
+      
+      flakeTimer = setInterval(addFlake, 2);
+      
+      Draw();
+      
+      setInterval(animate, 10);
+      
+      }
+      function animate() {
+      
+      Update();
+      Draw();
+      
+      }
+      function addFlake() {
+      
+      flakeArray[flakeArray.length] = new Flake();
+      if (flakeArray.length == maxFlakes)
+      clearInterval(flakeTimer);
+      }
+      function blank() {
+      bufferCanvasCtx.fillStyle = "rgba(0,0,0,0.8)";
+      bufferCanvasCtx.fillRect(0, 0, bufferCanvasCtx.canvas.width, bufferCanvasCtx.canvas.height);
+      
+      }
+      function Update() {
+      for (var i = 0; i < flakeArray.length; i++) {
+			  if (flakeArray[i].y < context.canvas.height) {
+						flakeArray[i].y += flakeArray[i].speed;
+						if (flakeArray[i].y > context.canvas.height)
+			  flakeArray[i].y = -5;
+			  flakeArray[i].x += flakeArray[i].drift;
+			  if (flakeArray[i].x > context.canvas.width)
+        flakeArray[i].x = 0;
+        }
+        }
+	
+	}
+	function Flake() {
+        this.x = Math.round(Math.random() * context.canvas.width);
+        this.y = -10;
+        this.drift = Math.random();
+        this.speed = Math.round(Math.random() * 5) + 1;
+        this.width = (Math.random() * 3) + 2;
+        this.height = this.width;
+	}
+	function Draw() {
+        context.save();
+	
+        blank();
+	
+        for (var i = 0; i < flakeArray.length; i++) {
+			    bufferCanvasCtx.fillStyle = "red";
+			    bufferCanvasCtx.fillRect(flakeArray[i].x, flakeArray[i].y, flakeArray[i].width, flakeArray[i].height);
+			    }
+			    
+			    
+			    context.drawImage(bufferCanvas, 0, 0, bufferCanvas.width, bufferCanvas.height);
+			    context.restore();
+			    }
+      var score = 0;
+      var playing = 0;
+      var thluffyLeft=0;
+      var thluffyTop=0;
       var thluffy = document.getElementById("thluffy");
       thluffy.style.position="absolute";
+      var song1 = document.getElementById("soundOne");
+      var song2 = document.getElementById("soundTwo");
+      var song3 = document.getElementById("soundThree");
+      var song4 = document.getElementById("soundFour");
+      var song5 = document.getElementById("soundFive");
+      var song6 = document.getElementById("soundSix");
+      var song7 = document.getElementById("soundSeven");
+      var song8 = document.getElementById("soundEight");
+      var reset = function(lvl) {
+      document.getElementById("body").setAttribute ( "style", "background-image:None" );
+      document.removeEventListener("mousemove", firstSetup);
+      document.removeEventListener("mousemove", secondSetup);
+      song1.pause();
+      song1.currentTime=0;
+      song2.pause();
+      song2.currentTime=0;
+      song3.pause();
+      song3.currentTime=0;
+      song4.pause();
+      song4.currentTime=0;
+      song5.pause();
+      song5.currentTime=0;
+      song6.pause();
+      song6.currentTime=0;
+      song7.pause();
+      song7.currentTime=0;
+      song8.pause();
+      song8.currentTime=0;
+      if (lvl==1) {
+      document.addEventListener("mousemove", firstSetup);
+      } else if (lvl==2) {
+      document.addEventListener("mousemove", secondSetup);
+      } else if (lvl==3) {
+      document.addEventListener("mousemove", firstSetup);
+      var myevent = setTimeout(changeColor, 1);
+      } else if (lvl==4) {
+      document.addEventListener("mousemove", secondSetup);
+      document.getElementById("body").setAttribute ( "style", "background-image:url('windowsmouse.png')" );
+      }
+      document.getElementById("txt").style.visibility="hidden";
+      playing = 1;
+      console.log("reset");
       var randLeft = Math.floor(Math.random() * window.innerWidth);
+      thluffyLeft = randLeft;
+      thluffyLeft2 = randLeft-50;
       var randTop = Math.floor(Math.random() * window.innerHeight);
-      thluffy.style.left=randLeft-50;
-      thluffy.style.top=randTop-50;
+      thluffyTop = randTop;
+      thluffyTop2 = randTop-50;
       console.log("thluffy: " + thluffy.style.left);
+      thluffy.style.left=thluffyLeft2+"px";
+      thluffy.style.top=thluffyTop2+"px";
+      console.log("thluffy top: " + thluffy.style.top);
       console.log(thluffy.style.left)
+      thluffy.style.visibility="hidden";
+      }
+      var changeColor = function(e) {
+      if (playing==0) {
+      console.log("stop");
+      clearTimeout(myevent);
+      }
+      else {
+      myevent = setTimeout(changeColor, 1);
+      }
+      console.log("changecolor");
+      var num = Math.floor(Math.random() * 10);
+      if (num==1) {
+      document.getElementById("body").setAttribute("bgcolor", "red");
+      }
+      if (num==2) {
+      console.log("2");
+      document.getElementById("body").setAttribute("bgcolor", "blue");
+      }
+      if (num==3) {
+      console.log("3");
+      document.getElementById("body").setAttribute("bgcolor", "green");
+      }
+      if (num==4) {
+      console.log("4");
+      document.getElementById("body").setAttribute("bgcolor", "yellow");
+      }
+      if (num==5) {
+      console.log("5");
+      document.getElementById("body").setAttribute("bgcolor", "pink");
+      }
+      if (num==6) {
+      console.log("6");
+      document.getElementById("body").setAttribute("bgcolor", "orange");
+      }
+      if (num==7) {
+      console.log("7");
+      document.getElementById("body").setAttribute("bgcolor", "gray");
+      }
+      if (num==8) {
+      console.log("8");
+      document.getElementById("body").setAttribute("bgcolor", "silver");
+      }
+      if (num==9) {
+      console.log("9");
+      document.getElementById("body").setAttribute("bgcolor", "purple");
+      }
+      if (num==10) {
+      console.log("10");
+      document.getElementById("body").setAttribute("bgcolor", "white");
+      }
+      }
       thluffy.addEventListener("click", function(e) {console.log("click"); thluffy.style.visibility="visible";});
       thluffy.addEventListener("mouseover", function(e) {console.log("hi");});
-      document.addEventListener("mousemove", function(e) {
-      var distance = Math.sqrt((e.clientX-randLeft)*(e.clientX-randLeft)+(e.clientY-randTop)*(e.clientY-randTop));
-      var song1 = document.getElementById("one");
-      var song2 = document.getElementById("two");
-      var song3 = document.getElementById("three");
+      var firstSetup = function(e) {
+      document.getElementById("body").bgcolor="white";
+      var distance = Math.sqrt((e.clientX-thluffyLeft)*(e.clientX-thluffyLeft)+(e.clientY-thluffyTop)*(e.clientY-thluffyTop));
+      if (playing==1) {
       if (distance > 500) {
       song1.play();
       song2.pause();
       song3.pause();
+      song4.pause();
       console.log("500");
-      } else if ( distance > 100 ) { 
-      song2.play();
+      } else if ( distance > 250 ) {
       song1.pause();
+      song2.play();
       song3.pause();
-      console.log("100");
-      } else if ( distance > 50 ) {
-      song3.play();
+      song4.pause();
+      }else if ( distance > 100 ) { 
       song1.pause();
       song2.pause();
-      console.log("50");
+      song3.play();
+      song4.pause();
+      console.log("100");
       } else {
-      thluffy.style.left=randLeft-50+"px";
-      thluffy.style.top=randTop-50+"px";
+      song1.pause();
+      song2.pause();
+      song3.pause();
+      song4.play();
+      console.log("50");
       thluffy.style.visibility="visible";
       console.log("0");
-      }});
+      score = score + 1;
+      document.getElementById("score").innerHTML = "Score: " + score;
+      document.getElementById("txt").style.visibility="visible";      
+      playing = 0;
+      }
+      }};
+      var secondSetup = function(e) {
+      document.getElementById("body").bgcolor="white";
+      var distance = Math.sqrt((e.clientX-thluffyLeft)*(e.clientX-thluffyLeft)+(e.clientY-thluffyTop)*(e.clientY-thluffyTop));
+      if (playing==1) {
+      if (distance > 500) {
+      song5.play();
+      song6.pause();
+      song7.pause();
+      song8.pause();
+      console.log("500");
+      } else if ( distance > 250 ) {
+      song5.pause();
+      song6.play();
+      song7.pause();
+      song8.pause();
+      }else if ( distance > 100 ) { 
+      song5.pause();
+      song6.pause();
+      song7.play();
+      song8.pause();
+      console.log("100");
+      } else {
+      song5.pause();
+      song6.pause();
+      song7.pause();
+      song8.play();
+      console.log("50");
+      thluffy.style.visibility="visible";
+      $("#canvasRain").show();
+      var hideRain = setTimeout( function() { $("#canvasRain").hide()}, 5000);
+      console.log("0");
+      score = score + 1;
+      document.getElementById("score").innerHTML = "Score: " + score;
+      document.getElementById("txt").style.visibility="visible";      
+      playing = 0;
+      init();
+      }
+      }};
+      var easy1 = document.getElementById("levelOne");
+      easy1.addEventListener("click", function(e) {
+      reset(1);
+      });
+      var easy2 = document.getElementById("levelTwo");
+      easy2.addEventListener("click", function(e) {
+      reset(2);
+      });
+      var hard1 = document.getElementById("levelThree");
+      hard1.addEventListener("click", function(e) {
+      reset(3);
+      score = score + 1;
+      });
+      var hard2 = document.getElementById("levelFour");
+      hard2.addEventListener("click", function(e) {
+      reset(4);
+      score = score + 1;
+      });
     </script>
   </body>
 </html>
