@@ -3,37 +3,71 @@ var tX, tY;
 var XY = document.getElementById("coords");
 var body = document.body;
 var thluffy = document.getElementById("thluffy");
+var distance;
+var newBGOpacity; //pure color based on difference
+var op = 1; //current opacity
+var fade = 0.005; //how quickly the background fades away
+var rate = 1500;
 
-var changeBackground = function() {
-    var distance = Math.sqrt(Math.pow(mouseX - tX, 2) + Math.pow(mouseY - tY, 2));
+var resetFlash = function() {
+	op = newBGOpacity;
+}
+
+var calcBackground = function() {
+	distance = Math.sqrt(Math.pow(mouseX - tX, 2) + Math.pow(mouseY - tY, 2));
     //console.log("distance: " + distance);
-    var newBGOpacity;
-    if (distance >= 1000)
-	newBGOpacity = 0;
-    else if (distance < 10) {
-	newBGOpacity = 1;
+    if (distance >= 1500)
+    	newBGOpacity = 0;
+    else if (distance < 25) {
+    	newBGOpacity = 1;
     }
     else {
-	newBGOpacity = 1 - (distance / 990);
+    	newBGOpacity = 1 - (distance / 1500);
     }
-    body.style.backgroundColor = "rgba(0,255,0," + newBGOpacity + ")";
+    rate = distance;
+    console.log(distance);
+    //body.style.backgroundColor = "rgba(0,255,0," + newBGOpacity + ")";
+}
+
+var fadeBackground = function() {
+	op = op - fade;
+	body.style.backgroundColor = "rgba(0,255,0," + op + ")";
 }
 
 var setXY = function(e) {
-    mouseX = e.pageX;
-    mouseY = e.pageY;
-    XY.innerHTML = "mouseX: " + mouseX + ", mouseY: " + mouseY;
+	mouseX = e.pageX;
+	mouseY = e.pageY;
+	//XY.innerHTML = "mouseX: " + mouseX + ", mouseY: " + mouseY + " " + tX + " " + tY +" " + rate;
+}
+
+var showThluffy = function() {
+	var distance = Math.sqrt(Math.pow(mouseX - tX, 2) + Math.pow(mouseY - tY, 2));
+	if (distance < 50) {
+		thluffy.style.visibility = "visible";
+		setTimeout(setup, 5000);
+	}
 }
 
 //setup page
+var setup = function() {
+	tX = Math.random() * (screen.width - 500);
+	tY = Math.random() * (screen.height - 500);
+	console.log(tX);
+	console.log(tY);
+	thluffy.style.left = tX + "px";
+	thluffy.style.top = tY + "px";
+	thluffy.style.visibility = "hidden";
+}
+
 tX = Math.random() * (screen.width - 200);
 tY = Math.random() * (screen.height - 200);
 console.log(tX);
 console.log(tY);
 thluffy.style.left = tX + "px";
-thluffy.style.top = tY + "px";
-
+thluffy.style.top = tY + "px";	
 window.addEventListener('mousemove', setXY);
-window.addEventListener('mousemove', changeBackground);
-setup;
-thluffy.addEventListener('click', showThluffy);
+window.addEventListener('mousemove', calcBackground);
+window.addEventListener('click', showThluffy);
+
+setInterval(fadeBackground, 10);
+setInterval(resetFlash, rate);
