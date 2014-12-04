@@ -2,10 +2,29 @@ var mouseX, mouseY;
 var dist;
 var tX, tY; //the x,y cor of the TREASURE
 
+//sound variable
+var ahoy = document.getElementById("ahoy");
+var arrr = document.getElementById("arrr");
+var final = document.getElementById("final");
+
 window.addEventListener('mousemove',function(e) { 
     mouseX = e.pageX;
     mouseY = e.pageY;
 });
+
+var sound = function(e) { 
+    dist2 = 1.0 - dist/2000;
+    console.log(dist2);
+    if (dist>550) { 
+	arrr.volume = dist2;
+	arrr.play()
+    }
+    else { 
+	ahoy.volume = dist2;
+	ahoy.play();
+    }
+}
+    
 
 //TREASURE image
 var treasure = document.createElement('img');
@@ -13,7 +32,7 @@ treasure.setAttribute('src','treasure.png');
 treasure.setAttribute('height','100px');
 treasure.setAttribute('width','100px');
 treasure.style.position = 'absolute';
-treasure.style.visibility = 'visible';
+treasure.style.visibility = 'hidden';
 tX =  Math.random()*window.innerWidth;
 tY =  Math.random()*window.innerHeight;
 treasure.style.left = tX + 'px';
@@ -93,6 +112,8 @@ var start = function() {
 	foot_left.setAttribute('height','225px');
 	foot_left.setAttribute('width','225px');
 	treasure.style.visibility = 'visible';
+	final.volume = 1;
+	final.play();
     }
     if (tX < mouseX) { 
 	foot_left.style.visibility = 'hidden';
@@ -115,3 +136,4 @@ window.addEventListener('mousedown',function() {
 
 
 event = setInterval(start,100);
+event = setInterval(sound,100);
