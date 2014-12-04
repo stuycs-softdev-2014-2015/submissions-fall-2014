@@ -6,6 +6,7 @@ tomato.height = 50;
 var start = document.getElementById("start");
 var tomatox , tomatoy;
 var globaldistance;
+var squish = new Audio('tomato.mp3');
 
 var create_tomato = function() {
     this.remove();
@@ -20,16 +21,18 @@ var create_tomato = function() {
     tomato.style.visibility = "hidden";
     document.body.appendChild(tomato);
     var event = setInterval(distance, 100);
-}
+};
 
 var win = function(){
     if (globaldistance < 25){
+	squish.play();
 	document.body.removeChild(tomato);
 	tomato.style.visibility = "visible";
 	document.body.appendChild(tomato);
+	start.innerHTML = "restart!";
 	document.body.appendChild(start);
     }
-}    
+};
 
 window.addEventListener('click' , win);
 window.addEventListener('mousemove', function(e){
@@ -39,11 +42,11 @@ window.addEventListener('mousemove', function(e){
 
 var event;
 var distance = function(){
-    var space = Math.sqrt(Math.pow((mouseX - tomatox) , 2) + 
-		 Math.pow((mouseY - tomatoy) , 2));
+    var space = Math.round(Math.sqrt(Math.pow((mouseX - tomatox) , 2) + 
+		 Math.pow((mouseY - tomatoy) , 2)));
     globaldistance = space;
     var d = document.getElementById("h1");
-    d.innerHTML = space + "";
-}
+    d.innerHTML = String.fromCharCode(space) + " " + space;
+};
 
 start.addEventListener('click', create_tomato);
