@@ -1,20 +1,31 @@
-var mole_counter = 0;
-var dead_moles = 0;
+var mole_counter;
+var moleX;
+var moleY;
+var mouseX;
+var mouseY;
 var hasMole; //boolean 
-var whacked = false; //boolean
 
-var whackMole = function(e){ 
-    console.log("Whack Mole");
-    mole_counter++;
-    document.getElementById("mole_counter").innerHTML =  mole_counter + " Moles Whacked";
-    whacked = true;
-}
+//Gets the location of the mouse
+var getLocation = function(e){
+    console.log(e.pageX+" "+e.pageY);
+    mouseX=e.pageX;
+    mouseY=e.pageY;
+};
+
 var removeMole = function(){
     if (document.getElementById("b") != null){
 	document.getElementById("b").remove();
     }
 };
 
+
+var removeMole = function(){
+    if (document.getElementById("b") != null){
+	document.getElementById("b").remove();
+    }
+};
+
+//decides the mole's position but idk if it really works yet
 var makeMole = function(e){
     removeMole();
     newmole = document.createElement("img");
@@ -30,59 +41,49 @@ var makeMole = function(e){
     newmole.style.marginLeft = moleX+"px";
     newmole.style.marginTop = moleY+"px";
     document.getElementById("img").appendChild(newmole);
-    newmole.addEventListener("click",whackMole);
-};
-
-var clearGame = function(e){
-    console.log("Clicked clear");
-    removeMole();
-    window.removeEventListener("click",whackMole);
-    mole_counter = 0;
-    dead_moles = 0;
-    hasMole = false;
-    document.getElementById("img").innerHTML="";
-    
 };
 
 var onScreen = function(){
     console.log("on screen function reached");
-    if (dead_moles == 3){
-	var loser = document.createElement("img");
-	if (mole_counter > 20)
-	    loser = "star3.jpg";
-	else if (mole_counter > 10)
-	    loser = "star2.jpg";
-	else loser = "star1.jpg";
-	clearGame();
-	document.getElementById("img").innerHTML = 
-	    "YOU LOSE <br> <img src= "+ loser + ">";
+    if (endgame){
+	//something;
     }
     else if (hasMole){
 	console.log("has mole");
 	removeMole();
 	hasMole = false;
-	if (whacked == false) 
-	    dead_moles++;
-	myevent = setTimeout(onScreen, 500);
-	whacked = false;
+	myevent = setTimeout(onScreen, 300);
     }else{
 	console.log("no mole - false");
 	makeMole();
 	hasMole = true;
-	myevent = setTimeout(onScreen, 2000 - mole_counter * 100);
+	myevent = setTimeout(onScreen, 300);
     } 
 };
 
 var startGame = function(e){
-    console.log("Start game");
+    window.addEventListener("click",makeMole);
     hasMole = false;
+    endgame = false;
     onScreen();
 };
+var clearGame = function(e){
+    console.log("Clicked clear");
+    window.removeEventListener("click",whackMole);
+    
+};
+var whackMole = function(e){
+    
+    mole_counter++;
+    document.getElementById("mole_counter").appendChild(mole_counter);
+}
 
+/*var inMole = function(){
+    
+}*/
 
 //buttons
 var start = document.getElementById("start");
 start.addEventListener("click",startGame);
-
 var clear = document.getElementById("clear");
 clear.addEventListener("click",clearGame);
