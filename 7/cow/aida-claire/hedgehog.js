@@ -9,18 +9,25 @@ hedgehog.style.left = hedgehogX + "px";
 //Hiding hedgehog
 hedgehog.style.visibility = "hidden";
 ///Adding event listener to hedgehog. Will become visible once clicked.
-hedgehog.addEventListener('click', function(e) {
+var reveal = function(e) {
     hedgehog.style.visibility = "visible";
     console.log("FOUND IT");
-});
+};
+var mouseOnImg = function() {
+	if (mouseX > hedgehogX && mouseX < 150 + hedgehogX) {
+		if (mouseY > hedgehogY && mouseY < 100 + hedgehogY) {
+			return true;
+		}
+	}
+	return false;
+}
 var distance = function(e) {
     mouseX = e.pageX;
     mouseY = e.pageY;
     var dist;
     dist = Math.sqrt(Math.pow((mouseX - hedgehogX),2) + Math.pow((mouseY - hedgehogY),2));
-    console.log(dist);
+    if (mouseOnImg()) {
+    	reveal();
+    }
 };
 window.addEventListener('mousemove', distance); 
-
-
-

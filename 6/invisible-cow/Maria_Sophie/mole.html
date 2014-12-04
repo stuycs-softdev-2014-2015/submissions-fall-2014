@@ -1,25 +1,19 @@
-<!doctype>
+<!doctype html>
 <html>
-<head>
-  <style>
-
-  </style>
-</head>
-<body>
-310,335
-<button id="start" name="Start">start</button>
-
-<div id="img" >
-<img src="mole.png" height="115" width="150" style="margin-left:250px; margin-top:300px">
-</div>
-
-<script>
-window.addEventListener("click",function(e){
-console.log(e.pageX+" "+e.pageY);
-});
-
-</script>
-</body>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/paper/bootstrap.min.css">
+    <title>Whack a Mole!</title>
+  </head>
+  <body>
+    <div>
+      <button class="btn btn-info btn-large" id="start">Start</button>
+      <button class="btn btn-success btn-large" id="clear"> Clear Game </button>
+      <div id="img">
+	<img src="mole.png" height="46" width="60">
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
 </html>
 
 
