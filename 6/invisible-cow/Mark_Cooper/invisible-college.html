@@ -2,15 +2,17 @@
 <html>
 <head>
 <style>
-.img {position:absolute; height:50px; height:50px;}
+.img {position:absolute; display:normal; visibility:hidden;}
 </style>
 </head>
 <body>
 
-<img  id="Harvard" class="img" src="Harvard.jpg" >
+<img  id="Harvard" height="50" width="50"  class="img" src="Harvard.jpg">
+
+<img id="Study" class="img" src="study.png" style="top:0px;left:200px;visibility:visible">
 
 
-<button onclick="moveImage()">New Game</button>
+<button onclick="newGame()">New Game</button>
 	   
 
 <script src="invisible-college.js"></script>

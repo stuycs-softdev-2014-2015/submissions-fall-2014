@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<head>
+ <title> Invisible Santa </title>
+<link rel="shortcut icon" href="icon.ico">
+
 <style>
   .move {position:absolute;top=200px; left = 200px}
  <!-- .img {height:25%; width:25%}-->
@@ -17,10 +21,24 @@
 .existent{
  display:block
 }
+.behind{
+ z-index:-1
+}
+html{
+cursor:url(cursor.gif),zoom-out;
+}
+
 </style>
-
-<input type="submit" id="visible" value="Show/Hide"></input>
-
+</head>
+<body>
+<!--
+only losers use this button
+<input type="submit" id="visible" value="Show/Hide"></input> -->
+<center><input type="submit" id="finished" class="nonexistent" value="Try Again"></input></center>
+<br>
+<center>
+<img  class="img visible behind" src="head.png">
+</center>
 <div class="move" id="move">
   <img id="picture" class="img hidden" src="santa.png">
 </div>
@@ -45,7 +63,11 @@ Your browser does not support the audio element.
   <source src="audio/loooow.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
+<audio controls class= "nonexistent"id="merry">
+  <source src="audio/merry.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
-
+</body>
 <!--end audio-->
 <script src="invisible.js"></script>

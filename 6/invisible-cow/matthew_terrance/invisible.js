@@ -16,6 +16,7 @@ var loow = document.getElementById("loow")
 var supahigh = document.getElementById("supahigh")
 var high = document.getElementById("high")
 var med = document.getElementById("med")
+var merry = document.getElementById("merry")
 
 
 window.addEventListener('mousemove',function(e){
@@ -32,7 +33,7 @@ function distance(){
 function musi(){
     var dist= distance();
     console.log(dist);
-    if (dist<60){
+    if (dist<80){
 	supahigh.play();
     }
     else if (dist < 120){
@@ -46,14 +47,13 @@ function musi(){
     }
     else{
 	loow.play();
-
     }
 }
 
 var santa;
 function ho(){
     console.log("ho");
-    santa= setInterval("musi()",1300);
+    santa= setInterval("musi()",1050);
 }
 
 var move = document.getElementById("move")
@@ -66,9 +66,65 @@ function togglev(){
     }
     else{
 	picture.className ="img visible";
-    }
-    
+    }  
 };
 
-document.getElementById("visible").addEventListener('click',togglev);
-picture.addEventListener('click',togglev);
+var refresh = document.getElementById("finished");
+
+function newGame(){
+    location.reload();
+}
+
+refresh.addEventListener('click',newGame);
+
+var myEvent;
+function startit() {
+    console.log("arewehere");
+    myEvent = setInterval("moveit()",10);
+};
+
+function moveit() {
+    //console.log("arewehere2");
+    if( Math.abs(window.innerWidth/2-40 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
+	clearInterval(myEvent);
+	merry.play();
+    }
+    if ((window.innerWidth/2-40)<w) {
+	w=w-3;
+    } else {
+	w=w+3;
+    }
+    if (window.innerHeight/2<h) {
+	h=h-3;
+    } else {
+	h=h+3;
+    }
+    move.style.left=w+"px";
+    move.style.top=h+"px";
+};
+
+function colors(){
+    if (document.body.style.background=="green"){
+	document.body.style.background="red";
+    }
+    else{
+	document.body.style.background="green";
+    }
+}
+
+var colorful;
+
+function findsanta(){
+    if (picture.className == "img hidden"){
+	picture.className ="img visible";
+	clearInterval(santa);
+	startit();
+	refresh.className="existent";
+	colorful=setInterval("colors()",1500);
+    }
+};
+
+
+//document.getElementById("visible").addEventListener('click',togglev);
+picture.addEventListener('click',findsanta);
+
