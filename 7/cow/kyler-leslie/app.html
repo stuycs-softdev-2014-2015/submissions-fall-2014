@@ -46,6 +46,8 @@ var spot4 = {'left':800, 'top':400}
 
 var spots = [spot1, spot2, spot3, spot4]
 
+var current = spot4;
+
 window.addEventListener('click', function(e) {
 	mouseX=e.pageX;
 	mouseY=e.pageY;
@@ -85,9 +87,15 @@ function signs(e) {
 	var s = spots;
 	var i = 4;
 	var j;
-	var spot;
-	while (i>0) {
-		j = 10/i;}}
+	var spot = Math.floor((Math.random() * 10) / 2.5);
+	while (s[spot] == current) {
+		spot = Math.floor((Math.random() * 10) / 2.5);
+	}
+	green=document.querySelector('.g');
+//this is the random selector function to be finished
+
+}
+	
 		
 
 /*
