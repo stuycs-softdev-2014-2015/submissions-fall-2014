@@ -3,25 +3,28 @@
 
   <head>
     <style>
-      body {
-        background-image: url("background.jpg");
-      }
+      body{background-image: url("background.jpg");}
       #hedgehog {
       position:absolute;
       height: 150px;
       }
-      h1 {
-        color: white;
-      }
+      h1 {color:white;}
+      h2 {color:white;}
+      h3 {color:white;}
     </style>
   </head>
 
   <body>
     <div id="heading">
       <h1>Find the Christmas Hedgehog</h1>
+      <h3>The louder the jingles, the closer you are to finding the hedgehog!</h3>
+      <h3>When you think you have found him, click the screen.</h3>
+    </div>
+    <div id="timer">
+     <h2>Time:</h2>
     </div>
     <img id="hedgehog" class="img" src="hedgehog.jpg">
-    <audio autoplay loop src="jingle.mp3" id = "jingle" type="audio/mpeg">
+    <audio autoplay loop src="jingle.mp3" id="jingle" type="audio/mpeg">
     </audio>
     <script src="hedgehog.js"></script>
   </body>
