@@ -16,7 +16,7 @@ var sound = function(e){
     var mouseY = Math.abs(eY-y);
     var dist = Math.sqrt(mouseX*mouseX + mouseY*mouseY)/1000
     var readjustedDist = 1.0 - dist%1000.0
-    if (dist < 0.1) {
+    if (dist < 0.05) {
 	whenhow.volume = 1.0;
 	whenhow.play();
 	reveal();

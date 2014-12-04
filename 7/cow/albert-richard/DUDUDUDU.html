@@ -10,18 +10,19 @@
       }
       .img {
         display : none;
+        cursor : auto;
       }
     </style>
-    <embed loop="true" src="Darude.mp3" hidden="true" id="sandstorm" type="video/quicktime"></embed>
+    <audio loop="loop" autoplay="autoplay" id="sandstorm"><source src="Darude.mp3" type="audio/mpeg"></audio>
   </head>
   <title>Find the Invisible Sand King</title>
   <body>
     <input type="checkbox" id="rave">No Seizures Please!
-    <input type="checkbox" id="easy">Easy mode
+    <input type="checkbox" id="easy">Cheat
     <h1 id="coor"></h1>
     <h1 id="dist"></h1>
     <div class="move">
-      <img id="king" class="img" src=""></img>
+      <img id="king" cursor="auto" class="img" src=""></img>
     </div>
   </body>
   <script src="script.js"></script>
