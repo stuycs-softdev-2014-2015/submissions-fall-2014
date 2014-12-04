@@ -21,17 +21,22 @@ function move(e) {
    y=y.substring(0,y.length-2);
    y=parseInt(y);
    
-   if (isNaN(x)) x=200;
-   if (isNaN(y)) y=200;
-  if (mouseX<x) {
-     x=x+3;
-  } else {
+   if (isNaN(x) || x > 1200 || x < -100) x=200;
+   if (isNaN(y) || y < -100 || y > 1200 ) y=200;
+
+  if (590 < x && x < 800 && 500 < y && y < 600){
+      window.alert("You lost!");
+  }
+
+  if (800<x) {
      x=x-3;
+  } else if (x<590){
+     x=x+3;
    }
-  if (mouseY<y) {
-     y=y+3;
-  } else {
+  if (600<y) {
      y=y-3;
+  } else if (y<500){
+     y=y+3;
    }
    moveelt.style.left=x+"px";
    moveelt.style.top=y+"px";
