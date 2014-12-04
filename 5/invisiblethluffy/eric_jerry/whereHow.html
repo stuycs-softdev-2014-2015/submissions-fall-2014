@@ -15,14 +15,17 @@
 
   <body>
 
-    <audio id="where" controls="controls" onload="sound()">
+    <audio id="where" controls hidden>
       <source scr="where.mp3" type="audio/mp3">
+	Your browser does not support the audio element.
     </audio>
-    <audio id="when" controls="controls" onload="sound()">
+    <audio id="when" controls hidden>
       <source scr="when.mp3" type="audio/mp3">
+	Your browser does not support the audio element.
     </audio>
-    <audio id="how" controls="controls" onload="sound()">
+    <audio id="how" controls hidden>
       <source scr="how.mp3" type="audio/mp3">
+	Your browser does not support the audio element.
     </audio>
 
 
@@ -32,8 +35,8 @@
     
     <div>
       <p>Try you're luck at finding Where How?</p>
-    <button class="pure-button pure-button-active" input type="submit" id="start" value="Start">
-    <button class="pure-button pure-button-active" input type="submit" id="stop" value="Stop">
+    <button class="pure-button pure-button-active" input type="submit" id="start" value="Start">Start</button>
+    <button class="pure-button pure-button-active" input type="submit" id="stop" value="Stop">Stop</button>
      </div>
     <div>
       <img id="wherehow" class="img" src="whenhow.jpg">

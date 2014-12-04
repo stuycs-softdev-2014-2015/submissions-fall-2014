@@ -35,8 +35,11 @@ var createHiddenLocation = function(e){
     hiddenX = Math.floor(Math.random()*size.width);
     hiddenY = Math.floor(Math.random()*size.height);
     var pic = document.getElementById("king");
-    pic.hspace=hiddenX;
-    pic.vspace=hiddenY;
+    pic.src="sandking.jpg"
+    var move = document.querySelector(".move");
+    move.style.left = hiddenX+"px";
+    move.style.top = hiddenY+"px";
+    pic.style.display = "none";
 }
 createHiddenLocation();
 
@@ -44,7 +47,7 @@ createHiddenLocation();
 var getDistance = function(e){
     var xplace = hiddenX - mouseX;
     var yplace = hiddenY - mouseY;
-    distance = Math.sqrt(Math.pow(xplace+10,2)+Math.pow(yplace+170,2));
+    distance = Math.sqrt(Math.pow(xplace+50,2)+Math.pow(yplace+50,2));
     dist = document.getElementById("dist");
     dist.innerHTML = distance;
 }
@@ -60,7 +63,7 @@ var recalculate = setInterval(getDistance,100);
 
 var popup = function(e){
     var pic = document.getElementById("king");
-    pic.src="sandking.jpg"
+    pic.style.display = "inline-block";
 }
 var checkLocation = function(e){
     if (distance <= 50){
