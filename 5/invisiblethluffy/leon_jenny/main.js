@@ -49,6 +49,7 @@ window.addEventListener( 'click',
     function(e){
         if(absDist( mouseX, mouseY, pX + 75, pY + 62 ) <= 50 ) {
             image.style.visibility = "visible";
+            button.style.visibility = "visible";
         }
     }
 );
