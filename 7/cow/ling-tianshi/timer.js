@@ -24,7 +24,7 @@ function move(e) {
    if (isNaN(x) || x > 1200 || x < -100) x=200;
    if (isNaN(y) || y < -100 || y > 1200 ) y=200;
 
-  if (590 < x && x < 800 && 500 < y && y < 600){
+  if (580 <= x && x <= 810 && 450 <= y && y <= 560){
       window.alert("You lost!");
   }
 
@@ -33,7 +33,7 @@ function move(e) {
   } else if (x<590){
      x=x+3;
    }
-  if (600<y) {
+  if (550<y) {
      y=y-3;
   } else if (y<500){
      y=y+3;
@@ -59,8 +59,15 @@ function startit() {
  myevent = setInterval(move,100);
 }
 function stopit() {
-	window.clearTimeout(myevent);
+    window.clearTimeout(myevent);
 }
+function away() {
+    var moveelt=document.querySelector('.move');
+    moveelt.style.left=1000+"px";
+    moveelt.style.top=1000+"px";
+}
+
  //document.getElementById("start").addEventListener('click',startit);
-document.addEventListener('click', startit())
+document.getElementById("thluffy").addEventListener('click', away);
+document.addEventListener('click', startit());
 document.getElementById("stop").addEventListener('click',stopit);

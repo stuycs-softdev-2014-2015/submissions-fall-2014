@@ -61,6 +61,11 @@ window.addEventListener('mousemove',function(e){
 img = document.createElement("img");
 img.src="christmas.png";
 
+function win(){
+    pauseAudio();
+    alert("YOU WIN!!!");
+}
+
 var starter;
 var start= function(e){
     goalX = Math.random()*(maxX-minX)+minX;
@@ -70,10 +75,9 @@ var start= function(e){
     document.getElementById("tree").style.top= goalX + "px";
     document.getElementById("tree").style.left= goalY + "px";
     // document.getElementById("tree").style.display= "none";
-
-
-    console.log("GOAL YO: " + goalX + ", " + goalY)
-    playAudio()
+    document.getElementById("tree").addactionlistener('click',win());
+    console.log("GOAL YO: " + goalX + ", " + goalY);
+    playAudio();
 
     //starter = setInterval(start,100);
 };
