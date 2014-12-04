@@ -37,9 +37,8 @@ function move(e) {
    moveelt.style.top=y+"px";
   var deltaY = mouseY-y;
   var deltaX = mouseX-x;
-  var degs=Math.atan2(deltaY,deltaX) *180 / 3.14159;
+  var degs=Math.atan2(deltaY,deltaX) *360 / 3.14159;
   thluffy.style.webkitTransform = "rotate("+degs+"deg)";
-  //('-webkit-transform','rotate('+degs+"deg)");
 }
 
 var changecolor = function(e){
