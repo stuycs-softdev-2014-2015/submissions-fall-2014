@@ -2,7 +2,7 @@ var pic = document.getElementById("batman");
 
 var X;
 var Y;
-var d;
+var d=2000;
 
 var picX;
 var picY;
@@ -37,26 +37,22 @@ var dist = function(e){
     console.log("d: " + d);
 };
 
-var music = function(){//Needs Play-testing and MP3s
-    if (dist > 1500){
-	document.getElementById("sound_element").innerHTML= 
-	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+var music = function(){
+
+    if (d > 1000 && found == false){
+	document.getElementById("sound_element").innerHTML = "<embed src='"+ "banana1.wav" +"' hidden=true autostart=true loop=false>";
     }
-    if (dist <= 1500 && dist > 750){
-	document.getElementById("sound_element").innerHTML= 
-	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    if (d <= 1000 && d > 700 && found == false){
+	document.getElementById("sound_element").innerHTML = "<embed src='"+ "banana2.wav" +"' hidden=true autostart=true loop=false>";
     }
-    if (dist <= 750 && dist > 400){
-	document.getElementById("sound_element").innerHTML= 
-	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    if (d <= 700 && d > 400 && found == false){
+	document.getElementById("sound_element").innerHTML = "<embed src='"+ "banana.wav" +"' hidden=true autostart=true loop=false>";
     }
-    if (dist <= 400 && dist >= 100){
-	document.getElementById("sound_element").innerHTML= 
-	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    if (d <= 400 && d > 100 && found == false){
+	document.getElementById("sound_element").innerHTML = "<embed src='"+ "banana4.wav" +"' hidden=true autostart=true loop=false>";
     }
-    if (dist <= 100 && dist >= 0){
-	document.getElementById("sound_element").innerHTML= 
-	    "<embed src='"+sound_file_url+"' hidden=true autostart=true loop=false>";
+    if (d <= 100 && d >= 0 && found == false){
+	document.getElementById("sound_element").innerHTML = "<embed src='"+ "banana5.wav" +"' hidden=true autostart=true loop=false>";
     }
 };
     
@@ -69,5 +65,14 @@ var checkIfFound = function(e){
     }
 }
 
+//var playSound = function(){
+//    while (found == false){
+//	checkIfFound();
+//	music();
+//    }
+//};
+
+
 window.addEventListener("mousemove",getMouseCor);
+//window.addEventListener("click",music);
 window.addEventListener("click",checkIfFound);

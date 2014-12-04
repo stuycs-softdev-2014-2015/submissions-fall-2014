@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	  <h1> BANANA! </h1>
+How to play:
+The deeper the voice, the closer you are! Click where you believe the picture is. If you guess right, you win!
+	
 		<style>
 		 img {position:absolute;}
 		</style>
 	</head>
 	<body>
+
 		<img src="logo.png" height="67px" width="145px" id="batman">
-		<script src="locate.js"></script>
+<script src="locate.js"></script>
 		<div id="sound_element"></div>
 	</body>
+<script>
+
+function myFunction() {
+    setInterval(function(){ music(); }, 1000);
+}
+myFunction();
+//setInterval(music(),3000);
+</script>
 </html>
