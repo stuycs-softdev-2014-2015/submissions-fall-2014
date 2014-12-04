@@ -1,10 +1,15 @@
 var mouseX, mouseY;
+var tree, width, height;
 
 var findTree = function(e) {
-    var x = tree.offsetLeft;
-    var y = tree.offsetTop;
+    var x = width;
+    var y = height;
     var xd = Math.abs(mouseX-x);
     var yd = Math.abs(mouseY-y);
+    //console.log(mouseX);
+    //console.log(x);
+    //console.log(xd);
+    //console.log(yd);
     if ((xd < 10) && (yd < 10)){
 	document.body.style.background = '#FFFFFF';
 	tree.style.visiblity = 'visible';
@@ -51,8 +56,8 @@ window.addEventListener('mousemove', function(e) {
 var count;
     
 function changeColors(r,g){
-    count = 1;
-    setInterval(change(r,g),1000);
+    //count = 1;
+    setInterval(change(r,g),100);
 }
 
 function change(r,g){
@@ -69,19 +74,24 @@ function change(r,g){
 var myevent;
 
 function start(){
-    var tree = document.createElement("IMG");
+    tree = document.createElement("IMG");
     tree.setAttribute("src", "tree.jpeg");
     tree.setAttribute("width", "naturalWidth");
     tree.setAttribute("height", "naturalHeight");
     var w = window.innerWidth;
     var h = window.innerHeight;
-    var width = Math.floor((Math.random() * w) + 1);
-    var height = Math.floor((Math.random() * h) + 1);
-    myevent = setInterval(findTree,100);
+    width = Math.floor((Math.random() * w) + 1);
+    height = Math.floor((Math.random() * h) + 1);
+    console.log(width);
+    console.log(height);
+    myevent = setInterval(findTree,150);
     tree.style.position = "absolute";
-    tree.style.visibility = 'hidden';
+    //tree.style.visibility = 'hidden';
+    tree.style.visibility = 'visible';
     tree.style.left = width + 'px';
     tree.style.top = height + 'px';
+    //console.log(tree.offsetleft);
+    count = 1;
 }
 
 function stop(){
