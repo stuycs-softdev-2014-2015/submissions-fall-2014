@@ -1,22 +1,27 @@
 <html>
   <head>
     <style>
-      .find {visibility:hidden; position:absolute; left:200px; top:200px}
-      .img {height:50px;height:50px;}
+      .find {visibility:hidden; position:absolute; left:300px; top:300px;}
+      .img {height:100px;width:100px;}
     </style>
   </head>
   <body>
     <div class="find">
-      <img id="cow" class="img" src="Cow1.gif">
+      <img id="cow" class="img" src="static/Cow1.gif">
+    </div>
+
+    <div> 
+      <h3></h3>
     </div>
     
     <div>
-      <input type=submit id="start" value="Start"></submit>
-<input type=submit id="stop" value="Stop"></submit>
-</div>
+      <button id="start"> Start </button><br>
+      <button id="stop"> Stop </button><br>
+    </div>
 
-<script src="cow.js">
-</script>
+    <audio id="audio" src="cow.mp3"></audio>
 
-<body>
+    <script src="cow.js">
+    </script>
+  </body>
 </html>
