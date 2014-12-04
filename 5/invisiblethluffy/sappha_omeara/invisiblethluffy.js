@@ -13,10 +13,12 @@ var dist = function(x1, y1, x2, y2){
 }
 
 //SETXY
-tX = Math.floor(Math.random() * screen.width);
-tY = Math.floor(Math.random() * screen.height);
-thluffy.left = (tX + "px");
-thluffy.top = (tY + "px");
+var placeThluffy = function(){
+    tX = Math.floor(Math.random() * screen.width);
+    tY = Math.floor(Math.random() * screen.height);
+    thluffy.left = (tX + "px");
+    thluffy.top = (tY + "px");
+}
 
 var setXY = function(e) {
     mouseX = e.pageX;
@@ -47,5 +49,27 @@ var setBackgroundColor = function() {
     }
 }
 
+placeThluffy();
+
+//THIS PART ISN'T WORKING
+var myEvent;
+var startit = function() {
+    placeThluffy();
+    if (document.body.style.background == "red"){
+	stopit();
+    }
+    else{
+	myEvent = setInterval(setBackgroundColor, 100);
+    }
+}
+
+var stopit = function() {
+    window.clearTimeout(myEvent);
+}
+
+//document.getElementById("start").addEventListener('click',startit);
+//document.getElementById("stop").addEventListener('click',stopit);
 window.addEventListener('mousemove', setXY);
-window.addEventListener('mousemove', setBackgroundColor);
+//window.addEventListener('mousemove', setBackgroundColor);
+
+//THIS NEEDS TO BE IN HTML, BUT IT BREAKS THE CODE
