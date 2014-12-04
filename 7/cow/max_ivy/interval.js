@@ -1,11 +1,12 @@
 var IMG_COUNT = 3;
 var cowx = 0;
 var cowy = 0;
-var baseInterval = 200;
+var baseInterval = 350;
 var interval = baseInterval;
 var state = 0;
 var spawnWindows;
 var audioPanic;
+var error = new Audio("error.mp3");
 
 var init = function(){
     var html = document.documentElement;
@@ -23,6 +24,7 @@ var checkDist = function(e){
     var counter = document.getElementById("distance");
     d = Math.sqrt(Math.pow(cowx - e.pageX, 2)+Math.pow(cowy - e.pageY, 2));
     counter.innerHTML = d;
+    console.log(d);
 }
 
 var displayRandomImage = function(){
@@ -32,6 +34,9 @@ var displayRandomImage = function(){
     var top = Math.floor(Math.random()*document.documentElement.clientHeight) - 100 + "px";
     var right = Math.floor(Math.random()*document.documentElement.clientWidth) - 100 + "px";
     displayImage(src,top,right, NaN, NaN);
+    error.pause();
+    error.currentTime = 0;
+    error.play();
     //console.log(interval);
 }
 
@@ -57,13 +62,21 @@ var adjustInterval = function(){
     }
 }
 
+var checkState = function(e){
+    if(d < 50 && state == 0){
+        state = 1;
+        console.log("Found the Xbox!");
+    } else {
+        console.log("No cigar for you!");
+    }
+}
 
 var begin = function(){
     if(state == 0){ //spamming windows
     	clearInterval(spawnWindows);
-	adjustInterval();
-	console.log(interval);
-	spawnWindows = setInterval(displayRandomImage,interval);
+        adjustInterval();
+        //console.log(interval);
+        spawnWindows = setInterval(displayRandomImage,interval);
     }
     else if (state == 1){ //user clicked, start spamming xbox
     	clearInterval(spawnWindows);
@@ -86,6 +99,7 @@ var begin = function(){
 var button = document.getElementById("begin");
 button.addEventListener("click", begin);
 window.addEventListener("mousemove", checkDist);
+window.addEventListener("click", checkState);
 init();
 
 //spawnWindows = setInterval(displayRandomImage,100);
