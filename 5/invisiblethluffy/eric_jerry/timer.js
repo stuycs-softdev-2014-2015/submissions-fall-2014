@@ -23,6 +23,7 @@ var sound = function(e){
 	how.volume = 1.0;
 	when.play();
 	how.play();
+	reveal();
     }else {
 	where.volume = readjustedDist;    
 	where.play();
@@ -37,6 +38,7 @@ var find = function(e){
     if ( (mouseX < 10) && (mouseY < 10) ) {
 	//fire
 	document.body.style.background = "#FFFFFF";
+	reveal();
     }
     else if ( (mouseX < 30) && (mouseY < 30) ) {
 	//hot
@@ -133,4 +135,4 @@ var stopit = function(){
 
 document.getElementById("start").addEventListener('click', startit);
 document.getElementById("stop").addEventListener('click', stopit);
-document.getElementById("wherehow").addEventListener('click', reveal);
+//document.getElementById("wherehow").addEventListener('click', reveal);
