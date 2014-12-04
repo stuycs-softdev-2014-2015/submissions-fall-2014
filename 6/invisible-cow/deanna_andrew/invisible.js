@@ -28,6 +28,14 @@ function pauseAudio() {
     audio.pause();
 }
 
+function getVolume() {
+    console.log("Volume: " + audio.volume);
+}
+
+function setVolume() {
+    audio.volume = 1 - Math.round((dist/maxX)*100)/100
+}
+
 
 var changeCursor=function(){
     if (dist<300){ //Gotta check how much this even is
@@ -45,7 +53,8 @@ window.addEventListener('mousemove',function(e){
     console.log("Dist: "+ dist)
     // changeCursor();
     calcDistance();
-
+    setVolume();
+    getVolume();
 });
 
 
@@ -60,7 +69,6 @@ var start= function(e){
     goalY = parseInt(goalY)
     console.log("GOAL YO: " + goalX + ", " + goalY)
     changeCursor; //don't know why this doesn't work
-    console.log("Dist: "+ dist)
     playAudio()
 
     //starter = setInterval(start,100);
