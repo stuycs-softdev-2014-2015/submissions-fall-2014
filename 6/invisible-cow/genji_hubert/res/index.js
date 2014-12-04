@@ -3,7 +3,7 @@ var mosquito;
 var m2;
 var juice;
 var x, y;
-var fps = 60;
+var fps = 120;
 
 mosquito = document.createElement("img");
 juice = document.createElement("img");
@@ -74,9 +74,13 @@ var go = function() {
         var randCoords = function(thing){
 	    var randx = 0;
             var randy = 0;
-     	    var k = Math.random()*100;
+     	    var k = Math.random()*40;
 
-            if (Math.abs(dist(mosquito)) > 200){
+            if (Math.abs(dist(mosquito)) < 200){
+		randx = 2*k*Math.random() - k;
+		randy = 2*k*Math.random() - k;
+		
+		/*
 		var r = Math.random();
 		if(r < 0.50){
 		    randx = -5*Math.random();
@@ -85,6 +89,7 @@ var go = function() {
 		    randx = 5*Math.random();
 		    randy = 5*Math.random();
 		}
+		*/
 	    }else{
 		randx = k*Math.random() - k/2;
 		randy = k*Math.random() - k/2;
