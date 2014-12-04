@@ -1,10 +1,17 @@
 var mouseX, mouseY;
+var tree = document.getElementById('tree');
+var width, height;
+var count, myEvent;
 
 var findTree = function(e) {
-    var x = tree.offsetLeft;
-    var y = tree.offsetTop;
+    var x = width;
+    var y = height;
     var xd = Math.abs(mouseX-x);
     var yd = Math.abs(mouseY-y);
+    //console.log(mouseX);
+    //console.log(x);
+    //console.log(xd);
+    //console.log(yd);
     if ((xd < 10) && (yd < 10)){
 	document.body.style.background = '#FFFFFF';
 	tree.style.visiblity = 'visible';
@@ -43,16 +50,8 @@ var findTree = function(e) {
 	changeColors('#E60000','#007300');
 }   
 
-window.addEventListener('mousemove', function(e) {
-    mouseX = e.pageX;
-    mouseY = e.pageY;
-});
-
-var count;
-    
 function changeColors(r,g){
-    count = 1;
-    setInterval(change(r,g),1000);
+    setInterval(change(r,g),100);
 }
 
 function change(r,g){
@@ -66,27 +65,48 @@ function change(r,g){
     document.body.style.background = color;
 }
 
-var myevent;
 
 function start(){
-    var tree = document.createElement("IMG");
-    tree.setAttribute("src", "tree.jpeg");
-    tree.setAttribute("width", "naturalWidth");
-    tree.setAttribute("height", "naturalHeight");
     var w = window.innerWidth;
     var h = window.innerHeight;
-    var width = Math.floor((Math.random() * w) + 1);
-    var height = Math.floor((Math.random() * h) + 1);
-    myevent = setInterval(findTree,100);
+    width = Math.floor((Math.random() * w) + 1);
+    height = Math.floor((Math.random() * h) + 1);
+    console.log(width);
+    console.log(height);
+    myevent = setInterval(findTree,150);
     tree.style.position = "absolute";
     tree.style.visibility = 'hidden';
     tree.style.left = width + 'px';
     tree.style.top = height + 'px';
+    //console.log(tree.offsetleft);
+    count = 1;
 }
 
 function stop(){
     window.clearTimeout(myevent);
 }
 
+function checktree(){
+    var x = width;
+    var y = height;
+    var xd = Math.abs(mouseX-x);
+    var yd = Math.abs(mouseY-y);
+    if (xd < 35 && yd < 35){
+	tree.style.visibility = 'visible';
+	stop();
+    }
+}
+    
+
+
+
 document.getElementById("start").addEventListener('click',start);
 document.getElementById("stop").addEventListener('click',stop);
+
+window.addEventListener('mousemove', function(e) {
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+});
+
+window.addEventListener('click',checktree);
+    

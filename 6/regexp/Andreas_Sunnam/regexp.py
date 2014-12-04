@@ -12,4 +12,3 @@ L = []
 for k in res:
     L.append(k[0])
 print L
-

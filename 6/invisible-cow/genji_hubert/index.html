@@ -7,8 +7,18 @@
 
 	<body>
 
+		<h1 style="color: red;">kill that sucker</h1>
+		<p style="color: red; position: absolute; display: block; bottom: 50px; right: 20px">
+	Don't forget to turn the sound up all the way for the optimal experience.
+	<br>
+	Copyright 2014 Genji and Hubert
+		</p>
 
-		<script src="index.js"></script>
+		<div id="hidden-sound"></div>
+		<audio controls loop hidden="true" autoplay="true">
+			<source src="./res/sound.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		<script src="./res/index.js"></script>
 	</body>
 </html>
-

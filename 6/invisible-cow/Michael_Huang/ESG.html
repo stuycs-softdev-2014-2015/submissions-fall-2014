@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type= "text/css">
+  div { 
+  position: absolute;
+  height: 520px; 
+  width: 800px; 
+  top: 30px;
+  background-color: #b0c4de;
+  border: 2px solid;
+  border-radius: 25px;
+            }
+  img{
+  cursor: pointer;
+  position:absolute;
+  
+  }
+  audio{
+  position:absolute;
+  top:600px;
+  }
+  .distance{
+  position:absolute;
+  top:550px;
+  }
+  .found{
+  position:absolute;
+  top:600px;
+  }
+</style>
+</head>
+ <body>
+  <input type="button" id="start" value="start">
+  <input type="button" id="stop" value="stop">
+ Click when the cursor turns into a pointer!
+  
+  <div> <img id="myImg" src="saxguy.jpg" alt="SaxGuy"  > </div>
+  
+  <p class="distance"  id="coords"></p>
+  <p class="found" id="found"></p>
+  <script src="ESG.js"></script>
+  <audio controls autoplay>
+ 
+  <source src="EpicSaxGuy.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+ </body>
+</html>
+    
