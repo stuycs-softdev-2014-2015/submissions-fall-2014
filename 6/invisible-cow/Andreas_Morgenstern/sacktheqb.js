@@ -125,3 +125,4 @@ function failed() {
     reset();
 
 };
+setInterval(reset(), 10000)

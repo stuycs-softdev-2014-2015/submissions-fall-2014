@@ -46,40 +46,40 @@ var displayImage = function(src, top, right, cursor, z){
     	img.style.zIndex = z
     }
     if (cursor != NaN){ //not good check
-	    img.style.cursor = cursor;
+    	img.style.cursor = cursor;
     }
 }
 
 var adjustInterval = function(){
     interval = baseInterval * (d / 400);
     if(interval < 50){
-	    interval = 50;
+    	interval = 50;
     }
 }
 
 
 var begin = function(){
     if(state == 0){ //spamming windows
-	    clearInterval(spawnWindows);
-	    adjustInterval();
-	    console.log(interval);
-	    spawnWindows = setInterval(displayRandomImage,interval);
+    	clearInterval(spawnWindows);
+	adjustInterval();
+	console.log(interval);
+	spawnWindows = setInterval(displayRandomImage,interval);
     }
     else if (state == 1){ //user clicked, start spamming xbox
-	    clearInterval(spawnWindows);
-	    displayImage("xbox.jpg", 0, 0, "crosshair", 99999);
-	    state = 2;
-	    setTimeout(function(){ begin() }, 3000); //begin panic timer
+    	clearInterval(spawnWindows);
+    	displayImage("xbox.jpg", 0, 0, "crosshair", 99999);
+    	state = 2;
+    	setTimeout(function(){ begin() }, 3000); //begin panic timer
     }
     else if (state == 2){ //audio starts panicking
-	    console.log("Made it to " + state + "!");
-	    //audioPanic =
-	    setTimeout(setInterval(displayImage("xbox.jpg", Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), "text", 9), 50), 3000);
-	    state = 3;
-	    setTimeout( function(){ begin() }, 3000);
+    	console.log("Made it to " + state + "!");
+    	//audioPanic =
+    	setTimeout(setInterval(displayImage("xbox.jpg", Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), "text", 9), 50), 3000);
+    	state = 3;
+    	setTimeout( function(){ begin() }, 3000);
     }
     else if (state == 3){ //KERNEL PANIC
-	    console.log("OH GOD");
+    	console.log("OH GOD");
     }
 }
 
