@@ -1,5 +1,12 @@
 
 var qb = document.getElementById("QB");
+var s1 = document.getElementById("1");
+var s2 = document.getElementById("2");
+var s3 = document.getElementById("3");
+var s4 = document.getElementById("4");
+var s5 = document.getElementById("5");
+var s6 = document.getElementById("6");
+var ow = document.getElementById("ow");
 var mouseX;
 var mouseY;
 window.addEventListener('click',function(e){
