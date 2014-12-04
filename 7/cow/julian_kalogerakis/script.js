@@ -15,15 +15,23 @@ window.addEventListener('mousemove', function(e){
 	moveMeter();
     });
 
+function youFoundEm(){
+    win = document.getElementById("meter");
+    content = document.createElement("center");
+    win.appendChild(content);
+    content.innerHTML = "Y O U     W I N     ! ! ! <br> <img src='willF1.jpg'>";
+}
+
 function moveMeter(){
     dist = Math.sqrt(Math.pow((mousex-fX),2) + Math.pow((mousey-fY),2));
     maxDist = Math.sqrt(Math.pow(window.innerHeight,2) + Math.pow(window.innerWidth,2));
     percentage = dist/maxDist;
-    console.log("dist: " + dist);
-    console.log("max dist: " + maxDist);
-    console.log("percentage: " + percentage);
     m = document.getElementById("temperature");
     m.style.marginLeft = (1-percentage)*window.innerWidth + "px";
+    if(dist < 45){
+	wildFerrell.style.visibility = "visible";
+	youFoundEm();
+    }
 }
 
 function reset(){
