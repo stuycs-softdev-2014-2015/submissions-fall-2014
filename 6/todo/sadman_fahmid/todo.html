@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.red {color:#ff0000;}
+	</style>
+
+</head>
+<body>
+	<center>
+		<h1> To-Do List </h1>
+
+		<form >	
+			<input type="text" id="new" placeholder="What do you have to do?"></input><br><br>
+			
+		</form>
+		<button id="b"> Add to the to-do list </button> <br>
+		** Please press the button instead of pressing ENTER **
+	</center>	
+
+	<h3>Things to do</h3>
+	<ol id="list">
+	</ol>
+
+	<h3>Completed Items</h3>
+	<ol id="done">
+	</ol>
+
+</body>
+
+<script type="text/javascript">
+	
+	function add(){
+		var newElement = document.getElementById("new").value
+		var node = document.createElement("li")
+		node.innerHTML = newElement
+		node.addEventListener('click', completed)
+		document.getElementById("list").appendChild(node)
+	}
+	
+
+	function completed(e){
+		var node = document.createElement("li")
+		var text = document.createTextNode(this.innerHTML)
+		node.appendChild(text)
+		document.getElementById("done").appendChild(node)
+		this.parentNode.removeChild(this)
+		console.log(this)
+		node.addEventListener('click', remove)
+	};
+
+	function remove(e){
+		console.log(document.getElementById("done"))
+		this.parentNode.removeChild(this)
+	};
+
+	var button = document.getElementById("b");
+	button.addEventListener('click',add);
+
+</script>
+
+</html>

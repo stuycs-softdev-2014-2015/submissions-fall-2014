@@ -1,22 +1,32 @@
 <html>
   <head>
     <style>
-      .find {visibility:hidden; position:absolute; left:200px; top:200px}
-      .img {height:50px;height:50px;}
+      .noselect{
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      }
     </style>
   </head>
-  <body>
-    <div class="find">
-      <img id="cow" class="img" src="Cow1.gif">
-    </div>
-    
+  <body class="noselect">
+    <center>
+      <h1>Welcome to the Game!</h1>
+      <h2 id="hint">Starting</h2>
+      <p id = "xy">
+	x:NaN <br>
+	y:NaN 
+      </p>
+    <img id="cow" class="img" src="Cow/Cow1.gif">
     <div>
-      <input type=submit id="start" value="Start"></submit>
-<input type=submit id="stop" value="Stop"></submit>
-</div>
-
-<script src="cow.js">
-</script>
-
-<body>
+      <button id="start">start</button>
+      <button id="stop">stop</button>
+    </div>
+    </center>
+    <audio id="audio" src="cow.mp3"></audio>
+    <script src="cow.js">
+    </script>    
+  <body>
 </html>

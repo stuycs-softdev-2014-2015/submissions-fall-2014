@@ -1,28 +1,38 @@
 //MOZILLA FIREFOX doesnt like this javascript... Firefox does not write onto the document the mouseX / mouseY, but other functionality does work...
+var myevent;
 var picX,picY;
 var victoryScreen = function(e){
-    console.log("victory");
     var r = confirm("YAY!!!\n\nYOU HAVE FOUND THLUFFY!!!\n\nPlay Again?");
     if (r){
 	//location.reload();
 	hide();
     }else{
 	var img = document.getElementById("goal");
-	img.style.visibility= "visible";
+	//img.style.display="";
+	//img.style.visibility="visible"  <- not working
 	img.removeEventListener("click",victoryScreen);
-	console.log("x");
+	img.src="static/thluffy.png";
+	window.location.href="home.html";
     }    
+    var c = document.getElementById("count");
+    c.innerText= parseInt(c.innerText)+1;
+    if (c.innerText == 4){
+	alert("You have unlocked a secret feature. Click on THLUFFY DONUTS!");
+    }
+    if(c.innerText >=4){
+	var zum = document.getElementById("zum");
+	zum.href="extras/donuts.html";
+	zum.innerText="THLUFFY DONUTS";
+    }
 };
 var hide = function(e){
     var img = document.getElementById("goal");
+    img.src ="static/large.gif";
     img.style.position = "absolute";
     picX = randomness(window.innerWidth-70);
     picY = randomness(window.innerHeight-70);
     img.style.left= picX +"px";
     img.style.top= picY +"px";
-    console.log(picX);
-    console.log(picY);
-    img.style.visibility="hidden";
     img.addEventListener("click",victoryScreen);
 };
 window.addEventListener('load',hide);
@@ -30,6 +40,26 @@ window.addEventListener('load',hide);
 var randomness = function(n){
     return Math.random()*n;
 };
+var audio = document.getElementById("zzz");
+var stoptimer = function(e){
+    window.clearInterval(e);
+};
+var soundy = function(e){
+    if (distance <100){
+	audio.volume = 1;
+    }
+    else if (distance<250){
+	audio.volume = .49;
+    }
+    else if(distance<540){
+	audio.volume = .4;
+    }
+    else {
+	audio.volume = .17;
+    }
+    audio.play();
+};
+
 var tracker = document.getElementById("tracker");
 var dista = document.getElementById("dist");
 var mouseX, mouseY;
@@ -39,35 +69,16 @@ var sq = function(d){
 var dist = function(x1, y1, x2,y2){
     return Math.sqrt(sq(y2-y1)+ sq(x2-x1));
 };
-//var audio = document.getElementById("z");
+var distance;
 window.addEventListener('mousemove',function(e){
-   // console.log(window.innerHeight);
-//     console.log(window.innerWidth);
+    myevent = setInterval(soundy,700);
     mouseX = e.pageX;
     mouseY = e.pageY;
-    tracker.innerText= mouseX +" , " + mouseY;
-    dista.innerText= dist(mouseX,mouseY,5,5).toString();
-    //if (dist(mouseX,mouseY,picX,picY)>0 ){
-//	timedevent();
-   // }
-    
+    distance = dist(mouseX,mouseY,picX,picY);
 });
-var myevent;
-var stoptimer = function(e){
-    window.clearInterval(e);
-};
-var timedevent = function(){
-    //do your stuff
-    myevent = setInterval(sound,100);
-};
-var sound = function(e){
-    //do your stuff here
-    //play music
-//	audio.play();
-};
 
 var givingup = function(e){
-    var r = confirm("You are giving up on Fluffy. \nIs this really okay with you? ");
+    var r = confirm("You are giving up on Fluffy.\n\nIs this really okay with you?\n ");
     if (r){
 	window.location.href="home.html";
     } 
@@ -75,9 +86,15 @@ var givingup = function(e){
 var giveup = document.getElementById("giveup");
 giveup.addEventListener("click",givingup);
 
-/*
+var pause = function(){
+    alert("BREAK TIME.\n\nThluffy will stop hissing at you for now.\n\nPress okay with you are ready to resume your search for Thluffy.");
+}
+var p = document.getElementById("break");
+p.addEventListener("click",pause);
 
-html for the audio
-<audio id="z" src="static/z.mp3"></audio>
 
-*/
+var reset = document.getElementById("reset");
+reset.addEventListener("click",function(e){
+    hide();
+});
+

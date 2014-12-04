@@ -1,16 +1,90 @@
-<html> 
+<!doctype html> 
 <head>
-  <title>Ayyy, matey</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/flatly/bootstrap.min.css">
   <link rel="stylesheet" href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css">
+  <body background="piratemap.jpg">
+  <title>Ayyy, matey</title>
+  <style>
+    .line {
+    fill: none;
+    stroke: #FF0000;
+    stroke-width: 7.5px;
+    stroke-dasharray: 2,5;
+    }
+  </style>
 </head>
+<center>
+<div class="container jumbotron" style="border-radius:30px">
+  <h3>What did the pirate say when he turned eighty?</h3><br>
+  <h5>Get the booty, matey, and you shall find out!</h5>
+</div></center>
 
 <body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+var margin = {top: 10, right: 10, bottom: 20, left: 40},
+    width = window.innerWidth - margin.left - margin.right,
+    height = window.innerHeight - margin.top - margin.bottom;
+
+
+var npoints = 100;
+var ptdata = [];
+
+
+var line = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d, i) { return d[0]; })
+    .y(function(d, i) { return d[1]; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var svgagain = d3.select("body").select("svg")
+    .on("mousemove", function() { var pt = d3.mouse(this); tick(pt); });
 
 
 
-<script src = "piratemap.js">
+var path = svg.append("g")
+  .append("path")
+    .data([ptdata])
+    .attr("class", "line")
+    .attr("d", line);
+
+function tick(pt) {
+
+  // push a new data point onto the back
+  ptdata.push(pt);
+
+  // Redraw the path:
+  path
+      .attr("d", function(d) { return line(d);})
+
+
+  // If more than 100 points, drop the old data pt off the front
+  if (ptdata.length > npoints) {
+	  ptdata.shift();
+  }
+}
 </script>
-
+</body>
+<body> 
+  <audio id="ahoy" controls hidden>
+    <source src="ahoy.mp3" type="audio/mp3">
+      are u using internet explorer?
+  </audio>
+  <audio id="arrr" controls hidden>
+    <source src="arrr.mp3" type="audio/mp3">
+      are u using internet explorer?
+  </audio>
+  <audio id="final" controls hidden>
+    <source src="final.mp3" type="audio/mp3">
+      are u using internet explorer?
+  </audio>
+<script src='piratemap.js'>
+</script>    
 </body>
 </html> 

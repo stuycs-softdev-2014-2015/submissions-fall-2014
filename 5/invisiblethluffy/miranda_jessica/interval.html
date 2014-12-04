@@ -6,11 +6,18 @@
 				 .green {color:#00ff00;}
 				 .blue {color:#0000ff;}
 				 .img {height:70px; }
+				 body{background-color:#000000;
+				 		color:#ffffff;}
 				 #thluffy {position:absolute; left:300px; top:300px; width: 500px;height:220px;opacity: 0;}
+				 #phone {position:absolute; left:300px; top:300px; width:110px;height:110px;opacity: 0;}
 				</style>
 		</head>
 <body>
 <h1>My Name is Jean Valjean</h1>
+<select id="mode">
+	<option>Le Mis</option>
+	<option>Scare</option>
+</select>
 <audio id="javert_loud" controls hidden>
   <source src="JAVERT.mp3"  type="audio/mpeg">
 Your browser does not support the audio element.
@@ -19,8 +26,25 @@ Your browser does not support the audio element.
   <source src="donotforget.mp3"  type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
+<audio id="footsteps" controls hidden>
+  <source src="Footsteps.caf"  type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio id="door" controls hidden>
+  <source src="Door Wood Squeak.caf"  type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio id="ring" controls hidden>
+  <source src="Ringing.caf"  type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio id="Busy" controls hidden>
+  <source src="Busy.caf"  type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 		<div>
 				<img id="thluffy" class="img"  src="javert.gif">
+				<img id="phone" class="img"  src="phone.jpg">
 		</div>
 		
 		<script src="interval.js">

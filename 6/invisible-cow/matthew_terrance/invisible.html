@@ -1,13 +1,73 @@
 <!DOCTYPE html>
+<head>
+ <title> Invisible Santa </title>
+<link rel="shortcut icon" href="static/icon.ico">
+
 <style>
-  .move {position:absolute; left:200px; top:200px}
-  .img {height:25%; width:25%}
+  .move {position:absolute;top=200px; left = 200px}
+ <!-- .img {height:25%; width:25%}-->
+  .hidden {
+  opacity: 0;
+  filter: alpha(opacity=0); /* For IE8 and earlier */
+  }
+  
+  .visible {
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+ .nonexistent {
+ display:none
+}
+.existent{
+ display:block
+}
+.behind{
+ z-index:-1
+}
+html{
+cursor:url(static/cursor.gif),zoom-out;
+}
+
 </style>
-
-<input type="submit" id="visible" value="Show/Hide"></input>
-
-<div class="move">
-  <img id="picture" class="img" src="cookpriest.png">
+</head>
+<body>
+<!--
+only losers use this button
+<input type="submit" id="visible" value="Show/Hide"></input> -->
+<center><input type="submit" id="finished" class="nonexistent" value="Try Again"></input></center>
+<br>
+<center>
+<img  class="img visible behind" src="static/head.png">
+</center>
+<div class="move" id="move">
+  <img id="picture" class="img hidden" src="static/santa.png">
 </div>
+<!-- Audio possibilities here-->
+<audio controls  class="nonexistent" id="low">
+  <source src="static/low.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio controls  class="nonexistent" id="supahigh">
+  <source src="static/supahigh.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio controls  class="nonexistent" id="high">
+  <source src="static/high.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio controls  class="nonexistent" id="med">
+  <source src="static/med.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio controls class= "nonexistent"id="loow">
+  <source src="static/loooow.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio controls class= "nonexistent"id="merry">
+  <source src="static/merry.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
 
+</body>
+<!--end audio-->
 <script src="invisible.js"></script>
