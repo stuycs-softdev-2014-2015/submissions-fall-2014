@@ -26,6 +26,7 @@ var playAgain = function(e) {
 	omg.play();
 	setTimeout(playAgain, 3000);
     }
+
 }
 
 var sound = setTimeout(playAgain, 1000);
@@ -49,14 +50,20 @@ var getDist = function (e) {
     */
 }
 
+var setPlayBut= function(e) {
+    var but = document.getElementById("but");
+    but.play();
+}
+
 var win = function (e) {
     playing = false;
     window.removeEventListener("mousemove", mouseCallback);
     //console.log("you win");
     var d2 = document.getElementById("d2");
-    d2.innerHTML = "You found Becky!"
-    var but = document.getElementById("but");
-    but.play();
+    //d2.innerHTML = "You found Becky!"
+    var m = document.getElementById("m");
+    m.innerHTML = '<img id="minaj"src="minaj.jpg" align="middle|bottom">';
+    setTimeout(playBut, 3000);
 }
 
 var mouseCallback = function(e) {
