@@ -5,13 +5,14 @@ var dogLeft;
 var dogTop;
 //hint shows up when the mouse is really close to the dog
 var hint = document.getElementById("hint");
-hint.style.display = "none";
-//to make the dog pic visible or invisible, use 'block' or 'none'
-hint.style.position = "absolute";
 
-//setting the dog to a random position:
+var dog = document.getElementById("dog");
+
 var initialize = function(){
-    var dog = document.getElementById("dog");
+    hint.style.display = "none";
+    //to make the dog pic visible or invisible, use 'block' or 'none'
+    hint.style.position = "absolute";
+    //setting the dog to a random position:
     dog.style.display = "none";
     dog.style.position = "absolute";
     dogLeft = Math.floor(Math.random()*parseInt(screen.width));
@@ -94,6 +95,10 @@ var checkMouse = function(){
 	console.log("hint");
 	if (hint.style.display == "none"){
 	    hint.style.display = "block";
+	}
+    }else{
+	if (hint.style.display == "block"){
+	    hint.style.display = "none";
 	}
     }
 };
