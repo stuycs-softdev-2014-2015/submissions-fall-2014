@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title></title>
+</head>
+
+<body align="center">
+	<h1>Whack-a-mole!</h1>
+	<button id="b">Start</button>
+	<img style="position:absolute; left:100px; top:100px; visiblity:hidden;" src='mole.png' width="50" height="50" id="mole"></img>
+</body>
+
+<script type="text/javascript">
+
+	// alert(window.screen.availWidth);
+	// alert(window.screen.availHeight);
+
+	var x;
+	var	y;
+	var	mouseX;
+	var	mouseY;
+	var distance;
+	var	img = document.getElementById('mole')
+
+	var interval;// = setInterval(pImage, 3000)
+
+	function randWidth(){
+		return Math.floor(Math.random() * (window.screen.availWidth-300)+200)
+	}
+
+	function randHeight(){
+		return Math.floor(Math.random() * (window.screen.availHeight-300)+200)
+	}
+
+
+	window.addEventListener('click', getpos)
+	function getpos(e){
+		distance = Math.sqrt(Math.pow(mouseX-x, 2) + Math.pow(mouseY-y, 2))
+//		console.log('distance: ' + distance)
+		mouseX = e.clientX
+		mouseY = e.clientY
+		console.log('mouseX: ' + e.clientX + '	mouseY: ' + e.clientY)
+		console.log('x: ' + x + '	y: '+ y)
+		if (distance < 75){
+			img.addEventListener('click', pImage)
+		}
+	}
+
+	function pImage(){
+		x = randWidth()
+		y = randHeight()
+//		console.log('x: ' + x + '	y: '+ y)
+		
+		img.src = "mole.png"
+		img.width = 50
+		img.height = 50
+		img.style.top = y + "px"
+		img.style.left = x + "px"
+
+		document.body.appendChild(img)
+		clearInterval(interval)
+		interval = setInterval(pImage, 2500)
+	}
+
+	var button = document.getElementById("b");
+	button.addEventListener('click',pImage);
+
+
+</script>
+
+</html>
