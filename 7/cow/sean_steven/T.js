@@ -4,8 +4,10 @@ var score = 0;
 var streak = 0;
 var unwhacked = 0;
 var paused = 0;
+var started = 0;
 var event;
 var spawn = function() {
+    clearTimeout(event); // Maybe this is necessary? Some odd issues.
     image.style.left = Math.random() * window.innerWidth + "px";
     image.style.top = Math.random() * window.innerHeight + "px";
     event = setTimeout(spawn, delay);
@@ -31,25 +33,30 @@ var whack = function() {
 };
 image.addEventListener("click", whack);
 document.getElementById("start").addEventListener("click", function() {
-    spawn();
+    if (started == 0) {
+	started = 1;
+	document.getElementById("start").value = "Reset";
+	spawn();
+    } else {
+	started = 0;
+	document.getElementById("start").value = "Start";
+	delay = 1000;
+	score = 0;
+	document.getElementById("delay").innerHTML = "<b>Delay: </b>" + delay;
+	document.getElementById("score").innerHTML = "<b>Score: </b>" + score;
+	image.style.left = "100px";
+	image.style.top = "100px";
+	clearTimeout(event);
+    }
 });
 document.getElementById("pause").addEventListener("click", function() {
     if (paused == 0) {
 	clearTimeout(event);
-	docment.getElementById("pause").value = "Resume";
+	document.getElementById("pause").value = "Resume";
 	paused = 1;
     } else {
 	document.getElementById("pause").value = "Pause";
 	paused = 0;
 	spawn();
     }
-});
-document.getElementById("reset").addEventListener("click", function() {
-    delay = 1000;
-    score = 0;
-    document.getElementById("delay").innerHTML = "<b>Delay: </b>" + delay;
-    document.getElementById("score").innerHTML = "<b>Score: </b>" + score;
-    image.style.left = "100px";
-    image.style.top = "100px";
-    clearTimeout(event);
 });
