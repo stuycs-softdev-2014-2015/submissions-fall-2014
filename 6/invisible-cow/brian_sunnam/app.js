@@ -13,11 +13,22 @@ var maxY = canvasrect.bottom;
 var goalX;
 var goalY;
 
+var curSrc;
+
+
 window.addEventListener('mousemove',function(e){
     mouseX=e.pageX;
     mouseY=e.pageY;
     //console.log("mouse moved to ("+mouseX+','+mouseY+')')
 });
+
+var win = function(){
+    canvas.innerHTML = '<div id="winner">YAY!';
+    canvas.innerHTML+= '<img src="winner.jpg"></div>';
+    canvas.style.cursor = 'auto';
+    canvas.removeEventListener('click',win);
+    window.clearTimeout(game);
+}
 
 var check = function(){
     //calculate distance
@@ -27,21 +38,26 @@ var check = function(){
     dist = Math.floor(dist);
     var range = Math.sqrt(((maxX-minX)/2)*((maxX-minX)/2)+((maxY-minY)/2)*((maxY-minY)/2))/6;
     console.log(dist);
-    if(dist<10){
-	//canvas.innerHTML = 'grab';
+    if(dist<100){
 	canvas.style.cursor = 'pointer';
-	console.log('YAY');
+	canvas.addEventListener('click',win);
     }
     else{
 	canvas.style.cursor = 'auto';
+	canvas.removeEventListener('click',win);
     }
-    if(dist < range){
-	music.src = "Topher6.m4a";
-	music.play();
+    var newSrc = 'Topher1.m4a';
+    console.log(dist+' < '+range+' ?');
+
+    for(var i=1;i<6;i++){
+	if(dist < range*i){
+	    newSrc = "Topher"+(7-i)+'.m4a';
+	    break;
+	}
     }
-    else if (dist < (range*2)){
-	music.pause();
-	music.src = "Topher5.m4a";
+    if(curSrc!=newSrc || music.paused){
+	curSrc = newSrc;
+	music.src = curSrc;
 	music.play();
     }
 }
