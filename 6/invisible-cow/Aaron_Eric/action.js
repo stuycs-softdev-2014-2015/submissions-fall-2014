@@ -15,6 +15,10 @@ var abs_value_from = function(value1,value2){
     return Math.abs(value1-value2);
 }
 
+var updateScore = function(){
+    document.getElementById("score").innerHTML = "Score: "+cow.speed;
+}
+
 var hide = function(){
     console.log("hidden");
     cow.src="invisible.png";
@@ -150,6 +154,7 @@ var start=function(){
 			     console.log("swigity swag clicked circle");
 			     document.getElementById("trap").play();
 			     cow.speed+=1;
+			     updateScore();
 			     console.log(cow.speed);
 			     cow.src="admiral.png";
 			     valid = false;
