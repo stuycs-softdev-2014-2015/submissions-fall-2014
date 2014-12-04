@@ -1,0 +1,26 @@
+<!-- Sourced from http://codepen.io/frytyler/pen/EGdtg -->
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="../static/css/loginstylesheet.css" >
+</head>
+
+<body>
+<div class="login">
+	<h1>Log In</h1>
+    <form method="post" action="{{nextPage}}">
+		{% if tryagain %}
+
+		<font color=red> <center> Password incorrect. Try again. </center> </font>
+
+		{% endif %}
+    	<input type="text" name="uName" placeholder="Username" required="required" />
+        <input type="password" name="pword" placeholder="Password" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large" value="login">Log me in.</button>
+    </form>
+	<center>
+		<a href="/signup"> Sign up </a>  |  <a href="/about"> About </a>
+</div>
+</body>
+
+</html>
