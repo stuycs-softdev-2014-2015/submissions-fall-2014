@@ -56,5 +56,6 @@ function startit() {
 function stopit() {
 	window.clearTimeout(myevent);
 }
- document.getElementById("start").addEventListener('click',startit);
- document.getElementById("stop").addEventListener('click',stopit);
+ //document.getElementById("start").addEventListener('click',startit);
+document.addEventListener('click', startit())
+document.getElementById("stop").addEventListener('click',stopit);
