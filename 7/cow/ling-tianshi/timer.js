@@ -11,11 +11,6 @@ window.addEventListener('mousemove', function(e){
     mouseY=e.pageY;
 });
 
-function calcDist(xcoord, ycoord) {
-    var ret = Math.sqrt(Math.pow((xcoord-mouseX),2)+Math.pow((ycoord-mouseY),2));
-    return ret;
-}
-
 function move(e) {
    var thluffy =document.getElementById("thluffy");
    var moveelt=document.querySelector('.move');
@@ -26,29 +21,23 @@ function move(e) {
    y=y.substring(0,y.length-2);
    y=parseInt(y);
    
-   if (isNaN(x)) x=200;
-   if (isNaN(y)) y=200;
-    
-  if calcDist(x, y) < 50 {
-      if (mouseX<x) {
-	  x=x+3;
-      } else {
-	  x=x-3;
-      }
-      if (mouseY<y) {
-	  y=y+3;
-      } else {
-	  y=y-3;
-      }
+   if (isNaN(x) || x > 1200 || x < -100) x=200;
+   if (isNaN(y) || y < -100 || y > 1200 ) y=200;
+
+  if (580 <= x && x <= 810 && 450 <= y && y <= 560){
+      window.alert("You lost!");
   }
-  else {
-      if (x > 500){
-	  x = x-3; }
-      else { x = x+3; }
-      if (y > 500){
-	  y = y-3; }
-      else { y = y+3; }
-  }
+
+  if (800<x) {
+     x=x-3;
+  } else if (x<590){
+     x=x+3;
+   }
+  if (550<y) {
+     y=y-3;
+  } else if (y<500){
+     y=y+3;
+   }
    moveelt.style.left=x+"px";
    moveelt.style.top=y+"px";
   var deltaY = mouseY-y;
@@ -70,8 +59,15 @@ function startit() {
  myevent = setInterval(move,100);
 }
 function stopit() {
-	window.clearTimeout(myevent);
+    window.clearTimeout(myevent);
 }
+function away() {
+    var moveelt=document.querySelector('.move');
+    moveelt.style.left=1000+"px";
+    moveelt.style.top=1000+"px";
+}
+
  //document.getElementById("start").addEventListener('click',startit);
-window.addEventListener('click', startit)
+document.getElementById("thluffy").addEventListener('click', away);
+document.addEventListener('click', startit());
 document.getElementById("stop").addEventListener('click',stopit);

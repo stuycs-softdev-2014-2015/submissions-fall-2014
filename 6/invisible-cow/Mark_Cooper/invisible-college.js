@@ -59,6 +59,9 @@ var moveImage = function(){
     img.style.left = hX + "px";
 
     var win = document.getElementById("victory").style.visibility = "hidden";
+    img.style.visibility="hidden";
+    var img2 = document.getElementById("middle");
+    img2.style.visibility = "hidden"
 };
 
 
