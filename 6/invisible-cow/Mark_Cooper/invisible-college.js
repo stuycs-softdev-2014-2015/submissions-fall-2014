@@ -57,23 +57,34 @@ var moveImage = function(){
     
     img.style.top = hY + "px";
     img.style.left = hX + "px";
+
+    var win = document.getElementById("victory").style.visibility = "hidden";
+    img.style.visibility="hidden";
+    var img2 = document.getElementById("middle");
+    img2.style.visibility = "hidden"
 };
 
 
 
 window.addEventListener("click", function(e){
 	if( mouseX >= (hX-50) &&  mouseX <= (hX+50) &&  mouseY >= (hY-50) && mouseY <= (hY+50) ){
+
+	    img.style.visibility = "visible";
+	    var img2 = document.getElementById("middle");
+	    img2.style.visibility = "visible"
+	    var win = document.getElementById("victory");
+	    win.style.visibility = "visible"
+
 	    
 	    img.style.visibility = "visible";
 	    console.log("Winner");
 	}
 	else{
-	    console.log("No Win");
-		
+	    console.log("No Win");		
 	    console.log(mouseX);
 	    console.log(hX);
 	    console.log(mouseY);
-	    console.log(hY);
+
 	}
     });
 
@@ -82,4 +93,11 @@ window.addEventListener("click", function(e){
 var newGame = function(){
     //    img.style.visibility = "hidden";
     moveImage()
+
 }
+
+
+
+
+
+

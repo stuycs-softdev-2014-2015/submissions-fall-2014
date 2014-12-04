@@ -3,6 +3,7 @@ var moleX;
 var moleY;
 var mouseX;
 var mouseY;
+var hasMole; //boolean 
 
 //Gets the location of the mouse
 var getLocation = function(e){
@@ -33,7 +34,7 @@ var makeMole = function(e){
     newmole.width = 60;
     newmole.height = 46;
     newmole.src = "mole.png";
-       
+    newmole.id = "b";
     moleX = Math.floor(Math.random() * screen.width ) - 46;
     moleY = Math.floor(Math.random() * screen.height) - 60; 
     console.log(moleX+" "+moleY)    
@@ -42,6 +43,12 @@ var makeMole = function(e){
     newmole.style.marginTop = moleY+"px";
     document.getElementById("img").appendChild(newmole);
 };
+
+var removeMole = function(){
+    document.getElementById("b").remove();
+};
+
+
 
 /*var inMole = function(){
     

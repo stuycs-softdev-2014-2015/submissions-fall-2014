@@ -21,25 +21,29 @@ function move(e) {
    y=y.substring(0,y.length-2);
    y=parseInt(y);
    
-   if (isNaN(x)) x=200;
-   if (isNaN(y)) y=200;
-  if (mouseX<x) {
-     x=x+3;
-  } else {
+   if (isNaN(x) || x > 1200 || x < -100) x=200;
+   if (isNaN(y) || y < -100 || y > 1200 ) y=200;
+
+  if (580 <= x && x <= 810 && 450 <= y && y <= 560){
+      window.alert("You lost!");
+  }
+
+  if (800<x) {
      x=x-3;
+  } else if (x<590){
+     x=x+3;
    }
-  if (mouseY<y) {
-     y=y+3;
-  } else {
+  if (550<y) {
      y=y-3;
+  } else if (y<500){
+     y=y+3;
    }
    moveelt.style.left=x+"px";
    moveelt.style.top=y+"px";
   var deltaY = mouseY-y;
   var deltaX = mouseX-x;
-  var degs=Math.atan2(deltaY,deltaX) *180 / 3.14159;
+  var degs=Math.atan2(deltaY,deltaX) *360 / 3.14159;
   thluffy.style.webkitTransform = "rotate("+degs+"deg)";
-  //('-webkit-transform','rotate('+degs+"deg)");
 }
 
 var changecolor = function(e){
@@ -55,7 +59,15 @@ function startit() {
  myevent = setInterval(move,100);
 }
 function stopit() {
-	window.clearTimeout(myevent);
+    window.clearTimeout(myevent);
 }
- document.getElementById("start").addEventListener('click',startit);
- document.getElementById("stop").addEventListener('click',stopit);
+function away() {
+    var moveelt=document.querySelector('.move');
+    moveelt.style.left=1000+"px";
+    moveelt.style.top=1000+"px";
+}
+
+ //document.getElementById("start").addEventListener('click',startit);
+document.getElementById("thluffy").addEventListener('click', away);
+document.addEventListener('click', startit());
+document.getElementById("stop").addEventListener('click',stopit);
