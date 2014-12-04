@@ -3,16 +3,26 @@
 
   <head>
     <style>
+      body {
+        background-image: url("background.jpg");
+      }
       #hedgehog {
       position:absolute;
-      height: 100px;
+      height: 150px;
+      }
+      h1 {
+        color: white;
       }
     </style>
   </head>
 
   <body>
-    <h1>Find the Christmas Hedgehogs</h1>
-    <img id="hedgehog" class="img" src="hedgehog1.jpg">
+    <div id="heading">
+      <h1>Find the Christmas Hedgehog</h1>
+    </div>
+    <img id="hedgehog" class="img" src="hedgehog.jpg">
+    <audio autoplay loop src="jingle.mp3" id = "jingle" type="audio/mpeg">
+    </audio>
     <script src="hedgehog.js"></script>
   </body>
 
