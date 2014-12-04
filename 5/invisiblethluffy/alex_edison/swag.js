@@ -32,39 +32,40 @@ document.addEventListener('mousemove', function(e) {
 });
 
 var playSwag = function() {
-    var distance = Math.sqrt(Math.pow((mouseX-swagX-50),2)+Math.pow((mouseY-swagY-100),2));
-    console.log(distance);
-    if (distance > 500) {
-	swag1.play();
-	swag2.pause();
-	swag3.pause();
-	swag4.pause();
-	swag5.pause();
-    } else if ( distance > 350 ) { 
-	swag1.pause();
-	swag2.play();
-	swag3.pause();
-	swag4.pause();
-	swag5.pause();
-    } else if ( distance > 150 ) { 
-	swag1.pause();
-	swag2.pause();
-	swag3.play();
-	swag4.pause();
-	swag5.pause();
-    } else if ( distance > 50 ) { 
-	swag1.pause();
-	swag2.pause();
-	swag3.pause();
-	swag4.play();
-	swag5.pause();
-    } else { 
-	swag1.pause();
-	swag2.pause();
-	swag3.pause();
-	swag4.pause();
-	swag5.play();
-    }};
+    if(swag.style.opacity==0.0){
+	var distance = Math.sqrt(Math.pow((mouseX-swagX-50),2)+Math.pow((mouseY-swagY-100),2));
+	console.log(distance);
+	if (distance > 500) {
+	    swag1.play();
+	    swag2.pause();
+	    swag3.pause();
+	    swag4.pause();
+	    swag5.pause();
+	} else if ( distance > 350 ) { 
+	    swag1.pause();
+	    swag2.play();
+	    swag3.pause();
+	    swag4.pause();
+	    swag5.pause();
+	} else if ( distance > 150 ) { 
+	    swag1.pause();
+	    swag2.pause();
+	    swag3.play();
+	    swag4.pause();
+	    swag5.pause();
+	} else if ( distance > 50 ) { 
+	    swag1.pause();
+	    swag2.pause();
+	    swag3.pause();
+	    swag4.play();
+	    swag5.pause();
+	} else { 
+	    swag1.pause();
+	    swag2.pause();
+	    swag3.pause();
+	    swag4.pause();
+	    swag5.play();
+	}}};
 
 
 swag.addEventListener("click",function(e){

@@ -19,6 +19,55 @@ var hide = function(){
     console.log("hidden");
     cow.src="invisible.png";
     valid=true;
+    cow.height=128;
+    cow.width=128;
+    growing = false;
+}
+
+var tracker = 0;
+var growing = false;
+
+var growhelp = function() {
+    //console.log(cow.height);
+    if (growing == true) {
+	if (tracker<75) {
+	    console.log("growing");
+	    cow.height=cow.height+1;
+	    cow.width=cow.width+1;
+	    if (tracker%2 == 0) {
+		var newX = cow.style.left;
+		newX =  parseInt(newX.substring(0,newX.length-2))-1;
+		var newY = cow.style.top;
+		NewY = parseInt(newY.substring(0,newY.length-2))-1;
+		cow.style.left=newX+"px";
+		cow.style.top=newY+"px";
+	    }
+	}
+	else if (tracker>150) {
+	    growing = false;
+	}
+	else {
+	    console.log("shrinking");
+	    cow.height=cow.height-1;
+	    cow.width=cow.width-1;
+	    if (tracker%2 == 0) {
+		var newX = cow.style.left;
+		newX =  parseInt(newX.substring(0,newX.length-2))+1;
+		var newY = cow.style.top;
+		NewY = parseInt(newY.substring(0,newY.length-2))+1;
+		cow.style.left=newX+"px";
+		cow.style.top=newY+"px";
+	    }
+	}
+	tracker++;
+    }
+}
+ 
+
+var grow = function(){
+    growing = true;
+    console.log("growing");
+    tracker = 0;
 }
 
 var valid = true;
@@ -93,6 +142,7 @@ var start=function(){
 	this.play();
     }, false);
     music.play();
+    setInterval(function(){growhelp()}, 10); 
     window.addEventListener("mousemove",updateMusic);
     cow.addEventListener('click',
 		     function(e){
@@ -103,6 +153,7 @@ var start=function(){
 			     console.log(cow.speed);
 			     cow.src="admiral.png";
 			     valid = false;
+			     grow();
 			     setTimeout(function(){hide()}, 1500);
 			 }
 		     });

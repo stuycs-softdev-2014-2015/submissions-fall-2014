@@ -43,8 +43,8 @@ var setXY = function(e) {
 }
 
 var showThluffy = function() {
-	var distance = Math.sqrt(Math.pow(mouseX - tX, 2) + Math.pow(mouseY - tY, 2));
-	if (distance < 50) {
+	var distance = Math.sqrt(Math.pow(mouseX - tX + 12.5, 2) + Math.pow(mouseY - tY + 12.5, 2));
+	if (distance < 25) {
 		thluffy.style.visibility = "visible";
 		setTimeout(setup, 5000);
 	}
