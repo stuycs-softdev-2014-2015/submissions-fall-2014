@@ -9,7 +9,7 @@ var size = {
 var colors = ['orange','green','purple','red','blue','yellow']; 
 var color = 0;
 var isColor = true;
-/*
+
 var seizure = document.getElementById("rave");
 seizure.addEventListener("click",function(e){
     isColor=!isColor;
@@ -20,26 +20,39 @@ var colorDU = setInterval(function(e){
     color++;
     }
 },1000);
-*/
 
-//var isEasy = false;
-/*
+
+var isEasy = false;
+
 var easymode = document.getElementById("easy");
-easymode.addEventListener("click",funtion(e){
+easymode.addEventListener("click",function(e){
     isEasy=!isEasy;
-})
-*/
+    var dist = document.getElementById("dist");
+    dist.innerHTML = "";
+    var coor = document.getElementById("coor");
+    coor.innerHTML = "";
+    
+});
+
 
 
 var createHiddenLocation = function(e){
-    hiddenX = Math.floor(Math.random()*size.width);
-    hiddenY = Math.floor(Math.random()*size.height);
+    hiddenX = Math.floor(Math.random()*(size.width-100));
+    hiddenY = Math.floor(Math.random()*(size.height-100));
     var pic = document.getElementById("king");
     pic.src="sandking.jpg"
     var move = document.querySelector(".move");
     move.style.left = hiddenX+"px";
     move.style.top = hiddenY+"px";
     pic.style.display = "none";
+    /* DOES NOT WORK */
+    pic.addEventListener("mouseover", function(e){
+	this.style.cursor="pointer";
+    });
+    pic.addEventListener("mouseout",function(e){
+	this.style.cursor="auto";
+    });
+    
 }
 createHiddenLocation();
 
@@ -48,14 +61,38 @@ var getDistance = function(e){
     var xplace = hiddenX - mouseX;
     var yplace = hiddenY - mouseY;
     distance = Math.sqrt(Math.pow(xplace+50,2)+Math.pow(yplace+50,2));
-    dist = document.getElementById("dist");
-    dist.innerHTML = distance;
+    if (isEasy){
+	var dist = document.getElementById("dist");
+	dist.innerHTML = distance;
+    }
+    var sand = document.getElementById("sandstorm");
+    if (distance < 50){
+	sand.volume = 1.0;
+    }
+    else if (distance < 200){
+	sand.volume = 0.8;
+    }
+    else if (distance < 400){
+	sand.volume = 0.6;
+    }
+    else if (distance < 600){
+	sand.volume = 0.4;
+    }
+    else if (distance < 800){
+	sand.volume = 0.2;
+    }
+    else{
+	sand.volume = 0.1;
+    }
+    
 }
 window.addEventListener('mousemove',function(e){
     mouseX = e.pageX;
     mouseY = e.pageY;
-    coor = document.getElementById("coor");
-    coor.innerHTML = ""+mouseX+","+mouseY;
+    if (isEasy){
+	var coor = document.getElementById("coor");
+	coor.innerHTML = ""+mouseX+","+mouseY;
+    }
     getDistance();
 });
 var recalculate = setInterval(getDistance,100);
@@ -71,3 +108,4 @@ var checkLocation = function(e){
     }
 }
 window.addEventListener('click',checkLocation);
+console.log("hi");
