@@ -2,9 +2,10 @@
 
 var donger_image = document.getElementById("donger");
 var kek_image = document.getElementById("kek");
-var dancedong_image = document.getElementById("dancingdonger")
+var dancedong_image = document.getElementById("dancingdonger");
 var score_disp = document.getElementById("scoredisplay"); //shows current score
 var dongx,dongy;
+var update;
 var kekx,keky;
 var eX, eY;
 var global_dist;
@@ -46,6 +47,17 @@ var update_mouse_cor = function(e) {
 
     global_dist = Math.min(dong_distance,kek_distance);
 
+    console.log(global_dist);
+
+}
+
+var dong_dance = function(){
+	//if (global_dist > 150)
+	//	dancedong_image.style.backgroundColor = colors[0];
+	//setting colors like this didn't work for some reason...
+
+	//originally had color code hre
+
     if (global_dist > 750)
 	dancedong_image.src = "1dd.jpg"
     else if (global_dist > 600)
@@ -58,14 +70,6 @@ var update_mouse_cor = function(e) {
 	dancedong_image.src = "5dd.jpg"
     else
 	dancedong_image.src = "6dd.jpg"
-}
-
-var dong_dance = function(){
-	//if (global_dist > 150)
-	//	dancedong_image.style.backgroundColor = colors[0];
-	//setting colors like this didn't work for some reason...
-
-	//originally had color code hre
 }
 
 //----- DONGER -----
@@ -129,11 +133,20 @@ var found_kek = function() {
 	       , 1500);
 }
 
+var setup_complete = function() {
+    setup_donger();
+    setup_kek();
+    
+    while(true){
+	 update = setInterval(dong_dance,100);
+    }
+}
 
 
 //----- Start -----
-setup_donger();
-setup_kek(dongx,dongy);
+//setup_donger();
+//setup_kek(dongx,dongy);
+setup_complete();
 
     
     
