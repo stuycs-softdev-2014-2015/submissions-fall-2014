@@ -2,10 +2,14 @@
 
 var donger_image = document.getElementById("donger");
 var kek_image = document.getElementById("kek");
+var dancedong_image = document.getElementById("dancingdonger")
 var score_disp = document.getElementById("scoredisplay"); //shows current score
 var dongx,dongy;
 var kekx,keky;
+var eX, eY;
+var global_dist;
 var score;
+var colors = ['Blue', 'CornflowerBlue', 'LightSteelBlue','LightCoral', 'IndianRed', 'FireBrick'];
 
 
 //this takes the url and grabs the variables in it, then selects the value of score to store
@@ -29,24 +33,40 @@ score = score || 0;
 score_disp.innerHTML = "Score: "+score;
 
 
-
-/*
-var mouse_xcor;
-var mouse_ycor;
-
 window.addEventListener('mousemove',update_mouse_cor);
 
 var update_mouse_cor = function(e) {
     //changes globals mouse_xcor and _ycor to reflect current state, used for clicking and distance 
-    mouse_xcor = e.pageX;
-    mouse_ycor = e.pageY;
-    console.log(mouse_xcor);
-    console.log(mouse_ycor);
+    eX = e.pageX;
+    eY = e.pageY;
+
+    //calculates distance
+    var dong_distance = Math.floor(Math.sqrt(Math.pow(dongx-eX, 2) + Math.pow(dongy-eY,2)));
+	var kek_distance = Math.floor(Math.sqrt(Math.pow(kekx-eX , 2) + Math.pow(keky-eY , 2)));
+
+	global_dist = Math.max(dong_distance,kek_distance);
+
+	if (global_dist > 750)
+		dancedong_image.src = "1dd.jpg"
+	else if (global_dist > 600)
+		dancedong_image.src = "2dd.jpg"
+	else if (global_dist > 450)
+		dancedong_image.src = "3dd.jpg"
+	else if (global_dist > 300)
+		dancedong_image.src = "4dd.jpg"
+	else if (global_dist > 150)
+		dancedong_image.src = "5dd.jpg"
+	else
+		dancedong_image.src = "6dd.jpg"
 }
 
+var dong_dance = function(){
+	//if (global_dist > 150)
+	//	dancedong_image.style.backgroundColor = colors[0];
+	//setting colors like this didn't work for some reason...
 
-Tried to use this for something fancy and failed, just ignore or delete this unless you use some of it for distances
-*/    
+	//originally had color code hre
+}
 
 //----- DONGER -----
 var setup_donger = function() {
