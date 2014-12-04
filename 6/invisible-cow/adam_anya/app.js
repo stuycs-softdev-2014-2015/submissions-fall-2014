@@ -9,6 +9,7 @@ var mouseY = 0;
 var body;
 var dist;
 var cont = true;
+var notSolved = true;
 
 var distance = function(e) {
     body = document.getElementsByTagName("body")[0].style
@@ -61,8 +62,10 @@ var changeBackground = function() {
 window.addEventListener("mousemove", distance);
 var event;
 var mystart = function() {
-    event = setInterval(changeBackground, 20);
-    cont = true;
+    if (notSolved){
+	event = setInterval(changeBackground, 20);
+	cont = true;
+    }
 }
 
 var mystop = function() {
@@ -75,6 +78,7 @@ var show = function() {
     body = document.getElementsByTagName("body")[0].style
     body.backgroundImage = 'url("white.png")';
     document.getElementById("img").style.opacity = "100";
+    notSolved = false;
     cont = false;
     mystop;
     
