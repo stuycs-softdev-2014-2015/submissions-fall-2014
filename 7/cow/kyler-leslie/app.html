@@ -5,10 +5,7 @@
 .move {position:absolute; left:200px; top:275px}
 .img {height:100px; width:100px}
 .stop {height:100px; width:100px}
-.r1 {position:absolute; left:250px; top:150px; height:100px; width:100px}
-.r2 {position:absolute; left:800px; top:150px; height:100px; width:100px}
-.r3 {position:absolute; left:250px; top:400px; height:100px; width:100px}
-.g {position:absolute; left:800px; top:400px; height:100px; width:100px}
+.s {position:absolute; left:250px; top:150px; height:100px; width:100px}
 
 
 
@@ -22,99 +19,11 @@
 </div>
 
 <div class="img">
-<img src="img/stop_sign_clip_art.png" id="red1" class="r1">
-<img src="img/stop_sign_clip_art.png" id="red2" class="r2">
-<img src="img/stop_sign_clip_art.png" id="red3" class="r3">
-<img src="img/575px-Go_sign.svg.png" id="green" class="g">
+<img src="img/stop_sign_clip_art.png" id="sign" class="s">
 </div>
 
 
+<script src="app.js"></script>
 
-
-
-
-
-
-<script>
-var mouseX;
-var mouseY;
-
-var spot1 = {'left':250, 'top':150}
-var spot2 = {'left':800, 'top':150}
-var spot3 = {'left':250, 'top':400}
-var spot4 = {'left':800, 'top':400}
-
-var spots = [spot1, spot2, spot3, spot4]
-
-window.addEventListener('click', function(e) {
-	mouseX=e.pageX;
-	mouseY=e.pageY;
-});
-
-function back(e) {
-	var car = document.getElementById("car");
-	var mover=document.querySelector('.move');
-
-	var x = (mover.style.left);
-	x = x.substring(0,x.length-2);
-
-	x = parseInt(x);
-
-
-	if (x >= 100) {
-		x = x-3;
-	}	
-	
-	mover.style.left=x+"px";
-}
-
-function forward(e) {
-	var mover=document.querySelector('.move');
-	var x = (mover.style.left);
-	x = x.substring(0,x.length-2);
-	x = parseInt(x);
-
-	if (x < 980) {
-		x = x + 10;
-	}
-
-	mover.style.left = x+"px";
-}
-
-function signs(e) {
-	var s = spots;
-	var i = 4;
-	var j;
-	var spot;
-	while (i>0) {
-		j = 10/i;}}
-		
-
-/*
-var test;
-function go() {
-test = setInterval(tester, 400);
-}
-
-function tester(e) {
-	console.log(Math.floor((Math.random() * 10) / 2.5))
-}
-
-go()
-*/
-
-		
-	
-	
-
-var event;
-function startit() {
-event = setInterval(back,1000);}
-
-startit()
-
-window.addEventListener('click', forward);
-
-</script>
-<body>
+</body>
 </html>

@@ -3,15 +3,28 @@
 <html>
   <head>
     <style>
+      .move {
+        position : absolute;
+        left : 0px;
+        top : 0px;
+      }
+      .img {
+        display : none;
+        cursor : auto;
+      }
     </style>
+    <audio loop="loop" autoplay="autoplay" id="sandstorm"><source src="Darude.mp3" type="audio/mpeg"></audio>
+    <audio id="winner"><source src="http://hydra-media.cursecdn.com/dota2.gamepedia.com/9/9a/Skg_ability_sandstorm_01.mp3" type="audio/mpeg"></audio>
   </head>
   <title>Find the Invisible Sand King</title>
   <body>
     <input type="checkbox" id="rave">No Seizures Please!
-    <input type="checkbox" id="easy">Easy mode
+    <input type="checkbox" id="easy">Cheat
     <h1 id="coor"></h1>
     <h1 id="dist"></h1>
-    <img id="king" src=""></img>
+    <div class="move">
+      <img id="king" cursor="auto" class="img" src=""></img>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
