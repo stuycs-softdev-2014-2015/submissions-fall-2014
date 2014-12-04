@@ -1,6 +1,6 @@
 var mouseX, mouseY;
 var tX, tY;
-var thluffy = "http://cestlaz.github.io/assets/images/thluffy.jpg";
+var thluffy = document.getElementById("thluffy");
 var XY = document.getElementById("coords");
 
 //MATH
@@ -13,10 +13,10 @@ var dist = function(x1, y1, x2, y2){
 }
 
 //SETXY
-tX = Math.random() * screen.width;
-tY = Math.random() * screen.height;
-thluffy.style.left = (tX + "px");
-thluffy.style.top = (tY + "px");
+tX = Math.floor(Math.random() * screen.width);
+tY = Math.floor(Math.random() * screen.height);
+thluffy.left = (tX + "px");
+thluffy.top = (tY + "px");
 
 var setXY = function(e) {
     mouseX = e.pageX;

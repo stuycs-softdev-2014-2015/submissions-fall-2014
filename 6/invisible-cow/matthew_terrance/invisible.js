@@ -16,6 +16,7 @@ var loow = document.getElementById("loow")
 var supahigh = document.getElementById("supahigh")
 var high = document.getElementById("high")
 var med = document.getElementById("med")
+var merry = document.getElementById("merry")
 
 
 window.addEventListener('mousemove',function(e){
@@ -68,6 +69,14 @@ function togglev(){
     }  
 };
 
+var refresh = document.getElementById("finished");
+
+function newGame(){
+    location.reload();
+}
+
+refresh.addEventListener('click',newGame);
+
 var myEvent;
 function startit() {
     console.log("arewehere");
@@ -78,6 +87,7 @@ function moveit() {
     console.log("arewehere2");
     if( Math.abs(window.innerWidth/2 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
 	clearInterval(myEvent);
+	merry.play();
     }
     if (window.innerWidth/2<w) {
 	w=w-3;
@@ -93,11 +103,24 @@ function moveit() {
     move.style.top=h+"px";
 };
 
+function colors(){
+    if (document.body.style.background=="green"){
+	document.body.style.background="red";
+    }
+    else{
+	document.body.style.background="green";
+    }
+}
+
+var colorful;
+
 function findsanta(){
     if (picture.className == "img hidden"){
 	picture.className ="img visible";
 	clearInterval(santa);
 	startit();
+	refresh.className="existent";
+	colorful=setInterval("colors()",1500);
     }
 };
 
