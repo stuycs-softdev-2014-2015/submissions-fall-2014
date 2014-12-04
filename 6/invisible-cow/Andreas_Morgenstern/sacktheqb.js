@@ -29,38 +29,53 @@ function hut() {
     var cy = parseInt(qb.style.top) + parseInt(qb.height)/2;
     var d = dist(cx, cy, mouseX, mouseY);
     var r = 100;
-    //console.log(current.played.length);
-    if (current.played.length>=1) {
-	current.pause();
-	if (d < r) {
+    console.log(current == s6);
+    if (current == ow){
+	return;
+    }
+    if (d < r) {
+	if (current != s6) {
+	    current.pause();
 	    s6.play();
 	    current = s6;
 	}
-	else if (d < 2*r) {
+    }
+    else if (d < 2*r){
+	if (current != s5) {
+	    current.pause();
 	    s5.play();
 	    current = s5;
 	}
-	else if (d < 3*r) {
+    }
+    else if (d < 3*r){
+	if( current != s4) {
+	    current.pause();
 	    s4.play();
 	    current = s4;
-
-	}
-	else if (d < 4*r) {
-	    s3.play();
-	    current = s3;
-
-	}
-	else if (d < 5*r) {
-	    s2.play();
-	    current = s2;
-
-	}
-	else {
-	    s1.play();
-	    current = s1;
-
 	}
     }
+    else if (d < 4*r ) {
+	if (current != s3) {
+	    current.pause();
+	    s3.play();
+	    current = s3;
+	}
+    }
+    else if (d < 5*r ){
+	if( current != s2) {
+	    current.pause();
+	    s2.play();
+	    current = s2;
+	}
+    }
+    else {
+	if (current != s1) {
+	    current.pause();
+	    s1.play();
+	    current = s1;
+	}
+    }
+
 };
 function sacked(){
     var x = mouseX;
@@ -99,4 +114,7 @@ function reset(){
     }
     qb.style.left = "" + w + "px";
     qb.style.top = "" + h + "px";
+    current = s1;
+    play();
 };
+setInterval(reset(), 10000)
