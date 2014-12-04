@@ -26,7 +26,7 @@ var calcBackground = function() {
     else {
     	newBGOpacity = 1 - (distance / 1500);
     }
-    rate = distance * 3;
+    rate = distance * 4;
     console.log(distance);
     //body.style.backgroundColor = "rgba(0,255,0," + newBGOpacity + ")";
 }
