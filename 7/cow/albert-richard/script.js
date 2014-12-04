@@ -101,10 +101,13 @@ var recalculate = setInterval(getDistance,100);
 var popup = function(e){
     var pic = document.getElementById("king");
     pic.style.display = "inline-block";
+    
 }
 var checkLocation = function(e){
     if (distance <= 50){
 	popup();
+	var sound = document.getElementById("winner");
+	winner.play();
     }
 }
 window.addEventListener('click',checkLocation);

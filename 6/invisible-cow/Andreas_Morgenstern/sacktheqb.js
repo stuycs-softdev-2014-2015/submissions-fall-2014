@@ -90,6 +90,8 @@ function sacked(){
 	current = ow;
 	ow.play();
 	window.alert("U REKT THE " + qb.id);
+	clearInterval(p);
+	p = setInterval(failed,10000);
 	reset();
     }
     else {
@@ -114,6 +116,15 @@ function reset(){
     }
     qb.style.left = "" + w + "px";
     qb.style.top = "" + h + "px";
+    current.pause();
     current = s1;
-    play();
+    s1.play();
 };
+var p = setInterval(failed, 10000);
+function failed() {
+    current.pause();
+    window.alert("You failed to sack the quarterback. He just threw the game winning touchdown.");
+    reset();
+
+};
+

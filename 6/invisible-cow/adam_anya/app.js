@@ -1,3 +1,6 @@
+document.getElementById("img").style.top = Math.random()*window.innerHeight + "px";
+document.getElementById("img").style.left = Math.random()*window.innerWidth + "px";
+
 var img = document.getElementById("img");
 var imgX = document.getElementById("img").x + document.getElementById("img").width/2;
 var imgY = document.getElementById("img").y + document.getElementById("img").height/2;
@@ -54,6 +57,12 @@ var changeBackground = function() {
     }
 }
 
+var show = function() {
+	document.getElementById("img").style.opacity = "100";
+}
+
+img.addEventListener("click", show);
+
 document.addEventListener("mousemove", distance);
 
 var event;
@@ -62,7 +71,8 @@ var mystart = function() {
 }
 
 var mystop = function() {
-	window.clearTimeout(event);
+	clearInterval(event);
+	Math.random()*window.width
 }
 
 document.getElementById("start").addEventListener('click', mystart);
