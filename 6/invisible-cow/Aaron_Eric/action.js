@@ -62,12 +62,12 @@ var growhelp = function() {
 	tracker++;
     }
 }
+ 
 
 var grow = function(){
     growing = true;
     console.log("growing");
     tracker = 0;
-    setInterval(function(){growhelp()}, 10);   
 }
 
 var valid = true;
@@ -142,6 +142,7 @@ var start=function(){
 	this.play();
     }, false);
     music.play();
+    setInterval(function(){growhelp()}, 10); 
     window.addEventListener("mousemove",updateMusic);
     cow.addEventListener('click',
 		     function(e){
