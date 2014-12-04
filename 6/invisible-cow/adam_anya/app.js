@@ -1,12 +1,13 @@
 var img = document.getElementById("img");
-var imgX = document.getElementById("img").x;
-var imgY = document.getElementById("img").y;
+var imgX = document.getElementById("img").x + document.getElementById("img").width/2;
+var imgY = document.getElementById("img").y + document.getElementById("img").height/2;
 var mouseX = 0;
 var mouseY = 0;
+var body;
 
 var distance = function(e) {
     //var body = document.getElementById("body");
-    var body = document.getElementsByTagName("body")[0].style
+    body = document.getElementsByTagName("body")[0].style
     mouseX = e.pageX;
     mouseY = e.pageY;
     //console.log(mouseX);
@@ -16,6 +17,8 @@ var distance = function(e) {
 	    Math.pow(mouseY - imgY, 2)
     )
     console.log(dist);
+}
+var changeBackground = function() {
     if (dist < 5){
 	body.backgroundImage = 'url("2048.png")';
     }
@@ -53,4 +56,14 @@ var distance = function(e) {
 
 document.addEventListener("mousemove", distance);
 
+var event;
+var mystart = function() {
+	event = setInterval(changeBackground, 20);
+}
 
+var mystop = function() {
+	window.clearTimeout(event);
+}
+
+document.getElementById("start").addEventListener('click', mystart);
+document.getElementById("stop").addEventListener('click', mystop);
