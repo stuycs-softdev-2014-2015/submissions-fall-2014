@@ -1,5 +1,6 @@
 var mouseX, mouseY;
 var thluffyX, thluffyY;
+var phone = document.getElementById("phone");
 var thluffy = document.getElementById("thluffy");
 var playing= true;
 
@@ -19,10 +20,12 @@ window.addEventListener('mousemove', function(e) {
 var buildup =document.getElementById('javert_loud');
 var found =document.getElementById('donotforget');
 var play = function(e) {
+    
     var mode=document.getElementById("mode");
     var distance =Math.sqrt(Math.pow(mouseX-(thluffyX+250),2)+Math.pow(mouseY-(thluffyY+110),2));
 
     if (mode.options[mode.selectedIndex].text == "Scare"){
+
 	buildup =document.getElementById('footsteps');
 	found =document.getElementById('door');
 	document.body.style.color= "#ffffff";
