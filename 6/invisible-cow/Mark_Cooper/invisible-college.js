@@ -1,29 +1,39 @@
-var mouseX,mouseY;
+var mouseX, mouseY;
 var hX, hY;
-window.addEventListener("mousemove",function(e){
-		// console.log(e.pageX+" "+e.pageY);
-		mouseX = e.pageX;
-		mouseY = e.pageY;
-});
 
-var randomLocation = function(){
-    hX = random(window.innerWidth-50)
-    hY = random(window.innerHeight-50)
-    
-}; 
+window.addEventListener("mousemove",function(e){
+	mouseX = e.pageX;
+	mouseY = e.pageY;
+	
+    });
 
 var moveImage = function(){
-    var x = Math.floor(Math.random()* (window.innerWidth - 50)) + 50;
-    var y = Math.floor(Math.random()* (window.innerHeight - 50)) + 50;
-
+    hX = Math.floor(Math.random()* (window.innerWidth - 50)) + 50;
+    hY = Math.floor(Math.random()* (window.innerHeight - 50)) + 50;
     var img = document.getElementById("Harvard");
-    img.style.top = y + "px";
-    img.style.left = x + "px";
+    hX = 0;
+    hY = 0;
+    img.style.top = hY + "px";
+    img.style.left = hX + "px";
 };
 
 
-var go = function(){
-    moveImage
-}
+
+window.addEventListener("click", function(e){
+	if( mouseX >= (hX-50) &&  mouseX <= (hX+50) &&  mouseY >= (hY-50) && mouseY <= (hY+50) ){
+	    var img = document.getElementById("Harvard");
+	    img.style.visibility = "visible"
+		console.log("Winner")
+		}
+	else{
+	    console.log("No Win")
+		
+		console.log(mouseX)
+		console.log(hX)
+		console.log(mouseY)
+		console.log(hY)
+		}
+    });
+
 
     
