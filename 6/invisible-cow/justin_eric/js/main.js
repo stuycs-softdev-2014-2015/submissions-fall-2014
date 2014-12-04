@@ -18,8 +18,14 @@ var updateMouseCoords = function(e) {
 }
 
 var checkMouse = function(e) {
-        var distance = distanceFromMouse(duck);
-        console.log(distance);
+        var ducks = document.getElementsByClassName("move");
+        var distance = distanceFromMouse(ducks[0]);
+        for (var i = 0; i < ducks.length; i++) {
+            if (distance > distanceFromMouse(ducks[i])) {
+                distance = distanceFromMouse(ducks[i]);
+                console.log(distance);
+            }
+        }
         if (distance < 50) {
                 revealDuck();
                 alert("you got too close to the duck");
