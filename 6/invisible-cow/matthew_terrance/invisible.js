@@ -84,12 +84,12 @@ function startit() {
 };
 
 function moveit() {
-    console.log("arewehere2");
-    if( Math.abs(window.innerWidth/2 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
+    //console.log("arewehere2");
+    if( Math.abs(window.innerWidth/2-40 -w)<5 && Math.abs(window.innerHeight/2-h)<5){
 	clearInterval(myEvent);
 	merry.play();
     }
-    if (window.innerWidth/2<w) {
+    if ((window.innerWidth/2-40)<w) {
 	w=w-3;
     } else {
 	w=w+3;
