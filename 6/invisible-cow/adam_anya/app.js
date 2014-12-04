@@ -31,11 +31,23 @@ var distance = function(e) {
     else if (dist < 160){
 	body.backgroundImage = 'url("128.png")';
     }
-    else if (dist < 320){
+    else if (dist < 300){
 	body.backgroundImage = 'url("64.png")';
     }
-    else {
+    else if (dist < 400){
 	body.backgroundImage = 'url("32.png")';
+    }
+    else if (dist < 500){
+	body.backgroundImage = 'url("16.png")';
+    }
+    else if (dist < 600){
+	body.backgroundImage = 'url("8.png")';
+    }
+    else if (dist < 700){
+	body.backgroundImage = 'url("4.png")';
+    }
+    else {
+	body.backgroundImage = 'url("2.png")';
     }
 }
 
