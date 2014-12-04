@@ -1,36 +1,45 @@
 <html>
 
-  <script src="whereHow.js">
-    var x = Math.random()*100;
-    var y = Math.random()*100;
-    x = x + "px";
-    y = y + "px";
-  </script>
+ <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 
+  <title> Where How? </title>
   <head>
     <style>
-      .img {height:100px;}
-      #whenhow {position:absolute; left:x; top:y;}
+      .img{
+      height: 100px;
+      visibility: hidden;
+      }
+      
     </style>
   </head>
 
   <body>
+
+    <audio id="where" controls="controls" onload="sound()">
+      <source scr="where.mp3" type="audio/mp3">
+    </audio>
+    <audio id="when" controls="controls" onload="sound()">
+      <source scr="when.mp3" type="audio/mp3">
+    </audio>
+    <audio id="how" controls="controls" onload="sound()">
+      <source scr="how.mp3" type="audio/mp3">
+    </audio>
+
+
+    <center>
     <h1>WhereHow?</h1>
-
-    <div>
-      <img id="whenhow" class="img" src="whenhow.jpg">
-    </div>
-
-
+    </center>
     
- 
-
-
-
-
-
-
-
+    <div>
+      <p>Try you're luck at finding Where How?</p>
+    <button class="pure-button pure-button-active" input type="submit" id="start" value="Start">
+    <button class="pure-button pure-button-active" input type="submit" id="stop" value="Stop">
+     </div>
+    <div>
+      <img id="wherehow" class="img" src="whenhow.jpg">
+    </div>
+    <script src="timer.js">
+    </script>
   </body>
 
 </html>
