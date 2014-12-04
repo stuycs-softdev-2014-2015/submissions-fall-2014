@@ -1,7 +1,8 @@
 var mouseX;
 var mouseY;
 var distance;
-
+var dogLeft;
+var dogTop;
 //hint shows up when the mouse is really close to the dog
 var hint = document.getElementById("hint");
 hint.style.display = "none";
@@ -9,18 +10,21 @@ hint.style.display = "none";
 hint.style.position = "absolute";
 
 //setting the dog to a random position:
-var dog = document.getElementById("dog");
-dog.style.display = "none";
-dog.style.position = "absolute";
-var dogLeft = Math.floor(Math.random()*parseInt(screen.width));
-var dogTop = Math.floor(Math.random()*parseInt(screen.height));
-dog.style.left = "" + (dogLeft - 55) +"px"; 
-dog.style.top = "" + (dogTop - 90) +"px";
-//subtract half the width and height of image to center it
+var initialize = function(){
+    var dog = document.getElementById("dog");
+    dog.style.display = "none";
+    dog.style.position = "absolute";
+    dogLeft = Math.floor(Math.random()*parseInt(screen.width));
+    dogTop = Math.floor(Math.random()*parseInt(screen.height));
+    dog.style.left = "" + (dogLeft - 55) +"px"; 
+    dog.style.top = "" + (dogTop - 90) +"px";
+    hint.style.left = "" + (dogLeft - 5) +"px"; 
+    hint.style.top = "" + (dogTop - 5) +"px";
+    //subtract half the width and height of image to center it
 
-hint.style.left = "" + (dogLeft - 5) +"px"; 
-hint.style.top = "" + (dogTop - 5) +"px";
+};
 
+initialize();  
 document.getElementById("distance").style.display = "none";
 
 //use this function while testing if you want to see the numerical distance between mouse and dog
@@ -53,7 +57,7 @@ window.addEventListener('mousemove',function(e){
 var screenDiag = Math.sqrt( Math.pow(screen.width,2) + Math.pow(screen.height,2) ); //length of diagonal of screen; used to determine how loud audio should be
 
 window.addEventListener('click',function(e){
-    if (distance < screenDiag*0.005){
+    if (distance < screenDiag*0.01){
 	stopIt();
 	var display = document.getElementById("distance").innerHTML = "YAY!";
 	dog.style.display = "block";
@@ -96,6 +100,7 @@ var checkMouse = function(){
 
 var myevent;
 var startIt = function(){
+    //initialize();
     audio.play();
     myevent = setInterval(checkMouse,100);
 };
@@ -103,6 +108,13 @@ var stopIt = function(){
     audio.pause();
     window.clearTimeout(myevent);
 };
+var reset = function(){
+    initialize();
+    var newevent;
+    audio.play();
+    newevent = setInterval(checkMouse,100);
+};
 
 document.getElementById("start").addEventListener('click',startIt);
 document.getElementById("stop").addEventListener('click',stopIt);
+document.getElementById("reset").addEventListener('click',reset);

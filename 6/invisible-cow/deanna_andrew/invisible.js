@@ -66,7 +66,12 @@ var start= function(e){
     goalX = Math.random()*(maxX-minX)+minX;
     goalX = parseInt(goalX)
     goalY = Math.random()*(maxY-minY)+minY;
-    goalY = parseInt(goalY)
+    goalY = parseInt(goalY);
+    document.getElementById("tree").style.top= goalX + "px";
+    document.getElementById("tree").style.left= goalY + "px";
+    // document.getElementById("tree").style.display= "none";
+
+
     console.log("GOAL YO: " + goalX + ", " + goalY)
     playAudio()
 
