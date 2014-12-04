@@ -1,3 +1,7 @@
 audio {
     display:none;
 }
+
+body {
+    cursor: crosshair
+}
