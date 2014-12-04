@@ -2,6 +2,7 @@ var mouseX, mouseY, hedgehogX, hedgehogY;
 var hedgehog = document.getElementById("hedgehog");
 var jingle = document.getElementById("jingle");
 var timer = document.getElementById("timer");
+var finaltime = document.getElementById("finaltime");
 var maxDist = Math.sqrt(Math.pow(window.innerHeight,2) + Math.pow(window.innerWidth,2));
 //Setting coordinates of hedgehog at random
 hedgehogY = Math.random() * window.innerHeight * .9;
@@ -27,7 +28,8 @@ var reveal = function(e) {
 	document.getElementById("heading").appendChild(text);
 	window.removeEventListener('mousemove',find);
 	window.removeEventListener('click', reveal);
-	timeevent.stopPropagation()
+	endtime = time;
+	finaltime.innerHTML = "You found the hedgehog in " + endtime.toString() +"  seconds!";
     }
 }
 
@@ -43,15 +45,8 @@ var mouseOnImg = function() {
 
 var tick = function() {
     time = time + 1;
-    timer.innerHTML = time;
+    timer.innerHTML = "Time:" + time.toString();
 };
-
-var reset = function() {
-    var endtime = time;
-    time = 0;
-    timer.innerHTML = time;
-};
-
 
 //Runs every time mouse is moved. Calculates distance from hedgehog, adjusts volume of
 //jingle accordingly. 
