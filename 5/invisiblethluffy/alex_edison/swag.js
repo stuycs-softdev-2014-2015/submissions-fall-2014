@@ -3,6 +3,7 @@ var mousey;
 var swagX;
 var swagY;
 var swag = document.getElementById("swag");
+swag.style.position="absolute";
 
 window.addEventListener('mousemove',function(e){
     mousex=e.pageX;
@@ -10,21 +11,20 @@ window.addEventListener('mousemove',function(e){
 
 });
 
-swagX=Math.random() * (window.innerWidth-400);
-swagY=Math.random() * (window.innerHeight-430);
-
-document.getElementById("swag").style.left=swagX+"px";
-document.getElementById("swag").style.top=swagY+"px";
+swagX=Math.random()*(window.innerWidth-100);
+swagY=Math.random()*(window.innerHeight-150);
+swag.style.left=swagX+"px";
+swag.style.top=(50+swagY)+"px";
 
 var swagger=function(e){
-    var distance=Math.sqrt(Math.pow(mousex-(swagX+200),2)+Math.pow(mousey-(swag+215),2));
+    var distance=Math.sqrt(Math.pow(mousex-(swagX+50),2)+Math.pow(mousey-(swagY+50),2));
 }
 
 
-var complete=function(){
-    swag.style.opacity=1;
+var complete=function(e){
+    swag.style.visibility="visible";
 }
 
-swag.addEventListener('click',complete);
+swag.addEventListener("click",complete(e));
 var swagevent;
 swagevent=setTimeout(swagger,300);
