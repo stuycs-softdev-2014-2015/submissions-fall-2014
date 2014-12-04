@@ -69,6 +69,14 @@ function togglev(){
     }  
 };
 
+var refresh = document.getElementById("finished");
+
+function newGame(){
+    location.reload();
+}
+
+refresh.addEventListener('click',newGame);
+
 var myEvent;
 function startit() {
     console.log("arewehere");
@@ -100,6 +108,7 @@ function findsanta(){
 	picture.className ="img visible";
 	clearInterval(santa);
 	startit();
+	refresh.className="existent";
     }
 };
 
