@@ -62,6 +62,9 @@ var checkIfFound = function(e){
     if (d <= 80){
 	pic.style.visibility = "visible";
 	found = true;
+	if (found = true){
+	    document.getElementById("sound_element").innerHTML = "<embed src='"+ "found.wav" +"' hidden=true autostart=true loop=false>";
+	}
     }
 }
 
