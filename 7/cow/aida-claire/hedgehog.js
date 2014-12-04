@@ -1,6 +1,6 @@
 var mouseX, mouseY, hedgehogX, hedgehogY;
 var hedgehog = document.getElementById("hedgehog");
-var jingles = document.getElementById("jingles");
+var jingle = document.getElementById("jingle");
 
 //Setting coordinates of hedgehog at random
 hedgehogY = Math.random() * window.innerHeight * .9;
@@ -33,9 +33,9 @@ var find = function(e) {
     mouseY = e.pageY;
     var dist;
     dist = Math.sqrt(Math.pow((mouseX - hedgehogX),2) + Math.pow((mouseY - hedgehogY),2));
-    if (dist < 300){
-	jingles.play();
-    }
+    if (dist < 200){
+	jingle.play();
+    };
     if (mouseOnImg()) {
     	reveal();
     };
