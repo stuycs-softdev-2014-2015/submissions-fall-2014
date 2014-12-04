@@ -107,7 +107,7 @@ var checkLocation = function(e){
     if (distance <= 50){
 	popup();
 	var sound = document.getElementById("winner");
-	winner.play();
+	sound.play();
     }
 }
 window.addEventListener('click',checkLocation);
