@@ -4,6 +4,7 @@ body{
 
 #canvas{
     height: 400px;
+<<<<<<< Updated upstream
     text-align: center;
 }
 
@@ -26,3 +27,38 @@ body{
     from {opacity: 0}
     to {opacity: 1}
 }
+=======
+}
+
+#start {
+	background-color:#7892c2;
+	-moz-border-radius:21px;
+	-webkit-border-radius:21px;
+	border-radius:21px;
+	border:2px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:9px 18px;
+	text-decoration:none;
+	text-shadow:-1px 0px 12px #283966;
+}
+
+#stop {
+	background-color:#7892c2;
+	-moz-border-radius:21px;
+	-webkit-border-radius:21px;
+	border-radius:21px;
+	border:2px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	padding:9px 18px;
+	text-decoration:none;
+	text-shadow:-1px 0px 12px #283966;
+}
+>>>>>>> Stashed changes
