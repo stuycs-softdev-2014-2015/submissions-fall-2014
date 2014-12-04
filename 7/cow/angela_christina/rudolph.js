@@ -124,6 +124,7 @@ var whatMusic = function(e){
     }
 }
 /*
+ Attempt failed at changing cursor...
 var cursor = function(e) {
     if (dist<50){
 	console.log("change!");
@@ -190,7 +191,7 @@ var stopT = function(e){
 }
 
 window.addEventListener('load', setup);
-window.addEventListener('load', map);
+//window.addEventListener('load', map);
 
 window.addEventListener('mousemove', mouseCoord);
 window.addEventListener('mousemove',whatMusic);
