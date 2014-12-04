@@ -2,15 +2,34 @@
 <html>
   <head>
     <style>
-      .red{color: #ff0000;}
+      .red {color: #ff0000;}
       .green{color : #00ff00;}
+      .blue {color:0000ff;}
+      .img {height:50px; }
+      .smallerImg {height:10px; }
+      .move {position:absolute; left:500px; top:500px; }
+      body { background-image: url("cake.png"); 
+             background-repeat: no-repeat;
+             background-size: cover;
+             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif}
     </style>
+
     <meta charset="UTF-8">
   </head>
   <body>
+    
+    <div>
+      <input type=submit id="start" value="Start"></submit>
+      <input type=submit id="stop" value="Stop"></submit>
+    </div>
+
     <h3>Ling Dong and Tianshi Wang<br>
       Period 7 </h3>
-    <h1 id="title" class="red">PAINT</h1>
+    <h1 id="title" class="red">Guard the food.</h1>
+    <div class="move">
+      <img id="thluffy" class="img" src="thluffy.gif">
+    </div>
+
     <script src="timer.js"></script>
 
   </body>
