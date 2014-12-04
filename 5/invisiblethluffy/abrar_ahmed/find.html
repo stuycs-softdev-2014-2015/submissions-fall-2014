@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+    <img style="visibility:hidden; " id="thluffy" src="thluffy.png" width="100" height="100">
+    <audio controls id="one" style="visibility:hidden" loop="true">
+      <source src="childintime1.ogg" type="audio/ogg">
+    </audio>
+    <audio controls id="two" style="visibility:hidden" loop="true">
+      <source src="childintime2.ogg" type="audio/ogg">
+    </audio>
+    <audio controls id="three" style="visibility:hidden" loop="true">
+      <source src="childintime3.ogg" type="audio/ogg">
+    </audio>
+    <script>
+      var thluffy = document.getElementById("thluffy");
+      thluffy.style.position="absolute";
+      var randLeft = Math.floor(Math.random() * window.innerWidth);
+      var randTop = Math.floor(Math.random() * window.innerHeight);
+      thluffy.style.left=randLeft-50;
+      thluffy.style.top=randTop-50;
+      console.log("thluffy: " + thluffy.style.left);
+      console.log(thluffy.style.left)
+      thluffy.addEventListener("click", function(e) {console.log("click"); thluffy.style.visibility="visible";});
+      thluffy.addEventListener("mouseover", function(e) {console.log("hi");});
+      document.addEventListener("mousemove", function(e) {
+      var distance = Math.sqrt((e.clientX-randLeft)*(e.clientX-randLeft)+(e.clientY-randTop)*(e.clientY-randTop));
+      var song1 = document.getElementById("one");
+      var song2 = document.getElementById("two");
+      var song3 = document.getElementById("three");
+      if (distance > 500) {
+      song1.play();
+      song2.pause();
+      song3.pause();
+      console.log("500");
+      } else if ( distance > 100 ) { 
+      song2.play();
+      song1.pause();
+      song3.pause();
+      console.log("100");
+      } else if ( distance > 50 ) {
+      song3.play();
+      song1.pause();
+      song2.pause();
+      console.log("50");
+      } else {
+      thluffy.style.left=randLeft-50+"px";
+      thluffy.style.top=randTop-50+"px";
+      thluffy.style.visibility="visible";
+      console.log("0");
+      }});
+    </script>
+  </body>
+</html>

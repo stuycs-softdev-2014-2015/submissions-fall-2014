@@ -1,0 +1,28 @@
+body{
+    background-color: #0cc;
+}
+
+#canvas{
+    height: 400px;
+    text-align: center;
+}
+
+.init{
+    display: block;
+    height: 100px;
+    width: 300px;
+    opacity: 0;
+}
+
+.fade{
+    -webkit-animation: fade 5s;
+    animation: fade 5s;
+    opacity: 1;
+}
+@-webkit-keyframes fade{
+    from {opacity: 0}
+    to {opacity: 1}
+} @keyframes fade{
+    from {opacity: 0}
+    to {opacity: 1}
+}

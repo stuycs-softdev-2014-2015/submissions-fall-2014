@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <style>
+      .img {height:180px; width:110px}
+      .hint {height:10px; width:10px}
+    </style>
+
+  </head>
+  <body>
+    
+    <input type=submit id="start" value="Start"/><br>      
+    <input type=submit id="stop" value="Stop"/>
+    <h3 id="distance">Distance :</h3>
+
+    <!--
+    <img id="dog" class="img" src="http://clipartpictures.org/images/stories/animalclipart/Dog5_Animal_Clipart.png"/>
+    hehehehe
+    -->
+    <img id="dog" class="img" src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png"/>
+    
+    <!-- hint shows up when the mouse is really close to the dog -->
+    <img id="hint" class="hint" src="http://exmoorpet.com/wp-content/uploads/2012/08/cat.png"/>
+    
+    <audio id="bark" src="bark.mp3" hidden="true" width="60" height="60" autoplay="true" loop="true"></audio>
+
+    <script src="game.js"></script>
+  </body>
+
+</html>

@@ -3,31 +3,25 @@
   <head>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
    <style>
-     .floatedTable {float: left;}
-     </style>
+     .floatedTable{float: left;}
+     .green {color : #00ff00;}
+   </style>
   </head>
 
-
+  
     <body>
       <h1> Your Personal To Do List! </h1>
       <br>
-      <table class="pure-table floatedTable">
-	<thead>
-	  <tr>
-	    <th>To Do</th>
-	  
-	  </tr>
-	</thead>
-	<tbody>
-	  </tbody>
+      <ol id="dolist" >To Do List
+	<li>HI</li>
+	</ol>
+      <ol id ="donelist"> Done List
+	</ol>
+      
+      <input type="text" name ="txt" id ="txt">
+      <input type="button" value= "submit" onclick="addItem(document.getElementById('txt').value,0); setup()">
 	
-	<table class="pure-table floatedTable">
-	  <thead>
-	    <tr>
-	     
-	      <th>Done</th>
-	    </tr>
-	  </thead>
+	
 	  <script src="ToDo.js"></script>
     </body>
 </html>
