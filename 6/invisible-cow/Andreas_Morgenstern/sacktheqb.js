@@ -1,5 +1,5 @@
 
-var qb = document.getElementById("QB");
+
 var s1 = document.getElementById("1");
 var s2 = document.getElementById("2");
 var s3 = document.getElementById("3");
@@ -24,7 +24,10 @@ function sacked(){
 	&& y <= parseInt(qb.height) + parseInt(qb.style.top)){
 	    console.log(x);
 	qb.style.visibility="visible";
+	s1.pause();
+	ow.play();
 	window.alert("REKT THE " + qb.id);
+	s1.play();
 	qb.style.visibility="hidden";
 	var w = Math.random() * window.innerWidth;
 	var h = Math.random() * window.innerHeight;
