@@ -23,6 +23,7 @@ var playing = false;
 var nowPlaying;
 var changeX, changeY;
 var dist;
+var img;
 //sets our variables mouseX and mouseY to current mouse's x and y
 
 var loop = function(e) {
@@ -45,7 +46,7 @@ var rand = function(min, max) {
 //adds an image tag to our html document
 var displayImage = function(e) {
     if (dist < 50){
-	var img = document.createElement("img");
+	img = document.createElement("img");
 	img.src = "rudolph.png";
 	img.alt = "rudolph";
 	img.id = "rudolph";
@@ -56,9 +57,32 @@ var displayImage = function(e) {
 	//console.log(img);
 	document.body.appendChild(img);
 	playMusic(rudolph);
+	
+	var rot = setInterval(rotate_right, 2000);    
+	window.removeEventListener('click', displayImage);
+	window.addEventListener('mouseover', rot);
+	window.removeEventListener('mousemove', whatMusic);
+	setTimeout( function(){ window.location.reload(); }, 180000);
     }
 }
-	    
+
+var rotate_right = function(e) {
+    var image = document.getElementById("rudolph");
+    image.width = imageW + 40;
+    //console.log(image);
+    image.src = "right.png";
+    setTimeout(rotate_left, 2000);
+}
+
+var rotate_left = function(e) {
+    var image = document.getElementById("rudolph");
+    
+    image.width = imageW + 40;
+    //console.log(image);
+    image.src = "left.png";
+    setTimeout(rotate_right, 2000);
+}
+
 var playMusic = function(audio){
     if (playing){	    
 	//console.log("nowPlaying: " + nowPlaying);
@@ -80,7 +104,7 @@ var whatMusic = function(e){
     //console.log("centerY:" + centerY);
     //console.log("changeX:" + changeX);
     //console.log("changeY:" + changeY);
-    //console.log("dist: "+dist);
+    console.log("dist: "+dist);
 
     if(dist<50){
 	playMusic(five);
@@ -99,8 +123,7 @@ var whatMusic = function(e){
 	playMusic(one);
     }
 }
-
-//NEEDS FIXING
+/*
 var cursor = function(e) {
     if (dist<50){
 	console.log("change!");
@@ -127,7 +150,7 @@ var map = function(e){
     add.appendChild(area);
     console.log(area);
 }
-
+*/
 var setup = function(e){	
     //http://stackoverflow.com/questions/3273552/html-5-audio-looping
     //chooses random coords for image placement
@@ -160,6 +183,10 @@ var setup = function(e){
 	five.addEventListener('ended', loop);
 	rudolph.addEventListener('ended', loop);	
     }
+}
+
+var stopT = function(e){
+    window.clearInterval(e);
 }
 
 window.addEventListener('load', setup);
