@@ -4,7 +4,6 @@ body{
 
 #canvas{
     height: 400px;
-<<<<<<< Updated upstream
     text-align: center;
 }
 
@@ -27,8 +26,7 @@ body{
     from {opacity: 0}
     to {opacity: 1}
 }
-=======
-}
+
 
 #start {
 	background-color:#7892c2;
@@ -61,4 +59,3 @@ body{
 	text-decoration:none;
 	text-shadow:-1px 0px 12px #283966;
 }
->>>>>>> Stashed changes
