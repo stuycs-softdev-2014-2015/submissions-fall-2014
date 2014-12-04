@@ -42,22 +42,22 @@ var update_mouse_cor = function(e) {
 
     //calculates distance
     var dong_distance = Math.floor(Math.sqrt(Math.pow(dongx-eX, 2) + Math.pow(dongy-eY,2)));
-	var kek_distance = Math.floor(Math.sqrt(Math.pow(kekx-eX , 2) + Math.pow(keky-eY , 2)));
+    var kek_distance = Math.floor(Math.sqrt(Math.pow(kekx-eX , 2) + Math.pow(keky-eY , 2)));
 
-	global_dist = Math.max(dong_distance,kek_distance);
+    global_dist = Math.min(dong_distance,kek_distance);
 
-	if (global_dist > 750)
-		dancedong_image.src = "1dd.jpg"
-	else if (global_dist > 600)
-		dancedong_image.src = "2dd.jpg"
-	else if (global_dist > 450)
-		dancedong_image.src = "3dd.jpg"
-	else if (global_dist > 300)
-		dancedong_image.src = "4dd.jpg"
-	else if (global_dist > 150)
-		dancedong_image.src = "5dd.jpg"
-	else
-		dancedong_image.src = "6dd.jpg"
+    if (global_dist > 750)
+	dancedong_image.src = "1dd.jpg"
+    else if (global_dist > 600)
+	dancedong_image.src = "2dd.jpg"
+    else if (global_dist > 450)
+	dancedong_image.src = "3dd.jpg"
+    else if (global_dist > 300)
+	dancedong_image.src = "4dd.jpg"
+    else if (global_dist > 150)
+	dancedong_image.src = "5dd.jpg"
+    else
+	dancedong_image.src = "6dd.jpg"
 }
 
 var dong_dance = function(){

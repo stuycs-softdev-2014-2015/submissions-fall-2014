@@ -10,7 +10,9 @@ var fade = 0.005; //how quickly the background fades away
 var rate = 1500;
 
 var resetFlash = function() {
-	op = newBGOpacity;
+    op = newBGOpacity;
+    clearInterval(flash);
+    flash = setInterval(resetFlash, rate);
 }
 
 var calcBackground = function() {
@@ -24,7 +26,7 @@ var calcBackground = function() {
     else {
     	newBGOpacity = 1 - (distance / 1500);
     }
-    rate = distance;
+    rate = distance * 3;
     console.log(distance);
     //body.style.backgroundColor = "rgba(0,255,0," + newBGOpacity + ")";
 }
@@ -41,8 +43,8 @@ var setXY = function(e) {
 }
 
 var showThluffy = function() {
-	var distance = Math.sqrt(Math.pow(mouseX - tX, 2) + Math.pow(mouseY - tY, 2));
-	if (distance < 50) {
+	var distance = Math.sqrt(Math.pow(mouseX - tX + 12.5, 2) + Math.pow(mouseY - tY + 12.5, 2));
+	if (distance < 25) {
 		thluffy.style.visibility = "visible";
 		setTimeout(setup, 5000);
 	}
@@ -70,4 +72,4 @@ window.addEventListener('mousemove', calcBackground);
 window.addEventListener('click', showThluffy);
 
 setInterval(fadeBackground, 10);
-setInterval(resetFlash, rate);
+var flash = setInterval(resetFlash, rate);
