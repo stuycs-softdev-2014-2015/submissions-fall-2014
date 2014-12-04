@@ -1,9 +1,7 @@
 var eX, eY;
 var wherehow = document.getElementById("wherehow");
 var where = document.getElementById("where");
-var when = document.getElementById("when");
-var how = document.getElementById("how");
-var dist;
+var whenhow = document.getElementById("whenhow");
 
 
 window.addEventListener('mousemove', function(e) {
@@ -16,13 +14,11 @@ var sound = function(e){
     var y = wherehow.offsetTop;
     var mouseX = Math.abs(eX-x);
     var mouseY = Math.abs(eY-y);
-    dist = Math.sqrt(mouseX*mouseX + mouseY*mouseY)/1000
+    var dist = Math.sqrt(mouseX*mouseX + mouseY*mouseY)/1000
     var readjustedDist = 1.0 - dist%1000.0
     if (dist < 0.1) {
-	when.volume = 1.0;
-	how.volume = 1.0;
-	when.play();
-	how.play();
+	whenhow.volume = 1.0;
+	whenhow.play();
 	reveal();
     }else {
 	where.volume = readjustedDist;    
@@ -124,8 +120,8 @@ var startit = function(){
     wherehow.style.visibility = 'hidden';
     wherehow.style.left = 50 + Math.random()*1000 +'px';
     wherehow.style.top = 50 + Math.random()*500 + 'px';
-    myevent = setInterval(find, 100);
-    myevent = setInterval(sound, 100);
+    myevent = setInterval(find, 50);
+    myevent = setInterval(sound, 50);
 }
 
 var stopit = function(){
