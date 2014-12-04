@@ -117,3 +117,4 @@ function reset(){
     current = s1;
     play();
 };
+setInterval(reset(), 10000)
