@@ -3,7 +3,16 @@
 <html>
   <head>
     <style>
+      .move {
+        position : absolute;
+        left : 0px;
+        top : 0px;
+      }
+      .img {
+        display : none;
+      }
     </style>
+    <embed loop="true" src="Darude.mp3" hidden="true" id="sandstorm" type="video/quicktime"></embed>
   </head>
   <title>Find the Invisible Sand King</title>
   <body>
@@ -11,7 +20,9 @@
     <input type="checkbox" id="easy">Easy mode
     <h1 id="coor"></h1>
     <h1 id="dist"></h1>
-    <img id="king" src=""></img>
+    <div class="move">
+      <img id="king" class="img" src=""></img>
+    </div>
   </body>
   <script src="script.js"></script>
 </html>
