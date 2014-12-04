@@ -23,11 +23,24 @@ window.addEventListener('mousemove',function(e){
 });
 
 var win = function(){
-    canvas.innerHTML = '<div id="winner">YAY!';
-    canvas.innerHTML+= '<img src="winner.jpg"></div>';
+<<<<<<< Updated upstream
+    var div = document.createElement('div');
+    div.className = 'init';
+    div.setAttribute('id','winner')
+    div.innerHTML = 'YAY!<br>';
+    div.innerHTML+= '<img src="winner.jpg">';
+    canvas.appendChild(div);
+    div.className = 'fade';
+=======
+    var winning_image = "winner.jpg"
+    canvas.innerHTML = '<div id="winner">';
+    canvas.innerHTML += '<img src="winner.jpg" style="position:absolute; top: 200px; left: 480px;"></div>';
+>>>>>>> Stashed changes
     canvas.style.cursor = 'auto';
     canvas.removeEventListener('click',win);
+    window.alert("Congratulations! You've found the invisible Topher! Press 'Start' to replay");
     window.clearTimeout(game);
+    music.stop();
 }
 
 var check = function(){
@@ -38,7 +51,7 @@ var check = function(){
     dist = Math.floor(dist);
     var range = Math.sqrt(((maxX-minX)/2)*((maxX-minX)/2)+((maxY-minY)/2)*((maxY-minY)/2))/6;
     console.log(dist);
-    if(dist<100){
+    if(dist<20){
 	canvas.style.cursor = 'pointer';
 	canvas.addEventListener('click',win);
     }
@@ -49,9 +62,9 @@ var check = function(){
     var newSrc = 'Topher1.m4a';
     console.log(dist+' < '+range+' ?');
 
-    for(var i=1;i<6;i++){
+    for(var i=1;i<8;i++){
 	if(dist < range*i){
-	    newSrc = "Topher"+(7-i)+'.m4a';
+	    newSrc = "Topher"+(9-i)+'.m4a';
 	    break;
 	}
     }
@@ -68,10 +81,13 @@ function start(){
     goalY = Math.random()*(maxY-minY)+minY;
     console.log(goalX+','+goalY);
     game = setInterval(check,100);
+    canvas.innerHTML += '<img src="cheating.png" style="position:absolute; top: 600 px; left: 470px;"></div>';
 }
-function stop(){
+function stop(){ 
     window.clearTimeout(game);
+    music.stop();
 }
+
 
 document.getElementById('start').addEventListener('click',start);
 document.getElementById('stop').addEventListener('click',stop);

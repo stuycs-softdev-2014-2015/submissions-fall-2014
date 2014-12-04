@@ -1,9 +1,7 @@
 var eX, eY;
 var wherehow = document.getElementById("wherehow");
 var where = document.getElementById("where");
-var when = document.getElementById("when");
-var how = document.getElementById("how");
-var dist;
+var whenhow = document.getElementById("whenhow");
 
 
 window.addEventListener('mousemove', function(e) {
@@ -16,16 +14,12 @@ var sound = function(e){
     var y = wherehow.offsetTop;
     var mouseX = Math.abs(eX-x);
     var mouseY = Math.abs(eY-y);
-    dist = Math.sqrt(mouseX*mouseX + mouseY*mouseY)/100
-    var readjustedDist = dist/10.0
-    if (dist < 0.1) {
-	wherehow.style.visibility="visible";
-	when.volume = 1.0;
-	how.volume = 1.0;
-	window.alert("Where how? WHEN HOW!");
-    }else {
-	where.volume = readjustedDist;    
-    }
+    var dist = Math.sqrt(mouseX*mouseX + mouseY*mouseY)/1000
+    var readjustedDist = 1.0 - dist%1000.0
+
+    where.volume = readjustedDist;    
+    where.play();
+    
 }
 
 var find = function(e){
@@ -36,8 +30,10 @@ var find = function(e){
     if ( (mouseX < 10) && (mouseY < 10) ) {
 	//fire
 	document.body.style.background = "#FFFFFF";
+	whenhow.volume = 1.0;
+	whenhow.play();
 	wherehow.style.visibility = "visible";
-	window.alert("Where how? WHEN HOW!");
+	window.alert("Where how? WHEN HOW!");	
     }
     else if ( (mouseX < 30) && (mouseY < 30) ) {
 	//hot
@@ -118,8 +114,11 @@ var startit = function(){
     wherehow.style.visibility = 'hidden';
     wherehow.style.left = 50 + Math.random()*1000 +'px';
     wherehow.style.top = 50 + Math.random()*500 + 'px';
-    //myevent = setInterval(find, 100);
+
+    myevent = setInterval(find, 100);
     myevent = setInterval(sound, 100);
+
+
 }
 
 var stopit = function(){
@@ -129,3 +128,4 @@ var stopit = function(){
 
 document.getElementById("start").addEventListener('click', startit);
 document.getElementById("stop").addEventListener('click', stopit);
+wherehow.addEventListener('click', done);
