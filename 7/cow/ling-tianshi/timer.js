@@ -23,6 +23,11 @@ function move(e) {
    
    if (isNaN(x) || x > 1200 || x < -100) x=200;
    if (isNaN(y) || y < -100 || y > 1200 ) y=200;
+
+  if (590 < x && x < 800 && 500 < y && y < 600){
+      window.alert("You lost!");
+  }
+
   if (800<x) {
      x=x-3;
   } else if (x<590){
