@@ -56,8 +56,8 @@ window.addEventListener('mousemove', function(e) {
 var count;
     
 function changeColors(r,g){
-    count = 1;
-    setInterval(change(r,g),1000);
+    //count = 1;
+    setInterval(change(r,g),100);
 }
 
 function change(r,g){
@@ -84,13 +84,14 @@ function start(){
     height = Math.floor((Math.random() * h) + 1);
     console.log(width);
     console.log(height);
-    myevent = setInterval(findTree,100);
+    myevent = setInterval(findTree,150);
     tree.style.position = "absolute";
     //tree.style.visibility = 'hidden';
     tree.style.visibility = 'visible';
     tree.style.left = width + 'px';
     tree.style.top = height + 'px';
     //console.log(tree.offsetleft);
+    count = 1;
 }
 
 function stop(){

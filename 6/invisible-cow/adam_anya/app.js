@@ -7,9 +7,11 @@ var imgY = document.getElementById("img").y + document.getElementById("img").hei
 var mouseX = 0;
 var mouseY = 0;
 var body;
+var dist;
+var cont = true;
+var notSolved = true;
 
 var distance = function(e) {
-    //var body = document.getElementById("body");
     body = document.getElementsByTagName("body")[0].style
     mouseX = e.pageX;
     mouseY = e.pageY;
@@ -18,62 +20,74 @@ var distance = function(e) {
     dist = Math.sqrt(
 	Math.pow(mouseX - imgX, 2) +
 	    Math.pow(mouseY - imgY, 2)
-    )
-    console.log(dist);
+    );
 }
 var changeBackground = function() {
-    if (dist < 5){
-	body.backgroundImage = 'url("2048.png")';
+    if (cont){
+	if (dist < 5){
+	    body.backgroundImage = 'url("2048.png")';
+	}
+	else if (dist < 20){
+	    body.backgroundImage = 'url("1024.png")';
+	}
+	else if (dist < 40){
+	    body.backgroundImage = 'url("512.png")';
+	}
+	else if (dist < 80){
+	    body.backgroundImage = 'url("256.png")';
+	}
+	else if (dist < 160){
+	    body.backgroundImage = 'url("128.png")';
+	}
+	else if (dist < 300){
+	    body.backgroundImage = 'url("64.png")';
+	}
+	else if (dist < 400){
+	    body.backgroundImage = 'url("32.png")';
+	}
+	else if (dist < 500){
+	    body.backgroundImage = 'url("16.png")';
+	}
+	else if (dist < 600){
+	    body.backgroundImage = 'url("8.png")';
+	}
+	else if (dist < 700){
+	    body.backgroundImage = 'url("4.png")';
+	}
+	else {
+	    body.backgroundImage = 'url("2.png")';
+	}
     }
-    else if (dist < 20){
-	body.backgroundImage = 'url("1024.png")';
-    }
-    else if (dist < 40){
-	body.backgroundImage = 'url("512.png")';
-    }
-    else if (dist < 80){
-	body.backgroundImage = 'url("256.png")';
-    }
-    else if (dist < 160){
-	body.backgroundImage = 'url("128.png")';
-    }
-    else if (dist < 300){
-	body.backgroundImage = 'url("64.png")';
-    }
-    else if (dist < 400){
-	body.backgroundImage = 'url("32.png")';
-    }
-    else if (dist < 500){
-	body.backgroundImage = 'url("16.png")';
-    }
-    else if (dist < 600){
-	body.backgroundImage = 'url("8.png")';
-    }
-    else if (dist < 700){
-	body.backgroundImage = 'url("4.png")';
-    }
-    else {
-	body.backgroundImage = 'url("2.png")';
+}
+window.addEventListener("mousemove", distance);
+var event;
+var mystart = function() {
+    if (notSolved){
+	event = setInterval(changeBackground, 20);
+	cont = true;
     }
 }
 
+var mystop = function() {
+    console.log("IM HERE");
+    window.clearTimeout(event);//So this doesn't work, whatev we have a boolean
+    cont = false;
+    //Math.random()*window.width
+}
 var show = function() {
-	document.getElementById("img").style.opacity = "100";
+    body = document.getElementsByTagName("body")[0].style
+    body.backgroundImage = 'url("white.png")';
+    document.getElementById("img").style.opacity = "100";
+    notSolved = false;
+    cont = false;
+    mystop;
+    
 }
 
 img.addEventListener("click", show);
 
-document.addEventListener("mousemove", distance);
 
-var event;
-var mystart = function() {
-	event = setInterval(changeBackground, 20);
-}
 
-var mystop = function() {
-	clearInterval(event);
-	Math.random()*window.width
-}
 
 document.getElementById("start").addEventListener('click', mystart);
 document.getElementById("stop").addEventListener('click', mystop);
