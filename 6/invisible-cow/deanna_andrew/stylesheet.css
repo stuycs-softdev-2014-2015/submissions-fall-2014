@@ -1,3 +1,17 @@
 audio {
     display:none;
 }
+
+body {
+    cursor: crosshair;
+}
+
+img {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    height: 150px;
+    width: 120px;
+    /*display: none;*/
+    cursor: pointer;
+}

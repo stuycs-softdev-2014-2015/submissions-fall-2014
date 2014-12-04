@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.img {position:absolute; display:normal; visibility:hidden;}
+<style  type="text/css">
+
+#victory { position: fixed; top: 40%;left: 43%; visibility:hidden;}
+.img {position:absolute; height:50px; height:50px; display:normal; visibility:hidden;}
+#middle {position:absolute; height:130px; height:130px; display:normal;  position: fixed; top: 25%;left: 47%; visibility:hidden;}
+
+
 </style>
 </head>
 <body>
 
-<img  id="Harvard" height="50" width="50"  class="img" src="Harvard.jpg">
 
-<img id="Study" class="img" src="study.png" style="top:0px;left:200px;visibility:visible">
+<img  id="Harvard" class="img" src="Harvard.jpg">
+<img id="middle" src="Harvard.jpg">
+
+<img  id="Harvard" height="50" width="50"  class="img" src="Harvard.jpg" >
 
 
+<img id="Study" class="img" src="study.png" style="top:0px;left:800px;visibility:visible">
 <button onclick="newGame()">New Game</button>
 	   
-
+<h1 id="victory" >CONGRATULATIONS<br>  YOU HAVE BEEN<br>ACCEPTED INTO<br>HARVARD</h1> 
 <script src="invisible-college.js"></script>
 </body>
 

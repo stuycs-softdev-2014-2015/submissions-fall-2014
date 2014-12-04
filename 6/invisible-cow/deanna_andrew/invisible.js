@@ -38,11 +38,11 @@ function setVolume() {
 
 
 var changeCursor=function(){
-    if (dist<300){ //Gotta check how much this even is
-	canvas.style.cursor = "pointer";
+    if (dist<100){
+        document.body.style.cursor = "crosshair";
     }
     else{
-	canvas.style.cursor = "crosshair";
+        document.body.style.cursor = "pointer";
     }
 };
 
@@ -51,7 +51,7 @@ window.addEventListener('mousemove',function(e){
     mouseY=e.pageY;
     console.log(mouseX+ ", "+ mouseY)
     console.log("Dist: "+ dist)
-    // changeCursor();
+    changeCursor();
     calcDistance();
     setVolume();
     getVolume();
@@ -61,15 +61,23 @@ window.addEventListener('mousemove',function(e){
 img = document.createElement("img");
 img.src="christmas.png";
 
+function win(){
+    pauseAudio();
+    alert("YOU WIN!!!");
+}
+
 var starter;
 var start= function(e){
     goalX = Math.random()*(maxX-minX)+minX;
     goalX = parseInt(goalX)
     goalY = Math.random()*(maxY-minY)+minY;
-    goalY = parseInt(goalY)
-    console.log("GOAL YO: " + goalX + ", " + goalY)
-    changeCursor; //don't know why this doesn't work
-    playAudio()
+    goalY = parseInt(goalY);
+    document.getElementById("tree").style.top= goalX + "px";
+    document.getElementById("tree").style.left= goalY + "px";
+    // document.getElementById("tree").style.display= "none";
+    document.getElementById("tree").addactionlistener('click',win());
+    console.log("GOAL YO: " + goalX + ", " + goalY);
+    playAudio();
 
     //starter = setInterval(start,100);
 };
