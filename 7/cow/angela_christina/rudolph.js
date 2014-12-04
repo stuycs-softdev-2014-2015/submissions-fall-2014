@@ -7,11 +7,13 @@
     //use a reset function (document.body.innerHTML = "";
     //then display a replay button
     //if replay then???????????????
+//how to change mouse eep
 var one = new Audio('sleigh_one.mp3');
 var two = new Audio('sleigh_two.mp3');
 var three = new Audio('sleigh_three.mp3');
 var four = new Audio('sleigh_four.mp3');
 var five = new Audio('sleigh_five.mp3');
+var rudolph = new Audio('rudolph.mp3');
 var mouseX, mouseY;
 var randX, randY;
 var imageH = 200;
@@ -19,6 +21,8 @@ var imageW = 150;
 var centerX, centerY;
 var playing = false; 
 var nowPlaying;
+var changeX, changeY;
+var dist;
 //sets our variables mouseX and mouseY to current mouse's x and y
 
 var loop = function(e) {
@@ -40,31 +44,19 @@ var rand = function(min, max) {
 
 //adds an image tag to our html document
 var displayImage = function(e) {
-    var img = document.createElement("img");
-    img.src = "rudolph.png";
-    img.alt = "rudolph";
-    img.id = "rudolph";
-    img.width = imageW;
-    img.height = imageH;
-    img.style.top = randY+"px";
-    img.style.left = randX+"px";
-    //console.log(img);
-    document.body.appendChild(img);
-}
-//once per load, generates random X/Y coordinates for our image
-var placeImage = function(e){
-    randX = rand(0,window.innerWidth-imageW);
-    randY = rand(0, window.innerHeight-imageH);
-    //console.log("randX: " + randX);
-    //console.log("randY: " + randY);
-}
-
-//returns the general-ish coordinates of middle of our pcitures
-var centerPos = function(e){
-    centerY = randY + (imageH/2);
-    centerX = randX + (imageW/2);
-    console.log("centerY: "+centerY);
-    console.log("centerX: "+centerX);
+    if (dist < 50){
+	var img = document.createElement("img");
+	img.src = "rudolph.png";
+	img.alt = "rudolph";
+	img.id = "rudolph";
+	img.width = imageW;
+	img.height = imageH;
+	img.style.top = randY+"px";
+	img.style.left = randX+"px";
+	//console.log(img);
+	document.body.appendChild(img);
+	playMusic(rudolph);
+    }
 }
 	    
 var playMusic = function(audio){
@@ -83,7 +75,12 @@ var whatMusic = function(e){
     changeX=centerX-mouseX;
     changeY=centerY-mouseY;
     dist= Math.sqrt(Math.pow(changeX,2) + Math.pow(changeY,2));
-    console.log("dist: "+dist);
+    
+    //console.log("centerX:" + centerX);
+    //console.log("centerY:" + centerY);
+    //console.log("changeX:" + changeX);
+    //console.log("changeY:" + changeY);
+    //console.log("dist: "+dist);
 
     if(dist<50){
 	playMusic(five);
@@ -102,27 +99,73 @@ var whatMusic = function(e){
 	playMusic(one);
     }
 }
-	
-//http://stackoverflow.com/questions/3273552/html-5-audio-looping
-if (typeof one.loop == 'boolean')
-{
-    one.loop = true;
-    two.loop = true;
-    three.loop = true;
-    four.loop = true;
-    five.loop = true;
-}
-else
-{
-    one.addEventListener('ended', loop);
-    two.addEventListener('ended', loop);
-    three.addEventListener('ended', loop);
-    four.addEventListener('ended', loop);
-    five.addEventListener('ended', loop);
 
+//NEEDS FIXING
+var cursor = function(e) {
+    if (dist<50){
+	console.log("change!");
+	var cursor = document.getElementById("area");
+	cursor.style.cursor = "pointer";
+	console.log(cursor);
+    }
 }
+
+var map = function(e){
+    var map = document.createElement("map");
+    map.id = "map";
+    document.body.appendChild(map);
+    var area = document.createElement("area");
+    area.shape = "rect";
+    var right = randX + imageW;
+    var bot = randY + imageH;
+    console.log(right);
+    console.log(bot);
+    var str = randX + "," + randY + "," + right + "," + bot;
+    console.log(str);
+    area.coords=str;
+    var add = document.getElementById("map");
+    add.appendChild(area);
+    console.log(area);
+}
+
+var setup = function(e){	
+    //http://stackoverflow.com/questions/3273552/html-5-audio-looping
+    //chooses random coords for image placement
+    randX = rand(0,window.innerWidth-imageW);
+    randY = rand(0, window.innerHeight-imageH);
+   // console.log("randX: " + randX);
+   // console.log("randY: " + randY);
+    
+    //finds center of image randomly placed
+    centerY = randY + (imageH/2);
+    centerX = randX + (imageW/2);
+   // console.log("centerY: "+centerY);
+   // console.log("centerX: "+centerX);
+
+    if (typeof one.loop == 'boolean')
+    {
+	one.loop = true;
+	two.loop = true;
+	three.loop = true;
+	four.loop = true;
+	five.loop = true;
+	rudolph.loop = true;
+    }
+    else
+    {
+	one.addEventListener('ended', loop);
+	two.addEventListener('ended', loop);
+	three.addEventListener('ended', loop);
+	four.addEventListener('ended', loop);
+	five.addEventListener('ended', loop);
+	rudolph.addEventListener('ended', loop);	
+    }
+}
+
+window.addEventListener('load', setup);
+window.addEventListener('load', map);
+
 window.addEventListener('mousemove', mouseCoord);
-window.addEventListener('load', placeImage);
-window.addEventListener('load', displayImage);
-window.addEventListener('load', centerPos);
 window.addEventListener('mousemove',whatMusic);
+//window.addEventListener('mousemove', cursor);
+window.addEventListener('click', displayImage);
