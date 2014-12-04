@@ -103,12 +103,24 @@ function moveit() {
     move.style.top=h+"px";
 };
 
+function colors(){
+    if (document.body.style.background=="green"){
+	document.body.style.background="red";
+    }
+    else{
+	document.body.style.background="green";
+    }
+}
+
+var colorful;
+
 function findsanta(){
     if (picture.className == "img hidden"){
 	picture.className ="img visible";
 	clearInterval(santa);
 	startit();
 	refresh.className="existent";
+	colorful=setInterval("colors()",1500);
     }
 };
 
