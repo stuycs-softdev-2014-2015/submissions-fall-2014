@@ -34,7 +34,6 @@ score = score || 0;
 score_disp.innerHTML = "Score: "+score;
 
 
-window.addEventListener('mousemove',update_mouse_cor);
 
 var update_mouse_cor = function(e) {
     //changes globals mouse_xcor and _ycor to reflect current state, used for clicking and distance 
@@ -50,6 +49,8 @@ var update_mouse_cor = function(e) {
     console.log(global_dist);
 
 }
+
+window.addEventListener('mousemove',update_mouse_cor);
 
 var dong_dance = function(){
 	//if (global_dist > 150)
@@ -91,6 +92,7 @@ var found_donger = function() {
     //changing from blank to revealed donger
     donger_image.src = "donger.jpg";
     //waits a bit before redirecting to youtube
+    window.clearTimeout(update);
     score++;
     console.log(score);
     setTimeout(function() {
@@ -125,6 +127,7 @@ var found_kek = function() {
     //changing from blank to revealed kek
     kek_image.src = "kek.jpg";
     //rest in peace you lost
+    window.clearTimeout(update);
     alert("Game over! Your final score was "+score+" dongers.");
     //waits a bit before redirecting to youtube
     setTimeout(function() {
@@ -137,9 +140,7 @@ var setup_complete = function() {
     setup_donger();
     setup_kek();
     
-    while(true){
-	 update = setInterval(dong_dance,100);
-    }
+    update = setInterval(dong_dance,100);
 }
 
 
