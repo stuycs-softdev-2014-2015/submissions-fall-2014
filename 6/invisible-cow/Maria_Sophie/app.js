@@ -3,17 +3,20 @@ var dead_moles = 0;
 var hasMole; //boolean 
 var whacked = false; //boolean
 
-var whackMole = function(e){ 
-    console.log("Whack Mole");
-    mole_counter++;
-    document.getElementById("mole_counter").innerHTML =  mole_counter + " Moles Whacked";
-    whacked = true;
-}
 var removeMole = function(){
     if (document.getElementById("b") != null){
 	document.getElementById("b").remove();
     }
 };
+
+var whackMole = function(e){ 
+    console.log("Whack Mole");
+    mole_counter++;
+    document.getElementById("mole_counter").innerHTML =  mole_counter + " Moles Whacked";
+    removeMole();
+    whacked = true;
+};
+
 
 var makeMole = function(e){
     removeMole();
@@ -41,7 +44,6 @@ var clearGame = function(e){
     dead_moles = 0;
     hasMole = false;
     document.getElementById("img").innerHTML="";
-    
 };
 
 var onScreen = function(){
@@ -55,9 +57,8 @@ var onScreen = function(){
 	else loser = "star1.jpg";
 	clearGame();
 	document.getElementById("img").innerHTML = 
-	    "YOU LOSE <br> <img src= "+ loser + ">";
-    }
-    else if (hasMole){
+	    "YOU LOSE <br> <img src= "+ loser + " id=\"star\">";
+    } else if (hasMole){
 	console.log("has mole");
 	removeMole();
 	hasMole = false;
@@ -76,6 +77,9 @@ var onScreen = function(){
 var startGame = function(e){
     console.log("Start game");
     hasMole = false;
+    if (document.getElementById("star")){
+	document.getElementById("star").remove();
+    }
     onScreen();
 };
 
