@@ -4,8 +4,6 @@ var thluffy = document.getElementById("cow");
 
 
 var show= function(e){
-    thluffy.style.left = (window.innerWidth/2)-50;
-    thluffy.style.top = (window.innerHeight/2)-50;
     thluffy.hidden=false;
     thluffy.style.height=100;
     thluffy.style.width=100;

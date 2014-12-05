@@ -2,9 +2,10 @@
 
 var donger_image = document.getElementById("donger");
 var kek_image = document.getElementById("kek");
-var dancedong_image = document.getElementById("dancingdonger")
+var dancedong_image = document.getElementById("dancingdonger");
 var score_disp = document.getElementById("scoredisplay"); //shows current score
 var dongx,dongy;
+var update;
 var kekx,keky;
 var eX, eY;
 var global_dist;
@@ -33,7 +34,6 @@ score = score || 0;
 score_disp.innerHTML = "Score: "+score;
 
 
-window.addEventListener('mousemove',update_mouse_cor);
 
 var update_mouse_cor = function(e) {
     //changes globals mouse_xcor and _ycor to reflect current state, used for clicking and distance 
@@ -42,23 +42,15 @@ var update_mouse_cor = function(e) {
 
     //calculates distance
     var dong_distance = Math.floor(Math.sqrt(Math.pow(dongx-eX, 2) + Math.pow(dongy-eY,2)));
-	var kek_distance = Math.floor(Math.sqrt(Math.pow(kekx-eX , 2) + Math.pow(keky-eY , 2)));
+    var kek_distance = Math.floor(Math.sqrt(Math.pow(kekx-eX , 2) + Math.pow(keky-eY , 2)));
 
-	global_dist = Math.max(dong_distance,kek_distance);
+    global_dist = Math.min(dong_distance,kek_distance);
 
-	if (global_dist > 750)
-		dancedong_image.src = "1dd.jpg"
-	else if (global_dist > 600)
-		dancedong_image.src = "2dd.jpg"
-	else if (global_dist > 450)
-		dancedong_image.src = "3dd.jpg"
-	else if (global_dist > 300)
-		dancedong_image.src = "4dd.jpg"
-	else if (global_dist > 150)
-		dancedong_image.src = "5dd.jpg"
-	else
-		dancedong_image.src = "6dd.jpg"
+    console.log(global_dist);
+
 }
+
+window.addEventListener('mousemove',update_mouse_cor);
 
 var dong_dance = function(){
 	//if (global_dist > 150)
@@ -66,6 +58,19 @@ var dong_dance = function(){
 	//setting colors like this didn't work for some reason...
 
 	//originally had color code hre
+
+    if (global_dist > 750)
+	dancedong_image.src = "1dd.jpg"
+    else if (global_dist > 600)
+	dancedong_image.src = "2dd.jpg"
+    else if (global_dist > 450)
+	dancedong_image.src = "3dd.jpg"
+    else if (global_dist > 300)
+	dancedong_image.src = "4dd.jpg"
+    else if (global_dist > 150)
+	dancedong_image.src = "5dd.jpg"
+    else
+	dancedong_image.src = "6dd.jpg"
 }
 
 //----- DONGER -----
@@ -87,6 +92,7 @@ var found_donger = function() {
     //changing from blank to revealed donger
     donger_image.src = "donger.jpg";
     //waits a bit before redirecting to youtube
+    window.clearTimeout(update);
     score++;
     console.log(score);
     setTimeout(function() {
@@ -121,6 +127,7 @@ var found_kek = function() {
     //changing from blank to revealed kek
     kek_image.src = "kek.jpg";
     //rest in peace you lost
+    window.clearTimeout(update);
     alert("Game over! Your final score was "+score+" dongers.");
     //waits a bit before redirecting to youtube
     setTimeout(function() {
@@ -129,11 +136,18 @@ var found_kek = function() {
 	       , 1500);
 }
 
+var setup_complete = function() {
+    setup_donger();
+    setup_kek();
+    
+    update = setInterval(dong_dance,100);
+}
 
 
 //----- Start -----
-setup_donger();
-setup_kek(dongx,dongy);
+//setup_donger();
+//setup_kek(dongx,dongy);
+setup_complete();
 
     
     

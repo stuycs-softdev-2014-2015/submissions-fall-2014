@@ -1,4 +1,6 @@
 var myevent;
+var w = window.innerWidth;
+var h = window.innerHeight;
 
 var stopTimer = function(e){
     window.clearInterval(e);
@@ -86,10 +88,10 @@ function move(e) {
 	x=Math.floor((Math.random() * 50));
     if (y<50)
 	y=Math.floor((Math.random() * 50));
-    if (y>500)
-	y=Math.floor((Math.random() * 50)+450);
-    if (x>1000)
-	x=Math.floor((Math.random() * 50)+450);	
+    if (y>h)
+	y=Math.floor((Math.random() * 50)+750);
+    if (x>w)
+	x=Math.floor((Math.random() * 50)+1000);	
     
     moveelt.style.left=x+"px";
     moveelt.style.top=y+"px";

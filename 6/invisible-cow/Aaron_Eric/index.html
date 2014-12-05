@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<style>
+#score: {float:right;}
+</style>
+<html>
+  <title>Find the Admiral </title>
+  <head>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+  </head>
+  <body bgcolor="black">
+    <font color="white">
+      <div class="pure-g">
+	<div class="pure-u-1-3"></div>	
+	<div class="pure-u-1-3">
+	  <center>
+	    <h1>Find the Admiral!</h1>
+	    <button id="b" type="submit" name="start" value="true" class="pure-button pure-button-primary">
+	      <!-- css for button size? -->
+	      Start
+	    </button>
+	  </center>
+	</div>
+	<div class="pure-u-1-4"></div>	
+	<div class="pure-u-1-12">
+	  <p>
+	    <div id="score">Score: 0</div>
+	  </p>
+	</div>	
+      </div>
+      <div id="target">
+	<img id="cow" src="admiral.png"><!-- don't need end tag?-->
+	<!-- check for img and its coords on the page?? -->
+      </div>
+    </font>
+    <script src="./action.js">
+    </script>
+    <audio id="music" src="cantina.mp3" preload="auto"></audio>
+    <audio id="trap" src="trap.mp3" preload="auto"></audio>
+  </body>
+</html>

@@ -8,11 +8,27 @@ window.addEventListener( 'mousemove',
     }
 );
 
+var play = true;
 
 //randomize pic location
 //pic must be within a div
-var pX = Math.random() * screen.width - 150; //- 150 to make sure image doesnt spawn past edge of screen
-var pY = Math.random() * screen.height - 125; //- 125 to make sure image doesnt spawn past edge of screen
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+var pX = Math.random() * w - 150; //- 150 to make sure image doesnt spawn past edge of screen
+var pY = Math.random() * h - 125; //- 125 to make sure image doesnt spawn past edge of screen
+
+if ( pX < 60 && pY < 25 ) {
+    pX = pX + 70;
+    pY = pY + 25;
+}
+if ( pX > ( w - 150 ) ) {
+    pX = pX - 150;
+}
+if ( pY > ( h - 125 ) ) {
+    pY = pY - 125;
+}
+
 
 var image = document.getElementById( "image" );
 image.style.marginLeft = pX;
@@ -30,19 +46,19 @@ var absDist = function( x1, y1, x2, y2 ) {
 }
 
 var changeBackground = function( e ) {
-    var d = absDist( mouseX, mouseY, pX + 75, pY + 62 ); //so we're looking at middle of image
-    if ( d >= 510 ) {
-        document.body.style.backgroundColor = "white";
-    }
-    else {
-        console.log( "" + pX + " " + pY );
-        document.body.style.backgroundColor = 'rgb(' + Math.floor(d/2) + ',' + Math.floor(d/2) + ',' + Math.floor(d/2) + ')';
+    if ( play ) {
+        var d = absDist( mouseX, mouseY, pX + 75, pY + 62 ); //so we're looking at middle of image
+        if ( d >= 510 ) {
+            document.body.style.backgroundColor = "white";
+        }
+        else {
+            console.log( "" + pX + " " + pY );
+            document.body.style.backgroundColor = 'rgb(' + Math.floor(d/2) + ',' + Math.floor(d/2) + ',' + Math.floor(d/2) + ')';
+        }
     }
 }
 
-
-
-setInterval( function() { sound = true; }, 5000 );
+setInterval( function() { if( play ) { sound = true; } }, 5000 );
 setInterval( function() { if( sound ) { audio.play(); } }, 3000 );
 
 window.addEventListener( 'click',
@@ -50,6 +66,8 @@ window.addEventListener( 'click',
         if(absDist( mouseX, mouseY, pX + 75, pY + 62 ) <= 50 ) {
             image.style.visibility = "visible";
             button.style.visibility = "visible";
+            play = false;
+            sound = false;
         }
     }
 );
