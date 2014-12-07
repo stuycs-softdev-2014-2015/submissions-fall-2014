@@ -1,63 +1,99 @@
 var mouseX, mouseY;
-var hiddenImg = document.getElementById("hiddenImg");
-var findMe = document.querySelector('.findMe');
-var imgX, imgY;
+var targetX, targetY;
+var container = document.getElementById("container");
+
 var distance, inRange = false;
-var reqDistance = 15; // pixels, find a suitable number
+var reqDistance = 100; // Threshold in pixels
 
+// Audio tag
 var audio = document.getElementById("audio");
-var event;
-
-// TODO: need to find a sound file
 
 function init(){
-    window.addEventListener('mousemove', update);
-    window.addEventListener('click', click);
+    var clientHeight = window.innerHeight;
+    var clientWidth = window.innerWidth;
+    console.log(clientHeight);
 
-    // uncomment after done debugging
-    //hiddenImg.style.opacity = 0;
-    hiddenImg.draggable = false;
-    // Set random x,y coords for img (incomplete)
-    // parseInt, Math.floor, Math.random
+    // Create target
+    var target = document.createElement("img");
 
-    event = setInterval(audio.play(), 250);
+    // Uncomment the next line when done debugging:
+    //target.style.opacity = 0;
+
+    target.style.draggable = false;
+    target.style.position = "absolute";
+    target.src = "thluffy.jpg";
+    target.id = "target";
+
+    // Generate random Target X, Y coordinates within container
+    targetX = Math.floor(Math.random() * (clientWidth - 0)) + 0;
+    targetY = Math.floor(Math.random() * (clientHeight - 0)) + 0;
+    console.log(targetX + ' ' + targetY);
+    console.log('heyyo' + clientHeight + ' ' + clientWidth);
+
+    // Add target to the page
+    container.appendChild(target);
+
+    // Set the target's coordinates
+    target.style.left = targetX + "px";
+    target.style.top = targetY + "px";
+
+    // Setting up event listeners for mouse movement, clicking
+    window.addEventListener("mousemove", update);
+    window.addEventListener("click", click);
+
+    audio.volume = 0.1;
 };
 
 function update(e){
+    // Get current mouse cursor position
     mouseX = e.pageX;
     mouseY = e.pageY;
+
+    // Compute distance from target
+
     distance = calcDistance();
-    // not sure if cursor part works
-    // separate sound file for while `inRange`?
-    if (distance < reqDistance){
-	inRange = true;
-	document.body.style.cursor = 'pointer';
+
+    console.log(distance);
+    if (distance < reqDistance) {
+        inRange = true;
     }
-    else{
-	inRange = false;
-	document.body.style.cursor = 'default';
+    else {
+        inRange = false;
     }
-    incVolume();
+
+    if (inRange) {
+        document.body.style.cursor = 'crosshair';
+    } else {
+        document.body.style.cursor = 'defualt';
+    }
+
+   console.log(inRange);
+   incVolume();
 };
 
 function click(e){
     if (inRange){
-	hiddenImg.style.opacity = 100;
-	window.clearInterval(event);
-    }
+        console.log("Hit!");
+        target.style.opacity = 100;
+        window.clearInterval(event);
+   }
 };
 
 function calcDistance(){
+    //console.log('mouseX' + mouseX + 'mouseY' + mouseY + 'imgX' + targetX + 'y' + targetY);
     var distance = parseInt(Math.sqrt(
-	Math.pow(mouseX - imgX, 2) + 
-	Math.pow(mouseY - imgY, 2)))
+        Math.pow(mouseX - targetX, 2) + 
+       Math.pow(mouseY - targetY, 2)))
     return distance;
 };
 
 function incVolume(){
-    //audio.volume = 
-    // can be from 0 to 1 (percentage of maximum volume)
-    // should be inverse proportional to distance
+    console.log(audio.volume + "Here");
+    if (audio.volume < 0.95) {
+        audio.volume = audio.volume + 0.001;
+    }
+    audio.play()
 };
 
 init();
+//console.log(calcDistance());
