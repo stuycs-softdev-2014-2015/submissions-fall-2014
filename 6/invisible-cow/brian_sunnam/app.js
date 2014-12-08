@@ -80,7 +80,8 @@ function start(){
     goalY = Math.random()*(maxY-minY)+minY;
     console.log(goalX+','+goalY);
     game = setInterval(check,100);
-    canvas.innerHTML += '<img src="cheating.png" style="position:absolute; top: 600 px; left: 470px;"></div>';
+    //canvas.innerHTML += '<img src="cheating.png" style="position:absolute; top: 600 px; left: 470px;"></div>';
+    document.getElementById('winner').className = 'init';
 }
 function stop(){ 
     window.clearTimeout(game);
