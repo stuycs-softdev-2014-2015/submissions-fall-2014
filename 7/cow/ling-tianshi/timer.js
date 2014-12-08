@@ -26,11 +26,21 @@ function away() {
     alert("You killed the fly!");
 }
 
+function setCursorByID(id,cursorStyle) {
+ var elem;
+ if (document.getElementById &&
+    (elem=document.getElementById(id)) ) {
+  if (elem.style) elem.style.cursor=cursorStyle;
+ }
+}
+
 function detectLeftButton(evt){
     evt = evt || window.event;
     var button = evt.which || evt.button;
     return button == 1;
 }
+
+
 
 function move(e) {
     var fly =document.getElementById("fly");
