@@ -1,0 +1,17 @@
+.jesus-image {
+    display: none;
+    z-index: 10000000000; /* seriously needed */
+    height: 100%;
+    max-width: 778px;
+    max-height: 980px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.jesus-sound {
+	display: none;
+}
