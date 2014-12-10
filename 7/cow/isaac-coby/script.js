@@ -7,13 +7,15 @@ var moranY = 68;
 var moran2X = 600;
 var moran2Y = 450;
 var mDirection = true;
-var djX = document.getElementById("board").offsetWidth - 98;
-console.log(djX);
-var djY = 200;
 
 document.getElementById("board").style.width = (window.innerWidth - 50) + "px";
 document.getElementById("board").style.height = (window.innerHeight - 80) + "px";
+
+var djX = document.getElementById("board").offsetWidth-98;
+var djY = 200;
+
 document.getElementById("dj").style.left = (document.getElementById("board").offsetWidth - 98) + "px";
+console.log(document.getElementById("dj").style.left);
 
 
 var insideX = function(xCor){
@@ -41,20 +43,40 @@ var insideY = function(yCor){
 var move = function(e){
 	if ((Math.abs(tophX - moranX) < 80) && (Math.abs(tophY - moranY) < 60)){
 		var body = document.getElementsByTagName("body")[0];
-		body.style.background = "url('lostmoran.jpg')";
+		document.getElementById("board").style.backgroundImage = "url('lostmoran.jpg')";
+		document.getElementById("red").style.color = "red";
+
+		document.getElementById("topher").style.visibility = "hidden";
+		document.getElementById("moran1").style.visibility = "hidden";
+		document.getElementById("moran2").style.visibility = "hidden";
+		document.getElementById("miss").style.visibility = "hidden";
+		document.getElementById("dj").style.visibility = "hidden";
+
 		end()
 	}
 
 	if ((Math.abs(tophX - moran2X) < 80) && (Math.abs(tophY - moran2Y) < 60) && (level == 2)){
 		var body = document.getElementsByTagName("body")[0];
-		body.style.background = "url('lostmoran.jpg')";
+		document.getElementById("board").style.backgroundImage = "url('lostmoran.jpg')";
+		document.getElementById("red").style.color = "red";
+
+		document.getElementById("topher").style.visibility = "hidden";
+		document.getElementById("moran1").style.visibility = "hidden";
+		document.getElementById("moran2").style.visibility = "hidden";
+		document.getElementById("miss").style.visibility = "hidden";
+		document.getElementById("dj").style.visibility = "hidden";
 		end()
 	}
 
 	if ((Math.abs(tophX - djX) < 70) && (Math.abs(tophY - djY) < 50)){
 		var body = document.getElementsByTagName("body")[0];
-		body.style.background = "url('bowl.jpg')";
+		document.getElementById("board").style.backgroundImage = "url('bowl.jpg')";
 		var h1 = document.getElementsByTagName("h1")[0];
+		document.getElementById("red").style.color = "red";
+
+		document.getElementById("moran1").style.visibility = "hidden";
+		document.getElementById("moran2").style.visibility = "hidden";
+		document.getElementById("dj").style.visibility = "hidden";
 		if (level == 1){
 			h1.innerHTML = "You won! Let the party live";
 		}
@@ -90,14 +112,14 @@ var move = function(e){
 	var moran = document.getElementById("moran1");
 	if (mDirection == true){
 		moranY += 14;
-		if (moranY >= window.innerHeight-100){
+		if (moranY >= document.getElementById("board").offsetHeight - 110){
 			mDirection = !mDirection;
 		}
 	}
 
 	if (mDirection == false) {
 		moranY -= 14;
-		if (moranY <= 0){
+		if (moranY <= 70){
 			mDirection = !mDirection;
 		}
 	}
@@ -130,24 +152,30 @@ window.addEventListener('mousemove',function(e){
 });
 
 function begin() {
+	document.getElementById("start").disabled = true;
 	var h1 = document.getElementsByTagName("h1")[0];
 	h1.innerHTML = "YOU LOST!!!! THE PARTY IS RUINED WITHOUT THE DJ.";
 	var body = document.getElementsByTagName("body")[0];
-	body.style.background = "";
+	document.getElementById("board").style.backgroundImage = "";
 	myEvent = setInterval(move,100);
 }
 
 function begin2() {
 	level = 2;
     // Code to prepare level 2 game
+    start2.disabled = true;
+    document.getElementById("moran1").style.visibility = "visible";
+	document.getElementById("moran2").style.visibility = "visible";
+
     var dj = document.getElementById("dj");
     dj.style.visibility = "hidden";
     var miss = document.getElementById("miss");
     miss.style.visibility = "visible";
     var h1 = document.getElementsByTagName("h1")[0];
-    h1.innerHTML = "You lost! You're the worst DJ on this side of the Mississippi";
+    h1.innerHTML = "You're the worst DJ on this side of the Mississippi!!";
     var body = document.getElementsByTagName("body")[0];
-    body.style.background = "";
+    document.getElementById("board").style.backgroundImage = "";
+    document.getElementById("red").style.color = "white";
     myEvent = setInterval(move,100);
 }
 
@@ -158,12 +186,12 @@ function end() {
 	var moran = document.getElementById("moran1");
 	var moran2 = document.getElementById("moran2");
 	topher.style.left = "28px";
-	tophX = 0;
+	tophX = 28;
 	topher.style.top = "200px";
 	tophY = 200;
-	moran.style.top = "63px";
+	moran.style.top = "68px";
 	var moranX = 600;
-	var moranY = 0;
+	var moranY = 68;
 	moran2.style.top = "450px";
 	moran2.style.left = "600px";
 	var moran2X = 600;
