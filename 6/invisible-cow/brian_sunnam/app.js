@@ -15,32 +15,31 @@ var goalY;
 
 var curSrc;
 
-
 window.addEventListener('mousemove',function(e){
     mouseX=e.pageX;
     mouseY=e.pageY;
     //console.log("mouse moved to ("+mouseX+','+mouseY+')')
 });
-
+var div;
+//var winning_image;
 var win = function(){
-<<<<<<< Updated upstream
-    var div = document.createElement('div');
+    div = document.createElement('div');
     div.className = 'init';
-    div.setAttribute('id','winner')
+    div.setAttribute('id','winner');
     div.innerHTML = 'YAY!<br>';
     div.innerHTML+= '<img src="winner.jpg">';
     canvas.appendChild(div);
     div.className = 'fade';
-=======
-    var winning_image = "winner.jpg"
-    canvas.innerHTML = '<div id="winner">';
-    canvas.innerHTML += '<img src="winner.jpg" style="position:absolute; top: 200px; left: 480px;"></div>';
->>>>>>> Stashed changes
+
+    //winning_image = "winner.jpg"
+ //   canvas.innerHTML = '<div id="winner">';
+//canvas.innerHTML += '<img src="winner.jpg" style="position:absolute; align: center; top: 200px; left: 480px;"></div>';
+
     canvas.style.cursor = 'auto';
     canvas.removeEventListener('click',win);
-    window.alert("Congratulations! You've found the invisible Topher! Press 'Start' to replay");
+    //window.alert("Congratulations! You've found the invisible Topher! Press 'Start' to replay");
     window.clearTimeout(game);
-    music.stop();
+    music.pause();
 }
 
 var check = function(){
@@ -81,11 +80,12 @@ function start(){
     goalY = Math.random()*(maxY-minY)+minY;
     console.log(goalX+','+goalY);
     game = setInterval(check,100);
-    canvas.innerHTML += '<img src="cheating.png" style="position:absolute; top: 600 px; left: 470px;"></div>';
+    //canvas.innerHTML += '<img src="cheating.png" style="position:absolute; top: 600 px; left: 470px;"></div>';
+    document.getElementById('winner').className = 'init';
 }
 function stop(){ 
     window.clearTimeout(game);
-    music.stop();
+    music.pause();
 }
 
 

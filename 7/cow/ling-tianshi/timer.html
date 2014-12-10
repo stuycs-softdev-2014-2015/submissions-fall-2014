@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+   
   <head>
     <style type="text/css">
       .red {color: #ff0000;}
@@ -7,10 +8,12 @@
       .blue {color:0000ff;}
       .img {height:50px; }
       .smallerImg {height:10px; }
-      .move {position:absolute; left:100px; top:500px; }
+      .move {position:absolute; left:100px; top:500px;
+      cursor: crosshair;}
       body {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      cursor: url(static/swatter.gif);}
+      cursor: crosshair;}
       .noselect {
+      cursor: crosshair;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       -khtml-user-select: none;
@@ -18,6 +21,8 @@
       -ms-user-select: none;
       user-select: none;
       }
+      .custom {
+      cursor: url(static/swatter.png), auto;
     </style>
 
     <meta charset="UTF-8">
@@ -29,11 +34,12 @@
       Period 7 </h3>
     <h1 id="title" class="red">KILL THE FLY</h1>
     <div class="move">
-      <img id="fly" class="img" src=static/fly.png>
+      <span style="cursor:crosshair;">
+	<img id="fly" class="img" src=static/fly.png>
+	</span>
     </div>
 
     <script src="timer.js"></script>
-
+    </div>
   </body>
-  </div>
 </html>

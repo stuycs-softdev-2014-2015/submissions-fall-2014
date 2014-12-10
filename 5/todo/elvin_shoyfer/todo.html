@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<title>To-do</title>
+
+		<!-- Bootstrap CDN links from MaxCDN -->
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron" style="text-align: center">
+				<h1>To-do List</h1>
+				<p class="lead">Let's get some stuff done.</p>
+				<textarea class="form-control" id="taskInput" rows="1"></textarea><br>
+				<p><button class="btn btn-lg btn-info" id="addTask" role="button">Add task</button></p>
+				<p>Current tasks</p>
+				<ul class="list-group" id="currentTasks">
+				</ul>
+
+				<p>Completed Tasks</p>
+				<ul class="list-group" id="completedTasks">
+				</ul>				
+			</div>
+		</div>
+
+		<<script src="todo.js"></script>
+	</body>
+</html>
