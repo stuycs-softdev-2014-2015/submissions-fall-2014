@@ -4,15 +4,22 @@
   <title>Get Topher Safe</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
   <style type="text/css">
+  	#board {
+  		position: absolute;
+  		top: 60px;
+  		border-style: solid;
+    	border-width: 4px;
+  	}
+
     #topher {
     position: absolute;
     top: 200px;
-    left: 0px;
+    left: 28px;
     }
 
     #moran1 {
     position: absolute;
-    top : 0px;
+    top : 63px;
     left : 600px;
     }
 
@@ -37,24 +44,50 @@
     visibility: hidden;
     }
 
+    .left{
+    	margin-left: 25px;
+    }
+
     .button-xlarge {
     font-size: 125%;
+    margin-top: 5px;
+    }
+
+    .fuzzy{
+    	-moz-box-shadow: 0 0 7px rgba(0,0,0,.5);
+		-webkit-box-shadow: 0 0 7px rgba(0,0,0,.5);
+		box-shadow: 0 0 7px rgba(0,0,0,.5);
+		border-radius: 10px;
+    }
+    .top{
+    	float: left;
+    }
+    h1{
+    	margin-left: 10px;
+    	margin-top: 13px;
+    	font-size: 180%;
     }
   </style>
 </head>
 <body>
-<button id="start" class="pure-button button-xlarge">Start</button>
+<div class="top">
+<button id="start" class="pure-button button-xlarge left">Start</button>
 <button id="start2" disabled="disabled" class="pure-button button-xlarge">Start Next Level</button>
 <button id="restart" class="pure-button button-xlarge">Restart</button>
+</div>
+<div class="top">
 <h1 style="color: white;">YOU LOST!!!! THE PARTY IS RUINED WITHOUT THE DJ.</h1>
+</div>
+
+<div id="board" class="left"></div>
 
 <img src="topher.png" id="topher" height="98" width="94">
 
-<img src="moran.jpg" id="moran1" height="178" width="147">
+<img src="moran.jpg" id="moran1" class="fuzzy" height="178" width="147">
 
-<img src="moran.jpg" id="moran2" height="178" width="147">
+<img src="moran.jpg" id="moran2" class="fuzzy" height="178" width="147">
 
-<img src="dj.jpg" id="dj" width="120">
+<img src="dj.jpg" id="dj" class="fuzzy" width="120">
 
 <img src="mississippi.jpg" id="miss" width="120">
   
