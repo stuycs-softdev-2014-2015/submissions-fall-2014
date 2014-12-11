@@ -10,6 +10,7 @@ function checkPress(k) {
     fkeys.push(k.which);
     if (fkeys.join("")==okeys.join("")){
         superImposeJesus();
+	fkeys=[];
     }
 }
 
@@ -35,6 +36,7 @@ function superImposeJesus() {
         var imageElement = document.createElement("img");
         imageElement.className = "jesus-image";
         imageElement.src = jesus_url;
+	imageElement.style.margin = "0 auto";
         $("body").append(imageElement);
     }
 
@@ -46,7 +48,7 @@ function superImposeJesus() {
 }
 
 function jesusImageAlreadyLoaded() {
-    return !(document.querySelector(".jesus-image") == null)
+    return !(document.querySelector(".jesus-image") == null);
 }
 
 function removeJesus() {
@@ -54,4 +56,5 @@ function removeJesus() {
 	//$(".jesus-sound").remove();
         jesus_currently_imposed = false;
     } );
+    fkeys=[];
 }
