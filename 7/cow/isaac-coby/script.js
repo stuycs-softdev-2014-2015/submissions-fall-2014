@@ -7,6 +7,9 @@ var moranY = 68;
 var moran2X = 600;
 var moran2Y = 450;
 var mDirection = true;
+var won = 0;
+var lost = 0;
+var s2 = 0;
 
 document.getElementById("board").style.width = (window.innerWidth - 50) + "px";
 document.getElementById("board").style.height = (window.innerHeight - 80) + "px";
@@ -42,50 +45,47 @@ var insideY = function(yCor){
 
 var move = function(e){
 	if ((Math.abs(tophX - moranX) < 80) && (Math.abs(tophY - moranY) < 60)){
-		var body = document.getElementsByTagName("body")[0];
-		document.getElementById("board").style.backgroundImage = "url('lostmoran.jpg')";
-		document.getElementById("red").style.color = "red";
-
-		document.getElementById("topher").style.visibility = "hidden";
-		document.getElementById("moran1").style.visibility = "hidden";
-		document.getElementById("moran2").style.visibility = "hidden";
-		document.getElementById("miss").style.visibility = "hidden";
-		document.getElementById("dj").style.visibility = "hidden";
-
-		end()
+		
+	    var body = document.getElementsByTagName("body")[0];
+	    lost += 1;
+	    var wl = document.getElementsByTagName("h2")[0];
+	    wl.innerHTML = wl.innerHTML.substr(0,18) + lost;
+	    document.getElementById("board").style.backgroundImage = "url('lostmoran.jpg')";
+	    document.getElementById("red").style.color = "red";
+	    end()
 	}
 
 	if ((Math.abs(tophX - moran2X) < 80) && (Math.abs(tophY - moran2Y) < 60) && (level == 2)){
-		var body = document.getElementsByTagName("body")[0];
-		document.getElementById("board").style.backgroundImage = "url('lostmoran.jpg')";
-		document.getElementById("red").style.color = "red";
-
-		document.getElementById("topher").style.visibility = "hidden";
-		document.getElementById("moran1").style.visibility = "hidden";
-		document.getElementById("moran2").style.visibility = "hidden";
-		document.getElementById("miss").style.visibility = "hidden";
-		document.getElementById("dj").style.visibility = "hidden";
-		end()
+	    var body = document.getElementsByTagName("body")[0];
+	    lost += 1;
+	    var wl = document.getElementsByTagName("h2")[0];
+	    wl.innerHTML = wl.innerHTML.substr(0,18) + lost;
+	    
+	    var body = document.getElementsByTagName("body")[0];
+	    document.getElementById("board").style.backgroundImage = "url('lostmoran.jpg')";
+	    document.getElementById("red").style.color = "red";
+	    end()
 	}
 
 	if ((Math.abs(tophX - djX) < 70) && (Math.abs(tophY - djY) < 50)){
-		var body = document.getElementsByTagName("body")[0];
-		document.getElementById("board").style.backgroundImage = "url('bowl.jpg')";
-		var h1 = document.getElementsByTagName("h1")[0];
-		document.getElementById("red").style.color = "red";
+	    var body = document.getElementsByTagName("body")[0];
+	    won += 1;
+	    var wl = document.getElementsByTagName("h2")[0];
+	    wl.innerHTML = wl.innerHTML.substr(0,7) + won + wl.innerHTML.substr(8,17) ;
 
-		document.getElementById("moran1").style.visibility = "hidden";
-		document.getElementById("moran2").style.visibility = "hidden";
-		document.getElementById("dj").style.visibility = "hidden";
-		if (level == 1){
-			h1.innerHTML = "You won! Let the party live";
-		}
-		else{
-			h1.innerHTML = "Sweet home Mississippi";
-		}
-		var start2 = document.getElementById("start2");
-		start2.disabled = false;
-		end();
+	    var body = document.getElementsByTagName("body")[0];
+	    document.getElementById("board").style.backgroundImage = "url('bowl.jpg')";
+	    var h1 = document.getElementsByTagName("h1")[0];
+	    document.getElementById("red").style.color = "red";
+
+	    if (level == 1){
+		h1.innerHTML = "You won! Let the party live";
+	    }
+	    else{
+		h1.innerHTML = "Sweet home Mississippi";
+	    }
+	    s2 = 1;
+	    end();
 	}
 
 	var topher = document.getElementById("topher");
@@ -152,23 +152,28 @@ window.addEventListener('mousemove',function(e){
 });
 
 function begin() {
-	document.getElementById("start").disabled = true;
-	var h1 = document.getElementsByTagName("h1")[0];
-	h1.innerHTML = "YOU LOST!!!! THE PARTY IS RUINED WITHOUT THE DJ.";
-	var body = document.getElementsByTagName("body")[0];
-	document.getElementById("board").style.backgroundImage = "";
-	myEvent = setInterval(move,100);
+    document.getElementById("start").disabled = true;
+    document.getElementById("start2").disabled = true;
+    document.getElementById("restart").disabled = true;
+    var h1 = document.getElementsByTagName("h1")[0];
+    h1.innerHTML = "YOU LOST!!!! THE PARTY IS RUINED WITHOUT THE DJ.";
+    var body = document.getElementsByTagName("body")[0];
+    document.getElementById("board").style.backgroundImage = "";
+    myEvent = setInterval(move,100);
+    document.getElementById("moran1").style.visibility = "visible";
+    document.getElementById("topher").style.visibility = "visible";
+    document.getElementById("dj").style.visibility = "visible";
 }
 
 function begin2() {
-	level = 2;
+    level = 2;
     // Code to prepare level 2 game
-    start2.disabled = true;
+    document.getElementById("start").disabled = true;
+    document.getElementById("start2").disabled = true;
+    document.getElementById("restart").disabled = true;
     document.getElementById("moran1").style.visibility = "visible";
-	document.getElementById("moran2").style.visibility = "visible";
-
-    var dj = document.getElementById("dj");
-    dj.style.visibility = "hidden";
+    document.getElementById("moran2").style.visibility = "visible";
+    document.getElementById("topher").style.visibility = "visible";
     var miss = document.getElementById("miss");
     miss.style.visibility = "visible";
     var h1 = document.getElementsByTagName("h1")[0];
@@ -181,29 +186,39 @@ function begin2() {
 
 
 function end() {
-	window.clearTimeout(myEvent);
-	var topher = document.getElementById("topher");
-	var moran = document.getElementById("moran1");
-	var moran2 = document.getElementById("moran2");
-	topher.style.left = "28px";
-	tophX = 28;
-	topher.style.top = "200px";
-	tophY = 200;
-	moran.style.top = "68px";
-	var moranX = 600;
-	var moranY = 68;
-	moran2.style.top = "450px";
-	moran2.style.left = "600px";
-	var moran2X = 600;
-	var moran2Y = 450;
-	if (level == 2){
-		moran2.style.visibility = "hidden";
-		level = 1;
-	}
+    window.clearTimeout(myEvent);
+    document.getElementById("miss").style.visibility = "hidden";
+    document.getElementById("dj").style.visibility = "hidden";
+    document.getElementById("restart").disabled = false;
+    var topher = document.getElementById("topher");
+    var moran = document.getElementById("moran1");
+    var moran2 = document.getElementById("moran2");
+    topher.style.visibility = "hidden";
+    moran.style.visibility = "hidden";
+    moran2.style.visibility = "hidden";
+    topher.style.left = "28px";
+    tophX = 28;
+    topher.style.top = "200px";
+    tophY = 200;
+    moran.style.top = "68px";
+    var moranX = 600;
+    var moranY = 68;
+    moran2.style.top = "450px";
+    moran2.style.left = "600px";
+    var moran2X = 600;
+    var moran2Y = 450;
+    level = 1;
 }
 
 function restart(){
-	location.reload();
+    document.getElementById("red").style.color = "white";
+    var body = document.getElementsByTagName("body")[0];
+    document.getElementById("board").style.backgroundImage = "";
+    document.getElementById("start").disabled = false;
+    if (s2 == 1){
+	document.getElementById("start2").disabled = false;
+    }
+    
 }
 
 document.getElementById("start").addEventListener('click', begin);
