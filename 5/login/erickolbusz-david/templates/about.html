@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+About {{username}}
+{% endblock title %}
+
+{% block header %}
+About {{username}}
+{% endblock header %}
+
+{% block body %}
+Here you can write anything about yourself. You will not be able to delete any information.
+<br>
+Here is what you have already written.
+<br>
+{{userinfo}}
+<br>
+
+<form>
+  <textarea rows="5" type="text" class="form-control" name="userinfo" placeholder="Write More about yourself"></textarea>
+  <br>
+  <input type="submit" class="btn btn-success" name="submit" value="Submit">
+  <br>
+</form>
+
+
+{% endblock body %}
+

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN"> 
+<html> 
+<head>  
+	<link rel="stylesheet" type="text/css" href="{{ url_for( 'static', filename='css/bootstrap-theme.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.css') }}">
+<title>Logger</title>
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+		    <ul class=flashes>
+		    {% for message in messages %}
+		      <li>{{ message }}</li>
+		    {% endfor %}
+		    </ul>
+		  {% endif %}
+		{% endwith %}
+</head>
+
+<body>
+	
+	<div class="container-fluid">
+		<h1>Logger</h1>
+	{%block navbar %}
+		<div class="navbar navbar-inverse">
+		  <div class="navbar-header">
+		    <a class="navbar-brand" href="/">Logger<span class="glyphicon glyphicon-asterisk"></span></a>
+		  </div>
+		  <div class="navbar-collapse collapse navbar-inverse-collapse">
+		    <ul class="nav navbar-nav">
+		          <li><a href="/user">Home</a></li>
+		          <li><a href="/settings">Settings</a></li>
+				  <li><a href="/about">About</a></li>
+			  </ul>
+			  <ul class="nav navbar-nav navbar-right">
+				  {%if user %}
+		          <li><a href="/logout" >Logout {{user}}?</a></li>
+				  {%else %}
+		          <li><a href="/login" >Login</a></li>
+				  {% endif %}
+			  </ul>
+		  </div>
+	  </div>
+
+		{% endblock navbar %}
+
+		{%block bodycontent %}
+		{%endblock bodycontent %}
+	
+	</div>
+
+</body>
+</html>

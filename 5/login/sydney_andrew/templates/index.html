@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+
+<html>
+  <head>
+    {% block body %}
+    <title>User Home</title>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+	<ul class="nav navbar-nav">
+          <li class="active"><a href="/">Index</a></li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	  <li><a href="login">Login</a></li>
+	  <li><a href="register">Register</a></li>
+	</ul>
+	</ul>
+      </div>
+    </nav>
+  </head>
+  <body>
+    <div class="container">
+      <center>
+	<div class="jumbotron">
+	  <h1> Please Login </h1>	
+	</div>
+      </center>
+    </div>
+    <div class="container">
+      You can't do anything until you login...
+    </div>
+    {% endblock %}
+  </body>
+</html>

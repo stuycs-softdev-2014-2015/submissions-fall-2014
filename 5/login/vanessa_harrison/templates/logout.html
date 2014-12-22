@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+Logout
+{% endblock title %}
+
+{% block body %}
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2">
+      {% block stuff %}
+      <h3>
+	We hate to see you go...
+	<br>
+	<small>
+	  so come back again soon!
+	</small>
+      </h3>
+      <div class="pull-right">
+	<br>
+	<br>
+	<form action="" method="post">
+	  <input type="submit" class="btn btn-lg btn-default" value="Logout >>>" name="logout">
+	</form>
+      </div>
+      {% endblock stuff %}
+    </div>
+  </div>
+</div>
+
+  {% endblock body %}
